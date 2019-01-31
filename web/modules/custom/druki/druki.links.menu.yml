@@ -1,0 +1,5 @@
+druki.admin:
+  title: 'Druki'
+  parent: system.admin
+  route_name: druki.admin
+  weight: -50

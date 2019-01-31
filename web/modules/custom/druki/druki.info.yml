@@ -1,0 +1,5 @@
+name: Druki
+type: module
+description: The main module for common code.
+package: druki
+core: 8.x

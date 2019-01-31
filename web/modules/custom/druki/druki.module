@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Druki module.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function druki_preprocess_toolbar(array &$variables) {
+  $variables['#attached']['library'][] = 'druki/druki.toolbar';
+}

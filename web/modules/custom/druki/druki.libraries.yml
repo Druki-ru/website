@@ -1,0 +1,5 @@
+druki.toolbar:
+  version: VERSION
+  css:
+    theme:
+      assets/css/druki.toolbar.css: {}
