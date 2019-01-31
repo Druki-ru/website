@@ -1,0 +1,9 @@
+{
+  "name": "drupal/druki_git",
+  "type": "drupal-custom-module",
+  "description": "The git integration.",
+  "keywords": ["Drupal"],
+  "require": {
+    "czproject/git-php": "^3.16.2"
+  }
+}

@@ -1,0 +1,11 @@
+druki_git.admin:
+  title: 'GIT'
+  parent: druki.admin
+  route_name: druki_git.admin
+  weight: 0
+
+druki_git.git_settings:
+  title: 'Git Settings'
+  parent: druki_git.admin
+  route_name: druki_git.git_settings
+  weight: 0

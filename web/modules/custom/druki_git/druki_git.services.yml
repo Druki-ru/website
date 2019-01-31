@@ -1,0 +1,4 @@
+services:
+  druki.git:
+    class: 'Drupal\druki_git\Service\Git'
+    arguments: ['@config.factory']

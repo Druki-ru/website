@@ -1,0 +1,10 @@
+druki_git.git_settings:
+  type: config_object
+  label: 'Druki Git Settings'
+  mapping:
+    repository_url:
+      type: string
+      label: 'Git repository URL'
+    repository_path:
+      type: string
+      label: 'Gir repository local path'
