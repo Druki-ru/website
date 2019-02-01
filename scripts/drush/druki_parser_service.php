@@ -21,9 +21,11 @@ title: Meta info test
 
 echo "Hello World";
 ```
+
+{-- removed content --}
+{~~removed content~>ins~~}
+{++ added content ++}
+[Alt]+[Q]
 Markdown;
 
-/** @var \Drupal\markdown\MarkdownInterface $markdown */
-$markdown = \Drupal::service('markdown');
-$commonmark = $markdown->getParser('thephpleague/commonmark');
-dump($commonmark->parse($markdown_content));
+dump($druki_parser->parseMarkdown($markdown_content));

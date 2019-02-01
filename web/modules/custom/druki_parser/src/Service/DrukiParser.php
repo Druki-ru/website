@@ -25,7 +25,7 @@ class DrukiParser implements DrukiParserInterface {
    *   The markdown service.
    */
   public function __construct(Markdown $markdown) {
-    $this->markdownParser = $markdown->getParser('thephpleague/commonmark');
+    $this->markdownParser = $markdown->getParser('thephpleague/commonmark', 'markdown');
   }
 
   /**
@@ -38,7 +38,7 @@ class DrukiParser implements DrukiParserInterface {
    *   The HTML markup.
    */
   public function parseMarkdown($content) {
-    return $this->markdownParser->parse($content);
+    return $this->markdownParser->convertToHtml($content);
   }
 
 }
