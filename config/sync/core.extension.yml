@@ -11,6 +11,7 @@ module:
   dblog: 0
   druki: 0
   druki_git: 0
+  druki_parser: 0
   dynamic_page_cache: 0
   editor: 0
   field: 0
@@ -23,6 +24,7 @@ module:
   language: 0
   link: 0
   locale: 0
+  markdown: 0
   menu_ui: 0
   node: 0
   options: 0

@@ -40,7 +40,7 @@ class GitSettingsForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('druki.git')
+      $container->get('druki_git')
     );
   }
 

@@ -1,0 +1,8 @@
+name: Druki — Parser
+type: module
+description: The parser for content.
+package: druki
+core: 8.x
+dependencies:
+  - druki_git:druki_git
+  - markdown:markdown (>=2.0-alpha1)

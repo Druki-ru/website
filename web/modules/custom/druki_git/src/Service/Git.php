@@ -4,8 +4,11 @@ namespace Drupal\druki_git\Service;
 
 use Cz\Git\GitException;
 use Cz\Git\GitRepository;
+use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\File\FileSystemInterface;
+use Drupal\druki_git\Event\DrukiGitEvent;
+use Drupal\druki_git\Event\DrukiGitEvents;
 
 /**
  * Service wrapper to git library.
@@ -36,16 +39,26 @@ class Git implements GitInterface {
   protected $fileSystem;
 
   /**
+   * The event dispatcher.
+   *
+   * @var \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher
+   */
+  protected $eventDispatcher;
+
+  /**
    * Git constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file system.
+   * @param \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher $event_dispatcher
+   *   The event dispatcher.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, FileSystemInterface $file_system) {
+  public function __construct(ConfigFactoryInterface $config_factory, FileSystemInterface $file_system, ContainerAwareEventDispatcher $event_dispatcher) {
     $this->configuration = $config_factory->get('druki_git.git_settings');
     $this->fileSystem = $file_system;
+    $this->eventDispatcher = $event_dispatcher;
   }
 
   /**
@@ -73,6 +86,10 @@ class Git implements GitInterface {
   public function pull() {
     try {
       $this->git->pull();
+
+      // Fire event.
+      $event = new DrukiGitEvent($this);
+      $this->eventDispatcher->dispatch(DrukiGitEvents::FINISH_PULL, $event);
 
       return $this;
     }

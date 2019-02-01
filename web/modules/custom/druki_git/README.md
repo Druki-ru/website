@@ -1,12 +1,12 @@
 # Druki - Git
 
-@todo description
+This module working with git repository. The current usage is to check, is there active repository and pulling actual data from it.
 
 ## Troubleshooting
 
 ### Git library can't access private repository.
 
-The best way to fix it is create SSH key without passport and add it to repo.
+The best way to fix it, is create SSH key without password and add it to repo.
 
 If you are using it on localhost with Docker4Drupal, better to generate key in different place and then mount it to PHP container.
 

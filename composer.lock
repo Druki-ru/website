@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6582a3434b4d4ab6c1fab546d6f01b03",
+    "content-hash": "48ddae20086624c160da17c97750fb84",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2598,6 +2598,66 @@
             "time": "2019-01-16T23:30:03+00:00"
         },
         {
+            "name": "drupal/markdown",
+            "version": "dev-2.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/markdown",
+                "reference": "e06a3fb53dea34c9dd04868a81e4a0bc7bdf4229"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "league/commonmark": ">=0.18.0",
+                "php": ">=5.6.5"
+            },
+            "suggest": {
+                "uafrica/commonmark-ext": "Adds Strikethrough support for the CommonMark parser.",
+                "webuni/commonmark-attributes-extension": "Adds Attribute support for the CommonMark parser.",
+                "webuni/commonmark-table-extension": "Adds Table support for the CommonMark parser."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-alpha1+8-dev",
+                    "datestamp": "1528455184",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Carver (markcarver)",
+                    "homepage": "https://www.drupal.org/u/markcarver",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Gisle Hannemyr (gisle)",
+                    "homepage": "https://www.drupal.org/u/gisle",
+                    "role": "Co-Maintainer"
+                },
+                {
+                    "name": "markcarver",
+                    "homepage": "https://www.drupal.org/user/501638"
+                }
+            ],
+            "description": "Allows content to be submitted using Markdown, a simple plain-text syntax that is transformed into valid HTML.",
+            "homepage": "https://www.drupal.org/project/markdown",
+            "support": {
+                "source": "https://cgit.drupalcode.org/markdown",
+                "issues": "https://www.drupal.org/project/markdown"
+            },
+            "time": "2018-09-20T21:50:00+00:00"
+        },
+        {
             "name": "drush/drush",
             "version": "9.6.0-rc2",
             "source": {
@@ -3220,6 +3280,75 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "league/commonmark",
+            "version": "0.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark.git",
+                "reference": "e5029f74ba39e043ce4b3ca6c05dc719d8aafd94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/e5029f74ba39e043ce4b3ca6c05dc719d8aafd94",
+                "reference": "e5029f74ba39e043ce4b3ca6c05dc719d8aafd94",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.6.5"
+            },
+            "replace": {
+                "colinodell/commonmark-php": "*"
+            },
+            "require-dev": {
+                "cebe/markdown": "~1.0",
+                "commonmark/commonmark.js": "0.28",
+                "erusev/parsedown": "~1.0",
+                "michelf/php-markdown": "~1.4",
+                "mikehaertl/php-shellcommand": "^1.2",
+                "phpunit/phpunit": "^5.7|^6.5",
+                "scrutinizer/ocular": "^1.1",
+                "symfony/finder": "^3.0|^4.0"
+            },
+            "suggest": {
+                "league/commonmark-extras": "Library of useful extensions including smart punctuation"
+            },
+            "bin": [
+                "bin/commonmark"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.19-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\CommonMark\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "PHP Markdown parser based on the CommonMark spec",
+            "homepage": "https://github.com/thephpleague/commonmark",
+            "keywords": [
+                "commonmark",
+                "markdown",
+                "parser"
+            ],
+            "time": "2018-12-30T01:55:29+00:00"
         },
         {
             "name": "league/container",
@@ -8211,7 +8340,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "drupal/markdown": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
