@@ -1,4 +1,4 @@
 services:
   druki_parser:
     class: 'Drupal\druki_parser\Service\DrukiParser'
-    arguments: ['@markdown']
+    arguments: ['@markdown', '@entity_type.manager']

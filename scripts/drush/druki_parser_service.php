@@ -9,23 +9,17 @@
 $druki_parser = \Drupal::service('druki_parser');
 
 $markdown_content = <<<'Markdown'
----
-id: meta-test
-title: Meta info test
----
+## Title
 
-## h2
+paragraph
 
 ```php
-<?php
-
-echo "Hello World";
+code
 ```
 
-{-- removed content --}
-{~~removed content~>ins~~}
-{++ added content ++}
-[Alt]+[Q]
+[url](https://google.ru)
 Markdown;
 
-dump($druki_parser->parseMarkdown($markdown_content));
+$result_html = $druki_parser->parseMarkdown($markdown_content);
+
+dump($druki_parser->parseHtml($result_html));

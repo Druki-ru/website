@@ -1,0 +1,9 @@
+{
+  "name": "drupal/druki_parser",
+  "type": "drupal-custom-module",
+  "description": "The parser for content.",
+  "keywords": ["Drupal"],
+  "require": {
+    "symfony/dom-crawler": "~3.0"
+  }
+}

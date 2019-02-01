@@ -2,7 +2,10 @@
 
 namespace Drupal\druki_parser\Service;
 
+use DOMDocument;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\markdown\Markdown;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Object for parse markdown and html and transform to specific data structures.
@@ -23,9 +26,20 @@ class DrukiParser implements DrukiParserInterface {
    *
    * @param \Drupal\markdown\Markdown $markdown
    *   The markdown service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(Markdown $markdown) {
-    $this->markdownParser = $markdown->getParser('thephpleague/commonmark', 'markdown');
+  public function __construct(Markdown $markdown, EntityTypeManagerInterface $entity_type_manager) {
+    $user_storage = $entity_type_manager->getStorage('user');
+    $user = $user_storage->load(1);
+    // The markdown looking for filters available for provided user. If we call
+    // it via Drush, we will be anonymous user, and if filter is not accessible
+    // to him, markdown will be converted without extensions. So we force in
+    // code to handle it via admin user.
+    $this->markdownParser = $markdown->getParser('thephpleague/commonmark', 'markdown', $user);
   }
 
   /**
@@ -39,6 +53,59 @@ class DrukiParser implements DrukiParserInterface {
    */
   public function parseMarkdown($content) {
     return $this->markdownParser->convertToHtml($content);
+  }
+
+  /**
+   * Parses HTML to structured data.
+   *
+   * @param string $content
+   *   The html content.
+   *
+   * @return array
+   *   An array with structured data.
+   */
+  public function parseHtml($content) {
+    $crawler = new Crawler($content);
+    // Move to body. We expect content here.
+    $crawler = $crawler->filter('body');
+    // For now we have this structure types:
+    // - heading: Heading elements.
+    // - content: Almost every content, p, ul, li, span and so on.
+    // - image: Image tag.
+    // - code: for pre > code.
+    // Each content node after another merge to previous.
+    $structure = [];
+    // Move through elements and structure them.
+    foreach ($crawler->children() as $dom_element) {
+      if ($this->isHeading($dom_element->nodeName)) {
+        $structure[] = [
+          'type' => 'heading',
+          'heading' => $dom_element->nodeName,
+          'value' => $dom_element->textContent,
+        ];
+
+        continue;
+      }
+
+      if ($this->isContent($dom_element->nodeName)) {
+        $structure[] = [
+          'type' => 'content',
+          'value' => $dom_element->ownerDocument->saveHTML($dom_element),
+        ];
+      }
+    }
+  }
+
+  protected function isHeading($node_name) {
+    $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
+    return in_array($node_name, $heading_elements);
+  }
+
+  protected function isContent($node_name) {
+    $content_elements = ['p'];
+
+    return in_array($node_name, $content_elements);
   }
 
 }
