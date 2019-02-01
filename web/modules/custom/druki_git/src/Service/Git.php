@@ -2,9 +2,10 @@
 
 namespace Drupal\druki_git\Service;
 
+use Cz\Git\GitException;
 use Cz\Git\GitRepository;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Config\ConfigValueException;
+use Drupal\Core\File\FileSystemInterface;
 
 /**
  * Service wrapper to git library.
@@ -28,26 +29,63 @@ class Git implements GitInterface {
   protected $git;
 
   /**
-   * Git constructor.
+   * The file system.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
    */
-  public function __construct(ConfigFactoryInterface $config_factory) {
+  protected $fileSystem;
+
+  /**
+   * Git constructor.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The file system.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, FileSystemInterface $file_system) {
     $this->configuration = $config_factory->get('druki_git.git_settings');
-
-    $repository_url = $this->configuration->get('repository_url');
-    if (!$repository_url) {
-      throw new ConfigValueException('The repository url is not set.');
-    }
-
-    $repository_path = $this->configuration->get('repository_path');
-    if (!$repository_path) {
-      throw new ConfigValueException('The repository path is not set.');
-    }
-
-    $this->git = new GitRepository($repository_path);
+    $this->fileSystem = $file_system;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function init() {
+    $repository_path = $this->configuration->get('repository_path');
+    // Git library don't detect stream wrappers, so we need to convert our uri
+    // to real valid path.
+    $repository_realpath = $this->fileSystem->realpath($repository_path);
+
+    try {
+      $this->git = new GitRepository($repository_realpath);
+
+      return $this;
+    }
+    catch (GitException $e) {
+      return NULL;
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function pull() {
-    $this->git->pull('public://druki-git/content');
+    try {
+      $this->git->pull();
+
+      return $this;
+    }
+    catch (GitException $e) {
+      return NULL;
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLastCommitId() {
+    return $this->git->getLastCommitId();
   }
 
 }

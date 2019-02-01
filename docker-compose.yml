@@ -39,6 +39,7 @@ services:
 #      PHP_XDEBUG_REMOTE_LOG: /tmp/php-xdebug.log
     volumes:
       - ./:/var/www/html
+      - ~/.ssh/druki:/home/wodby/.ssh
 ## For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
 #      - ./:/var/www/html:cached # User-guided caching
 #      - docker-sync:/var/www/html # Docker-sync
