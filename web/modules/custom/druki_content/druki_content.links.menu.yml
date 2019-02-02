@@ -1,0 +1,10 @@
+entity.druki_content.settings:
+  title: Content entity settings
+  description: Configure a Druki content entity type
+  route_name:  entity.druki_content.settings
+  parent: druki.admin
+entity.druki_content.collection:
+  title: List of content
+  description: List of druki contents
+  route_name: entity.druki_content.collection
+  parent: entity.druki_content.settings

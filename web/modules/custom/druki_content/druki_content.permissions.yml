@@ -1,0 +1,9 @@
+administer druki content types:
+  title: 'Administer druki content types'
+  description: 'Maintain the types of druki content entity.'
+  restrict access: true
+administer druki content:
+  title: Administer druki content settings
+  restrict access: true
+access druki content overview:
+  title: 'Access druki content overview page'

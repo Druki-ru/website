@@ -1,0 +1,23 @@
+uuid: 419c262c-e594-4df3-be3b-366c690cc7dc
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.druki_textfield_formatted
+    - paragraphs.paragraphs_type.druki_heading
+  module:
+    - text
+_core:
+  default_config_hash: mq-WdCfCoFrRKHQZnqx6pPUXjC-YOaqSkQUApN7ixY8
+id: paragraph.druki_heading.druki_textfield_formatted
+field_name: druki_textfield_formatted
+entity_type: paragraph
+bundle: druki_heading
+label: Heading
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

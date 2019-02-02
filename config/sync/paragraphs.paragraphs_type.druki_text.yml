@@ -1,0 +1,11 @@
+uuid: a9415962-2f06-4d1a-b35a-be737594c736
+langcode: ru
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ePn2l35o1N3pHJXL4CIID-enx6wVpo4gbjMiL8c5ggs
+id: druki_text
+label: Text
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

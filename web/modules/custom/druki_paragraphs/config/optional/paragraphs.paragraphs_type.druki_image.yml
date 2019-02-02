@@ -1,0 +1,9 @@
+uuid: 9f2288dc-742d-4d17-be98-484a54f6df36
+langcode: ru
+status: true
+dependencies: {  }
+id: druki_image
+label: Image
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

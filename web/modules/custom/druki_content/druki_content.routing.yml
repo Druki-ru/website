@@ -1,0 +1,7 @@
+entity.druki_content.settings:
+  path: 'admin/structure/druki-content'
+  defaults:
+    _form: '\Drupal\druki_content\Form\DrukiContentSettingsForm'
+    _title: 'Druki content'
+  requirements:
+    _permission: 'administer druki content'

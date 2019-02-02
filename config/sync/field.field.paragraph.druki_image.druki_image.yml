@@ -1,0 +1,30 @@
+uuid: fe841d1e-7860-42e3-bba5-9e0f9c157dd6
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.druki_image
+    - media.type.image
+    - paragraphs.paragraphs_type.druki_image
+_core:
+  default_config_hash: 8goQjicy_bxop4he7_TmedqEGfqndL6sHMTquGULO-Q
+id: paragraph.druki_image.druki_image
+field_name: druki_image
+entity_type: paragraph
+bundle: druki_image
+label: Image
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

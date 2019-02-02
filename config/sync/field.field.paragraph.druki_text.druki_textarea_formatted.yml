@@ -1,0 +1,23 @@
+uuid: 8c3b9b63-fa76-47d7-8b02-c429671b6008
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.druki_textarea_formatted
+    - paragraphs.paragraphs_type.druki_text
+  module:
+    - text
+_core:
+  default_config_hash: S9rJAKWUUilj-wkWJPaQXcpFjBE18euzvu1WIyxkgl4
+id: paragraph.druki_text.druki_textarea_formatted
+field_name: druki_textarea_formatted
+entity_type: paragraph
+bundle: druki_text
+label: Content
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,25 @@
+uuid: 98febfa3-4345-4ff8-8236-aaf338d052ea
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.druki_heading_type
+    - paragraphs.paragraphs_type.druki_heading
+  module:
+    - options
+_core:
+  default_config_hash: YcCIfETNvu9DlFtPSJXmdvpUj6EdaH-OF3BGmjKhEXs
+id: paragraph.druki_heading.druki_heading_type
+field_name: druki_heading_type
+entity_type: paragraph
+bundle: druki_heading
+label: 'Heading type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: h2
+default_value_callback: ''
+settings: {  }
+field_type: list_string

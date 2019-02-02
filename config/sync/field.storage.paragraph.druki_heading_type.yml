@@ -1,0 +1,41 @@
+uuid: 2587bea8-3a86-497c-804f-e0364743f54a
+langcode: ru
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: nLljjiqiJFHLMDwSbswS75o_y3jqMds2ruCjXi1SPvU
+id: paragraph.druki_heading_type
+field_name: druki_heading_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: h1
+      label: h1
+    -
+      value: h2
+      label: h2
+    -
+      value: h3
+      label: h3
+    -
+      value: h4
+      label: h4
+    -
+      value: h5
+      label: h5
+    -
+      value: h6
+      label: h6
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

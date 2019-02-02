@@ -1,0 +1,5 @@
+druki_content.add_form:
+  route_name: entity.druki_content.add_form
+  title: 'Add druki content'
+  appears_on:
+    - entity.druki_content.collection

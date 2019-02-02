@@ -1,0 +1,19 @@
+uuid: e43785e7-8014-405b-bde8-bcea68d4f4b7
+langcode: ru
+status: true
+dependencies:
+  module:
+    - markdown
+_core:
+  default_config_hash: 5ro6URdcgL7DelIFCLgaDBSd--W0oFDDGB3JDxOAkYw
+name: Markdown
+format: markdown
+weight: 0
+filters:
+  markdown:
+    id: markdown
+    provider: markdown
+    status: true
+    weight: 0
+    settings:
+      parser: thephpleague/commonmark

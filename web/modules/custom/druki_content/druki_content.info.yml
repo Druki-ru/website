@@ -1,0 +1,10 @@
+name: Druki - Content
+type: module
+description: 'Provides a druki content entity.'
+package: druki
+core: 8.x
+configure: entity.druki_content.settings
+
+dependencies:
+  - druki:druki
+  - druki_paragraphs:druki_paragraphs

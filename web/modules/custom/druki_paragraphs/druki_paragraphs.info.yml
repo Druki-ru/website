@@ -1,0 +1,11 @@
+name: Druki - Paragraphs
+type: module
+description: The paragraphs integration.
+package: druki
+core: 8.x
+dependencies:
+  - paragraphs:paragraphs
+  - drupal:text
+  - drupal:options
+  - drupal:media
+  - drupal:media_library

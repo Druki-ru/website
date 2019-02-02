@@ -1,0 +1,22 @@
+entity.druki_content.settings:
+  title: Settings
+  route_name: entity.druki_content.settings
+  base_route: entity.druki_content.settings
+entity.druki_content.view:
+  title: View
+  route_name: entity.druki_content.canonical
+  base_route: entity.druki_content.canonical
+entity.druki_content.edit_form:
+  title: Edit
+  route_name: entity.druki_content.edit_form
+  base_route: entity.druki_content.canonical
+entity.druki_content.delete_form:
+  title: Delete
+  route_name: entity.druki_content.delete_form
+  base_route: entity.druki_content.canonical
+  weight: 10
+entity.druki_content.collection:
+  title: Druki content
+  route_name: entity.druki_content.collection
+  base_route: system.admin_content
+  weight: 10

@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_content",
+  "type": "drupal-custom-module",
+  "description": "Provides a druki content entity.",
+  "keywords": ["Drupal"]
+}

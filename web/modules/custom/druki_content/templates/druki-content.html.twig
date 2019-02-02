@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a druki content entity.
+ *
+ * This template is used when viewing a registered druki content's page,
+ * e.g., /admin/druki/content)/123. 123 being the druki content's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.title'.
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_druki_content()
+ */
+#}
+<article{{ attributes }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</article>
