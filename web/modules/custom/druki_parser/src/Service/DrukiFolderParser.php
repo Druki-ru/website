@@ -2,9 +2,7 @@
 
 namespace Drupal\druki_parser\Service;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\markdown\Markdown;
-use Symfony\Component\DomCrawler\Crawler;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -28,10 +26,19 @@ class DrukiFolderParser {
   protected $finder;
 
   /**
+   * The language manager.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+
+  /**
    * DrukiFolderParser constructor.
    */
-  public function __construct() {
+  public function __construct(LanguageManagerInterface $language_manager) {
     $this->finder = new Finder();
+
+    $this->languageManager = $language_manager;
   }
 
   /**
@@ -42,9 +49,21 @@ class DrukiFolderParser {
     $this->finder->name('*.md');
     $this->finder->name('*.MD');
 
+    $active_languages = $this->languageManager->getLanguages();
+    $active_langcodes = array_keys($active_languages);
+
+    $parsed_files = [];
+
     foreach ($this->finder as $file_info) {
-      dump($file_info);
+      // Check if path any of enabled languages.
+      foreach ($active_langcodes as $langcode) {
+        if (preg_match("/docs\/$langcode.*?/i", $file_info->getRelativePath())) {
+          $parsed_files[$langcode][] = $file_info;
+        }
+      }
     }
+
+    return $parsed_files;
   }
 
 }
