@@ -5,8 +5,8 @@
  * Testing code for druki parser service.
  */
 
-/** @var \Drupal\druki_parser\Service\DrukiParser $druki_parser */
-$druki_parser = \Drupal::service('druki_parser');
+/** @var \Drupal\druki_parser\Service\DrukiMarkdownParser $druki_parser */
+$druki_parser = \Drupal::service('druki_parser.markdown');
 
 $markdown_content = <<<'Markdown'
 ## Title

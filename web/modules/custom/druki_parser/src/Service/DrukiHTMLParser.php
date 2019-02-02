@@ -7,51 +7,16 @@ use Drupal\markdown\Markdown;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Object for parse markdown and html and transform to specific data structures.
+ * Parser for HTML.
  *
  * @package Drupal\druki_parser\Service
  */
-class DrukiParser implements DrukiParserInterface {
-
-  /**
-   * The markdown parser.
-   *
-   * @var \Drupal\markdown\Plugin\Markdown\MarkdownParserInterface
-   */
-  protected $markdownParser;
-
-  /**
-   * DrukiParser constructor.
-   *
-   * @param \Drupal\markdown\Markdown $markdown
-   *   The markdown service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
-   */
-  public function __construct(Markdown $markdown, EntityTypeManagerInterface $entity_type_manager) {
-    $user_storage = $entity_type_manager->getStorage('user');
-    $user = $user_storage->load(1);
-    // The markdown looking for filters available for provided user. If we call
-    // it via Drush, we will be anonymous user, and if filter is not accessible
-    // to him, markdown will be converted without extensions. So we force in
-    // code to handle it via admin user.
-    $this->markdownParser = $markdown->getParser('thephpleague/commonmark', 'markdown', $user);
-  }
+class DrukiHTMLParser implements DrukiHTMLParserInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function parseMarkdown($content) {
-    return $this->markdownParser->convertToHtml($content);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function parseHtml($content) {
+  public function parse($content) {
     $crawler = new Crawler($content);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');

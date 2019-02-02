@@ -7,7 +7,7 @@ namespace Drupal\druki_parser\Service;
  *
  * @package Drupal\druki_parser\Service
  */
-interface DrukiParserInterface {
+interface DrukiMarkdownParserInterface {
 
   /**
    * Parses markdown content.
@@ -18,17 +18,6 @@ interface DrukiParserInterface {
    * @return string
    *   The HTML markup.
    */
-  public function parseMarkdown($content);
-
-  /**
-   * Parses HTML to structured data.
-   *
-   * @param string $content
-   *   The html content.
-   *
-   * @return array
-   *   An array with structured data.
-   */
-  public function parseHtml($content);
+  public function parse($content);
 
 }
