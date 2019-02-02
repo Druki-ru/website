@@ -17,6 +17,8 @@ paragraph
 code
 ```
 
+![](https://google.ru/logo.png)
+
 [url](https://google.ru)
 Markdown;
 

@@ -2,7 +2,6 @@
 
 namespace Drupal\druki_parser\Service;
 
-use DOMDocument;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\markdown\Markdown;
 use Symfony\Component\DomCrawler\Crawler;
@@ -87,13 +86,27 @@ class DrukiParser implements DrukiParserInterface {
         continue;
       }
 
-      if ($this->isContent($dom_element->nodeName)) {
+      if ($this->isCode($dom_element->nodeName)) {
         $structure[] = [
-          'type' => 'content',
+          'type' => 'code',
           'value' => $dom_element->ownerDocument->saveHTML($dom_element),
         ];
+
+        continue;
       }
+
+      if ($image_info = $this->isImage($dom_element)) {
+        $structure[] = [
+          'type' => 'image',
+          'src' => $image_info[0][0],
+          'alt' => $image_info[0][1],
+        ];
+      }
+
+      // If no other is detected, treat is as content.
     }
+
+    dump($structure);
   }
 
   protected function isHeading($node_name) {
@@ -102,10 +115,18 @@ class DrukiParser implements DrukiParserInterface {
     return in_array($node_name, $heading_elements);
   }
 
-  protected function isContent($node_name) {
-    $content_elements = ['p'];
+  protected function isCode($node_name) {
+    $content_elements = ['pre'];
 
     return in_array($node_name, $content_elements);
+  }
+
+  protected function isImage($dom_element) {
+    $crawler = new Crawler($dom_element);
+    $image = $crawler->filter('img')->extract(['src', 'alt']);
+    if (!empty($image)) {
+      return $image;
+    }
   }
 
 }
