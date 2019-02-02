@@ -13,6 +13,8 @@ $markdown_content = <<<'Markdown'
 
 paragraph
 
+leading paragraph
+
 ```php
 code
 ```

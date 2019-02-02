@@ -42,26 +42,14 @@ class DrukiParser implements DrukiParserInterface {
   }
 
   /**
-   * Parses markdown content.
-   *
-   * @param string $content
-   *   The markdown content.
-   *
-   * @return string
-   *   The HTML markup.
+   * {@inheritdoc}
    */
   public function parseMarkdown($content) {
     return $this->markdownParser->convertToHtml($content);
   }
 
   /**
-   * Parses HTML to structured data.
-   *
-   * @param string $content
-   *   The html content.
-   *
-   * @return array
-   *   An array with structured data.
+   * {@inheritdoc}
    */
   public function parseHtml($content) {
     $crawler = new Crawler($content);
@@ -101,27 +89,70 @@ class DrukiParser implements DrukiParserInterface {
           'src' => $image_info[0][0],
           'alt' => $image_info[0][1],
         ];
+
+        continue;
       }
 
       // If no other is detected, treat is as content.
+      $structure_copy = $structure;
+      $previous_element = end($structure_copy);
+      $key = key($structure_copy);
+
+      if ($previous_element && $structure[$key]['type'] == 'content') {
+        // If previous element was content too, we append current to it.
+        $structure[$key]['content'] .= $dom_element->ownerDocument->saveHTML($dom_element);
+      }
+      else {
+        $structure[] = [
+          'type' => 'content',
+          'content' => $dom_element->ownerDocument->saveHTML($dom_element),
+        ];
+      }
     }
 
-    dump($structure);
+    return $structure;
   }
 
+  /**
+   * Checks is node element is heading.
+   *
+   * @param string $node_name
+   *   The DOM Element node name.
+   *
+   * @return bool
+   *   TRUE if heading, FALSE if not.
+   */
   protected function isHeading($node_name) {
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
     return in_array($node_name, $heading_elements);
   }
 
+  /**
+   * Checks is node element is code.
+   *
+   * @param string $node_name
+   *   The DOM Element node name.
+   *
+   * @return bool
+   *   TRUE if code, FALSE if not.
+   */
   protected function isCode($node_name) {
     $content_elements = ['pre'];
 
     return in_array($node_name, $content_elements);
   }
 
-  protected function isImage($dom_element) {
+  /**
+   * Checks is node element is image.
+   *
+   * @param \DOMElement $node_name
+   *   The DOM Element object.
+   *
+   * @return array
+   *   An array containing src and alt attribute values, NULL if not image.
+   */
+  protected function isImage(\DOMElement $dom_element) {
     $crawler = new Crawler($dom_element);
     $image = $crawler->filter('img')->extract(['src', 'alt']);
     if (!empty($image)) {
