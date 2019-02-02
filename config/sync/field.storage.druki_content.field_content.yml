@@ -1,0 +1,21 @@
+uuid: 9da1b59c-3ca4-4b64-9fe9-c682a935a005
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+    - entity_reference_revisions
+    - paragraphs
+id: druki_content.field_content
+field_name: field_content
+entity_type: druki_content
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

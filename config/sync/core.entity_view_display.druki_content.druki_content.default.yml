@@ -1,0 +1,33 @@
+uuid: 06dac0e8-6b0a-4ae7-8b03-dccd3b373077
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.druki_content.druki_content.field_content
+  module:
+    - druki_content
+    - entity_reference_revisions
+id: druki_content.druki_content.default
+targetEntityType: druki_content
+bundle: druki_content
+mode: default
+content:
+  field_content:
+    type: entity_reference_revisions_entity_view
+    weight: -4
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  langcode: true

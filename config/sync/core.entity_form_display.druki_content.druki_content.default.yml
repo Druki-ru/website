@@ -1,0 +1,49 @@
+uuid: f7f2cc3c-fbbf-45b8-8f4f-0eb40c6ab9c9
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.druki_content.druki_content.field_content
+  module:
+    - druki_content
+    - paragraphs
+id: druki_content.druki_content.default
+targetEntityType: druki_content
+bundle: druki_content
+mode: default
+content:
+  field_content:
+    type: paragraphs
+    weight: 3
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings: {  }
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

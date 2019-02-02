@@ -10,6 +10,7 @@ module:
   datetime: 0
   dblog: 0
   druki: 0
+  druki_content: 0
   druki_git: 0
   druki_paragraphs: 0
   druki_parser: 0
