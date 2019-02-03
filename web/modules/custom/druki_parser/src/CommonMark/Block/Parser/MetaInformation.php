@@ -22,13 +22,14 @@ class MetaInformation extends AbstractBlockParser {
       return FALSE;
     }
 
-    if ($cursor->match("/^!!!$/")) {
-      $context->addBlock(new MetaInformationElement());
-
-      return TRUE;
+    $meta_information = $cursor->match("/^\.{3}/");
+    if (!$meta_information) {
+      return FALSE;
     }
 
-    return FALSE;
+    $context->addBlock(new MetaInformationElement());
+
+    return TRUE;
   }
 
 }

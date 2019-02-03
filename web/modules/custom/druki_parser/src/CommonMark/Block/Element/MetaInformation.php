@@ -5,6 +5,7 @@ namespace Drupal\druki_parser\CommonMark\Block\Element;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
+use League\CommonMark\Util\RegexHelper;
 
 /**
  * Class MetaInformationElement
@@ -12,6 +13,22 @@ use League\CommonMark\Cursor;
  * @package Drupal\druki_parser\Plugin\Markdown\Extension
  */
 class MetaInformation extends AbstractBlock {
+
+  /**
+   * Indicates is meta information closing block found.
+   *
+   * @var bool
+   */
+  protected $isCloserFound;
+
+  /**
+   * MetaInformation constructor.
+   */
+  public function __construct() {
+    parent::__construct();
+
+    $this->isCloserFound = FALSE;
+  }
 
   /**
    * {@inheritdoc}
@@ -45,6 +62,10 @@ class MetaInformation extends AbstractBlock {
    * {@inheritdoc}
    */
   public function matchesNextLine(Cursor $cursor) {
+    if ($this->isCloserFound()) {
+      return FALSE;
+    }
+
     if ($cursor->isBlank()) {
       return FALSE;
     }
@@ -60,11 +81,28 @@ class MetaInformation extends AbstractBlock {
    * {@inheritdoc}
    */
   public function handleRemainingContents(ContextInterface $context, Cursor $cursor) {
-    if (preg_match("/^!!!$/", $context->getLine())) {
-      // @todo.
+    //dump($cursor->getNextNonSpaceCharacter());
+    if ($cursor->getNextNonSpaceCharacter() == '.') {
+      $match = RegexHelper::matchAll('/^\.{3,}$/', $cursor->getLine(), $cursor->getNextNonSpacePosition());
+      dump($match, 'match');
+      $this->setIsCloserFound(TRUE);
     }
 
     $context->getTip()->addLine($cursor->getRemainder());
+  }
+
+  /**
+   * @return bool
+   */
+  public function isCloserFound() {
+    return $this->isCloserFound;
+  }
+
+  /**
+   * @param bool $isCloserFound
+   */
+  public function setIsCloserFound($status) {
+    $this->isCloserFound = $status;
   }
 
 }

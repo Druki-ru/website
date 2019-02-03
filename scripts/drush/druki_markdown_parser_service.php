@@ -9,20 +9,21 @@
 $druki_parser = \Drupal::service('druki_parser.markdown');
 
 $markdown_content = <<<'Markdown'
-!!!
+...
 id: code-of-conduct
 title: Нормы поведения
-!!!
+  1 2 23  ...
+
+```
+code
+code
+```
 
 ## Title
 
 paragraph
 
 leading paragraph
-
-```php
-code
-```
 
 @test
 
