@@ -9,6 +9,11 @@
 $druki_parser = \Drupal::service('druki_parser.markdown');
 
 $markdown_content = <<<'Markdown'
+!!!
+id: code-of-conduct
+title: Нормы поведения
+!!!
+
 ## Title
 
 paragraph
@@ -19,11 +24,13 @@ leading paragraph
 code
 ```
 
+@test
+
 ![](https://google.ru/logo.png)
 
 [url](https://google.ru)
 Markdown;
 
-$result_html = $druki_parser->parseMarkdown($markdown_content);
+$result_html = $druki_parser->parse($markdown_content);
 
-dump($druki_parser->parseHtml($result_html));
+dump($result_html);

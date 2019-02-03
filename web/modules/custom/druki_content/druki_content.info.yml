@@ -8,3 +8,5 @@ configure: entity.druki_content.settings
 dependencies:
   - druki:druki
   - druki_paragraphs:druki_paragraphs
+  - druki_git:druki_git
+  - druki_parser:druki_parser
