@@ -12,24 +12,9 @@ $markdown_content = <<<'Markdown'
 ...
 id: code-of-conduct
 title: Нормы поведения
-  1 2 23  ...
-
-```
-code
-code
-```
+...
 
 ## Title
-
-paragraph
-
-leading paragraph
-
-@test
-
-![](https://google.ru/logo.png)
-
-[url](https://google.ru)
 Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);

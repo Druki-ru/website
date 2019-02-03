@@ -17,7 +17,7 @@ class MetaInformation extends Extension implements ExtensionInterface {
    */
   public function getBlockParsers() {
     return [
-      new \Drupal\druki_parser\CommonMark\Block\Parser\MetaInformation(),
+      new \Drupal\druki_parser\CommonMark\Block\Parser\MetaInformationParser(),
     ];
   }
 
@@ -26,7 +26,7 @@ class MetaInformation extends Extension implements ExtensionInterface {
    */
   public function getBlockRenderers() {
     return [
-      'Drupal\druki_parser\CommonMark\Block\Element\MetaInformation' => new \Drupal\druki_parser\CommonMark\Block\Renderer\MetaInformation(),
+      'Drupal\druki_parser\CommonMark\Block\Element\MetaInformationElement' => new \Drupal\druki_parser\CommonMark\Block\Renderer\MetaInformationRenderer(),
     ];
   }
 

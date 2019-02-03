@@ -12,7 +12,7 @@ use League\CommonMark\Util\RegexHelper;
  *
  * @package Drupal\druki_parser\Plugin\Markdown\Extension
  */
-class MetaInformation extends AbstractBlock {
+class MetaInformationElement extends AbstractBlock {
 
   /**
    * Indicates is meta information closing block found.
@@ -48,7 +48,9 @@ class MetaInformation extends AbstractBlock {
    * {@inheritdoc}
    */
   public function isCode() {
-    return FALSE;
+    // @todo Avoid it. Not sure this is good approach, but only working with
+    // matches.
+    return TRUE;
   }
 
   /**
@@ -66,29 +68,7 @@ class MetaInformation extends AbstractBlock {
       return FALSE;
     }
 
-    if ($cursor->isBlank()) {
-      return FALSE;
-    }
-
-    if ($cursor->getIndent()) {
-      return FALSE;
-    }
-
     return TRUE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function handleRemainingContents(ContextInterface $context, Cursor $cursor) {
-    //dump($cursor->getNextNonSpaceCharacter());
-    if ($cursor->getNextNonSpaceCharacter() == '.') {
-      $match = RegexHelper::matchAll('/^\.{3,}$/', $cursor->getLine(), $cursor->getNextNonSpacePosition());
-      dump($match, 'match');
-      $this->setIsCloserFound(TRUE);
-    }
-
-    $context->getTip()->addLine($cursor->getRemainder());
   }
 
   /**
@@ -103,6 +83,21 @@ class MetaInformation extends AbstractBlock {
    */
   public function setIsCloserFound($status) {
     $this->isCloserFound = $status;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function handleRemainingContents(ContextInterface $context, Cursor $cursor) {
+    if ($cursor->getNextNonSpaceCharacter() == '.') {
+      $match = RegexHelper::matchAll('/^\.{3,}$/', $cursor->getLine(), $cursor->getNextNonSpacePosition());
+      if (!empty($match)) {
+        $this->setIsCloserFound(TRUE);
+        return;
+      }
+    }
+
+    $context->getTip()->addLine($cursor->getRemainder());
   }
 
 }
