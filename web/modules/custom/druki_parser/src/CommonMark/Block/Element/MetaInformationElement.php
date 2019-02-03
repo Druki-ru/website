@@ -49,7 +49,9 @@ class MetaInformationElement extends AbstractBlock {
    */
   public function isCode() {
     // @todo Avoid it. Not sure this is good approach, but only working with
-    // matches.
+    // matches. Try some workaround with $context->advanceBy(-3) in
+    // handleRemainingContents(). This will let condition pass. But need some
+    // extra fixes, since this not fix all the problems that fix this value.
     return TRUE;
   }
 
