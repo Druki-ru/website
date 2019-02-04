@@ -19,7 +19,7 @@ class DrukiContentUpdater extends QueueWorkerBase {
    * @see DrukiContentSubscriber::onPullFinish().
    */
   public function processItem($data) {
-
+    dump($data);
   }
 
 }

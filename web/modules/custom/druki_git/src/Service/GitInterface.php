@@ -49,4 +49,29 @@ interface GitInterface {
    */
   public function getRepositoryRealpath();
 
+  /**
+   * Gets last commit hash for file.
+   *
+   * @param string $relative_path
+   *   Relative path in repository to file.
+   *
+   * @return string|null
+   *   The commit hash id, NULL if not found.
+   */
+  public function getFileLastCommitId($relative_path);
+
+  /**
+   * Gets file commits statistics.
+   *
+   * @param string $relative_path
+   *   Relative path in repository to file.
+   *
+   * @return array
+   *   An array with contributions. Contains:
+   *   - count: Amount of commits for this file byt this contributor.
+   *   - name: The username of contributor.
+   *   - email: The email of contributor.
+   */
+  public function getFileCommitsInfo($relative_path);
+
 }

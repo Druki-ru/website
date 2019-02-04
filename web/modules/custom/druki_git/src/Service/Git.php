@@ -133,4 +133,47 @@ class Git implements GitInterface {
     return $this->repositoryRealpath;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getFileLastCommitId($relative_path) {
+    $commit_hash = $this->git->execute([
+      'command' => [
+        // This is actually bad. @todo write own execute method, because from
+        // library is pretty bad.
+        'log --pretty=format:%H -- '.  $relative_path => '-n 1',
+      ],
+    ]);
+
+    if (preg_match('/^[0-9a-f]{40}$/i', $commit_hash[0])) {
+      return $commit_hash[0];
+    }
+
+    return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFileCommitsInfo($relative_path) {
+    $result = $this->git->execute([
+      'command' => [
+        'shortlog -sen -- ' . $relative_path => 'filler',
+      ],
+    ]);
+
+    $commits_info = [];
+    foreach ($result as $item) {
+      preg_match_all("/(\d+)\s(.+)\s<([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)>/", $item, $matches);
+
+      $commits_info[] = [
+        'count' => $matches[1][0],
+        'name' => $matches[2][0],
+        'email' => $matches[3][0],
+      ];
+    }
+
+    return $commits_info;
+  }
+
 }
