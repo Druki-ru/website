@@ -33,4 +33,20 @@ interface GitInterface {
    */
   public function getLastCommitId();
 
+  /**
+   * Gets repository path.
+   *
+   * @return string|null
+   *   The URI to repository.
+   */
+  public function getRepositoryPath();
+
+  /**
+   * Gets repository realpath.
+   *
+   * @return string|null
+   *   The realpath to repository.
+   */
+  public function getRepositoryRealpath();
+
 }

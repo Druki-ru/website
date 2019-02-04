@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_content\Form;
 
+use Drupal\Core\CronInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueInterface;
@@ -19,8 +20,12 @@ class DrukiContentSettingsForm extends FormBase {
    */
   protected $queue;
 
+
   /**
    * DrukiContentSettingsForm constructor.
+   *
+   * @param \Drupal\Core\Queue\QueueInterface $queue
+   *   The queue of processing content.
    */
   public function __construct(QueueInterface $queue) {
     $this->queue = $queue;
@@ -31,7 +36,7 @@ class DrukiContentSettingsForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('queue')->get('druki_content_processing')
+      $container->get('queue')->get('druki_content_updater')
     );
   }
 
@@ -53,7 +58,14 @@ class DrukiContentSettingsForm extends FormBase {
     ];
 
     $form['update_queue']['total'] = [
-      '#markup' => $this->t('Current queue items: @count', ['@count' => $this->queue->numberOfItems()]),
+      '#markup' => '<p>' . $this->t('Current queue items: @count', ['@count' => $this->queue->numberOfItems()]) . '</p>',
+    ];
+
+    $form['update_queue']['actions'] = ['#type' => 'actions'];
+    $form['update_queue']['actions']['run'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Run queue'),
+      '#submit' => [[$this, 'runQueue']],
     ];
 
     return $form;
@@ -64,6 +76,14 @@ class DrukiContentSettingsForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
+  }
+
+  /**
+   * Runs queue manually.
+   */
+  public function runQueue(array &$form, FormStateInterface $form_state) {
+    dump('sss');
+    die();
   }
 
 }

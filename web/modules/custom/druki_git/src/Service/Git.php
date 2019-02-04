@@ -46,6 +46,20 @@ class Git implements GitInterface {
   protected $eventDispatcher;
 
   /**
+   * The repository path.
+   *
+   * @var string
+   */
+  protected $repositoryPath;
+
+  /**
+   * The repository realpath.
+   *
+   * @var string
+   */
+  protected $repositoryRealpath;
+
+  /**
    * Git constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -65,13 +79,13 @@ class Git implements GitInterface {
    * {@inheritdoc}
    */
   public function init() {
-    $repository_path = $this->configuration->get('repository_path');
+    $this->repositoryPath = $this->configuration->get('repository_path');
     // Git library don't detect stream wrappers, so we need to convert our uri
     // to real valid path.
-    $repository_realpath = $this->fileSystem->realpath($repository_path);
+    $this->repositoryRealpath = $this->fileSystem->realpath($this->repositoryPath);
 
     try {
-      $this->git = new GitRepository($repository_realpath);
+      $this->git = new GitRepository($this->repositoryRealpath);
 
       return $this;
     }
@@ -103,6 +117,20 @@ class Git implements GitInterface {
    */
   public function getLastCommitId() {
     return $this->git->getLastCommitId();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRepositoryPath() {
+    return $this->repositoryPath;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRepositoryRealpath() {
+    return $this->repositoryRealpath;
   }
 
 }

@@ -16,7 +16,7 @@ use Symfony\Component\Finder\Finder;
  *
  * @package Drupal\druki_parser\Service
  */
-class DrukiFolderParser {
+class DrukiFolderParser implements DrukiFolderParserInterface {
 
   /**
    * The finder component.

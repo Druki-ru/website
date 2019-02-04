@@ -1,0 +1,6 @@
+services:
+  druki_content.subscriber:
+    class: Drupal\druki_content\EventSubscriber\DrukiContentSubscriber
+    arguments: ['@queue', '@druki_parser.folder']
+    tags:
+      - { name: event_subscriber }

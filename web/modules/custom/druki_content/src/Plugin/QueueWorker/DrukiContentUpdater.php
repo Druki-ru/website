@@ -15,6 +15,8 @@ class DrukiContentUpdater extends QueueWorkerBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @see DrukiContentSubscriber::onPullFinish().
    */
   public function processItem($data) {
 
