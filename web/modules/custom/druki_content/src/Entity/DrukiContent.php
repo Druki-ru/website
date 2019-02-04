@@ -51,21 +51,6 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTitle() {
-    return $this->get('title')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setTitle($title) {
-    $this->set('title', $title);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
 
     $fields = parent::baseFieldDefinitions($entity_type);
@@ -94,7 +79,70 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ])
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['relative_pathname'] = BaseFieldDefinition::create('string')
+      ->setTranslatable(TRUE)
+      ->setLabel(t('Relative pathname'))
+      ->setDescription(t('The pathname of source file.'))
+      ->setRequired(TRUE)
+      ->setSetting('max_length', 255)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['filename'] = BaseFieldDefinition::create('string')
+      ->setTranslatable(TRUE)
+      ->setLabel(t('Filename'))
+      ->setDescription(t('The filename of source file.'))
+      ->setRequired(TRUE)
+      ->setSetting('max_length', 255)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -3,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['last_commit_id'] = BaseFieldDefinition::create('string')
+      ->setTranslatable(TRUE)
+      ->setLabel(t('Last commit ID'))
+      ->setDescription(t('The last commit ID of source file.'))
+      ->setRequired(TRUE)
+      ->setSetting('max_length', 255)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -2,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['contribution_statistics'] = BaseFieldDefinition::create('map')
+      ->setTranslatable(TRUE)
+      ->setLabel(t('Contribution statistics'))
+      ->setDescription(t('The contribution statistics of source file.'))
+      ->setRequired(TRUE)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
+
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTitle() {
+    return $this->get('title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setTitle($title) {
+    $this->set('title', $title);
+
+    return $this;
   }
 
 }

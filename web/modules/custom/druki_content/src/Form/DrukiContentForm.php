@@ -13,6 +13,20 @@ class DrukiContentForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
+  public function form(array $form, FormStateInterface $form_state) {
+    $form = parent::form($form, $form_state);
+
+    $form['git_information'] = [
+      '#markup' => '<div>test</div>',
+      '#group' => 'advanced',
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function save(array $form, FormStateInterface $form_state) {
 
     $entity = $this->getEntity();
@@ -23,12 +37,16 @@ class DrukiContentForm extends ContentEntityForm {
     $logger_arguments = $message_arguments + ['link' => render($link)];
 
     if ($result == SAVED_NEW) {
-      $this->messenger()->addStatus($this->t('New druki content %label has been created.', $message_arguments));
-      $this->logger('druki_content')->notice('Created new druki content %label', $logger_arguments);
+      $this->messenger()
+        ->addStatus($this->t('New druki content %label has been created.', $message_arguments));
+      $this->logger('druki_content')
+        ->notice('Created new druki content %label', $logger_arguments);
     }
     else {
-      $this->messenger()->addStatus($this->t('The druki content %label has been updated.', $message_arguments));
-      $this->logger('druki_content')->notice('Created new druki content %label.', $logger_arguments);
+      $this->messenger()
+        ->addStatus($this->t('The druki content %label has been updated.', $message_arguments));
+      $this->logger('druki_content')
+        ->notice('Created new druki content %label.', $logger_arguments);
     }
 
     $form_state->setRedirect('entity.druki_content.canonical', ['druki_content' => $entity->id()]);
