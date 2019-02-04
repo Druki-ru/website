@@ -2,10 +2,12 @@
 
 namespace Drupal\druki_content\Form;
 
-use Drupal\Core\CronInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueInterface;
+use Drupal\Core\Queue\QueueWorkerManagerInterface;
+use Drupal\Core\Queue\RequeueException;
+use Drupal\Core\Queue\SuspendQueueException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -20,15 +22,24 @@ class DrukiContentSettingsForm extends FormBase {
    */
   protected $queue;
 
+  /**
+   * The queue worker.
+   *
+   * @var \Drupal\Core\Queue\QueueWorkerManagerInterface
+   */
+  protected $queueWorkerManager;
 
   /**
    * DrukiContentSettingsForm constructor.
    *
    * @param \Drupal\Core\Queue\QueueInterface $queue
    *   The queue of processing content.
+   * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker_manager
+   *   The queue worker manager.
    */
-  public function __construct(QueueInterface $queue) {
+  public function __construct(QueueInterface $queue, QueueWorkerManagerInterface $queue_worker_manager) {
     $this->queue = $queue;
+    $this->queueWorkerManager = $queue_worker_manager;
   }
 
   /**
@@ -36,7 +47,8 @@ class DrukiContentSettingsForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('queue')->get('druki_content_updater')
+      $container->get('queue')->get('druki_content_updater'),
+      $container->get('plugin.manager.queue_worker')
     );
   }
 
@@ -82,8 +94,38 @@ class DrukiContentSettingsForm extends FormBase {
    * Runs queue manually.
    */
   public function runQueue(array &$form, FormStateInterface $form_state) {
-    dump('sss');
-    die();
+    $queue_worker_definition = $this->queueWorkerManager->getDefinition('druki_content_updater');
+    /** @var \Drupal\Core\Queue\QueueWorkerInterface $queue_worker */
+    $queue_worker = $this->queueWorkerManager->createInstance('druki_content_updater');
+
+    if (isset($queue_worker_definition['cron'])) {
+      // Make sure every queue exists. There is no harm in trying to recreate
+      // an existing queue.
+      $this->queue->createQueue();
+
+      $end = time() + (isset($info['cron']['time']) ? $queue_worker_definition['cron']['time'] : 15);
+      $lease_time = isset($info['cron']['time']) ?: NULL;
+      while (time() < $end && ($item = $this->queue->claimItem($lease_time))) {
+        try {
+          $queue_worker->processItem($item->data);
+          $this->queue->deleteItem($item);
+        }
+        catch (RequeueException $e) {
+          // The worker requested the task be immediately requeued.
+          $this->queue->releaseItem($item);
+        }
+        catch (SuspendQueueException $e) {
+          // If the worker indicates there is a problem with the whole queue,
+          // release the item and skip to the next queue.
+          $this->queue->releaseItem($item);
+        }
+        catch (\Exception $e) {
+          // In case of any other kind of exception, log it and leave the item
+          // in the queue to be processed again later.
+          watchdog_exception('druki_content', $e);
+        }
+      }
+    }
   }
 
 }

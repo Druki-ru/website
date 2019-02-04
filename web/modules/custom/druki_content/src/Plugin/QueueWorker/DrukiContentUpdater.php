@@ -20,6 +20,7 @@ class DrukiContentUpdater extends QueueWorkerBase {
    */
   public function processItem($data) {
     dump($data);
+    die();
   }
 
 }

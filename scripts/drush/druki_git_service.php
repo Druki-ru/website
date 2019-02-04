@@ -9,4 +9,4 @@
 $git = \Drupal::service('druki_git');
 //$git->pull();
 $git->init();
-dump($git->getFileCommitsInfo('docs/ru/faq.md'));
+dump($git->getFileCommitsInfo('docs/ru/the-drupal-way.md'));
