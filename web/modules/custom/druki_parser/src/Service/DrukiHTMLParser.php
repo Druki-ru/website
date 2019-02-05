@@ -2,8 +2,6 @@
 
 namespace Drupal\druki_parser\Service;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\markdown\Markdown;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -29,48 +27,35 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
     $structure = [];
     // Move through elements and structure them.
     foreach ($crawler->children() as $dom_element) {
-      if ($this->isHeading($dom_element->nodeName)) {
-        $structure[] = [
-          'type' => 'heading',
-          'heading' => $dom_element->nodeName,
-          'value' => $dom_element->textContent,
-        ];
-
+      if ($this->parseMetaInformation($dom_element, $structure)) {
         continue;
       }
 
-      if ($this->isCode($dom_element->nodeName)) {
-        $structure[] = [
-          'type' => 'code',
-          'value' => $dom_element->ownerDocument->saveHTML($dom_element),
-        ];
-
+      if ($this->parseHeading($dom_element, $structure)) {
         continue;
       }
 
-      if ($image_info = $this->isImage($dom_element)) {
-        $structure[] = [
-          'type' => 'image',
-          'src' => $image_info[0][0],
-          'alt' => $image_info[0][1],
-        ];
+      if ($this->parseCode($dom_element, $structure)) {
+        continue;
+      }
 
+      if ($this->parseImage($dom_element, $structure)) {
         continue;
       }
 
       // If no other is detected, treat is as content.
       $structure_copy = $structure;
-      $previous_element = end($structure_copy);
-      $key = key($structure_copy);
+      $previous_element = end($structure_copy['content']);
+      $key = key($structure_copy['content']);
 
-      if ($previous_element && $structure[$key]['type'] == 'content') {
+      if ($previous_element && $structure['content'][$key]['type'] == 'content') {
         // If previous element was content too, we append current to it.
-        $structure[$key]['content'] .= $dom_element->ownerDocument->saveHTML($dom_element);
+        $structure['content'][$key]['markup'] .= $dom_element->ownerDocument->saveHTML($dom_element);
       }
       else {
-        $structure[] = [
+        $structure['content'][] = [
           'type' => 'content',
-          'content' => $dom_element->ownerDocument->saveHTML($dom_element),
+          'markup' => $dom_element->ownerDocument->saveHTML($dom_element),
         ];
       }
     }
@@ -79,49 +64,117 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
   }
 
   /**
-   * Checks is node element is heading.
+   * Parses meta information.
    *
-   * @param string $node_name
-   *   The DOM Element node name.
+   * Meta information is custom Markdown syntax and structure.
+   *
+   * @param \DOMElement $dom_element
+   *   The DOM element to process.
+   * @param array $structure
+   *   An array with existing structure.
+   *
+   * @return bool|null
+   *   TRUE if parsed successfully, NULL otherwise.
+   */
+  protected function parseMetaInformation(\DOMElement $dom_element, array &$structure) {
+    // If meta information already in structure, this is not good. There must
+    // be only one meta block. But if it happens, we just skip it and it becomes
+    // content value.
+    if (isset($structure['meta']) && !empty($structure['meta'])) {
+      return NULL;
+    }
+
+    $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
+    $meta_block = $crawler->filter('div[data-druki-meta=""]');
+
+    if (count($meta_block)) {
+      $meta_information = [];
+
+      foreach ($crawler->filter('[data-druki-key][data-druki-value]') as $element) {
+        $key = $element->getAttribute('data-druki-key');
+        $value = $element->getAttribute('data-druki-value');
+        $meta_information[$key] = $value;
+      }
+
+      $structure['meta'] = $meta_information;
+
+      return TRUE;
+    }
+  }
+
+  /**
+   * Parses heading.
+   *
+   * @param \DOMElement $dom_element
+   *   The DOM element to process.
+   * @param array $structure
+   *   An array with existing structure.
    *
    * @return bool
-   *   TRUE if heading, FALSE if not.
+   *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function isHeading($node_name) {
+  protected function parseHeading(\DOMElement $dom_element, array &$structure) {
+    $node_name = $dom_element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-    return in_array($node_name, $heading_elements);
+    if (in_array($node_name, $heading_elements)) {
+      $structure['content'][] = [
+        'type' => 'heading',
+        'level' => $dom_element->nodeName,
+        'value' => $dom_element->textContent,
+      ];
+
+      return TRUE;
+    }
   }
 
   /**
-   * Checks is node element is code.
+   * Parses code.
    *
-   * @param string $node_name
-   *   The DOM Element node name.
+   * @param \DOMElement $dom_element
+   *   The DOM element to process.
+   * @param array $structure
+   *   An array with existing structure.
    *
    * @return bool
-   *   TRUE if code, FALSE if not.
+   *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function isCode($node_name) {
-    $content_elements = ['pre'];
+  protected function parseCode(\DOMElement $dom_element, array &$structure) {
+    $node_name = $dom_element->nodeName;
+    $code_elements = ['pre'];
 
-    return in_array($node_name, $content_elements);
+    if (in_array($node_name, $code_elements)) {
+      $structure['content'][] = [
+        'type' => 'code',
+        'value' => $dom_element->ownerDocument->saveHTML($dom_element),
+      ];
+
+      return TRUE;
+    }
   }
 
   /**
-   * Checks is node element is image.
+   * Parses image.
    *
-   * @param \DOMElement $node_name
-   *   The DOM Element object.
+   * @param \DOMElement $dom_element
+   *   The DOM element to process.
+   * @param array $structure
+   *   An array with existing structure.
    *
-   * @return array
-   *   An array containing src and alt attribute values, NULL if not image.
+   * @return bool
+   *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function isImage(\DOMElement $dom_element) {
+  protected function parseImage(\DOMElement $dom_element, array &$structure) {
     $crawler = new Crawler($dom_element);
-    $image = $crawler->filter('img')->extract(['src', 'alt']);
-    if (!empty($image)) {
-      return $image;
+    $image = $crawler->filter('img')->first();
+    if (count($image)) {
+      $structure['content'][] = [
+        'type' => 'image',
+        'src' => $image->attr('src'),
+        'alt' => $image->attr('alt'),
+      ];
+
+      return TRUE;
     }
   }
 
