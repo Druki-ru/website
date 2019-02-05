@@ -24,7 +24,10 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
     // - image: Image tag.
     // - code: for pre > code.
     // Each content node after another merge to previous.
-    $structure = [];
+    $structure = [
+      'meta' => [],
+      'content' => [],
+    ];
     // Move through elements and structure them.
     foreach ($crawler->children() as $dom_element) {
       if ($this->parseMetaInformation($dom_element, $structure)) {
