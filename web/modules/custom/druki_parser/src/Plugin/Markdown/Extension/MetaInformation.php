@@ -2,7 +2,7 @@
 
 namespace Drupal\druki_parser\Plugin\Markdown\Extension;
 
-use Drupal\druki_parser\CommonMark\Extension\MetaInformation as MetaInformationExtension;
+use Drupal\druki_parser\CommonMark\Extension\DrukiParserExtensions;
 use Drupal\markdown\Plugin\Markdown\Extension\CommonMarkExtension;
 use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
@@ -39,7 +39,7 @@ class MetaInformation extends CommonMarkExtension implements EnvironmentAwareInt
    * {@inheritdoc}
    */
   public function setEnvironment(Environment $environment) {
-    $environment->addExtension(new MetaInformationExtension());
+    $environment->addExtension(new DrukiParserExtensions());
   }
 
 }
