@@ -1,0 +1,4 @@
+services:
+  druki_file.tracker:
+    class: Drupal\druki_file\Service\DrukiFileTracker
+    arguments: ['@database', '@entity_type.manager', '@logger.factory']

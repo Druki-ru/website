@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Druki - Files module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for file.
+ */
+function druki_file_file_insert(EntityInterface $entity) {
+  /** @var \Drupal\druki_file\Service\DrukiFileTracker $file_tracker */
+  $file_tracker = \Drupal::service('druki_file.tracker');
+  $file_tracker->track($entity);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete() for file.
+ */
+function druki_file_file_delete(EntityInterface $entity) {
+  /** @var \Drupal\druki_file\Service\DrukiFileTracker $file_tracker */
+  $file_tracker = \Drupal::service('druki_file.tracker');
+  $file_tracker->delete($entity);
+}

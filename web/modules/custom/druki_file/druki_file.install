@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Druki - Files module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function druki_file_schema() {
+  $schema['druki_file_tracker'] = [
+    'description' => 'Tracking files usage and theirs MD5.',
+    'fields' => [
+      'fid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'unique' => TRUE,
+        'description' => 'The unique file id.',
+      ],
+      'file_hash' => [
+        'type' => 'blob',
+        'size' => 'normal',
+        'not null' => TRUE,
+        'description' => 'The hash of the binary in file entity.'
+      ],
+    ],
+    'primary key' => ['fid'],
+  ];
+
+  return $schema;
+}
+

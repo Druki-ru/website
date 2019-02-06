@@ -297,6 +297,10 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     // @todo Create module to handle file duplicates and reuse them. Also, seems
     // like needed new service to help working with files inside repo, or
     // settings.
+
+    // Detect if url is remote. Local will return NULL.
+    //    $host = parse_url('src');
+    //    dump($host);
   }
 
 }
