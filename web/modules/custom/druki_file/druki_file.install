@@ -9,6 +9,7 @@
  * Implements hook_schema().
  */
 function druki_file_schema() {
+  // @todo maybe add base field for file, instead of this table?
   $schema['druki_file_tracker'] = [
     'description' => 'Tracking files usage and theirs MD5.',
     'fields' => [

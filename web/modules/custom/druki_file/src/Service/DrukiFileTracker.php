@@ -86,18 +86,6 @@ class DrukiFileTracker {
   }
 
   /**
-   * Deletes tracking info for file.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   */
-  public function delete(FileInterface $file) {
-    $this->database->delete('druki_file_tracker')
-      ->condition('id', $file->id())
-      ->execute();
-  }
-
-  /**
    * Checks is file has record in database.
    *
    * @param \Drupal\file\FileInterface $file
@@ -123,8 +111,8 @@ class DrukiFileTracker {
   protected function update(FileInterface $file) {
     $this->database->update('druki_file_tracker')
       ->fields([
-        'id' => $file->id(),
-        'file_hash' => $this->getFileHash($file),
+        'fid' => $file->id(),
+        'file_hash' => $this->getFileHash($file->getFileUri()),
       ])
       ->execute();
   }
@@ -132,17 +120,17 @@ class DrukiFileTracker {
   /**
    * Gets file hash.
    *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
+   * @param string $uri
+   *   The URI to file.
    *
    * @return string
    *   The file hash.
    */
-  protected function getFileHash(FileInterface $file) {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $file->getFileUri());
+  protected function getFileHash($uri) {
+    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $uri);
 
     if (!isset($result)) {
-      $result = md5_file($file->getFileUri());
+      $result = md5_file($uri);
     }
 
     return $result;
@@ -159,10 +147,70 @@ class DrukiFileTracker {
   protected function create(FileInterface $file) {
     $this->database->insert('druki_file_tracker')
       ->fields([
-        'id' => $file->id(),
-        'file_hash' => $this->getFileHash($file),
+        'fid' => $file->id(),
+        'file_hash' => $this->getFileHash($file->getFileUri()),
       ])
       ->execute();
+  }
+
+  /**
+   * Deletes tracking info for file.
+   *
+   * @param \Drupal\file\FileInterface $file
+   *   The file entity.
+   */
+  public function delete(FileInterface $file) {
+    $this->database->delete('druki_file_tracker')
+      ->condition('fid', $file->id())
+      ->execute();
+  }
+
+  /**
+   * Checks if file from provided uri is duplicate on of the existed.
+   *
+   * @param string $uri
+   *   The URI to file, need to be checked.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface|null
+   *   The file entity, which store the same file, NULL if not found.
+   */
+  public function checkDuplicate($uri) {
+    $file_hash = $this->getFileHash($uri);
+    $result = $this->database->select('druki_file_tracker', 'ft')
+      ->fields('ft', ['fid'])
+      ->condition('ft.file_hash', $file_hash)
+      ->execute()
+      ->fetchField();
+
+    if (is_numeric($result)) {
+      return $this->fileStorage->load($result);
+    }
+  }
+
+  /**
+   * Loads all files and add\update tracking information for them.
+   */
+  public function updateTrackingInformation() {
+    $this->clearTrackingInformation();
+
+    $file_ids = $this->fileStorage->getQuery()
+      ->exists('uri')
+      ->condition('status', FILE_STATUS_PERMANENT)
+      ->execute();
+
+    $files = $this->fileStorage->loadMultiple($file_ids);
+
+    /** @var \Drupal\file\FileInterface $file */
+    foreach ($files as $file) {
+      $this->create($file);
+    }
+  }
+
+  /**
+   * Deletes all tracking information.
+   */
+  protected function clearTrackingInformation() {
+    $this->database->delete('druki_file_tracker')->execute();
   }
 
 }
