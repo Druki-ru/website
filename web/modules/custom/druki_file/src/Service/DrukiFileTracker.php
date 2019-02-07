@@ -6,6 +6,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\file\FileInterface;
+use Drupal\file\FileUsage\FileUsageInterface;
 
 /**
  * Class DrukiFileTracker
@@ -36,6 +37,20 @@ class DrukiFileTracker {
   protected $logger;
 
   /**
+   * The file usage.
+   *
+   * @var \Drupal\file\FileUsage\FileUsageInterface
+   */
+  protected $fileUsage;
+
+  /**
+   * The media storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $mediaStorage;
+
+  /**
    * DrukiFileTracker constructor.
    *
    * @param \Drupal\Core\Database\Connection $database
@@ -44,6 +59,8 @@ class DrukiFileTracker {
    *   The entity type manager.
    * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
    *   The logger factory.
+   * @param \Drupal\file\FileUsage\FileUsageInterface $file_usage
+   *   The file usage.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -51,12 +68,15 @@ class DrukiFileTracker {
   public function __construct(
     Connection $database,
     EntityTypeManagerInterface $entity_type_manager,
-    LoggerChannelFactoryInterface $logger
+    LoggerChannelFactoryInterface $logger,
+    FileUsageInterface $file_usage
   ) {
 
     $this->database = $database;
     $this->fileStorage = $entity_type_manager->getStorage('file');
     $this->logger = $logger->get('druki_file');
+    $this->fileUsage = $file_usage;
+    $this->mediaStorage = $entity_type_manager->getStorage('media');
   }
 
   /**
@@ -211,6 +231,26 @@ class DrukiFileTracker {
    */
   protected function clearTrackingInformation() {
     $this->database->delete('druki_file_tracker')->execute();
+  }
+
+  /**
+   * Looking for media entity that uses file.
+   *
+   * @param \Drupal\file\FileInterface $file
+   *   The file entity.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface|null
+   *   The media entity, if found, NULL otherwise.
+   */
+  public function getMediaForFile(FileInterface $file) {
+    $usage = $this->fileUsage->listUsage($file);
+    // Since there is possible to have multiple usage of the same file in
+    // different media entities through code and other modules, we just pick the
+    // first one.
+    $media_id = (isset($usage['file']['media'])) ? array_shift($usage['file']['media']) : NULL;
+    if ($media_id) {
+      return $this->mediaStorage->load($media_id);
+    }
   }
 
 }

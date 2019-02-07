@@ -2,12 +2,16 @@
 
 namespace Drupal\druki_content\Plugin\QueueWorker;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_file\Service\DrukiFileTracker;
 use Drupal\druki_parser\Service\DrukiHTMLParserInterface;
 use Drupal\druki_parser\Service\DrukiMarkdownParserInterface;
+use Drupal\file\FileInterface;
+use Drupal\media\MediaInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -49,6 +53,27 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected $paragraphStorage;
 
   /**
+   * The file tracker.
+   *
+   * @var \Drupal\druki_file\Service\DrukiFileTracker
+   */
+  protected $fileTracker;
+
+  /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * The media storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $mediaStorage;
+
+  /**
    * DrukiContentUpdater constructor.
    *
    * @param array $configuration
@@ -63,18 +88,34 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The markdown parser.
    * @param \Drupal\druki_parser\Service\DrukiHTMLParserInterface $html_parser
    *   The HTML parser.
+   * @param \Drupal\druki_file\Service\DrukiFileTracker $file_tracker
+   *   The file tracker.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, DrukiMarkdownParserInterface $markdown_parser, DrukiHTMLParserInterface $html_parser) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    EntityTypeManagerInterface $entity_type_manager,
+    DrukiMarkdownParserInterface $markdown_parser,
+    DrukiHTMLParserInterface $html_parser,
+    DrukiFileTracker $file_tracker,
+    ConfigFactoryInterface $config_factory
+  ) {
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');
     $this->paragraphStorage = $entity_type_manager->getStorage('paragraph');
+    $this->mediaStorage = $entity_type_manager->getStorage('media');
     $this->markdownParser = $markdown_parser;
     $this->htmlParser = $html_parser;
+    $this->fileTracker = $file_tracker;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -87,7 +128,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       $plugin_definition,
       $container->get('entity_type.manager'),
       $container->get('druki_parser.markdown'),
-      $container->get('druki_parser.html')
+      $container->get('druki_parser.html'),
+      $container->get('druki_file.tracker'),
+      $container->get('config.factory')
     );
   }
 
@@ -201,7 +244,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
           $paragraph = $this->createParagraphCode($content_data);
           break;
 
-        case 'code':
+        case 'image':
           $paragraph = $this->createParagraphImage($content_data);
           break;
       }
@@ -288,19 +331,59 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @param array $content_data
    *   The array with all data.
    *
-   * @return \Drupal\paragraphs\ParagraphInterface
-   *   The created paragraph.
+   * @return \Drupal\paragraphs\ParagraphInterface|null
+   *   The created paragraph, NULL if cant create it.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function createParagraphImage($content_data) {
-    // @todo Create module to handle file duplicates and reuse them. Also, seems
-    // like needed new service to help working with files inside repo, or
-    // settings.
+    $host = parse_url($content_data['src']);
+    $src = $content_data['src'];
+    $alt = $content_data['alt'];
+    $file_uri = '';
 
-    // Detect if url is remote. Local will return NULL.
-    //    $host = parse_url('src');
-    //    dump($host);
+    // If scheme is exists, then we treat this file as remote.
+    if (isset($host['scheme'])) {
+      // @todo
+    }
+    else {
+      // If no scheme is set, we treat this file as local and relative to
+      // repository root folder.
+      $repository_path = $this->configFactory->get('druki_git.git_settings')
+        ->get('repository_path');
+      $repository_path = rtrim($repository_path, '/');
+      $src = ltrim($src, '/');
+      $file_uri = $repository_path . '/' . $src;
+    }
+
+    // If file is found locally.
+    if (file_exists($file_uri)) {
+      $paragraph = $this->paragraphStorage->create(['type' => 'druki_image']);
+      $duplicate = $this->fileTracker->checkDuplicate($file_uri);
+
+      // If we already have file with same content.
+      if ($duplicate instanceof FileInterface) {
+        /** @var \Drupal\media\MediaInterface $media */
+        $media = $this->fileTracker->getMediaForFile($duplicate);
+
+        // If media file for this file not found, we create it.
+        if (!$media instanceof MediaInterface) {
+          $media = $this->mediaStorage->create(['bundle' => 'image']);
+          $media->setName($alt);
+          $media->set('field_media_image', [
+            'target_id' => $duplicate->id(),
+          ]);
+          $media->save();
+        }
+
+        $paragraph->set('druki_image', [
+          'target_id' => $media->id(),
+        ]);
+        $paragraph->save();
+
+        return $paragraph;
+      }
+    }
   }
 
 }

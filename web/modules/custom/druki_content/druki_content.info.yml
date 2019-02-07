@@ -10,3 +10,4 @@ dependencies:
   - druki_paragraphs:druki_paragraphs
   - druki_git:druki_git
   - druki_parser:druki_parser
+  - druki_file:druki_file
