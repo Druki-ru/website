@@ -247,7 +247,7 @@ class DrukiFileTracker {
     // Since there is possible to have multiple usage of the same file in
     // different media entities through code and other modules, we just pick the
     // first one.
-    $media_id = (isset($usage['file']['media'])) ? array_shift($usage['file']['media']) : NULL;
+    $media_id = (isset($usage['file']['media'])) ? array_keys($usage['file']['media'])[0] : NULL;
     if ($media_id) {
       return $this->mediaStorage->load($media_id);
     }

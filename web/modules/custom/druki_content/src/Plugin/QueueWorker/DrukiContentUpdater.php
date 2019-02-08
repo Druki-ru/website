@@ -2,10 +2,13 @@
 
 namespace Drupal\druki_content\Plugin\QueueWorker;
 
+use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
+use Drupal\Core\Utility\Token;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
 use Drupal\druki_parser\Service\DrukiHTMLParserInterface;
@@ -74,6 +77,20 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected $mediaStorage;
 
   /**
+   * The entity field manager.
+   *
+   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
+   */
+  protected $entityFieldManager;
+
+  /**
+   * The token.
+   *
+   * @var \Drupal\Core\Utility\Token
+   */
+  protected $token;
+
+  /**
    * DrukiContentUpdater constructor.
    *
    * @param array $configuration
@@ -84,6 +101,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The plugin definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
+   *   The entity field manager.
    * @param \Drupal\druki_parser\Service\DrukiMarkdownParserInterface $markdown_parser
    *   The markdown parser.
    * @param \Drupal\druki_parser\Service\DrukiHTMLParserInterface $html_parser
@@ -92,6 +111,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The file tracker.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
+   * @param \Drupal\Core\Utility\Token $token
+   *   The token.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -101,10 +122,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $plugin_id,
     $plugin_definition,
     EntityTypeManagerInterface $entity_type_manager,
+    EntityFieldManagerInterface $entity_field_manager,
     DrukiMarkdownParserInterface $markdown_parser,
     DrukiHTMLParserInterface $html_parser,
     DrukiFileTracker $file_tracker,
-    ConfigFactoryInterface $config_factory
+    ConfigFactoryInterface $config_factory,
+    Token $token
   ) {
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -112,10 +135,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');
     $this->paragraphStorage = $entity_type_manager->getStorage('paragraph');
     $this->mediaStorage = $entity_type_manager->getStorage('media');
+    $this->entityFieldManager = $entity_field_manager;
     $this->markdownParser = $markdown_parser;
     $this->htmlParser = $html_parser;
     $this->fileTracker = $file_tracker;
     $this->configFactory = $config_factory;
+    $this->token = $token;
   }
 
   /**
@@ -127,10 +152,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       $plugin_id,
       $plugin_definition,
       $container->get('entity_type.manager'),
+      $container->get('entity_field.manager'),
       $container->get('druki_parser.markdown'),
       $container->get('druki_parser.html'),
       $container->get('druki_file.tracker'),
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('token')
     );
   }
 
@@ -345,7 +372,13 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
     // If scheme is exists, then we treat this file as remote.
     if (isset($host['scheme'])) {
-      // @todo
+      $filename = basename($src);
+      $destination_uri = $this->getMediaImageFieldDestination();
+      $file = system_retrieve_file($src, $destination_uri . '/' . $filename, TRUE);
+
+      if ($file instanceof FileInterface) {
+        $file_uri = $file->getFileUri();
+      }
     }
     else {
       // If no scheme is set, we treat this file as local and relative to
@@ -364,19 +397,19 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
       // If we already have file with same content.
       if ($duplicate instanceof FileInterface) {
-        /** @var \Drupal\media\MediaInterface $media */
-        $media = $this->fileTracker->getMediaForFile($duplicate);
+        $media = $this->saveImageFileToMediaImage($duplicate, $alt);
+      }
+      else {
+        $destination_uri = $this->getMediaImageFieldDestination();
+        $basename = basename($file_uri);
+        $data = file_get_contents($file_uri);
+        /** @var \Drupal\file\FileInterface $file */
+        $file = file_save_data($data, $destination_uri . '/' . $basename);
+        $media = $this->saveImageFileToMediaImage($file);
+      }
 
-        // If media file for this file not found, we create it.
-        if (!$media instanceof MediaInterface) {
-          $media = $this->mediaStorage->create(['bundle' => 'image']);
-          $media->setName($alt);
-          $media->set('field_media_image', [
-            'target_id' => $duplicate->id(),
-          ]);
-          $media->save();
-        }
-
+      // If media entity was created or found.
+      if ($media instanceof MediaInterface) {
         $paragraph->set('druki_image', [
           'target_id' => $media->id(),
         ]);
@@ -384,10 +417,69 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
         return $paragraph;
       }
-      else {
-        // @todo if duplicate not found.
-      }
     }
+  }
+
+  /**
+   * Gets field destination value.
+   *
+   * Looking for value from field settings for image filed of media image
+   * bundle. We will respect this setting for using same paths for all image
+   * files, not matter, uploaded them programmatically or manually.
+   *
+   * @return string
+   *   The URI folder for saving file.
+   */
+  protected function getMediaImageFieldDestination() {
+    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
+
+    if (!isset($destination)) {
+      $media_image = $this->entityFieldManager->getFieldDefinitions('media', 'image');
+      $file_directory = trim($media_image['field_media_image']->getSetting('file_directory'), '/');
+      $uri_scheme = $media_image['field_media_image']->getSetting('uri_scheme');
+      // Since this setting can, and will be contain tokens by default. We must
+      // handle it too. Also, tokens can contain html, so we strip it.
+      $destination = PlainTextOutput::renderFromHtml($this->token->replace($file_directory));
+
+      $result = $uri_scheme . '://' . $destination;
+    }
+
+    return $result;
+  }
+
+  /**
+   * Saves or return currently existed media image entity for file.
+   *
+   * @param \Drupal\file\FileInterface $file
+   *   The file entity.
+   * @param string|null $name
+   *   The name for media entity, if it creates.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\media\MediaInterface
+   *   The created or found media entity.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  protected function saveImageFileToMediaImage(FileInterface $file, $name = NULL) {
+    /** @var \Drupal\media\MediaInterface $media */
+    $media = $this->fileTracker->getMediaForFile($file);
+
+    // If media file for this file not found, we create it.
+    if (!$media instanceof MediaInterface) {
+      $media = $this->mediaStorage->create(['bundle' => 'image']);
+      if ($name) {
+        $media->setName($name);
+      }
+      else {
+        $media->setName($file->getFilename());
+      }
+      $media->set('field_media_image', [
+        'target_id' => $file->id(),
+      ]);
+      $media->save();
+    }
+
+    return $media;
   }
 
 }
