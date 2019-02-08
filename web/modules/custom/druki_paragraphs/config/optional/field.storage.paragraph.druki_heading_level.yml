@@ -4,8 +4,8 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.druki_heading_type
-field_name: druki_heading_type
+id: paragraph.druki_heading_level
+field_name: druki_heading_level
 entity_type: paragraph
 type: list_string
 settings:

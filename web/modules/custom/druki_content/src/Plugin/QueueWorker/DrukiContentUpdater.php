@@ -324,8 +324,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       'value' => $content_data['value'],
       'format' => filter_default_format(),
     ]);
-    // @todo looks like this is not working.
-    $paragraph->set('druki_heading_type', $content_data['level']);
+    $paragraph->set('druki_heading_level', $content_data['level']);
     $paragraph->save();
 
     return $paragraph;
