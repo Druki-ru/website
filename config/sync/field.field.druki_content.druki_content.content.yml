@@ -1,14 +1,16 @@
-uuid: c89cfeae-d848-4ef5-926d-18ad16227bd9
+uuid: 8652f062-d521-4198-9ff8-5d094659be93
 langcode: ru
 status: true
 dependencies:
   config:
-    - field.storage.druki_content.field_content
+    - field.storage.druki_content.content
   module:
     - druki_content
     - entity_reference_revisions
-id: druki_content.druki_content.field_content
-field_name: field_content
+_core:
+  default_config_hash: uBU3CJ1EnH3jy7vY2V6DP6I7Z7RV8vgWixILoHDBp_w
+id: druki_content.druki_content.content
+field_name: content
 entity_type: druki_content
 bundle: druki_content
 label: Content
@@ -24,15 +26,15 @@ settings:
     target_bundles: null
     target_bundles_drag_drop:
       druki_heading:
-        weight: -9
+        weight: 0
         enabled: false
       druki_text:
-        weight: -8
+        weight: 1
         enabled: false
       druki_image:
-        weight: -7
+        weight: 2
         enabled: false
       druki_code:
-        weight: -6
+        weight: 3
         enabled: false
 field_type: entity_reference_revisions

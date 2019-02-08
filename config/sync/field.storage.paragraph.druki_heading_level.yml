@@ -1,4 +1,4 @@
-uuid: 2587bea8-3a86-497c-804f-e0364743f54a
+uuid: bd7d55c6-818d-422c-aea3-59977458a608
 langcode: ru
 status: true
 dependencies:
@@ -6,9 +6,9 @@ dependencies:
     - options
     - paragraphs
 _core:
-  default_config_hash: nLljjiqiJFHLMDwSbswS75o_y3jqMds2ruCjXi1SPvU
-id: paragraph.druki_heading_type
-field_name: druki_heading_type
+  default_config_hash: 7pHquYmAhrc3TKwE4SFVdCEClDGoDsUcsryXlzOg4AI
+id: paragraph.druki_heading_level
+field_name: druki_heading_level
 entity_type: paragraph
 type: list_string
 settings:

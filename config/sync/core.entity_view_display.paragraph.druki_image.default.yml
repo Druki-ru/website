@@ -1,0 +1,24 @@
+uuid: a68afad2-86fe-4024-95a4-60b8d1528701
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.druki_image.druki_image
+    - paragraphs.paragraphs_type.druki_image
+  module:
+    - media
+id: paragraph.druki_image.default
+targetEntityType: paragraph
+bundle: druki_image
+mode: default
+content:
+  druki_image:
+    type: media_thumbnail
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+hidden: {  }

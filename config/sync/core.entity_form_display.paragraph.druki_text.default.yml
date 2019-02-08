@@ -1,0 +1,26 @@
+uuid: d531018d-0797-4363-8f6b-56e6e7882abe
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.druki_text.druki_textarea_formatted
+    - paragraphs.paragraphs_type.druki_text
+  module:
+    - text
+id: paragraph.druki_text.default
+targetEntityType: paragraph
+bundle: druki_text
+mode: default
+content:
+  druki_textarea_formatted:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

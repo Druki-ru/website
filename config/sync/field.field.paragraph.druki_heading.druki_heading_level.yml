@@ -1,16 +1,16 @@
-uuid: 98febfa3-4345-4ff8-8236-aaf338d052ea
+uuid: 4ca54dc1-1c3b-4405-8e70-abf87072733a
 langcode: ru
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.druki_heading_type
+    - field.storage.paragraph.druki_heading_level
     - paragraphs.paragraphs_type.druki_heading
   module:
     - options
 _core:
-  default_config_hash: YcCIfETNvu9DlFtPSJXmdvpUj6EdaH-OF3BGmjKhEXs
-id: paragraph.druki_heading.druki_heading_type
-field_name: druki_heading_type
+  default_config_hash: 7TAelXevLCNfZ1Rz7ieQusu_jALmZI0R2_moA_VNViw
+id: paragraph.druki_heading.druki_heading_level
+field_name: druki_heading_level
 entity_type: paragraph
 bundle: druki_heading
 label: 'Heading type'

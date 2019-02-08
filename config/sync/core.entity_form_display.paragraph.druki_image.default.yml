@@ -1,0 +1,24 @@
+uuid: e36a1244-839b-4ddf-a2c5-932a47369ab3
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.druki_image.druki_image
+    - paragraphs.paragraphs_type.druki_image
+  module:
+    - media_library
+id: paragraph.druki_image.default
+targetEntityType: paragraph
+bundle: druki_image
+mode: default
+content:
+  druki_image:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

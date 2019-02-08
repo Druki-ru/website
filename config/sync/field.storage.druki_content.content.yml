@@ -1,4 +1,4 @@
-uuid: 9da1b59c-3ca4-4b64-9fe9-c682a935a005
+uuid: 362dcd56-90e7-4fd3-8bf1-fe44b6453897
 langcode: ru
 status: true
 dependencies:
@@ -6,16 +6,18 @@ dependencies:
     - druki_content
     - entity_reference_revisions
     - paragraphs
-id: druki_content.field_content
-field_name: field_content
+_core:
+  default_config_hash: SBu7m7lpo1ZQ0x_EWOxKret_4wT_NngQPFfWYsKuKfU
+id: druki_content.content
+field_name: content
 entity_type: druki_content
 type: entity_reference_revisions
 settings:
   target_type: paragraph
 module: entity_reference_revisions
-locked: false
+locked: true
 cardinality: -1
 translatable: true
 indexes: {  }
-persist_with_no_fields: false
+persist_with_no_fields: true
 custom_storage: false

@@ -1,0 +1,28 @@
+uuid: 551e498e-8869-4d67-a5e9-e02095866dd3
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.druki_heading.druki_heading_level
+    - field.field.paragraph.druki_heading.druki_textfield_formatted
+    - paragraphs.paragraphs_type.druki_heading
+  module:
+    - text
+id: paragraph.druki_heading.default
+targetEntityType: paragraph
+bundle: druki_heading
+mode: default
+content:
+  druki_textfield_formatted:
+    type: text_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  druki_heading_level: true
+  status: true
+  uid: true
