@@ -202,6 +202,11 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected function processContent($structured_data, $data) {
     $druki_content = $this->loadContent($structured_data['meta']['id']);
 
+    // Don't update content if last commit for source file is the same.
+    if ($druki_content->get('last_commit_id') == $structured_data['last_commit_hash']) {
+      return;
+    }
+
     // Update/add everything else except ID.
     $druki_content->set('title', $structured_data['meta']['title']);
     $druki_content->set('relative_pathname', $data['relative_pathname']);

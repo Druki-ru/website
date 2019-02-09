@@ -138,11 +138,10 @@ class Git implements GitInterface {
    */
   public function getFileLastCommitId($relative_path) {
     $commit_hash = $this->git->execute([
-      'command' => [
-        // This is actually bad. @todo write own execute method, because from
-        // library is pretty bad.
-        'log --pretty=format:%H -- '.  $relative_path => '-n 1',
-      ],
+      'log',
+      '-n 1',
+      '--pretty=format:%H',
+      $relative_path,
     ]);
 
     if (preg_match('/^[0-9a-f]{40}$/i', $commit_hash[0])) {
@@ -157,9 +156,9 @@ class Git implements GitInterface {
    */
   public function getFileCommitsInfo($relative_path) {
     $result = $this->git->execute([
-      'command' => [
-        'shortlog -sen -- ' . $relative_path => 'filler',
-      ],
+      'shortlog',
+      '-sen',
+      $relative_path,
     ]);
 
     $commits_info = [];
