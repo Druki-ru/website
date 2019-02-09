@@ -141,6 +141,7 @@ class Git implements GitInterface {
       'log',
       '-n 1',
       '--pretty=format:%H',
+      '--',
       $relative_path,
     ]);
 
@@ -155,9 +156,12 @@ class Git implements GitInterface {
    * {@inheritdoc}
    */
   public function getFileCommitsInfo($relative_path) {
+    // @todo figure out why this exact same command can return empty array
+    // when called from event subscriber and real data from drush script.
     $result = $this->git->execute([
       'shortlog',
       '-sen',
+      '--',
       $relative_path,
     ]);
 
