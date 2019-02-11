@@ -34,3 +34,13 @@ function template_preprocess_druki_content(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 }
+
+/**
+ * Implements hook_cron().
+ */
+function druki_content_cron() {
+  // Clean missing content from database.
+  \Drupal::service('entity_type.manager')
+    ->getStorage('druki_content')
+    ->deleteMissing();
+}

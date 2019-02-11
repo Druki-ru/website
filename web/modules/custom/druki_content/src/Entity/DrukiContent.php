@@ -14,6 +14,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki contents"),
  *   handlers = {
+ *     "storage" = "Drupal\druki_content\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\druki_content\DrukiContentListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
