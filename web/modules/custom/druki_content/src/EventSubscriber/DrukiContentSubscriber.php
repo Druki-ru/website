@@ -53,7 +53,7 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
     /** @var \Symfony\Component\Finder\SplFileInfo[] $items */
     foreach ($files as $langcode => $items) {
       foreach ($items as $item) {
-        $last_commit_hash = $event->git()
+        $last_commit_id = $event->git()
           ->getFileLastCommitId($item->getRelativePathname());
         $contribution_statistics = $event->git()
           ->getFileCommitsInfo($item->getRelativePathname());
@@ -64,7 +64,7 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
           'relative_path' => $item->getRelativePath(),
           'relative_pathname' => $item->getRelativePathname(),
           'filename' => $item->getFilename(),
-          'last_commit_hash' => $last_commit_hash,
+          'last_commit_id' => $last_commit_id,
           'contribution_statistics' => $contribution_statistics,
         ]);
       }

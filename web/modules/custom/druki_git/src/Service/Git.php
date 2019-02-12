@@ -156,10 +156,10 @@ class Git implements GitInterface {
    * {@inheritdoc}
    */
   public function getFileCommitsInfo($relative_path) {
-    // @todo figure out why this exact same command can return empty array
-    // when called from event subscriber and real data from drush script.
     $result = $this->git->execute([
       'shortlog',
+      // @see https://stackoverflow.com/a/43042363/4751623
+      'HEAD',
       '-sen',
       '--',
       $relative_path,
