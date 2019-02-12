@@ -50,6 +50,13 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
    */
   public function onPullFinish(DrukiGitEvent $event) {
     $files = $this->folderParser->parse($event->git()->getRepositoryPath());
+    // Delete queue and all items in it if this event fired.
+    // This will clean Queue from items which did not make it since last queue
+    // was generated. Also this is protect queue from processing same content
+    // multiple times. This is effective for multiple pulls in the row, such as
+    // hotfix followup commit, which actually just multiply work for nothing.
+    $this->queue->deleteQueue();
+
     /** @var \Symfony\Component\Finder\SplFileInfo[] $items */
     foreach ($files as $langcode => $items) {
       foreach ($items as $item) {
