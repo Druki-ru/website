@@ -208,11 +208,11 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     }
 
     // Update/add everything else except ID.
-    $druki_content->set('title', $structured_data['meta']['title']);
-    $druki_content->set('relative_pathname', $data['relative_pathname']);
-    $druki_content->set('filename', $data['filename']);
-    $druki_content->set('last_commit_id', $data['last_commit_id']);
-    $druki_content->set('contribution_statistics', $data['contribution_statistics']);
+    $druki_content->setTitle($structured_data['meta']['title']);
+    $druki_content->setRelativePathname($data['relative_pathname']);
+    $druki_content->setFilename($data['filename']);
+    $druki_content->setLastCommitId($data['last_commit_id']);
+    $druki_content->setContributionStatistics($data['contribution_statistics']);
 
     // If this content already contains paragraphs, we delete them. It's faster
     // and safer to recreate it from new structure, other than detecting

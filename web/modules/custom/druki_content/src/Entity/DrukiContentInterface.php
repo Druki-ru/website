@@ -28,4 +28,80 @@ interface DrukiContentInterface extends ContentEntityInterface {
    */
   public function setTitle($title);
 
+  /**
+   * Gets relative pathname of source file.
+   *
+   * @return string
+   *   The relative pathname.
+   */
+  public function getRelativePathname();
+
+  /**
+   * Sets relative pathname
+   *
+   * @param string $relative_pathname
+   *   The relative pathname.
+   *
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   *   The called druki content entity.
+   */
+  public function setRelativePathname($relative_pathname);
+
+  /**
+   * Gets filename of source file.
+   *
+   * @return string
+   *   The filename.
+   */
+  public function getFilename();
+
+  /**
+   * Sets filename of source file.
+   *
+   * @param string $filename
+   *   The filename.
+   *
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   *   The called druki content entity.
+   */
+  public function setFilename($filename);
+
+  /**
+   * Gets last commit id of source file.
+   *
+   * @return string
+   *   The commit id.
+   */
+  public function getLastCommitId();
+
+  /**
+   * Sets last commit id of source file.
+   *
+   * @param string $commit_id
+   *   The commit id.
+   *
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   *   The called druki content entity.
+   */
+  public function setLastCommitId($commit_id);
+
+  /**
+   * Gets contribution statistics.
+   *
+   * @return array
+   *   The contribution statistics.
+   */
+  public function getContributionStatistics();
+
+  /**
+   * Sets contribution statistics.
+   *
+   * @param array $contribution_statistics
+   *   The contribution statistics.
+   *
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   *   The called druki content entity.
+   */
+  public function setContributionStatistics(array $contribution_statistics);
+
 }

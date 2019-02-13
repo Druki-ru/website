@@ -146,4 +146,68 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
     return $this;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getRelativePathname() {
+    return $this->get('relative_pathname')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setRelativePathname($relative_pathname) {
+    $this->set('relative_pathname', $relative_pathname);
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFilename() {
+    return $this->get('filename')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setFilename($filename) {
+    $this->set('filename', $filename);
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLastCommitId() {
+    return $this->get('last_commit_id')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLastCommitId($commit_id) {
+    $this->set('last_commit_id', $commit_id);
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContributionStatistics() {
+    return $this->get('contribution_statistics')->first()->getValue();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setContributionStatistics(array $contribution_statistics) {
+    $this->set('contribution_statistics', serialize($contribution_statistics));
+
+    return $this;
+  }
+
 }
