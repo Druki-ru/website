@@ -1,4 +1,10 @@
 services:
   druki_git:
-    class: 'Drupal\druki_git\Service\Git'
+    class: Drupal\druki_git\Service\Git
     arguments: ['@config.factory', '@file_system', '@event_dispatcher']
+
+  access_check.druki_git_webhook:
+    class: Drupal\druki_git\Access\DrukiGitWebhookAccess
+    arguments: ['@state']
+    tags:
+      - { name: access_check, applies_to: _druki_git_webhook_access }

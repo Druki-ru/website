@@ -5,6 +5,23 @@
  * Install, update and uninstall functions for the Druki � — git module.
  */
 
+use Drupal\Component\Utility\Crypt;
+
+/**
+ * Implements hook_install().
+ */
+function druki_git_install() {
+  $webhook_key = Crypt::randomBytesBase64(55);
+  \Drupal::state()->set('druki_git.webhook_key', $webhook_key);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function druki_git_uninstall() {
+  \Drupal::state()->delete('druki_git.webhook_key');
+}
+
 /**
  * Implements hook_requirements().
  */

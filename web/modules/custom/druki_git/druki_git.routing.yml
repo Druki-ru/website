@@ -17,3 +17,15 @@ druki_git.git_settings:
     _permission: 'administer site configuration'
   options:
     _admin_route: TRUE
+
+druki_git.webhook:
+  path: '/api/webhook/{key}'
+  defaults:
+    _title: 'Webhook'
+    _controller: '\Drupal\druki_git\Controller\DrukiGitController::webhook'
+  options:
+    no_cache: TRUE
+  requirements:
+    _druki_git_webhook_access: 'TRUE'
+  methods:
+    - POST

@@ -2,13 +2,17 @@
 
 namespace Drupal\druki_git\Form;
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_git\Service\GitInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Configure Druki — git settings for this site.
@@ -26,12 +30,34 @@ class GitSettingsForm extends ConfigFormBase {
   protected $git;
 
   /**
+   * The state system.
+   *
+   * @var \Drupal\Core\State\StateInterface
+   */
+  protected $state;
+
+  /**
+   * The current request.
+   *
+   * @var \Symfony\Component\BrowserKit\Request
+   */
+  protected $request;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(ConfigFactoryInterface $config_factory, GitInterface $git) {
+  public function __construct(
+    ConfigFactoryInterface $config_factory,
+    GitInterface $git,
+    StateInterface $state,
+    Request $request
+  ) {
+
     parent::__construct($config_factory);
 
     $this->git = $git;
+    $this->state = $state;
+    $this->request = $request;
   }
 
   /**
@@ -40,7 +66,9 @@ class GitSettingsForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('druki_git')
+      $container->get('druki_git'),
+      $container->get('state'),
+      $container->get('request_stack')->getCurrentRequest()
     );
   }
 
@@ -79,6 +107,29 @@ class GitSettingsForm extends ConfigFormBase {
         '#submit' => [[$this, 'gitPullFromRemote']],
       ];
     }
+
+    $form['webhook'] = [
+      '#type' => 'fieldset',
+      '#title' => 'Webhook',
+    ];
+
+    $webhook_key = $this->state->get('druki_git.webhook_key');
+    $webhook_url = $this->request->getSchemeAndHttpHost() . '/api/webhook/' . $webhook_key;
+
+    $webhook_description = '<p>' . $this->t('The Webhook URL which can be used to trigger pull events and all consecutive operations.') . '</p>';
+    $webhook_description .= '<p>' . new TranslatableMarkup('The Webhook URL: <a href=":url">:url</a>', [
+        ':url' => $webhook_url,
+      ]);
+    $form['webhook']['description'] = [
+      '#markup' => $webhook_description,
+    ];
+
+    $form['webhook']['actions']['#type'] = 'actions';
+    $form['webhook']['actions']['regenerate'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Regenerate key'),
+      '#submit' => [[$this, 'regenerateWebhookKey']],
+    ];
 
     $form['repository_path'] = [
       '#type' => 'textfield',
@@ -120,6 +171,14 @@ class GitSettingsForm extends ConfigFormBase {
     else {
       $this->messenger()->addError($this->t('Git pull end up with error.'));
     }
+  }
+
+  /**
+   * Regenerates key for webhook url.
+   */
+  public function regenerateWebhookKey() {
+    $webhook_key = Crypt::randomBytesBase64(55);
+    $this->state->set('druki_git.webhook_key', $webhook_key);
   }
 
   /**
