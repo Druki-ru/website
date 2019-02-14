@@ -10,6 +10,8 @@ use League\CommonMark\Cursor;
 /**
  * Class Important.
  *
+ * @deprecated Move to CommonMark extensions.
+ *
  * @MarkdownExtension(
  *   id = "druki_parser_important",
  *   parser = "thephpleague/commonmark",

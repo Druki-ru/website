@@ -16,6 +16,12 @@ title: Нормы поведения
 
 "quotes"
 
+[[installation]]
+
+[[faq|FAQ]]
+
+Проверка внутренних ссылок внутри [[test|текста]].
+
 ## Title
 Markdown;
 

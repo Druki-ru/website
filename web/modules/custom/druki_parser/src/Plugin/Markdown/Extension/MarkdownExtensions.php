@@ -8,16 +8,16 @@ use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
 
 /**
- * Class MetaInformation.
+ * Class MarkdownExtensions.
  *
  * @MarkdownExtension(
- *   id = "druki_parser_meta_information",
+ *   id = "druki_parser_markdown_extensions",
  *   parser = "thephpleague/commonmark",
- *   label = @Translation("Parser for meta information"),
- *   description = @Translation("Parse meta information for entity.")
+ *   label = @Translation("Additional markdown extensions"),
+ *   description = @Translation("Our custom markdown syntax support.")
  * )
  */
-class MetaInformation extends CommonMarkExtension implements EnvironmentAwareInterface {
+class MarkdownExtensions extends CommonMarkExtension implements EnvironmentAwareInterface {
 
   /**
    * {@inheritdoc}
@@ -32,13 +32,15 @@ class MetaInformation extends CommonMarkExtension implements EnvironmentAwareInt
    * {@inheritdoc}
    */
   public function getName() {
-    return 'druki_parser_meta_information';
+    return 'druki_parser_markdown_extensions';
   }
 
   /**
    * {@inheritdoc}
    */
   public function setEnvironment(Environment $environment) {
+    // @todo looks like we need to override some default parsers to achieve
+    // result.
     $environment->addExtension(new DrukiParserExtensions());
   }
 
