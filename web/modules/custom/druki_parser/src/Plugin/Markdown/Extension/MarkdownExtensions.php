@@ -39,8 +39,6 @@ class MarkdownExtensions extends CommonMarkExtension implements EnvironmentAware
    * {@inheritdoc}
    */
   public function setEnvironment(Environment $environment) {
-    // @todo looks like we need to override some default parsers to achieve
-    // result.
     $environment->addExtension(new DrukiParserExtensions());
   }
 

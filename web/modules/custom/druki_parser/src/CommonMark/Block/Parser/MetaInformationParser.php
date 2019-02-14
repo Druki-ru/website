@@ -22,7 +22,7 @@ class MetaInformationParser extends AbstractBlockParser {
       return FALSE;
     }
 
-    $meta_information = $cursor->match("/^\.{3}/");
+    $meta_information = $cursor->match("/^\-{3}meta/");
     if (!$meta_information) {
       return FALSE;
     }

@@ -9,10 +9,10 @@
 $druki_parser = \Drupal::service('druki_parser.markdown');
 
 $markdown_content = <<<'Markdown'
-...
+---meta
 id: code-of-conduct
 title: Нормы поведения
-...
+---
 
 "quotes"
 

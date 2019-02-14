@@ -91,8 +91,8 @@ class MetaInformationElement extends AbstractBlock {
    * {@inheritdoc}
    */
   public function handleRemainingContents(ContextInterface $context, Cursor $cursor) {
-    if ($cursor->getNextNonSpaceCharacter() == '.') {
-      $match = RegexHelper::matchAll('/^\.{3,}$/', $cursor->getLine(), $cursor->getNextNonSpacePosition());
+    if ($cursor->getNextNonSpaceCharacter() == '-') {
+      $match = RegexHelper::matchAll('/^\-{3}$/', $cursor->getLine(), $cursor->getNextNonSpacePosition());
       if (!empty($match)) {
         $this->setIsCloserFound(TRUE);
         return;
