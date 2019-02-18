@@ -21,7 +21,9 @@ class InternalLinkRenderer implements InlineRendererInterface {
    * @return HtmlElement|string
    */
   public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer) {
-    // TODO: Implement render() method.
+    return new HtmlElement('a', [
+      'href' => $inline->getContentId(),
+    ], $inline->getTitle());
   }
 
 }

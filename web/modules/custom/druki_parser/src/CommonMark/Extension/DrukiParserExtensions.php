@@ -4,7 +4,8 @@ namespace Drupal\druki_parser\CommonMark\Extension;
 
 use Drupal\druki_parser\CommonMark\Block\Parser\MetaInformationParser;
 use Drupal\druki_parser\CommonMark\Block\Renderer\MetaInformationRenderer;
-use Drupal\druki_parser\CommonMark\Inline\Parser\InternalLinkParser;
+use Drupal\druki_parser\CommonMark\Inline\Parser\CloseBracerParser;
+use Drupal\druki_parser\CommonMark\Inline\Parser\OpenBracerParser;
 use Drupal\druki_parser\CommonMark\Inline\Renderer\InternalLinkRenderer;
 use League\CommonMark\Extension\Extension;
 use League\CommonMark\Extension\ExtensionInterface;
@@ -39,7 +40,8 @@ class DrukiParserExtensions extends Extension implements ExtensionInterface {
    */
   public function getInlineParsers() {
     return [
-      new InternalLinkParser(),
+      new OpenBracerParser(),
+      new CloseBracerParser(),
     ];
   }
 
