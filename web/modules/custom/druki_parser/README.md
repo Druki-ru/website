@@ -34,3 +34,19 @@ This will result this HTML markup:
 ```
 
 This information later parses to specific structured arrays in `druki_parser.html` service.
+
+### Internal link
+
+The link to internal content by its id.
+
+```markdown
+{Link title}(content-id)
+```
+
+This will result this HTML markup:
+
+```html
+<a href="@druki_content:content-id">Link title</a>
+```
+
+Later this HTML processed by Text Filter plugin.

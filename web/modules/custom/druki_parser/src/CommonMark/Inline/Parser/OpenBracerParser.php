@@ -27,10 +27,10 @@ class OpenBracerParser extends AbstractInlineParser {
   public function parse(InlineParserContext $inline_context) {
     $cursor = $inline_context->getCursor();
 
-    // {{ opener.
+    // { opener.
     if ($cursor->getNextNonSpaceCharacter() == '{') {
       $cursor->advance();
-      $node = new Text('{', ['delim' => true]);
+      $node = new Text('{', ['delim' => TRUE]);
       $inline_context->getContainer()->appendChild($node);
 
       $delimiter = new Delimiter('{', 1, $node, TRUE, FALSE, $cursor->getPosition());

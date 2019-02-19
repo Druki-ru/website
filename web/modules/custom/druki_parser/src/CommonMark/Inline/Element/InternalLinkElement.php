@@ -19,15 +19,13 @@ class InternalLinkElement extends AbstractInlineContainer {
   protected $contentId;
 
   /**
-   * The title.
+   * InternalLinkElement constructor.
    *
-   * @var string
+   * @param string $content_id
+   *   The internal content id.
    */
-  protected $title;
-
-  public function __construct($content_id, $title) {
+  public function __construct($content_id) {
     $this->contentId = $content_id;
-    $this->title = $title;
   }
 
   /**
@@ -48,26 +46,6 @@ class InternalLinkElement extends AbstractInlineContainer {
    */
   public function setContentId(string $content_id) {
     $this->contentId = $content_id;
-  }
-
-  /**
-   * Gets title.
-   *
-   * @return string
-   *   The title.
-   */
-  public function getTitle() {
-    return $this->title;
-  }
-
-  /**
-   * Sets title.
-   *
-   * @param string $title
-   *   The title.
-   */
-  public function setTitle(string $title) {
-    $this->title = $title;
   }
 
 }

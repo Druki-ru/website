@@ -16,14 +16,17 @@ class InternalLinkRenderer implements InlineRendererInterface {
 
   /**
    * @param AbstractInline $inline
-   * @param ElementRendererInterface $htmlRenderer
+   * @param ElementRendererInterface $html_renderer
    *
    * @return HtmlElement|string
    */
-  public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer) {
-    return new HtmlElement('a', [
-      'href' => $inline->getContentId(),
-    ], $inline->getTitle());
+  public function render(AbstractInline $inline, ElementRendererInterface $html_renderer) {
+    $attributes = [
+      'href' => '@druki_content:' . $inline->getContentId(),
+    ];
+
+    // Create element and render its children AST to a string.
+    return new HtmlElement('a', $attributes, $html_renderer->renderInlines($inline->children()));
   }
 
 }

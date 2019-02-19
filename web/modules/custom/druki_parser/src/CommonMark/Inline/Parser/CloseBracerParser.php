@@ -4,6 +4,8 @@ namespace Drupal\druki_parser\CommonMark\Inline\Parser;
 
 use Drupal\druki_parser\CommonMark\Inline\Element\InternalLinkElement;
 use League\CommonMark\Cursor;
+use League\CommonMark\Environment;
+use League\CommonMark\EnvironmentAwareInterface;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
 
@@ -12,7 +14,12 @@ use League\CommonMark\InlineParserContext;
  *
  * @package Drupal\druki_parser\CommonMark\Inline\Parser
  */
-class CloseBracerParser extends AbstractInlineParser {
+class CloseBracerParser extends AbstractInlineParser implements EnvironmentAwareInterface {
+
+  /**
+   * @var Environment
+   */
+  protected $environment;
 
   /**
    * {@inheritdoc}
@@ -25,8 +32,6 @@ class CloseBracerParser extends AbstractInlineParser {
    * {@inheritdoc}
    */
   public function parse(InlineParserContext $inline_context) {
-    $cursor = $inline_context->getCursor();
-
     $opener = $inline_context->getDelimiterStack()->searchByCharacter('{');
     if ($opener == NULL) {
       return FALSE;
@@ -38,29 +43,43 @@ class CloseBracerParser extends AbstractInlineParser {
       return FALSE;
     }
 
-    $start_position = $cursor->getPosition();
+    $cursor = $inline_context->getCursor();
+
     $cursor_previous_state = $cursor->saveState();
 
-    $cursor->advance();
-
-    $link_title = $this->parseInternalLink($cursor);
-    if (!$link_title) {
+    $content_id = $this->parseInternalLink($cursor);
+    if (!$content_id) {
+      $inline_context->getDelimiterStack()->removeDelimiter($opener);
       $cursor->restoreState($cursor_previous_state);
 
       return FALSE;
     }
 
-    // @todo complete it.
-    $internal_link = new InternalLinkElement('test', $link_title);
+    // Creates our internal link node element.
+    $internal_link = new InternalLinkElement($content_id);
+    // Replace opener "{" with it.
     $opener->getInlineNode()->replaceWith($internal_link);
+
+    // Loop through next nodes of our element and append them inside ours.
+    while (($label = $internal_link->next()) !== NULL) {
+      $internal_link->appendChild($label);
+    }
 
     return TRUE;
   }
 
+  /**
+   * Parses internal link.
+   *
+   * @param \League\CommonMark\Cursor $cursor
+   *   The current cursor state.
+   *
+   * @return bool|string
+   *   The content id for internal link element, FALSE otherwise.
+   */
   protected function parseInternalLink(Cursor $cursor) {
-
-    // Link must follow up with "(" for label.
-    if ($cursor->getCharacter() !== '(') {
+    // Link must follow up with "(" for URL.
+    if ($cursor->peek() !== '(') {
       return FALSE;
     }
 
@@ -69,11 +88,8 @@ class CloseBracerParser extends AbstractInlineParser {
     $cursor->advance();
     $cursor->advanceToNextNonSpaceOrNewline();
 
-    $title_close_found = FALSE;
-
     while (($character = $cursor->getCharacter()) !== NULL) {
       if ($character == ')') {
-        $title_close_found = TRUE;
         break;
       }
 
@@ -83,10 +99,29 @@ class CloseBracerParser extends AbstractInlineParser {
     $end_position = $cursor->getPosition();
     $cursor->restoreState($cursor_previous_state);
 
+    // To skip "}(".
+    $cursor->advanceBy(2);
     $cursor->advanceBy($end_position - $cursor->getPosition());
-    $link_title = $cursor->getPreviousText();
+    $content_id = $cursor->getPreviousText();
 
-    return $title_close_found ? $link_title : FALSE;
+    $cursor->advanceToNextNonSpaceOrNewline();
+
+    if ($cursor->match('/^\\)/') === NULL) {
+      $cursor->restoreState($cursor_previous_state);
+
+      return FALSE;
+    }
+
+    return $content_id;
+  }
+
+  /**
+   * @param Environment $environment
+   *
+   * @return void
+   */
+  public function setEnvironment(Environment $environment) {
+    $this->environment = $environment;
   }
 
 }
