@@ -133,6 +133,19 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
+  public function getCacheTagsToInvalidate() {
+    $cache_tags = parent::getCacheTagsToInvalidate();
+    $langcode = $this->getEntityKey('langcode');
+
+    // F.e. "druki_content:ru:installation".
+    $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->get('id')->value;
+
+    return $cache_tags;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getTitle() {
     return $this->get('title')->value;
   }

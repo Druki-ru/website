@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - druki_parser
     - markdown
 name: Markdown
 format: markdown
@@ -14,3 +15,9 @@ filters:
     weight: 0
     settings:
       parser: commonmark
+  druki_parser_internal_links:
+    id: druki_parser_internal_links
+    provider: druki_parser
+    status: true
+    weight: -10
+    settings: {  }
