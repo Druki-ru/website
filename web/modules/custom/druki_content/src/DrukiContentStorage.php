@@ -74,9 +74,10 @@ class DrukiContentStorage extends SqlContentEntityStorage {
 
     $result = $entity_query->execute();
     if (!empty($result)) {
-      array_shift($result);
+      reset($result);
+      $first = key($result);
 
-      return $this->load($result[0]);
+      return $this->load($first);
     }
 
     return NULL;

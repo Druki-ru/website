@@ -200,7 +200,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function processContent($structured_data, $data) {
-    $druki_content = $this->loadContent($structured_data['meta']['id']);
+    $druki_content = $this->loadContent($structured_data['meta']['id'], $data['langcode']);
 
     // Don't update content if last commit for source file is the same.
     if ($druki_content->get('last_commit_id') == $structured_data['last_commit_id']) {
@@ -236,17 +236,22 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param string $external_id
    *   The external content ID.
+   * @param string $langcode
+   *   The langcode.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|NULL
    */
-  protected function loadContent($external_id) {
-    $druki_content = $this->drukiContentStorage->loadByMeta($external_id);
+  protected function loadContent($external_id, $langcode) {
+    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode);
 
     if ($druki_content instanceof DrukiContentInterface) {
       return $druki_content;
     }
     else {
-      return $this->drukiContentStorage->create(['external_id' => $external_id]);
+      return $this->drukiContentStorage->create([
+        'external_id' => $external_id,
+        'langcode' => $langcode,
+      ]);
     }
   }
 

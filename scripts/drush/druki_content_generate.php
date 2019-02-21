@@ -9,3 +9,6 @@ $druki_content_storage = \Drupal::service('entity_type.manager')->getStorage('dr
 //dump($druki_content->getFilename());
 //dump($druki_content->getLastCommitId());
 //dump($druki_content->getContributionStatistics());
+//$all = $druki_content_storage->loadMultiple();
+//$druki_content_storage->delete($all);
+//dump($druki_content_storage->loadByMeta('installation', 'ru'));
