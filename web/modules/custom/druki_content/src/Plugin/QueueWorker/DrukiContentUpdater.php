@@ -240,7 +240,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|NULL
    */
   protected function loadContent($external_id) {
-    $druki_content = $this->drukiContentStorage->loadByExternalId($external_id);
+    $druki_content = $this->drukiContentStorage->loadByMeta($external_id);
 
     if ($druki_content instanceof DrukiContentInterface) {
       return $druki_content;

@@ -62,9 +62,24 @@ class DrukiContentStorage extends SqlContentEntityStorage {
   /**
    * Loads content by its external ID.
    */
-  public function loadByExternalId($external_id) {
-    // @todo
-    return FALSE;
+  public function loadByMeta($external_id, $langcode = NULL) {
+    if (!$langcode) {
+      $langcode = $this->languageManager->getCurrentLanguage()->getId();
+    }
+
+    $entity_query = $this->getQuery();
+    $entity_query->accessCheck(FALSE);
+    $entity_query->condition('external_id', $external_id)
+      ->condition('langcode', $langcode);
+
+    $result = $entity_query->execute();
+    if (!empty($result)) {
+      array_shift($result);
+
+      return $this->load($result[0]);
+    }
+
+    return NULL;
   }
 
   /**
