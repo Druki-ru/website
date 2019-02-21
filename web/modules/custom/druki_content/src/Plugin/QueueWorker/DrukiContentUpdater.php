@@ -30,7 +30,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * The druki content storage.
    *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
+   * @var \Drupal\druki_content\DrukiContentStorage
    */
   protected $drukiContentStorage;
 
@@ -234,19 +234,19 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Checks is content with provided ID already existing.
    *
-   * @param string $id
-   *   The content ID.
+   * @param string $external_id
+   *   The external content ID.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|NULL
    */
-  protected function loadContent($id) {
-    $druki_content = $this->drukiContentStorage->load($id);
+  protected function loadContent($external_id) {
+    $druki_content = $this->drukiContentStorage->loadByExternalId($external_id);
 
     if ($druki_content instanceof DrukiContentInterface) {
       return $druki_content;
     }
     else {
-      return $this->drukiContentStorage->create(['id' => $id]);
+      return $this->drukiContentStorage->create(['external_id' => $external_id]);
     }
   }
 

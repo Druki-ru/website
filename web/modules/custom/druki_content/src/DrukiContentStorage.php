@@ -60,6 +60,14 @@ class DrukiContentStorage extends SqlContentEntityStorage {
   }
 
   /**
+   * Loads content by its external ID.
+   */
+  public function loadByExternalId($external_id) {
+    // @todo
+    return FALSE;
+  }
+
+  /**
    * Delete missing druki_content.
    *
    * This find and delete missing content. Missing content means content which

@@ -32,7 +32,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   translatable = TRUE,
  *   admin_permission = "administer druki content",
  *   entity_keys = {
- *     "id" = "id",
+ *     "id" = "internal_id",
  *     "langcode" = "langcode",
  *     "label" = "title",
  *     "uuid" = "uuid"
@@ -56,9 +56,9 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    // Rewrite entity id. In our case this is string.
-    $fields[$entity_type->getKey('id')] = BaseFieldDefinition::create('string')
-      ->setLabel($entity_type->getBundleLabel())
+    // The string entity id used in source files.
+    $fields['external_id'] = BaseFieldDefinition::create('string')
+      ->setLabel('External content ID')
       ->setRequired(TRUE)
       ->setReadOnly(TRUE);
 
@@ -221,6 +221,13 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
     $this->set('contribution_statistics', serialize($contribution_statistics));
 
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getExternalId() {
+    return $this->get('external_id')->value;
   }
 
 }

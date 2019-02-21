@@ -104,4 +104,12 @@ interface DrukiContentInterface extends ContentEntityInterface {
    */
   public function setContributionStatistics(array $contribution_statistics);
 
+  /**
+   * Gets content external ID.
+   *
+   * @return string
+   *   The external ID.
+   */
+  public function getExternalId();
+
 }
