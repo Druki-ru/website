@@ -1,4 +1,4 @@
-uuid: 82254b8d-acf7-4af4-a12a-93a18f03d73e
+uuid: 2f5ca915-3c64-45fd-9fd1-e700510dfa1d
 langcode: ru
 status: true
 dependencies:
@@ -7,6 +7,8 @@ dependencies:
   module:
     - druki_content
     - paragraphs
+_core:
+  default_config_hash: UI8KSiqIyC4GTwhWtuUzgnz5GcSObN7KjNu6dH0LL-8
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content

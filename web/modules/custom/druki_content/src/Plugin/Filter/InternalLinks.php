@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\Plugin\Filter;
+namespace Drupal\druki_content\Plugin\Filter;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -14,7 +14,7 @@ use Symfony\Component\DomCrawler\Crawler;
  * Provides a 'InternalLinks' filter.
  *
  * @Filter(
- *   id = "druki_parser_internal_links",
+ *   id = "druki_content_internal_links",
  *   title = @Translation("Internal Links"),
  *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE,
  *   weight = -10
@@ -117,14 +117,14 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    */
   protected function replaceHref($href, $langcode) {
     preg_match("/^@druki_content:(.+)$/", $href, $matches);
-    $content_id = $matches[1];
+    $external_id = $matches[1];
 
-    $druki_content = $this->drukiContentStorage->load($content_id);
+    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode);
     if ($druki_content instanceof DrukiContentInterface) {
       $href = $druki_content->toUrl()->toString();
     }
     else {
-      $cache_tag = $this->drukiContentStorage->getEntityTypeId() . ':' . $langcode . ':' . $content_id;
+      $cache_tag = $this->drukiContentStorage->getEntityTypeId() . ':' . $langcode . ':' . $external_id;
       $this->addLazyCacheTag($cache_tag);
     }
 

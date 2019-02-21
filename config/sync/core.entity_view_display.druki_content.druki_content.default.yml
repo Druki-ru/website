@@ -1,4 +1,4 @@
-uuid: 95fbe2e9-5a80-4934-aa69-d2dbd1f4351a
+uuid: 39520f36-ac19-4c03-844b-cbcf5858deff
 langcode: ru
 status: true
 dependencies:
@@ -7,6 +7,8 @@ dependencies:
   module:
     - druki_content
     - entity_reference_revisions
+_core:
+  default_config_hash: JXmIOtvWSQwUD8LGozwv471iHpB88RKkVWelJ3JyglY
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
