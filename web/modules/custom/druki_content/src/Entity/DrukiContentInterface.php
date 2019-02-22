@@ -112,4 +112,23 @@ interface DrukiContentInterface extends ContentEntityInterface {
    */
   public function getExternalId();
 
+  /**
+   * Sets core version.
+   *
+   * @param string $core
+   *   The core version.
+   *
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   *   The called druki content entity.
+   */
+  public function setCore($core);
+
+  /**
+   * Gets core version.
+   *
+   * @return string|null
+   *   The core version, NULL if not set.
+   */
+  public function getCore();
+
 }

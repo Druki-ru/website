@@ -127,6 +127,11 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ->setDisplayConfigurable('form', FALSE)
       ->setDisplayConfigurable('view', FALSE);
 
+    $fields['core'] = BaseFieldDefinition::create('string')
+      ->setLabel('The core version for this content.')
+      ->setRequired(FALSE)
+      ->setReadOnly(TRUE);
+
     return $fields;
   }
 
@@ -229,6 +234,22 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
    */
   public function getExternalId() {
     return $this->get('external_id')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCore($core) {
+    $this->set('core', $core);
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCore() {
+    return $this->get('core')->value;
   }
 
 }

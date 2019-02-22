@@ -6,6 +6,7 @@ use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Lock\NullLockBackend;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Utility\Token;
@@ -200,7 +201,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function processContent($structured_data, $data) {
-    $druki_content = $this->loadContent($structured_data['meta']['id'], $data['langcode']);
+    $core_version = isset($structured_data['meta']['core']) ? $structured_data['meta']['core'] : NULL;
+    $druki_content = $this->loadContent($structured_data['meta']['id'], $data['langcode'], $core_version);
 
     // Don't update content if last commit for source file is the same.
     if ($druki_content->get('last_commit_id') == $structured_data['last_commit_id']) {
@@ -213,6 +215,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $druki_content->setFilename($data['filename']);
     $druki_content->setLastCommitId($data['last_commit_id']);
     $druki_content->setContributionStatistics($data['contribution_statistics']);
+    if ($core_version) {
+      $druki_content->setCore($core_version);
+    }
 
     // If this content already contains paragraphs, we delete them. It's faster
     // and safer to recreate it from new structure, other than detecting
@@ -238,11 +243,13 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The external content ID.
    * @param string $langcode
    *   The langcode.
+   * @param $core_version
+   *   The core version.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|NULL
    */
-  protected function loadContent($external_id, $langcode) {
-    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode);
+  protected function loadContent($external_id, $langcode, $core_version) {
+    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode, $core_version);
 
     if ($druki_content instanceof DrukiContentInterface) {
       return $druki_content;
