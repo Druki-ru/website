@@ -1,0 +1,14 @@
+uuid: 762ee25e-afce-46e0-a547-b297dfaf65bf
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+id: druki_content
+label: 'Druki Content'
+type: 'canonical_entities:druki_content'
+pattern: '[druki_content:core]/[druki_content:external_id]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

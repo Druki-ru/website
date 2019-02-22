@@ -3,6 +3,7 @@ langcode: ru
 status: true
 dependencies:
   module:
+    - druki_content
     - markdown
 _core:
   default_config_hash: 5ro6URdcgL7DelIFCLgaDBSd--W0oFDDGB3JDxOAkYw
@@ -17,3 +18,9 @@ filters:
     weight: 0
     settings:
       parser: thephpleague/commonmark
+  druki_content_internal_links:
+    id: druki_content_internal_links
+    provider: druki_content
+    status: true
+    weight: -10
+    settings: {  }
