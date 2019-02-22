@@ -43,6 +43,12 @@ The link to internal content by its id.
 {Link title}(content-id)
 ```
 
+or
+
+```markdown
+{Link title}(content-id:core-version)
+```
+
 This will result this HTML markup:
 
 ```html
