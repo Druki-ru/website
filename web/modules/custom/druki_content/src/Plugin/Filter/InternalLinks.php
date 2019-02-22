@@ -116,10 +116,15 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
   protected function replaceHref($href, $langcode) {
-    preg_match("/^@druki_content:(.+)$/", $href, $matches);
-    $external_id = $matches[1];
+    $parts = explode(':', $href);
+    if ($parts[0] != '@druki_content') {
+      return $href;
+    }
 
-    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode);
+    $external_id = $parts[1];
+    $core_version = isset($parts[2]) ? $parts[2] : NULL;
+
+    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode, $core_version);
     if ($druki_content instanceof DrukiContentInterface) {
       $href = $druki_content->toUrl()->toString();
     }
