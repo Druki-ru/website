@@ -5,4 +5,4 @@ package: druki
 core: 8.x
 dependencies:
   - druki_git:druki_git
-  - markdown:markdown (>=2.0-alpha1)
+  - markdown:markdown (>=2)
