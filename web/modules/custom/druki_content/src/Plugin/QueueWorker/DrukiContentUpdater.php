@@ -384,17 +384,11 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $host = parse_url($content_data['src']);
     $src = $content_data['src'];
     $alt = $content_data['alt'];
-    $file_uri = '';
 
     // If scheme is exists, then we treat this file as remote.
     if (isset($host['scheme'])) {
       $filename = basename($src);
-      $destination_uri = $this->getMediaImageFieldDestination();
-      $file = system_retrieve_file($src, $destination_uri . '/' . $filename, TRUE);
-
-      if ($file instanceof FileInterface) {
-        $file_uri = $file->getFileUri();
-      }
+      $file_uri = system_retrieve_file($src, 'temporary://' . $filename);
     }
     else {
       // If no scheme is set, we treat this file as local and relative to
