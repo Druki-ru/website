@@ -1,4 +1,4 @@
-uuid: 622bb73f-4b13-48fb-97d4-99637fd5e5fe
+uuid: 3dfac517-c042-4461-9555-b09cf40f6992
 langcode: ru
 status: true
 dependencies: {  }
@@ -13,6 +13,5 @@ permissions:
   - 'access content'
   - 'access site-wide contact form'
   - 'search content'
-  - 'use text format markdown'
   - 'use text format restricted_html'
   - 'view media'

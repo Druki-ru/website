@@ -1,9 +1,9 @@
-uuid: 762ee25e-afce-46e0-a547-b297dfaf65bf
+uuid: 6673fa2f-8723-480f-bd09-8e33e7cf720b
 langcode: ru
 status: true
-dependencies:
-  module:
-    - druki_content
+dependencies: {  }
+_core:
+  default_config_hash: 2p5LLztf0ikBZreOQKKVEVqEjrXiFKDa4ywyYvAC9LA
 id: druki_content
 label: 'Druki Content'
 type: 'canonical_entities:druki_content'

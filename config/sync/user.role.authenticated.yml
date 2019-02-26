@@ -1,4 +1,4 @@
-uuid: c330620e-0ea0-412c-8646-4d1e652ab6f9
+uuid: 7cedf709-434a-41e0-8bc6-aa09b23ea5a8
 langcode: ru
 status: true
 dependencies: {  }
@@ -17,5 +17,4 @@ permissions:
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
-  - 'use text format markdown'
   - 'view media'

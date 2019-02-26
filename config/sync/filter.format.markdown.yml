@@ -1,4 +1,4 @@
-uuid: e43785e7-8014-405b-bde8-bcea68d4f4b7
+uuid: 6212cb8c-5c41-4648-8369-bedc5ad44158
 langcode: ru
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - druki_content
     - markdown
 _core:
-  default_config_hash: 5ro6URdcgL7DelIFCLgaDBSd--W0oFDDGB3JDxOAkYw
+  default_config_hash: IUZpC-1ZLUlque3-s4QkV2E5_RXzpesec2tWXKawB40
 name: Markdown
 format: markdown
 weight: 0
@@ -17,7 +17,7 @@ filters:
     status: true
     weight: 0
     settings:
-      parser: thephpleague/commonmark
+      parser: commonmark
   druki_content_internal_links:
     id: druki_content_internal_links
     provider: druki_content

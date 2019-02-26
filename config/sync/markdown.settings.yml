@@ -1,5 +1,6 @@
+parser: thephpleague/commonmark
 parsers:
-  commonmark:
+  thephpleague/commonmark:
     renderer:
       block_separator: \n
       inner_separator: \n
@@ -7,12 +8,12 @@ parsers:
     html_input: allow
     allow_unsafe_links: true
     max_nesting_level: 100
-  parsedown:
+  erusev/parsedown:
     breaks_enabled: false
     markup_escaped: false
     safe_mode: false
     urls_linked: true
-  php-markdown:
+  michelf/php-markdown:
     code_attr_on_pre: false
     code_class_prefix: ''
     empty_element_suffix: ' />'
@@ -31,5 +32,5 @@ parsers:
     tab_width: 4
     table_align_class_tmpl: ''
 _core:
-  default_config_hash: CUS6RhcTKx7zb9dYhg0ZxieJXS6w7ajTwJvf9CNfcS4
+  default_config_hash: hKEtj2WhE-RS1wiqtxPrxwoimcMP9xm5MBPNO9oPbTs
 langcode: ru

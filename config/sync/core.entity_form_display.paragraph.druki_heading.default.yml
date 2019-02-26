@@ -1,4 +1,4 @@
-uuid: 551e498e-8869-4d67-a5e9-e02095866dd3
+uuid: 4b4c9721-7709-4ce6-af21-fbc4d7982c4d
 langcode: ru
 status: true
 dependencies:
@@ -13,9 +13,15 @@ targetEntityType: paragraph
 bundle: druki_heading
 mode: default
 content:
+  druki_heading_level:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   druki_textfield_formatted:
     type: text_textfield
-    weight: 1
+    weight: 0
     region: content
     settings:
       size: 60
@@ -23,6 +29,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  druki_heading_level: true
   status: true
   uid: true
