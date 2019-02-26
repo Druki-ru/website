@@ -2387,16 +2387,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.6.9",
+            "version": "8.6.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "cac12e0ec19d5c6fa53778522b3ff4c542f86c8d"
+                "reference": "59568ac02948cf075ee8543e6c6d4386ad8daec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/cac12e0ec19d5c6fa53778522b3ff4c542f86c8d",
-                "reference": "cac12e0ec19d5c6fa53778522b3ff4c542f86c8d",
+                "url": "https://api.github.com/repos/drupal/core/zipball/59568ac02948cf075ee8543e6c6d4386ad8daec1",
+                "reference": "59568ac02948cf075ee8543e6c6d4386ad8daec1",
                 "shasum": ""
             },
             "require": {
@@ -2622,7 +2622,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2019-02-08T12:21:40+00:00"
+            "time": "2019-02-20T18:35:01+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -2837,17 +2837,17 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/paragraphs",
-                "reference": "8.x-1.5"
+                "reference": "8.x-1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.5.zip",
-                "reference": "8.x-1.5",
-                "shasum": "85ba97dd1c602d33fc5904b6e1df5973312afa94"
+                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.6.zip",
+                "reference": "8.x-1.6",
+                "shasum": "cd93e244f3a78dabdcf362adc31e59aad25b3fae"
             },
             "require": {
                 "drupal/core": "~8",
@@ -2875,8 +2875,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.5",
-                    "datestamp": "1541009695",
+                    "version": "8.x-1.6",
+                    "datestamp": "1550692525",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8692,16 +8692,16 @@
         },
         {
             "name": "webflo/drupal-core-require-dev",
-            "version": "8.6.9",
+            "version": "8.6.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webflo/drupal-core-require-dev.git",
-                "reference": "c083ddd802bda504d836dc0d4fea44cf2e6f191f"
+                "reference": "a3ec86723a2d753c020bfa995281c3cefa0cbb89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webflo/drupal-core-require-dev/zipball/c083ddd802bda504d836dc0d4fea44cf2e6f191f",
-                "reference": "c083ddd802bda504d836dc0d4fea44cf2e6f191f",
+                "url": "https://api.github.com/repos/webflo/drupal-core-require-dev/zipball/a3ec86723a2d753c020bfa995281c3cefa0cbb89",
+                "reference": "a3ec86723a2d753c020bfa995281c3cefa0cbb89",
                 "shasum": ""
             },
             "require": {
@@ -8709,7 +8709,7 @@
                 "behat/mink-goutte-driver": "^1.2",
                 "behat/mink-selenium2-driver": "1.3.x-dev",
                 "drupal/coder": "^8.2.12",
-                "drupal/core": "8.6.9",
+                "drupal/core": "8.6.10",
                 "jcalderonzumba/gastonjs": "^1.0.2",
                 "jcalderonzumba/mink-phantomjs-driver": "^0.3.1",
                 "mikey179/vfsstream": "^1.2",
@@ -8725,7 +8725,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "require-dev dependencies from drupal/core",
-            "time": "2019-02-08T12:31:37+00:00"
+            "time": "2019-02-20T20:01:42+00:00"
         }
     ],
     "aliases": [],
