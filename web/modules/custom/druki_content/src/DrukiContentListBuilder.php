@@ -80,6 +80,7 @@ class DrukiContentListBuilder extends EntityListBuilder {
     $header['internal_id'] = $this->t('Internal ID');
     $header['external_id'] = $this->t('External ID');
     $header['langcode'] = $this->t('Langcode');
+    $header['core'] = $this->t('Core version');
     $header['title'] = $this->t('Title');
     return $header + parent::buildHeader();
   }
@@ -92,6 +93,7 @@ class DrukiContentListBuilder extends EntityListBuilder {
     $row['internal_id'] = $entity->id();
     $row['external_id'] = $entity->getExternalId();
     $row['langcode'] = $entity->get('langcode')->value;
+    $row['core'] = $entity->get('core')->value;
     $row['title'] = $entity->toLink();
     return $row + parent::buildRow($entity);
   }
