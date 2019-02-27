@@ -1,0 +1,11 @@
+field.value.druki_tok:
+  type: mapping
+  label: Default value
+  mapping:
+    area:
+      type: string
+      label: Area
+    order:
+      type: integer
+      label: Order
+
