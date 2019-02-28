@@ -23,7 +23,7 @@ class MetaInformationRenderer implements BlockRendererInterface {
 
     foreach ($strings as $string) {
       if (strlen($string)) {
-        preg_match_all("/^([a-zA-Z]+):\s(.*)$/", $string, $matches);
+        preg_match_all("/^([a-zA-Z-]+):\s(.*)$/", $string, $matches);
         if (!empty($matches)) {
           $original = $matches[0][0];
           $key = $matches[1][0];

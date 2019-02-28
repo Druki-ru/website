@@ -6,7 +6,6 @@ use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Lock\NullLockBackend;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Utility\Token;
@@ -215,6 +214,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $druki_content->setFilename($data['filename']);
     $druki_content->setLastCommitId($data['last_commit_id']);
     $druki_content->setContributionStatistics($data['contribution_statistics']);
+    if (isset($structured_data['meta']['toc-area'])) {
+      $toc_area = $structured_data['meta']['toc-area'];
+      $toc_order = isset($structured_data['meta']['toc-order']) ? $structured_data['meta']['toc-area'] : 0;
+      $druki_content->setTOC($toc_area, $toc_order);
+    }
+
     if ($core_version) {
       $druki_content->setCore($core_version);
     }
@@ -431,33 +436,6 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   }
 
   /**
-   * Gets field destination value.
-   *
-   * Looking for value from field settings for image filed of media image
-   * bundle. We will respect this setting for using same paths for all image
-   * files, not matter, uploaded them programmatically or manually.
-   *
-   * @return string
-   *   The URI folder for saving file.
-   */
-  protected function getMediaImageFieldDestination() {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
-
-    if (!isset($destination)) {
-      $media_image = $this->entityFieldManager->getFieldDefinitions('media', 'image');
-      $file_directory = trim($media_image['field_media_image']->getSetting('file_directory'), '/');
-      $uri_scheme = $media_image['field_media_image']->getSetting('uri_scheme');
-      // Since this setting can, and will be contain tokens by default. We must
-      // handle it too. Also, tokens can contain html, so we strip it.
-      $destination = PlainTextOutput::renderFromHtml($this->token->replace($file_directory));
-
-      $result = $uri_scheme . '://' . $destination;
-    }
-
-    return $result;
-  }
-
-  /**
    * Saves or return currently existed media image entity for file.
    *
    * @param \Drupal\file\FileInterface $file
@@ -490,6 +468,33 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     }
 
     return $media;
+  }
+
+  /**
+   * Gets field destination value.
+   *
+   * Looking for value from field settings for image filed of media image
+   * bundle. We will respect this setting for using same paths for all image
+   * files, not matter, uploaded them programmatically or manually.
+   *
+   * @return string
+   *   The URI folder for saving file.
+   */
+  protected function getMediaImageFieldDestination() {
+    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
+
+    if (!isset($destination)) {
+      $media_image = $this->entityFieldManager->getFieldDefinitions('media', 'image');
+      $file_directory = trim($media_image['field_media_image']->getSetting('file_directory'), '/');
+      $uri_scheme = $media_image['field_media_image']->getSetting('uri_scheme');
+      // Since this setting can, and will be contain tokens by default. We must
+      // handle it too. Also, tokens can contain html, so we strip it.
+      $destination = PlainTextOutput::renderFromHtml($this->token->replace($file_directory));
+
+      $result = $uri_scheme . '://' . $destination;
+    }
+
+    return $result;
   }
 
 }

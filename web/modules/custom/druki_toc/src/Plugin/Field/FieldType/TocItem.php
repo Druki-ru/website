@@ -12,11 +12,10 @@ use Drupal\Core\TypedData\DataDefinition;
  * Defines the 'druki_tok' field type.
  *
  * @FieldType(
- *   id = "druki_tok",
+ *   id = "druki_toc",
  *   label = @Translation("TOC"),
  *   category = @Translation("General"),
- *   default_widget = "druki_toc_widget",
- *   default_formatter = "string"
+ *   no_ui = TRUE,
  * )
  */
 class TocItem extends FieldItemBase {
@@ -72,6 +71,13 @@ class TocItem extends FieldItemBase {
     $values['order'] = rand(0, 10);
 
     return $values;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function mainPropertyName() {
+    return 'area';
   }
 
   /**
