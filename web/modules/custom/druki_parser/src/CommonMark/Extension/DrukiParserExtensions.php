@@ -29,7 +29,7 @@ class DrukiParserExtensions extends Extension implements ExtensionInterface {
   /**
    * {@inheritdoc}
    */
-  public function getBlockRenderers() {
+  public function getBlockRenderers(): array {
     return [
       'Drupal\druki_parser\CommonMark\Block\Element\MetaInformationElement' => new MetaInformationRenderer(),
     ];
@@ -38,7 +38,7 @@ class DrukiParserExtensions extends Extension implements ExtensionInterface {
   /**
    * {@inheritdoc}
    */
-  public function getInlineParsers() {
+  public function getInlineParsers(): array {
     return [
       new OpenBracerParser(),
       new CloseBracerParser(),
@@ -48,7 +48,7 @@ class DrukiParserExtensions extends Extension implements ExtensionInterface {
   /**
    * {@inheritdoc}
    */
-  public function getInlineRenderers() {
+  public function getInlineRenderers(): array {
     return [
       'Drupal\druki_parser\CommonMark\Inline\Element\InternalLinkElement' => new InternalLinkRenderer(),
     ];

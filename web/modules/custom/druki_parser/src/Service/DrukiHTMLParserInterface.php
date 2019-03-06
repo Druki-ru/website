@@ -18,6 +18,6 @@ interface DrukiHTMLParserInterface {
    * @return array
    *   An array with structured data.
    */
-  public function parse($content);
+  public function parse($content): array;
 
 }

@@ -18,6 +18,6 @@ interface DrukiMarkdownParserInterface {
    * @return string
    *   The HTML markup.
    */
-  public function parse($content);
+  public function parse(string $content): string;
 
 }

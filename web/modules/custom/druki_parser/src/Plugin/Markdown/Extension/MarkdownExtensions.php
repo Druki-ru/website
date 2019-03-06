@@ -22,7 +22,7 @@ class MarkdownExtensions extends CommonMarkExtension implements EnvironmentAware
   /**
    * {@inheritdoc}
    */
-  public function defaultSettings() {
+  public function defaultSettings(): array {
     return [
       'enabled' => TRUE,
     ];
@@ -31,14 +31,14 @@ class MarkdownExtensions extends CommonMarkExtension implements EnvironmentAware
   /**
    * {@inheritdoc}
    */
-  public function getName() {
+  public function getName(): string {
     return 'druki_parser_markdown_extensions';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setEnvironment(Environment $environment) {
+  public function setEnvironment(Environment $environment): void {
     $environment->addExtension(new DrukiParserExtensions());
   }
 

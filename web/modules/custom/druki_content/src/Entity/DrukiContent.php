@@ -52,7 +52,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -142,7 +142,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getCacheTagsToInvalidate() {
+  public function getCacheTagsToInvalidate(): array {
     $cache_tags = parent::getCacheTagsToInvalidate();
     $langcode = $this->getEntityKey('langcode');
 
@@ -156,14 +156,21 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTitle() {
+  public function getExternalId(): string {
+    return $this->get('external_id')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTitle(): string {
     return $this->get('title')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setTitle($title) {
+  public function setTitle(string $title): DrukiContentInterface {
     $this->set('title', $title);
 
     return $this;
@@ -172,14 +179,14 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getRelativePathname() {
+  public function getRelativePathname(): string {
     return $this->get('relative_pathname')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setRelativePathname($relative_pathname) {
+  public function setRelativePathname(string $relative_pathname): DrukiContentInterface {
     $this->set('relative_pathname', $relative_pathname);
 
     return $this;
@@ -188,14 +195,14 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getFilename() {
+  public function getFilename(): string {
     return $this->get('filename')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setFilename($filename) {
+  public function setFilename(string $filename): DrukiContentInterface {
     $this->set('filename', $filename);
 
     return $this;
@@ -204,14 +211,14 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getLastCommitId() {
+  public function getLastCommitId(): string {
     return $this->get('last_commit_id')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setLastCommitId($commit_id) {
+  public function setLastCommitId(string $commit_id): DrukiContentInterface {
     $this->set('last_commit_id', $commit_id);
 
     return $this;
@@ -220,14 +227,14 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getContributionStatistics() {
+  public function getContributionStatistics(): array {
     return $this->get('contribution_statistics')->first()->getValue();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setContributionStatistics(array $contribution_statistics) {
+  public function setContributionStatistics(array $contribution_statistics): DrukiContentInterface {
     $this->set('contribution_statistics', serialize($contribution_statistics));
 
     return $this;
@@ -236,14 +243,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getExternalId() {
-    return $this->get('external_id')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCore($core) {
+  public function setCore(string $core): DrukiContentInterface {
     $this->set('core', $core);
 
     return $this;
@@ -252,14 +252,14 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getCore() {
+  public function getCore(): ?string {
     return $this->get('core')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setTOC($area, $order = 0) {
+  public function setTOC(string $area, int $order = 0): DrukiContentInterface {
     $this->set('toc', [
       'area' => $area,
       'order' => $order,
@@ -271,7 +271,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTOC() {
+  public function getTOC(): array {
     return $this->get('toc')->first()->getValue();
   }
 

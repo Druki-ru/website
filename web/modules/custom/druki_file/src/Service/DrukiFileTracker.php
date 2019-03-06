@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\file\FileInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
+use Drupal\media\MediaInterface;
 
 /**
  * Class DrukiFileTracker
@@ -90,7 +91,7 @@ class DrukiFileTracker {
    *
    * @throws \Exception
    */
-  public function track(FileInterface $file) {
+  public function track(FileInterface $file): bool {
     if ($file->isPermanent()) {
       if ($this->isFileTracked($file)) {
         $this->update($file);
@@ -114,7 +115,7 @@ class DrukiFileTracker {
    * @return bool
    *   TRUE if tracker, FALSE otherwise.
    */
-  public function isFileTracked(FileInterface $file) {
+  public function isFileTracked(FileInterface $file): bool {
     return (bool) $this->database->select('druki_file_tracker', 'ft')
       ->condition('ft.fid', $file->id())
       ->countQuery()
@@ -128,7 +129,7 @@ class DrukiFileTracker {
    * @param \Drupal\file\FileInterface $file
    *   The file entity.
    */
-  protected function update(FileInterface $file) {
+  protected function update(FileInterface $file): void {
     $this->database->update('druki_file_tracker')
       ->fields([
         'fid' => $file->id(),
@@ -146,7 +147,7 @@ class DrukiFileTracker {
    * @return string
    *   The file hash.
    */
-  protected function getFileHash($uri) {
+  protected function getFileHash($uri): string {
     $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $uri);
 
     if (!isset($result)) {
@@ -164,7 +165,7 @@ class DrukiFileTracker {
    *
    * @throws \Exception
    */
-  protected function create(FileInterface $file) {
+  protected function create(FileInterface $file): void {
     $this->database->insert('druki_file_tracker')
       ->fields([
         'fid' => $file->id(),
@@ -179,7 +180,7 @@ class DrukiFileTracker {
    * @param \Drupal\file\FileInterface $file
    *   The file entity.
    */
-  public function delete(FileInterface $file) {
+  public function delete(FileInterface $file): void {
     $this->database->delete('druki_file_tracker')
       ->condition('fid', $file->id())
       ->execute();
@@ -191,10 +192,10 @@ class DrukiFileTracker {
    * @param string $uri
    *   The URI to file, need to be checked.
    *
-   * @return \Drupal\Core\Entity\EntityInterface|null
+   * @return \Drupal\file\FileInterface|null
    *   The file entity, which store the same file, NULL if not found.
    */
-  public function checkDuplicate($uri) {
+  public function checkDuplicate($uri): ?FileInterface {
     $file_hash = $this->getFileHash($uri);
     $result = $this->database->select('druki_file_tracker', 'ft')
       ->fields('ft', ['fid'])
@@ -210,7 +211,7 @@ class DrukiFileTracker {
   /**
    * Loads all files and add\update tracking information for them.
    */
-  public function updateTrackingInformation() {
+  public function updateTrackingInformation(): void {
     $this->clearTrackingInformation();
 
     $file_ids = $this->fileStorage->getQuery()
@@ -229,7 +230,7 @@ class DrukiFileTracker {
   /**
    * Deletes all tracking information.
    */
-  protected function clearTrackingInformation() {
+  protected function clearTrackingInformation(): void {
     $this->database->delete('druki_file_tracker')->execute();
   }
 
@@ -239,10 +240,10 @@ class DrukiFileTracker {
    * @param \Drupal\file\FileInterface $file
    *   The file entity.
    *
-   * @return \Drupal\Core\Entity\EntityInterface|null
+   * @return \Drupal\media\MediaInterface|null
    *   The media entity, if found, NULL otherwise.
    */
-  public function getMediaForFile(FileInterface $file) {
+  public function getMediaForFile(FileInterface $file): ?MediaInterface {
     $usage = $this->fileUsage->listUsage($file);
     // Since there is possible to have multiple usage of the same file in
     // different media entities through code and other modules, we just pick the

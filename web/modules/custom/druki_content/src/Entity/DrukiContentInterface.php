@@ -15,7 +15,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return string
    *   Title of the druki content.
    */
-  public function getTitle();
+  public function getTitle(): string;
 
   /**
    * Sets the druki content title.
@@ -26,7 +26,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setTitle($title);
+  public function setTitle(string $title): DrukiContentInterface;
 
   /**
    * Gets relative pathname of source file.
@@ -34,7 +34,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return string
    *   The relative pathname.
    */
-  public function getRelativePathname();
+  public function getRelativePathname(): string;
 
   /**
    * Sets relative pathname
@@ -45,7 +45,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setRelativePathname($relative_pathname);
+  public function setRelativePathname(string $relative_pathname): DrukiContentInterface;
 
   /**
    * Gets filename of source file.
@@ -53,7 +53,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return string
    *   The filename.
    */
-  public function getFilename();
+  public function getFilename(): string;
 
   /**
    * Sets filename of source file.
@@ -64,7 +64,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setFilename($filename);
+  public function setFilename(string $filename): DrukiContentInterface;
 
   /**
    * Gets last commit id of source file.
@@ -72,7 +72,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return string
    *   The commit id.
    */
-  public function getLastCommitId();
+  public function getLastCommitId(): string;
 
   /**
    * Sets last commit id of source file.
@@ -83,7 +83,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setLastCommitId($commit_id);
+  public function setLastCommitId(string $commit_id): DrukiContentInterface;
 
   /**
    * Gets contribution statistics.
@@ -91,7 +91,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return array
    *   The contribution statistics.
    */
-  public function getContributionStatistics();
+  public function getContributionStatistics(): array;
 
   /**
    * Sets contribution statistics.
@@ -102,7 +102,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setContributionStatistics(array $contribution_statistics);
+  public function setContributionStatistics(array $contribution_statistics): DrukiContentInterface;
 
   /**
    * Gets content external ID.
@@ -110,7 +110,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return string
    *   The external ID.
    */
-  public function getExternalId();
+  public function getExternalId(): string;
 
   /**
    * Sets core version.
@@ -121,7 +121,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setCore($core);
+  public function setCore(string $core): DrukiContentInterface;
 
   /**
    * Gets core version.
@@ -129,7 +129,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return string|null
    *   The core version, NULL if not set.
    */
-  public function getCore();
+  public function getCore(): ?string;
 
   /**
    * Sets TOC.
@@ -142,7 +142,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setTOC($area, $order = 0);
+  public function setTOC(string $area, int $order = 0): DrukiContentInterface;
 
   /**
    * Gets TOC.
@@ -150,6 +150,6 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return array
    *   The TOC info.
    */
-  public function getTOC();
+  public function getTOC(): array;
 
 }

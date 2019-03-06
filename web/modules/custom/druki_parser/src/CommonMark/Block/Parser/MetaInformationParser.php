@@ -17,7 +17,7 @@ class MetaInformationParser extends AbstractBlockParser {
   /**
    * {@inheritdoc}
    */
-  public function parse(ContextInterface $context, Cursor $cursor) {
+  public function parse(ContextInterface $context, Cursor $cursor): bool {
     if ($cursor->isIndented()) {
       return FALSE;
     }

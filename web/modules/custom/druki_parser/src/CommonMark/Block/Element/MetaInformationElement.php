@@ -33,21 +33,21 @@ class MetaInformationElement extends AbstractBlock {
   /**
    * {@inheritdoc}
    */
-  public function canContain(AbstractBlock $block) {
+  public function canContain(AbstractBlock $block): bool {
     return FALSE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function acceptsLines() {
+  public function acceptsLines(): bool {
     return TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function isCode() {
+  public function isCode(): bool {
     // @todo Avoid it. Not sure this is good approach, but only working with
     // matches. Try some workaround with $context->advanceBy(-3) in
     // handleRemainingContents(). This will let condition pass. But need some
@@ -58,14 +58,14 @@ class MetaInformationElement extends AbstractBlock {
   /**
    * {@inheritdoc}
    */
-  public function shouldLastLineBeBlank(Cursor $cursor, $currentLineNumber) {
+  public function shouldLastLineBeBlank(Cursor $cursor, $currentLineNumber): bool {
     return FALSE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function matchesNextLine(Cursor $cursor) {
+  public function matchesNextLine(Cursor $cursor): bool {
     if ($this->isCloserFound()) {
       return FALSE;
     }
@@ -76,21 +76,21 @@ class MetaInformationElement extends AbstractBlock {
   /**
    * @return bool
    */
-  public function isCloserFound() {
+  public function isCloserFound(): bool {
     return $this->isCloserFound;
   }
 
   /**
    * @param bool $isCloserFound
    */
-  public function setIsCloserFound($status) {
+  public function setIsCloserFound($status): void {
     $this->isCloserFound = $status;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function handleRemainingContents(ContextInterface $context, Cursor $cursor) {
+  public function handleRemainingContents(ContextInterface $context, Cursor $cursor): void {
     if ($cursor->getNextNonSpaceCharacter() == '-') {
       $match = RegexHelper::matchAll('/^\-{3}$/', $cursor->getLine(), $cursor->getNextNonSpacePosition());
       if (!empty($match)) {

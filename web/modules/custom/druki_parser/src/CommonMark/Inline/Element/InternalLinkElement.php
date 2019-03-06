@@ -34,7 +34,7 @@ class InternalLinkElement extends AbstractInlineContainer {
    * @return string
    *   The content ID.
    */
-  public function getContentId() {
+  public function getContentId(): string {
     return $this->contentId;
   }
 
@@ -44,7 +44,7 @@ class InternalLinkElement extends AbstractInlineContainer {
    * @param string $content_id
    *   The content ID.
    */
-  public function setContentId(string $content_id) {
+  public function setContentId(string $content_id): void {
     $this->contentId = $content_id;
   }
 

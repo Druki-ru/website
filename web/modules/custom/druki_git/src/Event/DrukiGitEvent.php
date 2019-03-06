@@ -31,7 +31,7 @@ class DrukiGitEvent extends Event {
    *
    * @return \Drupal\druki_git\Service\GitInterface
    */
-  public function git() {
+  public function git(): GitInterface {
     return $this->git;
   }
 

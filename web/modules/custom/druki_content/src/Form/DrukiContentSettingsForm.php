@@ -45,7 +45,7 @@ class DrukiContentSettingsForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container): object {
     return new static(
       $container->get('queue')->get('druki_content_updater'),
       $container->get('plugin.manager.queue_worker')

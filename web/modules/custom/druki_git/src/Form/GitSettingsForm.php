@@ -63,7 +63,7 @@ class GitSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container): object {
     return new static(
       $container->get('config.factory'),
       $container->get('druki_git'),
@@ -75,14 +75,14 @@ class GitSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function getFormId() {
+  public function getFormId(): string {
     return 'druki_git_git_settings';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state): array {
 
     if (!$repository_status = $this->fetchRepositoryInfo()) {
       $message = $this->t('Git repository not found in provided path. Please, make sure you have actual repository in the path, or path is correct.');
@@ -152,7 +152,7 @@ class GitSettingsForm extends ConfigFormBase {
    * @return array|null
    *   An array with status information or NULL, if repository not found.
    */
-  public function fetchRepositoryInfo() {
+  public function fetchRepositoryInfo(): ?array {
     if ($this->git->init()) {
       $messages = [];
       $messages[] = $this->t('<strong>Last commit ID:</strong> @value', ['@value' => $this->git->getLastCommitId()]);
@@ -164,7 +164,7 @@ class GitSettingsForm extends ConfigFormBase {
   /**
    * Pulls actual repository data from remote.
    */
-  public function gitPullFromRemote() {
+  public function gitPullFromRemote(): void {
     if ($this->git->pull()) {
       $this->messenger()->addStatus($this->t('Git pull executed successully.'));
     }
@@ -176,7 +176,7 @@ class GitSettingsForm extends ConfigFormBase {
   /**
    * Regenerates key for webhook url.
    */
-  public function regenerateWebhookKey() {
+  public function regenerateWebhookKey(): void {
     $webhook_key = Crypt::randomBytesBase64(55);
     $this->state->set('druki_git.webhook_key', $webhook_key);
   }
@@ -184,14 +184,14 @@ class GitSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
     parent::validateForm($form, $form_state);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('druki_git.git_settings')
       ->set('repository_path', $form_state->getValue('repository_path'))
       ->save();
@@ -201,7 +201,7 @@ class GitSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  protected function getEditableConfigNames() {
+  protected function getEditableConfigNames(): array {
     return ['druki_git.git_settings'];
   }
 

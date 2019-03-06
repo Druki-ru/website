@@ -20,7 +20,7 @@ class InternalLinkRenderer implements InlineRendererInterface {
    *
    * @return HtmlElement|string
    */
-  public function render(AbstractInline $inline, ElementRendererInterface $html_renderer) {
+  public function render(AbstractInline $inline, ElementRendererInterface $html_renderer): HtmlElement {
     $attributes = [
       'href' => '@druki_content:' . $inline->getContentId(),
     ];

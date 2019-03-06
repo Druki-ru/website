@@ -146,7 +146,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): object {
     return new static(
       $configuration,
       $plugin_id,
@@ -166,7 +166,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @see DrukiContentSubscriber::onPullFinish().
    */
-  public function processItem($data) {
+  public function processItem($data): void {
     $structured_data = $this->parseContent($data['path']);
     $this->processContent($structured_data, $data);
   }
@@ -182,7 +182,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @see Drupal\druki_parser\Service\DrukiHTMLParser::parse().
    */
-  protected function parseContent($filepath) {
+  protected function parseContent(string $filepath): array {
     $content = file_get_contents($filepath);
     $content_html = $this->markdownParser->parse($content);
 
@@ -199,7 +199,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function processContent($structured_data, $data) {
+  protected function processContent(array $structured_data, array $data): void {
     $core_version = isset($structured_data['meta']['core']) ? $structured_data['meta']['core'] : NULL;
     $druki_content = $this->loadContent($structured_data['meta']['id'], $data['langcode'], $core_version);
 
@@ -248,12 +248,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The external content ID.
    * @param string $langcode
    *   The langcode.
-   * @param $core_version
+   * @param string $core_version
    *   The core version.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|NULL
    */
-  protected function loadContent($external_id, $langcode, $core_version) {
+  protected function loadContent(string $external_id, string $langcode, string $core_version): ?DrukiContentInterface {
     $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode, $core_version);
 
     if ($druki_content instanceof DrukiContentInterface) {
@@ -272,12 +272,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The content entity.
-   * @param $structured_data
+   * @param array $structured_data
    *   The array with structured data.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphs(DrukiContentInterface $druki_content, $structured_data) {
+  protected function createParagraphs(DrukiContentInterface $druki_content, array $structured_data): void {
     foreach ($structured_data['content'] as $content_data) {
       $paragraph = NULL;
       switch ($content_data['type']) {
@@ -318,7 +318,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphContent($content_data) {
+  protected function createParagraphContent(array $content_data): ParagraphInterface {
     $paragraph = $this->paragraphStorage->create(['type' => 'druki_text']);
     $paragraph->set('druki_textarea_formatted', [
       'value' => $content_data['markup'],
@@ -340,7 +340,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphHeading($content_data) {
+  protected function createParagraphHeading(array $content_data): ParagraphInterface {
     $paragraph = $this->paragraphStorage->create(['type' => 'druki_heading']);
     $paragraph->set('druki_textfield_formatted', [
       'value' => $content_data['value'],
@@ -363,7 +363,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphCode($content_data) {
+  protected function createParagraphCode(array $content_data): ParagraphInterface {
     $paragraph = $this->paragraphStorage->create(['type' => 'druki_code']);
     $paragraph->set('druki_textarea_formatted', [
       'value' => $content_data['value'],
@@ -385,7 +385,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphImage($content_data) {
+  protected function createParagraphImage(array $content_data): ?ParagraphInterface {
     $host = parse_url($content_data['src']);
     $src = $content_data['src'];
     $alt = $content_data['alt'];
@@ -443,12 +443,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @param string|null $name
    *   The name for media entity, if it creates.
    *
-   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\media\MediaInterface
+   * @return \Drupal\media\MediaInterface
    *   The created or found media entity.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function saveImageFileToMediaImage(FileInterface $file, $name = NULL) {
+  protected function saveImageFileToMediaImage(FileInterface $file, ?string $name = NULL): MediaInterface {
     /** @var \Drupal\media\MediaInterface $media */
     $media = $this->fileTracker->getMediaForFile($file);
 
@@ -480,7 +480,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @return string
    *   The URI folder for saving file.
    */
-  protected function getMediaImageFieldDestination() {
+  protected function getMediaImageFieldDestination(): string {
     $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
 
     if (!isset($destination)) {

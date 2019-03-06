@@ -44,7 +44,7 @@ class DrukiFolderParser implements DrukiFolderParserInterface {
   /**
    * {@inheritdoc}
    */
-  public function parse($directory) {
+  public function parse($directory): array {
     $this->finder->in($directory);
     $this->finder->name('*.md');
     $this->finder->name('*.MD');

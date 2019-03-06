@@ -23,7 +23,7 @@ class TocItem extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
+  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition): array {
 
     $properties['area'] = DataDefinition::create('string')
       ->setLabel(t('Area'))
@@ -39,7 +39,7 @@ class TocItem extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public static function schema(FieldStorageDefinitionInterface $field_definition) {
+  public static function schema(FieldStorageDefinitionInterface $field_definition): array {
 
     $columns = [
       'area' => [
@@ -65,7 +65,7 @@ class TocItem extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public static function generateSampleValue(FieldDefinitionInterface $field_definition) {
+  public static function generateSampleValue(FieldDefinitionInterface $field_definition): array {
     $random = new Random();
     $values['area'] = $random->word(mt_rand(1, 50));
     $values['order'] = rand(0, 10);
@@ -76,14 +76,14 @@ class TocItem extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public static function mainPropertyName() {
+  public static function mainPropertyName(): string {
     return 'area';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function isEmpty() {
+  public function isEmpty(): bool {
     $value = $this->get('area')->getValue();
 
     return $value === NULL || $value === '';

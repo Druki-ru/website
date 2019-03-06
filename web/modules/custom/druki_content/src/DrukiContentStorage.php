@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\druki_content\Entity\DrukiContentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -71,7 +72,7 @@ class DrukiContentStorage extends SqlContentEntityStorage {
    *
    * @return \Drupal\Core\Entity\EntityInterface|mixed|null
    */
-  public function loadByMeta($external_id, $langcode = NULL, $core = NULL) {
+  public function loadByMeta(string $external_id, string $langcode = NULL, string $core = NULL): ?DrukiContentInterface {
     if (!$langcode) {
       $langcode = $this->languageManager->getCurrentLanguage()->getId();
     }
@@ -102,7 +103,7 @@ class DrukiContentStorage extends SqlContentEntityStorage {
    * This find and delete missing content. Missing content means content which
    * original file is not found in actual repo.
    */
-  public function deleteMissing() {
+  public function deleteMissing(): void {
     $repository_path = trim($this->gitSettings->get('repository_path'), '/');
     $entities = $this->doLoadMultiple();
 

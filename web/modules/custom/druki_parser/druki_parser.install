@@ -8,7 +8,7 @@
 /**
  * Implements hook_requirements().
  */
-function druki_parser_requirements($phase) {
+function druki_parser_requirements($phase): array {
   $requirements = [];
 
   if ($phase == 'install') {

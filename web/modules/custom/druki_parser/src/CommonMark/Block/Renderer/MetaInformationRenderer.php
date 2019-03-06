@@ -17,7 +17,7 @@ class MetaInformationRenderer implements BlockRendererInterface {
   /**
    * {@inheritdoc}
    */
-  public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE) {
+  public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE): HtmlElement {
     $strings = $block->getStrings();
     $content = [];
 

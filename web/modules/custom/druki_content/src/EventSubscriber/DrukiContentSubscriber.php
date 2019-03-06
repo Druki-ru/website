@@ -37,7 +37,7 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       DrukiGitEvents::FINISH_PULL => ['onPullFinish'],
     ];
@@ -48,7 +48,7 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
    *
    * @param \Drupal\druki_git\Event\DrukiGitEvent $event
    */
-  public function onPullFinish(DrukiGitEvent $event) {
+  public function onPullFinish(DrukiGitEvent $event): void {
     $files = $this->folderParser->parse($event->git()->getRepositoryPath());
     // Delete queue and all items in it if this event fired.
     // This will clean Queue from items which did not make it since last queue

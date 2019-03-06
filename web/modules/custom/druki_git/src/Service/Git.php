@@ -78,7 +78,7 @@ class Git implements GitInterface {
   /**
    * {@inheritdoc}
    */
-  public function init() {
+  public function init(): ?GitInterface {
     $this->repositoryPath = $this->configuration->get('repository_path');
     // Git library don't detect stream wrappers, so we need to convert our uri
     // to real valid path.
@@ -97,7 +97,7 @@ class Git implements GitInterface {
   /**
    * {@inheritdoc}
    */
-  public function pull() {
+  public function pull(): ?GitInterface {
     try {
       $this->git->pull();
 
@@ -115,28 +115,28 @@ class Git implements GitInterface {
   /**
    * {@inheritdoc}
    */
-  public function getLastCommitId() {
+  public function getLastCommitId(): string {
     return $this->git->getLastCommitId();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getRepositoryPath() {
+  public function getRepositoryPath(): string {
     return $this->repositoryPath;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getRepositoryRealpath() {
+  public function getRepositoryRealpath(): string {
     return $this->repositoryRealpath;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getFileLastCommitId($relative_path) {
+  public function getFileLastCommitId($relative_path): ?string {
     $commit_hash = $this->git->execute([
       'log',
       '-n 1',
@@ -155,7 +155,7 @@ class Git implements GitInterface {
   /**
    * {@inheritdoc}
    */
-  public function getFileCommitsInfo($relative_path) {
+  public function getFileCommitsInfo($relative_path): array {
     $result = $this->git->execute([
       'shortlog',
       // @see https://stackoverflow.com/a/43042363/4751623

@@ -3,6 +3,7 @@
 namespace Drupal\druki_git\Access;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Routing\Access\AccessInterface;
 use Drupal\Core\State\StateInterface;
 
@@ -37,7 +38,7 @@ class DrukiGitWebhookAccess implements AccessInterface {
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
    */
-  public function access($key) {
+  public function access($key): AccessResultInterface {
     if ($key != $this->state->get('druki_git.webhook_key')) {
       return AccessResult::forbidden()->setCacheMaxAge(0);
     }

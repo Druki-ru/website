@@ -10,7 +10,7 @@ use Drupal\Core\Render\Element;
 /**
  * Implements hook_theme().
  */
-function druki_content_theme() {
+function druki_content_theme(): array {
   return [
     'druki_content' => [
       'render element' => 'elements',
@@ -29,7 +29,7 @@ function druki_content_theme() {
  *     fields attached to the entity.
  *   - attributes: HTML attributes for the containing element.
  */
-function template_preprocess_druki_content(array &$variables) {
+function template_preprocess_druki_content(array &$variables): void {
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
@@ -38,7 +38,7 @@ function template_preprocess_druki_content(array &$variables) {
 /**
  * Implements hook_cron().
  */
-function druki_content_cron() {
+function druki_content_cron(): void {
   // Clean missing content from database.
   \Drupal::service('entity_type.manager')
     ->getStorage('druki_content')

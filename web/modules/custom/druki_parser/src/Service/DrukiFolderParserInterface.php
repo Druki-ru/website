@@ -18,6 +18,6 @@ interface DrukiFolderParserInterface {
    * @return array
    *   An array with files grouped by langcode.
    */
-  public function parse($directory);
+  public function parse($directory): array ;
 
 }

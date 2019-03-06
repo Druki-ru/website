@@ -15,7 +15,7 @@ interface GitInterface {
    * @return \Drupal\druki_git\Service\GitInterface|null
    *   The current instance or NULL, if repository not found.
    */
-  public function init();
+  public function init(): ?GitInterface;
 
   /**
    * Trying to pull actual data from remote repository.
@@ -23,7 +23,7 @@ interface GitInterface {
    * @return \Drupal\druki_git\Service\GitInterface|null
    *   The current instance or NULL, if repository not found.
    */
-  public function pull();
+  public function pull(): ?GitInterface;
 
   /**
    * Gets latest commit id from local repository.
@@ -31,7 +31,7 @@ interface GitInterface {
    * @return string
    *   The commit id.
    */
-  public function getLastCommitId();
+  public function getLastCommitId(): string;
 
   /**
    * Gets repository path.
@@ -39,7 +39,7 @@ interface GitInterface {
    * @return string|null
    *   The URI to repository.
    */
-  public function getRepositoryPath();
+  public function getRepositoryPath(): ?string;
 
   /**
    * Gets repository realpath.
@@ -47,7 +47,7 @@ interface GitInterface {
    * @return string|null
    *   The realpath to repository.
    */
-  public function getRepositoryRealpath();
+  public function getRepositoryRealpath(): ?string;
 
   /**
    * Gets last commit hash for file.
@@ -58,7 +58,7 @@ interface GitInterface {
    * @return string|null
    *   The commit hash id, NULL if not found.
    */
-  public function getFileLastCommitId($relative_path);
+  public function getFileLastCommitId($relative_path): ?string;
 
   /**
    * Gets file commits statistics.
@@ -72,6 +72,6 @@ interface GitInterface {
    *   - name: The username of contributor.
    *   - email: The email of contributor.
    */
-  public function getFileCommitsInfo($relative_path);
+  public function getFileCommitsInfo($relative_path): array;
 
 }

@@ -44,7 +44,7 @@ class DrukiMarkdownParser implements DrukiMarkdownParserInterface {
   /**
    * {@inheritdoc}
    */
-  public function parse($content) {
+  public function parse(string $content): string {
     return $this->markdownParser->convertToHtml($content);
   }
 

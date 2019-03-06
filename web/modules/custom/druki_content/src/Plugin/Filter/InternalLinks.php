@@ -57,7 +57,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): object {
     return new static(
       $configuration,
       $plugin_id,
@@ -69,7 +69,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
   /**
    * {@inheritdoc}
    */
-  public function process($text, $langcode) {
+  public function process($text, $langcode): FilterProcessResult {
     $this->crawler->addContent($text);
 
     $replace = function ($node) use ($langcode) {
@@ -115,7 +115,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    *
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
-  protected function replaceHref($href, $langcode) {
+  protected function replaceHref(string $href, string $langcode): string {
     $parts = explode(':', $href);
     if ($parts[0] != '@druki_content') {
       return $href;
@@ -142,16 +142,15 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    * @param string $cache_tag
    *   The cache tag.
    */
-  protected function addLazyCacheTag($cache_tag) {
+  protected function addLazyCacheTag(string $cache_tag): void {
     $this->lazyCacheTags[] = $cache_tag;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function tips($long = FALSE) {
+  public function tips($long = FALSE): string {
     return $this->t('Convert internal links by content ID to actual links.');
   }
-
 
 }

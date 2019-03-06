@@ -13,7 +13,7 @@ class DrukiGitController extends ControllerBase {
   /**
    * Reacts on webhook route call.
    */
-  public function webhook() {
+  public function webhook(): JsonResponse {
     return new JsonResponse(['message' => 'Webhook triggered!']);
   }
 

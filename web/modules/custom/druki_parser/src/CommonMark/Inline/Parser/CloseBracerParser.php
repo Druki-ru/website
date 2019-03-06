@@ -24,14 +24,14 @@ class CloseBracerParser extends AbstractInlineParser implements EnvironmentAware
   /**
    * {@inheritdoc}
    */
-  public function getCharacters() {
+  public function getCharacters(): array {
     return ['}'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function parse(InlineParserContext $inline_context) {
+  public function parse(InlineParserContext $inline_context): bool {
     $opener = $inline_context->getDelimiterStack()->searchByCharacter('{');
     if ($opener == NULL) {
       return FALSE;
@@ -77,10 +77,10 @@ class CloseBracerParser extends AbstractInlineParser implements EnvironmentAware
    * @return bool|string
    *   The content id for internal link element, FALSE otherwise.
    */
-  protected function parseInternalLink(Cursor $cursor) {
+  protected function parseInternalLink(Cursor $cursor): ?string {
     // Link must follow up with "(" for URL.
     if ($cursor->peek() !== '(') {
-      return FALSE;
+      return NULL;
     }
 
     $cursor_previous_state = $cursor->saveState();
@@ -109,7 +109,7 @@ class CloseBracerParser extends AbstractInlineParser implements EnvironmentAware
     if ($cursor->match('/^\\)/') === NULL) {
       $cursor->restoreState($cursor_previous_state);
 
-      return FALSE;
+      return NULL;
     }
 
     return $content_id;
@@ -120,7 +120,7 @@ class CloseBracerParser extends AbstractInlineParser implements EnvironmentAware
    *
    * @return void
    */
-  public function setEnvironment(Environment $environment) {
+  public function setEnvironment(Environment $environment): void {
     $this->environment = $environment;
   }
 

@@ -14,7 +14,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
   /**
    * {@inheritdoc}
    */
-  public function parse($content) {
+  public function parse($content): array {
     $crawler = new Crawler($content);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');
@@ -79,7 +79,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(\DOMElement $dom_element, array &$structure) {
+  protected function parseMetaInformation(\DOMElement $dom_element, array &$structure): ?bool {
     // If meta information already in structure, this is not good. There must
     // be only one meta block. But if it happens, we just skip it and it becomes
     // content value.
@@ -116,7 +116,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseHeading(\DOMElement $dom_element, array &$structure) {
+  protected function parseHeading(\DOMElement $dom_element, array &$structure): bool {
     $node_name = $dom_element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
@@ -142,7 +142,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseCode(\DOMElement $dom_element, array &$structure) {
+  protected function parseCode(\DOMElement $dom_element, array &$structure): bool {
     $node_name = $dom_element->nodeName;
     $code_elements = ['pre'];
 
@@ -167,7 +167,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseImage(\DOMElement $dom_element, array &$structure) {
+  protected function parseImage(\DOMElement $dom_element, array &$structure): bool {
     $crawler = new Crawler($dom_element);
     $image = $crawler->filter('img')->first();
     if (count($image)) {

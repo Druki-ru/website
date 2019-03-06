@@ -13,7 +13,7 @@ class DrukiContentForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function form(array $form, FormStateInterface $form_state) {
+  public function form(array $form, FormStateInterface $form_state): array {
     $form = parent::form($form, $form_state);
 
     $form['git_information'] = [
@@ -27,7 +27,7 @@ class DrukiContentForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public function save(array $form, FormStateInterface $form_state): void {
 
     $entity = $this->getEntity();
     $result = $entity->save();

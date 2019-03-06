@@ -2,9 +2,9 @@
 
 namespace Drupal\druki_content;
 
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Routing\RedirectDestinationInterface;
@@ -50,7 +50,7 @@ class DrukiContentListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
+  public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type): object {
     return new static(
       $entity_type,
       $container->get('entity_type.manager')->getStorage($entity_type->id()),
@@ -62,7 +62,7 @@ class DrukiContentListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function render() {
+  public function render(): array {
     $build['table'] = parent::render();
 
     $total = \Drupal::database()
@@ -70,43 +70,47 @@ class DrukiContentListBuilder extends EntityListBuilder {
       ->fetchField();
 
     $build['summary']['#markup'] = $this->t('Total druki contents: @total', ['@total' => $total]);
+
     return $build;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildHeader() {
+  public function buildHeader(): array {
     $header['internal_id'] = $this->t('Internal ID');
     $header['external_id'] = $this->t('External ID');
     $header['langcode'] = $this->t('Langcode');
     $header['core'] = $this->t('Core version');
     $header['title'] = $this->t('Title');
+
     return $header + parent::buildHeader();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildRow(EntityInterface $entity) {
+  public function buildRow(EntityInterface $entity): array {
     /* @var $entity \Drupal\druki_content\Entity\DrukiContentInterface */
     $row['internal_id'] = $entity->id();
     $row['external_id'] = $entity->getExternalId();
     $row['langcode'] = $entity->get('langcode')->value;
     $row['core'] = $entity->get('core')->value;
     $row['title'] = $entity->toLink();
+
     return $row + parent::buildRow($entity);
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function getDefaultOperations(EntityInterface $entity) {
+  protected function getDefaultOperations(EntityInterface $entity): array {
     $operations = parent::getDefaultOperations($entity);
     $destination = $this->redirectDestination->getAsArray();
     foreach ($operations as $key => $operation) {
       $operations[$key]['query'] = $destination;
     }
+
     return $operations;
   }
 
