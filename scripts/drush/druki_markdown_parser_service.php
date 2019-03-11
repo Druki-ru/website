@@ -27,16 +27,16 @@ title: Нормы поведения
 ## Title
 
 > [!NOTE]
-> Заметка
+> This is a NOTE
 
 > [!WARNING]
-> Предупреждение
+> This is a WARNING
 
 > [!TIP]
-> Совет
+> This is a TIP
 
 > [!IMPORTANT]
-> Важная информация
+> This is IMPORTANT
 
 > Original Markdown Quote
 Markdown;

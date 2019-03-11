@@ -2,7 +2,7 @@
 
 namespace Drupal\druki_parser\CommonMark\Block\Parser;
 
-use League\CommonMark\Block\Element\BlockQuote;
+use Drupal\druki_parser\CommonMark\Block\Element\NoteElement;
 use League\CommonMark\Block\Parser\AbstractBlockParser;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
@@ -35,8 +35,7 @@ class NoteParser extends AbstractBlockParser {
       return FALSE;
     }
 
-    // @todo custom element.
-    $context->addBlock(new BlockQuote());
+    $context->addBlock(new NoteElement());
 
     return TRUE;
   }
