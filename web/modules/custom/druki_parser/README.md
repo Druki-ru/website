@@ -10,13 +10,13 @@ Primarily it parse Markdown files with support of several custom structures crea
 
 ### Meta information
 
-Every doc file must contains meta information, this module adds special Markdown syntax for it.
+Every doc file must contains meta information, this module adds special Markdown syntax for it. Meta information can be parsed only at beginning of the file. No empty line before it is allowed.
 
 ```markdown
-...
+---
 title: Hello World
 id: hello-world
-...
+---
 ```
 
 This block can contains any data in format `{KEY}: {VALUE}`:

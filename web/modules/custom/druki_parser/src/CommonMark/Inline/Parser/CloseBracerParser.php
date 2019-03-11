@@ -6,6 +6,7 @@ use Drupal\druki_parser\CommonMark\Inline\Element\InternalLinkElement;
 use League\CommonMark\Cursor;
 use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
+use League\CommonMark\EnvironmentInterface;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
 
@@ -120,7 +121,7 @@ class CloseBracerParser extends AbstractInlineParser implements EnvironmentAware
    *
    * @return void
    */
-  public function setEnvironment(Environment $environment): void {
+  public function setEnvironment(EnvironmentInterface $environment): void {
     $this->environment = $environment;
   }
 

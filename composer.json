@@ -30,7 +30,8 @@
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
         "wikimedia/composer-merge-plugin": "^1.4",
-        "zaporylie/composer-drupal-optimizations": "^1.0"
+        "zaporylie/composer-drupal-optimizations": "^1.0",
+        "league/commonmark": "dev-master"
     },
     "require-dev": {
         "webflo/drupal-core-require-dev": "^8.6.0"
@@ -88,6 +89,11 @@
             "initial": {
                 ".editorconfig": "../.editorconfig",
                 ".gitattributes": "../.gitattributes"
+            }
+        },
+        "patches": {
+            "league/commonmark": {
+                "Priority for parsers": "https://patch-diff.githubusercontent.com/raw/thephpleague/commonmark/pull/341.patch"
             }
         }
     }

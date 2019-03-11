@@ -4,8 +4,8 @@ namespace Drupal\druki_parser\Plugin\Markdown\Extension;
 
 use Drupal\druki_parser\CommonMark\Extension\DrukiParserExtensions;
 use Drupal\markdown\Plugin\Markdown\Extension\CommonMarkExtension;
-use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
+use League\CommonMark\EnvironmentInterface;
 
 /**
  * Class MarkdownExtensions.
@@ -38,7 +38,7 @@ class MarkdownExtensions extends CommonMarkExtension implements EnvironmentAware
   /**
    * {@inheritdoc}
    */
-  public function setEnvironment(Environment $environment): void {
+  public function setEnvironment(EnvironmentInterface $environment): void {
     $environment->addExtension(new DrukiParserExtensions());
   }
 

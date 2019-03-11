@@ -14,7 +14,7 @@ id: code-of-conduct
 title: Нормы поведения
 ---
 
-----
+---
 
 "quotes"
 
@@ -25,6 +25,20 @@ title: Нормы поведения
 Проверка внутренних ссылок внутри {текста}(test), но сразу несколько {ссылок}(test).
 
 ## Title
+
+> [!NOTE]
+> Заметка
+
+> [!WARNING]
+> Предупреждение
+
+> [!TIP]
+> Совет
+
+> [!IMPORTANT]
+> Важная информация
+
+> Original Markdown Quote
 Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);
