@@ -13,10 +13,27 @@ use League\CommonMark\Cursor;
 class NoteElement extends AbstractBlock {
 
   /**
+   * The note type.
+   *
+   * @var string
+   */
+  protected $type;
+
+  /**
+   * NoteElement constructor.
+   *
+   * @param string $type
+   *   The note type.
+   */
+  public function __construct(string $type) {
+    $this->type = $type;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function canContain(AbstractBlock $block): bool {
-    return FALSE;
+    return TRUE;
   }
 
   /**
@@ -44,17 +61,27 @@ class NoteElement extends AbstractBlock {
    * {@inheritdoc}
    */
   public function matchesNextLine(Cursor $cursor): bool {
-    dump('TEST');
-    dump($cursor->getNextNonSpaceCharacter());
     if (!$cursor->isIndented() && $cursor->getNextNonSpaceCharacter() === '>') {
       $cursor->advanceToNextNonSpaceOrTab();
+      // Pass ">" char.
       $cursor->advance();
+      // Skip any spaces after ">".
       $cursor->advanceBySpaceOrTab();
 
       return TRUE;
     }
 
     return FALSE;
+  }
+
+  /**
+   * Gets type.
+   *
+   * @return string
+   *   The note type.
+   */
+  public function getType(): string {
+    return $this->type;
   }
 
 }

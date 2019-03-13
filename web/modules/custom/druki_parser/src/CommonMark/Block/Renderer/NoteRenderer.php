@@ -18,10 +18,10 @@ class NoteRenderer implements BlockRendererInterface {
    * {@inheritdoc}
    */
   public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE): HtmlElement {
-    $strings = $block->getStrings();
-    dump($strings);
+    $childContent = $htmlRenderer->renderBlocks($block->children());
+    $note_type = $block->getType();
 
-    return new HtmlElement('div', ['data-druki-note' => ''], []);
+    return new HtmlElement('div', ['data-druki-note' => $note_type], $childContent);
   }
 
 }

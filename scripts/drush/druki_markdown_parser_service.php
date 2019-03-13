@@ -27,7 +27,9 @@ title: Нормы поведения
 ## Title
 
 > [!NOTE]
-> This is a NOTE
+> This is a NOTE.
+>
+> But multiline content with **some** [markdown](https://commonmark.org) sauce.
 
 > [!WARNING]
 > This is a WARNING
