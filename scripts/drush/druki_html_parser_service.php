@@ -9,7 +9,7 @@
 $druki_parser = \Drupal::service('druki_parser.markdown');
 
 $markdown_content = <<<'Markdown'
----meta
+---
 id: code-of-conduct
 title: Нормы поведения
 toc-area: drupal
@@ -27,6 +27,9 @@ echo "Hello World";
 "quotes"
 
 Another text.
+
+> [!WARNING]
+> **Requires** some [module](fake-link) to be installed.
 Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);

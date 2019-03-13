@@ -34,6 +34,10 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
         continue;
       }
 
+      if ($this->parseNote($dom_element, $structure)) {
+        continue;
+      }
+
       if ($this->parseHeading($dom_element, $structure)) {
         continue;
       }
@@ -79,12 +83,12 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(\DOMElement $dom_element, array &$structure): ?bool {
+  protected function parseMetaInformation(\DOMElement $dom_element, array &$structure): bool {
     // If meta information already in structure, this is not good. There must
     // be only one meta block. But if it happens, we just skip it and it becomes
     // content value.
     if (isset($structure['meta']) && !empty($structure['meta'])) {
-      return NULL;
+      return FALSE;
     }
 
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
@@ -103,6 +107,40 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
 
       return TRUE;
     }
+
+    return FALSE;
+  }
+
+  /**
+   * Parses note.
+   *
+   * @param \DOMElement $dom_element
+   *   The DOM element to process.
+   * @param array $structure
+   *   An array with existing structure.
+   *
+   * @return bool
+   *   TRUE if parsed successfully, NULL otherwise.
+   */
+  protected function parseNote(\DOMElement $dom_element, array &$structure): ?bool {
+    $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
+    $note_element = $crawler->filter('div[data-druki-note]');
+
+    if (count($note_element)) {
+      $element = $note_element->getNode(0);
+      $note = [
+        'type' => 'note',
+        'note_type' => $element->getAttribute('data-druki-note'),
+        // @todo save without wrapper.
+        'value' => $element->ownerDocument->saveHTML($element),
+      ];
+
+      $structure['content'][] = $note;
+
+      return TRUE;
+    }
+
+    return FALSE;
   }
 
   /**
@@ -129,6 +167,8 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
 
       return TRUE;
     }
+
+    return FALSE;
   }
 
   /**
@@ -154,6 +194,8 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
 
       return TRUE;
     }
+
+    return FALSE;
   }
 
   /**
@@ -179,6 +221,8 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
 
       return TRUE;
     }
+
+    return FALSE;
   }
 
 }
