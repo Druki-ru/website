@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.druki_note_type
+field_name: druki_note_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: note
+      label: note
+    -
+      value: warning
+      label: warning
+    -
+      value: tip
+      label: tip
+    -
+      value: important
+      label: important
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

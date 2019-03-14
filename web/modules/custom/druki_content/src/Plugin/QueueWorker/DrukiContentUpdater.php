@@ -216,7 +216,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $druki_content->setContributionStatistics($data['contribution_statistics']);
     if (isset($structured_data['meta']['toc-area'])) {
       $toc_area = $structured_data['meta']['toc-area'];
-      $toc_order = isset($structured_data['meta']['toc-order']) ? $structured_data['meta']['toc-area'] : 0;
+      $toc_order = isset($structured_data['meta']['toc-order']) ? $structured_data['meta']['toc-order'] : 0;
       $druki_content->setTOC($toc_area, $toc_order);
     }
 
@@ -253,7 +253,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|NULL
    */
-  protected function loadContent(string $external_id, string $langcode, string $core_version): ?DrukiContentInterface {
+  protected function loadContent(string $external_id, string $langcode, string $core_version = NULL): ?DrukiContentInterface {
     $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode, $core_version);
 
     if ($druki_content instanceof DrukiContentInterface) {
@@ -295,6 +295,10 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
         case 'image':
           $paragraph = $this->createParagraphImage($content_data);
+          break;
+
+        case 'note':
+          $paragraph = $this->createParagraphNote($content_data);
           break;
       }
 
@@ -495,6 +499,29 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     }
 
     return $result;
+  }
+
+  /**
+   * Creates note paragraph.
+   *
+   * @param array $content_data
+   *   The array with all data.
+   *
+   * @return \Drupal\paragraphs\ParagraphInterface|null
+   *   The created paragraph, NULL if cant create it.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  protected function createParagraphNote(array $content_data): ?ParagraphInterface {
+    $paragraph = $this->paragraphStorage->create(['type' => 'druki_note']);
+    $paragraph->set('druki_note_type', $content_data['note_type']);
+    $paragraph->set('druki_textarea_formatted', [
+      'value' => $content_data['value'],
+      'format' => filter_default_format(),
+    ]);
+    $paragraph->save();
+
+    return $paragraph;
   }
 
 }

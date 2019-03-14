@@ -1,0 +1,33 @@
+uuid: 222f7bf4-eaa8-404d-9b0b-8bf37a0838c5
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.druki_note.druki_note_type
+    - field.field.paragraph.druki_note.druki_textarea_formatted
+    - paragraphs.paragraphs_type.druki_note
+  module:
+    - text
+id: paragraph.druki_note.default
+targetEntityType: paragraph
+bundle: druki_note
+mode: default
+content:
+  druki_note_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  druki_textarea_formatted:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

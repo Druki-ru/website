@@ -128,11 +128,17 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
 
     if (count($note_element)) {
       $element = $note_element->getNode(0);
+
+      $value = '';
+
+      foreach ($element->childNodes as $child) {
+        $value .= $element->ownerDocument->saveHTML($child);
+      }
+
       $note = [
         'type' => 'note',
         'note_type' => $element->getAttribute('data-druki-note'),
-        // @todo save without wrapper.
-        'value' => $element->ownerDocument->saveHTML($element),
+        'value' => $value,
       ];
 
       $structure['content'][] = $note;

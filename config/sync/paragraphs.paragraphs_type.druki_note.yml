@@ -1,0 +1,11 @@
+uuid: 0073c64c-2dc6-4990-b8df-9bfb2004ad6b
+langcode: ru
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: bTRyykK9ZWHzcwd0KlqcA_YgzlmjdHuuRaDPmX1KYF0
+id: druki_note
+label: Note
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

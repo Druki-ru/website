@@ -1,4 +1,4 @@
-uuid: e5003fb0-4cbb-4823-8f1a-2c3debeabce7
+uuid: 2614ae9d-b0a7-44f6-aa69-f66ed0e0a0c1
 langcode: ru
 status: true
 dependencies:
@@ -7,6 +7,7 @@ dependencies:
   module:
     - druki_content
     - paragraphs
+    - path
 _core:
   default_config_hash: UI8KSiqIyC4GTwhWtuUzgnz5GcSObN7KjNu6dH0LL-8
 id: druki_content.druki_content.default
@@ -39,6 +40,12 @@ content:
     region: content
     settings:
       include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield
