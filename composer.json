@@ -23,15 +23,16 @@
         "drupal/admin_toolbar": "^1.25",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.6.0",
+        "drupal/glisseo": "1.0-alpha10",
         "drupal/markdown": "2.x-dev",
         "drupal/pathauto": "^1.3",
         "drush/drush": "^9.6.0",
+        "league/commonmark": "dev-master",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
         "wikimedia/composer-merge-plugin": "^1.4",
-        "zaporylie/composer-drupal-optimizations": "^1.0",
-        "league/commonmark": "dev-master"
+        "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
         "webflo/drupal-core-require-dev": "^8.6.0"

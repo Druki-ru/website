@@ -1,0 +1,25 @@
+uuid: a9922762-fd8d-42b1-8aa8-23c39a42f73a
+langcode: ru
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - autumn
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: autumn_branding
+theme: autumn
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Брендинг сайта'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

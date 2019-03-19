@@ -1,0 +1,22 @@
+uuid: ece1f1fe-c53a-4c13-9cbc-8a34064689a4
+langcode: ru
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - autumn
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: autumn_help
+theme: autumn
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Справка
+  provider: help
+  label_display: '0'
+visibility: {  }

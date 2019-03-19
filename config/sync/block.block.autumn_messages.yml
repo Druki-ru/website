@@ -1,0 +1,22 @@
+uuid: 6dc3eeca-4f7c-46ae-b9f4-9d131175562d
+langcode: ru
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - autumn
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: autumn_messages
+theme: autumn
+region: header
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

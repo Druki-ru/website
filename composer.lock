@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f42f2b169b154ef3336d0de2f62c1946",
+    "content-hash": "e1d2993da06e0f8d7b6e46310498613f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2810,6 +2810,54 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/glisseo",
+            "version": "1.0.0-alpha10",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/glisseo",
+                "reference": "8.x-1.0-alpha10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/glisseo-8.x-1.0-alpha10.zip",
+                "reference": "8.x-1.0-alpha10",
+                "shasum": "81590bd7ad2d55fd526f939cda5a61a79ec25955"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha10",
+                    "datestamp": "1552997886",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Malyshev (niklan)",
+                    "homepage": "https://niklan.net"
+                }
+            ],
+            "description": "Base theme with simple starter theme.",
+            "homepage": "https://www.drupal.org/project/glisseo",
+            "support": {
+                "source": "http://cgit.drupalcode.org/glisseo",
+                "issues": "https://www.drupal.org/project/issues/glisseo"
             }
         },
         {
