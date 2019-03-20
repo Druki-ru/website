@@ -17,4 +17,5 @@ permissions:
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'view druki_content'
   - 'view media'

@@ -7,3 +7,11 @@ administer druki content:
   restrict access: true
 access druki content overview:
   title: 'Access druki content overview page'
+delete druki_content:
+  title: Delete druki content
+create druki_content:
+  title: Create druki content
+view druki_content:
+  title: View druki content
+edit druki_content:
+  title: Edit druki content

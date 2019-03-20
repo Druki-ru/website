@@ -1,0 +1,19 @@
+{% set bem_block = 'header' %}
+<header class="{{ bem_block }}">
+  <div class="{{ bem_block }}__inner">
+    <div class="{{ bem_block }}__branding">
+      <a href="{{ url('<front>') }}" class="{{ bem_block }}__branding-name">
+        Druki <span>experiment</span>
+      </a>
+    </div>
+
+    <div class="{{ bem_block }}__search">
+      <input
+        type="text"
+        name="search_placeholder"
+        placeholder="Поиск по сайту"
+        class="{{ bem_block }}__search-input form-control"
+      >
+    </div>
+  </div>
+</header>

@@ -4,7 +4,7 @@
 $input-padding-y: gap() !default;
 $input-padding-x: gap(2) !default;
 $input-border-width: 1px !default;
-$input-bg: #ffffff !default;
+$input-bg: #FFFFFF !default;
 $input-border: rgba(34, 36, 38, 0.15) !default;
 $input-border-focus: theme-color(primary);
 $input-enable-shadows: false !default;
@@ -25,16 +25,21 @@ $label-required-margin: 0 0 0 4px !default;
   margin: 0 0 gap(2);
 
   &__description {
+    font-size: 85%;
     display: block;
     margin-top: gap();
     margin-bottom: gap();
     color: $text-color-subtle;
-    font-size: 85%;
   }
 
   &__label {
+    display: inline-block;
+    margin-bottom: gap();
+    font-weight: bold;
+
     &.option {
       margin-bottom: 0;
+      font-weight: normal;
     }
 
     @if ($label-required-enabled) {
@@ -56,8 +61,8 @@ $label-required-margin: 0 0 0 4px !default;
 
 .form-actions {
   input {
-    margin: 0 gap() 0 0;
     width: auto;
+    margin: 0 gap() 0 0;
 
     &:last-child {
       margin: 0;
@@ -71,9 +76,9 @@ $label-required-margin: 0 0 0 4px !default;
 
 .form-wrapper {
   &__summary {
-    background: gray(100);
     padding: gap();
     cursor: pointer;
+    background: gray(100);
   }
 
   &__content {
@@ -84,14 +89,14 @@ $label-required-margin: 0 0 0 4px !default;
 .form-control {
   @include font-size($global-font-size, $input-line-height);
   display: block;
-  max-width: 100%;
   width: 100%;
+  max-width: 100%;
   padding: $input-padding-y $input-padding-x;
-  background-color: $input-bg;
   border-width: 1px;
   border-style: solid;
   border-color: $input-border;
   border-radius: $input-border-radius;
+  background-color: $input-bg;
 
   @if ($input-enable-shadows) {
     box-shadow: $input-box-shadow;
@@ -102,10 +107,10 @@ $label-required-margin: 0 0 0 4px !default;
   }
 
   &:focus {
-    outline: medium none;
-    border-color: $input-border-focus;
-    border-width: 2px;
     padding: calc(#{$input-padding-y} - 1px) calc(#{$input-padding-x} - 1px);
+    border-width: 2px;
+    border-color: $input-border-focus;
+    outline: medium none;
 
     @if ($input-enable-shadows) {
       box-shadow: $input-focus-box-shadow;
@@ -113,10 +118,10 @@ $label-required-margin: 0 0 0 4px !default;
   }
 
   &:disabled {
-    cursor: not-allowed;
-    background: $input-bg-disabled;
     font-size: 100%;
+    cursor: not-allowed;
     color: $input-color-disabled;
+    background: $input-bg-disabled;
     text-shadow: none;
   }
 }

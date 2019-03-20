@@ -1,13 +1,9 @@
 {% set bem_block = 'app' %}
 <div class="{{ bem_block }}">
-  {{ page.header }}
-  {{ page.navigation }}
-
+  {% include '@autumn/include/header.html.twig' %}
   <main{{ main_layout_attributes.addClass(bem_block ~ '__content') }}>
     {{ page.sidebar_first }}
     {{ page.content }}
     {{ page.sidebar_second }}
   </main>
-
-  {{ page.footer }}
 </div>

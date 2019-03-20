@@ -19,7 +19,7 @@ style.utilities:
     state:
       assets/css/utilities.css: {}
   dependencies:
-    - фгегьт/google.fonts
+    - autumn/google.fonts
 
 google.fonts:
   css:

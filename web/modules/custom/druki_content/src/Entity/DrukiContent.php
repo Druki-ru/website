@@ -14,10 +14,11 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki contents"),
  *   handlers = {
- *     "storage" = "Drupal\druki_content\DrukiContentStorage",
+ *     "storage" = "Drupal\druki_content\Handler\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\druki_content\DrukiContentListBuilder",
+ *     "list_builder" = "Drupal\druki_content\Handler\DrukiContentListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
+ *     "access" = "Drupal\druki_content\Handler\DrukiContentAccessControlHandler",
  *     "form" = {
  *       "add" = "Drupal\druki_content\Form\DrukiContentForm",
  *       "edit" = "Drupal\druki_content\Form\DrukiContentForm",

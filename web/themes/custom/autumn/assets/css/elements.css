@@ -3,15 +3,15 @@
   min-width: 0; }
 
 :focus {
-  outline: 2px dashed rgba(255, 235, 59, 0.3);
+  outline: 2px dashed rgba(255, 212, 94, 0.3);
   outline-offset: 3px; }
 
 ::-moz-selection {
-  background: #FFEB3B;
+  background: #FFD45E;
   color: #000000; }
 
 ::selection {
-  background: #FFEB3B;
+  background: #FFD45E;
   color: #000000; }
 
 html {
@@ -23,7 +23,7 @@ html {
 body {
   font-size: 1rem;
   line-height: 1.5;
-  background: #ffffff;
+  background: #FEFDF9;
   font-family: "Roboto", sans-serif;
   color: #202124; }
 
@@ -85,10 +85,10 @@ h6 {
   margin-bottom: 0.5rem; }
 
 a {
-  color: #FFEB3B;
+  color: #FFD45E;
   text-decoration: none; }
   a:hover {
-    color: #ada028;
+    color: #ad9040;
     text-decoration: none; }
 
 ol, ul {

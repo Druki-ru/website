@@ -135,7 +135,7 @@ $btn-info-border: darken($btn-info-bg, 5%) !default;
 // =====================================
 %button {
   @include button-size();
-  display: inline-block;
+  display: flex;
   font-weight: $btn-font-weight;
   text-align: center;
   white-space: nowrap;

@@ -3,4 +3,7 @@
 .main-layout {
   @include make-container;
   @include make-container-max-widths;
+  padding: gap(8) gap(4);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .1), 0 0 16px 0 rgba(0, 0, 0, 0.1);
 }

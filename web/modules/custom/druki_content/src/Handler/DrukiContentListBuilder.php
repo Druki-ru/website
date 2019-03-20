@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content;
+namespace Drupal\druki_content\Handler;
 
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
