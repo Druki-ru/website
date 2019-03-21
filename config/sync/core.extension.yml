@@ -21,6 +21,7 @@ module:
   druki_git: 0
   druki_paragraphs: 0
   druki_parser: 0
+  druki_title: 0
   druki_toc: 0
   dynamic_page_cache: 0
   editor: 0

@@ -5,5 +5,7 @@ $theme-colors: (
   on-primary: #000000,
   secondary: #6D4C41,
   on-secondary: #FFFFFF,
-  background: #FEFDF9,
 );
+
+$link-color: #2962FF;
+$link-hover-color: lighten($link-color, 5%);

@@ -1,12 +1,8 @@
 .header {
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  right: 0;
-  left: 0;
   height: spacing-unit(large);
   background-color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(black, 0.25);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15);
+  position: relative;
 
   &__inner {
     @include make-container();
@@ -22,15 +18,20 @@
     font-weight: bold;
     display: block;
     text-transform: uppercase;
+    color: theme-color();
 
     span {
       @include font-size(12px);
-      color: theme-color(secondary);
       vertical-align: text-top;
+      color: theme-color(secondary);
     }
 
     &:focus {
       outline: none;
+    }
+
+    &:hover {
+      color: theme-color(secondary);
     }
   }
 

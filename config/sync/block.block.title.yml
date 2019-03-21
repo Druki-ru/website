@@ -1,0 +1,20 @@
+uuid: 3cdecb4c-d562-4084-a1f6-053efba467b3
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_title
+  theme:
+    - autumn
+id: title
+theme: autumn
+region: title
+weight: 0
+provider: null
+plugin: druki_title
+settings:
+  id: druki_title
+  label: 'The title'
+  provider: druki_title
+  label_display: '0'
+visibility: {  }

@@ -12,6 +12,7 @@ libraries:
   - autumn/style.component
   - autumn/style.utilities
 regions:
+  title: Title
   content: Content
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'
