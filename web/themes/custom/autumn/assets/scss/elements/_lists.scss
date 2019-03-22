@@ -8,8 +8,4 @@ $list-paddings: 0 !default;
 ol, ul {
   margin: $list-margins;
   padding: $list-paddings;
-
-  li {
-    margin-bottom: 1rem;
-  }
 }

@@ -1,0 +1,15 @@
+{% set bem_block = 'footer' %}
+<footer class="{{ bem_block }} app__footer">
+  <div class="{{ bem_block }}__inner {{ bem_block }}__top">
+    <div class="{{ bem_block }}__copyright">
+      &COPY; Druki. Содержимое распространяется под лицензией <a href="https://creativecommons.org/licenses/by-sa/3.0/">CCSA 3.0</a>.
+    </div>
+  </div>
+
+  <div class="{{ bem_block }}__inner {{ bem_block }}__bottom">
+    <div class="{{ bem_block }}__some-love">
+      Создано с <span class="{{ bem_block }}__heart"></span> на <span class="{{ bem_block }}__drupal">Drupal</span>.
+      Исходный код доступен на <a href="https://gitlab.com/druki/website" rel="noopener nofollow" class="{{ bem_block }}__gitlab">GitLab</a>.
+    </div>
+  </div>
+</footer>

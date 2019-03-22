@@ -14,7 +14,7 @@ provider: null
 plugin: druki_title
 settings:
   id: druki_title
-  label: 'The title'
+  label: 'Page title'
   provider: druki_title
   label_display: '0'
 visibility: {  }

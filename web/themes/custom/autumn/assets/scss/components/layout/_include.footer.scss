@@ -1,0 +1,37 @@
+.footer {
+  @include font-size(14px);
+  padding-top: gap(6);
+  padding-bottom: gap(6);
+  color: gray(700);
+  background-color: gray(100);
+
+  &__inner {
+    @include make-container();
+    @include make-container-max-widths();
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__bottom {
+    justify-content: center;
+    margin-top: gap(4);
+    padding-top: gap(4);
+    border-top: 1px solid gray(300);
+  }
+
+  &__heart {
+    @include mdi-icon('heart', before, 0);
+    color: color(red);
+  }
+
+  &__drupal {
+    @include mdi-icon('drupal');
+    color: color(blue);
+  }
+
+  &__gitlab {
+    @include mdi-icon('gitlab');
+    color: color(orange);
+  }
+}

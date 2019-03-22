@@ -10,8 +10,8 @@ $breadcrumb-padding-horizontal: 0 !default;
 $breadcrumb-margin-bottom: 0 !default;
 $breadcrumb-bg: transparent !default;
 $breadcrumb-delimiter-content: '/' !default;
-$breadcrumb-delimiter-color: gray(500) !default;
-$breadcrumb-link-color: $link-color !default;
+$breadcrumb-delimiter-color: theme-color(on-secondary) !default;
+$breadcrumb-link-color: theme-color(on-secondary) !default;
 $breadcrumb-font-size: $global-font-size !default;
 
 .breadcrumbs {
@@ -28,6 +28,11 @@ $breadcrumb-font-size: $global-font-size !default;
 
   &__item-link {
     color: $breadcrumb-link-color;
+
+    &:hover {
+      color: $breadcrumb-link-color;
+      text-decoration: underline;
+    }
   }
 
   &__item-link--text {

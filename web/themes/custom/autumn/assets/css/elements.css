@@ -95,8 +95,6 @@ a {
 ol, ul {
   margin: 1rem 0 1rem 2rem;
   padding: 0; }
-  ol li, ul li {
-    margin-bottom: 1rem; }
 
 img {
   max-width: 100%;

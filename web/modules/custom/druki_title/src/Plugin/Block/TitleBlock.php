@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Controller\TitleResolverInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
+use Drupal\druki_content\Entity\DrukiContentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -89,6 +90,7 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
     $build['content'] = [
       '#theme' => 'druki_title',
       '#title' => $this->getPageTitle(),
+      '#links' => $this->getLinks(),
     ];
 
     return $build;
@@ -100,8 +102,61 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
    * @return string
    *   The page title.
    */
-  protected function getPageTitle(): string {
+  protected function getPageTitle(): ?string {
     return $this->titleResolver->getTitle($this->request, $this->routeMatch->getRouteObject());
+  }
+
+  /**
+   * Gets additional links for title block.
+   *
+   * @code
+   * [
+   *  'edit' => [
+   *    'label' => 'Edit',
+   *    'url' => '/some/edit/url',
+   *    'attributes' => [
+   *       'target' => '_blank',
+   *     ],
+   *   ],
+   * ]
+   * @endcode
+   *
+   * @return array
+   *   The links array.
+   * @see template_preprocess_druki_title().
+   *
+   */
+  protected function getLinks(): array {
+    $links = [];
+
+    foreach ($this->routeMatch->getParameters() as $parameter) {
+      if ($parameter instanceof DrukiContentInterface) {
+        $this->processDrukiContentLinks($parameter, $links);
+      }
+    }
+
+    return $links;
+  }
+
+  /**
+   * Handle druki_content entity links.
+   *
+   * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
+   *   The entity.
+   * @param array $links
+   *   The current array with links.
+   */
+  protected function processDrukiContentLinks(DrukiContentInterface $druki_content, array &$links): void {
+    $links['edit'] = [
+      'label' => t('Edit'),
+      // @todo improve it. Possible solutions:
+      // 1. Method for Druki entity.
+      // 2. Dynamic links generator.
+      'url' => 'https://gitlab.com/druki/druki-content-dev/edit/master/' . $druki_content->getRelativePathname(),
+      'attributes' => [
+        'rel' => 'nofollow noopener',
+      ],
+    ];
   }
 
 }

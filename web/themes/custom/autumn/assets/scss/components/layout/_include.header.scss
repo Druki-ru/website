@@ -43,13 +43,13 @@
 
   }
 
-  .toolbar-tray-open.toolbar-horizontal.toolbar-fixed & {
-    top: 79px;
-  }
-
-  .toolbar-fixed.toolbar-tray-open.toolbar-vertical &,
-  .toolbar-horizontal.toolbar-fixed &,
-  .toolbar-fixed.toolbar-vertical & {
-    top: 39px;
-  }
+  //.toolbar-tray-open.toolbar-horizontal.toolbar-fixed & {
+  //  top: 79px;
+  //}
+  //
+  //.toolbar-fixed.toolbar-tray-open.toolbar-vertical &,
+  //.toolbar-horizontal.toolbar-fixed &,
+  //.toolbar-fixed.toolbar-vertical & {
+  //  top: 39px;
+  //}
 }

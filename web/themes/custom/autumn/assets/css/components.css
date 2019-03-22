@@ -23,16 +23,19 @@ a {
   .breadcrumbs__path {
     display: inline; }
   .breadcrumbs__item-link {
-    color: #2962FF; }
+    color: #FFFFFF; }
+    .breadcrumbs__item-link:hover {
+      color: #FFFFFF;
+      text-decoration: underline; }
   .breadcrumbs__item-link--text {
     color: #202124; }
   .breadcrumbs__delimiter::after {
     margin: 0 4px;
     content: "/";
-    color: #9e9e9e; }
+    color: #FFFFFF; }
   .breadcrumbs__current {
     display: inline; }
-  @media (max-width: 47.9375em) {
+  @media (max-width: 47.9375rem) {
     .breadcrumbs__path {
       display: block;
       overflow: hidden;
@@ -45,7 +48,7 @@ a {
     .breadcrumbs__item-link--current::before {
       margin: 0 4px;
       content: "/";
-      color: #9e9e9e; }
+      color: #FFFFFF; }
     .breadcrumbs__current {
       display: block;
       flex-grow: 1;
@@ -455,7 +458,7 @@ table > tbody > tr:hover, .table--hover > tbody > tr:hover {
 .table-responsive-container {
   overflow-x: auto;
   min-height: 0.01%; }
-  @media (max-width: 35.9375em) {
+  @media (max-width: 35.9375rem) {
     .table-responsive-container {
       width: 100%;
       margin-bottom: 24px;
@@ -727,20 +730,28 @@ a.tabledrag-handle .handle {
   padding: 0.5rem;
   display: block; }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+  .app__main {
+    flex: 1; }
+
 .main-layout {
   width: 100%;
   padding-right: 16px;
   padding-left: 16px;
   margin-right: auto;
   margin-left: auto;
-  padding: 2rem; }
-  @media (min-width: 62em) {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+  @media (min-width: 62rem) {
     .main-layout {
-      width: 60em;
+      width: 60rem;
       max-width: 100%; } }
-  @media (min-width: 75em) {
+  @media (min-width: 75rem) {
     .main-layout {
-      width: 71.25em;
+      width: 71.25rem;
       max-width: 100%; } }
 
 .header {
@@ -758,13 +769,13 @@ a.tabledrag-handle .handle {
     align-items: center;
     justify-content: space-between;
     height: 100%; }
-    @media (min-width: 62em) {
+    @media (min-width: 62rem) {
       .header__inner {
-        width: 60em;
+        width: 60rem;
         max-width: 100%; } }
-    @media (min-width: 75em) {
+    @media (min-width: 75rem) {
       .header__inner {
-        width: 71.25em;
+        width: 71.25rem;
         max-width: 100%; } }
   .header__branding-name {
     font-size: 2rem;
@@ -784,16 +795,71 @@ a.tabledrag-handle .handle {
       color: #6D4C41; }
   .header__search {
     width: 65%; }
-  .toolbar-tray-open.toolbar-horizontal.toolbar-fixed .header {
-    top: 79px; }
-  .toolbar-fixed.toolbar-tray-open.toolbar-vertical .header,
-  .toolbar-horizontal.toolbar-fixed .header,
-  .toolbar-fixed.toolbar-vertical .header {
-    top: 39px; }
+
+.footer {
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #616161;
+  background-color: #f5f5f5; }
+  .footer__inner {
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    @media (min-width: 62rem) {
+      .footer__inner {
+        width: 60rem;
+        max-width: 100%; } }
+    @media (min-width: 75rem) {
+      .footer__inner {
+        width: 71.25rem;
+        max-width: 100%; } }
+  .footer__bottom {
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0; }
+  .footer__heart {
+    color: #dc3545; }
+    .footer__heart:before {
+      content: "\F2D1";
+      font-family: "Material Design Icons";
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0; }
+  .footer__drupal {
+    color: #1976d2; }
+    .footer__drupal:before {
+      content: "\F1E4";
+      font-family: "Material Design Icons";
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0.4em; }
+  .footer__gitlab {
+    color: #fd7e14; }
+    .footer__gitlab:before {
+      content: "\FB7C";
+      font-family: "Material Design Icons";
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0.4em; }
 
 .druki-title {
-  background-color: #FFD45E;
-  color: #000000; }
+  overflow: hidden;
+  color: #FFFFFF;
+  background-color: #6D4C41; }
   .druki-title__inner {
     width: 100%;
     padding-right: 16px;
@@ -802,13 +868,41 @@ a.tabledrag-handle .handle {
     margin-left: auto;
     padding-top: 4rem;
     padding-bottom: 4rem; }
-    @media (min-width: 62em) {
+    @media (min-width: 62rem) {
       .druki-title__inner {
-        width: 60em;
+        width: 60rem;
         max-width: 100%; } }
-    @media (min-width: 75em) {
+    @media (min-width: 75rem) {
       .druki-title__inner {
-        width: 71.25em;
+        width: 71.25rem;
         max-width: 100%; } }
+  .druki-title__title {
+    font-weight: bold;
+    margin: unset; }
+  .druki-title__links {
+    display: flex;
+    padding-top: 3rem; }
+  .druki-title__links-item:not(:last-child) {
+    margin-right: ga(2); }
+  .druki-title__links-link--edit:before {
+    content: "\F64F";
+    font-family: "Material Design Icons";
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    margin-right: 0.4em; }
+  .druki-title__links-link {
+    display: flex;
+    padding: 0.5rem 1rem;
+    color: #6D4C41;
+    border-radius: 4px 4px 0 0;
+    background-color: white;
+    box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.05);
+    transition: 0.30s ease-in-out; }
+    .druki-title__links-link:hover {
+      color: #2962FF; }
+  .druki-title--with-links .druki-title__inner {
+    padding-bottom: unset; }
 
 /*# sourceMappingURL=maps/components.css.map */

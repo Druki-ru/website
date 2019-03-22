@@ -7,7 +7,7 @@
 @mixin media-breakpoint-up($name, $breakpoints: $media-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
   @if $min {
-    $em: ($min / $global-font-size) * 1em;
+    $em: ($min / $global-font-size) * 1rem;
     @media (min-width: $em) {
       @content;
     }
@@ -25,7 +25,7 @@
 @mixin media-breakpoint-down($name, $breakpoints: $media-breakpoints) {
   $max: breakpoint-max($name, $breakpoints);
   @if $max {
-    $em: ($max / $global-font-size) * 1em;
+    $em: ($max / $global-font-size) * 1rem;
     @media (max-width: $em) {
       @content;
     }
@@ -66,7 +66,7 @@
 @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $media-breakpoints) {
   @each $breakpoint, $container-max-width in $max-widths {
     @include media-breakpoint-up($breakpoint, $breakpoints) {
-      width: ($container-max-width / $global-font-size) * 1em;
+      width: ($container-max-width / $global-font-size) * 1rem;
       max-width: 100%;
     }
   }

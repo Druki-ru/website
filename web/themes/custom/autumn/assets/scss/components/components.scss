@@ -31,10 +31,9 @@
 // Layout.
 @import "layout/app";
 @import "layout/main-layout";
-@import "layout/region-header";
 @import "layout/region-content";
-@import "layout/region-footer";
 @import "layout/include.header";
+@import "layout/include.footer";
 
 // Theme (hook_theme).
 @import "theme/druki-title";

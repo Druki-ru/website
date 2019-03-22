@@ -3,5 +3,6 @@
 .main-layout {
   @include make-container;
   @include make-container-max-widths;
-  padding: gap(4);
+  padding-top: gap(4);
+  padding-bottom: gap(4);
 }

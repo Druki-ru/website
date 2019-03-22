@@ -1,11 +1,57 @@
+$icons: (
+  'edit': 'lead-pencil',
+);
+
 .druki-title {
-  background-color: theme-color();
-  color: theme-color(on-primary);
+  $block: &;
+  overflow: hidden;
+  color: theme-color(on-secondary);
+  background-color: theme-color(secondary);
 
   &__inner {
     @include make-container();
     @include make-container-max-widths();
     padding-top: gap(8);
     padding-bottom: gap(8);
+  }
+
+  &__title {
+    font-weight: bold;
+    margin: unset;
+  }
+
+  &__links {
+    display: flex;
+    padding-top: gap(6);
+  }
+
+  &__links-item:not(:last-child) {
+    margin-right: ga(2);
+  }
+
+  @each $modifier, $icon in $icons {
+    &__links-link--#{$modifier} {
+      @include mdi-icon($icon);
+    }
+  }
+
+  &__links-link {
+    display: flex;
+    padding: gap() gap(2);
+    color: theme-color(secondary);
+    border-radius: $border-radius-base $border-radius-base 0 0;
+    background-color: white;
+    box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.05);
+    transition: 0.30s ease-in-out;
+
+    &:hover {
+      color: $link-color;
+    }
+  }
+
+  &--with-links {
+    #{$block}__inner {
+      padding-bottom: unset;
+    }
   }
 }

@@ -3,3 +3,5 @@ type: module
 description: The custom title code.
 package: druki
 core: 8.x
+dependencies:
+  - twig_tweak
