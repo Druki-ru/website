@@ -5,4 +5,8 @@
   @include make-container-max-widths;
   padding-top: gap(4);
   padding-bottom: gap(4);
+
+  ul li {
+    margin-bottom: gap();
+  }
 }

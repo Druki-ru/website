@@ -33,6 +33,9 @@ function template_preprocess_druki_content(array &$variables): void {
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
+
+  $variables['druki_content'] = $variables['elements']['#druki_content'];
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
 }
 
 /**

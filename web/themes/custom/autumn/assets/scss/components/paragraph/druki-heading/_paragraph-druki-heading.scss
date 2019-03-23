@@ -1,0 +1,24 @@
+.paragraph-druki-heading {
+  $block: &;
+
+  &__anchor {
+    @include mdi-icon('pound', $margin-size: 0);
+    display: none;
+  }
+
+  &__heading {
+    margin: unset;
+  }
+
+  &__heading--h2 {
+    padding-bottom: gap();
+    margin-bottom: gap();
+    border-bottom: 1px solid gray(300);
+  }
+
+  &:hover {
+    #{$block}__anchor {
+      display: inline;
+    }
+  }
+}

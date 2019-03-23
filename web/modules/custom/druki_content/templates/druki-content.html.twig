@@ -14,7 +14,11 @@
  * @see template_preprocess_druki_content()
  */
 #}
-<article{{ attributes }}>
+{% set bem_block = bem_block ?: ('druki-content-' ~ druki_content.bundle ~ (view_mode != 'default' ? '-' ~ view_mode))|clean_class %}
+{% set classes = [
+  bem_block,
+] %}
+<article{{ attributes.addClass(bem_block) }}>
   {% if content %}
     {{- content -}}
   {% endif %}

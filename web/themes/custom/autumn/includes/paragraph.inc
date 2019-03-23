@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Custom preprocess functions for paragraph entity.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--druki-heading.html.twig.
+ */
+function autumn_preprocess_paragraph__druki_heading(array &$variables): void {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $title = strip_tags($paragraph->get('druki_textfield_formatted')->processed, '<code><strong><em>');
+
+  $variables['heading_level'] = $paragraph->get('druki_heading_level')->value;
+  $variables['title'] = $title;
+
+  $anchor = \Drupal::transliteration()->transliterate($title);
+  $anchor = strtolower($anchor);
+  // Replace all spaces with dash.
+  $anchor = preg_replace("/[\s_]/", '-', $anchor);
+  // Remove everything else. Only alphabet and dash is allowed.
+  $anchor = preg_replace("/[^a-z-]/", '', $anchor);
+
+  $variables['anchor'] = $anchor;
+}

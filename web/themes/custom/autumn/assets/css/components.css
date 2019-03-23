@@ -654,9 +654,11 @@ a.tabledrag-handle .handle {
       line-height: 1; }
       .ui-dialog .ui-widget-header .ui-dialog-titlebar-close:before {
         content: "\F5AD";
-        font-family: "Material Design Icons";
-        font-weight: normal;
         font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        font-family: "Material Design Icons";
         display: inline-block;
         text-decoration: inherit;
         margin-right: 0; }
@@ -753,6 +755,8 @@ a.tabledrag-handle .handle {
     .main-layout {
       width: 71.25rem;
       max-width: 100%; } }
+  .main-layout ul li {
+    margin-bottom: 0.5rem; }
 
 .header {
   height: 64px;
@@ -829,9 +833,11 @@ a.tabledrag-handle .handle {
     color: #dc3545; }
     .footer__heart:before {
       content: "\F2D1";
-      font-family: "Material Design Icons";
-      font-weight: normal;
       font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
       display: inline-block;
       text-decoration: inherit;
       margin-right: 0; }
@@ -839,9 +845,11 @@ a.tabledrag-handle .handle {
     color: #1976d2; }
     .footer__drupal:before {
       content: "\F1E4";
-      font-family: "Material Design Icons";
-      font-weight: normal;
       font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
       display: inline-block;
       text-decoration: inherit;
       margin-right: 0.4em; }
@@ -849,9 +857,11 @@ a.tabledrag-handle .handle {
     color: #fd7e14; }
     .footer__gitlab:before {
       content: "\FB7C";
-      font-family: "Material Design Icons";
-      font-weight: normal;
       font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
       display: inline-block;
       text-decoration: inherit;
       margin-right: 0.4em; }
@@ -859,7 +869,8 @@ a.tabledrag-handle .handle {
 .druki-title {
   overflow: hidden;
   color: #FFFFFF;
-  background-color: #6D4C41; }
+  background-color: #6D4C41;
+  background-image: url("../images/diagmonds.png"); }
   .druki-title__inner {
     width: 100%;
     padding-right: 16px;
@@ -886,23 +897,52 @@ a.tabledrag-handle .handle {
     margin-right: ga(2); }
   .druki-title__links-link--edit:before {
     content: "\F64F";
-    font-family: "Material Design Icons";
-    font-weight: normal;
     font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Material Design Icons";
     display: inline-block;
     text-decoration: inherit;
     margin-right: 0.4em; }
   .druki-title__links-link {
     display: flex;
+    align-items: center;
     padding: 0.5rem 1rem;
     color: #6D4C41;
     border-radius: 4px 4px 0 0;
     background-color: white;
-    box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.05);
-    transition: 0.30s ease-in-out; }
+    box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.05); }
     .druki-title__links-link:hover {
       color: #2962FF; }
   .druki-title--with-links .druki-title__inner {
     padding-bottom: unset; }
+
+.paragraph-druki-heading__anchor {
+  display: none; }
+  .paragraph-druki-heading__anchor:before {
+    content: "\F423";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Material Design Icons";
+    display: inline-block;
+    text-decoration: inherit;
+    margin-right: 0; }
+
+.paragraph-druki-heading__heading {
+  margin: unset; }
+
+.paragraph-druki-heading__heading--h2 {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0; }
+
+.paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
+  display: inline; }
+
+.druki-content-druki-content-full__content-item {
+  margin-bottom: 1rem; }
 
 /*# sourceMappingURL=maps/components.css.map */
