@@ -34,11 +34,13 @@
 @import "layout/region-content";
 @import "layout/include.header";
 @import "layout/include.footer";
+@import "layout/region-sidebar-second";
 
 // Theme (hook_theme).
 @import "theme/druki-title";
 
 // Block.
+@import "block/block-druki-content-toc";
 
 // Views.
 

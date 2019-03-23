@@ -1,0 +1,49 @@
+{% import _self as toc %}
+
+{% set bem_block = 'druki-content-toc' %}
+{# @todo  complete all of it.#}
+<div{{ attributes.addClass(bem_block) }}>
+  {% set bem_base = bem_block ~ '__' %}
+  {{ toc.links(links, attributes, 0, bem_base) }}
+</div>
+
+{% macro links(links, attributes, toc_level, bem_base) %}
+  {% import _self as toc %}
+  {% if links %}
+    {% if toc_level == 0 %}
+      <ul{{ attributes.addClass([bem_base ? bem_base ~ 'menu']) }}>
+        {% for item in links %}
+          {% set classes = [
+            bem_base ~ 'menu-item',
+            item.is_expanded ? bem_base ~ 'menu-item--expanded',
+            item.is_collapsed ? bem_base ~ 'menu-item--collapsed',
+            item.in_active_trail ? bem_base ~ 'menu-item--active-trail',
+          ] %}
+          <li{{ item.attributes.addClass(classes) }}>
+            <a href="#{{ item.anchor }}">{{ item.text }}</a>
+            {% if item.below %}
+              {{ toc.links(item.below, attributes, item.level, bem_base) }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <ul class="{% if bem_base %}{{ bem_base }}submenu{% endif %}">
+        {% for item in links %}
+          {% set classes = [
+            bem_base ~ 'submenu-item',
+            item.is_expanded ? bem_base ~ 'submenu-item--expanded',
+            item.is_collapsed ? bem_base ~ 'submenu-item--collapsed',
+            item.in_active_trail ? bem_base ~ 'submenu-item--active-trail',
+          ] %}
+          <li{{ item.attributes.addClass(classes) }}>
+            <a href="#{{ item.anchor }}">{{ item.text }}</a>
+            {% if item.below %}
+              {{ toc.links(item.below, attributes, item.level + 1, bem_base) }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
+{% endmacro %}

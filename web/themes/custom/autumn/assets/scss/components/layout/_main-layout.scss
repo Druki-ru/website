@@ -1,12 +1,17 @@
 // This class added by includes/structure preprocess page hook. Don't forget
 // to rename STARTER to your theme name to make it works. Or just remove.
 .main-layout {
+  $block: &;
   @include make-container;
   @include make-container-max-widths;
-  padding-top: gap(4);
-  padding-bottom: gap(4);
+  display: grid;
+  grid-gap: gap(2);
 
   ul li {
     margin-bottom: gap();
+  }
+
+  &--sidebar-second {
+    grid-template-columns: 1fr 260px;
   }
 }

@@ -14,28 +14,15 @@ function druki_content_theme(): array {
   return [
     'druki_content' => [
       'render element' => 'elements',
+      'file' => 'druki_content.theme.inc',
+    ],
+    'druki_content_toc' => [
+      'variables' => [
+        'druki_content' => NULL,
+      ],
+      'file' => 'druki_content.theme.inc',
     ],
   ];
-}
-
-/**
- * Prepares variables for druki content templates.
- *
- * Default template: druki-content.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - elements: An associative array containing the druki content information and any
- *     fields attached to the entity.
- *   - attributes: HTML attributes for the containing element.
- */
-function template_preprocess_druki_content(array &$variables): void {
-  foreach (Element::children($variables['elements']) as $key) {
-    $variables['content'][$key] = $variables['elements'][$key];
-  }
-
-  $variables['druki_content'] = $variables['elements']['#druki_content'];
-  $variables['view_mode'] = $variables['elements']['#view_mode'];
 }
 
 /**

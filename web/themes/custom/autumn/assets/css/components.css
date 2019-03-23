@@ -745,8 +745,8 @@ a.tabledrag-handle .handle {
   padding-left: 16px;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 2rem;
-  padding-bottom: 2rem; }
+  display: grid;
+  grid-gap: 1rem; }
   @media (min-width: 62rem) {
     .main-layout {
       width: 60rem;
@@ -757,6 +757,12 @@ a.tabledrag-handle .handle {
       max-width: 100%; } }
   .main-layout ul li {
     margin-bottom: 0.5rem; }
+  .main-layout--sidebar-second {
+    grid-template-columns: 1fr 260px; }
+
+.region-content {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
 
 .header {
   height: 64px;
@@ -866,6 +872,12 @@ a.tabledrag-handle .handle {
       text-decoration: inherit;
       margin-right: 0.4em; }
 
+.region-sidebar-second {
+  padding-left: 1rem;
+  border-left: 1px solid #eeeeee;
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+
 .druki-title {
   overflow: hidden;
   color: #FFFFFF;
@@ -918,6 +930,25 @@ a.tabledrag-handle .handle {
   .druki-title--with-links .druki-title__inner {
     padding-bottom: unset; }
 
+.block-druki-content-toc {
+  margin-bottom: 2rem; }
+  .block-druki-content-toc__title {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eeeeee;
+    text-transform: uppercase;
+    font-weight: bold; }
+    .block-druki-content-toc__title:before {
+      content: "\F835";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0.4em; }
+
 .paragraph-druki-heading__anchor {
   display: none; }
   .paragraph-druki-heading__anchor:before {
@@ -937,7 +968,7 @@ a.tabledrag-handle .handle {
 .paragraph-druki-heading__heading--h2 {
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
-  border-bottom: 1px solid #e0e0e0; }
+  border-bottom: 1px solid #eeeeee; }
 
 .paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
   display: inline; }

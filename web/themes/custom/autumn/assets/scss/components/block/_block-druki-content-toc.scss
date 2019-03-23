@@ -1,0 +1,12 @@
+.block-druki-content-toc {
+  margin-bottom: gap(4);
+
+  &__title {
+    @include mdi-icon('table-of-contents');
+    margin-bottom: gap();
+    padding-bottom: gap();
+    border-bottom: 1px solid gray(200);
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

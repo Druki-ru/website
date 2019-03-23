@@ -19,6 +19,7 @@ function autumn_preprocess_paragraph__druki_heading(array &$variables): void {
 
   $anchor = \Drupal::transliteration()->transliterate($title);
   $anchor = strtolower($anchor);
+  $anchor = trim($anchor);
   // Replace all spaces with dash.
   $anchor = preg_replace("/[\s_]/", '-', $anchor);
   // Remove everything else. Only alphabet and dash is allowed.
