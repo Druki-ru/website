@@ -756,7 +756,7 @@ a.tabledrag-handle .handle {
       width: 71.25rem;
       max-width: 100%; } }
   .main-layout ul li {
-    margin-bottom: 0.5rem; }
+    margin: 0.5rem 0; }
   .main-layout--sidebar-second {
     grid-template-columns: 1fr 260px; }
 
@@ -929,6 +929,19 @@ a.tabledrag-handle .handle {
       color: #2962FF; }
   .druki-title--with-links .druki-title__inner {
     padding-bottom: unset; }
+
+.druki-content-toc {
+  font-size: 0.875rem;
+  line-height: 1.71429; }
+  .druki-content-toc__menu {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .druki-content-toc__submenu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-left: 1rem; }
 
 .block-druki-content-toc {
   margin-bottom: 2rem; }

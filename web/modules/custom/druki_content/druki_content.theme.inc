@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 use Drupal\paragraphs\ParagraphInterface;
 
 /**
@@ -35,21 +36,27 @@ function template_preprocess_druki_content_toc(array &$variables): void {
   /** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
   $druki_content = $variables['druki_content'];
   $variables['links'] = [];
-  $links = &$variables['links'];
   $headings = $druki_content->get('content')->filter(function ($item) {
     return $item->entity->bundle() == 'druki_heading';
   });
 
   if (!$headings->isEmpty()) {
+    $flat_links = [];
     foreach ($headings as $item) {
       /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
       $paragraph = $item->entity;
-      $links[] = _druki_content_toc_prepare_link($paragraph);
+      $flat_links[] = _druki_content_toc_prepare_link($paragraph, $flat_links);
     }
+
+    $variables['links'] = _druki_content_toc_build_tree($flat_links);
   }
 }
 
-function _druki_content_toc_prepare_link(ParagraphInterface $paragraph): array {
+function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $links = []): array {
+  // Used for building tree, since we have flat tree of headings.
+  $internal_id = &drupal_static(__FUNCTION__ . ':internal_id', 0);
+  $internal_id++;
+
   $title = $paragraph->get('druki_textfield_formatted')->value;
   $heading_level = $paragraph->get('druki_heading_level')->value;
 
@@ -84,9 +91,40 @@ function _druki_content_toc_prepare_link(ParagraphInterface $paragraph): array {
       break;
   }
 
+  foreach (array_reverse($links) as $link) {
+    if ($link['level'] < $heading_level_int) {
+      $parent_id = $link['id'];
+      break;
+    }
+  }
+
+  if (!isset($parent_id)) {
+    $parent_id = 0;
+  }
+
   return [
+    'id' => $internal_id,
     'text' => $title,
     'anchor' => $anchor,
     'level' => $heading_level_int,
+    'parent_id' => $parent_id,
   ];
+}
+
+function _druki_content_toc_build_tree(array $links, $parent_id = 0) {
+  $tree = [];
+
+  foreach ($links as $link) {
+    if ($link['parent_id'] == $parent_id) {
+      $children = _druki_content_toc_build_tree($links, $link['id']);
+
+      if ($children) {
+        $link['children'] = $children;
+      }
+
+      $tree[] = $link;
+    }
+  }
+
+  return $tree;
 }

@@ -1,0 +1,12 @@
+.druki-content-toc {
+  @include font-size(14px);
+  
+  &__menu {
+    @include list-unstyled;
+  }
+
+  &__submenu {
+    @include list-unstyled;
+    margin-left: gap(2);
+  }
+}
