@@ -996,6 +996,75 @@ a.tabledrag-handle .handle {
 .paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
   display: inline; }
 
+.paragraph-druki-note {
+  padding: 1rem;
+  border-radius: 4px;
+  display: flex; }
+  .paragraph-druki-note__left {
+    flex-shrink: 0;
+    width: calc(40px + 1rem); }
+  .paragraph-druki-note__icon {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    width: 40px;
+    text-align: center; }
+  .paragraph-druki-note--note {
+    background-color: #b2d4f6; }
+    .paragraph-druki-note--note .paragraph-druki-note__icon {
+      color: #12579b; }
+      .paragraph-druki-note--note .paragraph-druki-note__icon:before {
+        content: "\FDA4";
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        font-family: "Material Design Icons";
+        display: inline-block;
+        text-decoration: inherit;
+        margin-right: 0; }
+  .paragraph-druki-note--warning {
+    background-color: #ffe5cf; }
+    .paragraph-druki-note--warning .paragraph-druki-note__icon {
+      color: #d26102; }
+      .paragraph-druki-note--warning .paragraph-druki-note__icon:before {
+        content: "\F5D6";
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        font-family: "Material Design Icons";
+        display: inline-block;
+        text-decoration: inherit;
+        margin-right: 0; }
+  .paragraph-druki-note--tip {
+    background-color: #d6efca; }
+    .paragraph-druki-note--tip .paragraph-druki-note__icon {
+      color: #4e932c; }
+      .paragraph-druki-note--tip .paragraph-druki-note__icon:before {
+        content: "\F6E8";
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        font-family: "Material Design Icons";
+        display: inline-block;
+        text-decoration: inherit;
+        margin-right: 0; }
+  .paragraph-druki-note--important {
+    background-color: #f8d6d9; }
+    .paragraph-druki-note--important .paragraph-druki-note__icon {
+      color: #b51f2e; }
+      .paragraph-druki-note--important .paragraph-druki-note__icon:before {
+        content: "\FCC3";
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        font-family: "Material Design Icons";
+        display: inline-block;
+        text-decoration: inherit;
+        margin-right: 0; }
+
 .druki-content-druki-content-full__content-item {
   margin-bottom: 1rem; }
 

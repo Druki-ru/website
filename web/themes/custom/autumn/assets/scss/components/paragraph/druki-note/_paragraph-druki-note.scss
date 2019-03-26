@@ -1,0 +1,53 @@
+.paragraph-druki-note {
+  $block: &;
+  padding: gap(2);
+  border-radius: $border-radius-base;
+  display: flex;
+
+  &__left {
+    flex-shrink: 0;
+    width: calc(40px + #{gap(2)});
+  }
+
+  &__icon {
+    @include font-size(40px);
+    width: 40px;
+    text-align: center;
+  }
+
+  &--note {
+    background-color: color-palette(color(blue), 100);
+
+    #{$block}__icon {
+      @include mdi-icon('file-document-edit', $margin-size: 0);
+      color: color-palette(color(blue), 700);
+    }
+  }
+
+  &--warning {
+    background-color: color-palette(color(orange), 100);
+
+    #{$block}__icon {
+      @include mdi-icon('alert-circle-outline', $margin-size: 0);
+      color: color-palette(color(orange), 700);
+    }
+  }
+
+  &--tip {
+    background-color: color-palette(color(green), 100);
+
+    #{$block}__icon {
+      @include mdi-icon('lightbulb-on-outline', $margin-size: 0);
+      color: color-palette(color(green), 700);
+    }
+  }
+
+  &--important {
+    background-color: color-palette(color(red), 100);
+
+    #{$block}__icon {
+      @include mdi-icon('alert-octagram-outline', $margin-size: 0);
+      color: color-palette(color(red), 700);
+    }
+  }
+}
