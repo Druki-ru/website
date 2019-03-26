@@ -5,6 +5,8 @@
  * Custom preprocess functions for paragraph entity.
  */
 
+use Drupal\druki\Utility\Text;
+
 /**
  * Implements hook_preprocess_HOOK() for paragraph--druki-heading.html.twig.
  */
@@ -17,13 +19,5 @@ function autumn_preprocess_paragraph__druki_heading(array &$variables): void {
   $variables['heading_level'] = $paragraph->get('druki_heading_level')->value;
   $variables['title'] = $title;
 
-  $anchor = \Drupal::transliteration()->transliterate($title);
-  $anchor = strtolower($anchor);
-  $anchor = trim($anchor);
-  // Replace all spaces with dash.
-  $anchor = preg_replace("/[\s_]/", '-', $anchor);
-  // Remove everything else. Only alphabet and dash is allowed.
-  $anchor = preg_replace("/[^a-z-]/", '', $anchor);
-
-  $variables['anchor'] = $anchor;
+  $variables['anchor'] = Text::anchor($title, 'druki_content_toc_theme');
 }

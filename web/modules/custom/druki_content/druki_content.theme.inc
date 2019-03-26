@@ -7,6 +7,7 @@
 
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
+use Drupal\druki\Utility\Text;
 use Drupal\paragraphs\ParagraphInterface;
 
 /**
@@ -77,14 +78,6 @@ function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $l
   $title = $paragraph->get('druki_textfield_formatted')->value;
   $heading_level = $paragraph->get('druki_heading_level')->value;
 
-  $anchor = Drupal::transliteration()->transliterate($title);
-  $anchor = strtolower($anchor);
-  $anchor = trim($anchor);
-  // Replace all spaces with dash.
-  $anchor = preg_replace("/[\s_]/", '-', $anchor);
-  // Remove everything else. Only alphabet and dash is allowed.
-  $anchor = preg_replace("/[^a-z-]/", '', $anchor);
-
   switch ($heading_level) {
     case 'h2':
     default:
@@ -122,7 +115,7 @@ function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $l
   return [
     'id' => $internal_id,
     'text' => $title,
-    'anchor' => $anchor,
+    'anchor' => Text::anchor($title, 'druki_content_toc'),
     'level' => $heading_level_int,
     'parent_id' => $parent_id,
   ];
