@@ -487,7 +487,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected function getMediaImageFieldDestination(): string {
     $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
 
-    if (!isset($destination)) {
+    if (!isset($result)) {
       $media_image = $this->entityFieldManager->getFieldDefinitions('media', 'image');
       $file_directory = trim($media_image['field_media_image']->getSetting('file_directory'), '/');
       $uri_scheme = $media_image['field_media_image']->getSetting('uri_scheme');
