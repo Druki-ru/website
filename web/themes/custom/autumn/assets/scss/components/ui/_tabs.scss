@@ -30,10 +30,14 @@ $secondary-tabs-item-active-link-hover-color: $link-hover-color !default;
 $secondary-tabs-item-active-border-color: $link-color !default;
 
 .tabs {
-  padding: 0;
-  list-style: none;
   display: flex;
   flex-flow: wrap;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    margin: unset;
+  }
 
   &--primary {
     margin: $primary-tabs-margin;
@@ -44,28 +48,28 @@ $secondary-tabs-item-active-border-color: $link-color !default;
     }
 
     .tabs__menu-item-link {
+      position: relative;
       display: block;
       padding: $primary-tabs-item-link-padding;
       color: $primary-tabs-item-link-color;
-      position: relative;
 
       &:hover {
         color: $primary-tabs-item-link-hover-color;
       }
 
       &.is-active {
-        color: $primary-tabs-item-active-link-color;
         font-weight: bold;
         position: relative;
+        color: $primary-tabs-item-active-link-color;
 
         &::before {
-          content: '';
-          width: 70%;
-          height: 2px;
-          background: $primary-tabs-item-active-link-color;
           position: absolute;
           bottom: -2px;
           left: 15%;
+          width: 70%;
+          height: 2px;
+          content: '';
+          background: $primary-tabs-item-active-link-color;
         }
 
         &:hover {
@@ -85,8 +89,8 @@ $secondary-tabs-item-active-border-color: $link-color !default;
     .tabs__menu-item-link {
       display: block;
       padding: $secondary-tabs-item-link-padding;
-      border-bottom: 1px solid $secondary-tabs-item-link-border-color;
       color: $secondary-tabs-item-link-color;
+      border-bottom: 1px solid $secondary-tabs-item-link-border-color;
 
       &:hover {
         color: $secondary-tabs-item-link-hover-color;
@@ -94,10 +98,10 @@ $secondary-tabs-item-active-border-color: $link-color !default;
       }
 
       &.is-active {
+        font-weight: bold;
+        color: $secondary-tabs-item-active-link-color;
         border-bottom-width: 2px;
         border-bottom-color: $secondary-tabs-item-active-border-color;
-        color: $secondary-tabs-item-active-link-color;
-        font-weight: bold;
 
         &:hover {
           color: $secondary-tabs-item-active-link-hover-color;
@@ -112,8 +116,8 @@ $secondary-tabs-item-active-border-color: $link-color !default;
   background: $vertical-tabs-bg;
 
   .vertical-tabs__menu {
-    background: $vertical-tabs-list-bg;
     border: $vertical-tabs-list-border;
+    background: $vertical-tabs-list-bg;
 
     .vertical-tabs__menu-item {
       border: none;

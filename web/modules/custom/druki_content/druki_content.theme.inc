@@ -50,8 +50,25 @@ function template_preprocess_druki_content_toc(array &$variables): void {
 
     $variables['links'] = _druki_content_toc_build_tree($flat_links);
   }
+
+  $variables['#attached']['library'][] = 'druki_content/toc';
 }
 
+/**
+ * Prepares link from heading paragraph.
+ *
+ * We need to assign every link some unique ID during the TOC generation
+ * process. And then, this ID will be used for the next parsed link to set it as
+ * parent or not.
+ *
+ * @param \Drupal\paragraphs\ParagraphInterface $paragraph
+ *   The heading paragraph entity.
+ * @param array $links
+ *   The current set of links.
+ *
+ * @return array
+ *   The link information.
+ */
 function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $links = []): array {
   // Used for building tree, since we have flat tree of headings.
   $internal_id = &drupal_static(__FUNCTION__ . ':internal_id', 0);
@@ -111,6 +128,17 @@ function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $l
   ];
 }
 
+/**
+ * Builds TOC tree.
+ *
+ * @param array $links
+ *   The array with links.
+ * @param int $parent_id
+ *   The current parent id.
+ *
+ * @return array
+ *   The array with links in tree format.
+ */
 function _druki_content_toc_build_tree(array $links, $parent_id = 0) {
   $tree = [];
 

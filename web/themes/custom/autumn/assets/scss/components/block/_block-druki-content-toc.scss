@@ -1,5 +1,7 @@
 .block-druki-content-toc {
   margin-bottom: gap(4);
+  position: sticky;
+  top: gap(2);
 
   &__title {
     @include mdi-icon('table-of-contents');

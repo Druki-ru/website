@@ -3,3 +3,10 @@ druki.toolbar:
   css:
     theme:
       assets/css/druki.toolbar.css: {}
+
+throttle:
+  version: VERSION
+  js:
+    assets/js/throttle.js: {}
+  dependencies:
+    - core/drupal

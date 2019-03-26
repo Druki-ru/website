@@ -1,0 +1,7 @@
+toc:
+  version: VERSION
+  js:
+    assets/js/druki-content-toc.js: {}
+  dependencies:
+    - druki/throttle
+    - core/drupal

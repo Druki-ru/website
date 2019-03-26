@@ -7,10 +7,6 @@
   display: grid;
   grid-gap: gap(2);
 
-  ul li {
-    margin: gap() 0;
-  }
-
   &--sidebar-second {
     grid-template-columns: 1fr 260px;
   }

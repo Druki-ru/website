@@ -5,8 +5,13 @@
     @include list-unstyled;
   }
 
+  &__menu-item-link--active {
+    font-weight: bold;
+  }
+
   &__submenu {
     @include list-unstyled;
+    @include font-size(13px);
     margin-left: gap(2);
   }
 }
