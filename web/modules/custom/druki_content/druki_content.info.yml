@@ -11,4 +11,5 @@ dependencies:
   - druki_git:druki_git
   - druki_parser:druki_parser
   - druki_file:druki_file
+  - druki_category:druki_category
   - pathauto:pathauto

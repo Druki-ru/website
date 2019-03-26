@@ -133,8 +133,8 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ->setRequired(FALSE)
       ->setReadOnly(TRUE);
 
-    $fields['toc'] = BaseFieldDefinition::create('druki_toc')
-      ->setLabel('The TOC.')
+    $fields['category'] = BaseFieldDefinition::create('druki_category')
+      ->setLabel(t('Category'))
       ->setRequired(FALSE);
 
     return $fields;
@@ -260,8 +260,8 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function setTOC(string $area, int $order = 0): DrukiContentInterface {
-    $this->set('toc', [
+  public function setCategory(string $area, int $order = 0): DrukiContentInterface {
+    $this->set('category', [
       'area' => $area,
       'order' => $order,
     ]);
@@ -272,8 +272,8 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTOC(): array {
-    return $this->get('toc')->first()->getValue();
+  public function getCategory(): array {
+    return $this->get('category')->first()->getValue();
   }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_toc\Plugin\Field\FieldType;
+namespace Drupal\druki_category\Plugin\Field\FieldType;
 
 use Drupal\Component\Utility\Random;
 use Drupal\Core\Field\FieldDefinitionInterface;
@@ -9,16 +9,16 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\TypedData\DataDefinition;
 
 /**
- * Defines the 'druki_tok' field type.
+ * Defines the 'druki_category' field type.
  *
  * @FieldType(
- *   id = "druki_toc",
- *   label = @Translation("TOC"),
- *   category = @Translation("General"),
+ *   id = "druki_category",
+ *   label = @Translation("Druki Category"),
+ *   category = @Translation("Druki"),
  *   no_ui = TRUE,
  * )
  */
-class TocItem extends FieldItemBase {
+class DrukiCategoryItem extends FieldItemBase {
 
   /**
    * {@inheritdoc}
@@ -45,7 +45,7 @@ class TocItem extends FieldItemBase {
       'area' => [
         'type' => 'varchar',
         'not null' => TRUE,
-        'description' => 'TOC area.',
+        'description' => 'Category area.',
         'length' => 255,
       ],
       'order' => [

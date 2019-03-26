@@ -214,10 +214,10 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $druki_content->setFilename($data['filename']);
     $druki_content->setLastCommitId($data['last_commit_id']);
     $druki_content->setContributionStatistics($data['contribution_statistics']);
-    if (isset($structured_data['meta']['toc-area'])) {
-      $toc_area = $structured_data['meta']['toc-area'];
-      $toc_order = isset($structured_data['meta']['toc-order']) ? $structured_data['meta']['toc-order'] : 0;
-      $druki_content->setTOC($toc_area, $toc_order);
+    if (isset($structured_data['meta']['category-area'])) {
+      $category_area = $structured_data['meta']['category-area'];
+      $category_order = isset($structured_data['meta']['category-order']) ? $structured_data['meta']['category-order'] : 0;
+      $druki_content->setCategory($category_area, $category_order);
     }
 
     if ($core_version) {

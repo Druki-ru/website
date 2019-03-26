@@ -1,4 +1,4 @@
-field.value.druki_tok:
+field.value.druki_category:
   type: mapping
   label: Default value
   mapping:
@@ -8,4 +8,3 @@ field.value.druki_tok:
     order:
       type: integer
       label: Order
-

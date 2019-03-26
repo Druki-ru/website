@@ -132,24 +132,24 @@ interface DrukiContentInterface extends ContentEntityInterface {
   public function getCore(): ?string;
 
   /**
-   * Sets TOC.
+   * Sets category.
    *
    * @param string $area
-   *   The TOC area.
+   *   The category area.
    * @param int $order
    *   The order inside area.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setTOC(string $area, int $order = 0): DrukiContentInterface;
+  public function setCategory(string $area, int $order = 0): DrukiContentInterface;
 
   /**
-   * Gets TOC.
+   * Gets category.
    *
    * @return array
-   *   The TOC info.
+   *   The category info.
    */
-  public function getTOC(): array;
+  public function getCategory(): array;
 
 }
