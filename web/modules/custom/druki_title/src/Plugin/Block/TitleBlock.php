@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * @Block(
  *   id = "druki_title",
  *   admin_label = @Translation("Page title"),
- *   category = @Translation("druki")
+ *   category = @Translation("Druki Title")
  * )
  */
 class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {

@@ -954,16 +954,18 @@ a.tabledrag-handle .handle {
     margin-left: 1rem; }
 
 .block-druki-content-toc {
-  margin-bottom: 2rem;
   position: -webkit-sticky;
   position: sticky;
-  top: 1rem; }
+  top: 1rem;
+  margin-bottom: 2rem; }
   .block-druki-content-toc__title {
+    font-weight: bold;
+    position: relative;
     margin-bottom: 0.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #eeeeee;
+    padding-left: calc(21px + 0.5rem);
     text-transform: uppercase;
-    font-weight: bold; }
+    border-bottom: 1px solid #eeeeee; }
     .block-druki-content-toc__title:before {
       content: "\F835";
       font-style: normal;
@@ -973,7 +975,42 @@ a.tabledrag-handle .handle {
       font-family: "Material Design Icons";
       display: inline-block;
       text-decoration: inherit;
-      margin-right: 0.4em; }
+      margin-right: 0; }
+    .block-druki-content-toc__title::before {
+      font-size: 1.25rem;
+      line-height: 19px;
+      position: absolute;
+      top: 3px;
+      left: 0;
+      text-align: center; }
+
+.block-druki-category-navigation {
+  margin-bottom: 2rem; }
+  .block-druki-category-navigation__title {
+    font-weight: bold;
+    position: relative;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: calc(21px + 0.5rem);
+    text-transform: uppercase;
+    border-bottom: 1px solid #eeeeee; }
+    .block-druki-category-navigation__title:before {
+      content: "\FDAA";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0; }
+    .block-druki-category-navigation__title::before {
+      font-size: 1.25rem;
+      line-height: 19px;
+      position: absolute;
+      top: 3px;
+      left: 0;
+      text-align: center; }
 
 .paragraph-druki-heading__anchor {
   display: none; }
