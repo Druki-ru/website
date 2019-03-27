@@ -16,20 +16,25 @@ Every doc file must contain meta information, this module adds special Markdown 
 ---
 title: Hello World
 id: hello-world
+tags:
+  - one
+  - two
+  - three
 ---
 ```
 
 This block can contains any data in format `{KEY}: {VALUE}`:
 
-- `{KEY}` - `[a-zA-Z0-9]` string only.
-- `{VALUE}` - any string value.
+- `{KEY}` - string only.
+- `{VALUE}` - any string or array value.
 
 This will result this HTML markup:
 
 ```html
 <div data-druki-meta="">
-    <div data-druki-key="title" data-druki-value="Hello World">title: Hello World</div>
-    <div data-druki-key="id" data-druki-value="hello-world">id: hello-world</div>
+    <div data-druki-key="title" data-druki-value="Hello World"></div>
+    <div data-druki-key="id" data-druki-value="hello-world"></div>
+    <div data-druki-key="tags" data-druki-value="one, two, three"></div>
 </div>
 ```
 
