@@ -940,8 +940,11 @@ a.tabledrag-handle .handle {
     margin: 0;
     padding: 0;
     list-style: none; }
+  .druki-content-toc__menu-item-link {
+    color: #202124; }
   .druki-content-toc__menu-item-link--active {
-    font-weight: bold; }
+    font-weight: bold;
+    color: #2962FF; }
   .druki-content-toc__submenu {
     margin: 0;
     padding: 0;
