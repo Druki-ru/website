@@ -98,6 +98,31 @@ class DrukiContentStorage extends SqlContentEntityStorage {
   }
 
   /**
+   * Loads content by its relative filepath value.
+   *
+   * @param string $relative_pathname
+   *   The relative pathname
+   *
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
+   *   The entity object, NULL otherwise.
+   */
+  public function loadByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
+    $entity_query = $this->getQuery();
+    $entity_query->accessCheck(FALSE);
+    $entity_query->condition('relative_pathname', $relative_pathname);
+
+    $result = $entity_query->execute();
+    if (!empty($result)) {
+      reset($result);
+      $first = key($result);
+
+      return $this->load($first);
+    }
+
+    return NULL;
+  }
+
+  /**
    * Delete missing druki_content.
    *
    * This find and delete missing content. Missing content means content which

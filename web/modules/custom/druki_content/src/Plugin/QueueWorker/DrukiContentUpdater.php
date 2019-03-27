@@ -30,7 +30,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * The druki content storage.
    *
-   * @var \Drupal\druki_content\DrukiContentStorage
+   * @var \Drupal\druki_content\Handler\DrukiContentStorage
    */
   protected $drukiContentStorage;
 
@@ -201,10 +201,15 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    */
   protected function processContent(array $structured_data, array $data): void {
     $core_version = isset($structured_data['meta']['core']) ? $structured_data['meta']['core'] : NULL;
-    $druki_content = $this->loadContent($structured_data['meta']['id'], $data['langcode'], $core_version);
+    $druki_content = $this->loadContent(
+      $structured_data['meta']['id'],
+      $data['langcode'],
+      $core_version,
+      $data['relative_pathname']
+    );
 
     // Don't update content if last commit for source file is the same.
-    if ($druki_content->get('last_commit_id') == $structured_data['last_commit_id']) {
+    if ($druki_content->get('last_commit_id') == $data['last_commit_id']) {
       return;
     }
 
@@ -250,20 +255,37 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The langcode.
    * @param string $core_version
    *   The core version.
+   * @param string|null $relative_pathname
+   *   The relative pathname for content.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|NULL
    */
-  protected function loadContent(string $external_id, string $langcode, string $core_version = NULL): ?DrukiContentInterface {
+  protected function loadContent(
+    string $external_id,
+    string $langcode,
+    string $core_version = NULL,
+    string $relative_pathname = NULL
+  ): ?DrukiContentInterface {
+
     $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode, $core_version);
 
     if ($druki_content instanceof DrukiContentInterface) {
       return $druki_content;
     }
     else {
-      return $this->drukiContentStorage->create([
-        'external_id' => $external_id,
-        'langcode' => $langcode,
-      ]);
+      // Trying to find entity by relative pathname. This covers some cases such
+      // as change core version in the file.
+      $druki_content = $this->drukiContentStorage->loadByRelativePathname($relative_pathname);
+
+      if ($druki_content instanceof DrukiContentInterface) {
+        return $druki_content;
+      }
+      else {
+        return $this->drukiContentStorage->create([
+          'external_id' => $external_id,
+          'langcode' => $langcode,
+        ]);
+      }
     }
   }
 
