@@ -10,8 +10,17 @@ $druki_parser = \Drupal::service('druki_parser.markdown');
 
 $markdown_content = <<<'Markdown'
 ---
-id: code-of-conduct
-title: Нормы поведения
+id: installation
+title: Установка Drupal 8
+core: 8
+category-area: Первое знакомство
+category-order: 0
+test-comma: one, two, three
+test-array:
+  - one
+  - two
+  - three
+test-inline-array: [one, two, three]
 ---
 
 ---
