@@ -67,10 +67,16 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
     $build = [];
 
     if ($druki_content = $this->getDrukiContentFromPage()) {
-      $build['toc'] = [
-        '#theme' => 'druki_content_toc',
-        '#druki_content' => $druki_content,
-      ];
+      $headings = $druki_content->get('content')->filter(function ($item) {
+        return $item->entity->bundle() == 'druki_heading';
+      });
+
+      if (!$headings->isEmpty()) {
+        $build['toc'] = [
+          '#theme' => 'druki_content_toc',
+          '#druki_content' => $druki_content,
+        ];
+      }
     }
 
     return $build;
