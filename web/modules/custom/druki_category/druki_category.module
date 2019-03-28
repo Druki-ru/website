@@ -13,3 +13,17 @@ use Drupal\Core\Block\BlockPluginInterface;
 function druki_category_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block) {
   $build['#configuration']['label'] = $block->label();
 }
+
+/**
+ * Implements hook_theme().
+ */
+function druki_category_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'druki_category_navigation' => [
+      'variables' => [
+        'links' => [],
+      ],
+      'file' => 'druki_category.theme.inc',
+    ],
+  ];
+}

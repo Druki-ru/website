@@ -65,9 +65,16 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function build(): array {
-    $build['content'] = [
-      '#markup' => $this->t('It works!'),
-    ];
+    $build = [];
+    $links = $this->categoryNavigation->getCategoryLinksFromRoute();
+
+    if ($links) {
+      $build['navigation'] = [
+        '#theme' => 'druki_category_navigation',
+        '#links' => $links,
+      ];
+    }
+
     return $build;
   }
 
@@ -75,7 +82,11 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function label(): string {
-    return $this->categoryNavigation->getCategoryAreaFromRoute();
+    if ($category_area = $this->categoryNavigation->getCategoryAreaFromRoute()) {
+      return $category_area;
+    }
+    
+    return parent::label();
   }
 
   /**

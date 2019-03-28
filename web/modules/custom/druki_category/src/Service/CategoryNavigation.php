@@ -48,6 +48,10 @@ class CategoryNavigation {
    *
    * @return \Drupal\Core\Link[]|null
    *   The array with links, NULL if not found any of them.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityMalformedException
    */
   public function getCategoryLinksFromRoute(): ?array {
     $category_area = $this->getCategoryAreaFromRoute();
@@ -166,7 +170,10 @@ class CategoryNavigation {
         $result = [];
 
         foreach ($entities as $entity) {
-          $result[] = $entity->toLink($entity->label(), 'canonical');
+          $result[] = [
+            'url' => $entity->toUrl('canonical'),
+            'text' => $entity->label(),
+          ];
         }
       }
     }

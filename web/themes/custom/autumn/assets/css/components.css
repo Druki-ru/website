@@ -953,6 +953,19 @@ a.tabledrag-handle .handle {
     line-height: 1.84615;
     margin-left: 1rem; }
 
+.druki-category-navigation {
+  font-size: 0.875rem;
+  line-height: 1.71429; }
+  .druki-category-navigation__menu {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .druki-category-navigation__menu-item-link {
+    color: #202124; }
+  .druki-category-navigation__menu-item-link--active {
+    font-weight: bold;
+    color: #2962FF; }
+
 .block-druki-content-toc {
   position: -webkit-sticky;
   position: sticky;

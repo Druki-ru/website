@@ -1,0 +1,18 @@
+{% set bem_block = 'druki-category-navigation' %}
+<div{{ attributes.addClass(bem_block) }}>
+  {% if links %}
+    <ul class="{{ bem_block }}__menu">
+      {% for link in links %}
+        <li class="{{ bem_block }}__menu-item">
+          {% set class = [
+            bem_block ~ '__menu-item-link',
+            link.is_active ? bem_block ~ '__menu-item-link--active',
+          ] %}
+          <a href="{{ link.url }}"{{ link.attributes.addClass(class) }}>
+            {{ link.text }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
