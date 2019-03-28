@@ -243,6 +243,13 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     }
 
     $this->createParagraphs($druki_content, $structured_data);
+
+    // @see druki_content_tokens()
+    if (isset($structured_data['meta']['path'])) {
+      $forced_alias = $structured_data['meta']['path'];
+      $druki_content->set('forced_path', $forced_alias);
+    }
+
     $druki_content->save();
   }
 

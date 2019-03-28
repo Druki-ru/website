@@ -6,7 +6,7 @@ dependencies:
 id: druki_content
 label: 'Druki Content'
 type: 'canonical_entities:druki_content'
-pattern: '[druki_content:core]/[druki_content:external_id]'
+pattern: '[druki_content:computed-alias]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

@@ -50,4 +50,5 @@ safe_tokens:
   - login-url
   - url
   - url-brief
+  - computed-alias
 langcode: en

@@ -1,13 +1,15 @@
 uuid: 6673fa2f-8723-480f-bd09-8e33e7cf720b
 langcode: ru
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - druki_content
 _core:
   default_config_hash: 2p5LLztf0ikBZreOQKKVEVqEjrXiFKDa4ywyYvAC9LA
 id: druki_content
 label: 'Druki Content'
 type: 'canonical_entities:druki_content'
-pattern: '[druki_content:core]/[druki_content:external_id]'
+pattern: '[druki_content:computed-alias]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

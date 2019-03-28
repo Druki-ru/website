@@ -1,0 +1,20 @@
+uuid: 35f285e2-a407-4c40-b883-04f30ad9761b
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_category
+  theme:
+    - autumn
+id: druki_category_navigation
+theme: autumn
+region: sidebar_second
+weight: 0
+provider: null
+plugin: druki_category_navigation
+settings:
+  id: druki_category_navigation
+  label: 'Навигация по категории'
+  provider: druki_category
+  label_display: visible
+visibility: {  }

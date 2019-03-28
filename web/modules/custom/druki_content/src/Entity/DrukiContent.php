@@ -137,6 +137,14 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ->setLabel(t('Category'))
       ->setRequired(FALSE);
 
+    // String, because we actually use pathauto for alias management. This
+    // value is used later in alter hook. Maybe it's better to move this field
+    // from base to config.
+    $fields['forced_path'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Path alias'))
+      ->setDescription(t('The alias forced through source of content.'))
+      ->setSetting('max_length', 255);
+
     return $fields;
   }
 

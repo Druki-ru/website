@@ -11,7 +11,9 @@ $druki_content_storage = \Drupal::service('entity_type.manager')->getStorage('dr
 //dump($druki_content->getContributionStatistics());
 //$all = $druki_content_storage->loadMultiple();
 //$druki_content_storage->delete($all);
-dump($druki_content_storage->loadByMeta('faq', NULL));
+/** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
+$druki_content = $druki_content_storage->loadByMeta('faq', NULL);
+$druki_content->save();
 
 // Test TOC query.
 //$result = $druki_content_storage->getQuery()
