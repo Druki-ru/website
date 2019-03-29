@@ -3,9 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.druki_content.druki_content.content
+    - field.field.druki_content.druki_content.difficulty
+    - field.field.druki_content.druki_content.labels
   module:
     - druki_content
     - entity_reference_revisions
+_core:
+  default_config_hash: JXmIOtvWSQwUD8LGozwv471iHpB88RKkVWelJ3JyglY
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
@@ -13,44 +17,18 @@ mode: default
 content:
   content:
     type: entity_reference_revisions_entity_view
-    weight: 4
+    weight: 0
     region: content
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-  filename:
-    label: hidden
-    type: string
-    weight: 2
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  last_commit_id:
-    label: hidden
-    type: string
-    weight: 3
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  relative_pathname:
-    label: hidden
-    type: string
-    weight: 1
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  title:
-    label: hidden
-    type: string
-    weight: 0
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
 hidden:
+  difficulty: true
+  filename: true
+  labels: true
   langcode: true
+  last_commit_id: true
+  relative_pathname: true
+  title: true

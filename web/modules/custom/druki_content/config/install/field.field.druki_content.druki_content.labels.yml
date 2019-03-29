@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.druki_content.labels
+  module:
+    - druki_content
+id: druki_content.druki_content.labels
+field_name: labels
+entity_type: druki_content
+bundle: druki_content
+label: Labels
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

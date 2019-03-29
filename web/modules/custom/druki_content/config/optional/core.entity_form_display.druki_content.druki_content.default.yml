@@ -4,12 +4,13 @@ dependencies:
   config:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
+    - field.field.druki_content.druki_content.labels
   module:
     - druki_content
     - paragraphs
     - path
 _core:
-  default_config_hash: UI8KSiqIyC4GTwhWtuUzgnz5GcSObN7KjNu6dH0LL-8
+  default_config_hash: 9eWve_e2wl-5GT1gZOJUxGIyfXYT5nFAPtfx3l6ygU8
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
@@ -40,6 +41,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  labels:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1
@@ -49,7 +58,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -1,0 +1,22 @@
+uuid: ceaff463-3d59-4bb7-a2c8-ba48ee682109
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.storage.druki_content.labels
+  module:
+    - druki_content
+_core:
+  default_config_hash: vk1_6RMOaAbYcGw7Cz5fw3hdV_TepMvs2oiG2fnBsbI
+id: druki_content.druki_content.labels
+field_name: labels
+entity_type: druki_content
+bundle: druki_content
+label: Labels
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

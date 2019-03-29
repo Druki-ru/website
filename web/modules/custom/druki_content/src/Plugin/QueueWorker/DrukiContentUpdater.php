@@ -250,8 +250,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       $druki_content->set('forced_path', $forced_alias);
     }
 
-    // Handle difficulty.
     $this->processDifficulty($druki_content, $structured_data);
+    $this->processLabels($druki_content, $structured_data);
 
     $druki_content->save();
   }
@@ -567,6 +567,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   An array with structured data from source file.
    */
   protected function processDifficulty(DrukiContentInterface $druki_content, array $structured_data): void {
+    // Reset value. Assumes that value was cleared.
+    $druki_content->set('difficulty', NULL);
+
     if (isset($structured_data['meta']['difficulty'])) {
       // Get available values directly from field.
       $field_definitions = $this
@@ -581,6 +584,27 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
         if (in_array($structured_data['meta']['difficulty'], $allowed_values)) {
           $druki_content->set('difficulty', $structured_data['meta']['difficulty']);
         }
+      }
+    }
+  }
+
+  /**
+   * Process labels for content.
+   *
+   * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
+   *   The entity to save value.
+   * @param array $structured_data
+   *   An array with structured data from source file.
+   */
+  protected function processLabels(DrukiContentInterface $druki_content, array $structured_data): void {
+    // Reset value. Assumes that value was cleared.
+    $druki_content->set('labels', NULL);
+
+    if (isset($structured_data['meta']['labels'])) {
+      $labels = explode(', ', $structured_data['meta']['labels']);
+
+      if (!empty($labels)) {
+        $druki_content->set('labels', $labels);
       }
     }
   }

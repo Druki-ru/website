@@ -1,10 +1,11 @@
-uuid: 8e3b94b9-0b02-4480-98d3-1bfa4b450b81
+uuid: a33fd431-a722-4a5a-87e1-8c5d7295c2f6
 langcode: ru
 status: true
 dependencies:
   config:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
+    - field.field.druki_content.druki_content.labels
   module:
     - druki_content
     - paragraphs
@@ -41,6 +42,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  labels:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1
@@ -50,7 +59,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
