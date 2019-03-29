@@ -456,9 +456,10 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
         $destination_uri = $this->getMediaImageFieldDestination();
         $basename = basename($file_uri);
         $data = file_get_contents($file_uri);
-        /** @var \Drupal\file\FileInterface $file */
         $file = file_save_data($data, $destination_uri . '/' . $basename);
-        $media = $this->saveImageFileToMediaImage($file);
+        if ($file instanceof FileInterface) {
+          $media = $this->saveImageFileToMediaImage($file);
+        }
       }
 
       // If media entity was created or found.
@@ -471,6 +472,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
         return $paragraph;
       }
     }
+
+    return NULL;
   }
 
   /**

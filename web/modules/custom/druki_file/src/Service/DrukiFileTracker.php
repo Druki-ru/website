@@ -195,7 +195,7 @@ class DrukiFileTracker {
    * @return \Drupal\file\FileInterface|null
    *   The file entity, which store the same file, NULL if not found.
    */
-  public function checkDuplicate($uri): ?FileInterface {
+  public function checkDuplicate(string $uri): ?FileInterface {
     $file_hash = $this->getFileHash($uri);
     $result = $this->database->select('druki_file_tracker', 'ft')
       ->fields('ft', ['fid'])
@@ -206,6 +206,8 @@ class DrukiFileTracker {
     if (is_numeric($result)) {
       return $this->fileStorage->load($result);
     }
+
+    return NULL;
   }
 
   /**
