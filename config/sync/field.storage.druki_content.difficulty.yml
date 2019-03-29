@@ -15,13 +15,13 @@ settings:
   allowed_values:
     -
       value: basic
-      label: Basic
+      label: Основное
     -
       value: medium
-      label: Medium
+      label: Средний
     -
       value: advanced
-      label: Advanced
+      label: Расширенные
   allowed_values_function: ''
 module: options
 locked: true

@@ -12,7 +12,7 @@ id: paragraph.druki_image.druki_image
 field_name: druki_image
 entity_type: paragraph
 bundle: druki_image
-label: Image
+label: Изображение
 description: ''
 required: true
 translatable: false

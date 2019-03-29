@@ -13,7 +13,7 @@ id: paragraph.druki_heading.druki_textfield_formatted
 field_name: druki_textfield_formatted
 entity_type: paragraph
 bundle: druki_heading
-label: Heading
+label: Заголовок
 description: ''
 required: true
 translatable: false

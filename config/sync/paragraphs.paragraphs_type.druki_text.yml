@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: ePn2l35o1N3pHJXL4CIID-enx6wVpo4gbjMiL8c5ggs
 id: druki_text
-label: Text
+label: Текст
 icon_uuid: null
 description: ''
 behavior_plugins: {  }

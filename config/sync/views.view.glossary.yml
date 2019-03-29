@@ -20,7 +20,7 @@ core: '8'
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Основной
     display_plugin: default
     position: 0
     display_options:
@@ -45,11 +45,11 @@ display:
         options:
           submit_button: Применить
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Сбросить
+          exposed_sorts_label: 'Сортировать по'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'По возрастанию'
+          sort_desc_label: 'По убыванию'
       pager:
         type: mini
         options:
@@ -59,12 +59,12 @@ display:
           total_pages: 0
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Элементов на страницу'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Все -'
             offset: false
-            offset_label: Offset
+            offset_label: Пропустить
           tags:
             previous: ‹‹
             next: ››
@@ -124,7 +124,7 @@ display:
           id: name
           table: users_field_data
           field: name
-          label: Author
+          label: Автор
           relationship: uid
           plugin_id: field
           type: user_name
@@ -432,7 +432,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: Page
+    display_title: Страница
     display_plugin: page
     position: 1
     display_options:

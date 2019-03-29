@@ -25,7 +25,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Основной
     position: 0
     display_options:
       access:
@@ -48,11 +48,11 @@ display:
         options:
           submit_button: 'Apply Filters'
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Сбросить
+          exposed_sorts_label: 'Сортировать по'
           expose_sort_order: false
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'По возрастанию'
+          sort_desc_label: 'По убыванию'
       pager:
         type: mini
         options:
@@ -62,12 +62,12 @@ display:
           total_pages: null
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Элементов на страницу'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Все -'
             offset: false
-            offset_label: Offset
+            offset_label: Пропустить
           tags:
             previous: ‹‹
             next: ››
@@ -133,7 +133,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: Действие
           include_exclude: exclude
           selected_actions: {  }
           entity_type: media
@@ -203,7 +203,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: 'Publishing status'
+            label: 'Статус публикации'
             description: null
             use_operator: false
             operator: status_op
@@ -215,7 +215,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: Published
+            label: Опубликовано
             description: ''
             identifier: status
             optional: true
@@ -226,11 +226,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Published
+                title: Опубликовано
                 operator: '='
                 value: '1'
               2:
-                title: Unpublished
+                title: 'Снято с публикации'
                 operator: '='
                 value: '0'
           plugin_id: boolean
@@ -249,7 +249,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Name
+            label: Название
             description: ''
             use_operator: false
             operator: name_op
@@ -289,7 +289,7 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: 'Media type'
+            label: 'Тип медиа'
             description: ''
             use_operator: false
             operator: bundle_op
@@ -304,7 +304,7 @@ display:
             reduce: false
           is_grouped: false
           group_info:
-            label: 'Media type'
+            label: 'Тип медиа'
             description: null
             identifier: bundle
             optional: true
@@ -331,7 +331,7 @@ display:
           order: DESC
           exposed: true
           expose:
-            label: 'Newest first'
+            label: 'Новые сначала'
           granularity: second
           entity_type: media
           entity_field: created
@@ -364,7 +364,7 @@ display:
           entity_type: media
           entity_field: name
           plugin_id: standard
-      title: Media
+      title: Мультимедиа
       header: {  }
       footer: {  }
       empty:
@@ -377,7 +377,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: 'No media available.'
+          content: 'Мультимедийных файлов не найдено.'
           plugin_id: text_custom
       relationships: {  }
       display_extenders: {  }
@@ -400,14 +400,14 @@ display:
   page:
     display_plugin: page
     id: page
-    display_title: Page
+    display_title: Страница
     position: 1
     display_options:
       display_extenders: {  }
       path: admin/content/media
       menu:
         type: tab
-        title: Media
+        title: Мультимедиа
         description: 'Allows users to browse and administer media items'
         expanded: false
         parent: system.admin_content
@@ -431,7 +431,7 @@ display:
   widget:
     display_plugin: page
     id: widget
-    display_title: Widget
+    display_title: Виджет
     position: 2
     display_options:
       display_extenders: {  }

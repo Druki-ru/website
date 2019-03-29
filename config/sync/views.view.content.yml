@@ -8,7 +8,7 @@ dependencies:
 _core:
   default_config_hash: tS8PbpJX90aRFC3-UTgXzdqkq7_2frk2pz4TMijEebM
 id: content
-label: Content
+label: Содержимое
 module: node
 description: 'Поиск материалов и управление ими'
 tag: default
@@ -29,22 +29,22 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Filter
+          submit_button: Фильтр
           reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Сбросить
+          exposed_sorts_label: 'Сортировать по'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'По возрастанию'
+          sort_desc_label: 'По убыванию'
       pager:
         type: full
         options:
           items_per_page: 50
           tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
-            first: '« First'
-            last: 'Last »'
+            previous: '‹ Предыдущий'
+            next: 'Следующий ›'
+            first: '« Первая'
+            last: 'Последняя »'
       style:
         type: table
         options:
@@ -247,7 +247,7 @@ display:
           table: users_field_data
           field: name
           relationship: uid
-          label: Author
+          label: Автор
           exclude: false
           alter:
             alter_text: false
@@ -265,7 +265,7 @@ display:
           id: status
           table: node_field_data
           field: status
-          label: Status
+          label: Статус
           exclude: false
           alter:
             alter_text: false
@@ -278,8 +278,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_true: Published
-            format_custom_false: Unpublished
+            format_custom_true: Опубликовано
+            format_custom_false: 'Снято с публикации'
           plugin_id: field
           entity_type: node
           entity_field: status
@@ -287,7 +287,7 @@ display:
           id: changed
           table: node_field_data
           field: changed
-          label: Updated
+          label: Обновлено
           exclude: false
           alter:
             alter_text: false
@@ -312,7 +312,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Операции
           exclude: false
           alter:
             alter_text: false
@@ -450,7 +450,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: Status
+            label: Статус
             description: ''
             use_operator: false
             operator: status_op
@@ -462,7 +462,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: 'Статус публикации'
             description: ''
             identifier: status
             optional: true
@@ -473,11 +473,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Published
+                title: Опубликовано
                 operator: '='
                 value: '1'
               2:
-                title: Unpublished
+                title: 'Снято с публикации'
                 operator: '='
                 value: '0'
           plugin_id: boolean
@@ -496,7 +496,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: Язык
             description: ''
             use_operator: false
             operator: langcode_op
@@ -534,7 +534,7 @@ display:
           group: 1
           entity_type: node
       sorts: {  }
-      title: Content
+      title: Содержимое
       empty:
         area_text_custom:
           id: area_text_custom
@@ -559,7 +559,7 @@ display:
           1: AND
       display_extenders: {  }
     display_plugin: default
-    display_title: Master
+    display_title: Основной
     id: default
     position: 0
     cache_metadata:
@@ -578,20 +578,20 @@ display:
       path: admin/content/node
       menu:
         type: 'default tab'
-        title: Content
+        title: Содержимое
         description: ''
         menu_name: admin
         weight: -10
         context: ''
       tab_options:
         type: normal
-        title: Content
+        title: Содержимое
         description: 'Поиск материалов и управление ими'
         menu_name: admin
         weight: -10
       display_extenders: {  }
     display_plugin: page
-    display_title: Page
+    display_title: Страница
     id: page_1
     position: 1
     cache_metadata:

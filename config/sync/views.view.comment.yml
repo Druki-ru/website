@@ -19,7 +19,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Основной
     position: 0
     display_options:
       access:
@@ -42,11 +42,11 @@ display:
         options:
           submit_button: Применить
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Сбросить
+          exposed_sorts_label: 'Сортировать по'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'По возрастанию'
+          sort_desc_label: 'По убыванию'
       pager:
         type: full
         options:
@@ -61,12 +61,12 @@ display:
             last: 'последняя »'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Элементов на страницу'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Все -'
             offset: false
-            offset_label: Offset
+            offset_label: Пропустить
           quantity: 9
       style:
         type: table
@@ -180,7 +180,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: Действие
           include_exclude: include
           selected_actions:
             - comment_delete_action
@@ -324,7 +324,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Author
+          label: Автор
           exclude: false
           alter:
             alter_text: false
@@ -453,7 +453,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Updated
+          label: Обновлено
           exclude: false
           alter:
             alter_text: false
@@ -520,7 +520,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Операции
           exclude: false
           alter:
             alter_text: false
@@ -762,7 +762,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: Язык
             description: ''
             use_operator: false
             operator: langcode_op
@@ -1035,7 +1035,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Language
+            label: Язык
             description: ''
             use_operator: false
             operator: langcode_op
@@ -1117,7 +1117,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: Действие
           include_exclude: include
           selected_actions:
             - comment_delete_action
@@ -1261,7 +1261,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Author
+          label: Автор
           exclude: false
           alter:
             alter_text: false
@@ -1390,7 +1390,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Updated
+          label: Обновлено
           exclude: false
           alter:
             alter_text: false
@@ -1457,7 +1457,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: Операции
           exclude: false
           alter:
             alter_text: false
