@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.druki_content.difficulty
+  module:
+    - druki_content
+    - options
+id: druki_content.druki_content.difficulty
+field_name: difficulty
+entity_type: druki_content
+bundle: druki_content
+label: Difficulty
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -165,7 +165,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getExternalId(): string {
+  public function getExternalId(): ?string {
     return $this->get('external_id')->value;
   }
 

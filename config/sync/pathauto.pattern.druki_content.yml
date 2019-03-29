@@ -1,11 +1,11 @@
-uuid: 6673fa2f-8723-480f-bd09-8e33e7cf720b
+uuid: ee8749c5-4158-485a-84bb-98fc9a0c10e1
 langcode: ru
 status: true
 dependencies:
   module:
     - druki_content
 _core:
-  default_config_hash: 2p5LLztf0ikBZreOQKKVEVqEjrXiFKDa4ywyYvAC9LA
+  default_config_hash: Fpv_Hqj4ll6jR1cAWBtMxjvaOungA-Ds-UHSMiQBtQk
 id: druki_content
 label: 'Druki Content'
 type: 'canonical_entities:druki_content'

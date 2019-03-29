@@ -1,0 +1,32 @@
+uuid: c429254e-3f58-4f89-afd8-ea5c4af9e6ec
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+    - options
+_core:
+  default_config_hash: BgTWOJX3k95fxogQWv8_cnhqdz83zYBPdOaMrGlpSz0
+id: druki_content.difficulty
+field_name: difficulty
+entity_type: druki_content
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: basic
+      label: Basic
+    -
+      value: medium
+      label: Medium
+    -
+      value: advanced
+      label: Advanced
+  allowed_values_function: ''
+module: options
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

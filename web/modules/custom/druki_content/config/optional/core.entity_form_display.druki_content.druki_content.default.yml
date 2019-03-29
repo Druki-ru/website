@@ -3,9 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.druki_content.druki_content.content
+    - field.field.druki_content.druki_content.difficulty
   module:
     - druki_content
     - paragraphs
+    - path
+_core:
+  default_config_hash: UI8KSiqIyC4GTwhWtuUzgnz5GcSObN7KjNu6dH0LL-8
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
@@ -13,7 +17,7 @@ mode: default
 content:
   content:
     type: paragraphs
-    weight: 2
+    weight: 3
     region: content
     settings:
       title: Paragraph
@@ -30,12 +34,24 @@ content:
         collapse_edit_all: collapse_edit_all
         add_above: '0'
     third_party_settings: {  }
+  difficulty:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1
     region: content
     settings:
       include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
     third_party_settings: {  }
   title:
     type: string_textfield

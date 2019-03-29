@@ -5,3 +5,11 @@ entity.druki_content.settings:
     _title: 'Druki content'
   requirements:
     _permission: 'administer druki content'
+
+druki_content.delete_all:
+  path: '/admin/druki/content/delete-all'
+  defaults:
+    _title: 'Delete all druki content'
+    _form: 'Drupal\druki_content\Form\DrukiContentDeleteAllForm'
+  requirements:
+    _permission: 'delete druki_content'

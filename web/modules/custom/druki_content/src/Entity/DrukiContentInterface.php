@@ -110,7 +110,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return string
    *   The external ID.
    */
-  public function getExternalId(): string;
+  public function getExternalId(): ?string;
 
   /**
    * Sets core version.

@@ -1,15 +1,16 @@
-uuid: 2614ae9d-b0a7-44f6-aa69-f66ed0e0a0c1
+uuid: 8e3b94b9-0b02-4480-98d3-1bfa4b450b81
 langcode: ru
 status: true
 dependencies:
   config:
     - field.field.druki_content.druki_content.content
+    - field.field.druki_content.druki_content.difficulty
   module:
     - druki_content
     - paragraphs
     - path
 _core:
-  default_config_hash: UI8KSiqIyC4GTwhWtuUzgnz5GcSObN7KjNu6dH0LL-8
+  default_config_hash: 9eWve_e2wl-5GT1gZOJUxGIyfXYT5nFAPtfx3l6ygU8
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
@@ -17,7 +18,7 @@ mode: default
 content:
   content:
     type: paragraphs
-    weight: 2
+    weight: 3
     region: content
     settings:
       title: Paragraph
@@ -34,6 +35,12 @@ content:
         collapse_edit_all: collapse_edit_all
         add_above: '0'
     third_party_settings: {  }
+  difficulty:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1
@@ -43,7 +50,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }

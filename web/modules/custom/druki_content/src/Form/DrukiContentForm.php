@@ -17,7 +17,7 @@ class DrukiContentForm extends ContentEntityForm {
     $form = parent::form($form, $form_state);
 
     $form['git_information'] = [
-      '#markup' => '<div>test</div>',
+      '#markup' => '<div>@todo git info</div>',
       '#group' => 'advanced',
     ];
 
