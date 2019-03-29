@@ -12,11 +12,18 @@ $druki_content_storage = \Drupal::service('entity_type.manager')->getStorage('dr
 //$all = $druki_content_storage->loadMultiple();
 //$druki_content_storage->delete($all);
 /** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
-$druki_content = $druki_content_storage->loadByMeta('faq', NULL);
-$druki_content->save();
+//$druki_content = $druki_content_storage->loadByMeta('faq', NULL);
+//$druki_content->save();
 
 // Test TOC query.
 //$result = $druki_content_storage->getQuery()
 //  ->condition('toc.area', 'drupal')
 //  ->execute();
 //dump($result);
+
+/** @var \Drupal\Core\Entity\EntityFieldManagerInterface $field_manager */
+$field_manager = \Drupal::service('entity_field.manager');
+$field_definitions = $field_manager->getFieldDefinitions('druki_content', 'druki_content');
+$difficulty = $field_definitions['difficulty'];
+$settings = $difficulty->getSetting('allowed_values');
+dump(array_keys($settings));

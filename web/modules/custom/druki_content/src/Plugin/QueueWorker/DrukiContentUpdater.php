@@ -250,6 +250,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       $druki_content->set('forced_path', $forced_alias);
     }
 
+    // Handle difficulty.
+    $this->processDifficulty($druki_content, $structured_data);
+
     $druki_content->save();
   }
 
@@ -431,7 +434,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     else {
       // If no scheme is set, we treat this file as local and relative to
       // repository root folder.
-      $repository_path = $this->configFactory->get('druki_git.git_settings')
+      $repository_path = $this
+        ->configFactory
+        ->get('druki_git.git_settings')
         ->get('repository_path');
       $repository_path = rtrim($repository_path, '/');
       $src = ltrim($src, '/');
@@ -551,6 +556,33 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $paragraph->save();
 
     return $paragraph;
+  }
+
+  /**
+   * Process difficulty content value into field value.
+   *
+   * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
+   *   The entity to save value.
+   * @param array $structured_data
+   *   An array with structured data from source file.
+   */
+  protected function processDifficulty(DrukiContentInterface $druki_content, array $structured_data): void {
+    if (isset($structured_data['meta']['difficulty'])) {
+      // Get available values directly from field.
+      $field_definitions = $this
+        ->entityFieldManager
+        ->getFieldDefinitions('druki_content', 'druki_content');
+
+      if (isset($field_definitions['difficulty'])) {
+        $difficulty = $field_definitions['difficulty'];
+        $settings = $difficulty->getSetting('allowed_values');
+        $allowed_values = array_keys($settings);
+
+        if (in_array($structured_data['meta']['difficulty'], $allowed_values)) {
+          $druki_content->set('difficulty', $structured_data['meta']['difficulty']);
+        }
+      }
+    }
   }
 
 }

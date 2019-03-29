@@ -1118,6 +1118,10 @@ a.tabledrag-handle .handle {
         text-decoration: inherit;
         margin-right: 0; }
 
+.paragraph-druki-image {
+  display: flex;
+  justify-content: center; }
+
 .druki-content-druki-content-full__content-item {
   margin-bottom: 1rem; }
 
