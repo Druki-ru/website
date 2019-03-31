@@ -17,13 +17,6 @@ use Drupal\media\MediaInterface;
 class DrukiFileTracker {
 
   /**
-   * The database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  protected $database;
-
-  /**
    * The file storage.
    *
    * @var \Drupal\file\FileStorageInterface
@@ -54,8 +47,6 @@ class DrukiFileTracker {
   /**
    * DrukiFileTracker constructor.
    *
-   * @param \Drupal\Core\Database\Connection $database
-   *   The database connection.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
@@ -67,13 +58,11 @@ class DrukiFileTracker {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(
-    Connection $database,
     EntityTypeManagerInterface $entity_type_manager,
     LoggerChannelFactoryInterface $logger,
     FileUsageInterface $file_usage
   ) {
 
-    $this->database = $database;
     $this->fileStorage = $entity_type_manager->getStorage('file');
     $this->logger = $logger->get('druki_file');
     $this->fileUsage = $file_usage;
@@ -93,49 +82,13 @@ class DrukiFileTracker {
    */
   public function track(FileInterface $file): bool {
     if ($file->isPermanent()) {
-      if ($this->isFileTracked($file)) {
-        $this->update($file);
-      }
-      else {
-        $this->create($file);
-      }
+      $file_hash = $this->getFileHash($file->getFileUri());
+      $file->set('druki_file_hash', $file_hash);
 
       return TRUE;
     }
 
     return FALSE;
-  }
-
-  /**
-   * Checks is file has record in database.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   *
-   * @return bool
-   *   TRUE if tracker, FALSE otherwise.
-   */
-  public function isFileTracked(FileInterface $file): bool {
-    return (bool) $this->database->select('druki_file_tracker', 'ft')
-      ->condition('ft.fid', $file->id())
-      ->countQuery()
-      ->execute()
-      ->fetchField();
-  }
-
-  /**
-   * Updates record for file.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   */
-  protected function update(FileInterface $file): void {
-    $this->database->update('druki_file_tracker')
-      ->fields([
-        'fid' => $file->id(),
-        'file_hash' => $this->getFileHash($file->getFileUri()),
-      ])
-      ->execute();
   }
 
   /**
@@ -158,35 +111,6 @@ class DrukiFileTracker {
   }
 
   /**
-   * Creates new record for file.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   *
-   * @throws \Exception
-   */
-  protected function create(FileInterface $file): void {
-    $this->database->insert('druki_file_tracker')
-      ->fields([
-        'fid' => $file->id(),
-        'file_hash' => $this->getFileHash($file->getFileUri()),
-      ])
-      ->execute();
-  }
-
-  /**
-   * Deletes tracking info for file.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   */
-  public function delete(FileInterface $file): void {
-    $this->database->delete('druki_file_tracker')
-      ->condition('fid', $file->id())
-      ->execute();
-  }
-
-  /**
    * Checks if file from provided uri is duplicate on of the existed.
    *
    * @param string $uri
@@ -197,14 +121,18 @@ class DrukiFileTracker {
    */
   public function checkDuplicate(string $uri): ?FileInterface {
     $file_hash = $this->getFileHash($uri);
-    $result = $this->database->select('druki_file_tracker', 'ft')
-      ->fields('ft', ['fid'])
-      ->condition('ft.file_hash', $file_hash)
-      ->execute()
-      ->fetchField();
 
-    if (is_numeric($result)) {
-      return $this->fileStorage->load($result);
+    $result = $this
+      ->fileStorage
+      ->getQuery()
+      ->condition('druki_file_hash', $file_hash)
+      ->range(0, 1)
+      ->execute();
+
+    if (!empty($result)) {
+      $fid = reset($result);
+
+      return $this->fileStorage->load($fid);
     }
 
     return NULL;
@@ -216,7 +144,9 @@ class DrukiFileTracker {
   public function updateTrackingInformation(): void {
     $this->clearTrackingInformation();
 
-    $file_ids = $this->fileStorage->getQuery()
+    $file_ids = $this
+      ->fileStorage
+      ->getQuery()
       ->exists('uri')
       ->condition('status', FILE_STATUS_PERMANENT)
       ->execute();
@@ -233,7 +163,13 @@ class DrukiFileTracker {
    * Deletes all tracking information.
    */
   protected function clearTrackingInformation(): void {
-    $this->database->delete('druki_file_tracker')->execute();
+    $files = $this->fileStorage->loadMultiple();
+
+    /** @var FileInterface $file */
+    foreach ($files as $file) {
+      $file->set('druki_file_hash', NULL);
+      $file->save();
+    }
   }
 
   /**
@@ -254,6 +190,8 @@ class DrukiFileTracker {
     if ($media_id) {
       return $this->mediaStorage->load($media_id);
     }
+
+    return NULL;
   }
 
 }
