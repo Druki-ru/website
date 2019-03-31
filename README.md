@@ -1,5 +1,8 @@
 # Druki - Wiki about Drupal, made on Drupal
 
+> Wikipedia is the best thing ever. Anyone in the world can write anything they want about any subject. So you know you are getting the best possible information.
+> — <cite>[Michael Scott](https://www.youtube.com/watch?v=kFBDn5PiL00)</cite>
+
 This website is an experiment with a lot of different API's, techniques and other stuff. In other words - a pet project to learn Drupal a bit deeper.
 
 It was inspired by many other documentation sites and their content editing process, but most important inspiration comes from ArchWiki. This project is trying to achieve the same things, but about Drupal and on Drupal, because, why not?
