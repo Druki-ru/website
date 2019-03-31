@@ -5,9 +5,9 @@ $icons: (
 .druki-title {
   $block: &;
   overflow: hidden;
-  color: theme-color(on-secondary);
-  background-color: theme-color(secondary);
-  background-image: url('../images/diagmonds.png');
+  color: theme-color(on-primary);
+  background-color: theme-color();
+  //background-image: url('../images/diagmonds.png');
 
   &__inner {
     @include make-container();

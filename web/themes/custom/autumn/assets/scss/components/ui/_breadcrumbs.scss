@@ -10,8 +10,8 @@ $breadcrumb-padding-horizontal: 0 !default;
 $breadcrumb-margin-bottom: 0 !default;
 $breadcrumb-bg: transparent !default;
 $breadcrumb-delimiter-content: '/' !default;
-$breadcrumb-delimiter-color: theme-color(on-secondary) !default;
-$breadcrumb-link-color: theme-color(on-secondary) !default;
+$breadcrumb-delimiter-color: theme-color(on-primary) !default;
+$breadcrumb-link-color: theme-color(on-primary) !default;
 $breadcrumb-font-size: $global-font-size !default;
 
 .breadcrumbs {

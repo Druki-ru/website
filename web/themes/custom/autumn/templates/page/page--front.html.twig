@@ -1,0 +1,10 @@
+{% set bem_block = 'app' %}
+<div class="{{ bem_block }}">
+  {% include '@autumn/include/header.html.twig' %}
+
+  <main class="{{ bem_block }}__main">
+    {% include '@autumn/include/frontpage.html.twig' %}
+  </main>
+
+  {% include '@autumn/include/footer.html.twig' %}
+</div>

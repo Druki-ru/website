@@ -8,11 +8,11 @@
 
 ::-moz-selection {
   background: #FFD45E;
-  color: #000000; }
+  color: #3F2B25; }
 
 ::selection {
   background: #FFD45E;
-  color: #000000; }
+  color: #3F2B25; }
 
 html {
   font-size: 1rem;
@@ -83,7 +83,7 @@ h5,
 h6 {
   margin-top: unset;
   margin-bottom: 0.5rem;
-  font-weight: normal; }
+  font-weight: bold; }
 
 a {
   color: #2962FF;
