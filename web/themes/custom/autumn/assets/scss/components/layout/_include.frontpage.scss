@@ -11,7 +11,7 @@
 
   &__promo {
     position: relative;
-    padding: gap(15) 0;
+    padding: gap(20) 0;
     color: theme-color(on-primary);
     background-color: rgba(theme-color(), 0.85);
 
@@ -103,7 +103,9 @@
   }
 
   &__resources-link {
-    color: theme-color(on-primary)
+    display: block;
+    text-align: center;
+    color: theme-color(on-primary);
   }
 
   &__resources-branding {
@@ -126,6 +128,7 @@
 
   &__resources-branding-logo {
     position: relative;
+    top: -10px;
     width: 190px;
   }
 

@@ -15,4 +15,10 @@ a {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
+
+  &:focus {
+    outline: initial;
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
 }

@@ -3,16 +3,16 @@
   min-width: 0; }
 
 :focus {
-  outline: 2px dashed rgba(255, 212, 94, 0.3);
-  outline-offset: 3px; }
+  outline: 2px solid #A9CAF7;
+  outline-offset: 0; }
 
 ::-moz-selection {
-  background: #FFD45E;
-  color: #3F2B25; }
+  background: #FFD029;
+  color: #3F2F17; }
 
 ::selection {
-  background: #FFD45E;
-  color: #3F2B25; }
+  background: #FFD029;
+  color: #3F2F17; }
 
 html {
   font-size: 1rem;
@@ -25,7 +25,7 @@ body {
   line-height: 1.5;
   background: #ffffff;
   font-family: "Roboto", sans-serif;
-  color: #202124; }
+  color: #222330; }
 
 p {
   margin: 0 0 1rem; }
@@ -52,28 +52,28 @@ code {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
 
 h1 {
-  font-size: 2.25rem;
-  line-height: 1.33333; }
+  font-size: 2rem;
+  line-height: 1.25; }
 
 h2 {
-  font-size: 1.75rem;
-  line-height: 1.42857; }
+  font-size: 1.8125rem;
+  line-height: 1.37931; }
 
 h3 {
-  font-size: 1.5rem;
-  line-height: 1.33333; }
+  font-size: 1.625rem;
+  line-height: 1.53846; }
 
 h4 {
-  font-size: 1.25rem;
-  line-height: 1.6; }
+  font-size: 1.4375rem;
+  line-height: 1.3913; }
 
 h5 {
-  font-size: 1.125rem;
-  line-height: 1.77778; }
+  font-size: 1.3125rem;
+  line-height: 1.52381; }
 
 h6 {
-  font-size: 1rem;
-  line-height: 1.5; }
+  font-size: 1.125rem;
+  line-height: 1.77778; }
 
 h1,
 h2,
@@ -86,10 +86,14 @@ h6 {
   font-weight: bold; }
 
 a {
-  color: #2962FF;
+  color: #0048DC;
   text-decoration: none; }
   a:hover {
-    color: #4375ff;
+    color: #002f90;
+    text-decoration: none; }
+  a:focus {
+    outline: initial;
+    color: #002f90;
     text-decoration: none; }
 
 ol, ul {

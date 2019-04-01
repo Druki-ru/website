@@ -1,11 +1,17 @@
 $font-family-sans-serif: 'Roboto', sans-serif;
 
 $theme-colors: (
-  primary: #FFD45E,
-  on-primary: #3F2B25,
-  secondary: #6D4C41,
-  on-secondary: #fef4db,
+  primary: #FFD029,
+  on-primary: #3F2F17,
+  secondary: #3F2F17,
+  on-secondary: #FFD029,
+
+  focus: #A9CAF7,
+  error: #FC0014,
+  warning: #FFD029,
+  success: #008972,
+  note: #0048DC,
 );
 
-$link-color: #2962FF;
-$link-hover-color: lighten($link-color, 5%);
+$link-color: #0048DC;
+$link-hover-color: darken($link-color, 15%);

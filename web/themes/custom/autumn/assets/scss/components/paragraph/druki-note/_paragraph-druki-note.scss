@@ -1,12 +1,12 @@
 .paragraph-druki-note {
   $block: &;
-  padding: gap(2);
-  border-radius: $border-radius-base;
   display: flex;
+  border-radius: $border-radius-base;
 
   &__left {
     flex-shrink: 0;
-    width: calc(40px + #{gap(2)});
+    width: calc(40px + #{gap(4)});
+    padding: gap(2);
   }
 
   &__icon {
@@ -15,39 +15,59 @@
     text-align: center;
   }
 
+  &__content {
+    padding: gap(2);
+  }
+
   &--note {
-    background-color: color-palette(color(blue), 100);
+    border: 1px solid theme-color(note);
+
+    #{$block}__left {
+      background-color: theme-color(note);
+    }
 
     #{$block}__icon {
       @include mdi-icon('file-document-edit', $margin-size: 0);
-      color: color-palette(color(blue), 700);
+      color: white;
     }
   }
 
   &--warning {
-    background-color: color-palette(color(orange), 100);
+    border: 1px solid theme-color(warning);
+
+    #{$block}__left {
+      background-color: theme-color(warning);
+    }
 
     #{$block}__icon {
       @include mdi-icon('alert-circle-outline', $margin-size: 0);
-      color: color-palette(color(orange), 700);
     }
   }
 
   &--tip {
-    background-color: color-palette(color(green), 100);
+    border: 1px solid theme-color(success);
+
+    #{$block}__left {
+      background-color: theme-color(success);
+    }
+
 
     #{$block}__icon {
       @include mdi-icon('lightbulb-on-outline', $margin-size: 0);
-      color: color-palette(color(green), 700);
+      color: white;
     }
   }
 
   &--important {
-    background-color: color-palette(color(red), 100);
+    border: 1px solid theme-color(error);
+
+    #{$block}__left {
+      background-color: theme-color(error);
+    }
 
     #{$block}__icon {
       @include mdi-icon('alert-octagram-outline', $margin-size: 0);
-      color: color-palette(color(red), 700);
+      color: white;
     }
   }
 }
