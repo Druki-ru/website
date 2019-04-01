@@ -34,4 +34,9 @@
     @include mdi-icon('gitlab');
     color: color(orange);
   }
+
+  &__developer {
+    color: #757AF7;
+    font-weight: bold;
+  }
 }

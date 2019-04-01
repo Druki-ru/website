@@ -4,6 +4,11 @@
     @include make-container-max-widths();
   }
 
+  &__inner--resources {
+    display: flex;
+    justify-content: center;
+  }
+
   &__promo {
     position: relative;
     padding: gap(15) 0;
@@ -47,6 +52,94 @@
   }
 
   &__resources {
+    position: relative;
+    z-index: 2;
+    padding-bottom: gap(10);
     background-color: theme-color();
+  }
+
+  &__resources-download {
+    width: 400px;
+    margin-top: gap(-4);
+  }
+
+  &__resources-download-button {
+    @include button-variant(theme-color(on-secondary), theme-color(secondary));
+    @include button-size(gap(2), gap(5), 20px);
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 100px;
+  }
+
+  &__resources-docs {
+    width: 400px;
+    margin-top: gap(-4);
+  }
+
+  &__resources-docs-button {
+    @include button-variant(theme-color(on-secondary), theme-color(secondary));
+    @include button-size(gap(2), gap(5), 20px);
+    font-weight: bold;
+    justify-content: flex-end;
+    text-transform: uppercase;
+    border-radius: 100px;
+  }
+
+  &__resources-links {
+    @include list-unstyled;
+    float: left;
+  }
+
+  &__resources-links--right {
+    float: right;
+  }
+
+  &__resources-link-item:first-child {
+    font-weight: bold;
+    margin-bottom: gap();
+    padding-bottom: gap();
+    text-align: center;
+    border-bottom: 1px solid color-palette(theme-color(), 800);
+  }
+
+  &__resources-link {
+    color: theme-color(on-primary)
+  }
+
+  &__resources-branding {
+    position: absolute;
+    top: -110px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__resources-branding-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: gap(28);
+    height: gap(28);
+    border-radius: 100%;
+    background-color: theme-color();
+    box-shadow: 0 0 0 30px rgba(theme-color(), 0.5);
+  }
+
+  &__resources-branding-logo {
+    position: relative;
+    width: 190px;
+  }
+
+  &__version {
+    text-align: center;
+    color: theme-color(on-primary);
+  }
+
+  &__version-label {
+    @include font-size(20px, $modifier: -1);
+  }
+
+  &__version-number {
+    @include font-size(24px, $modifier: -1);
+    font-weight: bold;
   }
 }

@@ -20,19 +20,19 @@
   </div>
 
   <div class="{{ bem_block }}__resources">
-    <div class="{{ bem_block }}__inner">
+    <div class="{{ bem_block }}__inner {{ bem_block }}__inner--resources">
       <div class="{{ bem_block }}__resources-download">
         <a href="/download" class="{{ bem_block}}__resources-download-button">
           Скачать
         </a>
 
         <ul class="{{ bem_block }}__resources-links">
-          <li class="{{ bem_block }}__resources-links">
+          <li class="{{ bem_block }}__resources-link-item">
             <a href="#" class="{{ bem_block }}__resources-link">
               Что такое Drupal
             </a>
           </li>
-          <li class="{{ bem_block }}__resources-links">
+          <li class="{{ bem_block }}__resources-link-item">
             <a href="#" class="{{ bem_block }}__resources-link">
               Установка
             </a>
@@ -45,18 +45,33 @@
           Документация
         </a>
 
-        <ul class="{{ bem_block }}__resources-links">
-          <li class="{{ bem_block }}__resources-links">
+        <ul class="{{ bem_block }}__resources-links {{ bem_block }}__resources-links--right">
+          <li class="{{ bem_block }}__resources-link-item">
             <a href="#" class="{{ bem_block }}__resources-link">
               Руководство по началу работы
             </a>
           </li>
-          <li class="{{ bem_block }}__resources-links">
+          <li class="{{ bem_block }}__resources-link-item">
             <a href="#" class="{{ bem_block }}__resources-link">
               Список изменений
             </a>
           </li>
         </ul>
+      </div>
+
+      <div class="{{ bem_block }}__resources-branding">
+        <div class="{{ bem_block }}__resources-branding-circle">
+          <img
+            src="/{{ active_theme_path() }}/assets/images/druplicon-vector.svg"
+            class="{{ bem_block }}__resources-branding-logo"
+            alt="Druplicon"
+          >
+        </div>
+
+        <div class="{{ bem_block }}__version">
+          <div class="{{ bem_block }}__version-label">Drupal</div>
+          <div class="{{ bem_block }}__version-number">8.6.13</div>
+        </div>
       </div>
     </div>
   </div>

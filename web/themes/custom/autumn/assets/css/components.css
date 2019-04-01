@@ -56,7 +56,7 @@ a {
 
 .button, .button--primary,
 .button--action, .button--warning, .button-danger,
-.button--danger, .button--success, .button--info, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .button {
+.button--danger, .button--success, .button--info, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .button, .frontpage__resources-download-button, .frontpage__resources-docs-button {
   font-size: 1rem;
   line-height: 1.5;
   padding: 0.5rem 1rem;
@@ -874,6 +874,9 @@ a.tabledrag-handle .handle {
       display: inline-block;
       text-decoration: inherit;
       margin-right: 0.4em; }
+  .footer__developer {
+    color: #757AF7;
+    font-weight: bold; }
 
 .frontpage__inner {
   width: 100%;
@@ -889,6 +892,10 @@ a.tabledrag-handle .handle {
     .frontpage__inner {
       width: 71.25rem;
       max-width: 100%; } }
+
+.frontpage__inner--resources {
+  display: flex;
+  justify-content: center; }
 
 .frontpage__promo {
   position: relative;
@@ -923,7 +930,136 @@ a.tabledrag-handle .handle {
   margin-bottom: 2rem; }
 
 .frontpage__resources {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 5rem;
   background-color: #FFD45E; }
+
+.frontpage__resources-download {
+  width: 400px;
+  margin-top: -2rem; }
+
+.frontpage__resources-download-button {
+  color: #fef4db;
+  background-color: #6D4C41;
+  background-image: none;
+  border-color: transparent;
+  transition: all .15s ease-in-out;
+  box-shadow: none;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  padding: 1rem 2.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 100px; }
+  .frontpage__resources-download-button:focus, .frontpage__resources-download-button:hover {
+    color: #fef4db;
+    background-color: #4d362e;
+    border-color: rgba(0, 0, 0, 0); }
+  .frontpage__resources-download-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(109, 76, 65, 0.5); }
+  .frontpage__resources-download-button:disabled {
+    background-color: #6D4C41;
+    border-color: transparent;
+    opacity: .65; }
+  .frontpage__resources-download-button:active {
+    color: #fef4db;
+    background-color: #4d362e;
+    background-image: none;
+    border-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 3px rgba(109, 76, 65, 0.5); }
+
+.frontpage__resources-docs {
+  width: 400px;
+  margin-top: -2rem; }
+
+.frontpage__resources-docs-button {
+  color: #fef4db;
+  background-color: #6D4C41;
+  background-image: none;
+  border-color: transparent;
+  transition: all .15s ease-in-out;
+  box-shadow: none;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  padding: 1rem 2.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+  justify-content: flex-end;
+  text-transform: uppercase;
+  border-radius: 100px; }
+  .frontpage__resources-docs-button:focus, .frontpage__resources-docs-button:hover {
+    color: #fef4db;
+    background-color: #4d362e;
+    border-color: rgba(0, 0, 0, 0); }
+  .frontpage__resources-docs-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(109, 76, 65, 0.5); }
+  .frontpage__resources-docs-button:disabled {
+    background-color: #6D4C41;
+    border-color: transparent;
+    opacity: .65; }
+  .frontpage__resources-docs-button:active {
+    color: #fef4db;
+    background-color: #4d362e;
+    background-image: none;
+    border-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 3px rgba(109, 76, 65, 0.5); }
+
+.frontpage__resources-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  float: left; }
+
+.frontpage__resources-links--right {
+  float: right; }
+
+.frontpage__resources-link-item:first-child {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid #ffbb02; }
+
+.frontpage__resources-link {
+  color: #3F2B25; }
+
+.frontpage__resources-branding {
+  position: absolute;
+  top: -110px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%); }
+
+.frontpage__resources-branding-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 100%;
+  background-color: #FFD45E;
+  box-shadow: 0 0 0 30px rgba(255, 212, 94, 0.5); }
+
+.frontpage__resources-branding-logo {
+  position: relative;
+  width: 190px; }
+
+.frontpage__version {
+  text-align: center;
+  color: #3F2B25; }
+
+.frontpage__version-label {
+  font-size: 1.25rem;
+  line-height: 1.2; }
+
+.frontpage__version-number {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: bold; }
 
 .region-sidebar-second {
   padding-left: 1rem;
