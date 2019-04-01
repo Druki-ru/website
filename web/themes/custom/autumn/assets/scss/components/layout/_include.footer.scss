@@ -1,7 +1,7 @@
 .footer {
   @include font-size(14px);
-  padding-top: gap(6);
-  padding-bottom: gap(6);
+  padding-top: spacing-unit(6);
+  padding-bottom: spacing-unit(6);
   color: gray(700);
   background-color: gray(100);
 
@@ -15,8 +15,8 @@
 
   &__bottom {
     justify-content: center;
-    margin-top: gap(4);
-    padding-top: gap(4);
+    margin-top: spacing-unit(4);
+    padding-top: spacing-unit(4);
     border-top: 1px solid gray(300);
   }
 

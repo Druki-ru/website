@@ -12,8 +12,8 @@ $icons: (
   &__inner {
     @include make-container();
     @include make-container-max-widths();
-    padding-top: gap(8);
-    padding-bottom: gap(8);
+    padding-top: spacing-unit(8);
+    padding-bottom: spacing-unit(8);
   }
 
   &__title {
@@ -23,7 +23,7 @@ $icons: (
 
   &__links {
     display: flex;
-    padding-top: gap(6);
+    padding-top: spacing-unit(6);
   }
 
   &__links-item:not(:last-child) {
@@ -39,7 +39,7 @@ $icons: (
   &__links-link {
     display: flex;
     align-items: center;
-    padding: gap() gap(2);
+    padding: spacing-unit() spacing-unit(2);
     color: theme-color(secondary);
     border-radius: $border-radius-base $border-radius-base 0 0;
     background-color: white;

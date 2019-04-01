@@ -1,13 +1,13 @@
 .block-druki-category-navigation {
-  margin-bottom: gap(4);
+  margin-bottom: spacing-unit(4);
 
   &__title {
     @include mdi-icon('folder-edit-outline', $margin-size: 0);
     font-weight: bold;
     position: relative;
-    margin-bottom: gap();
-    padding-bottom: gap();
-    padding-left: calc(21px + #{gap()});
+    margin-bottom: spacing-unit();
+    padding-bottom: spacing-unit();
+    padding-left: calc(21px + #{spacing-unit()});
     text-transform: uppercase;
     border-bottom: 1px solid gray(200);
 

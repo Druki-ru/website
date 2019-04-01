@@ -1,8 +1,8 @@
 // =============================================================================
 // Form and Drupal Form API elements.
 // =============================================================================
-$input-padding-y: gap() !default;
-$input-padding-x: gap(2) !default;
+$input-padding-y: spacing-unit() !default;
+$input-padding-x: spacing-unit(2) !default;
 $input-border-width: 1px !default;
 $input-bg: #FFFFFF !default;
 $input-border: rgba(34, 36, 38, 0.15) !default;
@@ -11,7 +11,7 @@ $input-enable-shadows: false !default;
 $input-box-shadow: 0 0 0 0 transparent !default;
 $input-focus-box-shadow: 0 0 0 3px rgba(theme-color(primary), 0.5) !default;
 $input-border-radius: $border-radius-small !default;
-$input-color: $text-color !default;
+$input-color: $global-text-color !default;
 $input-bg-disabled: rgb(250, 250, 250) !default;
 $input-color-disabled: rgba(163, 163, 163, 1) !default;
 $input-line-height: auto !default;
@@ -22,19 +22,19 @@ $label-required-color: theme-color(error) !default;
 $label-required-margin: 0 0 0 4px !default;
 
 .form-item {
-  margin: 0 0 gap(2);
+  margin: 0 0 spacing-unit(2);
 
   &__description {
     font-size: 85%;
     display: block;
-    margin-top: gap();
-    margin-bottom: gap();
-    color: $text-color-subtle;
+    margin-top: spacing-unit();
+    margin-bottom: spacing-unit();
+    color: gray(600);
   }
 
   &__label {
     display: inline-block;
-    margin-bottom: gap();
+    margin-bottom: spacing-unit();
     font-weight: bold;
 
     &.option {
@@ -62,7 +62,7 @@ $label-required-margin: 0 0 0 4px !default;
 .form-actions {
   input {
     width: auto;
-    margin: 0 gap() 0 0;
+    margin: 0 spacing-unit() 0 0;
 
     &:last-child {
       margin: 0;
@@ -71,18 +71,18 @@ $label-required-margin: 0 0 0 4px !default;
 }
 
 .filter-wrapper {
-  margin-top: gap(-2);
+  margin-top: spacing-unit(-2);
 }
 
 .form-wrapper {
   &__summary {
-    padding: gap();
+    padding: spacing-unit();
     cursor: pointer;
     background: gray(100);
   }
 
   &__content {
-    padding: gap();
+    padding: spacing-unit();
   }
 }
 

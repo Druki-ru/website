@@ -3,8 +3,8 @@
 // =============================================================================
 
 $hr-border-color: gray(500) !default;
-$hr-margin-top: gap(2) !default;
-$hr-margin-bottom: gap(2) !default;
+$hr-margin-top: spacing-unit(2) !default;
+$hr-margin-bottom: spacing-unit(2) !default;
 
 hr {
   margin-top: $hr-margin-top;

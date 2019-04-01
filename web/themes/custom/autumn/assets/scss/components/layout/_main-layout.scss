@@ -5,7 +5,7 @@
   @include make-container;
   @include make-container-max-widths;
   display: grid;
-  grid-gap: gap(2);
+  grid-gap: spacing-unit(2);
 
   &--sidebar-second {
     grid-template-columns: 1fr 260px;

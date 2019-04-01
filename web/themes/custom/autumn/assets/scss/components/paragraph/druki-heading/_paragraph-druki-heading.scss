@@ -11,8 +11,8 @@
   }
 
   &__heading--h2 {
-    padding-bottom: gap();
-    margin-bottom: gap();
+    padding-bottom: spacing-unit();
+    margin-bottom: spacing-unit();
     border-bottom: 1px solid gray(200);
   }
 

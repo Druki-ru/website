@@ -2,8 +2,8 @@
 // Button mixins and styles. Including Drupal buttons.
 // =============================================================================
 
-$input-btn-padding-y: gap() !default;
-$input-btn-padding-x: gap(2) !default;
+$input-btn-padding-y: spacing-unit() !default;
+$input-btn-padding-x: spacing-unit(2) !default;
 $input-btn-border-width: 1px !default;
 
 $btn-line-height: auto !default;
@@ -12,8 +12,8 @@ $btn-enable-shadows: true !default;
 $btn-box-shadow: none !default;
 $btn-border-radius: $border-radius-small !default;
 
-$btn-default-color: #606266 !default;
-$btn-default-bg: #ffffff !default;
+$btn-default-color: #222330 !default;
+$btn-default-bg: #D8D9E0 !default;
 $btn-default-border: #dcdfe6 !default;
 
 $btn-primary-color: white !default;
@@ -32,35 +32,50 @@ $btn-danger-color: white !default;
 $btn-danger-bg: theme-color(error) !default;
 $btn-danger-border: darken($btn-danger-bg, 5%) !default;
 
-$btn-info-color: white !default;
-$btn-info-bg: theme-color(info) !default;
-$btn-info-border: darken($btn-info-bg, 5%) !default;
-
 // =====================================
 // Button style generator.
 // =====================================
 @mixin button-variant($color, $background, $border: transparent) {
   @extend %button;
-  $active-background: darken($background, 10%);
+  $hover-background: darken($background, 6%);
+  $hover-border: darken($border, 6%);
+  $active-background: darken($background, 12%);
   $active-border: darken($border, 12%);
+  $focus-background: lighten($background, 3%);
+  $focus-border: lighten($background, 3%);
+
   color: $color;
   background-color: $background;
   background-image: none;
   border-color: $border;
   transition: all .15s ease-in-out;
+
   @if ($btn-enable-shadows) {
     box-shadow: $btn-box-shadow;
   }
 
-  &:focus,
   &:hover {
     color: $color;
+    background-color: $hover-background;
+    border-color: $hover-border;
+  }
+
+  &:active {
+    color: $color;
     background-color: $active-background;
+    background-image: none;
     border-color: $active-border;
+
+    @if ($btn-enable-shadows) {
+      box-shadow: 0 0 0 3px rgba($background, .5);
+    }
   }
 
   &:focus {
     outline: none;
+    background: $focus-background;
+    border-color: $focus-border;
+
     @if ($btn-enable-shadows) {
       box-shadow: 0 0 0 3px rgba($background, .5);
     }
@@ -70,16 +85,6 @@ $btn-info-border: darken($btn-info-bg, 5%) !default;
     background-color: $background;
     border-color: $border;
     opacity: .65;
-  }
-
-  &:active {
-    color: $color;
-    background-color: $active-background;
-    background-image: none;
-    border-color: $active-border;
-    @if ($btn-enable-shadows) {
-      box-shadow: 0 0 0 3px rgba($background, .5);
-    }
   }
 }
 
@@ -135,7 +140,7 @@ $btn-info-border: darken($btn-info-bg, 5%) !default;
 // =====================================
 %button {
   @include button-size();
-  display: flex;
+  display: inline-block;
   font-weight: $btn-font-weight;
   text-align: center;
   white-space: nowrap;
@@ -179,11 +184,4 @@ $btn-info-border: darken($btn-info-bg, 5%) !default;
 // =====================================
 .button--success {
   @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
-}
-
-// =====================================
-// Info button style.
-// =====================================
-.button--info {
-  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
 }

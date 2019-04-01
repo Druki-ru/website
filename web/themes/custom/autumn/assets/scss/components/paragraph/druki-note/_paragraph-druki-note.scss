@@ -5,8 +5,8 @@
 
   &__left {
     flex-shrink: 0;
-    width: calc(40px + #{gap(4)});
-    padding: gap(2);
+    width: calc(40px + #{spacing-unit(4)});
+    padding: spacing-unit(2);
   }
 
   &__icon {
@@ -16,7 +16,7 @@
   }
 
   &__content {
-    padding: gap(2);
+    padding: spacing-unit(2);
   }
 
   &--note {

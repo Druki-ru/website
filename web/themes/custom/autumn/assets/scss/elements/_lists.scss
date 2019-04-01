@@ -10,6 +10,6 @@ ol, ul {
   padding: $list-paddings;
 
   li {
-    margin: gap() 0;
+    margin: spacing-unit() 0;
   }
 }

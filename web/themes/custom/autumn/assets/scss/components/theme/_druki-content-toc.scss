@@ -6,7 +6,7 @@
   }
 
   &__menu-item-link {
-    color: $text-color;
+    color: $global-text-color;
   }
 
   &__menu-item-link--active {
@@ -17,6 +17,6 @@
   &__submenu {
     @include list-unstyled;
     @include font-size(13px);
-    margin-left: gap(2);
+    margin-left: spacing-unit(2);
   }
 }

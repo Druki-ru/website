@@ -11,7 +11,7 @@
 
   &__promo {
     position: relative;
-    padding: gap(20) 0;
+    padding: spacing-unit(20) 0;
     color: theme-color(on-primary);
     background-color: rgba(theme-color(), 0.85);
 
@@ -48,24 +48,24 @@
   }
 
   &__title {
-    margin-bottom: gap(4);
+    margin-bottom: spacing-unit(4);
   }
 
   &__resources {
     position: relative;
     z-index: 2;
-    padding-bottom: gap(10);
+    padding-bottom: spacing-unit(10);
     background-color: theme-color();
   }
 
   &__resources-download {
     width: 400px;
-    margin-top: gap(-4);
+    margin-top: spacing-unit(-4);
   }
 
   &__resources-download-button {
     @include button-variant(theme-color(on-secondary), theme-color(secondary));
-    @include button-size(gap(2), gap(5), 20px);
+    @include button-size(spacing-unit(2), spacing-unit(5), 20px);
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 100px;
@@ -73,12 +73,12 @@
 
   &__resources-docs {
     width: 400px;
-    margin-top: gap(-4);
+    margin-top: spacing-unit(-4);
   }
 
   &__resources-docs-button {
     @include button-variant(theme-color(on-secondary), theme-color(secondary));
-    @include button-size(gap(2), gap(5), 20px);
+    @include button-size(spacing-unit(2), spacing-unit(5), 20px);
     font-weight: bold;
     justify-content: flex-end;
     text-transform: uppercase;
@@ -96,8 +96,8 @@
 
   &__resources-link-item:first-child {
     font-weight: bold;
-    margin-bottom: gap();
-    padding-bottom: gap();
+    margin-bottom: spacing-unit();
+    padding-bottom: spacing-unit();
     text-align: center;
     border-bottom: 1px solid color-palette(theme-color(), 800);
   }
@@ -119,8 +119,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: gap(28);
-    height: gap(28);
+    width: spacing-unit(28);
+    height: spacing-unit(28);
     border-radius: 100%;
     background-color: theme-color();
     box-shadow: 0 0 0 30px rgba(theme-color(), 0.5);
