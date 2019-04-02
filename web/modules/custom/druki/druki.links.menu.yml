@@ -1,5 +1,11 @@
 druki.admin:
-  title: 'Druki'
+  title: Druki
   parent: system.admin
   route_name: druki.admin
   weight: -50
+
+druki.frontpage_settings:
+  title: Frontpage
+  description: Settings for frontpage.
+  route_name: druki.frontpage_settings
+  parent: druki.admin

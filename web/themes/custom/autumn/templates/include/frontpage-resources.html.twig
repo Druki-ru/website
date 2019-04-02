@@ -1,0 +1,55 @@
+{% set bem_block = 'frontpage-resources' %}
+<div class="{{ bem_block }}">
+  <div class="{{ bem_block }}__inner">
+    <div class="{{ bem_block }}__download">
+      <a href="/download" class="{{ bem_block}}__download-button">
+        Скачать
+      </a>
+
+      <ul class="{{ bem_block }}__links">
+        <li class="{{ bem_block }}__link-item">
+          <a href="#" class="{{ bem_block }}__link">
+            Что такое Drupal
+          </a>
+        </li>
+        <li class="{{ bem_block }}__link-item">
+          <a href="#" class="{{ bem_block }}__link">
+            Список изменений
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="{{ bem_block }}__docs">
+      <a href="/docs" class="{{ bem_block}}__docs-button">
+        Документация
+      </a>
+
+      <ul class="{{ bem_block }}__links {{ bem_block }}__links--right">
+        <li class="{{ bem_block }}__link-item">
+          <a href="#" class="{{ bem_block }}__link">
+            Руководство по началу работы
+          </a>
+        </li>
+        <li class="{{ bem_block }}__link-item">
+          <a href="#" class="{{ bem_block }}__link">
+            Установка
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="{{ bem_block }}__branding">
+      <img
+        src="/{{ active_theme_path() }}/logo.svg"
+        class="{{ bem_block }}__branding-logo"
+        alt="Druplicon"
+      >
+
+      <div class="{{ bem_block }}__version">
+        <div class="{{ bem_block }}__version-label">Drupal</div>
+        <div class="{{ bem_block }}__version-number">8.6.13</div>
+      </div>
+    </div>
+  </div>
+</div>
