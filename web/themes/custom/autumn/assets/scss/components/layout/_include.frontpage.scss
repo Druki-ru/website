@@ -67,6 +67,8 @@
     @include button-variant(theme-color(on-secondary), theme-color(secondary));
     @include button-size(spacing-unit(2), spacing-unit(5), 20px);
     font-weight: bold;
+    display: block;
+    text-align: left;
     text-transform: uppercase;
     border-radius: 100px;
   }
@@ -80,7 +82,8 @@
     @include button-variant(theme-color(on-secondary), theme-color(secondary));
     @include button-size(spacing-unit(2), spacing-unit(5), 20px);
     font-weight: bold;
-    justify-content: flex-end;
+    display: block;
+    text-align: right;
     text-transform: uppercase;
     border-radius: 100px;
   }

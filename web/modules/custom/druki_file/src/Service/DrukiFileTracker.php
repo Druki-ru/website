@@ -155,7 +155,7 @@ class DrukiFileTracker {
 
     /** @var \Drupal\file\FileInterface $file */
     foreach ($files as $file) {
-      $this->create($file);
+      $this->track($file);
     }
   }
 
