@@ -92,11 +92,6 @@
                 ".editorconfig": "../.editorconfig",
                 ".gitattributes": "../.gitattributes"
             }
-        },
-        "patches": {
-            "league/commonmark": {
-                "Priority for parsers": "https://patch-diff.githubusercontent.com/raw/thephpleague/commonmark/pull/341.patch"
-            }
         }
     }
 }
