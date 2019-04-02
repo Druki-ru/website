@@ -1,0 +1,14 @@
+druki.frontpage_settings:
+  type: config_object
+  label: 'Frontpage settings'
+  mapping:
+    promo:
+      type: mapping
+      label: 'Promo area'
+      mapping:
+        image:
+          type: string
+          label: 'Media ID'
+        style:
+          type: string
+          label: 'Image style'

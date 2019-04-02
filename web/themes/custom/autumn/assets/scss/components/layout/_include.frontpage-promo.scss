@@ -4,18 +4,15 @@
   color: theme-color(on-primary);
   background-color: rgba(theme-color(), 0.85);
 
-  &::before {
+  &__image {
     position: absolute;
     z-index: -1;
     top: 0;
     left: 0;
-    display: block;
     width: 100%;
     height: 100%;
-    content: '';
-    background-image: url('../images/frontpage-promo.jpg');
-    background-position: center;
-    background-size: cover;
+    object-fit: cover;
+    object-position: center;
   }
 
   &__inner {

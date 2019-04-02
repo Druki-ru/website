@@ -74,6 +74,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $this->buildPromoSettings($form, $form_state);
+    $this->buildWhyDrupalSettings($form, $form_state);
 
     return parent::buildForm($form, $form_state);
   }
@@ -120,14 +121,80 @@ class FrontpageSettingsForm extends ConfigFormBase {
       '#description' => t('Media entity that contains a promo image.'),
       '#default_value' => $default_image,
     ];
+
+    $image_style_options = image_style_options(FALSE);
+    $image_style_names = array_keys($image_style_options);
+    $default_style = reset($image_style_names);
+
+    if (isset($promo_settings['style'])) {
+      $default_style = $promo_settings['style'];
+    }
+
+    $form['promo']['style'] = [
+      '#type' => 'select',
+      '#options' => $image_style_options,
+      '#default_value' => $default_style,
+      '#title' => t('Promo image style'),
+    ];
   }
 
   /**
-   * {@inheritdoc}
+   * Build "why" settings area.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
    */
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
+  protected function buildWhyDrupalSettings(array &$form, FormStateInterface $form_state): void {
+    $promo_settings = $this->config('druki.frontpage_settings')->get('why');
 
-    parent::validateForm($form, $form_state);
+    $form['why'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Why Drupal'),
+      '#tree' => TRUE,
+    ];
+
+    $default_video = NULL;
+    if (isset($promo_settings['image'])) {
+      $media = $this->mediaStorage->load($promo_settings['video']);
+
+      if ($media instanceof MediaInterface) {
+        $default_video = $media;
+
+        $preview = $this->mediaViewBuilder->view($default_video, 'media_library');
+        $preview['#prefix'] = '<div class="media-library-item">';
+        $preview['#suffix'] = '</div>';
+        $form['why']['video_preview'] = $preview;
+        $form['#attached']['library'][] = 'media_library/style';
+      }
+    }
+
+    $form['why']['video'] = [
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'media',
+      '#selection_settings' => [
+        'target_bundles' => ['remote_video'],
+      ],
+      '#title' => t('Remote video'),
+      '#description' => t('Media entity that contains a remote video.'),
+      '#default_value' => $default_video,
+    ];
+
+//    $image_style_options = image_style_options(FALSE);
+//    $image_style_names = array_keys($image_style_options);
+//    $default_style = reset($image_style_names);
+//
+//    if (isset($promo_settings['style'])) {
+//      $default_style = $promo_settings['style'];
+//    }
+//
+//    $form['promo']['style'] = [
+//      '#type' => 'select',
+//      '#options' => $image_style_options,
+//      '#default_value' => $default_style,
+//      '#title' => t('Promo image style'),
+//    ];
   }
 
   /**
@@ -136,6 +203,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('druki.frontpage_settings')
       ->set('promo', $form_state->getValue('promo'))
+      ->set('why', $form_state->getValue('why'))
       ->save();
     parent::submitForm($form, $form_state);
   }

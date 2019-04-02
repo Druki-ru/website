@@ -6,3 +6,4 @@ core: 8.x
 dependencies:
   - drupal:media
   - drupal:media_library
+  - drupal:image
