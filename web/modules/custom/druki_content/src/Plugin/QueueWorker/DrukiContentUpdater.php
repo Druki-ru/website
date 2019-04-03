@@ -222,7 +222,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     if (isset($structured_data['meta']['category-area'])) {
       $category_area = $structured_data['meta']['category-area'];
       $category_order = isset($structured_data['meta']['category-order']) ? $structured_data['meta']['category-order'] : 0;
-      $druki_content->setCategory($category_area, $category_order);
+      $category_title = isset($structured_data['meta']['category-title']) ? $structured_data['meta']['category-title'] : NULL;
+      $druki_content->setCategory($category_area, $category_order, $category_title);
     }
 
     if ($core_version) {

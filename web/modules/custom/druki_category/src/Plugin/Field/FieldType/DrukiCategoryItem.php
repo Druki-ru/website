@@ -33,6 +33,9 @@ class DrukiCategoryItem extends FieldItemBase {
       ->setLabel(t('Order'))
       ->setRequired(TRUE);
 
+    $properties['title'] = DataDefinition::create('string')
+      ->setLabel(t('Area'));
+
     return $properties;
   }
 
@@ -53,6 +56,11 @@ class DrukiCategoryItem extends FieldItemBase {
         'not null' => TRUE,
         'default' => 0,
       ],
+      'title' => [
+        'type' => 'varchar',
+        'description' => 'Category area.',
+        'length' => 255,
+      ],
     ];
 
     $schema = [
@@ -69,6 +77,7 @@ class DrukiCategoryItem extends FieldItemBase {
     $random = new Random();
     $values['area'] = $random->word(mt_rand(1, 50));
     $values['order'] = rand(0, 10);
+    $values['title'] = $random->word(mt_rand(1, 50));
 
     return $values;
   }

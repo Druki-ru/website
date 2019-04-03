@@ -268,10 +268,11 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function setCategory(string $area, int $order = 0): DrukiContentInterface {
+  public function setCategory(string $area, int $order = 0, string $title = NULL): DrukiContentInterface {
     $this->set('category', [
       'area' => $area,
       'order' => $order,
+      'title' => $title,
     ]);
 
     return $this;

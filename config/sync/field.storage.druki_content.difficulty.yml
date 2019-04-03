@@ -1,4 +1,4 @@
-uuid: ae846235-242c-40f1-aff2-c301a788aeda
+uuid: 9082de1e-163d-4b68-ad7a-5e9568fd2ebe
 langcode: ru
 status: true
 dependencies:
@@ -15,13 +15,13 @@ settings:
   allowed_values:
     -
       value: basic
-      label: Основное
+      label: Basic
     -
       value: medium
-      label: Средний
+      label: Medium
     -
       value: advanced
-      label: Расширенные
+      label: Advanced
   allowed_values_function: ''
 module: options
 locked: true

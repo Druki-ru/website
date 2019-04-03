@@ -1,4 +1,4 @@
-uuid: e3a7fefb-9fe4-41ac-863c-41aad21b7e01
+uuid: c1f025a9-642f-48e9-b319-5f2a1a26805f
 langcode: ru
 status: true
 dependencies:
@@ -10,7 +10,7 @@ dependencies:
     - druki_content
     - entity_reference_revisions
 _core:
-  default_config_hash: JXmIOtvWSQwUD8LGozwv471iHpB88RKkVWelJ3JyglY
+  default_config_hash: 77EbOKfC3M1d96CqA2i0f8-dbCssFxrEEywI4YiEcpQ
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content

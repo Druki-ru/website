@@ -170,9 +170,11 @@ class CategoryNavigation {
         $result = [];
 
         foreach ($entities as $entity) {
+          $text = $entity->get($field_name)->title ?? $entity->label();
+          
           $result[] = [
             'url' => $entity->toUrl('canonical'),
-            'text' => $entity->label(),
+            'text' => $text,
           ];
         }
       }

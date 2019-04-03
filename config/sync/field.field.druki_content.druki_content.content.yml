@@ -1,4 +1,4 @@
-uuid: c2e06283-0174-4dcc-bc1d-cff509392e40
+uuid: 32b048b6-9c51-4b90-a60b-4aeb76d9b323
 langcode: ru
 status: true
 dependencies:
@@ -13,7 +13,7 @@ id: druki_content.druki_content.content
 field_name: content
 entity_type: druki_content
 bundle: druki_content
-label: Содержимое
+label: Content
 description: ''
 required: true
 translatable: false

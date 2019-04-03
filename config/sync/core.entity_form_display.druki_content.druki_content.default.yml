@@ -1,4 +1,4 @@
-uuid: a33fd431-a722-4a5a-87e1-8c5d7295c2f6
+uuid: 0f60d625-4fc5-4f57-bbe3-5de9c3186baf
 langcode: ru
 status: true
 dependencies:
@@ -11,7 +11,7 @@ dependencies:
     - paragraphs
     - path
 _core:
-  default_config_hash: 9eWve_e2wl-5GT1gZOJUxGIyfXYT5nFAPtfx3l6ygU8
+  default_config_hash: hmafrFXZaqwXMsgQq_VUYKRnbahW7oysQ7pM_LnPSQk
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
