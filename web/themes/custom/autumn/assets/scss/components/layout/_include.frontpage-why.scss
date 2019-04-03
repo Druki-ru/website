@@ -80,11 +80,15 @@ $icons: (
   &__promo-button {
     @include mdi-icon('open-in-new', after);
     @include button-variant(theme-color(on-primary), theme-color());
-    @include font-size(18px);
+    @include button-size(spacing-unit(), spacing-unit(md), 20px);
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 30px;
     display: table;
     margin: 0 auto;
+
+    &::after {
+      font-weight: normal;
+    }
   }
 }

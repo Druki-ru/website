@@ -690,10 +690,10 @@ a.tabledrag-handle .handle {
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
-  border-top: 1.1em solid rgba(255, 208, 41, 0.2);
-  border-right: 1.1em solid rgba(255, 208, 41, 0.2);
-  border-bottom: 1.1em solid rgba(255, 208, 41, 0.2);
-  border-left: 1.1em solid #FFD029;
+  border-top: 1.1em solid #FFD029;
+  border-right: 1.1em solid #FFD029;
+  border-bottom: 1.1em solid #FFD029;
+  border-left: 1.1em solid #3F2F17;
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
   -webkit-animation: loading-circle 1.1s infinite linear;
@@ -1345,8 +1345,10 @@ a.tabledrag-handle .handle {
     border-color: transparent;
     transition: all .15s ease-in-out;
     box-shadow: none;
-    font-size: 1.125rem;
-    line-height: 1.77778;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    padding: 8px 24px;
+    border-radius: 3px;
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 30px;
@@ -1381,6 +1383,8 @@ a.tabledrag-handle .handle {
       background-color: #FFD029;
       border-color: transparent;
       opacity: .65; }
+    .frontpage-why__promo-button::after {
+      font-weight: normal; }
 
 .region-sidebar-second {
   padding-left: 16px;
