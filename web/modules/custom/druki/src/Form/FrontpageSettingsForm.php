@@ -11,8 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configure Druki settings for this site.
- *
- * @todo dont forget to add default config + schema for it.
  */
 class FrontpageSettingsForm extends ConfigFormBase {
 
@@ -156,7 +154,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
     ];
 
     $default_video = NULL;
-    if (isset($promo_settings['image'])) {
+    if (isset($promo_settings['video'])) {
       $media = $this->mediaStorage->load($promo_settings['video']);
 
       if ($media instanceof MediaInterface) {
@@ -181,20 +179,20 @@ class FrontpageSettingsForm extends ConfigFormBase {
       '#default_value' => $default_video,
     ];
 
-//    $image_style_options = image_style_options(FALSE);
-//    $image_style_names = array_keys($image_style_options);
-//    $default_style = reset($image_style_names);
-//
-//    if (isset($promo_settings['style'])) {
-//      $default_style = $promo_settings['style'];
-//    }
-//
-//    $form['promo']['style'] = [
-//      '#type' => 'select',
-//      '#options' => $image_style_options,
-//      '#default_value' => $default_style,
-//      '#title' => t('Promo image style'),
-//    ];
+    $default_video = NULL;
+    if (isset($promo_settings['video'])) {
+      $media = $this->mediaStorage->load($promo_settings['video']);
+
+      if ($media instanceof MediaInterface) {
+        $default_video = $media;
+
+        $preview = $this->mediaViewBuilder->view($default_video, 'media_library');
+        $preview['#prefix'] = '<div class="media-library-item">';
+        $preview['#suffix'] = '</div>';
+        $form['why']['video_preview'] = $preview;
+        $form['#attached']['library'][] = 'media_library/style';
+      }
+    }
   }
 
   /**

@@ -1,0 +1,7 @@
+field.formatter.settings.druki_media_optimized_remote_video:
+  type: mapping
+  label: Optimized remote video formatter settings
+  mapping:
+    thumbnail_style:
+      type: string
+      label: 'Thumbnail style'

@@ -1,3 +1,8 @@
 promo:
   image: '1'
   style: hero_image
+why:
+  video: '2'
+  image: '1'
+  style: large
+langcode: ru

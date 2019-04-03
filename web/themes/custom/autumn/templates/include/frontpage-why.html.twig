@@ -6,7 +6,7 @@
   },
   'secure': {
     title: 'Безопасный',
-    description: 'Drupal Security Team постоянно следит за безопасностью экосистемы Drupal. Drupal\'у доверяют свои данные госдуарственные структуры.',
+    description: 'Drupal Security Team постоянно следит за безопасностью экосистемы Drupal. Drupal\'у доверяют свои данные государственные структуры.',
   },
   'extendable': {
     title: 'Расширяемый',
@@ -38,11 +38,15 @@
       </div>
 
       <div class="{{ bem_block }}__right">
-        <iframe src="https://www.youtube.com/embed/xF3aECbeC5w"
-                frameborder="0"
-                width="100%"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+        {% if why_drupal_video %}
+          <div class="{{ bem_block }}__video">
+            {{ why_drupal_video }}
+          </div>
+        {% endif %}
+
+        <a href="https://drupal.dru.io" rel="nofollow noopener" class="{{ bem_block }}__promo-button">
+          Промо-сайт
+        </a>
       </div>
     </div>
   </div>

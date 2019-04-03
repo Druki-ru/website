@@ -11,21 +11,3 @@
 function druki_preprocess_toolbar(array &$variables): void {
   $variables['#attached']['library'][] = 'druki/druki.toolbar';
 }
-
-/**
- * Implements hook_theme().
- */
-function druki_theme(array $existing, string $type, string $theme, string $path): array {
-  return [
-    'druki_remote_video_optimized' => [
-      'variables' => [
-        'thumbnail_uri' => NULL,
-        'thumbnail_style' => 'thumbnail',
-        'thumbnail_alt' => '',
-        'video_provider' => 'youtube',
-        'video_id' => NULL,
-      ],
-      'file' => 'druki.theme.inc',
-    ],
-  ];
-}

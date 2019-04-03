@@ -12,3 +12,10 @@ druki.frontpage_settings:
         style:
           type: string
           label: 'Image style'
+    why:
+      type: mapping
+      label: 'Why Drupal area'
+      mapping:
+        video:
+          type: string
+          label: 'Media ID'

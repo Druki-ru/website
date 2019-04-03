@@ -60,7 +60,7 @@ a {
 
 .button, .button--primary,
 .button--action, .button--warning, .button-danger,
-.button--danger, .button--success, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .button, .frontpage__resources-download-button, .frontpage__resources-docs-button, .frontpage-resources__download-button, .frontpage-resources__docs-button {
+.button--danger, .button--success, .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .button, .frontpage__resources-download-button, .frontpage__resources-docs-button, .frontpage-resources__download-button, .frontpage-resources__docs-button, .frontpage-why__promo-button {
   font-size: 1rem;
   line-height: 1.5;
   padding: 8px 16px;
@@ -682,6 +682,43 @@ a.tabledrag-handle .handle {
   padding: 8px;
   display: block; }
 
+.loading-circle {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 208, 41, 0.2);
+  border-right: 1.1em solid rgba(255, 208, 41, 0.2);
+  border-bottom: 1.1em solid rgba(255, 208, 41, 0.2);
+  border-left: 1.1em solid #FFD029;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-animation: loading-circle 1.1s infinite linear;
+          animation: loading-circle 1.1s infinite linear; }
+  .loading-circle::before {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em; }
+
+@-webkit-keyframes loading-circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes loading-circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
 .app {
   display: flex;
   flex-direction: column;
@@ -1299,6 +1336,51 @@ a.tabledrag-handle .handle {
     color: #616161; }
   .frontpage-why__right {
     align-self: center; }
+  .frontpage-why__video {
+    margin-bottom: 24px; }
+  .frontpage-why__promo-button {
+    color: #3F2F17;
+    background-color: #FFD029;
+    background-image: none;
+    border-color: transparent;
+    transition: all .15s ease-in-out;
+    box-shadow: none;
+    font-size: 1.125rem;
+    line-height: 1.77778;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 30px;
+    display: table;
+    margin: 0 auto; }
+    .frontpage-why__promo-button:after {
+      content: "\F3CC";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
+      display: inline-block;
+      text-decoration: inherit;
+      margin-left: 0.4em; }
+    .frontpage-why__promo-button:hover {
+      color: #3F2F17;
+      background-color: #ffc90a;
+      border-color: rgba(0, 0, 0, 0); }
+    .frontpage-why__promo-button:active {
+      color: #3F2F17;
+      background-color: #ebb700;
+      background-image: none;
+      border-color: rgba(0, 0, 0, 0);
+      box-shadow: 0 0 0 3px rgba(255, 208, 41, 0.5); }
+    .frontpage-why__promo-button:focus {
+      outline: none;
+      background: #ffd338;
+      border-color: #ffd338;
+      box-shadow: 0 0 0 3px rgba(255, 208, 41, 0.5); }
+    .frontpage-why__promo-button:disabled {
+      background-color: #FFD029;
+      border-color: transparent;
+      opacity: .65; }
 
 .region-sidebar-second {
   padding-left: 16px;
@@ -1389,6 +1471,64 @@ a.tabledrag-handle .handle {
   .druki-category-navigation__menu-item-link--active {
     font-weight: bold;
     color: #0048DC; }
+
+.druki-media-remote-video-optimized {
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 56.25%;
+  border-radius: 6px;
+  box-shadow: 0 3px 25px 0 rgba(22, 22, 22, 0.15); }
+  .druki-media-remote-video-optimized__preview, .druki-media-remote-video-optimized__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%; }
+  .druki-media-remote-video-optimized__preview {
+    cursor: pointer; }
+  .druki-media-remote-video-optimized__thumbnail {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center; }
+  .druki-media-remote-video-optimized__play {
+    font-size: 1.875rem;
+    line-height: 50px;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8); }
+    .druki-media-remote-video-optimized__play:before {
+      content: "\F40A";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0; }
+  .druki-media-remote-video-optimized__loading {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    display: none;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+  .druki-media-remote-video-optimized__loading--active {
+    display: block; }
 
 .block-druki-content-toc {
   position: -webkit-sticky;

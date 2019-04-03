@@ -72,4 +72,19 @@ $icons: (
   &__right {
     align-self: center;
   }
+
+  &__video {
+    margin-bottom: spacing-unit(md);
+  }
+
+  &__promo-button {
+    @include mdi-icon('open-in-new', after);
+    @include button-variant(theme-color(on-primary), theme-color());
+    @include font-size(18px);
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 30px;
+    display: table;
+    margin: 0 auto;
+  }
 }

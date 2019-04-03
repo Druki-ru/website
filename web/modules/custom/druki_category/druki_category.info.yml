@@ -1,5 +1,5 @@
-name: Druki - TOC
+name: Druki - Category
 type: module
-description: The TOC code.
+description: The Category code.
 package: druki
 core: 8.x

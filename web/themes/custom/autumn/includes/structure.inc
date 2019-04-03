@@ -36,22 +36,33 @@ function autumn_preprocess_page(array &$variables) {
 /**
  * Implements hook_preprocess_HOOK() for page--front.html.twig.
  */
-function autumn_preprocess_page__front(array &$variables) {
+function autumn_preprocess_page__front(array &$variables): void {
   $variables['promo_image_url'] = NULL;
+  $variables['why_drupal_video'] = NULL;
 
   $frontpage_settings = \Drupal::config('druki.frontpage_settings');
   /** @var \Drupal\media\MediaStorage $media_storage */
   $media_storage = \Drupal::entityTypeManager()->getStorage('media');
+  $media_view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
   /** @var \Drupal\Core\Entity\EntityStorageInterface $image_style_storage */
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
   $promo_settings = $frontpage_settings->get('promo');
+  $why_settings = $frontpage_settings->get('why');
 
-  $promo_media = $media_storage->load($promo_settings['image']);
+  // Promo area.
+  $promo_image = $media_storage->load($promo_settings['image']);
   $promo_style = $image_style_storage->load($promo_settings['style']);
   // Check is media and style is really existed.
-  if ($promo_media instanceof MediaInterface && $promo_style instanceof ImageStyleInterface) {
+  if ($promo_image instanceof MediaInterface && $promo_style instanceof ImageStyleInterface) {
     /** @var \Drupal\file\FileInterface $file */
-    $file = $promo_media->get('field_media_image')->entity;
+    $file = $promo_image->get('field_media_image')->entity;
     $variables['promo_image_url'] = $promo_style->buildUrl($file->getFileUri());
+  }
+
+  // Why Drupal area.
+  $why_video = $media_storage->load($why_settings['video']);
+  // Check is video exists.
+  if ($why_video instanceof MediaInterface) {
+    $variables['why_drupal_video'] = $media_view_builder->view($why_video);
   }
 }

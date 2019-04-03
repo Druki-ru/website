@@ -9,3 +9,4 @@ favicon:
   use_default: 0
   path: themes/custom/autumn/favicon.png
   mimetype: image/png
+langcode: ru
