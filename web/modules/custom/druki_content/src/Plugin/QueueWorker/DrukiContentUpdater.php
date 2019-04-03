@@ -403,7 +403,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $paragraph = $this->paragraphStorage->create(['type' => 'druki_code']);
     $paragraph->set('druki_textarea_formatted', [
       'value' => $content_data['value'],
-      'format' => filter_default_format(),
+      'format' => 'full_html',
     ]);
     $paragraph->save();
 
