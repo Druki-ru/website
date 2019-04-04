@@ -23,6 +23,7 @@ module:
   druki_media: 0
   druki_paragraphs: 0
   druki_parser: 0
+  druki_search: 0
   druki_title: 0
   dynamic_page_cache: 0
   editor: 0
@@ -47,7 +48,10 @@ module:
   path: 0
   quickedit: 0
   rdf: 0
+  search_api: 0
+  search_api_db: 0
   shortcut: 0
+  snowball_stemmer: 0
   system: 0
   taxonomy: 0
   text: 0

@@ -1,0 +1,10 @@
+name: Druki - Search
+type: module
+description: Helpers and improvements for search.
+package: druki
+core: 8.x
+dependencies:
+  - search_api:search_api
+  - search_api:search_api_db
+  - snowball_stemmer:snowball_stemmer
+  - druki_content:druki_content

@@ -44,12 +44,15 @@ big {
 
 mark {
   padding: 0.2em;
-  background-color: #fff9c4;
-  color: inherit; }
+  color: inherit;
+  background-color: #fff9c4; }
 
 code {
-  font-size: 16px;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+  font-family: "Fira Code", monospaced;
+  font-size: 90%;
+  padding: 2px 4px;
+  border-radius: 4px;
+  background-color: #ffedae; }
 
 h1 {
   font-size: 2rem;

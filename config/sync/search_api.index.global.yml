@@ -1,0 +1,416 @@
+uuid: 7bce5944-1a57-409f-8619-844155b06bb3
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+    - search_api
+    - snowball_stemmer
+  config:
+    - field.storage.druki_content.labels
+    - search_api.server.database
+_core:
+  default_config_hash: UH3VPNEgKGXkQ0srrRhiXICndmxGNQa2m6ymwN_oD3s
+id: global
+name: Global
+description: ''
+read_only: false
+field_settings:
+  category:
+    label: Категория
+    datasource_id: 'entity:druki_content'
+    property_path: category
+    type: text
+    boost: !!float 2
+    dependencies:
+      module:
+        - druki_content
+  core:
+    label: 'The core version for this content.'
+    datasource_id: 'entity:druki_content'
+    property_path: core
+    type: integer
+    dependencies:
+      module:
+        - druki_content
+  external_id:
+    label: 'External content ID'
+    datasource_id: 'entity:druki_content'
+    property_path: external_id
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - druki_content
+  filename:
+    label: 'Имя файла'
+    datasource_id: 'entity:druki_content'
+    property_path: filename
+    type: text
+    dependencies:
+      module:
+        - druki_content
+  labels:
+    label: Labels
+    datasource_id: 'entity:druki_content'
+    property_path: labels
+    type: text
+    boost: !!float 2
+    dependencies:
+      config:
+        - field.storage.druki_content.labels
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:druki_content':
+          druki_content: default
+  title:
+    label: Title
+    datasource_id: 'entity:druki_content'
+    property_path: title
+    type: text
+    boost: !!float 8
+    dependencies:
+      module:
+        - druki_content
+datasource_settings:
+  'entity:druki_content':
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field:
+    weights:
+      add_properties: 20
+  html_filter:
+    all_fields: false
+    fields:
+      - rendered_item
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      string: 2
+    weights:
+      preprocess_index: -3
+      preprocess_query: -6
+  ignorecase:
+    all_fields: false
+    fields:
+      - category
+      - external_id
+      - filename
+      - labels
+      - rendered_item
+      - title
+    weights:
+      preprocess_index: -5
+      preprocess_query: -8
+  rendered_item:
+    weights:
+      add_properties: 0
+      pre_index_save: -10
+  snowball_stemmer:
+    all_fields: 0
+    fields:
+      - category
+      - external_id
+      - filename
+      - labels
+      - rendered_item
+      - title
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+  stopwords:
+    all_fields: false
+    fields:
+      - category
+      - labels
+      - rendered_item
+      - title
+    stopwords:
+      - a
+      - an
+      - and
+      - are
+      - as
+      - at
+      - be
+      - but
+      - by
+      - for
+      - if
+      - in
+      - into
+      - is
+      - it
+      - 'no'
+      - not
+      - of
+      - 'on'
+      - or
+      - s
+      - such
+      - t
+      - that
+      - the
+      - their
+      - then
+      - there
+      - these
+      - they
+      - this
+      - to
+      - was
+      - will
+      - with
+      - а-ля
+      - без
+      - 'без ведома'
+      - безо
+      - благодаря
+      - близ
+      - 'близко от'
+      - в
+      - 'в виде'
+      - 'в зависимости от'
+      - 'в интересах'
+      - 'в качестве'
+      - 'в лице'
+      - 'в отличие от'
+      - 'в отношении'
+      - 'в пандан'
+      - 'в пользу'
+      - 'в преддверии'
+      - 'в продолжение'
+      - 'в результате'
+      - 'в роли'
+      - 'в связи с'
+      - 'в силу'
+      - 'в случае'
+      - 'в соответствии с'
+      - 'в течение'
+      - 'в целях'
+      - 'в честь'
+      - вблизи
+      - ввиду
+      - вглубь
+      - вдогон
+      - вдоль
+      - 'вдоль по'
+      - взамен
+      - включая
+      - вкруг
+      - вместо
+      - вне
+      - внизу
+      - внутри
+      - внутрь
+      - во
+      - 'во имя'
+      - 'во славу'
+      - вовнутрь
+      - возле
+      - вокруг
+      - вопреки
+      - вослед
+      - впереди
+      - 'вплоть до'
+      - 'впредь до'
+      - вразрез
+      - вроде
+      - вслед
+      - 'вслед за'
+      - вследствие
+      - встречу
+      - выключая
+      - для
+      - для-ради
+      - до
+      - за
+      - 'за вычетом'
+      - 'за исключением'
+      - 'за счёт'
+      - замест
+      - заместо
+      - из
+      - из-за
+      - из-под
+      - из-подо
+      - изнутри
+      - изо
+      - исключая
+      - 'исходя из'
+      - к
+      - касаемо
+      - касательно
+      - ко
+      - кончая
+      - кроме
+      - кругом
+      - 'лицом к лицу с'
+      - меж
+      - между
+      - мимо
+      - на
+      - 'на благо'
+      - 'на виду у'
+      - 'на глазах у'
+      - 'на предмет'
+      - наверху
+      - навроде
+      - навстречу
+      - над
+      - надо
+      - назад
+      - назади
+      - накануне
+      - наместо
+      - наперекор
+      - наперерез
+      - наперехват
+      - наподобие
+      - наподобье
+      - напротив
+      - 'наряду с'
+      - насупротив
+      - насчёт
+      - 'начиная с'
+      - 'не без'
+      - 'не считая'
+      - 'невзирая на'
+      - 'недалеко от'
+      - 'независимо от'
+      - несмотря
+      - 'несмотря на'
+      - ниже
+      - о
+      - об
+      - обо
+      - обок
+      - обочь
+      - около
+      - окрест
+      - окроме
+      - окромя
+      - округ
+      - опосля
+      - опричь
+      - от
+      - 'от имени'
+      - 'от лица'
+      - относительно
+      - ото
+      - перед
+      - передо
+      - по
+      - 'по линии'
+      - 'по мере'
+      - 'по направлению к'
+      - 'по поводу'
+      - 'по причине'
+      - 'по случаю'
+      - 'по сравнению с'
+      - по-за
+      - по-над
+      - по-под
+      - 'поблизости от'
+      - повдоль
+      - поверх
+      - под
+      - 'под видом'
+      - 'под эгидой'
+      - подле
+      - подо
+      - подобно
+      - позади
+      - позадь
+      - позднее
+      - помимо
+      - поперёд
+      - поперёк
+      - порядка
+      - посверху
+      - посереди
+      - посередине
+      - посередь
+      - посерёдке
+      - после
+      - посреди
+      - посредине
+      - посредством
+      - пред
+      - предо
+      - преж
+      - прежде
+      - при
+      - 'при помощи'
+      - 'применительно к'
+      - про
+      - промеж
+      - промежду
+      - против
+      - противно
+      - противу
+      - путём
+      - ради
+      - 'рядом с'
+      - с
+      - 'с ведома'
+      - 'с помощью'
+      - 'с прицелом на'
+      - 'с точки зрения'
+      - 'с целью'
+      - сверх
+      - сверху
+      - свыше
+    weights:
+      preprocess_index: -5
+      preprocess_query: -10
+  tokenizer:
+    all_fields: false
+    fields:
+      - category
+      - external_id
+      - filename
+      - labels
+      - rendered_item
+      - title
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -2
+      preprocess_query: -5
+  transliteration:
+    all_fields: false
+    fields:
+      - category
+      - external_id
+      - filename
+      - labels
+      - rendered_item
+      - title
+    weights:
+      preprocess_index: -4
+      preprocess_query: -7
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: database

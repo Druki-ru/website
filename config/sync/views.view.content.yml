@@ -265,7 +265,7 @@ display:
           id: status
           table: node_field_data
           field: status
-          label: Статус
+          label: Status
           exclude: false
           alter:
             alter_text: false
@@ -450,7 +450,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: Статус
+            label: Status
             description: ''
             use_operator: false
             operator: status_op

@@ -21,3 +21,10 @@ function autumn_preprocess_paragraph__druki_heading(array &$variables): void {
 
   $variables['anchor'] = Text::anchor($title, 'druki_content_toc_theme');
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--druki-code.html.twig.
+ */
+function autumn_preprocess_paragraph__druki_code(array &$variables): void {
+  $variables['#attached']['library'][] = 'autumn/code_highlight';
+}
