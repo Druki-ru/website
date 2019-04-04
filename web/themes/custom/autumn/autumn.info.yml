@@ -11,6 +11,8 @@ libraries:
   - autumn/style.layout
   - autumn/style.component
   - autumn/style.utilities
+  # Remove when search will be in theme hook.
+  - druki_vue/main
 regions:
   title: Title
   content: Content

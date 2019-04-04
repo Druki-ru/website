@@ -1,0 +1,7 @@
+name: Druki - Vue.js
+type: module
+description: The Vue.js integration
+package: druki
+core: 8.x
+dependencies:
+  - druki_search:druki_search
