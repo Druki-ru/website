@@ -495,8 +495,9 @@ a.tabledrag-handle .handle {
   .tabs--primary {
     margin: 0 0 24px;
     border-bottom: 2px solid #eeeeee; }
-    .tabs--primary .tabs__menu-item {
-      position: relative; }
+    .tabs--primary .tabs__item {
+      position: relative;
+      margin: unset; }
     .tabs--primary .tabs__menu-item-link {
       position: relative;
       display: block;
@@ -682,42 +683,41 @@ a.tabledrag-handle .handle {
   padding: 8px;
   display: block; }
 
-.loading-circle {
-  border-radius: 50%;
-  width: 10em;
-  height: 10em;
-  margin: 60px auto;
-  font-size: 10px;
-  position: relative;
-  text-indent: -9999em;
-  border-top: 1.1em solid #FFD029;
-  border-right: 1.1em solid #FFD029;
-  border-bottom: 1.1em solid #FFD029;
-  border-left: 1.1em solid #3F2F17;
-  -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-  -webkit-animation: loading-circle 1.1s infinite linear;
-          animation: loading-circle 1.1s infinite linear; }
-  .loading-circle::before {
-    border-radius: 50%;
-    width: 10em;
-    height: 10em; }
+.druki-loading-indicator {
+  display: none; }
 
-@-webkit-keyframes loading-circle {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg); } }
+#druki-loading-svg {
+  -webkit-animation: dash 1s linear infinite;
+          animation: dash 1s linear infinite;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 0; }
 
-@keyframes loading-circle {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg); } }
+.druki-loading-indicator-pane--fullscreen {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4); }
+  .druki-loading-indicator-pane--fullscreen svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+
+@-webkit-keyframes dash {
+  from {
+    stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 400; } }
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 400; } }
 
 /* PrismJS 1.15.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+bash+css-extras+markup-templating+ini+json+markdown+makefile+nginx+php+php-extras+scss+typescript+sass+yaml+twig */
@@ -1528,6 +1528,8 @@ pre[class*="language-"] {
         width: 71.25rem;
         max-width: 100%; } }
   .druki-title__title {
+    font-size: 2.25rem;
+    line-height: 1.33333;
     font-weight: bold;
     margin: unset; }
   .druki-title__links {

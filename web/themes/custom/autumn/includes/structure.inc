@@ -11,7 +11,7 @@ use Drupal\media\MediaInterface;
 /**
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
-function autumn_preprocess_page(array &$variables) {
+function autumn_preprocess_page(array &$variables): void {
   /** @var \Drupal\Core\Template\Attribute $main_layout_attributes */
   $main_layout_attributes = &$variables['main_layout_attributes'];
 

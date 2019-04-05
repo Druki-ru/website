@@ -36,6 +36,7 @@ test-inline-array: [one, two, three]
 ## Title
 
 > [!NOTE]
+>
 > This is a NOTE.
 >
 > But multiline content with **some** [markdown](https://commonmark.org) sauce.
@@ -44,6 +45,7 @@ test-inline-array: [one, two, three]
 > This is a WARNING
 
 > [!TIP]
+>
 > This is a TIP
 
 > [!IMPORTANT]

@@ -25,6 +25,7 @@ module:
   druki_parser: 0
   druki_search: 0
   druki_title: 0
+  druki_vue: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0

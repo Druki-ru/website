@@ -10,17 +10,24 @@ import HeaderSearch from './components/scoped/HeaderSearch.vue';
  * Behavior for attaching all vue components when page is updates.
  */
 Drupal.behaviors.drukiVueInit = {
-  attach: function() {
-    this.attachHeaderSearch();
+  attach: function(context) {
+    this.attachHeaderSearch(context);
   },
 
   /**
    * Attaches header search component.
    */
-  attachHeaderSearch: function() {
-    new Vue({
-      render: h => h(HeaderSearch),
-      store,
-    }).$mount('.header-search-init');
+  attachHeaderSearch: function(context) {
+    let searchElements = context.querySelectorAll('.header-search-init');
+
+    if (searchElements.length) {
+      searchElements.forEach(element => {
+        new Vue({
+          render: h => h(HeaderSearch),
+          store,
+        }).$mount(element);
+      });
+    }
+
   },
 };

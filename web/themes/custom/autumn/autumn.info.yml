@@ -11,6 +11,7 @@ libraries:
   - autumn/style.layout
   - autumn/style.component
   - autumn/style.utilities
+  - autumn/loading_indicator
   # Remove when search will be in theme hook.
   - druki_vue/main
 regions:

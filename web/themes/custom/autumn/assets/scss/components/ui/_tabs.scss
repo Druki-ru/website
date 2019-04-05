@@ -39,8 +39,9 @@ $secondary-tabs-item-active-border-color: $link-color !default;
     margin: $primary-tabs-margin;
     border-bottom: 2px solid gray(200);
 
-    .tabs__menu-item {
+    .tabs__item {
       position: relative;
+      margin: unset;
     }
 
     .tabs__menu-item-link {

@@ -24,7 +24,7 @@ style.utilities:
 google.fonts:
   css:
     theme:
-      //fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&subset=cyrillic: { type: external, minified: true }
+      //fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&subset=cyrillic: { type: external, minified: true }
 
 code_highlight:
   js:
@@ -33,6 +33,12 @@ code_highlight:
     - core/drupal
     - autumn/prism
     - autumn/firacode
+
+loading_indicator:
+  js:
+    assets/js/loading-indicator.js: {}
+  dependencies:
+    - core/drupal
 
 prism:
   remote: https://prismjs.com/
