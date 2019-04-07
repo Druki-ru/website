@@ -1,3 +1,5 @@
+import SearchRepository from '../repositories/search.repository';
+
 const state = {
   result: [],
   status: '',
@@ -12,11 +14,12 @@ const actions = {
   SEARCH_REQUEST: ({commit}, text) => {
     return new Promise((resolve, reject) => {
       commit('SEARCH_REQUEST');
-      fetch('https://jsonplaceholder.typicode.com/todos/1')
-        .then(response => response.json())
-        .then(json => {
-          commit('SEARCH_SUCCESS', json);
-          resolve(json);
+      SearchRepository
+        .doGlobalSearch(text)
+        .then(result => result.json())
+        .then(result => {
+          commit('SEARCH_SUCCESS', result);
+          resolve(result);
         })
         .catch(error => {
           commit('SEARCH_ERROR', error);

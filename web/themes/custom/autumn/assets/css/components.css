@@ -865,10 +865,10 @@ pre[class*="language-"] {
   padding-bottom: 32px; }
 
 .header {
+  position: relative;
   height: 64px;
   background-color: #FFFFFF;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
-  position: relative; }
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15); }
   .header__inner {
     width: 100%;
     padding-right: 16px;
@@ -903,7 +903,36 @@ pre[class*="language-"] {
     .header__branding-name:hover {
       color: #3F2F17; }
   .header__search {
+    position: relative;
     width: 65%; }
+  .header__search-icon {
+    font-size: 1.375rem;
+    line-height: 1.45455;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    pointer-events: none;
+    color: #bdbdbd; }
+    .header__search-icon:before {
+      content: "\F349";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0; }
+  .header__search-input {
+    padding-right: 48px;
+    padding-left: 48px; }
+    .header__search-input:focus {
+      padding-right: calc(48px - 1px);
+      padding-left: calc(48px - 1px); }
+  .header__search-input:focus ~ .header__search-icon {
+    color: #FFD029; }
 
 .footer {
   font-size: 0.875rem;
@@ -1817,5 +1846,79 @@ pre[class*="language-"] {
 
 .druki-content-druki-content-full__content-item {
   margin-bottom: 16px; }
+
+.search {
+  position: relative; }
+  .search__input-pane {
+    position: relative; }
+  .search__input {
+    padding-right: 48px;
+    padding-left: 48px; }
+    .search__input:focus {
+      padding-right: calc(48px - 1px);
+      padding-left: calc(48px - 1px); }
+  .search__input ~ .search__input-icon {
+    font-size: 1.375rem;
+    line-height: 1.45455;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    pointer-events: none;
+    color: #bdbdbd; }
+    .search__input ~ .search__input-icon:before {
+      content: "\F349";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0; }
+  .search__input-pane--focused .search__input-icon {
+    color: #FFD029; }
+  .search__results-pane {
+    display: flex;
+    width: 100%;
+    margin-top: 16px; }
+  .search__loading {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); }
+    .search__loading svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%); }
+  .search__results-content {
+    display: flex;
+    width: 100%; }
+  .search__results {
+    flex-grow: 1;
+    padding: 16px; }
+  .search__filters {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 240px;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: #f5f5f5; }
+  .search__filter-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0; }
+  .search__filter-item {
+    display: flex;
+    align-items: center; }
+    .search__filter-item label {
+      margin-left: 8px; }
 
 /*# sourceMappingURL=maps/components.css.map */

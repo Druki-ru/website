@@ -1,8 +1,8 @@
 .header {
+  position: relative;
   height: spacing-unit(8);
   background-color: #FFFFFF;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15);
-  position: relative;
 
   &__inner {
     @include make-container();
@@ -36,11 +36,33 @@
   }
 
   &__search {
+    position: relative;
     width: 65%;
   }
 
-  &__search-input {
+  &__search-icon {
+    @include mdi-icon('magnify', $margin-size: 0);
+    @include font-size(22px);
+    position: absolute;
+    top: 50%;
+    left: spacing-unit(2);
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: gray(400);
+  }
 
+  &__search-input {
+    padding-right: spacing-unit(6);
+    padding-left: spacing-unit(6);
+
+    &:focus {
+      padding-right: calc(#{spacing-unit(6)} - 1px);
+      padding-left: calc(#{spacing-unit(6)} - 1px);
+    }
+  }
+
+  &__search-input:focus ~ &__search-icon {
+    color: theme-color();
   }
 
   //.toolbar-tray-open.toolbar-horizontal.toolbar-fixed & {

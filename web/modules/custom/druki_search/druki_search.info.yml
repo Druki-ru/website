@@ -8,3 +8,4 @@ dependencies:
   - search_api:search_api_db
   - snowball_stemmer:snowball_stemmer
   - druki_content:druki_content
+  - drupal:rest

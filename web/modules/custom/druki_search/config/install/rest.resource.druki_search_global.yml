@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - druki_search
+    - serialization
+    - user
+id: druki_search_global
+plugin_id: druki_search_global
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

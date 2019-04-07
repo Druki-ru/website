@@ -1017,6 +1017,20 @@
               createNamespacedHelpers: createNamespacedHelpers
             };
 
+            const resource = '/api/search';
+            const headers = {
+              'Content-Type': 'application/json'
+            };
+            var SearchRepository = {
+              doGlobalSearch(text) {
+                return fetch(`${resource}/global?text=${text}`, {
+                  'method': 'GET',
+                  headers
+                });
+              }
+
+            };
+
             const state = {
               result: [],
               status: ''
@@ -1031,9 +1045,9 @@
               }, text) => {
                 return new Promise((resolve, reject) => {
                   commit('SEARCH_REQUEST');
-                  fetch('https://jsonplaceholder.typicode.com/todos/1').then(response => response.json()).then(json => {
-                    commit('SEARCH_SUCCESS', json);
-                    resolve(json);
+                  SearchRepository.doGlobalSearch(text).then(result => result.json()).then(result => {
+                    commit('SEARCH_SUCCESS', result);
+                    resolve(result);
                   }).catch(error => {
                     commit('SEARCH_ERROR', error);
                     reject(error);
@@ -1069,13 +1083,12 @@
             });
 
             //
-            //
-            //
-            //
-            //
-            //
             var script = {
-              name: 'HeaderSearch',
+              name: 'Search',
+              data: () => ({
+                text: '',
+                filterDifficulty: []
+              }),
               computed: {
                 /**
                  * Gets results for search.
@@ -1090,7 +1103,44 @@
                 status: function () {
                   return this.$store.getters['searchStatus'];
                 }
+              },
+              watch: {
+                text: function () {
+                  this.doSearch();
+                }
+              },
+              methods: {
+                onFocus() {
+                  this.focused = true;
+                },
+
+                onBlur() {
+                  this.focused = false;
+                },
+
+                doSearch: Drupal.debounce(function () {
+                  if (this.text.length >= 3) {
+                    this.$store.dispatch('SEARCH_REQUEST', this.text);
+                    this.updateCurrentUrl();
+                  }
+                }, 300),
+
+                updateCurrentUrl() {
+                  const params = new URLSearchParams(location.search);
+                  params.set('text', this.text);
+                  window.history.replaceState({}, '', `${location.pathname}?${params}`);
+                }
+
+              },
+
+              created() {
+                const params = new URLSearchParams(location.search);
+
+                if (Array.from(params).length && params.get('text').length) {
+                  this.text = params.get('text');
+                }
               }
+
             };
 
             function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
@@ -1178,56 +1228,6 @@
 
             var normalizeComponent_1 = normalizeComponent;
 
-            var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-            function createInjector(context) {
-              return function (id, style) {
-                return addStyle(id, style);
-              };
-            }
-            var HEAD = document.head || document.getElementsByTagName('head')[0];
-            var styles = {};
-
-            function addStyle(id, css) {
-              var group = isOldIE ? css.media || 'default' : id;
-              var style = styles[group] || (styles[group] = {
-                ids: new Set(),
-                styles: []
-              });
-
-              if (!style.ids.has(id)) {
-                style.ids.add(id);
-                var code = css.source;
-
-                if (css.map) {
-                  // https://developer.chrome.com/devtools/docs/javascript-debugging
-                  // this makes source maps inside style tags work properly in Chrome
-                  code += '\n/*# sourceURL=' + css.map.sources[0] + ' */'; // http://stackoverflow.com/a/26603875
-
-                  code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
-                }
-
-                if (!style.element) {
-                  style.element = document.createElement('style');
-                  style.element.type = 'text/css';
-                  if (css.media) style.element.setAttribute('media', css.media);
-                  HEAD.appendChild(style.element);
-                }
-
-                if ('styleSheet' in style.element) {
-                  style.styles.push(code);
-                  style.element.styleSheet.cssText = style.styles.filter(Boolean).join('\n');
-                } else {
-                  var index = style.ids.size - 1;
-                  var textNode = document.createTextNode(code);
-                  var nodes = style.element.childNodes;
-                  if (nodes[index]) style.element.removeChild(nodes[index]);
-                  if (nodes.length) style.element.insertBefore(textNode, nodes[index]);else style.element.appendChild(textNode);
-                }
-              }
-            }
-
-            var browser = createInjector;
-
             /* script */
             const __vue_script__ = script;
 
@@ -1236,35 +1236,332 @@
               var _vm = this;
               var _h = _vm.$createElement;
               var _c = _vm._self._c || _h;
-              return _c("div", { staticClass: "header-search" }, [_vm._v("\n  Search\n")])
+              return _c("div", { staticClass: "search" }, [
+                _c("div", { staticClass: "search__input-pane" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.text,
+                        expression: "text"
+                      }
+                    ],
+                    staticClass: "form-control search__input",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Давайте попробуем что-нибудь найти",
+                      name: "text"
+                    },
+                    domProps: { value: _vm.text },
+                    on: {
+                      focus: _vm.onFocus,
+                      blur: _vm.onBlur,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.text = $event.target.value;
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "search__input-icon" })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "search__results-pane" }, [
+                  _c("div", { staticClass: "search__results-content" }, [
+                    _c(
+                      "div",
+                      { staticClass: "search__results" },
+                      [
+                        _vm._v("\n        Результаты поиска\n\n        "),
+                        _vm._l(_vm.result.items, function(item) {
+                          return _c("div", [
+                            _c("div", { staticClass: "search__result" }, [
+                              _c("h2", { staticClass: "search__result-title" }, [
+                                _vm._v(_vm._s(item.label))
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "search__result-url" }, [
+                                _vm._v(_vm._s(item.url))
+                              ]),
+                              _vm._v(" "),
+                              item.core
+                                ? _c("div", { staticClass: "search__result-core" }, [
+                                    _vm._v(
+                                      "\n              Drupal " +
+                                        _vm._s(item.core) +
+                                        "\n            "
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("a", {
+                                staticClass: "search__result-link",
+                                attrs: { href: item.url }
+                              })
+                            ])
+                          ])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "search__filters" }, [
+                      _c("div", { staticClass: "search__filter" }, [
+                        _c("div", { staticClass: "search__filter-label" }, [
+                          _vm._v("Сложность")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "search__filter-item" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.filterDifficulty,
+                                expression: "filterDifficulty"
+                              }
+                            ],
+                            attrs: {
+                              id: "search-difficulty-1",
+                              type: "checkbox",
+                              name: "difficulty",
+                              value: "none"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.filterDifficulty)
+                                ? _vm._i(_vm.filterDifficulty, "none") > -1
+                                : _vm.filterDifficulty
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.filterDifficulty,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false;
+                                if (Array.isArray($$a)) {
+                                  var $$v = "none",
+                                    $$i = _vm._i($$a, $$v);
+                                  if ($$el.checked) {
+                                    $$i < 0 && (_vm.filterDifficulty = $$a.concat([$$v]));
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.filterDifficulty = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)));
+                                  }
+                                } else {
+                                  _vm.filterDifficulty = $$c;
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "search-difficulty-1" } }, [
+                            _vm._v("Не указана")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "search__filter-item" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.filterDifficulty,
+                                expression: "filterDifficulty"
+                              }
+                            ],
+                            attrs: {
+                              id: "search-difficulty-2",
+                              type: "checkbox",
+                              name: "difficulty",
+                              value: "basic"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.filterDifficulty)
+                                ? _vm._i(_vm.filterDifficulty, "basic") > -1
+                                : _vm.filterDifficulty
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.filterDifficulty,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false;
+                                if (Array.isArray($$a)) {
+                                  var $$v = "basic",
+                                    $$i = _vm._i($$a, $$v);
+                                  if ($$el.checked) {
+                                    $$i < 0 && (_vm.filterDifficulty = $$a.concat([$$v]));
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.filterDifficulty = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)));
+                                  }
+                                } else {
+                                  _vm.filterDifficulty = $$c;
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "search-difficulty-2" } }, [
+                            _vm._v("Базовая")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "search__filter-item" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.filterDifficulty,
+                                expression: "filterDifficulty"
+                              }
+                            ],
+                            attrs: {
+                              id: "search-difficulty-3",
+                              type: "checkbox",
+                              name: "difficulty",
+                              value: "medium"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.filterDifficulty)
+                                ? _vm._i(_vm.filterDifficulty, "medium") > -1
+                                : _vm.filterDifficulty
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.filterDifficulty,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false;
+                                if (Array.isArray($$a)) {
+                                  var $$v = "medium",
+                                    $$i = _vm._i($$a, $$v);
+                                  if ($$el.checked) {
+                                    $$i < 0 && (_vm.filterDifficulty = $$a.concat([$$v]));
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.filterDifficulty = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)));
+                                  }
+                                } else {
+                                  _vm.filterDifficulty = $$c;
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "search-difficulty-3" } }, [
+                            _vm._v("Средняя")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "search__filter-item" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.filterDifficulty,
+                                expression: "filterDifficulty"
+                              }
+                            ],
+                            attrs: {
+                              id: "search-difficulty-4",
+                              type: "checkbox",
+                              name: "difficulty",
+                              value: "advanced"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.filterDifficulty)
+                                ? _vm._i(_vm.filterDifficulty, "advanced") > -1
+                                : _vm.filterDifficulty
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.filterDifficulty,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false;
+                                if (Array.isArray($$a)) {
+                                  var $$v = "advanced",
+                                    $$i = _vm._i($$a, $$v);
+                                  if ($$el.checked) {
+                                    $$i < 0 && (_vm.filterDifficulty = $$a.concat([$$v]));
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.filterDifficulty = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)));
+                                  }
+                                } else {
+                                  _vm.filterDifficulty = $$c;
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "search-difficulty-4" } }, [
+                            _vm._v("Продвинутая")
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.status === "loading",
+                          expression: "status === 'loading'"
+                        }
+                      ],
+                      staticClass: "search__loading"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        { attrs: { width: "48", height: "48", viewBox: "0 0 680 666" } },
+                        [_c("use", { attrs: { "xlink:href": "#druki-loading-svg" } })]
+                      )
+                    ]
+                  )
+                ])
+              ])
             };
             var __vue_staticRenderFns__ = [];
             __vue_render__._withStripped = true;
 
               /* style */
-              const __vue_inject_styles__ = function (inject) {
-                if (!inject) return
-                inject("data-v-db537c9c_0", { source: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Styles for this component handled via Drupal theme. */\n", map: {"version":3,"sources":["/home/nikita/Projects/local/druki/code/web/modules/custom/druki_vue/assets/js/src/components/scoped/HeaderSearch.vue"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA8BA,wDAAA","file":"HeaderSearch.vue","sourcesContent":["<template>\n  <div class=\"header-search\">\n    Search\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'HeaderSearch',\n    computed: {\n\n      /**\n       * Gets results for search.\n       */\n      result: function() {\n        return this.$store.getters['searchResult'];\n      },\n\n      /**\n       * Gets current status of the search.\n       */\n      status: function() {\n        return this.$store.getters['searchStatus'];\n      },\n\n    },\n  };\n</script>\n\n<style>\n  /* Styles for this component handled via Drupal theme. */\n</style>\n"]}, media: undefined });
-
-              };
+              const __vue_inject_styles__ = undefined;
               /* scoped */
               const __vue_scope_id__ = undefined;
               /* module identifier */
               const __vue_module_identifier__ = undefined;
               /* functional template */
               const __vue_is_functional_template__ = false;
+              /* style inject */
+              
               /* style inject SSR */
               
 
               
-              var HeaderSearch = normalizeComponent_1(
+              var Search = normalizeComponent_1(
                 { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
                 __vue_inject_styles__,
                 __vue_script__,
                 __vue_scope_id__,
                 __vue_is_functional_template__,
                 __vue_module_identifier__,
-                browser,
+                undefined,
                 undefined
               );
 
@@ -1278,19 +1575,19 @@
 
             Drupal.behaviors.drukiVueInit = {
               attach: function (context) {
-                this.attachHeaderSearch(context);
+                this.attachSearch(context);
               },
 
               /**
                * Attaches header search component.
                */
-              attachHeaderSearch: function (context) {
-                let searchElements = context.querySelectorAll('.header-search-init');
+              attachSearch: function (context) {
+                let searchElements = context.querySelectorAll('.search-init');
 
                 if (searchElements.length) {
                   searchElements.forEach(element => {
                     new Vue({
-                      render: h => h(HeaderSearch),
+                      render: h => h(Search),
                       store
                     }).$mount(element);
                   });

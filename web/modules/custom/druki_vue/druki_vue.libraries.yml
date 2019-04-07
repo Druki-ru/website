@@ -3,6 +3,7 @@ main:
     assets/js/dist/main.js: {}
   dependencies:
     - core/drupal
+    - core/drupal.debounce
     - druki_vue/vuejs
 
 # Third-party library.

@@ -12,6 +12,7 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access site-wide contact form'
+  - 'restful get druki_search_global'
   - 'search content'
   - 'use text format restricted_html'
   - 'view druki_content'

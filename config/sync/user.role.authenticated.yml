@@ -14,6 +14,7 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'post comments'
+  - 'restful get druki_search_global'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
