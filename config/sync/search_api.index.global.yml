@@ -5,6 +5,7 @@ dependencies:
   module:
     - druki_content
     - search_api
+    - druki_search
     - snowball_stemmer
   config:
     - field.storage.druki_content.labels
@@ -18,7 +19,7 @@ description: ''
 read_only: false
 field_settings:
   category:
-    label: Категория
+    label: Category
     datasource_id: 'entity:druki_content'
     property_path: category
     type: text
@@ -27,13 +28,13 @@ field_settings:
       module:
         - druki_content
   core:
-    label: 'The core version for this content.'
-    datasource_id: 'entity:druki_content'
-    property_path: core
-    type: integer
-    dependencies:
-      module:
-        - druki_content
+    label: 'Druki Content Core'
+    property_path: druki_content_core
+    type: string
+  difficulty:
+    label: 'Druki Content Difficulty'
+    property_path: druki_content_difficulty
+    type: string
   external_id:
     label: 'External content ID'
     datasource_id: 'entity:druki_content'
@@ -44,7 +45,7 @@ field_settings:
       module:
         - druki_content
   filename:
-    label: 'Имя файла'
+    label: Filename
     datasource_id: 'entity:druki_content'
     property_path: filename
     type: text
@@ -71,11 +72,11 @@ field_settings:
         'entity:druki_content':
           druki_content: default
   search_keywords:
-    label: 'Search kewords'
+    label: 'Search keywords'
     datasource_id: 'entity:druki_content'
     property_path: search_keywords
     type: text
-    boost: !!float 8
+    boost: !!float 5
     dependencies:
       config:
         - field.storage.druki_content.search_keywords
@@ -84,7 +85,7 @@ field_settings:
     datasource_id: 'entity:druki_content'
     property_path: title
     type: text
-    boost: !!float 8
+    boost: !!float 21
     dependencies:
       module:
         - druki_content
@@ -98,6 +99,8 @@ processor_settings:
   aggregated_field:
     weights:
       add_properties: 20
+  druki_content_core: {  }
+  druki_content_difficulty: {  }
   html_filter:
     all_fields: false
     fields:

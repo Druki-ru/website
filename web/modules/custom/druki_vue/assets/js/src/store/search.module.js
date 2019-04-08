@@ -11,11 +11,11 @@ const getters = {
 };
 
 const actions = {
-  SEARCH_REQUEST: ({commit}, text) => {
+  SEARCH_REQUEST: ({commit}, params) => {
     return new Promise((resolve, reject) => {
       commit('SEARCH_REQUEST');
       SearchRepository
-        .doGlobalSearch(text)
+        .doGlobalSearch(params)
         .then(result => result.json())
         .then(result => {
           commit('SEARCH_SUCCESS', result);

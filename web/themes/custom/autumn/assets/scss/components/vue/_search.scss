@@ -7,6 +7,7 @@
   }
 
   &__input {
+    @include font-size(20px);
     padding-right: spacing-unit(6);
     padding-left: spacing-unit(6);
 
@@ -57,22 +58,20 @@
   }
 
   &__results-content {
-    display: flex;
+    display: grid;
+    grid-gap: spacing-unit(grid-gap);
+    grid-template-columns: 1fr 260px;
     width: 100%;
   }
 
-  &__results {
-    flex-grow: 1;
-    padding: spacing-unit(sm)
-  }
-
   &__filters {
-    flex-grow: 0;
-    flex-shrink: 0;
-    width: 240px;
     padding: spacing-unit(sm);
     border-radius: $border-radius-base;
     background-color: gray(100);
+  }
+
+  &__filter:not(:last-child) {
+    margin-bottom: spacing-unit(sm);
   }
 
   &__filter-label {
@@ -84,10 +83,49 @@
 
   &__filter-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
-    label {
-      margin-left: spacing-unit(xs);
+    input {
+      margin-top: 4px;
     }
+
+    &:not(:last-child) {
+      margin-bottom: spacing-unit();
+    }
+  }
+
+  &__filter-item-label {
+    margin-left: spacing-unit(xs);
+  }
+
+  &__filter-item-description {
+    @include font-size(13px, $modifier: -1);
+    color: gray(600);
+  }
+
+  &__result {
+    padding: spacing-unit(xs) 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid gray(200);
+    }
+  }
+
+  &__result-title {
+    @include font-size(18px, $modifier: -1);
+    margin-bottom: unset;
+    color: $global-text-color;
+  }
+
+  &__result:hover &__result-title {
+    color: $link-hover-color;
+  }
+
+  &__result-url {
+    color: $link-color;
+  }
+
+  &__result-core {
+    color: gray(600);
   }
 }

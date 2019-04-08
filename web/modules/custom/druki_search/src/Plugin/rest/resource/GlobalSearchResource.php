@@ -101,6 +101,8 @@ class GlobalSearchResource extends ResourceBase {
         'max-age' => 60 * 60 * 24,
         'contexts' => [
           'url.query_args:text',
+          'url.query_args:core',
+          'url.query_args:difficulty',
         ],
       ],
     ]);
@@ -109,10 +111,7 @@ class GlobalSearchResource extends ResourceBase {
       'items' => [],
     ];
 
-    if ($this->request->query->has('text')) {
-      $text = $this->request->query->get('text');
-      $this->doSearch($text, $results, $cache);
-    }
+    $this->doSearch($results, $cache);
 
     $response = new ResourceResponse($results);
     $response->addCacheableDependency($cache);
@@ -123,8 +122,6 @@ class GlobalSearchResource extends ResourceBase {
   /**
    * Search on site.
    *
-   * @param string $text
-   *   The string to search.
    * @param array $results
    *   The results array.
    * @param \Drupal\Core\Cache\CacheableMetadata $cache
@@ -134,7 +131,7 @@ class GlobalSearchResource extends ResourceBase {
    * @throws \Drupal\Core\Entity\EntityMalformedException
    * @throws \Drupal\search_api\SearchApiException
    */
-  public function doSearch(string $text, array &$results, CacheableMetadata $cache): void {
+  public function doSearch(array &$results, CacheableMetadata $cache): void {
     /** @var \Drupal\search_api\IndexInterface $index */
     $index = $this->indexStorage->load('global');
     /** @var \Drupal\search_api\ParseMode\ParseModeInterface $parse_mode */
@@ -142,9 +139,25 @@ class GlobalSearchResource extends ResourceBase {
     $parse_mode->setConjunction('AND');
     $search_query = $index->query();
     $search_query->setParseMode($parse_mode)
-      ->keys($text)
-      ->range(0, 10)
+      ->range(0, 50)
       ->sort('search_api_relevance', QueryInterface::SORT_DESC);
+
+    // Handle additional filters.
+    if ($this->request->query->has('text')) {
+      $text = $this->request->query->get('text');
+      $search_query->keys($text);
+    }
+
+    if ($this->request->query->has('difficulty')) {
+      $difficulty = $this->request->query->get('difficulty');
+      $search_query->addCondition('difficulty', $difficulty, 'IN');
+    }
+
+    if ($this->request->query->has('core')) {
+      $core = $this->request->query->get('core');
+      $search_query->addCondition('core', $core, 'IN');
+    }
+
     $query_results = $search_query->execute();
 
     foreach ($query_results->getResultItems() as $result_item) {
