@@ -5,6 +5,8 @@
  * Provides a druki content entity type.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_theme().
  */
@@ -31,4 +33,12 @@ function druki_content_cron(): void {
   Drupal::service('entity_type.manager')
     ->getStorage('druki_content')
     ->deleteMissing();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function druki_content_form_block_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  // @see https://www.drupal.org/node/2284687
+  unset($form['visibility']['druki_content']);
 }

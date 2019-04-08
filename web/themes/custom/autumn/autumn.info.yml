@@ -17,7 +17,6 @@ libraries:
 regions:
   title: Title
   content: Content
-  sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'
 
 # Disable system libraries.

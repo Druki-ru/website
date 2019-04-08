@@ -19,13 +19,7 @@ function autumn_preprocess_page(array &$variables): void {
   $main_layout_attributes->addClass('main-layout');
 
   // Handle sidebar modifiers.
-  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $main_layout_attributes->addClass('main-layout--two-sidebars');
-  }
-  elseif (!empty($variables['page']['sidebar_first'])) {
-    $main_layout_attributes->addClass('main-layout--sidebar-first');
-  }
-  elseif (!empty($variables['page']['sidebar_second'])) {
+  if (!empty($variables['page']['sidebar_second'])) {
     $main_layout_attributes->addClass('main-layout--sidebar-second');
   }
   else {

@@ -1,0 +1,16 @@
+uuid: 91cbd8be-3174-4dc4-a642-41c5c28821e6
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+id: druki_content_page
+label: 'Druki Content Page'
+logic: and
+conditions:
+  0395a1bc-e5eb-4f8d-a33d-d761f7ad9470:
+    id: druki_content
+    negate: false
+    context_mapping: {  }
+    uuid: 0395a1bc-e5eb-4f8d-a33d-d761f7ad9470
+allow_other_conditions: false

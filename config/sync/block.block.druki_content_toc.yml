@@ -1,4 +1,4 @@
-uuid: 35f285e2-a407-4c40-b883-04f30ad9761b
+uuid: 5c529d16-9b84-4157-bcbe-86c09e4c03ca
 langcode: ru
 status: true
 dependencies:
@@ -6,19 +6,19 @@ dependencies:
     - block_visibility_groups.block_visibility_group.druki_content_page
   module:
     - block_visibility_groups
-    - druki_category
+    - druki_content
   theme:
     - autumn
-id: druki_category_navigation
+id: druki_content_toc
 theme: autumn
 region: sidebar_second
 weight: 0
 provider: null
-plugin: druki_category_navigation
+plugin: druki_content_toc
 settings:
-  id: druki_category_navigation
-  label: 'Навигация по категории'
-  provider: druki_category
+  id: druki_content_toc
+  label: Содержание
+  provider: druki_content
   label_display: visible
 visibility:
   condition_group:

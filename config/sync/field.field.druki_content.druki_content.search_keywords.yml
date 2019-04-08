@@ -12,7 +12,7 @@ id: druki_content.druki_content.search_keywords
 field_name: search_keywords
 entity_type: druki_content
 bundle: druki_content
-label: 'Search kewords'
+label: 'Ключевые слова поиска'
 description: ''
 required: false
 translatable: false

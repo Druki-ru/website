@@ -1,0 +1,3 @@
+condition.plugin.druki_content:
+  type: condition.plugin
+  label: 'Druki Content condition'
