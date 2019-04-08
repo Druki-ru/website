@@ -1,13 +1,13 @@
-uuid: 82a171b8-81b1-4ed7-af66-13438fa19fa0
+uuid: e8d06ab1-55bd-4966-8bc9-9c442666f6c5
 langcode: ru
 status: true
 dependencies:
   module:
     - druki_content
 _core:
-  default_config_hash: MicPMf_Cw7SVRRht17bl5Y8ZawTgc6ePRsm7ptYntew
-id: druki_content.labels
-field_name: labels
+  default_config_hash: ZQ3IoFCSlxmEloxGUNMvSMa_qJ1dO4c422TxK7pa2p8
+id: druki_content.search_keywords
+field_name: search_keywords
 entity_type: druki_content
 type: string
 settings:

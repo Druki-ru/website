@@ -1,4 +1,4 @@
-uuid: c1f025a9-642f-48e9-b319-5f2a1a26805f
+uuid: 0fa305d3-b1d4-4e94-8a7a-09d6cf2cd203
 langcode: ru
 status: true
 dependencies:
@@ -6,6 +6,7 @@ dependencies:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
     - field.field.druki_content.druki_content.labels
+    - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
     - entity_reference_revisions
@@ -32,4 +33,5 @@ hidden:
   langcode: true
   last_commit_id: true
   relative_pathname: true
+  search_keywords: true
   title: true

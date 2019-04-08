@@ -1,18 +1,15 @@
-uuid: d12d2459-31bb-4093-ab8d-088dd6a7cf90
-langcode: ru
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.druki_content.labels
+    - field.storage.druki_content.search_keywords
   module:
     - druki_content
-_core:
-  default_config_hash: vk1_6RMOaAbYcGw7Cz5fw3hdV_TepMvs2oiG2fnBsbI
-id: druki_content.druki_content.labels
-field_name: labels
+id: druki_content.druki_content.search_keywords
+field_name: search_keywords
 entity_type: druki_content
 bundle: druki_content
-label: Labels
+label: Search keywords
 description: ''
 required: false
 translatable: false

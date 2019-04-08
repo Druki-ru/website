@@ -5,11 +5,12 @@ dependencies:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
     - field.field.druki_content.druki_content.labels
+    - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
     - entity_reference_revisions
 _core:
-  default_config_hash: JXmIOtvWSQwUD8LGozwv471iHpB88RKkVWelJ3JyglY
+  default_config_hash: 77EbOKfC3M1d96CqA2i0f8-dbCssFxrEEywI4YiEcpQ
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
@@ -31,4 +32,5 @@ hidden:
   langcode: true
   last_commit_id: true
   relative_pathname: true
+  search_keywords: true
   title: true

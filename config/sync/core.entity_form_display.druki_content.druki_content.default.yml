@@ -1,4 +1,4 @@
-uuid: 0f60d625-4fc5-4f57-bbe3-5de9c3186baf
+uuid: 68a301d7-9ace-49dd-b395-2da921ac8a6a
 langcode: ru
 status: true
 dependencies:
@@ -6,6 +6,7 @@ dependencies:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
     - field.field.druki_content.druki_content.labels
+    - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
     - paragraphs
@@ -59,9 +60,17 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
+    third_party_settings: {  }
+  search_keywords:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   title:
     type: string_textfield

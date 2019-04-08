@@ -1,4 +1,4 @@
-uuid: 7bce5944-1a57-409f-8619-844155b06bb3
+uuid: 3e2f63f3-df8f-40b5-9d8c-93fce0885537
 langcode: ru
 status: true
 dependencies:
@@ -8,9 +8,10 @@ dependencies:
     - snowball_stemmer
   config:
     - field.storage.druki_content.labels
+    - field.storage.druki_content.search_keywords
     - search_api.server.database
 _core:
-  default_config_hash: UH3VPNEgKGXkQ0srrRhiXICndmxGNQa2m6ymwN_oD3s
+  default_config_hash: znEv_GoqzJ8bJd0azpMIu7pgamAYgxhgglY7QX_smLU
 id: global
 name: Global
 description: ''
@@ -69,6 +70,15 @@ field_settings:
       view_mode:
         'entity:druki_content':
           druki_content: default
+  search_keywords:
+    label: 'Search kewords'
+    datasource_id: 'entity:druki_content'
+    property_path: search_keywords
+    type: text
+    boost: !!float 8
+    dependencies:
+      config:
+        - field.storage.druki_content.search_keywords
   title:
     label: Title
     datasource_id: 'entity:druki_content'
@@ -111,6 +121,7 @@ processor_settings:
       - filename
       - labels
       - rendered_item
+      - search_keywords
       - title
     weights:
       preprocess_index: -5
@@ -127,6 +138,7 @@ processor_settings:
       - filename
       - labels
       - rendered_item
+      - search_keywords
       - title
     exceptions:
       texan: texa
@@ -140,7 +152,6 @@ processor_settings:
       - category
       - labels
       - rendered_item
-      - title
     stopwords:
       - a
       - an
@@ -388,6 +399,7 @@ processor_settings:
       - filename
       - labels
       - rendered_item
+      - search_keywords
       - title
     spaces: ''
     overlap_cjk: 1
@@ -403,6 +415,7 @@ processor_settings:
       - filename
       - labels
       - rendered_item
+      - search_keywords
       - title
     weights:
       preprocess_index: -4

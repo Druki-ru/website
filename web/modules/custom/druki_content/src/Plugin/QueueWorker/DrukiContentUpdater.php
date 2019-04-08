@@ -253,6 +253,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
     $this->processDifficulty($druki_content, $structured_data);
     $this->processLabels($druki_content, $structured_data);
+    $this->processSearchKeywords($druki_content, $structured_data);
 
     $druki_content->save();
   }
@@ -609,6 +610,27 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
       if (!empty($labels)) {
         $druki_content->set('labels', $labels);
+      }
+    }
+  }
+
+  /**
+   * Process search keywords for content.
+   *
+   * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
+   *   The entity to save value.
+   * @param array $structured_data
+   *   An array with structured data from source file.
+   */
+  protected function processSearchKeywords(DrukiContentInterface $druki_content, array $structured_data): void {
+    // Reset value. Assumes that value was cleared.
+    $druki_content->set('search_keywords', NULL);
+
+    if (isset($structured_data['meta']['search-keywords'])) {
+      $search_keywords = explode(', ', $structured_data['meta']['search-keywords']);
+
+      if (!empty($search_keywords)) {
+        $druki_content->set('search_keywords', $search_keywords);
       }
     }
   }

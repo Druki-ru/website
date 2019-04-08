@@ -5,12 +5,13 @@ dependencies:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
     - field.field.druki_content.druki_content.labels
+    - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
     - paragraphs
     - path
 _core:
-  default_config_hash: 9eWve_e2wl-5GT1gZOJUxGIyfXYT5nFAPtfx3l6ygU8
+  default_config_hash: hmafrFXZaqwXMsgQq_VUYKRnbahW7oysQ7pM_LnPSQk
 id: druki_content.druki_content.default
 targetEntityType: druki_content
 bundle: druki_content
@@ -58,9 +59,17 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
+    third_party_settings: {  }
+  search_keywords:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   title:
     type: string_textfield

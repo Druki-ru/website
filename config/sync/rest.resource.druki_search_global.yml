@@ -1,4 +1,4 @@
-uuid: 2d64a0a6-5333-43b4-8b2a-767ef21c19e4
+uuid: 370466fe-75db-4025-b185-36d9091cd5ee
 langcode: ru
 status: true
 dependencies:
@@ -6,6 +6,8 @@ dependencies:
     - druki_search
     - serialization
     - user
+_core:
+  default_config_hash: yxkC04euQy_QlWegQ9tHDZ3xry5sYr5wdkZxquI8xp0
 id: druki_search_global
 plugin_id: druki_search_global
 granularity: resource
