@@ -40,6 +40,12 @@ loading_indicator:
   dependencies:
     - core/drupal
 
+mega_menu:
+  js:
+    assets/js/mega-menu.js: {}
+  dependencies:
+    - core/drupal
+
 prism:
   remote: https://prismjs.com/
   version: 1.15

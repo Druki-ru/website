@@ -1,0 +1,153 @@
+{% macro navigation() %}
+  {% set bem_block = 'mega-menu-navigation' %}
+  <div class="{{ bem_block }}">
+    <ul class="{{ bem_block }}__items">
+      <li class="{{ bem_block }}__item">
+        <a href="/docs"
+           class="{{ bem_block }}__link"
+           data-mega-menu-id-selector="learn">
+          Обучение
+        </a>
+      </li>
+      <li class="{{ bem_block }}__item">
+        <a href="/docs"
+           class="{{ bem_block }}__link"
+           data-mega-menu-id-selector="ecosystem">
+          Экосистема
+        </a>
+      </li>
+    </ul>
+  </div>
+{% endmacro %}
+
+{% macro mega_menu() %}
+  {{ attach_library('autumn/mega_menu') }}
+  {% set bem_block = 'mega-menu' %}
+
+  {# Mega Menu: learn #}
+  <div class="{{ bem_block }}" data-mega-menu-id="learn">
+    <div class="{{ bem_block }}__inner">
+      <div class="{{ bem_block }}__column">
+        <ul class="{{ bem_block }}__menu">
+          <li class="{{ bem_block }}__menu-item">
+            <h6>Drupal</h6>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Скачать
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Что такое Drupal
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Часто задаваемые вопросы
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Список изменений
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="{{ bem_block }}__column">
+        <ul class="{{ bem_block }}__menu">
+          <li class="{{ bem_block }}__menu-item">
+            <h6>Начало работы</h6>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Установка
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Административный интерфейс
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Composer
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Drush
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="{{ bem_block }}__column">
+        <ul class="{{ bem_block }}__menu">
+          <li class="{{ bem_block }}__menu-item">
+            <h6>Полезная информация</h6>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Темы оформления
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Модули
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Плагины
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Сервисы
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {# Mega Menu: ecosystem #}
+  <div class="{{ bem_block }}" data-mega-menu-id="ecosystem">
+    <div class="{{ bem_block }}__inner">
+      <div class="{{ bem_block }}__column">
+        <ul class="{{ bem_block }}__menu">
+          <li class="{{ bem_block }}__menu-item">
+            <h6>Помощь и общение</h6>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Сообщество
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Чаты
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Блоги
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              YouTube каналы
+            </a>
+          </li>
+          <li class="{{ bem_block }}__menu-item">
+            <a href="#" class="{{ bem_block }}__menu-link">
+              Конференции и митапы
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endmacro %}

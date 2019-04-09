@@ -877,7 +877,6 @@ pre[class*="language-"] {
     margin-left: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 100%; }
     @media (min-width: 62rem) {
       .header__inner {
@@ -902,9 +901,11 @@ pre[class*="language-"] {
       outline: none; }
     .header__branding-name:hover {
       color: #3F2F17; }
+  .header__navigation {
+    margin-left: 40px; }
   .header__search {
     position: relative;
-    width: 65%; }
+    margin-left: auto; }
   .header__search-icon {
     font-size: 1.375rem;
     line-height: 1.45455;
@@ -1529,6 +1530,66 @@ pre[class*="language-"] {
       opacity: .65; }
     .frontpage-why__promo-button::after {
       font-weight: normal; }
+
+.mega-menu-navigation__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center; }
+
+.mega-menu-navigation__item {
+  margin: 0 16px; }
+
+.mega-menu-navigation__link {
+  color: #424242; }
+  .mega-menu-navigation__link[data-mega-menu-id-selector]:after {
+    content: "\F35D";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Material Design Icons";
+    display: inline-block;
+    text-decoration: inherit;
+    margin-left: 0; }
+
+.mega-menu {
+  position: absolute;
+  z-index: 50;
+  background-color: #f5f5f5;
+  width: 100%;
+  box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.15);
+  display: none; }
+  .mega-menu__inner {
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex; }
+    @media (min-width: 62rem) {
+      .mega-menu__inner {
+        width: 60rem;
+        max-width: 100%; } }
+    @media (min-width: 75rem) {
+      .mega-menu__inner {
+        width: 71.25rem;
+        max-width: 100%; } }
+  .mega-menu__content {
+    display: none; }
+  .mega-menu__column:not(:last-child) {
+    margin-right: 32px; }
+  .mega-menu__menu {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .mega-menu:hover, .mega-menu--active {
+    display: block; }
+  .mega-menu__content:hover, .mega-menu__content--active {
+    display: flex; }
 
 .region-sidebar-second {
   padding-left: 16px;
