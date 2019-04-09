@@ -40,6 +40,9 @@
         return;
       }
 
+      // Mark element as processed.
+      triggerElement.processed = true;
+
       let megaMenuId = triggerElement.getAttribute('data-mega-menu-id-selector');
 
       let megaMenu = context.querySelector(
@@ -50,12 +53,12 @@
         handleEvent: function(event) {
           clearTimeout(hideTimeout);
 
-          // Deactivate all previously activated and visible mega menus.
-          megaMenuElements.forEach(element => {
-            element.classList.remove('mega-menu--active');
-          });
-
           showTimeout = setTimeout(() => {
+            // Deactivate all previously activated and visible mega menus.
+            megaMenuElements.forEach(element => {
+              element.classList.remove('mega-menu--active');
+            });
+
             // Activate main mega menu wrapper.
             megaMenu.classList.add('mega-menu--active');
           }, SHOW_DELAY);
