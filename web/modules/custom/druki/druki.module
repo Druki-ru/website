@@ -11,3 +11,41 @@
 function druki_preprocess_toolbar(array &$variables): void {
   $variables['#attached']['library'][] = 'druki/druki.toolbar';
 }
+
+/**
+ * Implements hook_cron().
+ */
+function druki_cron(): void {
+  $request_time = \Drupal::time()->getRequestTime();
+  $drupal_releases = \Drupal::state('druki.drupal_releases');
+  $expires = $drupal_releases->get('expires', 0);
+
+  if ($request_time > $expires) {
+    // Trying to get new last stable release for Drupal project.
+    /** @var \Drupal\druki\Service\DrupalProjects $drupal_projects */
+    $drupal_projects = \Drupal::service('druki.drupal_projects');
+    $release = $drupal_projects->getProjectLastStableRelease('drupal', '8.x');
+
+    // If release can't be retrieved, we skip everything else and wait for next
+    // cron to try again.
+    if ($release) {
+      $drupal_releases->set('last_stable_release', $release);
+      $drupal_releases->set('expires', $request_time + (60 * 60 * 24));
+
+      /** @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator */
+      $cache_tags_invalidator = \Drupal::service('cache_tags.invalidator');
+      // Invalidate all caches which uses last stable release value.
+      $cache_tags_invalidator->invalidateTags(['druki_last_stable_release']);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ */
+function druki_preprocess_page(array &$variables): void {
+  $drupal_releases = \Drupal::state('druki.drupal_releases');
+  $variables['last_drupal_release'] = $drupal_releases->get('last_stable_release');
+
+  $variables['#cache']['tags'][] = 'druki_last_stable_release';
+}

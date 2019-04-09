@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Main file for installation and uninstall process.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function druki_uninstall() {
+  \Drupal::state('druki.drupal_releases')->deleteMultiple([
+    'expires',
+    'last_stable_release',
+  ]);
+}
