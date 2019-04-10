@@ -1755,8 +1755,7 @@ pre[class*="language-"] {
   color: #757575; }
 
 .druki-download__command-pane {
-  display: flex;
-  max-width: 840px;
+  display: table;
   margin: 48px auto 0;
   padding: 24px;
   color: white;
@@ -1785,13 +1784,70 @@ pre[class*="language-"] {
   grid-template-columns: repeat(3, 300px); }
 
 .druki-download__card {
+  display: flex;
+  flex-direction: column;
   padding: 24px;
   text-align: center;
   border-radius: 4px;
   background-color: #f5f5f5; }
 
 .druki-download__card-icon--try:before {
-  content: "\F3F2";
+  content: "\F1E4";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-download__card-icon--update:before {
+  content: "\F6AF";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-download__card-icon--open-source:before {
+  content: "\FB8A";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-download__card-icon--source-code:before {
+  content: "\FB7C";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-download__card-icon--community:before {
+  content: "\F848";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-download__card-icon--talk:before {
+  content: "\FB57";
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
@@ -1812,8 +1868,9 @@ pre[class*="language-"] {
   font-weight: bold; }
 
 .druki-download__card-bottom {
-  margin-top: 16px;
-  font-weight: bold; }
+  font-weight: bold;
+  margin-top: auto;
+  padding-top: 16px; }
 
 .block-druki-content-toc {
   position: -webkit-sticky;

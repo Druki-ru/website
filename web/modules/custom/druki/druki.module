@@ -19,7 +19,6 @@ function druki_theme(array $existing, string $type, string $theme, string $path)
   return [
     'druki_download' => [
       'variables' => [],
-      'file' => 'druki.theme.inc',
     ],
   ];
 }
