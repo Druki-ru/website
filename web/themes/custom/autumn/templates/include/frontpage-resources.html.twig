@@ -2,7 +2,7 @@
 <div class="{{ bem_block }}">
   <div class="{{ bem_block }}__inner">
     <div class="{{ bem_block }}__download">
-      <a href="/download" class="{{ bem_block}}__download-button">
+      <a href="/download" class="{{ bem_block }}__download-button">
         Скачать
       </a>
 
@@ -26,7 +26,7 @@
     </div>
 
     <div class="{{ bem_block }}__docs">
-      <a href="/docs" class="{{ bem_block}}__docs-button">
+      <a href="/docs" class="{{ bem_block }}__docs-button">
         Документация
       </a>
 
@@ -53,7 +53,9 @@
 
       <div class="{{ bem_block }}__version">
         <div class="{{ bem_block }}__version-label">Drupal</div>
-        <div class="{{ bem_block }}__version-number">8.6.13</div>
+        {% if last_drupal_release %}
+          <div class="{{ bem_block }}__version-number">{{ last_drupal_release }}</div>
+        {% endif %}
       </div>
     </div>
   </div>
