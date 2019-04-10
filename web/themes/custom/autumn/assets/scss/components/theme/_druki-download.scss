@@ -1,0 +1,81 @@
+$icons: (
+  'try': 'phone'
+);
+
+.druki-download {
+  &__title {
+    @include font-size(34px);
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__subtitle {
+    @include font-size(20px);
+    font-weight: normal;
+    text-align: center;
+    color: gray(600);
+  }
+
+  &__command-pane {
+    display: flex;
+    max-width: 840px;
+    margin: spacing-unit(6) auto 0;
+    padding: spacing-unit(3);
+    color: white;
+    border-radius: $border-radius-base;
+    background-color: gray(900);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+  &__command {
+    font-family: $font-family-monospace;
+
+    &::before {
+      content: '$ ';
+    }
+  }
+
+  &__command-note {
+    @include font-size(14px);
+    font-style: italic;
+    margin: spacing-unit(3) 0;
+    text-align: center;
+    color: gray(600);
+  }
+
+  &__cards {
+    display: grid;
+    justify-content: center;
+    margin: spacing-unit(6) 0;
+    grid-gap: spacing-unit(grid-gap);
+    grid-template-columns: repeat(3, 300px);
+  }
+
+  &__card {
+    padding: spacing-unit(3);
+    text-align: center;
+    border-radius: $border-radius-base;
+    background-color: gray(100);
+  }
+
+  @each $modifier, $icon in $icons {
+    &__card-icon--#{$modifier} {
+      @include mdi-icon($icon, $margin-size: 0);
+    }
+  }
+
+  &__card-icon {
+    @include font-size(60px);
+    margin-bottom: spacing-unit(2);
+  }
+
+  &__card-title {
+    @include font-size(20px);
+    font-weight: bold;
+  }
+
+  &__card-bottom {
+    margin-top: spacing-unit(2);
+    font-weight: bold;
+  }
+}

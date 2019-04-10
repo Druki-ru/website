@@ -13,3 +13,11 @@ druki.frontpage_settings:
     _form: 'Drupal\druki\Form\FrontpageSettingsForm'
   requirements:
     _permission: 'administer site configuration'
+
+druki.download:
+  path: '/download'
+  defaults:
+    _title: 'Download Drupal'
+    _controller: '\Drupal\druki\Controller\DrukiController::buildDownload'
+  requirements:
+    _permission: 'access content'

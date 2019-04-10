@@ -11,3 +11,15 @@
 function druki_preprocess_toolbar(array &$variables): void {
   $variables['#attached']['library'][] = 'druki/druki.toolbar';
 }
+
+/**
+ * Implements hook_theme().
+ */
+function druki_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'druki_download' => [
+      'variables' => [],
+      'file' => 'druki.theme.inc',
+    ],
+  ];
+}
