@@ -20,6 +20,9 @@ function druki_theme(array $existing, string $type, string $theme, string $path)
     'druki_download' => [
       'variables' => [],
     ],
+    'druki_docs' => [
+      'variables' => [],
+    ],
   ];
 }
 

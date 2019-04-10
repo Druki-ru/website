@@ -21,4 +21,16 @@ class DrukiController extends ControllerBase {
     return $build;
   }
 
+  /**
+   * Builds the response.
+   */
+  public function buildDocs() {
+
+    $build['content'] = [
+      '#theme' => 'druki_docs',
+    ];
+
+    return $build;
+  }
+
 }

@@ -1237,7 +1237,8 @@ pre[class*="language-"] {
       text-decoration: none;
       border-bottom: 1px solid rgba(63, 47, 23, 0.5); }
   .frontpage-promo__title {
-    margin-bottom: 32px; }
+    margin-bottom: 32px;
+    font-weight: bold; }
 
 .frontpage-resources {
   position: relative;
@@ -1766,7 +1767,8 @@ pre[class*="language-"] {
 .druki-download__command {
   font-family: "Fira Code", monospaced; }
   .druki-download__command::before {
-    content: '$ '; }
+    content: '>_ ';
+    color: #FFD029; }
 
 .druki-download__command-note {
   font-size: 0.875rem;
@@ -1871,6 +1873,40 @@ pre[class*="language-"] {
   font-weight: bold;
   margin-top: auto;
   padding-top: 16px; }
+
+.druki-docs__title {
+  font-size: 2.125rem;
+  line-height: 1.41176;
+  font-weight: bold;
+  text-align: center; }
+
+.druki-docs__subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: normal;
+  text-align: center;
+  color: #757575; }
+
+.druki-docs__first-pane {
+  display: grid;
+  margin: 48px 0;
+  grid-gap: 32px;
+  grid-template-columns: 400px 1fr; }
+
+.druki-docs__list {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.druki-docs__before-ask {
+  display: grid;
+  grid-gap: 32px;
+  grid-template-columns: repeat(2, 1fr); }
+
+.druki-docs__before-ask-description {
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  color: #616161; }
 
 .block-druki-content-toc {
   position: -webkit-sticky;

@@ -114,7 +114,7 @@ processor_settings:
       h3: 2
       string: 2
     weights:
-      preprocess_index: -3
+      preprocess_index: -48
       preprocess_query: -6
   ignorecase:
     all_fields: false
@@ -127,7 +127,7 @@ processor_settings:
       - search_keywords
       - title
     weights:
-      preprocess_index: -5
+      preprocess_index: -50
       preprocess_query: -8
   rendered_item:
     weights:
@@ -147,7 +147,7 @@ processor_settings:
       texan: texa
       mexican: mexic
     weights:
-      preprocess_index: 0
+      preprocess_index: -45
       preprocess_query: 0
   stopwords:
     all_fields: false
@@ -392,7 +392,7 @@ processor_settings:
       - сверху
       - свыше
     weights:
-      preprocess_index: -5
+      preprocess_index: -49
       preprocess_query: -10
   tokenizer:
     all_fields: false
@@ -408,7 +408,7 @@ processor_settings:
     overlap_cjk: 1
     minimum_word_size: '3'
     weights:
-      preprocess_index: -2
+      preprocess_index: -46
       preprocess_query: -5
   transliteration:
     all_fields: false
@@ -421,7 +421,7 @@ processor_settings:
       - search_keywords
       - title
     weights:
-      preprocess_index: -4
+      preprocess_index: -47
       preprocess_query: -7
 tracker_settings:
   default:

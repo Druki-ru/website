@@ -1,0 +1,95 @@
+{% set bem_block = 'druki-docs' %}
+<div{{ attributes.addClass(bem_block) }}>
+  <h1 class="{{ bem_block }}__title">
+    Документация Drupal
+  </h1>
+
+  <h2 class="{{ bem_block }}__subtitle">
+    One page to rule them all.
+  </h2>
+
+  <div class="{{ bem_block }}__first-pane">
+    <div class="{{ bem_block }}__first-pane-col">
+      <h2>Начало работы</h2>
+      <p>
+        Начните свое приключение с изучения основ Drupal. Это даст ответы на
+        многие вопросы, и поможет в дальнейшем корректно задавать вопросы в
+        сообществе. Ведь разработчикам известно, что грамотно поставленный
+        вопрос уже содержит в себе половину ответа.
+      </p>
+
+      <ul class="{{ bem_block }}__list">
+        <li><a href="#">Что такое Drupal</a></li>
+        <li><a href="#">Философия Drupal</a></li>
+        <li><a href="#">Часто задаваемые вопросы</a></li>
+        <li><a href="#">Установка Drupal</a></li>
+        <li><a href="#">Знакомство с административным интерфейсом</a></li>
+        <li><a href="#">Composer</a></li>
+        <li><a href="#">Drush</a></li>
+      </ul>
+    </div>
+
+    <div class="{{ bem_block }}__first-pane-col">
+      <h2>Прежде чем спрашивать</h2>
+
+      <div class="{{ bem_block }}__before-ask">
+        <div>
+          <h5 class="{{ bem_block }}__before-ask-title"><a href="#">Темы оформления</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Позволят оформлять сайт как вам угодно.</p>
+          </div>
+        </div>
+
+        <div>
+          <h5><a href="#">Модули</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Используйте Drupal API, расширяйте Drupal, или меняйте его поведение.</p>
+          </div>
+        </div>
+
+        <div>
+          <h5><a href="#">Плагины</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Система плагинов позволяет расширять возможности системы.</p>
+          </div>
+        </div>
+
+        <div>
+          <h5><a href="#">Сервисы</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Объекты с грамотным Dependency Injection.</p>
+          </div>
+        </div>
+
+        <div>
+          <h5><a href="#">Хуки (hooks)</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Функции, позволяющие внедряться в определенные этапы работы системы, и влиять на результат.</p>
+          </div>
+        </div>
+
+        <div>
+          <h5><a href="#">Form API</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Создание форм, валидация, элементы форм.</p>
+          </div>
+        </div>
+
+        <div>
+          <h5><a href="#">Контроллеры</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Позволяют программно создавать свои собственные страницы, с абсолютно любым поведением.</p>
+          </div>
+        </div>
+
+        <div>
+          <h5><a href="#">Libraries API</a></h5>
+          <div class="{{ bem_block }}__before-ask-description">
+            <p>Подключение JavaScript и CSS, как это должно быть.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

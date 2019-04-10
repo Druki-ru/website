@@ -7,7 +7,7 @@
   /**
    * Delay before menu shows up in ms.
    */
-  const SHOW_DELAY = 250;
+  const SHOW_DELAY = 100;
 
   /**
    * Delay after which menu will hide in ms.

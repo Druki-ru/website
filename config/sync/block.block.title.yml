@@ -3,7 +3,9 @@ langcode: ru
 status: true
 dependencies:
   module:
+    - block_visibility_groups
     - druki_title
+    - system
   theme:
     - autumn
 id: title
@@ -17,4 +19,14 @@ settings:
   label: 'Page title'
   provider: druki_title
   label_display: '0'
-visibility: {  }
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/download\r\n/docs"
+    negate: true
+    context_mapping: {  }

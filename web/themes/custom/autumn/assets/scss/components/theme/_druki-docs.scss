@@ -1,0 +1,36 @@
+.druki-docs {
+  &__title {
+    @include font-size(34px);
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__subtitle {
+    @include font-size(20px);
+    font-weight: normal;
+    text-align: center;
+    color: gray(600);
+  }
+
+  &__first-pane {
+    display: grid;
+    margin: spacing-unit(6) 0;
+    grid-gap: spacing-unit(grid-gap);
+    grid-template-columns: 400px 1fr;
+  }
+
+  &__list {
+    @include list-unstyled;
+  }
+
+  &__before-ask {
+    display: grid;
+    grid-gap: spacing-unit(grid-gap);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__before-ask-description {
+    @include font-size(14px);
+    color: gray(700);
+  }
+}

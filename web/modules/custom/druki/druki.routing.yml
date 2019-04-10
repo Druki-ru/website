@@ -21,3 +21,11 @@ druki.download:
     _controller: '\Drupal\druki\Controller\DrukiController::buildDownload'
   requirements:
     _permission: 'access content'
+
+druki.docs:
+  path: '/docs'
+  defaults:
+    _title: 'Documentation'
+    _controller: '\Drupal\druki\Controller\DrukiController::buildDocs'
+  requirements:
+    _permission: 'access content'

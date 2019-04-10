@@ -35,7 +35,8 @@ $icons: (
     font-family: $font-family-monospace;
 
     &::before {
-      content: '$ ';
+      content: '>_ ';
+      color: theme-color();
     }
   }
 
