@@ -2099,8 +2099,8 @@
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: !_vm.result.items.length,
-                                expression: "!result.items.length"
+                                value: !_vm.result.items,
+                                expression: "!result.items"
                               }
                             ]
                           },

@@ -91,4 +91,36 @@
     @include font-size(24px, $modifier: -1);
     font-weight: bold;
   }
+
+  @include media-breakpoint-down(sm) {
+    padding: spacing-unit(2) 0;
+
+    &__branding {
+      display: none;
+    }
+
+    &__inner {
+      flex-flow: wrap;
+    }
+
+    &__docs,
+    &__download {
+      flex: 1 100%;
+      width: 100%;
+      margin-top: unset;
+    }
+
+    &__links {
+      display: none;
+    }
+
+    &__docs-button,
+    &__download-button {
+      text-align: center;
+    }
+
+    &__download-button {
+      margin-bottom: spacing-unit(2);
+    }
+  }
 }

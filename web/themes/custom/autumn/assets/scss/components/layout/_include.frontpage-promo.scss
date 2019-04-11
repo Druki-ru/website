@@ -38,4 +38,12 @@
     margin-bottom: spacing-unit(4);
     font-weight: bold;
   }
+
+  @include media-breakpoint-down(md) {
+    padding: spacing-unit(10) 0;
+
+    &__content {
+      max-width: unset;
+    }
+  }
 }

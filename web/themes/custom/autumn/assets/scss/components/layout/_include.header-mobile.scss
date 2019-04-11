@@ -1,0 +1,51 @@
+.header-mobile {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: spacing-unit(8);
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+
+  &__branding {
+    @include font-size(24px, spacing-unit(8));
+    font-weight: bold;
+    text-transform: uppercase;
+    color: theme-color(secondary);
+  }
+
+  &__search {
+    @include mdi-icon('magnify', $margin-size: 0);
+    @include font-size(24px, spacing-unit(8));
+    display: block;
+    height: 100%;
+    padding: 0 spacing-unit(2);
+    text-align: center;
+    color: gray(600);
+  }
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+
+.mobile-toggle {
+  position: relative;
+  padding: 26px spacing-unit(2);
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: gray(600);
+  }
+
+  span:not(:last-child) {
+    margin-bottom: 3px;
+  }
+}

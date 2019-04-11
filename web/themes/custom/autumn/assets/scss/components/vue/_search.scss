@@ -128,4 +128,10 @@
   &__result-core {
     color: gray(600);
   }
+
+  @include media-breakpoint-down(sm) {
+    &__results-content {
+      grid-template-columns: 1fr;
+    }
+  }
 }

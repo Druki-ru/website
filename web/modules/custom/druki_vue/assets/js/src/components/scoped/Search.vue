@@ -15,7 +15,7 @@
     <div class="search__results-pane">
       <div class="search__results-content">
         <div class="search__results">
-          <div v-show="!result.items.length">
+          <div v-show="!result.items">
             Ничего не найдено
           </div>
           <div class="search__result" v-for="item in result.items">

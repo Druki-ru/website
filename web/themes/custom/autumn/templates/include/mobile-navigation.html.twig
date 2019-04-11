@@ -1,0 +1,28 @@
+{{ attach_library('autumn/mobile_navigation') }}
+{% set bem_block = 'mobile-navigation' %}
+<div class="{{ bem_block }}">
+  <div class="{{ bem_block }}__sidebar">
+    <div class="{{ bem_block }}__branding">
+      <img
+        src="/{{ active_theme_path() }}/logo.svg"
+        class="{{ bem_block }}__branding-logo"
+        alt="Druplicon"
+      >
+    </div>
+
+    <ul class="{{ bem_block }}__navigation">
+      <li class="{{ bem_block }}__navigation-item">
+        <a href="/docs" class="{{ bem_block }}__navigation-link">Документация</a>
+      </li>
+      <li class="{{ bem_block }}__navigation-item">
+        <a href="/download" class="{{ bem_block }}__navigation-link">Скачать</a>
+      </li>
+      <li class="{{ bem_block }}__navigation-item">
+        <a href="/docs/changelog" class="{{ bem_block }}__navigation-link">Список изменений</a>
+      </li>
+      <li class="{{ bem_block }}__navigation-item">
+        <a href="/docs/faq" class="{{ bem_block }}__navigation-link">FAQ</a>
+      </li>
+    </ul>
+  </div>
+</div>

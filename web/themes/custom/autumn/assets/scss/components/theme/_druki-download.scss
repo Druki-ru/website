@@ -86,4 +86,16 @@ $icons: (
     margin-top: auto;
     padding-top: spacing-unit(2);
   }
+
+  @include media-breakpoint-between(sm, md) {
+    &__cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include media-breakpoint-only(xs) {
+    &__cards {
+      grid-template-columns: 1fr;
+    }
+  }
 }

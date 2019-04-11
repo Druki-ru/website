@@ -91,4 +91,10 @@ $icons: (
       font-weight: normal;
     }
   }
+
+  @include media-breakpoint-down(md) {
+    &__content {
+      grid-template-columns: 1fr;
+    }
+  }
 }

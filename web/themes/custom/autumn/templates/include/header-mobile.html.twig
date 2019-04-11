@@ -1,0 +1,16 @@
+{% set bem_block = 'header-mobile' %}
+<div class="{{ bem_block }}">
+  <div class="mobile-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <a href="{{ url('<front>') }}" class="{{ bem_block }}__branding">
+    Druki
+  </a>
+
+  <a href="{{ url('druki_vue.search') }}" class="{{ bem_block }}__search">
+
+  </a>
+</div>

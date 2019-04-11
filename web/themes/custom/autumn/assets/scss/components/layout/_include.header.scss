@@ -77,4 +77,10 @@
   //.toolbar-fixed.toolbar-vertical & {
   //  top: 39px;
   //}
+
+  @include media-breakpoint-down(md) {
+    &__inner {
+      display: none;
+    }
+  }
 }

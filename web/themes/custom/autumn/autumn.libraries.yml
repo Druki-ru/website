@@ -46,6 +46,12 @@ mega_menu:
   dependencies:
     - core/drupal
 
+mobile_navigation:
+  js:
+    assets/js/mobile-navigation.js: {}
+  dependencies:
+    - core/drupal
+
 prism:
   remote: https://prismjs.com/
   version: 1.15

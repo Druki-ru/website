@@ -19,18 +19,30 @@
     grid-template-columns: 400px 1fr;
   }
 
+  &__first-pane-title {
+    margin-bottom: spacing-unit(2);
+    padding-bottom: spacing-unit(2);
+    border-bottom: 1px solid gray(200);
+  }
+
   &__list {
     @include list-unstyled;
   }
 
   &__before-ask {
     display: grid;
-    grid-gap: spacing-unit(grid-gap);
+    grid-gap: spacing-unit(2);
     grid-template-columns: repeat(2, 1fr);
   }
 
   &__before-ask-description {
     @include font-size(14px);
     color: gray(700);
+  }
+
+  @include media-breakpoint-down(sm) {
+    &__first-pane {
+      grid-template-columns: 1fr;
+    }
   }
 }

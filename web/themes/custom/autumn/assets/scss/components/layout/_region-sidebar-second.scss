@@ -3,4 +3,9 @@
   border-left: 1px solid gray(200);
   padding-top: spacing-unit(4);
   padding-bottom: spacing-unit(4);
+
+  @include media-breakpoint-down(md) {
+    border: unset;
+    padding: unset;
+  }
 }

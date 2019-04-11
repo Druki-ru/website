@@ -27,7 +27,7 @@ $icons: (
   }
 
   &__links-item:not(:last-child) {
-    margin-right: ga(2);
+    margin-right: spacing-unit(2);
   }
 
   @each $modifier, $icon in $icons {
@@ -50,9 +50,21 @@ $icons: (
     }
   }
 
-  &--with-links {
-    #{$block}__inner {
-      padding-bottom: unset;
+  @include media-breakpoint-up(lg) {
+    &--with-links {
+      #{$block}__inner {
+        padding-bottom: unset;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &__title {
+      @include font-size(28px);
+    }
+
+    &__links {
+      display: none;
     }
   }
 }
