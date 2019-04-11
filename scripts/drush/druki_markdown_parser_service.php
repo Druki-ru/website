@@ -52,6 +52,18 @@ test-inline-array: [one, two, three]
 > This is IMPORTANT
 
 > Original Markdown Quote
+
+* List
+  * List
+     * List
+  * List
+* List
+
+1. List
+1. List
+   1. List
+   1. List
+1. List
 Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);

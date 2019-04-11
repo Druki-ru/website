@@ -201,6 +201,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    */
   protected function processContent(array $structured_data, array $data): void {
     $core_version = isset($structured_data['meta']['core']) ? $structured_data['meta']['core'] : NULL;
+
+    // Skip processing if file doesn't contains meta-information.
+    if (empty($structured_data['meta'])) {
+      return;
+    }
+
     $druki_content = $this->loadContent(
       $structured_data['meta']['id'],
       $data['langcode'],
