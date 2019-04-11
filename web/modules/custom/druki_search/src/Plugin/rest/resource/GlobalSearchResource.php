@@ -144,8 +144,17 @@ class GlobalSearchResource extends ResourceBase {
 
     // Handle additional filters.
     if ($this->request->query->has('text')) {
+      $keys = [
+        '#conjunction' => 'OR',
+      ];
       $text = $this->request->query->get('text');
-      $search_query->keys($text);
+      $keys[] = $text;
+
+      if (!$this->isRussian($text)) {
+        $keys[] = $this->ytNfHfcrkflrf($text);
+      }
+
+      $search_query->keys($keys);
     }
 
     if ($this->request->query->has('difficulty')) {
@@ -180,6 +189,65 @@ class GlobalSearchResource extends ResourceBase {
 
       $results['items'][] = $result;
     }
+  }
+
+  /**
+   * If string not
+   */
+  protected function ytNfHfcrkflrf(string $string): string {
+    // Anyway this string will be lowered in Search API. This reduce the size of
+    // replacement array.
+    $string = strtolower($string);
+
+    $replacements = [
+      'q' => 'й',
+      'w' => 'ц',
+      'e' => 'у',
+      'r' => 'к',
+      't' => 'е',
+      'y' => 'н',
+      'u' => 'г',
+      'i' => 'ш',
+      'o' => 'щ',
+      'p' => 'з',
+      '[' => 'х',
+      ']' => 'ъ',
+      'a' => 'ф',
+      's' => 'ы',
+      'd' => 'в',
+      'f' => 'а',
+      'g' => 'п',
+      'h' => 'р',
+      'j' => 'о',
+      'k' => 'л',
+      'l' => 'д',
+      ';' => 'ж',
+      '\'' => 'э',
+      'z' => 'я',
+      'x' => 'ч',
+      'c' => 'с',
+      'v' => 'м',
+      'b' => 'и',
+      'n' => 'т',
+      'm' => 'ь',
+      ',' => 'б',
+      '.' => 'ю',
+    ];
+
+    return strtr($string, $replacements);
+  }
+
+  /**
+   * Checks is this string contain russian chars or not.
+   *
+   * @param string $string
+   *   The string to test.
+   *
+   * @return bool
+   *   TRUE if contain russian chars, FALSE otherwise.
+   */
+  protected function isRussian(string $string): bool {
+    return preg_match('/[А-Яа-яЁё]/u', $string);
   }
 
 }
