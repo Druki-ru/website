@@ -24,6 +24,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   title = @Translation("Druki content updater."),
  *   cron = {"time" = 60}
  * )
+ * @todo improve updating. If id changed and\or added core in meta tags, content
+ * can be found but this values wont change.
  */
 class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 

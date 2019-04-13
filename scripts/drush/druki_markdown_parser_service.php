@@ -64,6 +64,8 @@ test-inline-array: [one, two, three]
    1. List
    1. List
 1. List
+
+{Drupal 8}[drupal:8]
 Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);
