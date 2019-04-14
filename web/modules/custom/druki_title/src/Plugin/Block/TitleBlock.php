@@ -3,6 +3,7 @@
 namespace Drupal\druki_title\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Controller\TitleResolverInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
@@ -157,6 +158,20 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
         'rel' => 'nofollow noopener',
       ],
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts(): array {
+    $cache_contexts = [
+      'url.path',
+    ];
+
+    return Cache::mergeContexts(
+      parent::getCacheContexts(),
+      $cache_contexts
+    );
   }
 
 }

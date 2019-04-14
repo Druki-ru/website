@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\druki_content\Entity\DrukiContentInterface;
@@ -96,6 +97,20 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
     }
 
     return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts(): array {
+    $cache_contexts = [
+      'url.path',
+    ];
+
+    return Cache::mergeContexts(
+      parent::getCacheContexts(),
+      $cache_contexts
+    );
   }
 
 }
