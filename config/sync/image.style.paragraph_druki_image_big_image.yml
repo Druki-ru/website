@@ -1,0 +1,15 @@
+uuid: 33c6f36a-17a8-4895-8686-2b7455122122
+langcode: ru
+status: true
+dependencies: {  }
+name: paragraph_druki_image_big_image
+label: 'Paragraph - Druki Image - Big image'
+effects:
+  c07ac801-d73e-4f0c-a9c1-615c8020b664:
+    uuid: c07ac801-d73e-4f0c-a9c1-615c8020b664
+    id: image_scale
+    weight: 1
+    data:
+      width: 1920
+      height: null
+      upscale: false

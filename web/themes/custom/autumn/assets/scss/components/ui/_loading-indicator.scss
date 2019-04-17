@@ -4,7 +4,7 @@
 
 #druki-loading-svg {
   animation: dash 1s linear infinite;
-  stroke-dasharray: 200;
+  stroke-dasharray: 400;
   stroke-dashoffset: 0;
 }
 
@@ -30,6 +30,6 @@
     stroke-dashoffset: 0;
   }
   to {
-    stroke-dashoffset: 400;
+    stroke-dashoffset: 800;
   }
 }

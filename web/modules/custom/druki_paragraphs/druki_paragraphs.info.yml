@@ -9,3 +9,4 @@ dependencies:
   - drupal:options
   - drupal:media
   - drupal:media_library
+  - photoswipe:photoswipe

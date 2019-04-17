@@ -689,7 +689,7 @@ a.tabledrag-handle .handle {
 #druki-loading-svg {
   -webkit-animation: dash 1s linear infinite;
           animation: dash 1s linear infinite;
-  stroke-dasharray: 200;
+  stroke-dasharray: 400;
   stroke-dashoffset: 0; }
 
 .druki-loading-indicator-pane--fullscreen {
@@ -711,13 +711,13 @@ a.tabledrag-handle .handle {
   from {
     stroke-dashoffset: 0; }
   to {
-    stroke-dashoffset: 400; } }
+    stroke-dashoffset: 800; } }
 
 @keyframes dash {
   from {
     stroke-dashoffset: 0; }
   to {
-    stroke-dashoffset: 400; } }
+    stroke-dashoffset: 800; } }
 
 /* PrismJS 1.15.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+bash+css-extras+markup-templating+ini+json+markdown+makefile+nginx+php+php-extras+scss+typescript+sass+yaml+twig */
