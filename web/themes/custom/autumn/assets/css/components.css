@@ -1769,6 +1769,10 @@ pre[class*="language-"] {
     margin: 0;
     padding: 0;
     list-style: none; }
+  .mega-menu__menu--two-cols {
+    display: grid;
+    grid-column-gap: 24px;
+    grid-template-columns: repeat(2, 1fr); }
   .mega-menu:hover, .mega-menu--active {
     display: block; }
   .mega-menu__content:hover, .mega-menu__content--active {

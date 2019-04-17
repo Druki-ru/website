@@ -48,6 +48,12 @@
     @include list-unstyled;
   }
 
+  &__menu--two-cols {
+    display: grid;
+    grid-column-gap: spacing-unit(3);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   &:hover,
   &--active {
     display: block;
