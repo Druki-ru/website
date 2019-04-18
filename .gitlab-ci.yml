@@ -6,7 +6,7 @@ deploy:
   only:
     - 8.x
   script:
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && git pull origin master"
+    - ssh $USER@$HOST "cd $PROJECT_ROOT && git pull origin 8.x"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && composer install -o -n"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && drush cr -y"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && drush cim --diff -y"
