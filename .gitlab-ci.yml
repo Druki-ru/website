@@ -4,7 +4,7 @@ stages:
 deploy:
   stage: deploy
   only:
-    - master
+    - 8.x
   script:
     - ssh $USER@$HOST "cd $PROJECT_ROOT && git pull origin master"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && composer install -o -n"
