@@ -13,7 +13,7 @@ id: paragraph.druki_text.druki_textarea_formatted
 field_name: druki_textarea_formatted
 entity_type: paragraph
 bundle: druki_text
-label: Содержимое
+label: Content
 description: ''
 required: true
 translatable: false

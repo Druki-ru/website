@@ -1,0 +1,23 @@
+uuid: 9a5d26c7-4e53-4099-9d1c-e58d5e8a2545
+langcode: ru
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: sL588ui1E_8-2c_UupwyYxcqX2OVyMFp3HTLbbFqvPc
+id: global
+label: Global
+tags:
+  canonical_url: '[current-page:url]'
+  title: '[current-page:title] | [site:name]'
+  theme_color: '#FFD029'
+  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=5.0'
+  mobileoptimized: '320'
+  og_url: '[current-page:url]'
+  og_image: /sites/default/files/druki/logo.svg
+  og_site_name: Druki
+  og_title: '[current-page:title]'
+  og_type: website
+  twitter_cards_image: /sites/default/files/druki/logo.svg
+  twitter_cards_page_url: '[current-page:url]'
+  twitter_cards_type: summary
+  twitter_cards_title: '[current-page:title]'

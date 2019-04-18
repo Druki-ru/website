@@ -1,0 +1,13 @@
+uuid: c46ff901-292e-497a-9a74-5558bb4413cf
+langcode: ru
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1noCXlegCr5HFehQRF1ViXy1jhU1jZ_sNN99a8Sj5jo
+id: front
+label: 'Front page'
+tags:
+  shortlink: '[site:url]'
+  canonical_url: '[site:url]'
+  title: 'Drupal энциклопедия'
+  description: 'Обучающие материалы про Drupal.'

@@ -13,7 +13,7 @@ id: druki_content.druki_content.content
 field_name: content
 entity_type: druki_content
 bundle: druki_content
-label: Содержимое
+label: Content
 description: ''
 required: true
 translatable: false
