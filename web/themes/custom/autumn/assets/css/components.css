@@ -2181,24 +2181,6 @@ pre[class*="language-"] {
       left: 0;
       text-align: center; }
 
-.block-autumn-content a[href^="http://"]:not([href*="druki.localhost"]):after,
-.block-autumn-content a[href^="https://"]:not([href*="druki.localhost"]):after,
-.block-autumn-content a[href^="//"]:not([href*="druki.localhost"]):after {
-  content: "\F3CC";
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  line-height: 1;
-  font-family: "Material Design Icons";
-  display: inline-block;
-  text-decoration: inherit;
-  margin-left: 0.4em; }
-
-.block-autumn-content a[href^="http://"]:not([href*="druki.localhost"])::after,
-.block-autumn-content a[href^="https://"]:not([href*="druki.localhost"])::after,
-.block-autumn-content a[href^="//"]:not([href*="druki.localhost"])::after {
-  color: #757575; }
-
 .block-autumn-content a[href^="http://"]:not([href*="druki.ru"]):after,
 .block-autumn-content a[href^="https://"]:not([href*="druki.ru"]):after,
 .block-autumn-content a[href^="//"]:not([href*="druki.ru"]):after {

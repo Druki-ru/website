@@ -1,18 +1,12 @@
-$whitelist_domains: (
-  'druki.localhost',
-  'druki.ru',
-);
 .block-autumn-content {
   // Add icon for external links.
-  @each $domain in $whitelist_domains {
-    a[href^="http://"]:not([href*="#{$domain}"]),
-    a[href^="https://"]:not([href*="#{$domain}"]),
-    a[href^="//"]:not([href*="#{$domain}"]) {
-      @include mdi-icon('open-in-new', after);
+  a[href^="http://"]:not([href*="druki.ru"]),
+  a[href^="https://"]:not([href*="druki.ru"]),
+  a[href^="//"]:not([href*="druki.ru"]) {
+    @include mdi-icon('open-in-new', after);
 
-      &::after {
-        color: gray(600);
-      }
+    &::after {
+      color: gray(600);
     }
   }
 }
