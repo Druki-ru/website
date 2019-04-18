@@ -466,9 +466,13 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
         $destination_uri = $this->getMediaImageFieldDestination();
         $basename = basename($file_uri);
         $data = file_get_contents($file_uri);
-        $file = file_save_data($data, $destination_uri . '/' . $basename);
-        if ($file instanceof FileInterface) {
-          $media = $this->saveImageFileToMediaImage($file);
+
+        // Ensure folder is exists and writable.
+        if (file_prepare_directory($destination_uri, FILE_CREATE_DIRECTORY)) {
+          $file = file_save_data($data, $destination_uri . '/' . $basename);
+          if ($file instanceof FileInterface) {
+            $media = $this->saveImageFileToMediaImage($file);
+          }
         }
       }
 
