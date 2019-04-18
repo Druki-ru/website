@@ -59,7 +59,7 @@ class DrukiGitController extends ControllerBase implements ContainerInjectionInt
   public function webhook(): JsonResponse {
     $webhook_info = json_decode($this->request->getContent());
 
-    if ($this->git->init() && $webhook_info['object_kind'] == 'push') {
+    if ($this->git->init() && $webhook_info->object_kind == 'push') {
       if ($this->git->pull()) {
         $this->logger->info(t('Webhook is triggered, and content is successfully pulled.'));
       }
