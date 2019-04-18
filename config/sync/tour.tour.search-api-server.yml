@@ -22,7 +22,7 @@ tips:
   search-api-server-status:
     id: search-api-server-status
     plugin: text
-    label: Status
+    label: Статус
     body: 'Shows whether the server is currently enabled or disabled.'
     weight: 2
     attributes:

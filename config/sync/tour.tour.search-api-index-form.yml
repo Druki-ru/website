@@ -40,7 +40,7 @@ tips:
   search-api-index-form-tracker:
     id: search-api-index-form-tracker
     plugin: text
-    label: Tracker
+    label: Изменения
     body: 'An index''s tracker is the system that keeps track of which items there are available for the index, and which of them still need to be indexed. Changing the tracker of an existing index will lead to reindexing of all items.'
     weight: 4
     attributes:
@@ -64,7 +64,7 @@ tips:
   search-api-index-form-options:
     id: search-api-index-form-options
     plugin: text
-    label: 'Advanced options'
+    label: 'Дополнительные настройки'
     body: 'These options allow more detailed configuration of index behavior, but can usually safely be ignored by inexperienced users.'
     weight: 7
     attributes:

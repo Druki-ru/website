@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: 9PWq27qRk2VHWK4bUFNHGOeIMjwqZiSm1g_vFY38J90
 id: database
-name: Database
+name: 'База данных'
 description: ''
 backend: search_api_db
 backend_config:

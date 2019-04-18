@@ -354,7 +354,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Status
+          label: Статус
           exclude: false
           alter:
             alter_text: false
@@ -666,7 +666,7 @@ display:
           exposed: true
           expose:
             operator_id: status_op
-            label: Status
+            label: Статус
             description: ''
             use_operator: false
             operator: status_op

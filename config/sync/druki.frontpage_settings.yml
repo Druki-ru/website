@@ -1,8 +1,6 @@
 promo:
-  image: '1'
+  image: '10'
   style: hero_image
 why:
-  video: '2'
-  image: '1'
-  style: large
+  video: '11'
 langcode: ru

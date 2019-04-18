@@ -30,7 +30,7 @@ tips:
   search-api-index-fields-label:
     id: search-api-index-fields-label
     plugin: text
-    label: Label
+    label: Метка
     body: 'A label for the field that will be used to refer to the field in most places in the user interface.'
     weight: 3
     attributes:
@@ -38,7 +38,7 @@ tips:
   search-api-index-fields-machine-name:
     id: search-api-index-fields-machine-name
     plugin: text
-    label: 'Machine name'
+    label: 'Машинное имя'
     body: 'The internal ID to use for this field. Can safely be ignored by inexperienced users in most cases. Changing a field''s machine name requires reindexing of the index.'
     weight: 4
     attributes:
@@ -54,7 +54,7 @@ tips:
   search-api-index-fields-type:
     id: search-api-index-fields-type
     plugin: text
-    label: Type
+    label: Тип
     body: 'The data type to use when indexing the field. Determines how a field can be used in searches. For information on the available types, see the <a href="#search-api-data-types-table">"Data types" box</a> at the bottom of the page.'
     weight: 6
     attributes:
