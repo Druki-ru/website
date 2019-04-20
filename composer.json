@@ -41,7 +41,6 @@
         "drupal/snowball_stemmer": "^1.1",
         "drupal/twig_tweak": "^2.1",
         "drush/drush": "^9.6.0",
-        "league/commonmark": "dev-master#d972ff9",
         "npm-asset/photoswipe": "^4.1",
         "oomphinc/composer-installers-extender": "^1.1",
         "vlucas/phpdotenv": "^2.4",
@@ -94,6 +93,11 @@
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
             "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/markdown": {
+                "Compatibility with 0.19 library. https://www.drupal.org/project/markdown/issues/3048976": "https://www.drupal.org/files/issues/2019-04-20/commonmark_update-3048976-3.patch"
+            }
         },
         "installer-types": ["bower-asset", "npm-asset"],
         "installer-paths": {

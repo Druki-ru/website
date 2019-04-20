@@ -19,11 +19,10 @@ class MetaInformationRenderer implements BlockRendererInterface {
    * {@inheritdoc}
    */
   public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE): HtmlElement {
-    $strings = $block->getStrings();
     $content = [];
+    dump($block->getStringContent());
+    $yaml_array = Yaml::decode($block->getStringContent());
 
-    $yaml_string = implode($strings, PHP_EOL);
-    $yaml_array = Yaml::decode($yaml_string);
     foreach ($yaml_array as $key => $value) {
       $content[] = new HtmlElement('div', [
         'data-druki-key' => $key,

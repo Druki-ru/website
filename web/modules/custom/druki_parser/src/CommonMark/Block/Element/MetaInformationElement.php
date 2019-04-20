@@ -3,6 +3,7 @@
 namespace Drupal\druki_parser\CommonMark\Block\Element;
 
 use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Block\Element\AbstractStringContainerBlock;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 use League\CommonMark\Util\RegexHelper;
@@ -12,7 +13,7 @@ use League\CommonMark\Util\RegexHelper;
  *
  * @package Drupal\druki_parser\Plugin\Markdown\Extension
  */
-class MetaInformationElement extends AbstractBlock {
+class MetaInformationElement extends AbstractStringContainerBlock {
 
   /**
    * Indicates is meta information closing block found.
@@ -52,6 +53,7 @@ class MetaInformationElement extends AbstractBlock {
     // matches. Try some workaround with $context->advanceBy(-3) in
     // handleRemainingContents(). This will let condition pass. But need some
     // extra fixes, since this not fix all the problems that fix this value.
+    // @see https://github.com/thephpleague/commonmark/issues/358#issuecomment-485148208
     return TRUE;
   }
 
@@ -100,6 +102,15 @@ class MetaInformationElement extends AbstractBlock {
     }
 
     $context->getTip()->addLine($cursor->getRemainder());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function finalize(ContextInterface $context, int $endLineNumber) {
+    parent::finalize($context, $endLineNumber);
+
+    $this->finalStringContents = implode(PHP_EOL, $this->strings->toArray());
   }
 
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62f3f0b95f4a9041b433f79684672c31",
+    "content-hash": "42116282eb726d6f5e2fa30543b0ac6b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2953,12 +2953,15 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha1+8-dev",
-                    "datestamp": "1528455184",
+                    "version": "8.x-2.0-alpha1+9-dev",
+                    "datestamp": "1537480380",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Compatibility with 0.19 library. https://www.drupal.org/project/markdown/issues/3048976": "https://www.drupal.org/files/issues/2019-04-20/commonmark_update-3048976-3.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4196,16 +4199,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "dev-master",
+            "version": "0.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "d972ff9"
+                "reference": "d42b2d4a5d0a8eb2a4514f828ecb6f5db13a7c6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d972ff9",
-                "reference": "d972ff9",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d42b2d4a5d0a8eb2a4514f828ecb6f5db13a7c6f",
+                "reference": "d42b2d4a5d0a8eb2a4514f828ecb6f5db13a7c6f",
                 "shasum": ""
             },
             "require": {
@@ -4217,10 +4220,11 @@
             },
             "require-dev": {
                 "cebe/markdown": "~1.0",
-                "commonmark/commonmark.js": "0.28",
+                "commonmark/commonmark.js": "0.29.0",
                 "erusev/parsedown": "~1.0",
                 "michelf/php-markdown": "~1.4",
                 "mikehaertl/php-shellcommand": "^1.4",
+                "phpstan/phpstan-shim": "^0.11.5",
                 "phpunit/phpunit": "^7.5",
                 "scrutinizer/ocular": "^1.5",
                 "symfony/finder": "^4.2"
@@ -4234,12 +4238,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.19-dev"
+                    "dev-master": "0.20-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "League\\CommonMark\\": "src/"
+                    "League\\CommonMark\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4255,13 +4259,13 @@
                 }
             ],
             "description": "PHP Markdown parser based on the CommonMark spec",
-            "homepage": "https://github.com/thephpleague/commonmark",
+            "homepage": "https://commonmark.thephpleague.com",
             "keywords": [
                 "commonmark",
                 "markdown",
                 "parser"
             ],
-            "time": "2019-03-09T19:02:54+00:00"
+            "time": "2019-04-11T04:37:01+00:00"
         },
         {
             "name": "league/container",
@@ -9396,8 +9400,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/markdown": 20,
-        "drupal/photoswipe": 20,
-        "league/commonmark": 20
+        "drupal/photoswipe": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

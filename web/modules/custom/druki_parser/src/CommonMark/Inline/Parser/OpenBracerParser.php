@@ -4,7 +4,7 @@ namespace Drupal\druki_parser\CommonMark\Inline\Parser;
 
 use League\CommonMark\Delimiter\Delimiter;
 use League\CommonMark\Inline\Element\Text;
-use League\CommonMark\Inline\Parser\AbstractInlineParser;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
 use League\CommonMark\InlineParserContext;
 
 /**
@@ -12,12 +12,12 @@ use League\CommonMark\InlineParserContext;
  *
  * @package Drupal\druki_parser\CommonMark\Inline\Parser
  */
-class OpenBracerParser extends AbstractInlineParser {
+class OpenBracerParser implements InlineParserInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function getCharacters() {
+  public function getCharacters(): array {
     return ['{'];
   }
 

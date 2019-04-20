@@ -7,7 +7,7 @@ use League\CommonMark\Cursor;
 use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
 use League\CommonMark\EnvironmentInterface;
-use League\CommonMark\Inline\Parser\AbstractInlineParser;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
 use League\CommonMark\InlineParserContext;
 
 /**
@@ -15,7 +15,7 @@ use League\CommonMark\InlineParserContext;
  *
  * @package Drupal\druki_parser\CommonMark\Inline\Parser
  */
-class CloseBracerParser extends AbstractInlineParser implements EnvironmentAwareInterface {
+class CloseBracerParser implements EnvironmentAwareInterface, InlineParserInterface {
 
   /**
    * @var Environment

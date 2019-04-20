@@ -3,7 +3,7 @@
 namespace Drupal\druki_parser\CommonMark\Block\Parser;
 
 use Drupal\druki_parser\CommonMark\Block\Element\MetaInformationElement;
-use League\CommonMark\Block\Parser\AbstractBlockParser;
+use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 
@@ -12,7 +12,7 @@ use League\CommonMark\Cursor;
  *
  * @package Drupal\druki_parser\CommonMark\Block\Parser
  */
-class MetaInformationParser extends AbstractBlockParser {
+class MetaInformationParser implements BlockParserInterface {
 
   /**
    * {@inheritdoc}

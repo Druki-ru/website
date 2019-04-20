@@ -19,8 +19,6 @@ test-comma: one, two, three
 test-array:
   - one
   - two
-  - three
-test-inline-array: [one, two, three]
 ---
 
 ---
