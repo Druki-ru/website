@@ -38,4 +38,5 @@ code {
   padding: 2px 4px;
   border-radius: $border-radius-base;
   background-color: color-palette(theme-color(), 200);
+  word-break: break-all;
 }

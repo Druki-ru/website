@@ -52,7 +52,8 @@ code {
   font-size: 90%;
   padding: 2px 4px;
   border-radius: 4px;
-  background-color: #ffedae; }
+  background-color: #ffedae;
+  word-break: break-all; }
 
 h1 {
   font-size: 2rem;
