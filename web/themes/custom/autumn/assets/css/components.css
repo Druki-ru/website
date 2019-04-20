@@ -728,13 +728,12 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
  */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  padding: gap(4) gap(4);
-  border-left: 4px solid #F2F3F5; }
+  padding: gap(4) gap(4); }
 
 code[class*="language-"],
 pre[class*="language-"] {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.71429;
   font-family: "Fira Code", monospaced;
   text-align: left;
   white-space: pre;
@@ -753,7 +752,7 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  background: #fff9e6; }
+  background: #F1F5F8; }
 
 /* Code blocks */
 pre[class*="language-"] {
@@ -764,7 +763,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background-color: #FAFBFC;
+  background-color: #F1F5F8;
   /* base3 */ }
 
 /* Inline code */
