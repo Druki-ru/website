@@ -36,7 +36,7 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  background: #F1F5F8;
+  background: rgba(theme-color(), 0.5);
 }
 
 /* Code blocks */

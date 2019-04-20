@@ -752,7 +752,7 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  background: #F1F5F8; }
+  background: rgba(255, 208, 41, 0.5); }
 
 /* Code blocks */
 pre[class*="language-"] {
