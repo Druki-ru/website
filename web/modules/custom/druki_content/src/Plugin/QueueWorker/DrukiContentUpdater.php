@@ -107,6 +107,13 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected $logger;
 
   /**
+   * The default format for filtered content.
+   *
+   * @var string
+   */
+  protected $filterDefaultFormat;
+
+  /**
    * DrukiContentUpdater constructor.
    *
    * @param array $configuration
@@ -161,6 +168,16 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $this->configFactory = $config_factory;
     $this->token = $token;
     $this->logger = $logger;
+
+
+    // We always use UID to process filtered content. F.e. processing queue
+    // called via drush, the user is treated as anonymous. It has no access
+    // to needed filter type, so we replace it.
+    // @todo maybe it a bad practice and better to configure filter to allow
+    // user use specific markup.
+    $user_storage = $entity_type_manager->getStorage('user');
+    $admin = $user_storage->load(1);
+    $this->filterDefaultFormat = filter_default_format($admin);
   }
 
   /**
@@ -395,7 +412,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $paragraph = $this->paragraphStorage->create(['type' => $text->getParagraphType()]);
     $paragraph->set('druki_textarea_formatted', [
       'value' => $text->getContent(),
-      'format' => filter_default_format(),
+      'format' => $this->filterDefaultFormat,
     ]);
     $paragraph->save();
 
@@ -417,7 +434,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $paragraph = $this->paragraphStorage->create(['type' => $heading->getParagraphType()]);
     $paragraph->set('druki_textfield_formatted', [
       'value' => $heading->getContent(),
-      'format' => filter_default_format(),
+      'format' => $this->filterDefaultFormat,
     ]);
     $paragraph->set('druki_heading_level', $heading->getLevel());
     $paragraph->save();
