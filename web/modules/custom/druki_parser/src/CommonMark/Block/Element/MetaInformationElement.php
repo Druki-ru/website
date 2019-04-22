@@ -49,11 +49,7 @@ class MetaInformationElement extends AbstractStringContainerBlock {
    * {@inheritdoc}
    */
   public function isCode(): bool {
-    // @todo Avoid it. Not sure this is good approach, but only working with
-    // matches. Try some workaround with $context->advanceBy(-3) in
-    // handleRemainingContents(). This will let condition pass. But need some
-    // extra fixes, since this not fix all the problems that fix this value.
-    // @see https://github.com/thephpleague/commonmark/issues/358#issuecomment-485148208
+    // @see https://github.com/thephpleague/commonmark/issues/358#issuecomment-485248825
     return TRUE;
   }
 

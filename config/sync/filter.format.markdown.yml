@@ -1,0 +1,26 @@
+uuid: b2fbfb74-9707-4e25-a162-48e30db24a03
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+    - markdown
+_core:
+  default_config_hash: IUZpC-1ZLUlque3-s4QkV2E5_RXzpesec2tWXKawB40
+name: Markdown
+format: markdown
+weight: 0
+filters:
+  markdown:
+    id: markdown
+    provider: markdown
+    status: true
+    weight: 0
+    settings:
+      parser: commonmark
+  druki_content_internal_links:
+    id: druki_content_internal_links
+    provider: druki_content
+    status: true
+    weight: -10
+    settings: {  }

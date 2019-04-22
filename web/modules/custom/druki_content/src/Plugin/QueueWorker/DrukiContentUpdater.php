@@ -221,8 +221,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
     // Skip processing for invalid data.
     if (!$structured_data->isValid()) {
-      $this->logger->error('The processing of file "@filepath" skipped, because structured content is not valid.', [
+      $this->logger->error('The processing of file "@filepath" skipped, because structured content is not valid. <pre><code>@dump</code></pre>', [
         '@filepath' => $data['path'],
+        '@dump' => print_r($structured_data, TRUE),
       ]);
       return;
     }
