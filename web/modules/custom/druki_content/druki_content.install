@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Main file for installation on update hooks.
+ */
+
+/**
+ * Implements hook_uninstall()
+ */
+function druki_content_uninstall() {
+  // Remove state settings.
+  \Drupal::state()->delete('druki_content.settings.force_update');
+}

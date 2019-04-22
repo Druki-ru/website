@@ -8,6 +8,7 @@ use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
+use Drupal\Core\State\StateInterface;
 use Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -31,16 +32,26 @@ class DrukiContentSettingsForm extends FormBase {
   protected $queueWorkerManager;
 
   /**
+   * The state storage.
+   *
+   * @var \Drupal\Core\State\StateInterface
+   */
+  protected $state;
+
+  /**
    * DrukiContentSettingsForm constructor.
    *
    * @param \Drupal\Core\Queue\QueueInterface $queue
    *   The queue of processing content.
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker_manager
    *   The queue worker manager.
+   * @param \Drupal\Core\State\StateInterface $state
+   *   The state storage.
    */
-  public function __construct(QueueInterface $queue, QueueWorkerManagerInterface $queue_worker_manager) {
+  public function __construct(QueueInterface $queue, QueueWorkerManagerInterface $queue_worker_manager, StateInterface $state) {
     $this->queue = $queue;
     $this->queueWorkerManager = $queue_worker_manager;
+    $this->state = $state;
   }
 
   /**
@@ -49,7 +60,8 @@ class DrukiContentSettingsForm extends FormBase {
   public static function create(ContainerInterface $container): object {
     return new static(
       $container->get('queue')->get('druki_content_updater'),
-      $container->get('plugin.manager.queue_worker')
+      $container->get('plugin.manager.queue_worker'),
+      $container->get('state')
     );
   }
 
@@ -74,10 +86,23 @@ class DrukiContentSettingsForm extends FormBase {
       '#markup' => '<p>' . $this->t('Current queue items: @count', ['@count' => $this->queue->numberOfItems()]) . '</p>',
     ];
 
+    $form['update_queue']['force'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Force content processing'),
+      '#description' => t('Content will be processed even if it not updated from last queue.'),
+      '#default_value' => $this->state->get('druki_content.settings.force_update', FALSE),
+    ];
+
     $form['update_queue']['actions'] = ['#type' => 'actions'];
-    $form['update_queue']['actions']['run'] = [
+    $form['update_queue']['actions']['save'] = [
       '#type' => 'submit',
       '#button_type' => 'primary',
+      '#value' => $this->t('Save settings'),
+    ];
+
+    $form['update_queue']['actions']['run'] = [
+      '#type' => 'submit',
+      '#button_type' => 'secondary',
       '#value' => $this->t('Run queue'),
       '#submit' => [[$this, 'runQueue']],
     ];
@@ -96,7 +121,7 @@ class DrukiContentSettingsForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-
+    $this->state->set('druki_content.settings.force_update', $form_state->getValue('force'));
   }
 
   /**

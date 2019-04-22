@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
+use Drupal\Core\State\StateInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
@@ -114,6 +115,13 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected $filterDefaultFormat;
 
   /**
+   * The state storage.
+   *
+   * @var \Drupal\Core\State\StateInterface
+   */
+  protected $state;
+
+  /**
    * DrukiContentUpdater constructor.
    *
    * @param array $configuration
@@ -138,6 +146,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The token.
    * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
    *   The logger.
+   * @param \Drupal\Core\State\StateInterface $state
+   *   The state storage.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -153,7 +163,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     DrukiFileTracker $file_tracker,
     ConfigFactoryInterface $config_factory,
     Token $token,
-    LoggerChannelInterface $logger
+    LoggerChannelInterface $logger,
+    StateInterface $state
   ) {
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -168,7 +179,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $this->configFactory = $config_factory;
     $this->token = $token;
     $this->logger = $logger;
-
+    $this->state = $state;
 
     // We always use UID to process filtered content. F.e. processing queue
     // called via drush, the user is treated as anonymous. It has no access
@@ -195,7 +206,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       $container->get('druki_file.tracker'),
       $container->get('config.factory'),
       $container->get('token'),
-      $container->get('logger.factory')->get('druki_content')
+      $container->get('logger.factory')->get('druki_content'),
+      $container->get('state')
     );
   }
 
@@ -258,7 +270,10 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     );
 
     // Don't update content if last commit for source file is the same.
-    if ($druki_content->get('last_commit_id') == $data['last_commit_id']) {
+    $is_same_commit = ($druki_content->get('last_commit_id') == $data['last_commit_id']);
+    // If force update is set in settings. Ignore rule above.
+    $force_update = $this->state->get('druki_content.settings.force_update', FALSE);
+    if ($is_same_commit && !$force_update) {
       return;
     }
 

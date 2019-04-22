@@ -21,9 +21,13 @@ $druki_content_storage = \Drupal::service('entity_type.manager')->getStorage('dr
 //  ->execute();
 //dump($result);
 
-/** @var \Drupal\Core\Entity\EntityFieldManagerInterface $field_manager */
-$field_manager = \Drupal::service('entity_field.manager');
-$field_definitions = $field_manager->getFieldDefinitions('druki_content', 'druki_content');
-$difficulty = $field_definitions['difficulty'];
-$settings = $difficulty->getSetting('allowed_values');
-dump(array_keys($settings));
+///** @var \Drupal\Core\Entity\EntityFieldManagerInterface $field_manager */
+//$field_manager = \Drupal::service('entity_field.manager');
+//$field_definitions = $field_manager->getFieldDefinitions('druki_content', 'druki_content');
+//$difficulty = $field_definitions['difficulty'];
+//$settings = $difficulty->getSetting('allowed_values');
+//dump(array_keys($settings));
+
+$user_storage = \Drupal::entityTypeManager()->getStorage('user');
+$user = $user_storage->load(1);
+dump(filter_default_format($user));
