@@ -8,6 +8,7 @@ use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
+use Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -76,8 +77,16 @@ class DrukiContentSettingsForm extends FormBase {
     $form['update_queue']['actions'] = ['#type' => 'actions'];
     $form['update_queue']['actions']['run'] = [
       '#type' => 'submit',
+      '#button_type' => 'primary',
       '#value' => $this->t('Run queue'),
       '#submit' => [[$this, 'runQueue']],
+    ];
+
+    $form['update_queue']['actions']['clear'] = [
+      '#type' => 'submit',
+      '#button_type' => 'danger',
+      '#value' => $this->t('Clear queue'),
+      '#submit' => [[$this, 'clearQueue']],
     ];
 
     return $form;
@@ -119,13 +128,20 @@ class DrukiContentSettingsForm extends FormBase {
           // release the item and skip to the next queue.
           $this->queue->releaseItem($item);
         }
-        catch (\Exception $e) {
+        catch (Exception $e) {
           // In case of any other kind of exception, log it and leave the item
           // in the queue to be processed again later.
           watchdog_exception('druki_content', $e);
         }
       }
     }
+  }
+
+  /**
+   * Clears queue manually.
+   */
+  public function clearQueue(array &$form, FormStateInterface $form_state) {
+    $this->queue->deleteQueue();
   }
 
 }
