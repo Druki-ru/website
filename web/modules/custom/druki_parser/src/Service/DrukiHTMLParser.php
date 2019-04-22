@@ -2,6 +2,16 @@
 
 namespace Drupal\druki_parser\Service;
 
+use DOMElement;
+use Drupal\druki_paragraphs\Content\ContentStructure;
+use Drupal\druki_paragraphs\Content\MetaInformation;
+use Drupal\druki_paragraphs\Content\MetaValue;
+use Drupal\druki_paragraphs\Content\ParagraphCode;
+use Drupal\druki_paragraphs\Content\ParagraphHeading;
+use Drupal\druki_paragraphs\Content\ParagraphImage;
+use Drupal\druki_paragraphs\Content\ParagraphNote;
+use Drupal\druki_paragraphs\Content\ParagraphText;
+use Drupal\search_api\Plugin\search_api\processor\Resources\Me;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -14,7 +24,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
   /**
    * {@inheritdoc}
    */
-  public function parse($content): array {
+  public function parse($content): ContentStructure {
     $crawler = new Crawler($content);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');
@@ -24,10 +34,8 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
     // - image: Image tag.
     // - code: for pre > code.
     // Each content node after another merge to previous.
-    $structure = [
-      'meta' => [],
-      'content' => [],
-    ];
+    $structure = new ContentStructure();
+
     // Move through elements and structure them.
     foreach ($crawler->children() as $dom_element) {
       if ($this->parseMetaInformation($dom_element, $structure)) {
@@ -50,20 +58,17 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
         continue;
       }
 
-      // If no other is detected, treat is as content.
-      $structure_copy = $structure;
-      $previous_element = end($structure_copy['content']);
-      $key = key($structure_copy['content']);
-
-      if ($previous_element && $structure['content'][$key]['type'] == 'content') {
-        // If previous element was content too, we append current to it.
-        $structure['content'][$key]['markup'] .= $dom_element->ownerDocument->saveHTML($dom_element);
+      // If no other is detected, treat is as text.
+      // If last element is also text, we append content to it.
+      if ($structure->lastContent() instanceof ParagraphText) {
+        $new_text = $structure->lastContent()->getContent();
+        $new_text .= $dom_element->ownerDocument->saveHTML($dom_element);
+        $replace = new ParagraphText($new_text);
+        $structure->replaceLastContent($replace);
       }
       else {
-        $structure['content'][] = [
-          'type' => 'content',
-          'markup' => $dom_element->ownerDocument->saveHTML($dom_element),
-        ];
+        $text = new ParagraphText($dom_element->ownerDocument->saveHTML($dom_element));
+        $structure->addContent($text);
       }
     }
 
@@ -77,17 +82,17 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param array $structure
-   *   An array with existing structure.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
+   *   The value object of content structure.
    *
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(\DOMElement $dom_element, array &$structure): bool {
+  protected function parseMetaInformation(DOMElement $dom_element, ContentStructure $structure): bool {
     // If meta information already in structure, this is not good. There must
     // be only one meta block. But if it happens, we just skip it and it becomes
     // content value.
-    if (isset($structure['meta']) && !empty($structure['meta'])) {
+    if ($structure->getMetaInformation() instanceof MetaInformation) {
       return FALSE;
     }
 
@@ -95,15 +100,17 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
     $meta_block = $crawler->filter('div[data-druki-meta=""]');
 
     if (count($meta_block)) {
-      $meta_information = [];
+      $meta_information = new MetaInformation();
 
       foreach ($crawler->filter('[data-druki-key][data-druki-value]') as $element) {
         $key = $element->getAttribute('data-druki-key');
         $value = $element->getAttribute('data-druki-value');
-        $meta_information[$key] = $value;
+
+        $meta_value = new MetaValue($key, $value);
+        $meta_information->add($meta_value);
       }
 
-      $structure['meta'] = $meta_information;
+      $structure->addMetaInformation($meta_information);
 
       return TRUE;
     }
@@ -116,13 +123,13 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param array $structure
-   *   An array with existing structure.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
+   *   The value object of content structure.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseNote(\DOMElement $dom_element, array &$structure): ?bool {
+  protected function parseNote(DOMElement $dom_element, ContentStructure $structure): ?bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $note_element = $crawler->filter('div[data-druki-note]');
 
@@ -135,13 +142,8 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
         $value .= $element->ownerDocument->saveHTML($child);
       }
 
-      $note = [
-        'type' => 'note',
-        'note_type' => $element->getAttribute('data-druki-note'),
-        'value' => $value,
-      ];
-
-      $structure['content'][] = $note;
+      $note = new ParagraphNote($element->getAttribute('data-druki-note'), $value);
+      $structure->addContent($note);
 
       return TRUE;
     }
@@ -154,22 +156,19 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param array $structure
-   *   An array with existing structure.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
+   *   The value object of content structure.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseHeading(\DOMElement $dom_element, array &$structure): bool {
+  protected function parseHeading(DOMElement $dom_element, ContentStructure $structure): bool {
     $node_name = $dom_element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
     if (in_array($node_name, $heading_elements)) {
-      $structure['content'][] = [
-        'type' => 'heading',
-        'level' => $dom_element->nodeName,
-        'value' => $dom_element->textContent,
-      ];
+      $heading = new ParagraphHeading($dom_element->nodeName, $dom_element->textContent);
+      $structure->addContent($heading);
 
       return TRUE;
     }
@@ -182,21 +181,19 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param array $structure
-   *   An array with existing structure.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
+   *   The value object of content structure.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseCode(\DOMElement $dom_element, array &$structure): bool {
+  protected function parseCode(DOMElement $dom_element, ContentStructure $structure): bool {
     $node_name = $dom_element->nodeName;
     $code_elements = ['pre'];
 
     if (in_array($node_name, $code_elements)) {
-      $structure['content'][] = [
-        'type' => 'code',
-        'value' => $dom_element->ownerDocument->saveHTML($dom_element),
-      ];
+      $code = new ParagraphCode($dom_element->ownerDocument->saveHTML($dom_element));
+      $structure->addContent($code);
 
       return TRUE;
     }
@@ -209,21 +206,18 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param array $structure
-   *   An array with existing structure.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
+   *   The value object of content structure.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseImage(\DOMElement $dom_element, array &$structure): bool {
+  protected function parseImage(DOMElement $dom_element, ContentStructure $structure): bool {
     $crawler = new Crawler($dom_element);
     $image = $crawler->filter('img')->first();
     if (count($image)) {
-      $structure['content'][] = [
-        'type' => 'image',
-        'src' => $image->attr('src'),
-        'alt' => $image->attr('alt'),
-      ];
+      $image_element = new ParagraphImage($image->attr('src'), $image->attr('alt'));
+      $structure->addContent($image_element);
 
       return TRUE;
     }

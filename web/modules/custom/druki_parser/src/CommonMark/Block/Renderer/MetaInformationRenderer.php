@@ -20,7 +20,6 @@ class MetaInformationRenderer implements BlockRendererInterface {
    */
   public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE): HtmlElement {
     $content = [];
-    dump($block->getStringContent());
     $yaml_array = Yaml::decode($block->getStringContent());
 
     foreach ($yaml_array as $key => $value) {

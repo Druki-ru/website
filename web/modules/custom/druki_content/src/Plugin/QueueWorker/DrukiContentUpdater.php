@@ -6,11 +6,18 @@ use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Utility\Token;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
+use Drupal\druki_paragraphs\Content\ContentStructure;
+use Drupal\druki_paragraphs\Content\ParagraphCode;
+use Drupal\druki_paragraphs\Content\ParagraphHeading;
+use Drupal\druki_paragraphs\Content\ParagraphImage;
+use Drupal\druki_paragraphs\Content\ParagraphNote;
+use Drupal\druki_paragraphs\Content\ParagraphText;
 use Drupal\druki_parser\Service\DrukiHTMLParserInterface;
 use Drupal\druki_parser\Service\DrukiMarkdownParserInterface;
 use Drupal\file\FileInterface;
@@ -93,6 +100,13 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected $token;
 
   /**
+   * The logger.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   */
+  protected $logger;
+
+  /**
    * DrukiContentUpdater constructor.
    *
    * @param array $configuration
@@ -115,6 +129,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The config factory.
    * @param \Drupal\Core\Utility\Token $token
    *   The token.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -129,7 +145,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     DrukiHTMLParserInterface $html_parser,
     DrukiFileTracker $file_tracker,
     ConfigFactoryInterface $config_factory,
-    Token $token
+    Token $token,
+    LoggerChannelInterface $logger
   ) {
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -143,6 +160,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $this->fileTracker = $file_tracker;
     $this->configFactory = $config_factory;
     $this->token = $token;
+    $this->logger = $logger;
   }
 
   /**
@@ -159,7 +177,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       $container->get('druki_parser.html'),
       $container->get('druki_file.tracker'),
       $container->get('config.factory'),
-      $container->get('token')
+      $container->get('token'),
+      $container->get('logger.factory')->get('druki_content')
     );
   }
 
@@ -170,6 +189,15 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    */
   public function processItem($data): void {
     $structured_data = $this->parseContent($data['path']);
+
+    // Skip processing for invalid data.
+    if (!$structured_data->isValid()) {
+      $this->logger->error('The processing of file "@filepath" skipped, because structured content is not valid.', [
+        '@filepath' => $data['path'],
+      ]);
+      return;
+    }
+
     $this->processContent($structured_data, $data);
   }
 
@@ -179,12 +207,12 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @param string $filepath
    *   The URI to file with content.
    *
-   * @return array
-   *   The array containing structured array with all data.
+   * @return ContentStructure
+   *   The structured content.
    *
    * @see Drupal\druki_parser\Service\DrukiHTMLParser::parse().
    */
-  protected function parseContent(string $filepath): array {
+  protected function parseContent(string $filepath): ContentStructure {
     $content = file_get_contents($filepath);
     $content_html = $this->markdownParser->parse($content);
 
@@ -194,23 +222,19 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates or updates druki content entity.
    *
-   * @param array $structured_data
-   *   The array with structured data.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structured_data
+   *   The structured content.
    * @param array $data
    *   The data passed to Queue. In our case this is additional file info.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function processContent(array $structured_data, array $data): void {
-    $core_version = isset($structured_data['meta']['core']) ? $structured_data['meta']['core'] : NULL;
-
-    // Skip processing if file doesn't contains meta-information.
-    if (empty($structured_data['meta'])) {
-      return;
-    }
+  protected function processContent(ContentStructure $structured_data, array $data): void {
+    $meta = $structured_data->getMetaInformation();
+    $core_version = $meta->has('core') ? $meta->get('core')->getValue() : NULL;
 
     $druki_content = $this->loadContent(
-      $structured_data['meta']['id'],
+      $meta->get('id')->getValue(),
       $data['langcode'],
       $core_version,
       $data['relative_pathname']
@@ -222,15 +246,17 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     }
 
     // Update/add everything else except ID.
-    $druki_content->setTitle($structured_data['meta']['title']);
+    $druki_content->setTitle($meta->get('title')->getValue());
     $druki_content->setRelativePathname($data['relative_pathname']);
     $druki_content->setFilename($data['filename']);
     $druki_content->setLastCommitId($data['last_commit_id']);
     $druki_content->setContributionStatistics($data['contribution_statistics']);
-    if (isset($structured_data['meta']['category-area'])) {
-      $category_area = $structured_data['meta']['category-area'];
-      $category_order = isset($structured_data['meta']['category-order']) ? $structured_data['meta']['category-order'] : 0;
-      $category_title = isset($structured_data['meta']['category-title']) ? $structured_data['meta']['category-title'] : NULL;
+
+    if ($meta->has('category-area')) {
+      $category_area = $meta->get('category-area')->getValue();
+      $category_order = $meta->has('category-order') ? $meta->get('category-order')->getValue() : 0;
+      $category_title = $meta->has('category-title') ? $meta->get('category-title')->getValue() : NULL;
+
       $druki_content->setCategory($category_area, $category_order, $category_title);
     }
 
@@ -254,8 +280,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $this->createParagraphs($druki_content, $structured_data);
 
     // @see druki_content_tokens()
-    if (isset($structured_data['meta']['path'])) {
-      $forced_alias = $structured_data['meta']['path'];
+    if ($meta->has('path')) {
+      $forced_alias = $meta->get('path')->getValue();
       $druki_content->set('forced_path', $forced_alias);
     }
 
@@ -314,33 +340,34 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The content entity.
-   * @param array $structured_data
-   *   The array with structured data.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structured_data
+   *   The structured data.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphs(DrukiContentInterface $druki_content, array $structured_data): void {
-    foreach ($structured_data['content'] as $content_data) {
+  protected function createParagraphs(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
+    foreach ($structured_data->getContent() as $content) {
       $paragraph = NULL;
-      switch ($content_data['type']) {
-        case 'content':
-          $paragraph = $this->createParagraphContent($content_data);
+
+      switch ($content->getParagraphType()) {
+        case 'druki_text':
+          $paragraph = $this->createParagraphContent($content);
           break;
 
-        case 'heading':
-          $paragraph = $this->createParagraphHeading($content_data);
+        case 'druki_heading':
+          $paragraph = $this->createParagraphHeading($content);
           break;
 
-        case 'code':
-          $paragraph = $this->createParagraphCode($content_data);
+        case 'druki_code':
+          $paragraph = $this->createParagraphCode($content);
           break;
 
-        case 'image':
-          $paragraph = $this->createParagraphImage($content_data);
+        case 'druki_image':
+          $paragraph = $this->createParagraphImage($content);
           break;
 
-        case 'note':
-          $paragraph = $this->createParagraphNote($content_data);
+        case 'druki_note':
+          $paragraph = $this->createParagraphNote($content);
           break;
       }
 
@@ -356,18 +383,18 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates content paragraph.
    *
-   * @param array $content_data
-   *   The array with all data.
+   * @param \Drupal\druki_paragraphs\Content\ParagraphText $text
+   *   The text object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
    *   The created paragraph.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphContent(array $content_data): ParagraphInterface {
-    $paragraph = $this->paragraphStorage->create(['type' => 'druki_text']);
+  protected function createParagraphContent(ParagraphText $text): ParagraphInterface {
+    $paragraph = $this->paragraphStorage->create(['type' => $text->getParagraphType()]);
     $paragraph->set('druki_textarea_formatted', [
-      'value' => $content_data['markup'],
+      'value' => $text->getContent(),
       'format' => filter_default_format(),
     ]);
     $paragraph->save();
@@ -378,21 +405,21 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates heading paragraph.
    *
-   * @param array $content_data
-   *   The array with all data.
+   * @param \Drupal\druki_paragraphs\Content\ParagraphHeading $heading
+   *   The heading object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
    *   The created paragraph.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphHeading(array $content_data): ParagraphInterface {
-    $paragraph = $this->paragraphStorage->create(['type' => 'druki_heading']);
+  protected function createParagraphHeading(ParagraphHeading $heading): ParagraphInterface {
+    $paragraph = $this->paragraphStorage->create(['type' => $heading->getParagraphType()]);
     $paragraph->set('druki_textfield_formatted', [
-      'value' => $content_data['value'],
+      'value' => $heading->getContent(),
       'format' => filter_default_format(),
     ]);
-    $paragraph->set('druki_heading_level', $content_data['level']);
+    $paragraph->set('druki_heading_level', $heading->getLevel());
     $paragraph->save();
 
     return $paragraph;
@@ -401,18 +428,18 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates code paragraph.
    *
-   * @param array $content_data
-   *   The array with all data.
+   * @param \Drupal\druki_paragraphs\Content\ParagraphCode $code
+   *   The code object..
    *
    * @return \Drupal\paragraphs\ParagraphInterface
    *   The created paragraph.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphCode(array $content_data): ParagraphInterface {
-    $paragraph = $this->paragraphStorage->create(['type' => 'druki_code']);
+  protected function createParagraphCode(ParagraphCode $code): ParagraphInterface {
+    $paragraph = $this->paragraphStorage->create(['type' => $code->getParagraphType()]);
     $paragraph->set('druki_textarea_formatted', [
-      'value' => $content_data['value'],
+      'value' => $code->getContent(),
       'format' => 'full_html',
     ]);
     $paragraph->save();
@@ -423,18 +450,18 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates image paragraph.
    *
-   * @param array $content_data
-   *   The array with all data.
+   * @param \Drupal\druki_paragraphs\Content\ParagraphImage $image
+   *   The image object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null
    *   The created paragraph, NULL if cant create it.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphImage(array $content_data): ?ParagraphInterface {
-    $host = parse_url($content_data['src']);
-    $src = $content_data['src'];
-    $alt = $content_data['alt'];
+  protected function createParagraphImage(ParagraphImage $image): ?ParagraphInterface {
+    $src = $image->getSrc();
+    $alt = $image->getAlt();
+    $host = parse_url($src);
 
     // If scheme is exists, then we treat this file as remote.
     if (isset($host['scheme'])) {
@@ -455,7 +482,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
     // If file is found locally.
     if (file_exists($file_uri)) {
-      $paragraph = $this->paragraphStorage->create(['type' => 'druki_image']);
+      $paragraph = $this->paragraphStorage->create(['type' => $image->getParagraphType()]);
       $duplicate = $this->fileTracker->checkDuplicate($file_uri);
 
       // If we already have file with same content.
@@ -555,19 +582,19 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates note paragraph.
    *
-   * @param array $content_data
-   *   The array with all data.
+   * @param \Drupal\druki_paragraphs\Content\ParagraphNote $note
+   *   The note object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null
    *   The created paragraph, NULL if cant create it.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphNote(array $content_data): ?ParagraphInterface {
-    $paragraph = $this->paragraphStorage->create(['type' => 'druki_note']);
-    $paragraph->set('druki_note_type', $content_data['note_type']);
+  protected function createParagraphNote(ParagraphNote $note): ?ParagraphInterface {
+    $paragraph = $this->paragraphStorage->create(['type' => $note->getParagraphType()]);
+    $paragraph->set('druki_note_type', $note->getType());
     $paragraph->set('druki_textarea_formatted', [
-      'value' => $content_data['value'],
+      'value' => $note->getContent(),
       'format' => filter_default_format(),
     ]);
     $paragraph->save();
@@ -580,14 +607,15 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param array $structured_data
-   *   An array with structured data from source file.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structured_data
+   *   The content structure.
    */
-  protected function processDifficulty(DrukiContentInterface $druki_content, array $structured_data): void {
+  protected function processDifficulty(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
     // Reset value. Assumes that value was cleared.
     $druki_content->set('difficulty', NULL);
+    $meta = $structured_data->getMetaInformation();
 
-    if (isset($structured_data['meta']['difficulty'])) {
+    if ($meta->has('difficulty')) {
       // Get available values directly from field.
       $field_definitions = $this
         ->entityFieldManager
@@ -598,8 +626,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
         $settings = $difficulty->getSetting('allowed_values');
         $allowed_values = array_keys($settings);
 
-        if (in_array($structured_data['meta']['difficulty'], $allowed_values)) {
-          $druki_content->set('difficulty', $structured_data['meta']['difficulty']);
+        if (in_array($meta->get('difficulty')->getValue(), $allowed_values)) {
+          $druki_content->set('difficulty', $meta->get('difficulty')->getValue());
         }
       }
     }
@@ -610,15 +638,16 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param array $structured_data
-   *   An array with structured data from source file.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structured_data
+   *   The content structure.
    */
-  protected function processLabels(DrukiContentInterface $druki_content, array $structured_data): void {
+  protected function processLabels(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
     // Reset value. Assumes that value was cleared.
     $druki_content->set('labels', NULL);
+    $meta = $structured_data->getMetaInformation();
 
-    if (isset($structured_data['meta']['labels'])) {
-      $labels = explode(', ', $structured_data['meta']['labels']);
+    if ($meta->has('labels')) {
+      $labels = explode(', ', $meta->get('labels')->getValue());
 
       if (!empty($labels)) {
         $druki_content->set('labels', $labels);
@@ -631,15 +660,16 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param array $structured_data
-   *   An array with structured data from source file.
+   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structured_data
+   *   The content structure.
    */
-  protected function processSearchKeywords(DrukiContentInterface $druki_content, array $structured_data): void {
+  protected function processSearchKeywords(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
     // Reset value. Assumes that value was cleared.
     $druki_content->set('search_keywords', NULL);
+    $meta = $structured_data->getMetaInformation();
 
-    if (isset($structured_data['meta']['search-keywords'])) {
-      $search_keywords = explode(', ', $structured_data['meta']['search-keywords']);
+    if ($meta->has('search-keywords')) {
+      $search_keywords = explode(', ', $meta->get('search-keywords')->getValue());
 
       if (!empty($search_keywords)) {
         $druki_content->set('search_keywords', $search_keywords);

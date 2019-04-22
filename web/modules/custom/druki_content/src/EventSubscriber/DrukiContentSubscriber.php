@@ -60,9 +60,12 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
     /** @var \Symfony\Component\Finder\SplFileInfo[] $items */
     foreach ($files as $langcode => $items) {
       foreach ($items as $item) {
-        $last_commit_id = $event->git()
+        $last_commit_id = $event
+          ->git()
           ->getFileLastCommitId($item->getRelativePathname());
-        $contribution_statistics = $event->git()
+
+        $contribution_statistics = $event
+          ->git()
           ->getFileCommitsInfo($item->getRelativePathname());
 
         $this->queue->createItem([

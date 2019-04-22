@@ -10,10 +10,15 @@ $druki_parser = \Drupal::service('druki_parser.markdown');
 
 $markdown_content = <<<'Markdown'
 ---
-id: code-of-conduct
-title: Нормы поведения
-toc-area: drupal
-toc-order: 1
+id: installation
+title: Установка Drupal 8
+core: 8
+category-area: Первое знакомство
+category-order: 0
+test-comma: one, two, three
+test-array:
+  - one
+  - two
 ---
 
 ## Title
@@ -34,7 +39,7 @@ Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);
 
-dump($result_html);
+//dump($result_html);
 /** @var \Drupal\druki_parser\Service\DrukiHTMLParserInterface $druki_html_parser */
 $druki_html_parser = \Drupal::service('druki_parser.html');
 dump($druki_html_parser->parse($result_html));

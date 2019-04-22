@@ -2,6 +2,8 @@
 
 namespace Drupal\druki_parser\Service;
 
+use Drupal\druki_paragraphs\Content\ContentStructure;
+
 /**
  * Object for parse markdown and html and transform to specific data structures.
  *
@@ -15,9 +17,9 @@ interface DrukiHTMLParserInterface {
    * @param string $content
    *   The html content.
    *
-   * @return array
-   *   An array with structured data.
+   * @return \Drupal\druki_paragraphs\Content\ContentStructure
+   *   The structured value object with content.
    */
-  public function parse($content): array;
+  public function parse($content): ContentStructure;
 
 }
