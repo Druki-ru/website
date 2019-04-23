@@ -2217,6 +2217,7 @@ pre[class*="language-"] {
 .paragraph-druki-heading__heading--h2 {
   padding-bottom: 8px;
   margin-bottom: 8px;
+  margin-top: unset;
   border-bottom: 1px solid #eeeeee; }
 
 .paragraph-druki-heading:hover .paragraph-druki-heading__anchor {

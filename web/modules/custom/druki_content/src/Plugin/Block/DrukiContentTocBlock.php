@@ -106,9 +106,9 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
     $cache_tags = [];
 
     if ($druki_content = $this->getDrukiContentFromPage()) {
-      $cache_tags[] = $druki_content->getCacheTags();
+      $cache_tags = Cache::mergeTags($cache_tags, $druki_content->getCacheTags());
     }
-    
+
     return Cache::mergeTags(
       parent::getCacheTags(),
       $cache_tags
