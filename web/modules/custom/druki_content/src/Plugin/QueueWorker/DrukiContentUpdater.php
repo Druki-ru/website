@@ -181,15 +181,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $this->token = $token;
     $this->logger = $logger;
     $this->state = $state;
-
-    // We always use UID to process filtered content. F.e. processing queue
-    // called via drush, the user is treated as anonymous. It has no access
-    // to needed filter type, so we replace it.
-    // @todo maybe it a bad practice and better to configure filter to allow
-    // user use specific markup.
-    $user_storage = $entity_type_manager->getStorage('user');
-    $admin = $user_storage->load(1);
-    $this->filterDefaultFormat = filter_default_format($admin);
+    $this->filterDefaultFormat = 'markdown';
   }
 
   /**
