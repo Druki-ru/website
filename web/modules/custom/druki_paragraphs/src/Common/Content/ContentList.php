@@ -61,7 +61,7 @@ final class ContentList implements IteratorAggregate {
    *   The popped content element.
    */
   public function pop(): ?ParagraphContentInterface {
-    $last_element = end($this->content);
+    $last_element = array_pop($this->content);
 
     if ($last_element instanceof ParagraphContentInterface) {
       return $last_element;
