@@ -2217,8 +2217,11 @@ pre[class*="language-"] {
 .paragraph-druki-heading__heading--h2 {
   padding-bottom: 8px;
   margin-bottom: 8px;
-  margin-top: unset;
+  margin-top: 40px;
   border-bottom: 1px solid #eeeeee; }
+
+.paragraph-druki-heading__heading--h3 {
+  margin-top: 40px; }
 
 .paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
   display: inline; }
