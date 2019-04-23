@@ -121,7 +121,7 @@ class DrukiContentSettingsForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->state->set('druki_content.settings.force_update', $form_state->getValue('force'));
+    $this->state->set('druki_content.settings.force_update', (bool) $form_state->getValue('force'));
   }
 
   /**

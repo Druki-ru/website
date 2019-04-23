@@ -271,7 +271,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     );
 
     // Don't update content if last commit for source file is the same.
-    $is_same_commit = ($druki_content->get('last_commit_id') == $data['last_commit_id']);
+    $is_same_commit = ($druki_content->get('last_commit_id')->value == $data['last_commit_id']);
     // If force update is set in settings. Ignore rule above.
     $force_update = $this->state->get('druki_content.settings.force_update', FALSE);
     if ($is_same_commit && !$force_update) {
