@@ -71,6 +71,8 @@ class DrukiContentStorage extends SqlContentEntityStorage {
    *   The core version, if applicable.
    *
    * @return \Drupal\Core\Entity\EntityInterface|mixed|null
+   *
+   * @deprecated looks like no more need it.
    */
   public function loadByMeta(string $external_id, string $langcode = NULL, string $core = NULL): ?DrukiContentInterface {
     if (!$langcode) {

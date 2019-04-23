@@ -218,6 +218,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    * @see DrukiContentSubscriber::onPullFinish().
    */
   public function processItem($queue_item): void {
+    // First of all, check is item is value object we expected. We ignore all
+    // values not passed via our object.
     if (!$queue_item instanceof ContentQueueItem) {
       $this->logger->error('Queue got unexpected item value. @debug', [
         '@debug' => '<pre><code>' . print_r($queue_item, TRUE) . '</code></pre>',
@@ -230,9 +232,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
     // Skip processing for invalid data.
     if (!$structured_data->valid()) {
-      $this->logger->error('The processing of file "@filepath" skipped, because structured content is not valid. <pre><code>@dump</code></pre>', [
+      $this->logger->error('The processing of file "@filepath" skipped, because structured content is not valid. @dump', [
         '@filepath' => $queue_item->getPath(),
-        '@dump' => print_r($structured_data, TRUE),
+        '@dump' => '<pre><code>' . print_r($structured_data, TRUE) . '</code></pre>',
       ]);
       return;
     }
@@ -270,12 +272,10 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    */
   protected function processContent(ContentStructure $structured_data, ContentQueueItem $queue_item): void {
     $meta = $structured_data->getMetaInformation();
-    $core_version = $meta->has('core') ? $meta->get('core')->getValue() : NULL;
 
     $druki_content = $this->loadContent(
       $meta->get('id')->getValue(),
       $queue_item->getLangcode(),
-      $core_version,
       $queue_item->getRelativePathname()
     );
 
@@ -302,8 +302,8 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
       $druki_content->setCategory($category_area, $category_order, $category_title);
     }
 
-    if ($core_version) {
-      $druki_content->setCore($core_version);
+    if ($meta->has('core')) {
+      $druki_content->setCore($meta->get('core')->getValue());
     }
 
     // If this content already contains paragraphs, we delete them. It's faster
@@ -341,8 +341,6 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *   The external content ID.
    * @param string $langcode
    *   The langcode.
-   * @param string $core_version
-   *   The core version.
    * @param string|null $relative_pathname
    *   The relative pathname for content.
    *
@@ -351,29 +349,19 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   protected function loadContent(
     string $external_id,
     string $langcode,
-    string $core_version = NULL,
     string $relative_pathname = NULL
   ): ?DrukiContentInterface {
 
-    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode, $core_version);
+    $druki_content = $this->drukiContentStorage->loadByRelativePathname($relative_pathname);
 
     if ($druki_content instanceof DrukiContentInterface) {
       return $druki_content;
     }
     else {
-      // Trying to find entity by relative pathname. This covers some cases such
-      // as change core version in the file.
-      $druki_content = $this->drukiContentStorage->loadByRelativePathname($relative_pathname);
-
-      if ($druki_content instanceof DrukiContentInterface) {
-        return $druki_content;
-      }
-      else {
-        return $this->drukiContentStorage->create([
-          'external_id' => $external_id,
-          'langcode' => $langcode,
-        ]);
-      }
+      return $this->drukiContentStorage->create([
+        'external_id' => $external_id,
+        'langcode' => $langcode,
+      ]);
     }
   }
 
