@@ -11,6 +11,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Utility\Token;
+use Drupal\druki_content\Common\ContentQueueItem;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
 use Drupal\druki_paragraphs\Common\Content\ContentStructure;
@@ -216,19 +217,27 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @see DrukiContentSubscriber::onPullFinish().
    */
-  public function processItem($data): void {
-    $structured_data = $this->parseContent($data['path']);
+  public function processItem($queue_item): void {
+    if (!$queue_item instanceof ContentQueueItem) {
+      $this->logger->error('Queue got unexpected item value. @debug', [
+        '@debug' => '<pre><code>' . print_r($queue_item, TRUE) . '</code></pre>',
+      ]);
+
+      return;
+    }
+
+    $structured_data = $this->parseContent($queue_item->getPath());
 
     // Skip processing for invalid data.
     if (!$structured_data->valid()) {
       $this->logger->error('The processing of file "@filepath" skipped, because structured content is not valid. <pre><code>@dump</code></pre>', [
-        '@filepath' => $data['path'],
+        '@filepath' => $queue_item->getPath(),
         '@dump' => print_r($structured_data, TRUE),
       ]);
       return;
     }
 
-    $this->processContent($structured_data, $data);
+    $this->processContent($structured_data, $queue_item);
   }
 
   /**
@@ -254,24 +263,24 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
    *   The structured content.
-   * @param array $data
-   *   The data passed to Queue. In our case this is additional file info.
+   * @param \Drupal\druki_content\Common\ContentQueueItem $queue_item
+   *   The queue item object.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function processContent(ContentStructure $structured_data, array $data): void {
+  protected function processContent(ContentStructure $structured_data, ContentQueueItem $queue_item): void {
     $meta = $structured_data->getMetaInformation();
     $core_version = $meta->has('core') ? $meta->get('core')->getValue() : NULL;
 
     $druki_content = $this->loadContent(
       $meta->get('id')->getValue(),
-      $data['langcode'],
+      $queue_item->getLangcode(),
       $core_version,
-      $data['relative_pathname']
+      $queue_item->getRelativePathname()
     );
 
     // Don't update content if last commit for source file is the same.
-    $is_same_commit = ($druki_content->get('last_commit_id')->value == $data['last_commit_id']);
+    $is_same_commit = ($druki_content->get('last_commit_id')->value == $queue_item->getLastCommitId());
     // If force update is set in settings. Ignore rule above.
     $force_update = $this->state->get('druki_content.settings.force_update', FALSE);
     if ($is_same_commit && !$force_update) {
@@ -280,10 +289,10 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
     // Update/add everything else except ID.
     $druki_content->setTitle($meta->get('title')->getValue());
-    $druki_content->setRelativePathname($data['relative_pathname']);
-    $druki_content->setFilename($data['filename']);
-    $druki_content->setLastCommitId($data['last_commit_id']);
-    $druki_content->setContributionStatistics($data['contribution_statistics']);
+    $druki_content->setRelativePathname($queue_item->getRelativePathname());
+    $druki_content->setFilename($queue_item->getFilename());
+    $druki_content->setLastCommitId($queue_item->getLastCommitId());
+    $druki_content->setContributionStatistics($queue_item->getContributionStatistics());
 
     if ($meta->has('category-area')) {
       $category_area = $meta->get('category-area')->getValue();

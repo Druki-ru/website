@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\EventSubscriber;
 
 use Drupal\Core\Queue\QueueFactory;
+use Drupal\druki_content\Common\ContentQueueItem;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
 use Drupal\druki_parser\Service\DrukiFolderParserInterface;
@@ -68,15 +69,16 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
           ->git()
           ->getFileCommitsInfo($item->getRelativePathname());
 
-        $this->queue->createItem([
-          'langcode' => $langcode,
-          'path' => $item->getPathname(),
-          'relative_path' => $item->getRelativePath(),
-          'relative_pathname' => $item->getRelativePathname(),
-          'filename' => $item->getFilename(),
-          'last_commit_id' => $last_commit_id,
-          'contribution_statistics' => $contribution_statistics,
-        ]);
+        $queue_item = new ContentQueueItem(
+          $langcode,
+          $item->getPathname(),
+          $item->getRelativePathname(),
+          $item->getFilename(),
+          $last_commit_id,
+          $contribution_statistics
+        );
+
+        $this->queue->createItem($queue_item);
       }
     }
   }
