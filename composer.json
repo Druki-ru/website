@@ -38,6 +38,7 @@
         "drupal/photoswipe": "2.x-dev",
         "drupal/restui": "^1.16",
         "drupal/search_api": "^1.12",
+        "drupal/simple_sitemap": "^3.1",
         "drupal/snowball_stemmer": "^1.1",
         "drupal/twig_tweak": "^2.1",
         "drush/drush": "^9.6.0",
