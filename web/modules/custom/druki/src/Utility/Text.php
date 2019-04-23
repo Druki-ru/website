@@ -37,8 +37,8 @@ class Text {
     $anchor = trim($anchor);
     // Replace all spaces with dash.
     $anchor = preg_replace("/[\s_]/", '-', $anchor);
-    // Remove everything else. Only alphabet and dash is allowed.
-    $anchor = preg_replace("/[^a-z-]/", '', $anchor);
+    // Remove everything else. Only alphabet, numbers and dash is allowed.
+    $anchor = preg_replace("/[^0-9a-z-]/", '', $anchor);
     // Replace multiple dashes with single. F.e. "Title with - dash".
     $anchor = preg_replace('/\-{2,}/', '-', $anchor);
 
