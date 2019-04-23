@@ -3,15 +3,15 @@
 namespace Drupal\druki_parser\Service;
 
 use DOMElement;
-use Drupal\druki_paragraphs\Content\ContentStructure;
-use Drupal\druki_paragraphs\Content\MetaInformation;
-use Drupal\druki_paragraphs\Content\MetaValue;
-use Drupal\druki_paragraphs\Content\ParagraphCode;
-use Drupal\druki_paragraphs\Content\ParagraphHeading;
-use Drupal\druki_paragraphs\Content\ParagraphImage;
-use Drupal\druki_paragraphs\Content\ParagraphNote;
-use Drupal\druki_paragraphs\Content\ParagraphText;
-use Drupal\search_api\Plugin\search_api\processor\Resources\Me;
+use Drupal\druki_paragraphs\Common\Content\ContentList;
+use Drupal\druki_paragraphs\Common\Content\ContentStructure;
+use Drupal\druki_paragraphs\Common\MetaInformation\MetaInformation;
+use Drupal\druki_paragraphs\Common\MetaInformation\MetaValue;
+use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphCode;
+use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphHeading;
+use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphImage;
+use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphNote;
+use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphText;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -34,45 +34,50 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
     // - image: Image tag.
     // - code: for pre > code.
     // Each content node after another merge to previous.
-    $structure = new ContentStructure();
+    $content = new ContentList();
+    $meta_information = new MetaInformation();
 
     // Move through elements and structure them.
     foreach ($crawler->children() as $dom_element) {
-      if ($this->parseMetaInformation($dom_element, $structure)) {
+      // Parse it once, or until it get valid. But actually only once.
+      if (!$meta_information->valid()) {
+        if ($this->parseMetaInformation($dom_element, $meta_information)) {
+          continue;
+        }
+      }
+
+      if ($this->parseNote($dom_element, $content)) {
         continue;
       }
 
-      if ($this->parseNote($dom_element, $structure)) {
+      if ($this->parseHeading($dom_element, $content)) {
         continue;
       }
 
-      if ($this->parseHeading($dom_element, $structure)) {
+      if ($this->parseCode($dom_element, $content)) {
         continue;
       }
 
-      if ($this->parseCode($dom_element, $structure)) {
-        continue;
-      }
-
-      if ($this->parseImage($dom_element, $structure)) {
+      if ($this->parseImage($dom_element, $content)) {
         continue;
       }
 
       // If no other is detected, treat is as text.
       // If last element is also text, we append content to it.
-      if ($structure->lastContent() instanceof ParagraphText) {
-        $new_text = $structure->lastContent()->getContent();
-        $new_text .= $dom_element->ownerDocument->saveHTML($dom_element);
-        $replace = new ParagraphText($new_text);
-        $structure->replaceLastContent($replace);
+      if ($content->end() instanceof ParagraphText) {
+        $previous_text = $content->pop();
+        $previous_text_content = $previous_text->getContent();
+        $new_content = $previous_text_content . PHP_EOL . $dom_element->ownerDocument->saveHTML($dom_element);
+        $replace = new ParagraphText($new_content);
+        $content->add($replace);
       }
       else {
         $text = new ParagraphText($dom_element->ownerDocument->saveHTML($dom_element));
-        $structure->addContent($text);
+        $content->add($text);
       }
     }
 
-    return $structure;
+    return new ContentStructure($meta_information, $content);
   }
 
   /**
@@ -82,26 +87,17 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
-   *   The value object of content structure.
+   * @param \Drupal\druki_paragraphs\Common\MetaInformation\MetaInformation $meta_information
+   *   The content meta information.
    *
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(DOMElement $dom_element, ContentStructure $structure): bool {
-    // If meta information already in structure, this is not good. There must
-    // be only one meta block. But if it happens, we just skip it and it becomes
-    // content value.
-    if ($structure->getMetaInformation() instanceof MetaInformation) {
-      return FALSE;
-    }
-
+  protected function parseMetaInformation(DOMElement $dom_element, MetaInformation $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $meta_block = $crawler->filter('div[data-druki-meta=""]');
 
     if (count($meta_block)) {
-      $meta_information = new MetaInformation();
-
       foreach ($crawler->filter('[data-druki-key][data-druki-value]') as $element) {
         $key = $element->getAttribute('data-druki-key');
         $value = $element->getAttribute('data-druki-value');
@@ -109,8 +105,6 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
         $meta_value = new MetaValue($key, $value);
         $meta_information->add($meta_value);
       }
-
-      $structure->addMetaInformation($meta_information);
 
       return TRUE;
     }
@@ -123,13 +117,13 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
-   *   The value object of content structure.
+   * @param \Drupal\druki_paragraphs\Common\Content\ContentList $content
+   *   The value object of content list.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseNote(DOMElement $dom_element, ContentStructure $structure): ?bool {
+  protected function parseNote(DOMElement $dom_element, ContentList $content): ?bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $note_element = $crawler->filter('div[data-druki-note]');
 
@@ -143,7 +137,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
       }
 
       $note = new ParagraphNote($element->getAttribute('data-druki-note'), $value);
-      $structure->addContent($note);
+      $content->add($note);
 
       return TRUE;
     }
@@ -156,19 +150,19 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
-   *   The value object of content structure.
+   * @param \Drupal\druki_paragraphs\Common\Content\ContentList $content
+   *   The value object of content list.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseHeading(DOMElement $dom_element, ContentStructure $structure): bool {
+  protected function parseHeading(DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
     if (in_array($node_name, $heading_elements)) {
       $heading = new ParagraphHeading($dom_element->nodeName, $dom_element->textContent);
-      $structure->addContent($heading);
+      $content->add($heading);
 
       return TRUE;
     }
@@ -181,19 +175,19 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
-   *   The value object of content structure.
+   * @param \Drupal\druki_paragraphs\Common\Content\ContentList $content
+   *   The value object of content list.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseCode(DOMElement $dom_element, ContentStructure $structure): bool {
+  protected function parseCode(DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $code_elements = ['pre'];
 
     if (in_array($node_name, $code_elements)) {
       $code = new ParagraphCode($dom_element->ownerDocument->saveHTML($dom_element));
-      $structure->addContent($code);
+      $content->add($code);
 
       return TRUE;
     }
@@ -206,18 +200,19 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_paragraphs\Content\ContentStructure $structure
-   *   The value object of content structure.
+   * @param \Drupal\druki_paragraphs\Common\Content\ContentList $content
+   *   The value object of content list.
    *
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseImage(DOMElement $dom_element, ContentStructure $structure): bool {
+  protected function parseImage(DOMElement $dom_element, ContentList $content): bool {
     $crawler = new Crawler($dom_element);
     $image = $crawler->filter('img')->first();
+
     if (count($image)) {
       $image_element = new ParagraphImage($image->attr('src'), $image->attr('alt'));
-      $structure->addContent($image_element);
+      $content->add($image_element);
 
       return TRUE;
     }

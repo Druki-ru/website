@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_paragraphs\Content;
+namespace Drupal\druki_paragraphs\Common\ParagraphContent;
 
 use Drupal\Component\Render\FormattableMarkup;
 use InvalidArgumentException;
@@ -10,7 +10,7 @@ use InvalidArgumentException;
  *
  * The value for paragraph image type.
  *
- * @package Drupal\druki_paragraphs\Content
+ * @package Drupal\druki_paragraphs\Common\ParagraphContent
  */
 final class ParagraphImage extends ParagraphContentBase {
 
@@ -26,14 +26,14 @@ final class ParagraphImage extends ParagraphContentBase {
    *
    * @var string
    */
-  protected $src;
+  private $src;
 
   /**
    * The image alt.
    *
    * @var string
    */
-  protected $alt;
+  private $alt;
 
   /**
    * ParagraphNote constructor.

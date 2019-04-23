@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_paragraphs\Content;
+namespace Drupal\druki_paragraphs\Common\ParagraphContent;
 
 use Drupal\Component\Render\FormattableMarkup;
 use InvalidArgumentException;
@@ -10,7 +10,7 @@ use InvalidArgumentException;
  *
  * The value for paragraph note type.
  *
- * @package Drupal\druki_paragraphs\Content
+ * @package Drupal\druki_paragraphs\Common\ParagraphContent
  */
 final class ParagraphNote extends ParagraphContentBase {
 
@@ -26,7 +26,7 @@ final class ParagraphNote extends ParagraphContentBase {
    *
    * @var array
    */
-  protected $availableTypes = [
+  private $availableTypes = [
     'note',
     'warning',
     'tip',
@@ -38,14 +38,14 @@ final class ParagraphNote extends ParagraphContentBase {
    *
    * @var string
    */
-  protected $type;
+  private $type;
 
   /**
    * The note content.
    *
    * @var string
    */
-  protected $content;
+  private $content;
 
   /**
    * ParagraphNote constructor.
@@ -56,6 +56,17 @@ final class ParagraphNote extends ParagraphContentBase {
    *   The note value.
    */
   public function __construct(string $type, string $content) {
+    $this->setType($type);
+    $this->setContent($content);
+  }
+
+  /**
+   * Sets and validates type value.
+   *
+   * @param string $type
+   *   The note type.
+   */
+  private function setType(string $type): void {
     if (!in_array($type, $this->availableTypes)) {
       $message = new FormattableMarkup('The note type must be on of the following: @allowed_values. Got value: @value.', [
         '@allowed_values' => implode(', ', $this->availableTypes),
@@ -64,11 +75,20 @@ final class ParagraphNote extends ParagraphContentBase {
       throw new InvalidArgumentException($message);
     }
 
+    $this->type = $type;
+  }
+
+  /**
+   * Sets and validates content value.
+   *
+   * @param string $content
+   *   The note content.
+   */
+  private function setContent(string $content): void {
     if (!mb_strlen($content)) {
       throw new InvalidArgumentException("The note content can't be empty.");
     }
 
-    $this->type = $type;
     $this->content = $content;
   }
 

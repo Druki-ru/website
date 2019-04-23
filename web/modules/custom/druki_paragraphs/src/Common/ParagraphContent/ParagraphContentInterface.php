@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_paragraphs\Content;
+namespace Drupal\druki_paragraphs\Common\ParagraphContent;
 
 /**
  * Interface ParagraphContentInterface.
  *
- * @package Drupal\druki_paragraphs\Content
+ * @package Drupal\druki_paragraphs\Common\ParagraphContent
  */
 interface ParagraphContentInterface {
 

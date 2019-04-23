@@ -1,8 +1,7 @@
 <?php
 
-namespace Drupal\druki_paragraphs\Content;
+namespace Drupal\druki_paragraphs\Common\ParagraphContent;
 
-use Drupal\Component\Render\FormattableMarkup;
 use InvalidArgumentException;
 
 /**
@@ -10,7 +9,7 @@ use InvalidArgumentException;
  *
  * The value for paragraph text type.
  *
- * @package Drupal\druki_paragraphs\Content
+ * @package Drupal\druki_paragraphs\Common\ParagraphContent
  */
 final class ParagraphText extends ParagraphContentBase {
 
@@ -26,7 +25,7 @@ final class ParagraphText extends ParagraphContentBase {
    *
    * @var string
    */
-  protected $content;
+  private $content;
 
   /**
    * ParagraphNote constructor.
@@ -35,6 +34,16 @@ final class ParagraphText extends ParagraphContentBase {
    *   The text content.
    */
   public function __construct(string $content) {
+    $this->setContent($content);
+  }
+
+  /**
+   * Sets and validates content.
+   *
+   * @param string $content
+   *   The content value.
+   */
+  private function setContent(string $content) {
     if (!mb_strlen($content)) {
       throw new InvalidArgumentException("The text content can't be empty.");
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_paragraphs\Content;
+namespace Drupal\druki_paragraphs\Common\ParagraphContent;
 
 use Drupal\Component\Render\FormattableMarkup;
 use InvalidArgumentException;
@@ -10,7 +10,7 @@ use InvalidArgumentException;
  *
  * The value for paragraph heading type.
  *
- * @package Drupal\druki_paragraphs\Content
+ * @package Drupal\druki_paragraphs\Common\ParagraphContent
  */
 final class ParagraphHeading extends ParagraphContentBase {
 
@@ -26,7 +26,7 @@ final class ParagraphHeading extends ParagraphContentBase {
    *
    * @var array
    */
-  protected $availableLevels = [
+  private $availableLevels = [
     'h1',
     'h2',
     'h3',
@@ -40,14 +40,14 @@ final class ParagraphHeading extends ParagraphContentBase {
    *
    * @var string
    */
-  protected $level;
+  private $level;
 
   /**
    * The heading content.
    *
    * @var string
    */
-  protected $content;
+  private $content;
 
   /**
    * ParagraphNote constructor.
@@ -58,6 +58,17 @@ final class ParagraphHeading extends ParagraphContentBase {
    *   The heading content.
    */
   public function __construct(string $level, string $content) {
+    $this->setLevel($level);
+    $this->setContent($content);
+  }
+
+  /**
+   * Sets and validates level value.
+   *
+   * @param string $level
+   *   The heading level.
+   */
+  private function setLevel(string $level): void {
     if (!in_array($level, $this->availableLevels)) {
       $message = new FormattableMarkup('The note type must be on of the following: @allowed_values. Got value: @value.', [
         '@allowed_values' => implode(', ', $this->availableTypes),
@@ -66,11 +77,20 @@ final class ParagraphHeading extends ParagraphContentBase {
       throw new InvalidArgumentException($message);
     }
 
+    $this->level = $level;
+  }
+
+  /**
+   * Sets and validates content value.
+   *
+   * @param string $content
+   *   The heading content.
+   */
+  private function setContent(string $content): void {
     if (!mb_strlen($content)) {
       throw new InvalidArgumentException("The heading content can't be empty.");
     }
 
-    $this->level = $level;
     $this->content = $content;
   }
 

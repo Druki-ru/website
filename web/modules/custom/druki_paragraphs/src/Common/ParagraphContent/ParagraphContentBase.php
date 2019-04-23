@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_paragraphs\Content;
+namespace Drupal\druki_paragraphs\Common\ParagraphContent;
 
 use Drupal\Component\Render\FormattableMarkup;
 use UnexpectedValueException;
@@ -10,7 +10,7 @@ use UnexpectedValueException;
  *
  * The base object for all value objects used for paragraphs.
  *
- * @package Drupal\druki_parapgraphs\Content
+ * @package Drupal\druki_parapgraphs\Common\ParagraphContent
  */
 abstract class ParagraphContentBase implements ParagraphContentInterface {
 

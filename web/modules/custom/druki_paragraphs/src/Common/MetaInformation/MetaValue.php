@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_paragraphs\Content;
+namespace Drupal\druki_paragraphs\Common\MetaInformation;
 
 /**
  * Class MetaValue.
  *
  * Contains value for MetaInformation.
  *
- * @package Drupal\druki_paragraphs\Content
+ * @package Drupal\druki_paragraphs\Common\MetaInformation
  */
 final class MetaValue {
 
@@ -16,14 +16,14 @@ final class MetaValue {
    *
    * @var string
    */
-  protected $key;
+  private $key;
 
   /**
    * The value.
    *
    * @var string
    */
-  protected $value;
+  private $value;
 
   /**
    * MetaValue constructor.
