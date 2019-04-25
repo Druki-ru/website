@@ -7,6 +7,7 @@
 
   &__menu-item-link {
     color: $global-text-color;
+    word-break: break-word;
   }
 
   &__menu-item-link--active {

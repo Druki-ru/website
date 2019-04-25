@@ -1855,7 +1855,8 @@ pre[class*="language-"] {
     padding: 0;
     list-style: none; }
   .druki-content-toc__menu-item-link {
-    color: #222330; }
+    color: #222330;
+    word-break: break-word; }
   .druki-content-toc__menu-item-link--active {
     font-weight: bold;
     color: #0048DC; }
