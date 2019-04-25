@@ -10,6 +10,7 @@ $link-hover-decoration: none !default;
 a {
   color: $link-color;
   text-decoration: $link-decoration;
+  word-break: break-all;
 
   &:hover {
     color: $link-hover-color;

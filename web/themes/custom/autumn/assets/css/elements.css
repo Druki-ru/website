@@ -92,7 +92,8 @@ h6 {
 
 a {
   color: #0048DC;
-  text-decoration: none; }
+  text-decoration: none;
+  word-break: break-all; }
   a:hover {
     color: #002f90;
     text-decoration: none; }
