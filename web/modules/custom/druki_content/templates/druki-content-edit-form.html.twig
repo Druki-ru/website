@@ -1,0 +1,13 @@
+{% set bem_block = 'druki-content-form-layout' %}
+<div class="{{ bem_block}}">
+  <div class="{{ bem_block }}__main">
+    {{ form|without('advanced', 'footer', 'actions') }}
+  </div>
+  <div class="{{ bem_block }}__advanced">
+    {{ form.advanced }}
+  </div>
+  <div class="{{ bem_block }}__footer">
+    {{ form.footer }}
+    {{ form.actions }}
+  </div>
+</div>

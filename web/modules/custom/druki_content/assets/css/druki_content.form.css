@@ -1,0 +1,19 @@
+/**
+ * @file
+ * Styles for add/edit druki_content form.
+ */
+
+.druki-content-form-layout {
+  display: grid;
+  grid-gap: 24px;
+  grid-template-areas: "main advanced"
+                       "footer footer";
+  grid-template-columns: 65% calc(35% - 24px);
+}
+
+@media screen and (max-width: 1020px) {
+  .druki-content-form-layout {
+    grid-template-areas: unset;
+    grid-template-columns: 100%;
+  }
+}

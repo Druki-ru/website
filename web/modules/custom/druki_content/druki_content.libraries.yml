@@ -5,3 +5,9 @@ toc:
   dependencies:
     - druki/throttle
     - core/drupal
+
+form:
+  version: VERSION
+  css:
+    layout:
+      assets/css/druki_content.form.css: {}

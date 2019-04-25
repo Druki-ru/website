@@ -16,6 +16,9 @@ function druki_content_theme(): array {
       'render element' => 'elements',
       'file' => 'druki_content.theme.inc',
     ],
+    'druki_content_edit_form' => [
+      'render element' => 'form',
+    ],
     'druki_content_toc' => [
       'variables' => [
         'druki_content' => NULL,

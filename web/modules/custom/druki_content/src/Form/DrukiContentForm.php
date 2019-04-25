@@ -14,12 +14,77 @@ class DrukiContentForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function form(array $form, FormStateInterface $form_state): array {
+    /** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
+    $druki_content = $this->entity;
+
+    // Force advanced to be presented and change type to container.
+    $form['advanced'] = [
+      '#type' => 'container',
+      '#weight' => 99,
+      '#attributes' => [
+        'class' => [
+          'entity-meta',
+        ],
+      ],
+    ];
+
     $form = parent::form($form, $form_state);
 
     $form['git_information'] = [
-      '#markup' => '<div>@todo git info</div>',
+      '#type' => 'container',
       '#group' => 'advanced',
+      '#weight' => -10,
+      '#title' => $this->t('Git Information'),
+      '#attributes' => ['class' => ['entity-meta__header']],
+      '#tree' => TRUE,
     ];
+
+    $form['git_information']['external_id'] = [
+      '#type' => 'item',
+      '#title' => $this->t('External ID'),
+      '#markup' => $druki_content->get('external_id')->value,
+      '#wrapper_attributes' => [
+        'class' => [
+          'container-inline',
+        ],
+      ],
+    ];
+
+    $form['git_information']['core'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Core version'),
+      '#markup' => $druki_content->get('core')->value,
+      '#wrapper_attributes' => [
+        'class' => [
+          'container-inline',
+        ],
+      ],
+    ];
+
+    $form['git_information']['relative_pathname'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Relative pathname'),
+      '#markup' => $druki_content->get('relative_pathname')->value,
+      '#wrapper_attributes' => [
+        'class' => [
+          'container-inline',
+        ],
+      ],
+    ];
+
+    $form['git_information']['last_commit_id'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Last commit ID'),
+      '#markup' => $druki_content->get('last_commit_id')->value,
+      '#access' => !$druki_content->get('last_commit_id')->isEmpty(),
+      '#wrapper_attributes' => [
+        'class' => [
+          'container-inline',
+        ],
+      ],
+    ];
+
+    $form['#attached']['library'][] = 'druki_content/form';
 
     return $form;
   }
