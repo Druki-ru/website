@@ -159,6 +159,14 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
     $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->id();
     $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->getExternalId();
 
+    // Invalidate cache tag for category area block.
+    // @see CategoryNavigationBlock::getCacheTags().
+    if (!$this->get('category')->isEmpty()) {
+      $transliteration = \Drupal::transliteration();
+      $category_area = $transliteration->transliterate($this->get('category')->area);
+      $cache_tags[] = 'druki_category_navigation:' . $category_area;
+    }
+
     return $cache_tags;
   }
 

@@ -144,7 +144,7 @@ class CategoryNavigation {
    * @param string $category_area
    *   The category area name.
    *
-   * @return \Drupal\Core\Link[]|null
+   * @return array
    *    The array with links, NULL if not found anything.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
@@ -175,6 +175,7 @@ class CategoryNavigation {
           $result[] = [
             'url' => $entity->toUrl('canonical'),
             'text' => $text,
+            'cache_tags' => $entity->getCacheTags(),
           ];
         }
       }

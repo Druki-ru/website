@@ -4,9 +4,7 @@ namespace Drupal\druki_category\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\druki_category\Service\CategoryNavigation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -43,7 +41,12 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
    * @param \Drupal\druki_category\Service\CategoryNavigation $category_navigation
    *   The category navigation.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CategoryNavigation $category_navigation) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    CategoryNavigation $category_navigation
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->categoryNavigation = $category_navigation;
@@ -85,15 +88,12 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
     if ($category_area = $this->categoryNavigation->getCategoryAreaFromRoute()) {
       return $category_area;
     }
-    
+
     return parent::label();
   }
 
   /**
    * {@inheritdoc}
-   *
-   * @todo potential place for performance optimization with a lot of content.
-   * Better create custom cache context.
    */
   public function getCacheContexts(): array {
     $cache_contexts = [
@@ -103,6 +103,30 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
     return Cache::mergeContexts(
       parent::getCacheContexts(),
       $cache_contexts
+    );
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getCacheTags() {
+    $cache_tags = [];
+
+    if ($category_area = $this->categoryNavigation->getCategoryAreaFromRoute()) {
+      $category_latin = $this->transliteration()->transliterate($category_area);
+      $cache_tags[] = 'druki_category_navigation:' . $category_latin;
+    }
+
+    $links = $this->categoryNavigation->getCategoryLinksFromRoute();
+    if ($links) {
+      foreach ($links as $link) {
+        $cache_tags = Cache::mergeTags($cache_tags, $link['cache_tags']);
+      }
+    }
+
+    return Cache::mergeTags(
+      parent::getCacheTags(),
+      $cache_tags
     );
   }
 
