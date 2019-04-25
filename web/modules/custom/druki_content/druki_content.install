@@ -5,10 +5,78 @@
  * Main file for installation on update hooks.
  */
 
+use Drupal\Core\Config\FileStorage;
+
 /**
  * Implements hook_uninstall()
  */
 function druki_content_uninstall() {
   // Remove state settings.
   \Drupal::state()->delete('druki_content.settings.force_update');
+}
+
+/**
+ * Move two base entity fields to configuration fields.
+ */
+function druki_content_update_8601(&$sandbox) {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  // Uninstall "category" field.
+//  if ($category_field = $definition_update_manager->getFieldStorageDefinition('category', 'druki_content')) {
+//    $definition_update_manager->uninstallFieldStorageDefinition($category_field);
+//  }
+
+  // Install "forced_path" field.
+  if ($forced_path_field = $definition_update_manager->getFieldStorageDefinition('forced_path', 'druki_content')) {
+    $definition_update_manager->uninstallFieldStorageDefinition($forced_path_field);
+  }
+
+  $config_names = [
+    'field.storage.druki_content.forced_path',
+    'field.field.druki_content.druki_content.forced_path'
+  ];
+
+  _druki_install_configs_to_existed_site($config_names);
+
+  return t('Both base fields moved into configs.');
+}
+
+/**
+ * Install specific configs to existed site.
+ *
+ * Useful when some configs added in config/install or optional after module
+ * installation, but now we need to install them for old installation without
+ * reinstall the module.
+ *
+ * Use it with caution, already existed configs will be override. Make sure that
+ * configs you passed is new for this update only.
+ *
+ * @param array $config_names
+ *   The config names without yml extension to import or override.
+ * @param $config_type
+ *   The folder where to look for configs. Use "install" or "optional".
+ */
+function _druki_install_configs_to_existed_site(array $config_names, $config_type = 'install') {
+  $config_folder = drupal_get_path('module', 'druki_content') . '/config/' . $config_type;
+  $config_to_import = new FileStorage($config_folder);
+  /** @var \Drupal\Core\Config\CachedStorage $active_storage */
+  $active_storage = \Drupal::service('config.storage');
+  /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
+  $config_factory = \Drupal::configFactory();
+  /** @var \Drupal\Component\Uuid\UuidInterface $uuid */
+  $uuid = \Drupal::service('uuid');
+
+  foreach ($config_names as $config_name) {
+    $config_source = $config_to_import->read($config_name);
+    // Configs by default missing UUID, but they needed to work properly. Active
+    // storage does not generate UUID, so wee do it manually.
+    // We also can't just add it to array, so we use config factory for this.
+    // At first, we write config to storage.
+    $active_storage->write($config_name, $config_source);
+    // Then get it as editable and set UUID.
+    $config_editable = $config_factory->getEditable($config_name);
+    $uuid = $uuid->generate();
+    $config_editable->set('uuid', $uuid);
+    $config_editable->save();
+  }
 }
