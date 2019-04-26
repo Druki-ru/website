@@ -7,6 +7,7 @@
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
+use Drupal\druki_content\Entity\DrukiContentInterface;
 
 /**
  * Implements hook_uninstall()
@@ -23,6 +24,8 @@ function druki_content_update_8601(&$sandbox) {
   // If you are looking at this hook update for learning purposes, don't forget,
   // you also must remove base field definition from the entity object codebase,
   // before executing this hook.
+  // For less complex example see
+  // comment_post_update_enable_comment_admin_view().
   $module_handler = Drupal::moduleHandler();
   $druki_content_module = $module_handler->getModule('druki_content');
   $config_install_path = $druki_content_module->getPath() . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
@@ -43,6 +46,7 @@ function druki_content_update_8601(&$sandbox) {
       ->getStorage('field_storage_config')
       ->create($storage->read('field.storage.druki_content.forced_path'))
       ->save();
+
     // Install field.
     $entity_type_manager
       ->getStorage('field_config')
@@ -62,11 +66,60 @@ function druki_content_update_8601(&$sandbox) {
       ->getStorage('field_storage_config')
       ->create($storage->read('field.storage.druki_content.category'))
       ->save();
+
     // Install field.
     $entity_type_manager
       ->getStorage('field_config')
       ->create($storage->read('field.field.druki_content.druki_content.category'))
       ->save();
+  }
+
+  // Restore previous values.
+  // Make sure you call it after fields are changed, because database structure
+  // will be changed during process above.
+  $druki_content_storage = $entity_type_manager->getStorage('druki_content');
+  /** @var \Drupal\Core\Entity\Sql\DefaultTableMapping $table_mapping */
+  $table_mapping = $druki_content_storage->getTableMapping();
+  $database = Drupal::database();
+
+  // Restore "forced_path" values.
+  if ($forced_path_field) {
+    $forced_path_deleted_data_table = $table_mapping->getDedicatedDataTableName($forced_path_field, TRUE);
+    $results = $database->select($forced_path_deleted_data_table, 'dd')
+      ->fields('dd')
+      ->execute()
+      ->fetchAll();
+
+    foreach ($results as $result) {
+      $druki_content = $druki_content_storage->load($result->entity_id);
+
+      if ($druki_content instanceof DrukiContentInterface) {
+        $druki_content->set('forced_path', $result->forced_path_value);
+        $druki_content->save();
+      }
+    }
+  }
+
+  // Restore "category" values.
+  if ($category_field) {
+    $category_field_deleted_data_table = $table_mapping->getDedicatedDataTableName($category_field, TRUE);
+    $results = $database->select($category_field_deleted_data_table, 'dd')
+      ->fields('dd')
+      ->execute()
+      ->fetchAll();
+
+    foreach ($results as $result) {
+      $druki_content = $druki_content_storage->load($result->entity_id);
+
+      if ($druki_content instanceof DrukiContentInterface) {
+        $druki_content->set('category', [
+          'area' => $result->category_area,
+          'order' => $result->category_order,
+          'title' => $result->category_title,
+        ]);
+        $druki_content->save();
+      }
+    }
   }
 
   return t('Both base fields moved into configs.');
