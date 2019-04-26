@@ -1,0 +1,21 @@
+uuid: a2712a73-0981-45b3-9321-6ed95b40817c
+langcode: en
+status: true
+dependencies:
+  module:
+    - druki_content
+id: druki_content.forced_path
+field_name: forced_path
+entity_type: druki_content
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

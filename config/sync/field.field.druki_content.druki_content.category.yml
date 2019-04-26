@@ -1,14 +1,14 @@
-uuid: b2f932f8-d5cd-42fc-8c03-f7038708a0c8
-langcode: ru
+uuid: 69dbadd8-62be-40f8-b5e8-a57e1f0adad3
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.druki_content.field_category
+    - field.storage.druki_content.category
   module:
     - druki_category
     - druki_content
-id: druki_content.druki_content.field_category
-field_name: field_category
+id: druki_content.druki_content.category
+field_name: category
 entity_type: druki_content
 bundle: druki_content
 label: Category
