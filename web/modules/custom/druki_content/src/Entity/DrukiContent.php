@@ -133,10 +133,6 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ->setRequired(FALSE)
       ->setReadOnly(TRUE);
 
-    $fields['category'] = BaseFieldDefinition::create('druki_category')
-      ->setLabel(t('Category'))
-      ->setRequired(FALSE);
-
     return $fields;
   }
 

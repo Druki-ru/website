@@ -1,0 +1,19 @@
+uuid: 5a9d79a6-87fb-4efd-87e6-5552f10a7351
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_category
+    - druki_content
+id: druki_content.field_category
+field_name: field_category
+entity_type: druki_content
+type: druki_category
+settings: {  }
+module: druki_category
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

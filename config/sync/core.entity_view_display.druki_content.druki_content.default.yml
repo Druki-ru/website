@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
+    - field.field.druki_content.druki_content.field_category
     - field.field.druki_content.druki_content.labels
     - field.field.druki_content.druki_content.search_keywords
   module:
@@ -26,6 +27,13 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  field_category:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: null
+    region: content
 hidden:
   difficulty: true
   filename: true

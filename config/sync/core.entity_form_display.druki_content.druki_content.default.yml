@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
+    - field.field.druki_content.druki_content.field_category
     - field.field.druki_content.druki_content.labels
     - field.field.druki_content.druki_content.search_keywords
   module:
@@ -43,6 +44,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_category:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: null
+    region: content
   labels:
     type: string_textfield
     weight: 4

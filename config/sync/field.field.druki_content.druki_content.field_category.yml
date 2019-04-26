@@ -1,0 +1,21 @@
+uuid: b2f932f8-d5cd-42fc-8c03-f7038708a0c8
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.storage.druki_content.field_category
+  module:
+    - druki_category
+    - druki_content
+id: druki_content.druki_content.field_category
+field_name: field_category
+entity_type: druki_content
+bundle: druki_content
+label: Category
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: druki_category
