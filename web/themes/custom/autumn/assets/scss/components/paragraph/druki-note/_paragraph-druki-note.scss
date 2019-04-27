@@ -27,7 +27,7 @@
     }
 
     #{$block}__icon {
-      @include mdi-icon('file-document-edit', $margin-size: 0);
+      @include mdi-icon('information-outline', $margin-size: 0);
       color: white;
     }
   }

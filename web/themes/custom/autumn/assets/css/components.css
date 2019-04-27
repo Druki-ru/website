@@ -2249,7 +2249,7 @@ pre[class*="language-"] {
     .paragraph-druki-note--note .paragraph-druki-note__icon {
       color: white; }
       .paragraph-druki-note--note .paragraph-druki-note__icon:before {
-        content: "\FDA4";
+        content: "\F2FD";
         font-style: normal;
         font-variant: normal;
         text-rendering: auto;
