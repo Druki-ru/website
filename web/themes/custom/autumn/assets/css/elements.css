@@ -67,20 +67,20 @@ h2 {
   line-height: 1.33333; }
 
 h3 {
-  font-size: 1.375rem;
-  line-height: 1.45455; }
-
-h4 {
   font-size: 1.25rem;
   line-height: 1.6; }
 
-h5 {
+h4 {
   font-size: 1.125rem;
   line-height: 1.77778; }
 
-h6 {
+h5 {
   font-size: 1rem;
   line-height: 1.5; }
+
+h6 {
+  font-size: 0.875rem;
+  line-height: 1.71429; }
 
 h1,
 h2,
@@ -96,7 +96,7 @@ h6 {
 a {
   color: #0048DC;
   text-decoration: none;
-  word-break: break-all; }
+  word-break: break-word; }
   a:hover {
     color: #002f90;
     text-decoration: none; }
