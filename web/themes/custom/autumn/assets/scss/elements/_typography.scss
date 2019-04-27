@@ -40,3 +40,8 @@ code {
   background-color: #F1F5F8;
   word-break: break-all;
 }
+
+pre code {
+  // Fixes unwanted paddings for first and last line of code.
+  padding: unset;
+}

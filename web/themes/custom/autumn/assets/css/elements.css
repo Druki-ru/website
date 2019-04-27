@@ -55,6 +55,9 @@ code {
   background-color: #F1F5F8;
   word-break: break-all; }
 
+pre code {
+  padding: unset; }
+
 h1 {
   font-size: 2rem;
   line-height: 1.25; }
