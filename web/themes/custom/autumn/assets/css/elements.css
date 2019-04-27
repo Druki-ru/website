@@ -63,24 +63,24 @@ h1 {
   line-height: 1.25; }
 
 h2 {
-  font-size: 1.8125rem;
-  line-height: 1.37931; }
+  font-size: 1.5rem;
+  line-height: 1.33333; }
 
 h3 {
-  font-size: 1.625rem;
-  line-height: 1.53846; }
+  font-size: 1.375rem;
+  line-height: 1.45455; }
 
 h4 {
-  font-size: 1.4375rem;
-  line-height: 1.3913; }
+  font-size: 1.25rem;
+  line-height: 1.6; }
 
 h5 {
-  font-size: 1.3125rem;
-  line-height: 1.52381; }
-
-h6 {
   font-size: 1.125rem;
   line-height: 1.77778; }
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.5; }
 
 h1,
 h2,
