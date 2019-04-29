@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - druki_content
+    - metatag
+id: druki_content.metatags
+field_name: metatags
+entity_type: druki_content
+type: metatag
+settings: {  }
+module: metatag
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

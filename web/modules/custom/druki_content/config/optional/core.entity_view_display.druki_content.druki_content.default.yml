@@ -2,8 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.druki_content.druki_content.category
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
+    - field.field.druki_content.druki_content.forced_path
     - field.field.druki_content.druki_content.labels
     - field.field.druki_content.druki_content.search_keywords
   module:
@@ -26,8 +28,10 @@ content:
       link: ''
     third_party_settings: {  }
 hidden:
+  category: true
   difficulty: true
   filename: true
+  forced_path: true
   labels: true
   langcode: true
   last_commit_id: true

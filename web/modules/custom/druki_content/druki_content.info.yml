@@ -13,3 +13,4 @@ dependencies:
   - druki_file:druki_file
   - druki_category:druki_category
   - pathauto:pathauto
+  - metatag:metatag

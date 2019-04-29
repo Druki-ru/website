@@ -3,12 +3,16 @@ langcode: ru
 status: true
 dependencies:
   config:
+    - field.field.druki_content.druki_content.category
     - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.difficulty
+    - field.field.druki_content.druki_content.forced_path
     - field.field.druki_content.druki_content.labels
+    - field.field.druki_content.druki_content.metatags
     - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
+    - metatag
     - paragraphs
     - path
 _core:
@@ -58,6 +62,12 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
+  metatags:
+    type: metatag_firehose
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 6
@@ -80,4 +90,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  category: true
+  forced_path: true

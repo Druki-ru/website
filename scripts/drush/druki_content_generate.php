@@ -2,8 +2,9 @@
 
 /** @var \Drupal\druki_content\DrukiContentStorage $druki_content_storage */
 $druki_content_storage = \Drupal::service('entity_type.manager')->getStorage('druki_content');
-///** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
-//$druki_content = $druki_content_storage->load('installation');
+/** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
+$druki_content = $druki_content_storage->load(31);
+dump(unserialize($druki_content->get('field_metatags')->value));
 //dump($druki_content->getTitle());
 //dump($druki_content->getRelativePathname());
 //dump($druki_content->getFilename());
@@ -28,6 +29,6 @@ $druki_content_storage = \Drupal::service('entity_type.manager')->getStorage('dr
 //$settings = $difficulty->getSetting('allowed_values');
 //dump(array_keys($settings));
 
-$user_storage = \Drupal::entityTypeManager()->getStorage('user');
-$user = $user_storage->load(1);
-dump(filter_default_format($user));
+//$user_storage = \Drupal::entityTypeManager()->getStorage('user');
+//$user = $user_storage->load(1);
+//dump(filter_default_format($user));

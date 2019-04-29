@@ -124,3 +124,35 @@ function druki_content_update_8601(&$sandbox) {
 
   return t('Both base fields moved into configs.');
 }
+
+/**
+ * Adds metatag field to druki_content.
+ */
+function druki_content_update_8602(&$sandbox) {
+  $module_handler = Drupal::moduleHandler();
+  $druki_content_module = $module_handler->getModule('druki_content');
+  $config_install_path = $druki_content_module->getPath() . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
+  $definition_update_manager = Drupal::entityDefinitionUpdateManager();
+  $entity_type_manager = Drupal::entityTypeManager();
+  // Load config folder.
+  $storage = new FileStorage($config_install_path);
+
+  $metatags_field = $definition_update_manager
+    ->getFieldStorageDefinition('metatags', 'druki_content');
+  if (!$metatags_field) {
+    // Install storage.
+    $entity_type_manager
+      ->getStorage('field_storage_config')
+      ->create($storage->read('field.storage.druki_content.metatags'))
+      ->save();
+
+    // Install field.
+    $entity_type_manager
+      ->getStorage('field_config')
+      ->create($storage->read('field.field.druki_content.druki_content.metatags'))
+      ->save();
+  }
+  else {
+    return t('The metatag field is found on druki_content entity. The update is skipped.');
+  }
+}
