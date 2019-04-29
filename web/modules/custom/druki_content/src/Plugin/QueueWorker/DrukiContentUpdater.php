@@ -714,10 +714,6 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
         }
       }
 
-      if (isset($metatags['title'])) {
-        $metatags['title'] .= ' | [site:name]';
-      }
-
       $druki_content->set('metatags', serialize($metatags));
     }
   }

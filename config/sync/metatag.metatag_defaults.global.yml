@@ -9,7 +9,8 @@ label: Global
 tags:
   canonical_url: '[current-page:url]'
   google: google-site-verification=2ivXF1ydCxp5SIlv3CWX0EhK0PF-SHn7KbCxGs7oL8U
-  title: '[current-page:title] | [site:name]'
+  title: '[current-page:title]'
+  description: 'Druki — энциклопедия о Drupal.'
   theme_color: '#FFD029'
   viewport: 'width=device-width, initial-scale=1.0, maximum-scale=5.0'
   mobileoptimized: '320'
