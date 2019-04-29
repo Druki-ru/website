@@ -716,6 +716,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
 
       if (isset($metatags['title'])) {
         $metatags['og_title'] = $metatags['title'];
+        $metatags['twitter_title'] = $metatags['title'];
       }
 
       if (isset($metatags['description'])) {
