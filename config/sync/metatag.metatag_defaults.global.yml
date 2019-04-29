@@ -16,7 +16,7 @@ tags:
   mobileoptimized: '320'
   og_url: '[current-page:url]'
   og_image: /sites/default/files/druki/logo.svg
-  og_site_name: Druki
+  og_site_name: 'Drupal энциклопедия'
   og_title: '[current-page:title]'
   og_type: website
   twitter_cards_image: /sites/default/files/druki/logo.svg
