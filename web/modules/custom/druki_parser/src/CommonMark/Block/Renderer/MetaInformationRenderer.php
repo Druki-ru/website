@@ -23,13 +23,18 @@ class MetaInformationRenderer implements BlockRendererInterface {
     $yaml_array = Yaml::decode($block->getStringContent());
 
     foreach ($yaml_array as $key => $value) {
-      $content[] = new HtmlElement('div', [
-        'data-druki-key' => $key,
-        'data-druki-value' => is_array($value) ? implode(', ', $value) : $value,
-      ]);
+      $content[$key] = $value;
     }
 
-    return new HtmlElement('div', ['data-druki-meta' => ''], $content);
+    // We use div instead of script, for safety and problems with DOMDocument.
+    // If we create here script, it will be put on <head> while we crawl DOM,
+    // and additionally all content parsed as well as DOMDocument.
+    // @see https://github.com/symfony/symfony/issues/14542
+    return new HtmlElement(
+      'div',
+      ['id' => 'meta-information'],
+      json_encode($content)
+    );
   }
 
 }

@@ -24,8 +24,8 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
   /**
    * {@inheritdoc}
    */
-  public function parse($content): ContentStructure {
-    $crawler = new Crawler($content);
+  public function parse($html): ContentStructure {
+    $crawler = new Crawler($html);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');
     // For now we have this structure types:
@@ -95,13 +95,11 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    */
   protected function parseMetaInformation(DOMElement $dom_element, MetaInformation $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
-    $meta_block = $crawler->filter('div[data-druki-meta=""]');
+    $meta_block = $crawler->filter('div[id="meta-information"]');
 
     if (count($meta_block)) {
-      foreach ($crawler->filter('[data-druki-key][data-druki-value]') as $element) {
-        $key = $element->getAttribute('data-druki-key');
-        $value = $element->getAttribute('data-druki-value');
-
+      $meta_array = json_decode($meta_block->text(), true);
+      foreach ($meta_array as $key => $value) {
         $meta_value = new MetaValue($key, $value);
         $meta_information->add($meta_value);
       }

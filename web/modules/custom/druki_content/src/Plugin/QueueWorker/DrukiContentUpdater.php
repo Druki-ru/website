@@ -322,6 +322,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $this->processDifficulty($druki_content, $structured_data);
     $this->processLabels($druki_content, $structured_data);
     $this->processSearchKeywords($druki_content, $structured_data);
+    $this->processMetatags($druki_content, $structured_data);
 
     $druki_content->save();
   }
@@ -669,11 +670,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $meta = $structured_data->getMetaInformation();
 
     if ($meta->has('labels')) {
-      $labels = explode(', ', $meta->get('labels')->getValue());
-
-      if (!empty($labels)) {
-        $druki_content->set('labels', $labels);
-      }
+      $druki_content->set('labels', $meta->get('labels')->getValue());
     }
   }
 
@@ -691,11 +688,37 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     $meta = $structured_data->getMetaInformation();
 
     if ($meta->has('search-keywords')) {
-      $search_keywords = explode(', ', $meta->get('search-keywords')->getValue());
+      $druki_content->set('search_keywords', $meta->get('search-keywords')->getValue());
+    }
+  }
 
-      if (!empty($search_keywords)) {
-        $druki_content->set('search_keywords', $search_keywords);
+  /**
+   * Process metatags for content.
+   *
+   * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
+   *   The entity to save value.
+   * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
+   *   The content structure.
+   */
+  protected function processMetatags(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
+    $druki_content->set('metatags', NULL);
+    $meta = $structured_data->getMetaInformation();
+
+    if ($meta->has('metatags')) {
+      $metatags = $meta->get('metatags')->getValue();
+      $allowed_values = ['title', 'description'];
+
+      foreach ($metatags as $key => $value) {
+        if (!in_array($key, $allowed_values)) {
+          unset($metatags[$key]);
+        }
       }
+
+      if (isset($metatags['title'])) {
+        $metatags['title'] .= ' | [site:name]';
+      }
+
+      $druki_content->set('metatags', serialize($metatags));
     }
   }
 

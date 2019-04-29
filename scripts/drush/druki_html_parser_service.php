@@ -15,10 +15,13 @@ title: Установка Drupal 8
 core: 8
 category-area: Первое знакомство
 category-order: 0
-test-comma: one, two, three
+test-comma: ['one', 'two', 'three']
 test-array:
   - one
   - two
+metatags:
+  title: 'Проверка заголовка'
+  description: 'Проверка описания'
 ---
 
 ## Title

@@ -30,12 +30,12 @@ final class MetaValue {
    *
    * @param string $key
    *   The value key.
-   * @param string $value
+   * @param mixed $value
    *   The value.
    */
-  public function __construct(string $key, string $value) {
+  public function __construct(string $key, $value) {
     $this->key = $key;
-    $this->value = $value;
+    $this->setValue($value);
   }
 
   /**
@@ -51,11 +51,22 @@ final class MetaValue {
   /**
    * Gets the value.
    *
-   * @return string
+   * @return mixed
    *   The value.
    */
-  public function getValue(): string {
+  public function getValue() {
     return $this->value;
+  }
+
+  /**
+   * Sets value.
+   *
+   * @param mixed $value
+   *   The value.
+   */
+  protected function setValue($value): void {
+    // @todo improve it. Maybe add type checking, or leave it.
+    $this->value = $value;
   }
 
 }
