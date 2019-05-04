@@ -9,6 +9,6 @@ deploy:
     - ssh $USER@$HOST "cd $PROJECT_ROOT && git pull origin 8.x"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && composer install -o -n"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && drush updatedb -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush cim --diff -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush cr -y"
+    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush config:import --diff -y"
+    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush cache:rebuild -y"
     - echo "Deploy complete!"
