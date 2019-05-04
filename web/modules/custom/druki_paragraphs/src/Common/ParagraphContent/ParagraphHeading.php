@@ -70,8 +70,8 @@ final class ParagraphHeading extends ParagraphContentBase {
    */
   private function setLevel(string $level): void {
     if (!in_array($level, $this->availableLevels)) {
-      $message = new FormattableMarkup('The note type must be on of the following: @allowed_values. Got value: @value.', [
-        '@allowed_values' => implode(', ', $this->availableTypes),
+      $message = new FormattableMarkup('The heading level must be one of the following: @allowed_values. Got value: @value.', [
+        '@allowed_values' => implode(', ', $this->availableLevels),
         '@value' => $level,
       ]);
       throw new InvalidArgumentException($message);
