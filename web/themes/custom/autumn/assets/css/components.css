@@ -2070,6 +2070,11 @@ pre[class*="language-"] {
   line-height: 1.6;
   font-weight: bold; }
 
+.druki-download__card-text {
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  color: #616161; }
+
 .druki-download__card-bottom {
   font-weight: bold;
   margin-top: auto;

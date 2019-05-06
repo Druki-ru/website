@@ -84,6 +84,11 @@ $icons: (
     font-weight: bold;
   }
 
+  &__card-text {
+    @include font-size(14px);
+    color: gray(700);
+  }
+
   &__card-bottom {
     font-weight: bold;
     margin-top: auto;
