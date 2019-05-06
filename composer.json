@@ -114,7 +114,10 @@
             "initial": {
                 ".editorconfig": "../.editorconfig",
                 ".gitattributes": "../.gitattributes"
-            }
+            },
+            "exclude": [
+                "sites/development.service.yml"
+            ]
         }
     }
 }

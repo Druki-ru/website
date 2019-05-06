@@ -114,6 +114,21 @@
     margin: 0 auto;
   }
 
+  &__other-items {
+    display: grid;
+    grid-gap: spacing-unit(grid-gap);
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__other-item-title {
+    font-weight: bold;
+  }
+
+  &__other-item-items {
+    margin: unset;
+    list-style-type: none;
+  }
+
   @include media-breakpoint-down(sm) {
     &__box-links {
       grid-template-columns: repeat(2, 1fr);
