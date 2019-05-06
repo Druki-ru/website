@@ -1984,12 +1984,15 @@ pre[class*="language-"] {
   grid-template-columns: repeat(3, 300px); }
 
 .druki-download__card {
+  position: relative;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
-  padding: 24px;
+  padding: 16px;
   text-align: center;
   border-radius: 4px;
-  background-color: #f5f5f5; }
+  background-color: #FFFFFF;
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1); }
 
 .druki-download__card-icon--try:before {
   content: "\F1E4";
