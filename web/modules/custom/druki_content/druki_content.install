@@ -19,13 +19,15 @@ function druki_content_uninstall() {
 
 /**
  * Move two base entity fields to configuration fields.
+ *
+ * If you are looking at this hook update for learning purposes, don't forget,
+ * you also must remove base field definition from the entity object codebase,
+ * before executing this hook.
+ *
+ * For less complex example see
+ * comment_post_update_enable_comment_admin_view().
  */
 function druki_content_update_8601(&$sandbox) {
-  // If you are looking at this hook update for learning purposes, don't forget,
-  // you also must remove base field definition from the entity object codebase,
-  // before executing this hook.
-  // For less complex example see
-  // comment_post_update_enable_comment_admin_view().
   $module_handler = Drupal::moduleHandler();
   $druki_content_module = $module_handler->getModule('druki_content');
   $config_install_path = $druki_content_module->getPath() . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
