@@ -2201,11 +2201,11 @@ pre[class*="language-"] {
   list-style-type: none; }
 
 @media (max-width: 47.9375rem) {
-  .druki-docs__box-links {
+  .druki-docs__box-links, .druki-docs__other-items {
     grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 35.9375rem) {
-  .druki-docs__box-links {
+  .druki-docs__box-links, .druki-docs__other-items {
     grid-template-columns: 1fr; } }
 
 .block-druki-content-toc {
