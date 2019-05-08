@@ -1855,6 +1855,8 @@ pre[class*="language-"] {
     margin: 0;
     padding: 0;
     list-style: none; }
+  .druki-content-toc__menu-item {
+    margin: 8px 0; }
   .druki-content-toc__menu-item-link {
     color: #222330;
     word-break: break-word; }

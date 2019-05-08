@@ -5,6 +5,10 @@
     @include list-unstyled;
   }
 
+  &__menu-item {
+    margin: spacing-unit() 0;
+  }
+
   &__menu-item-link {
     color: $global-text-color;
     word-break: break-word;
