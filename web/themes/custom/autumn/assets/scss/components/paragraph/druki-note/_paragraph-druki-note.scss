@@ -1,51 +1,52 @@
 .paragraph-druki-note {
   $block: &;
-  display: flex;
   border-radius: $border-radius-base;
+  background-color: theme-color(code-background);
+  padding: spacing-unit(2);
 
-  &__left {
-    flex-shrink: 0;
-    width: calc(40px + #{spacing-unit(4)});
-    padding: spacing-unit(2);
+  &__header {
+    margin-bottom: spacing-unit();
+    user-select: none;
   }
 
-  &__icon {
-    @include font-size(40px);
-    width: 40px;
-    text-align: center;
-  }
-
-  &__content {
-    padding: spacing-unit(2);
+  &__note-type {
+    font-weight: bold;
   }
 
   &--note {
-    border: 1px solid theme-color(note);
+    border-left: 6px solid theme-color(note);
 
     #{$block}__left {
       background-color: theme-color(note);
     }
 
     #{$block}__icon {
-      @include mdi-icon('information-outline', $margin-size: 0);
-      color: white;
+      @include mdi-icon('information-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(note);
     }
   }
 
   &--warning {
-    border: 1px solid theme-color(warning);
+    border-left: 6px solid theme-color(warning);
 
     #{$block}__left {
       background-color: theme-color(warning);
     }
 
     #{$block}__icon {
-      @include mdi-icon('alert-circle-outline', $margin-size: 0);
+      @include mdi-icon('alert-circle-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(warning);
     }
   }
 
   &--tip {
-    border: 1px solid theme-color(success);
+    border-left: 6px solid theme-color(success);
 
     #{$block}__left {
       background-color: theme-color(success);
@@ -53,21 +54,27 @@
 
 
     #{$block}__icon {
-      @include mdi-icon('lightbulb-on-outline', $margin-size: 0);
-      color: white;
+      @include mdi-icon('lightbulb-on-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(success);
     }
   }
 
   &--important {
-    border: 1px solid theme-color(error);
+    border-left: 6px solid theme-color(error);
 
     #{$block}__left {
       background-color: theme-color(error);
     }
 
     #{$block}__icon {
-      @include mdi-icon('alert-octagram-outline', $margin-size: 0);
-      color: white;
+      @include mdi-icon('alert-octagram-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(error);
     }
   }
 }

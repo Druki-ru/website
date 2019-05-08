@@ -37,7 +37,7 @@ code {
   font-size: 90%;
   padding: 2px 4px;
   border-radius: $border-radius-base;
-  background-color: #F1F5F8;
+  background-color: theme-color(code-background);
   word-break: break-all;
 }
 

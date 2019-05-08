@@ -28,3 +28,18 @@ function autumn_preprocess_paragraph__druki_heading(array &$variables): void {
 function autumn_preprocess_paragraph__druki_code(array &$variables): void {
   $variables['#attached']['library'][] = 'autumn/code_highlight';
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--druki-note.html.twig.
+ */
+function autumn_preprocess_paragraph__druki_note(array &$variables): void {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+  $druki_note_type = $paragraph->get('druki_note_type');
+  $types = $druki_note_type
+    ->getFieldDefinition()
+    ->getFieldStorageDefinition()
+    ->getSetting('allowed_values');
+
+  $variables['note_type_label'] = $types[$druki_note_type->value];
+}

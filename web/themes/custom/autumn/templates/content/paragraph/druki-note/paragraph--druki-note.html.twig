@@ -5,8 +5,9 @@
   bem_block  ~ '--' ~ paragraph.druki_note_type.value,
 ] %}
 <div{{ attributes.addClass(classes) }}>
-  <div class="{{ bem_block }}__left">
-    <div class="{{ bem_block }}__icon"></div>
+  <div class="{{ bem_block }}__header">
+    <span class="{{ bem_block }}__icon"></span>
+    <span class="{{ bem_block }}__note-type">{{ note_type_label }}</span>
   </div>
 
   <div class="{{ bem_block }}__content">
