@@ -5,7 +5,7 @@
   &__anchor {
     @include mdi-icon('link-variant', $margin-size: 0);
     @include font-size(18px, inherit);
-    color: gray(300);
+    color: gray(400);
     position: relative;
 
     &::before {

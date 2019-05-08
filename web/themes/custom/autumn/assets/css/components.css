@@ -2290,7 +2290,7 @@ pre[class*="language-"] {
   .paragraph-druki-heading__anchor {
     font-size: 1.125rem;
     line-height: inherit;
-    color: #e0e0e0;
+    color: #bdbdbd;
     position: relative; }
     .paragraph-druki-heading__anchor:before {
       content: "\F339";
