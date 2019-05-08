@@ -1,9 +1,18 @@
 .paragraph-druki-heading {
   $block: &;
+  position: relative;
 
   &__anchor {
-    @include mdi-icon('pound', $margin-size: 0);
-    display: none;
+    @include mdi-icon('link-variant', $margin-size: 0);
+    @include font-size(18px, inherit);
+    color: gray(300);
+    position: relative;
+
+    &::before {
+      position: absolute;
+      left: -24px;
+      top: 0;
+    }
   }
 
   &__heading {
@@ -11,17 +20,19 @@
   }
 
   &__heading--h2 {
-    margin-bottom: spacing-unit();
     margin-top: spacing-unit(xl);
+    margin-bottom: spacing-unit(3);
+    padding-bottom: spacing-unit();
+    border-bottom: 1px solid gray(200);
   }
 
   &__heading--h3 {
     margin-top: spacing-unit(xl);
   }
 
-  &:hover {
-    #{$block}__anchor {
-      display: inline;
+  @include media-breakpoint-down(md) {
+    &__anchor {
+      display: none;
     }
   }
 }

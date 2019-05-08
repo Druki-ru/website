@@ -2,7 +2,7 @@
 // Typography.
 // =============================================================================
 
-$paragraph-margins: 0 0 spacing-unit(2) !default;
+$paragraph-margins: 0 0 spacing-unit(3) !default;
 
 $mark-bg: #fff9c4 !default;
 $mark-padding: .2em !default;
@@ -44,4 +44,15 @@ code {
 pre code {
   // Fixes unwanted paddings for first and last line of code.
   padding: unset;
+}
+
+@include media-breakpoint-down(md) {
+  // Offset for anchors.
+  :target::before {
+    content: "";
+    display: block;
+    height: 80px;
+    margin: -80px 0 0;
+    width: 0;
+  }
 }

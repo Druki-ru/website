@@ -1,5 +1,7 @@
+@import "../../elements/typography";
+
 .druki-content-druki-content-full {
   &__content-item {
-    margin-bottom: spacing-unit(2);
+    margin: $paragraph-margins;
   }
 }

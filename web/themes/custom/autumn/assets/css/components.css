@@ -2285,31 +2285,39 @@ pre[class*="language-"] {
 .block-autumn-content a[href^="//"]:not([href*="druki.ru"])::after {
   color: #757575; }
 
-.paragraph-druki-heading__anchor {
-  display: none; }
-  .paragraph-druki-heading__anchor:before {
-    content: "\F423";
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-    font-family: "Material Design Icons";
-    display: inline-block;
-    text-decoration: inherit;
-    margin-right: 0; }
-
-.paragraph-druki-heading__heading {
-  margin: unset; }
-
-.paragraph-druki-heading__heading--h2 {
-  margin-bottom: 8px;
-  margin-top: 40px; }
-
-.paragraph-druki-heading__heading--h3 {
-  margin-top: 40px; }
-
-.paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
-  display: inline; }
+.paragraph-druki-heading {
+  position: relative; }
+  .paragraph-druki-heading__anchor {
+    font-size: 1.125rem;
+    line-height: inherit;
+    color: #e0e0e0;
+    position: relative; }
+    .paragraph-druki-heading__anchor:before {
+      content: "\F339";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-family: "Material Design Icons";
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0; }
+    .paragraph-druki-heading__anchor::before {
+      position: absolute;
+      left: -24px;
+      top: 0; }
+  .paragraph-druki-heading__heading {
+    margin: unset; }
+  .paragraph-druki-heading__heading--h2 {
+    margin-top: 40px;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eeeeee; }
+  .paragraph-druki-heading__heading--h3 {
+    margin-top: 40px; }
+  @media (max-width: 61.9375rem) {
+    .paragraph-druki-heading__anchor {
+      display: none; } }
 
 .paragraph-druki-note {
   display: flex;
@@ -2392,8 +2400,47 @@ pre[class*="language-"] {
   display: flex;
   justify-content: center; }
 
+p {
+  margin: 0 0 24px; }
+  p:last-child {
+    margin-bottom: 0; }
+
+small {
+  font-size: 0.8rem;
+  line-height: 1.875;
+  font-weight: normal; }
+
+big {
+  font-size: 1.2rem;
+  line-height: 1.66667;
+  font-weight: normal; }
+
+mark {
+  padding: 0.2em;
+  color: inherit;
+  background-color: #fff9c4; }
+
+code {
+  font-family: "Fira Code", monospaced;
+  font-size: 90%;
+  padding: 2px 4px;
+  border-radius: 4px;
+  background-color: #F1F5F8;
+  word-break: break-all; }
+
+pre code {
+  padding: unset; }
+
+@media (max-width: 61.9375rem) {
+  :target::before {
+    content: "";
+    display: block;
+    height: 80px;
+    margin: -80px 0 0;
+    width: 0; } }
+
 .druki-content-druki-content-full__content-item {
-  margin-bottom: 16px; }
+  margin: 0 0 24px; }
 
 .search {
   position: relative; }
