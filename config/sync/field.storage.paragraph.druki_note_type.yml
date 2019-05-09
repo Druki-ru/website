@@ -15,16 +15,16 @@ settings:
   allowed_values:
     -
       value: note
-      label: note
+      label: Заметка
     -
       value: warning
-      label: warning
+      label: Предупреждение
     -
       value: tip
-      label: tip
+      label: Совет
     -
       value: important
-      label: important
+      label: 'Важная информация'
   allowed_values_function: ''
 module: options
 locked: false
