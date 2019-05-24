@@ -6,9 +6,10 @@ deploy:
   only:
     - 8.x
   script:
+    - ssh $USER@$HOST "cd $PROJECT_ROOT && git fetch && git checkout"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && git pull origin 8.x"
+    - ssh $USER@$HOST "cd $PROJECT_ROOT && chmod +w web/sites/default"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && composer install -o -n"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && drush updatedb -y"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && drush config:import --diff -y"
     - ssh $USER@$HOST "cd $PROJECT_ROOT && drush cache:rebuild -y"
-    - echo "Deploy complete!"

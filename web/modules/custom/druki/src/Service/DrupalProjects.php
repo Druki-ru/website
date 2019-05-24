@@ -9,6 +9,8 @@ use XMLReader;
 /**
  * Class DrupalProjects.
  *
+ * @todo maybe replace or use UpdateFetcher, since there is the same code lol.
+ *
  * This service is helps to find some project information.
  */
 class DrupalProjects {
