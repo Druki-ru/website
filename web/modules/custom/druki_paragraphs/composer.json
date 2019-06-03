@@ -1,9 +1,0 @@
-{
-  "name": "drupal/druki_paragraphs",
-  "type": "drupal-custom-module",
-  "description": "The paragraphs integration.",
-  "keywords": ["Drupal"],
-  "require": {
-    "drupal/paragraphs": "~1.0"
-  }
-}
