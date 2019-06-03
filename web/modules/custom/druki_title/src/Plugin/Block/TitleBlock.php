@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Controller\TitleResolverInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -44,6 +45,13 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
   protected $titleResolver;
 
   /**
+   * The renderer.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * Constructs a new TitleBlock instance.
    *
    * @param array $configuration
@@ -61,13 +69,24 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
    *   The route match.
    * @param \Drupal\Core\Controller\TitleResolverInterface $title_resolver
    *   The title resolver.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack, CurrentRouteMatch $route_match, TitleResolverInterface $title_resolver) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    RequestStack $request_stack,
+    CurrentRouteMatch $route_match,
+    TitleResolverInterface $title_resolver,
+    RendererInterface $renderer
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->request = $request_stack->getCurrentRequest();
     $this->routeMatch = $route_match;
     $this->titleResolver = $title_resolver;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -80,7 +99,8 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
       $plugin_definition,
       $container->get('request_stack'),
       $container->get('current_route_match'),
-      $container->get('title_resolver')
+      $container->get('title_resolver'),
+      $container->get('renderer')
     );
   }
 
@@ -104,7 +124,13 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
    *   The page title.
    */
   protected function getPageTitle(): ?string {
-    return $this->titleResolver->getTitle($this->request, $this->routeMatch->getRouteObject());
+    $title = $this->titleResolver->getTitle($this->request, $this->routeMatch->getRouteObject());
+    if (is_array($title)) {
+      // This can be render array. F.e. on /user/{user} route this is the case.
+      $title = $this->renderer->renderPlain($title);
+    }
+
+    return $title;
   }
 
   /**
