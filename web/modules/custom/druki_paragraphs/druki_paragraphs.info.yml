@@ -1,6 +1,6 @@
 name: Druki - Paragraphs
 type: module
-description: The paragraphs integration.
+description: DEPRECATED FOR ISSUE \#50
 package: druki
 core: 8.x
 dependencies:

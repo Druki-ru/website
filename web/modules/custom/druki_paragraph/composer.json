@@ -1,0 +1,9 @@
+{
+  "name": "drupal/druki_paragraph",
+  "type": "drupal-custom-module",
+  "description": "The custom code for paragraph entity type.",
+  "keywords": ["Drupal"],
+  "require": {
+    "drupal/paragraphs": "~1.0"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_paragraph_note",
+  "type": "drupal-custom-module",
+  "description": "The custom code for paragraph type Note.",
+  "keywords": ["Drupal"]
+}

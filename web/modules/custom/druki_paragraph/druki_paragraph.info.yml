@@ -1,0 +1,7 @@
+name: Druki Paragraph
+type: module
+description: The custom code for paragraph entity type.
+package: druki
+core: 8.x
+dependencies:
+  - paragraphs:paragraphs

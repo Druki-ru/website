@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_paragraph_image",
+  "type": "drupal-custom-module",
+  "description": "The custom code for paragraph type Image.",
+  "keywords": ["Drupal"]
+}

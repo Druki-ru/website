@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_paragraph_code",
+  "type": "drupal-custom-module",
+  "description": "The custom code for paragraph type Code.",
+  "keywords": ["Drupal"]
+}
