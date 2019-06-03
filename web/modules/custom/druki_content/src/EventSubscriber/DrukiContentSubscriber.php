@@ -5,7 +5,7 @@ namespace Drupal\druki_content\EventSubscriber;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
-use Drupal\druki_content\Common\ContentQueueItem;
+use Drupal\druki_content\Common\Queue\ContentQueueItem;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
 use Drupal\druki_parser\Service\DrukiFolderParserInterface;

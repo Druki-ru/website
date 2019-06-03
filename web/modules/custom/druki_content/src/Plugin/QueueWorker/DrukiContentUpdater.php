@@ -11,15 +11,15 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Utility\Token;
-use Drupal\druki_content\Common\ContentQueueItem;
+use Drupal\druki_content\Common\Content\ContentStructure;
+use Drupal\druki_content\Common\Queue\ContentQueueItem;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
-use Drupal\druki_paragraphs\Common\Content\ContentStructure;
-use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphCode;
-use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphHeading;
-use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphImage;
-use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphNote;
-use Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphText;
+use Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode;
+use Drupal\druki_paragraph_heading\Common\ParagraphContent\ParagraphHeading;
+use Drupal\druki_paragraph_image\Common\ParagraphContent\ParagraphImage;
+use Drupal\druki_paragraph_note\Common\ParagraphContent\ParagraphNote;
+use Drupal\druki_paragraph_text\Common\ParagraphContent\ParagraphText;
 use Drupal\druki_parser\Service\DrukiHTMLParserInterface;
 use Drupal\druki_parser\Service\DrukiMarkdownParserInterface;
 use Drupal\file\FileInterface;
@@ -228,6 +228,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
         '@filepath' => $queue_item->getPath(),
         '@dump' => '<pre><code>' . print_r($structured_data, TRUE) . '</code></pre>',
       ]);
+
       return;
     }
 
@@ -255,9 +256,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates or updates druki content entity.
    *
-   * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
    *   The structured content.
-   * @param \Drupal\druki_content\Common\ContentQueueItem $queue_item
+   * @param \Drupal\druki_content\Common\Queue\ContentQueueItem $queue_item
    *   The queue item object.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
@@ -363,7 +364,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The content entity.
-   * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
    *   The structured data.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
@@ -406,7 +407,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates content paragraph.
    *
-   * @param \Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphText $text
+   * @param \Drupal\druki_paragraph_text\Common\ParagraphContent\ParagraphText $text
    *   The text object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -428,7 +429,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates heading paragraph.
    *
-   * @param \Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphHeading $heading
+   * @param \Drupal\druki_paragraph_heading\Common\ParagraphContent\ParagraphHeading $heading
    *   The heading object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -451,7 +452,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates code paragraph.
    *
-   * @param \Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphCode $code
+   * @param \Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode $code
    *   The code object..
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -473,7 +474,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates image paragraph.
    *
-   * @param \Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphImage $image
+   * @param \Drupal\druki_paragraph_image\Common\ParagraphContent\ParagraphImage $image
    *   The image object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null
@@ -605,7 +606,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates note paragraph.
    *
-   * @param \Drupal\druki_paragraphs\Common\ParagraphContent\ParagraphNote $note
+   * @param \Drupal\druki_paragraph_note\Common\ParagraphContent\ParagraphNote $note
    *   The note object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null
@@ -630,7 +631,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processDifficulty(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -661,7 +662,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processLabels(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -679,7 +680,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processSearchKeywords(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -697,7 +698,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_paragraphs\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processMetatags(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
