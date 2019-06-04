@@ -1,0 +1,7 @@
+name: Druki Markdown
+type: module
+description: The custom code for markdown syntax.
+package: druki
+core: 8.x
+dependencies:
+  - markdown:markdown (&gt;=2)
