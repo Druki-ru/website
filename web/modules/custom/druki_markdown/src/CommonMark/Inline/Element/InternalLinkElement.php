@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Inline\Element;
+namespace Drupal\druki_markdown\CommonMark\Inline\Element;
 
 use League\CommonMark\Inline\Element\AbstractInlineContainer;
 
 /**
  * Class InternalLinksElement
  *
- * @package Drupal\druki_parser\CommonMark\Inline\Element
+ * @package Drupal\druki_markdown\CommonMark\Inline\Element
  */
 class InternalLinkElement extends AbstractInlineContainer {
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Extension;
+namespace Drupal\druki_markdown\CommonMark\Extension;
 
-use Drupal\druki_parser\CommonMark\Block\Parser\MetaInformationParser;
-use Drupal\druki_parser\CommonMark\Block\Parser\NoteParser;
-use Drupal\druki_parser\CommonMark\Block\Renderer\MetaInformationRenderer;
-use Drupal\druki_parser\CommonMark\Block\Renderer\NoteRenderer;
-use Drupal\druki_parser\CommonMark\Inline\Parser\CloseBracerParser;
-use Drupal\druki_parser\CommonMark\Inline\Parser\OpenBracerParser;
-use Drupal\druki_parser\CommonMark\Inline\Renderer\InternalLinkRenderer;
+use Drupal\druki_markdown\CommonMark\Block\Parser\MetaInformationParser;
+use Drupal\druki_markdown\CommonMark\Block\Parser\NoteParser;
+use Drupal\druki_markdown\CommonMark\Block\Renderer\MetaInformationRenderer;
+use Drupal\druki_markdown\CommonMark\Block\Renderer\NoteRenderer;
+use Drupal\druki_markdown\CommonMark\Inline\Parser\CloseBracerParser;
+use Drupal\druki_markdown\CommonMark\Inline\Parser\OpenBracerParser;
+use Drupal\druki_markdown\CommonMark\Inline\Renderer\InternalLinkRenderer;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
 
@@ -26,18 +26,18 @@ class DrukiParserExtensions implements ExtensionInterface {
     $environment
       ->addBlockParser(new NoteParser(), 80)
       ->addBlockRenderer(
-        'Drupal\druki_parser\CommonMark\Block\Element\NoteElement',
+        'Drupal\druki_markdown\CommonMark\Block\Element\NoteElement',
         new NoteRenderer()
       )
       ->addBlockParser(new MetaInformationParser(), 30)
       ->addBlockRenderer(
-        'Drupal\druki_parser\CommonMark\Block\Element\MetaInformationElement',
+        'Drupal\druki_markdown\CommonMark\Block\Element\MetaInformationElement',
         new MetaInformationRenderer()
       )
       ->addInlineParser(new OpenBracerParser())
       ->addInlineParser(new CloseBracerParser())
       ->addInlineRenderer(
-        'Drupal\druki_parser\CommonMark\Inline\Element\InternalLinkElement',
+        'Drupal\druki_markdown\CommonMark\Inline\Element\InternalLinkElement',
         new InternalLinkRenderer()
       );
   }

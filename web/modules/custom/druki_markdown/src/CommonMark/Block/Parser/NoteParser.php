@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Block\Parser;
+namespace Drupal\druki_markdown\CommonMark\Block\Parser;
 
-use Drupal\druki_parser\CommonMark\Block\Element\NoteElement;
+use Drupal\druki_markdown\CommonMark\Block\Element\NoteElement;
 use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
@@ -10,7 +10,7 @@ use League\CommonMark\Cursor;
 /**
  * Class NoteParser
  *
- * @package Drupal\druki_parser\CommonMark\Block\Parser
+ * @package Drupal\druki_markdown\CommonMark\Block\Parser
  */
 class NoteParser implements BlockParserInterface {
 

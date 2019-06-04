@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_markdown",
+  "type": "drupal-custom-module",
+  "description": "The custom code for markdown syntax.",
+  "keywords": ["Drupal"]
+}

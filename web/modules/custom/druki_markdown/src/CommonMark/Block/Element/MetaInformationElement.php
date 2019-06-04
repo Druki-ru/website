@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Block\Element;
+namespace Drupal\druki_markdown\CommonMark\Block\Element;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\AbstractStringContainerBlock;
@@ -11,7 +11,7 @@ use League\CommonMark\Util\RegexHelper;
 /**
  * Class MetaInformationElement
  *
- * @package Drupal\druki_parser\Plugin\Markdown\Extension
+ * @package Drupal\druki_markdown\Plugin\Markdown\Extension
  */
 class MetaInformationElement extends AbstractStringContainerBlock {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Block\Renderer;
+namespace Drupal\druki_markdown\CommonMark\Block\Renderer;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
@@ -10,7 +10,7 @@ use League\CommonMark\HtmlElement;
 /**
  * Class NoteRenderer
  *
- * @package Drupal\druki_parser\CommonMark\Renderer
+ * @package Drupal\druki_markdown\CommonMark\Renderer
  */
 class NoteRenderer implements BlockRendererInterface {
 

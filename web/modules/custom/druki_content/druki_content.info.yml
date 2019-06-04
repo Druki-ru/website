@@ -14,6 +14,7 @@ dependencies:
   - druki_paragraph_note:druki_paragraph_note
   - druki_paragraph_text:druki_paragraph_text
   - druki_git:druki_git
+  - druki_markdown:druki_markdown
   - druki_parser:druki_parser
   - druki_file:druki_file
   - druki_category:druki_category

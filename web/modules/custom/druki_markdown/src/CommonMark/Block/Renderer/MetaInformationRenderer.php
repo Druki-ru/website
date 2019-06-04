@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Block\Renderer;
+namespace Drupal\druki_markdown\CommonMark\Block\Renderer;
 
 use Drupal\Core\Serialization\Yaml;
 use League\CommonMark\Block\Element\AbstractBlock;
@@ -11,7 +11,7 @@ use League\CommonMark\HtmlElement;
 /**
  * Class MetaInformationRenderer
  *
- * @package Drupal\druki_parser\CommonMark\Renderer
+ * @package Drupal\druki_markdown\CommonMark\Renderer
  */
 class MetaInformationRenderer implements BlockRendererInterface {
 

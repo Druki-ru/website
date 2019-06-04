@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Inline\Parser;
+namespace Drupal\druki_markdown\CommonMark\Inline\Parser;
 
 use League\CommonMark\Delimiter\Delimiter;
 use League\CommonMark\Inline\Element\Text;
@@ -10,7 +10,7 @@ use League\CommonMark\InlineParserContext;
 /**
  * Class OpenBracerParser
  *
- * @package Drupal\druki_parser\CommonMark\Inline\Parser
+ * @package Drupal\druki_markdown\CommonMark\Inline\Parser
  */
 class OpenBracerParser implements InlineParserInterface {
 

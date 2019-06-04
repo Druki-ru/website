@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Inline\Renderer;
+namespace Drupal\druki_markdown\CommonMark\Inline\Renderer;
 
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
@@ -10,7 +10,7 @@ use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 /**
  * Class InternalLinkRenderer
  *
- * @package Drupal\druki_parser\CommonMark\Inline\Renderer
+ * @package Drupal\druki_markdown\CommonMark\Inline\Renderer
  */
 class InternalLinkRenderer implements InlineRendererInterface {
 

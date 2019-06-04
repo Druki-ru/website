@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\druki_parser\CommonMark\Inline\Parser;
+namespace Drupal\druki_markdown\CommonMark\Inline\Parser;
 
-use Drupal\druki_parser\CommonMark\Inline\Element\InternalLinkElement;
+use Drupal\druki_markdown\CommonMark\Inline\Element\InternalLinkElement;
 use League\CommonMark\Cursor;
 use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
@@ -13,7 +13,7 @@ use League\CommonMark\InlineParserContext;
 /**
  * Class CloseBracerParser
  *
- * @package Drupal\druki_parser\CommonMark\Inline\Parser
+ * @package Drupal\druki_markdown\CommonMark\Inline\Parser
  */
 class CloseBracerParser implements EnvironmentAwareInterface, InlineParserInterface {
 
