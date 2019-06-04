@@ -20,6 +20,7 @@ module:
   druki_file: 0
   druki_git: 0
   druki_media: 0
+  druki_media_remote_video: 0
   druki_paragraph: 0
   druki_paragraph_code: 0
   druki_paragraph_heading: 0
