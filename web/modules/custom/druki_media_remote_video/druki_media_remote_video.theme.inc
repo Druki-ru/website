@@ -12,5 +12,5 @@ function template_preprocess_druki_media_remote_video_optimized(array &$variable
   $variables['attributes']['data-video-provider'] = $variables['video_provider'];
   $variables['attributes']['data-video-id'] = $variables['video_id'];
 
-  $variables['#attached']['library'][] = 'druki_media/remote_video_optimized';
+  $variables['#attached']['library'][] = 'druki_media_remote_video/remote_video_optimized';
 }

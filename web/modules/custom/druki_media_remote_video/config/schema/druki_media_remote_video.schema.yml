@@ -1,4 +1,4 @@
-field.formatter.settings.druki_media_optimized_remote_video:
+field.formatter.settings.druki_media_remote_video_optimized:
   type: mapping
   label: Optimized remote video formatter settings
   mapping:

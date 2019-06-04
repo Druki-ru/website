@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_media\Plugin\Field\FieldFormatter;
+namespace Drupal\druki_media_remote_video\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -15,14 +15,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Plugin implementation of the 'Optimized remote video' formatter.
  *
  * @FieldFormatter(
- *   id = "druki_media_optimized_remote_video",
+ *   id = "druki_media_remote_video_optimized",
  *   label = @Translation("Optimized remote video"),
  *   field_types = {
  *     "string"
  *   }
  * )
  */
-class OptimizedRemoteVideoFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
+class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
 
   /**
    * The image styles.
