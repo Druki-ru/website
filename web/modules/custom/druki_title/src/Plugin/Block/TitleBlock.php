@@ -179,7 +179,7 @@ class TitleBlock extends BlockBase implements ContainerFactoryPluginInterface {
       // @todo improve it. Possible solutions:
       // 1. Method for Druki entity.
       // 2. Dynamic links generator.
-      'url' => 'https://gitlab.com/druki/druki-content/edit/master/' . $druki_content->getRelativePathname(),
+      'url' => 'https://gitlab.com/druki/content/edit/master/' . $druki_content->getRelativePathname(),
       'attributes' => [
         'rel' => 'nofollow noopener',
       ],
