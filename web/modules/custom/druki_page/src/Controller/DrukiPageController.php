@@ -1,21 +1,21 @@
 <?php
 
-namespace Drupal\druki\Controller;
+namespace Drupal\druki_page\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 
 /**
  * Returns responses for Druki routes.
  */
-class DrukiController extends ControllerBase {
+class DrukiPageController extends ControllerBase {
 
   /**
    * Builds the response.
    */
-  public function buildDownload() {
+  public function downloadPage() {
 
     $build['content'] = [
-      '#theme' => 'druki_download',
+      '#theme' => 'druki_page_download',
     ];
 
     return $build;
@@ -24,10 +24,10 @@ class DrukiController extends ControllerBase {
   /**
    * Builds the response.
    */
-  public function buildDocs() {
+  public function docsPage() {
 
     $build['content'] = [
-      '#theme' => 'druki_docs',
+      '#theme' => 'druki_page_docs',
     ];
 
     return $build;

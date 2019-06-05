@@ -1940,20 +1940,20 @@ pre[class*="language-"] {
   .druki-media-remote-video-optimized__loading--active {
     display: block; }
 
-.druki-download__title {
+.druki-page-download__title {
   font-size: 2.125rem;
   line-height: 1.41176;
   font-weight: bold;
   text-align: center; }
 
-.druki-download__subtitle {
+.druki-page-download__subtitle {
   font-size: 1.25rem;
   line-height: 1.6;
   font-weight: normal;
   text-align: center;
   color: #757575; }
 
-.druki-download__command-pane {
+.druki-page-download__command-pane {
   display: table;
   margin: 48px auto 0;
   padding: 24px;
@@ -1962,13 +1962,13 @@ pre[class*="language-"] {
   background-color: #212121;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
 
-.druki-download__command {
+.druki-page-download__command {
   font-family: "Fira Code", monospaced; }
-  .druki-download__command::before {
+  .druki-page-download__command::before {
     content: '>_ ';
     color: #FFD029; }
 
-.druki-download__command-note {
+.druki-page-download__command-note {
   font-size: 0.875rem;
   line-height: 1.71429;
   font-style: italic;
@@ -1976,14 +1976,14 @@ pre[class*="language-"] {
   text-align: center;
   color: #757575; }
 
-.druki-download__cards {
+.druki-page-download__cards {
   display: grid;
   justify-content: center;
   margin: 48px 0;
   grid-gap: 32px;
   grid-template-columns: repeat(3, 300px); }
 
-.druki-download__card {
+.druki-page-download__card {
   position: relative;
   display: flex;
   overflow: hidden;
@@ -1994,7 +1994,7 @@ pre[class*="language-"] {
   background-color: #FFFFFF;
   box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1); }
 
-.druki-download__card-icon--try:before {
+.druki-page-download__card-icon--try:before {
   content: "\F1E4";
   font-style: normal;
   font-variant: normal;
@@ -2005,7 +2005,7 @@ pre[class*="language-"] {
   text-decoration: inherit;
   margin-right: 0; }
 
-.druki-download__card-icon--update:before {
+.druki-page-download__card-icon--update:before {
   content: "\F6AF";
   font-style: normal;
   font-variant: normal;
@@ -2016,7 +2016,7 @@ pre[class*="language-"] {
   text-decoration: inherit;
   margin-right: 0; }
 
-.druki-download__card-icon--open-source:before {
+.druki-page-download__card-icon--open-source:before {
   content: "\FB8A";
   font-style: normal;
   font-variant: normal;
@@ -2027,7 +2027,7 @@ pre[class*="language-"] {
   text-decoration: inherit;
   margin-right: 0; }
 
-.druki-download__card-icon--source-code:before {
+.druki-page-download__card-icon--source-code:before {
   content: "\FB7C";
   font-style: normal;
   font-variant: normal;
@@ -2038,7 +2038,7 @@ pre[class*="language-"] {
   text-decoration: inherit;
   margin-right: 0; }
 
-.druki-download__card-icon--community:before {
+.druki-page-download__card-icon--community:before {
   content: "\F848";
   font-style: normal;
   font-variant: normal;
@@ -2049,7 +2049,7 @@ pre[class*="language-"] {
   text-decoration: inherit;
   margin-right: 0; }
 
-.druki-download__card-icon--talk:before {
+.druki-page-download__card-icon--talk:before {
   content: "\FB57";
   font-style: normal;
   font-variant: normal;
@@ -2060,54 +2060,54 @@ pre[class*="language-"] {
   text-decoration: inherit;
   margin-right: 0; }
 
-.druki-download__card-icon {
+.druki-page-download__card-icon {
   font-size: 3.75rem;
   line-height: 1.2;
   margin-bottom: 16px; }
 
-.druki-download__card-title {
+.druki-page-download__card-title {
   font-size: 1.25rem;
   line-height: 1.6;
   font-weight: bold; }
 
-.druki-download__card-text {
+.druki-page-download__card-text {
   font-size: 0.875rem;
   line-height: 1.71429;
   color: #616161; }
 
-.druki-download__card-bottom {
+.druki-page-download__card-bottom {
   font-weight: bold;
   margin-top: auto;
   padding-top: 16px; }
 
 @media (min-width: 36rem) and (max-width: 61.9375rem) {
-  .druki-download__cards {
+  .druki-page-download__cards {
     grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 35.9375rem) {
-  .druki-download__cards {
+  .druki-page-download__cards {
     grid-template-columns: 1fr; } }
 
-.druki-docs__title {
+.druki-page-docs__title {
   font-size: 2.125rem;
   line-height: 1.41176;
   font-weight: bold;
   text-align: center; }
 
-.druki-docs__subtitle {
+.druki-page-docs__subtitle {
   font-size: 1.25rem;
   line-height: 1.6;
   font-weight: normal;
   text-align: center;
   color: #757575; }
 
-.druki-docs__header {
+.druki-page-docs__header {
   margin-bottom: 40px; }
 
-.druki-docs__row {
+.druki-page-docs__row {
   margin: 40px 0; }
 
-.druki-docs__row-title {
+.druki-page-docs__row-title {
   font-size: 1.875rem;
   line-height: 1.33333;
   font-weight: bold;
@@ -2115,7 +2115,7 @@ pre[class*="language-"] {
   display: inline-block;
   margin-bottom: 32px;
   color: #3F2F17; }
-  .druki-docs__row-title::before {
+  .druki-page-docs__row-title::before {
     position: absolute;
     z-index: -1;
     bottom: 2px;
@@ -2126,18 +2126,18 @@ pre[class*="language-"] {
     content: '';
     background-color: #FFD029; }
 
-.druki-docs__row-description {
+.druki-page-docs__row-description {
   font-size: 1.125rem;
   line-height: 1.77778;
   margin-bottom: 32px; }
 
-.druki-docs__box-links {
+.druki-page-docs__box-links {
   display: grid;
   grid-gap: 32px;
   grid-template-columns: repeat(4, 1fr);
   margin: 32px 0; }
 
-.druki-docs__box-links-item {
+.druki-page-docs__box-links-item {
   background-color: #fff;
   box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1);
   padding: 16px;
@@ -2145,7 +2145,7 @@ pre[class*="language-"] {
   position: relative;
   overflow: hidden;
   transition: all .25s ease-in-out; }
-  .druki-docs__box-links-item::before {
+  .druki-page-docs__box-links-item::before {
     content: '';
     display: block;
     position: absolute;
@@ -2157,30 +2157,30 @@ pre[class*="language-"] {
     height: 0;
     transition: all .3s ease; }
 
-.druki-docs__box-links-item:hover .druki-docs__box-links-item-title {
+.druki-page-docs__box-links-item:hover .druki-page-docs__box-links-item-title {
   color: white; }
 
-.druki-docs__box-links-item:hover .druki-docs__box-links-item-description {
+.druki-page-docs__box-links-item:hover .druki-page-docs__box-links-item-description {
   color: #eeeeee; }
 
-.druki-docs__box-links-item:hover::before {
+.druki-page-docs__box-links-item:hover::before {
   width: 200%;
   padding-bottom: 200%;
   background-color: #0678BE; }
 
-.druki-docs__box-links-item-title {
+.druki-page-docs__box-links-item-title {
   font-size: 1.125rem;
   line-height: 1.77778;
   color: #222330;
   position: relative; }
 
-.druki-docs__box-links-item-description {
+.druki-page-docs__box-links-item-description {
   font-size: 0.875rem;
   line-height: 1.71429;
   color: #616161;
   position: relative; }
 
-.druki-docs__faq {
+.druki-page-docs__faq {
   font-size: 0.875rem;
   line-height: 1.71429;
   color: #616161;
@@ -2188,24 +2188,24 @@ pre[class*="language-"] {
   max-width: 600px;
   margin: 0 auto; }
 
-.druki-docs__other-items {
+.druki-page-docs__other-items {
   display: grid;
   grid-gap: 32px;
   grid-template-columns: repeat(4, 1fr); }
 
-.druki-docs__other-item-title {
+.druki-page-docs__other-item-title {
   font-weight: bold; }
 
-.druki-docs__other-item-items {
+.druki-page-docs__other-item-items {
   margin: unset;
   list-style-type: none; }
 
 @media (max-width: 47.9375rem) {
-  .druki-docs__box-links, .druki-docs__other-items {
+  .druki-page-docs__box-links, .druki-page-docs__other-items {
     grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 35.9375rem) {
-  .druki-docs__box-links, .druki-docs__other-items {
+  .druki-page-docs__box-links, .druki-page-docs__other-items {
     grid-template-columns: 1fr; } }
 
 .block-druki-content-toc {

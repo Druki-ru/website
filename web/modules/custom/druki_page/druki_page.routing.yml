@@ -1,0 +1,15 @@
+druki.download:
+  path: '/download'
+  defaults:
+    _title: 'Download Drupal'
+    _controller: '\Drupal\druki_page\Controller\DrukiPageController::downloadPage'
+  requirements:
+    _permission: 'access content'
+
+druki.docs:
+  path: '/docs'
+  defaults:
+    _title: 'Documentation'
+    _controller: '\Drupal\druki_page\Controller\DrukiPageController::docsPage'
+  requirements:
+    _permission: 'access content'

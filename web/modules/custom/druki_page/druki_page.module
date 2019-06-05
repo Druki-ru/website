@@ -3,8 +3,18 @@
 /**
  * @file
  * Primary module hooks for Druki - Page module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
  */
+
+/**
+ * Implements hook_theme().
+ */
+function druki_page_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'druki_page_download' => [
+      'variables' => [],
+    ],
+    'druki_page_docs' => [
+      'variables' => [],
+    ],
+  ];
+}
