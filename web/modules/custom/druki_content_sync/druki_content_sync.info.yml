@@ -1,0 +1,8 @@
+name: �Druki ��� � - Content Sync
+type: module
+description: The code for sync content from different sources.
+package: druki
+core: 8.x
+dependencies:
+  - druki_content:druki_content
+  - druki_git:druki_git

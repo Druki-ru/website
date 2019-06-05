@@ -17,6 +17,7 @@ module:
   druki: 0
   druki_category: 0
   druki_content: 0
+  druki_content_sync: 0
   druki_file: 0
   druki_git: 0
   druki_markdown: 0
