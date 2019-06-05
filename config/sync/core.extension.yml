@@ -22,6 +22,7 @@ module:
   druki_markdown: 0
   druki_media: 0
   druki_media_remote_video: 0
+  druki_page: 0
   druki_paragraph: 0
   druki_paragraph_code: 0
   druki_paragraph_heading: 0

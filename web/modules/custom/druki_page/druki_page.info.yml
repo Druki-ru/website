@@ -1,0 +1,5 @@
+name: Druki - Page
+type: module
+description: The custom pages for website not related to any entity type.
+package: druki
+core: 8.x
