@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_content\Common\Queue;
+namespace Drupal\druki_content_sync\Queue;
 
 /**
  * Class ContentQueueItem.
  *
  * Contains queue information for druki_content update.
  *
- * @package Drupal\druki_content\Common\Queue
+ * @package Drupal\druki_content_sync\Queue
  */
 final class ContentQueueItem {
 

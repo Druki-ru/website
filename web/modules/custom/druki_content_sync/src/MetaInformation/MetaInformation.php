@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_content\Common\MetaInformation;
+namespace Drupal\druki_content_sync\MetaInformation;
 
 /**
  * Class MetaInformation.
  *
  * The meta information values.
  *
- * @package Drupal\druki_content\Common\MetaInformation
+ * @package Drupal\druki_content_sync\MetaInformation
  */
 final class MetaInformation {
 
@@ -21,10 +21,10 @@ final class MetaInformation {
   /**
    * Adds new value to meta information.
    *
-   * @param \Drupal\druki_content\Common\MetaInformation\MetaValue $value
+   * @param \Drupal\druki_content_sync\MetaInformation\MetaValue $value
    *   The value.
    *
-   * @return \Drupal\druki_content\Common\MetaInformation\MetaInformation
+   * @return \Drupal\druki_content_sync\MetaInformation\MetaInformation
    *   The current instance.
    */
   public function add(MetaValue $value): MetaInformation {
@@ -36,7 +36,7 @@ final class MetaInformation {
   /**
    * Gets all values added to meta information.
    *
-   * @return \Drupal\druki_content\Common\MetaInformation\MetaValue[]
+   * @return \Drupal\druki_content_sync\MetaInformation\MetaValue[]
    *   An array containing all meta values.
    */
   public function getValues(): array {
@@ -49,11 +49,11 @@ final class MetaInformation {
    * @param string $key
    *   The key to get.
    *
-   * @return \Drupal\druki_content\Common\MetaInformation\MetaValue|null
+   * @return \Drupal\druki_content_sync\MetaInformation\MetaValue|null
    *   The meta value instance, NULL if not found.
    */
   public function get(string $key): ?MetaValue {
-    /** @var \Drupal\druki_content\Common\MetaInformation\MetaValue $value */
+    /** @var \Drupal\druki_content_sync\MetaInformation\MetaValue $value */
     foreach ($this->values as $value) {
       if ($value->getKey() == $key) {
         return $value;
@@ -97,7 +97,7 @@ final class MetaInformation {
    *   The result of search, TRUE if found, FALSE otherwise.
    */
   public function has(string $key): bool {
-    /** @var \Drupal\druki_content\Common\MetaInformation\MetaValue $value */
+    /** @var \Drupal\druki_content_sync\MetaInformation\MetaValue $value */
     foreach ($this->values as $value) {
       if ($value->getKey() == $key) {
         return TRUE;

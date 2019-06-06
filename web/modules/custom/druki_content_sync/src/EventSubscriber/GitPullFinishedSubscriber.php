@@ -1,22 +1,22 @@
 <?php
 
-namespace Drupal\druki_content\EventSubscriber;
+namespace Drupal\druki_content_sync\EventSubscriber;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
-use Drupal\druki_content\Common\Queue\ContentQueueItem;
+use Drupal\druki_content_sync\Queue\ContentQueueItem;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
 use Drupal\druki_parser\Service\DrukiFolderParserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class DrukiContentSubscriber
+ * Class GitPullFinishedSubscriber
  *
  * @package Drupal\druki_content\EventSubscriber
  */
-class DrukiContentSubscriber implements EventSubscriberInterface {
+class GitPullFinishedSubscriber implements EventSubscriberInterface {
 
   /**
    * The queue object.
@@ -68,7 +68,7 @@ class DrukiContentSubscriber implements EventSubscriberInterface {
     EntityTypeManagerInterface $entity_type_manager
   ) {
 
-    $this->queue = $queue->get('druki_content_updater');
+    $this->queue = $queue->get('druki_content_sync');
     $this->folderParser = $folder_parser;
     $this->database = $database;
     $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');

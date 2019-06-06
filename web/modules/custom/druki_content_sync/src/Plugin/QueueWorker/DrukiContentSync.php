@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Plugin\QueueWorker;
+namespace Drupal\druki_content_sync\Plugin\QueueWorker;
 
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -11,8 +11,8 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Utility\Token;
-use Drupal\druki_content\Common\Content\ContentStructure;
-use Drupal\druki_content\Common\Queue\ContentQueueItem;
+use Drupal\druki_content_sync\Content\ContentStructure;
+use Drupal\druki_content_sync\Queue\ContentQueueItem;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
 use Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode;
@@ -29,14 +29,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @QueueWorker(
- *   id = "druki_content_updater",
- *   title = @Translation("Druki content updater."),
+ *   id = "druki_content_sync",
+ *   title = @Translation("Druki content sync."),
  *   cron = {"time" = 60}
  * )
  * @todo improve updating. If id changed and\or added core in meta tags, content
  * can be found but this values wont change.
  */
-class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   /**
    * The druki content storage.
@@ -207,7 +207,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    *
-   * @see DrukiContentSubscriber::onPullFinish().
+   * @see GitPullFinishedSubscriber::onPullFinish().
    */
   public function processItem($queue_item): void {
     // First of all, check is item is value object we expected. We ignore all
@@ -256,9 +256,9 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
   /**
    * Creates or updates druki content entity.
    *
-   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
    *   The structured content.
-   * @param \Drupal\druki_content\Common\Queue\ContentQueueItem $queue_item
+   * @param \Drupal\druki_content_sync\Queue\ContentQueueItem $queue_item
    *   The queue item object.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
@@ -275,7 +275,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
     // Don't update content if last commit for source file is the same.
     $is_same_commit = ($druki_content->get('last_commit_id')->value == $queue_item->getLastCommitId());
     // If force update is set in settings. Ignore rule above.
-    $force_update = $this->state->get('druki_content.settings.force_update', FALSE);
+    $force_update = $this->state->get('druki_content_sync.settings.force_update', FALSE);
     if ($is_same_commit && !$force_update) {
       return;
     }
@@ -364,7 +364,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The content entity.
-   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
    *   The structured data.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
@@ -631,7 +631,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processDifficulty(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -662,7 +662,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processLabels(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -680,7 +680,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processSearchKeywords(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -698,7 +698,7 @@ class DrukiContentUpdater extends QueueWorkerBase implements ContainerFactoryPlu
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Common\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processMetatags(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {

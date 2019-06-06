@@ -3,10 +3,10 @@
 namespace Drupal\druki_parser\Service;
 
 use DOMElement;
-use Drupal\druki_content\Common\Content\ContentList;
-use Drupal\druki_content\Common\Content\ContentStructure;
-use Drupal\druki_content\Common\MetaInformation\MetaInformation;
-use Drupal\druki_content\Common\MetaInformation\MetaValue;
+use Drupal\druki_content_sync\Content\ContentList;
+use Drupal\druki_content_sync\Content\ContentStructure;
+use Drupal\druki_content_sync\MetaInformation\MetaInformation;
+use Drupal\druki_content_sync\MetaInformation\MetaValue;
 use Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode;
 use Drupal\druki_paragraph_heading\Common\ParagraphContent\ParagraphHeading;
 use Drupal\druki_paragraph_image\Common\ParagraphContent\ParagraphImage;
@@ -87,7 +87,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Common\MetaInformation\MetaInformation $meta_information
+   * @param \Drupal\druki_content_sync\MetaInformation\MetaInformation $meta_information
    *   The content meta information.
    *
    * @return bool|null
@@ -115,7 +115,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Common\Content\ContentList $content
+   * @param \Drupal\druki_content_sync\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -148,7 +148,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Common\Content\ContentList $content
+   * @param \Drupal\druki_content_sync\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -173,7 +173,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Common\Content\ContentList $content
+   * @param \Drupal\druki_content_sync\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -198,7 +198,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Common\Content\ContentList $content
+   * @param \Drupal\druki_content_sync\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool

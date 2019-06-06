@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\druki_content\Common\Content;
+namespace Drupal\druki_content_sync\Content;
 
-use Drupal\druki_content\Common\MetaInformation\MetaInformation;
+use Drupal\druki_content_sync\MetaInformation\MetaInformation;
 
 /**
  * Class Content.
@@ -16,23 +16,23 @@ final class ContentStructure {
   /**
    * The meta information for this content.
    *
-   * @var \Drupal\druki_content\Common\MetaInformation\MetaInformation
+   * @var \Drupal\druki_content_sync\MetaInformation\MetaInformation
    */
   protected $metaInformation;
 
   /**
    * The list of content.
    *
-   * @var \Drupal\druki_content\Common\Content\ContentList
+   * @var \Drupal\druki_content_sync\Content\ContentList
    */
   protected $content;
 
   /**
    * ContentStructure constructor.
    *
-   * @param \Drupal\druki_content\Common\MetaInformation\MetaInformation $meta_information
+   * @param \Drupal\druki_content_sync\MetaInformation\MetaInformation $meta_information
    *   The content meta information.
-   * @param \Drupal\druki_content\Common\Content\ContentList $content
+   * @param \Drupal\druki_content_sync\Content\ContentList $content
    *   The content list.
    */
   public function __construct(MetaInformation $meta_information, ContentList $content) {
@@ -56,7 +56,7 @@ final class ContentStructure {
   /**
    * Gets meta information.
    *
-   * @return \Drupal\druki_content\Common\MetaInformation\MetaInformation The meta information.
+   * @return \Drupal\druki_content_sync\MetaInformation\MetaInformation The meta information.
    *   The meta information.
    */
   public function getMetaInformation(): MetaInformation {
@@ -66,7 +66,7 @@ final class ContentStructure {
   /**
    * Gets content.
    *
-   * @return \Drupal\druki_content\Common\Content\ContentList
+   * @return \Drupal\druki_content_sync\Content\ContentList
    *   The content list.
    */
   public function getContent(): ContentList {

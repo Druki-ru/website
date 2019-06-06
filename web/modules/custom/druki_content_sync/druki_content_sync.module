@@ -2,9 +2,68 @@
 
 /**
  * @file
- * Primary module hooks for �Druki ��� � - Content Sync module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
+ * Primary module hooks for Druki - Content Sync module.
  */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for druki_content_settings.
+ */
+function druki_content_sync_form_druki_content_settings_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  $state = \Drupal::state();
+  $queue = \Drupal::queue('druki_content_sync');
+  $queue_manager = \Drupal::service('druki_content_sync.manager');
+
+  $form['content_sync'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Update queue'),
+  ];
+
+  $form['content_sync']['total'] = [
+    '#markup' => '<p>' . t('Current queue items: @count', ['@count' => $queue->numberOfItems()]) . '</p>',
+  ];
+
+  $form['content_sync']['force'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Force content processing'),
+    '#description' => t('Content will be processed even if it not updated from last queue.'),
+    '#default_value' => $state->get('druki_content_sync.settings.force_update', FALSE),
+  ];
+
+  $form['content_sync']['actions'] = ['#type' => 'actions'];
+  $form['content_sync']['actions']['save'] = [
+    '#type' => 'submit',
+    '#button_type' => 'primary',
+    '#value' => t('Save settings'),
+    '#submit' => ['druki_content_sync_form_druki_content_settings_submit']
+  ];
+
+  $form['content_sync']['actions']['run'] = [
+    '#type' => 'submit',
+    '#button_type' => 'secondary',
+    '#value' => t('Run queue'),
+    '#submit' => [[$queue_manager, 'run']],
+  ];
+
+  $form['content_sync']['actions']['clear'] = [
+    '#type' => 'submit',
+    '#button_type' => 'danger',
+    '#value' => t('Clear queue'),
+    '#submit' => [[$queue_manager, 'clear']],
+  ];
+}
+
+/**
+ * Handle form submission for saving sync settings.
+ *
+ * @param array $form
+ *   The form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function druki_content_sync_form_druki_content_settings_submit(array &$form, FormStateInterface $form_state): void {
+  $state = \Drupal::state();
+
+  $state->set('druki_content_sync.settings.force_update', (bool) $form_state->getValue('force'));
+}
