@@ -13,8 +13,9 @@ $markdown_content = <<<'Markdown'
 id: installation
 title: Установка Drupal 8
 core: 8
-category-area: Первое знакомство
-category-order: 0
+category: 
+  area: Первое знакомство
+  order: 0
 test-comma: ['one', 'two', 'three']
 test-array:
   - one

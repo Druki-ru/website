@@ -287,10 +287,11 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     $druki_content->setLastCommitId($queue_item->getLastCommitId());
     $druki_content->setContributionStatistics($queue_item->getContributionStatistics());
 
-    if ($meta->has('category-area')) {
-      $category_area = $meta->get('category-area')->getValue();
-      $category_order = $meta->has('category-order') ? $meta->get('category-order')->getValue() : 0;
-      $category_title = $meta->has('category-title') ? $meta->get('category-title')->getValue() : NULL;
+    if ($meta->has('category')) {
+      $category = $meta->get('category')->getValue();
+      $category_area = $category['area'];
+      $category_order = !isset($category['order']) ? $category['order'] : 0;
+      $category_title = !isset($category['title']) ? $category['title'] : NULL;
 
       $druki_content->setCategory($category_area, $category_order, $category_title);
     }
