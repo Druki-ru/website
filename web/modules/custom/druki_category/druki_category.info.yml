@@ -3,3 +3,6 @@ type: module
 description: The Category code.
 package: druki
 core: 8.x
+
+'interface translation project': druki_category
+'interface translation server pattern': modules/custom/%project/translations/%language.po

@@ -15,7 +15,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * @Filter(
  *   id = "druki_content_internal_links",
- *   title = @Translation("Internal Links"),
+ *   title = @Translation("Internal links"),
  *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE,
  *   weight = -10
  * )

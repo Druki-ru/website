@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @RestResource (
  *   id = "druki_search_global",
- *   label = @Translation("Global Search"),
+ *   label = @Translation("Global search"),
  *   uri_paths = {
  *     "canonical" = "/api/search/global",
  *   }

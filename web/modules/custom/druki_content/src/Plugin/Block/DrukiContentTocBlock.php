@@ -14,8 +14,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Block(
  *   id = "druki_content_toc",
- *   admin_label = @Translation("Druki Content TOC"),
- *   category = @Translation("Druki Content")
+ *   admin_label = @Translation("Druki content TOC"),
+ *   category = @Translation("Druki content")
  * )
  */
 class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginInterface {

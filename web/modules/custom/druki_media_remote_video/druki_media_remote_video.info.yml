@@ -5,3 +5,6 @@ package: druki
 core: 8.x
 dependencies:
   - druki_media:druki_media
+
+'interface translation project': druki_media_remote_video
+'interface translation server pattern': modules/custom/%project/translations/%language.po

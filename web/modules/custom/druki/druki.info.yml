@@ -7,3 +7,6 @@ dependencies:
   - drupal:media
   - drupal:media_library
   - drupal:image
+
+'interface translation project': druki
+'interface translation server pattern': modules/custom/%project/translations/%language.po

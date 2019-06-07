@@ -9,3 +9,6 @@ dependencies:
   - snowball_stemmer:snowball_stemmer
   - druki_content:druki_content
   - drupal:rest
+
+'interface translation project': druki_search
+'interface translation server pattern': modules/custom/%project/translations/%language.po

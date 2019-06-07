@@ -1,5 +1,5 @@
 druki_git.admin:
-  title: 'GIT'
+  title: 'Git'
   parent: druki.admin
   route_name: druki_git.admin
   weight: 0

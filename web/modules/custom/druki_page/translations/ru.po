@@ -1,0 +1,5 @@
+msgid "Download Drupal"
+msgstr "Скачать Drupal"
+
+msgid "Documentation"
+msgstr "Документация"

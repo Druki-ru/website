@@ -3,3 +3,6 @@ type: module
 description: The custom pages for website not related to any entity type.
 package: druki
 core: 8.x
+
+'interface translation project': druki_page
+'interface translation server pattern': modules/custom/%project/translations/%language.po

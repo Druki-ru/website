@@ -1,0 +1,8 @@
+msgid "Optimized remote video"
+msgstr "Оптимизированное внешнее видео"
+
+msgid "Thumbnail style"
+msgstr "Стиль уменьшенного изображения"
+
+msgid "Thumbnail style: @style"
+msgstr "Стиль уменьшенного изображения: @style"

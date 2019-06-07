@@ -5,3 +5,6 @@ package: druki
 core: 8.x
 dependencies:
   - twig_tweak
+
+'interface translation project': druki_title
+'interface translation server pattern': modules/custom/%project/translations/%language.po

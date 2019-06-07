@@ -13,7 +13,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *
  * @FieldType(
  *   id = "druki_category",
- *   label = @Translation("Druki Category"),
+ *   label = @Translation("Druki category"),
  *   category = @Translation("Druki"),
  *   no_ui = TRUE,
  * )

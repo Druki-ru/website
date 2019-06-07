@@ -1,0 +1,41 @@
+msgid "Git repository not found in provided path. Please, make sure you have actual repository in the path, or path is correct."
+msgstr "Git репозиторий не найден по указанному пути. Пожалуйста, убедитесь что репозиторий действительно существует по указанному пути, или путь указан верно."
+
+msgid "Git status"
+msgstr "Git статус"
+
+msgid "Pull from remote repository"
+msgstr "Получить из удаленного репозитория"
+
+msgid "The Webhook URL which can be used to trigger pull events and all consecutive operations."
+msgstr "URL Webhook, который может быть использован для вызова событий получения данных и всех последующих операций."
+
+msgid "Regenerate key"
+msgstr "Перегенерировать ключ"
+
+msgid "Repository path"
+msgstr "Путь до репозитория"
+
+msgid "The local path to repository cloning."
+msgstr "Локальный путь для клонирования репозитория."
+
+msgid "<strong>Last commit ID:</strong> @value"
+msgstr "<strong>ID последнего коммита:</strong> @value"
+
+msgid "Git pull executed successully."
+msgstr "Git pull вызван успешно."
+
+msgid "Git pull end up with error."
+msgstr "Git pull завершился с ошибкой."
+
+msgid "The required dependency @dependency is missing. Install it and try again."
+msgstr "Обязательная зависимость @dependency не найдена. Установите её и попробуйте снова."
+
+msgid "Druki Git Settings"
+msgstr "Настройки Druki Git"
+
+msgid "Git settings"
+msgstr "Настройки Git"
+
+msgid "Settings and status"
+msgstr "Настройки и статус"

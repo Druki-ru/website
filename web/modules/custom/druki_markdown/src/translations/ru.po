@@ -1,0 +1,5 @@
+msgid "Additional markdown extensions"
+msgstr "Дополнительные расширения markdown"
+
+msgid "Our custom markdown syntax support."
+msgstr "Поддержка нашего собственного markdown синтаксиса."

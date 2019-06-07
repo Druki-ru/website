@@ -45,7 +45,7 @@ class DrukiContentCore extends ProcessorPluginBase {
 
     if (!$datasource) {
       $definition = [
-        'label' => $this->t('Druki Content Core'),
+        'label' => $this->t('Druki content core'),
         'description' => $this->t('Processed core value.'),
         'type' => 'string',
         'processor_id' => $this->getPluginId(),

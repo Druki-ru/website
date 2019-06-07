@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Condition(
  *   id = "druki_content",
- *   label = @Translation("Druki Content Page"),
+ *   label = @Translation("Druki content page"),
  * )
  */
 class DrukiContent extends ConditionPluginBase implements ContainerFactoryPluginInterface {

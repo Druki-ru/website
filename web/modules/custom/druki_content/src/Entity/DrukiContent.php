@@ -12,7 +12,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  * @ContentEntityType(
  *   id = "druki_content",
  *   label = @Translation("Druki content"),
- *   label_collection = @Translation("Druki contents"),
+ *   label_collection = @Translation("Druki content"),
  *   handlers = {
  *     "storage" = "Drupal\druki_content\Handler\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",

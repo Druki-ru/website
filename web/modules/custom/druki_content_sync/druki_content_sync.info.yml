@@ -6,3 +6,6 @@ core: 8.x
 dependencies:
   - druki_content:druki_content
   - druki_git:druki_git
+
+'interface translation project': druki_content_sync
+'interface translation server pattern': modules/custom/%project/translations/%language.po

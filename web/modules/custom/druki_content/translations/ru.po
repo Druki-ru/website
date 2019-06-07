@@ -1,0 +1,53 @@
+msgid "Druki content"
+msgstr "Druki содержимое"
+
+msgid "Druki content TOC"
+msgstr "Содержание Druki содержимого"
+
+msgid "Internal links"
+msgstr "Внутренние ссылки"
+
+msgid "Druki content page"
+msgstr "Страница Druki содержимого"
+
+msgid "Computed alias"
+msgstr "Вычисленный псевдоним"
+
+msgid "The computed alias depends on meta data."
+msgstr "Вычисляемый всевдоним зависящий от метаданных."
+
+msgid "Are you sure you want to do this?"
+msgstr "Вы уверены что хотите сделать это?"
+
+msgid "Git Information"
+msgstr "Информация из Git"
+
+msgid "External ID"
+msgstr "Внешний ID"
+
+msgid "Core version"
+msgstr "Версия ядра"
+
+msgid "Relative pathname"
+msgstr "Относительный путь"
+
+msgid "Last commit ID"
+msgstr "ID последнего коммита"
+
+msgid "New druki content %label has been created."
+msgstr "Создано новое Druki содержимое %label."
+
+msgid "The druki content %label has been updated."
+msgstr "Обновлена метка Druki содержимого %label"
+
+msgid "Total druki contents: @total"
+msgstr "Количество Druki содержимого: @total"
+
+msgid "Internal ID"
+msgstr "Внутренний ID"
+
+msgid "Convert internal links by content ID to actual links."
+msgstr "Конвертирует внутренние ссылки по их ID содержимого в реальные ссылки."
+
+msgid "Delete all druki content"
+msgstr "Удалить всё Druki содержимое"

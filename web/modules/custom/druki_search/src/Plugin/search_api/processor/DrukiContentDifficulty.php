@@ -45,7 +45,7 @@ class DrukiContentDifficulty extends ProcessorPluginBase {
 
     if (!$datasource) {
       $definition = [
-        'label' => $this->t('Druki Content Difficulty'),
+        'label' => $this->t('Druki content difficulty'),
         'description' => $this->t('Processed difficulty value.'),
         'type' => 'string',
         'processor_id' => $this->getPluginId(),

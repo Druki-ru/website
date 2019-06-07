@@ -20,3 +20,6 @@ dependencies:
   - druki_category:druki_category
   - pathauto:pathauto
   - metatag:metatag
+
+'interface translation project': druki_content
+'interface translation server pattern': modules/custom/%project/translations/%language.po

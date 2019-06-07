@@ -5,3 +5,6 @@ package: druki
 core: 8.x
 dependencies:
   - druki:druki
+
+'interface translation project': druki_git
+'interface translation server pattern': modules/custom/%project/translations/%language.po

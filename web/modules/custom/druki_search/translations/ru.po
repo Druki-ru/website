@@ -1,0 +1,14 @@
+msgid "Global search"
+msgstr "Глобальный поиск"
+
+msgid "Druki content core"
+msgstr "Ядро Druki содержимого"
+
+msgid "Processed core value."
+msgstr "Обработанное значение ядра."
+
+msgid "Druki content difficulty"
+msgstr "Сложность Druki содержимого"
+
+msgid "Processed difficulty value."
+msgstr "Обработанное значение сложности."

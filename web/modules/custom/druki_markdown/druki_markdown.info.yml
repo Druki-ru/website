@@ -4,4 +4,7 @@ description: The custom code for markdown syntax.
 package: druki
 core: 8.x
 dependencies:
-  - markdown:markdown (&gt;=2)
+  - markdown:markdown (>=2)
+
+'interface translation project': druki_markdown
+'interface translation server pattern': modules/custom/%project/translations/%language.po

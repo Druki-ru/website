@@ -7,3 +7,6 @@ dependencies:
   - druki_git:druki_git
   - druki_markdown:druki_markdown
   - druki_content:druki_content
+
+'interface translation project': druki_parser
+'interface translation server pattern': modules/custom/%project/translations/%language.po

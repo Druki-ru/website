@@ -1,0 +1,29 @@
+msgid "Promo"
+msgstr "Промо"
+
+msgid "Promo image"
+msgstr "Промо-изображение"
+
+msgid "Media entity that contains a promo image."
+msgstr "Медиа сущность которая содержит промо-изображение."
+
+msgid "Promo image style"
+msgstr "Стиль промо-изображения"
+
+msgid "Why Drupal"
+msgstr "Почему Drupal"
+
+msgid "Media entity that contains a remote video."
+msgstr "Медиа сущность которая содержит внешнее видео."
+
+msgid "Druki Settings"
+msgstr "Настройки Druki"
+
+msgid "Frontpage settings"
+msgstr "Настройки главной страницы"
+
+msgid "Frontpage"
+msgstr "Главная страница"
+
+msgid "Settings for frontpage."
+msgstr "Настройки для главной страницы."

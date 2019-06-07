@@ -1,0 +1,5 @@
+msgid "Druki category"
+msgstr "Druki категория"
+
+msgid "Category navigation"
+msgstr "Навигация по категории"
