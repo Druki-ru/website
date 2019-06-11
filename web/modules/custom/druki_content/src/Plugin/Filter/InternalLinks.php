@@ -129,13 +129,14 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
       //   realpath for destination entity to make valid cache tag. This is
       //   needed for cases when entity for which links is related to, is not
       //   created at this moment.
-      if ($destination_realpath = realpath($source_dirname . '/' . $original_href)) {
+      $destination_realpath = $this->normalizePath($source_dirname . '/' . $original_href);
+      // Now we need to get "relative_pathname" for this file relative to
+      // repository root.
+      // We also remove leading slash from repository path. This is needed
+      // because "relative_pathname" stored without it: docs/ru/file.md
+      $destination_relative_pathname = str_replace($repository_realpath . '/', '', $destination_realpath);
+      if (realpath($destination_realpath)) {
         // If we are here, this means the path is valid and file is exist.
-        // Now we need to get "relative_pathname" for this file relative to
-        // repository root.
-        // We also remove leading slash from repository path. This is needed
-        // because "relative_pathname" stored without it: docs/ru/file.md
-        $destination_relative_pathname = str_replace($repository_realpath . '/', '', $destination_realpath);
 
         // Now we need to find the druki_content entity associated with this
         // relative pathname.
@@ -147,11 +148,11 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
             ->toString(TRUE)
             ->getGeneratedUrl();
         }
-
-        // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
-        $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
-        $this->addLazyCacheTag( 'druki_content:relative_pathname:' . $relative_pathname_hash);
       }
+
+      // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
+      $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
+      $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
 
       // Replace href value.
       $node->getNode(0)->setAttribute('href', $destination_href);
@@ -182,6 +183,27 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     $result->setCacheTags($this->lazyCacheTags);
 
     return $result;
+  }
+
+  // https://stackoverflow.com/a/10067975/4751623
+  protected function normalizePath($path) {
+    $root = ($path[0] === '/') ? '/' : '';
+
+    $segments = explode('/', trim($path, '/'));
+    $ret = [];
+    foreach ($segments as $segment) {
+      if (($segment == '.') || strlen($segment) === 0) {
+        continue;
+      }
+      if ($segment == '..') {
+        array_pop($ret);
+      }
+      else {
+        array_push($ret, $segment);
+      }
+    }
+
+    return $root . implode('/', $ret);
   }
 
   protected function loadDrukiContentByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
