@@ -250,7 +250,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     $content = file_get_contents($filepath);
     $content_html = $this->markdownParser->parse($content);
 
-    return $this->htmlParser->parse($content_html);
+    return $this->htmlParser->parse($content_html, $filepath);
   }
 
   /**

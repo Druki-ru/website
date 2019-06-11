@@ -64,6 +64,8 @@ test-array:
 1. List
 
 {Drupal 8}[drupal:8]
+
+[Test internal link to file](changelog.md)
 Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);

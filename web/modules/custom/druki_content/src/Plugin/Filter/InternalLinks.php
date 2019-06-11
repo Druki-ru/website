@@ -2,9 +2,12 @@
 
 namespace Drupal\druki_content\Plugin\Filter;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Handler\DrukiContentStorage;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -44,14 +47,45 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
   protected $drukiContentStorage;
 
   /**
+   * The git settings.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $drukiGitSettings;
+
+  /**
+   * The repository path.
+   *
+   * @var array|null
+   */
+  protected $drukiGitRepositoryPath;
+
+  /**
+   * The file system.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    DrukiContentStorage $druki_content_storage,
+    ConfigFactoryInterface $config_factory,
+    FileSystemInterface $file_system
+  ) {
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->crawler = new Crawler();
-    $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');
+    $this->drukiContentStorage = $druki_content_storage;
+    $this->drukiGitSettings = $config_factory->get('druki_git.git_settings');
+    $this->drukiGitRepositoryPath = $this->drukiGitSettings->get('repository_path');
+    $this->fileSystem = $file_system;
   }
 
   /**
@@ -62,7 +96,9 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager')->getStorage('druki_content'),
+      $container->get('config.factory'),
+      $container->get('file_system')
     );
   }
 
@@ -71,16 +107,62 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    */
   public function process($text, $langcode): FilterProcessResult {
     $this->crawler->addContent($text);
+    $repository_realpath = $this->fileSystem->realpath($this->drukiGitRepositoryPath);
 
-    $replace = function ($node) use ($langcode) {
+    // Callback for filter.
+    $replace = function ($node) use ($langcode, $repository_realpath) {
       $original_href = $node->getNode(0)->getAttribute('href');
-      $href = $this->replaceHref($original_href, $langcode);
-      $node->getNode(0)->setAttribute('href', $href);
+      // Initial value for all broken links.
+      $destination_href = '#';
+      $link_source_filepath = $node->getNode(0)->getAttribute('data-druki-internal-link-filepath');
+      $source_realpath = $this->fileSystem->realpath($link_source_filepath);
+      $source_dirname = dirname($source_realpath);
+      // realpath() checks for file existence. So we wrap it to condition.
+      // Also we add trailing slash after dirname for this contact:
+      // - /path/to/source/dirname
+      // - /
+      // - ../path/to/href/file.md
+      // Which will result as: /path/to/source/dirname/../path/to/href/file.md.
+      // So we need this slash to work properly. If there will be double slash
+      // realpath will work also.
+      // @todo Make it work with un existed files since we need to know possible
+      //   realpath for destination entity to make valid cache tag. This is
+      //   needed for cases when entity for which links is related to, is not
+      //   created at this moment.
+      if ($destination_realpath = realpath($source_dirname . '/' . $original_href)) {
+        // If we are here, this means the path is valid and file is exist.
+        // Now we need to get "relative_pathname" for this file relative to
+        // repository root.
+        // We also remove leading slash from repository path. This is needed
+        // because "relative_pathname" stored without it: docs/ru/file.md
+        $destination_relative_pathname = str_replace($repository_realpath . '/', '', $destination_realpath);
+
+        // Now we need to find the druki_content entity associated with this
+        // relative pathname.
+        $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
+
+        if ($druki_content instanceof DrukiContentInterface) {
+          $destination_href = $druki_content
+            ->toUrl()
+            ->toString(TRUE)
+            ->getGeneratedUrl();
+        }
+
+        // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
+        $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
+        $this->addLazyCacheTag( 'druki_content:relative_pathname:' . $relative_pathname_hash);
+      }
+
+      // Replace href value.
+      $node->getNode(0)->setAttribute('href', $destination_href);
+      $node->getNode(0)->removeAttribute('data-druki-internal-link-filepath');
     };
 
-    // Dom Crawler not intended to change DOM, but little changes as ours is
+    // Dom Crawler not intended to change DOM, but small changes as ours is
     // possible.
-    $this->crawler->filter('[href^="@druki_content:"]')
+    $this
+      ->crawler
+      ->filter('a[data-druki-internal-link-filepath]')
       ->each($replace);
 
     $text = $this->crawler->html();
@@ -102,39 +184,26 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     return $result;
   }
 
-  /**
-   * Replace internal link syntax with real path.
-   *
-   * @param string $href
-   *   The internal link href.
-   * @param string $langcode
-   *   The langcode.
-   *
-   * @return string
-   *   The internal path.
-   *
-   * @throws \Drupal\Core\Entity\EntityMalformedException
-   */
-  protected function replaceHref(string $href, string $langcode): string {
-    $parts = explode(':', $href);
-    if ($parts[0] != '@druki_content') {
-      return $href;
+  protected function loadDrukiContentByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
+    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $relative_pathname);
+
+    if (!isset($result)) {
+      $content_ids = $this
+        ->drukiContentStorage
+        ->getQuery()
+        ->condition('relative_pathname', $relative_pathname)
+        ->range(0, 1)
+        ->execute();
+
+      if (!empty($content_ids)) {
+        $content_id = array_shift($content_ids);
+        $result = $this->drukiContentStorage->load($content_id);
+      }
     }
 
-    $external_id = $parts[1];
-    $core_version = isset($parts[2]) ? $parts[2] : NULL;
-
-    $druki_content = $this->drukiContentStorage->loadByMeta($external_id, $langcode, $core_version);
-    if ($druki_content instanceof DrukiContentInterface) {
-      $href = $druki_content->toUrl()->toString();
-    }
-    else {
-      $cache_tag = $this->drukiContentStorage->getEntityTypeId() . ':' . $langcode . ':' . $external_id;
-      $this->addLazyCacheTag($cache_tag);
-    }
-
-    return $href;
+    return $result;
   }
+
 
   /**
    * Adds lazy cache tag.

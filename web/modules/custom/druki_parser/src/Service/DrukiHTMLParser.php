@@ -3,6 +3,7 @@
 namespace Drupal\druki_parser\Service;
 
 use DOMElement;
+use DOMNode;
 use Drupal\druki_content_sync\Content\ContentList;
 use Drupal\druki_content_sync\Content\ContentStructure;
 use Drupal\druki_content_sync\MetaInformation\MetaInformation;
@@ -24,7 +25,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
   /**
    * {@inheritdoc}
    */
-  public function parse($html): ContentStructure {
+  public function parse($html, $filepath = NULL): ContentStructure {
     $crawler = new Crawler($html);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');
@@ -44,6 +45,11 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
         if ($this->parseMetaInformation($dom_element, $meta_information)) {
           continue;
         }
+      }
+
+      // Process internal links in priority mode.
+      if ($filepath) {
+        $this->processInternalLink($dom_element, $filepath);
       }
 
       if ($this->parseNote($dom_element, $content)) {
@@ -98,7 +104,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
     $meta_block = $crawler->filter('div[id="meta-information"]');
 
     if (count($meta_block)) {
-      $meta_array = json_decode($meta_block->text(), true);
+      $meta_array = json_decode($meta_block->text(), TRUE);
       foreach ($meta_array as $key => $value) {
         $meta_value = new MetaValue($key, $value);
         $meta_information->add($meta_value);
@@ -108,6 +114,37 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
     }
 
     return FALSE;
+  }
+
+  /**
+   * Parses internal links to another markdown files.
+   *
+   * @param \DOMNode $dom_element
+   *   The DOM element to process.
+   * @param $filepath
+   *   The filepath of file in which this link was found.
+   */
+  protected function processInternalLink(DOMNode $dom_element, $filepath) {
+    if (empty($dom_element->childNodes)) {
+      return;
+    }
+
+    /** @var DOMElement $child_node */
+    foreach ($dom_element->childNodes as $child_node) {
+
+      if ($child_node->nodeName == 'a') {
+        $href = $child_node->getAttribute('href');
+
+        // Must end up with Markdown extension: .md, .MD.
+        if (!preg_match("/.*\.md$/mi", $href)) {
+          continue;
+        }
+
+        $child_node->setAttribute('data-druki-internal-link-filepath', $filepath);
+      }
+
+      $this->processInternalLink($child_node, $filepath);
+    }
   }
 
   /**
