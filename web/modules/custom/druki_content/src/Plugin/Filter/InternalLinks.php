@@ -156,7 +156,6 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
       $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
       $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
 
-      dump($destination_href);
       // Replace href value.
       $node->getNode(0)->setAttribute('href', $destination_href);
       $node->getNode(0)->removeAttribute('data-druki-internal-link-filepath');
