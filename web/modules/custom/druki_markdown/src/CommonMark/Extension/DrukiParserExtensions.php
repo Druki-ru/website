@@ -34,12 +34,6 @@ class DrukiParserExtensions implements ExtensionInterface {
       ->addBlockRenderer(
         'Drupal\druki_markdown\CommonMark\Block\Element\MetaInformationElement',
         new MetaInformationRenderer()
-      )
-      ->addInlineParser(new OpenBracerParser())
-      ->addInlineParser(new CloseBracerParser())
-      ->addInlineRenderer(
-        'Drupal\druki_markdown\CommonMark\Inline\Element\InternalLinkElement',
-        new InternalLinkRenderer()
       );
   }
 
