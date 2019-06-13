@@ -39,6 +39,8 @@ Another text.
 
 > [!WARNING]
 > **Requires** some [module](fake-link) to be installed.
+
+[Test internal link to file](changelog.md)
 Markdown;
 
 $result_html = $druki_parser->parse($markdown_content);
@@ -46,4 +48,4 @@ $result_html = $druki_parser->parse($markdown_content);
 //dump($result_html);
 /** @var \Drupal\druki_parser\Service\DrukiHTMLParserInterface $druki_html_parser */
 $druki_html_parser = \Drupal::service('druki_parser.html');
-dump($druki_html_parser->parse($result_html));
+$druki_html_parser->parse($result_html, 'public://test/file.md');

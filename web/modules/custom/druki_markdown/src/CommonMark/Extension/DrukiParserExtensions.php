@@ -6,6 +6,7 @@ use Drupal\druki_markdown\CommonMark\Block\Parser\MetaInformationParser;
 use Drupal\druki_markdown\CommonMark\Block\Parser\NoteParser;
 use Drupal\druki_markdown\CommonMark\Block\Renderer\MetaInformationRenderer;
 use Drupal\druki_markdown\CommonMark\Block\Renderer\NoteRenderer;
+use Drupal\druki_markdown\CommonMark\DocumentProcessor\InternalLinkProcessor;
 use Drupal\druki_markdown\CommonMark\Inline\Parser\CloseBracerParser;
 use Drupal\druki_markdown\CommonMark\Inline\Parser\OpenBracerParser;
 use Drupal\druki_markdown\CommonMark\Inline\Renderer\InternalLinkRenderer;

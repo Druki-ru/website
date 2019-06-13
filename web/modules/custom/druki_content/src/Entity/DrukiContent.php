@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_content\Entity;
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -144,11 +145,16 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
     $langcode = $this->getEntityKey('langcode');
 
     // F.e. "druki_content:ru:1", "druki_content:ru:installation".
-    $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->id();
+    if ($this->isNew()) {
+      $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->id();
+    }
     $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->getExternalId();
+    $relative_pathname_hash = Crypt::hashBase64($this->getRelativePathname());
+    $cache_tags[] = $this->entityTypeId . ':relative_pathname:' . $relative_pathname_hash;
 
     // Invalidate cache tag for category area block.
     // @see CategoryNavigationBlock::getCacheTags().
+    // @todo maybe move it to its module.
     if (!$this->get('category')->isEmpty()) {
       $transliteration = \Drupal::transliteration();
       $category_area = $transliteration->transliterate($this->get('category')->area);

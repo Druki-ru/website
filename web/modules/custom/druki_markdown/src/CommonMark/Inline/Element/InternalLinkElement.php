@@ -8,6 +8,8 @@ use League\CommonMark\Inline\Element\AbstractInlineContainer;
  * Class InternalLinksElement
  *
  * @package Drupal\druki_markdown\CommonMark\Inline\Element
+ *
+ * @deprecated in flavor of https://gitlab.com/druki/website/issues/32
  */
 class InternalLinkElement extends AbstractInlineContainer {
 

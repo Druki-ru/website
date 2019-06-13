@@ -11,6 +11,8 @@ use League\CommonMark\Inline\Renderer\InlineRendererInterface;
  * Class InternalLinkRenderer
  *
  * @package Drupal\druki_markdown\CommonMark\Inline\Renderer
+ *
+ * @deprecated in flavor of https://gitlab.com/druki/website/issues/32
  */
 class InternalLinkRenderer implements InlineRendererInterface {
 
