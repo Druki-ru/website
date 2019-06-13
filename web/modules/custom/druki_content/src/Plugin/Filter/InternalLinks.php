@@ -200,23 +200,29 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    * @see https://stackoverflow.com/a/10067975/4751623
    */
   protected function normalizePath(string $path): string {
-    $root = ($path[0] === '/') ? '/' : '';
+    $result_path = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $path, '');
 
-    $segments = explode('/', trim($path, '/'));
-    $ret = [];
-    foreach ($segments as $segment) {
-      if (($segment == '.') || strlen($segment) === 0) {
-        continue;
+    if ($result_path) {
+      $root = ($path[0] === '/') ? '/' : '';
+
+      $segments = explode('/', trim($path, '/'));
+      $ret = [];
+      foreach ($segments as $segment) {
+        if (($segment == '.') || strlen($segment) === 0) {
+          continue;
+        }
+        if ($segment == '..') {
+          array_pop($ret);
+        }
+        else {
+          array_push($ret, $segment);
+        }
       }
-      if ($segment == '..') {
-        array_pop($ret);
-      }
-      else {
-        array_push($ret, $segment);
-      }
+
+      $result_path = $root . implode('/', $ret);
     }
 
-    return $root . implode('/', $ret);
+    return $result_path;
   }
 
   /**
