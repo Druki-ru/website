@@ -202,7 +202,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
   protected function normalizePath(string $path): string {
     $result_path = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $path, '');
 
-    if ($result_path) {
+    if (empty($result_path)) {
       $root = ($path[0] === '/') ? '/' : '';
 
       $segments = explode('/', trim($path, '/'));

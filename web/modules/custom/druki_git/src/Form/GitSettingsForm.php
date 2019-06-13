@@ -166,7 +166,7 @@ class GitSettingsForm extends ConfigFormBase {
    */
   public function gitPullFromRemote(): void {
     if ($this->git->pull()) {
-      $this->messenger()->addStatus($this->t('Git pull executed successully.'));
+      $this->messenger()->addStatus($this->t('Git pull executed successfully.'));
     }
     else {
       $this->messenger()->addError($this->t('Git pull end up with error.'));

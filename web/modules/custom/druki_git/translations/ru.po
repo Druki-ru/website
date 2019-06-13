@@ -22,7 +22,7 @@ msgstr "Локальный путь для клонирования репози
 msgid "<strong>Last commit ID:</strong> @value"
 msgstr "<strong>ID последнего коммита:</strong> @value"
 
-msgid "Git pull executed successully."
+msgid "Git pull executed successfully."
 msgstr "Git pull вызван успешно."
 
 msgid "Git pull end up with error."
