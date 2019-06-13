@@ -42,7 +42,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
   /**
    * The druki content sotrage.
    *
-   * @var \Drupal\druki_content\DrukiContentStorage
+   * @var \Drupal\druki_content\Handler\DrukiContentStorage
    */
   protected $drukiContentStorage;
 
@@ -68,6 +68,13 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
   protected $fileSystem;
 
   /**
+   * The relapath for git repository.
+   *
+   * @var false|string
+   */
+  protected $drukiGitRepositoryRealpath;
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(
@@ -86,6 +93,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     $this->drukiGitSettings = $config_factory->get('druki_git.git_settings');
     $this->drukiGitRepositoryPath = $this->drukiGitSettings->get('repository_path');
     $this->fileSystem = $file_system;
+    $this->drukiGitRepositoryRealpath = $this->fileSystem->realpath($this->drukiGitRepositoryPath);
   }
 
   /**
@@ -107,10 +115,8 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    */
   public function process($text, $langcode): FilterProcessResult {
     $this->crawler->addContent($text);
-    $repository_realpath = $this->fileSystem->realpath($this->drukiGitRepositoryPath);
 
-    // Callback for filter.
-    $replace = function ($node) use ($langcode, $repository_realpath) {
+    $replace_link = function ($node) {
       $original_href = $node->getNode(0)->getAttribute('href');
       // Initial value for all broken links.
       $destination_href = '#';
@@ -125,16 +131,12 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
       // Which will result as: /path/to/source/dirname/../path/to/href/file.md.
       // So we need this slash to work properly. If there will be double slash
       // realpath will work also.
-      // @todo Make it work with un existed files since we need to know possible
-      //   realpath for destination entity to make valid cache tag. This is
-      //   needed for cases when entity for which links is related to, is not
-      //   created at this moment.
       $destination_realpath = $this->normalizePath($source_dirname . '/' . $original_href);
       // Now we need to get "relative_pathname" for this file relative to
       // repository root.
       // We also remove leading slash from repository path. This is needed
       // because "relative_pathname" stored without it: docs/ru/file.md
-      $destination_relative_pathname = str_replace($repository_realpath . '/', '', $destination_realpath);
+      $destination_relative_pathname = str_replace($this->drukiGitRepositoryRealpath . '/', '', $destination_realpath);
       if (realpath($destination_realpath)) {
         // If we are here, this means the path is valid and file is exist.
 
@@ -164,7 +166,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     $this
       ->crawler
       ->filter('a[data-druki-internal-link-filepath]')
-      ->each($replace);
+      ->each($replace_link);
 
     $text = $this->crawler->html();
 
@@ -185,8 +187,19 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     return $result;
   }
 
-  // https://stackoverflow.com/a/10067975/4751623
-  protected function normalizePath($path) {
+  /**
+   * Normalize path like standard realpath() does, but ignore file existence.
+   *
+   * @param string $path
+   *   The path to process. I.e. "path/to/something/../../file.md" will be
+   *   convert to "path/file.md".
+   *
+   * @return string
+   *   The path.
+   *
+   * @see https://stackoverflow.com/a/10067975/4751623
+   */
+  protected function normalizePath(string $path): string {
     $root = ($path[0] === '/') ? '/' : '';
 
     $segments = explode('/', trim($path, '/'));
@@ -206,6 +219,15 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     return $root . implode('/', $ret);
   }
 
+  /**
+   * Loads content by relative_pathname value.
+   *
+   * @param string $relative_pathname
+   *   The value for relative_pathname property.
+   *
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
+   *   The content entity.
+   */
   protected function loadDrukiContentByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
     $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $relative_pathname);
 
@@ -226,7 +248,6 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     return $result;
   }
 
-
   /**
    * Adds lazy cache tag.
    *
@@ -241,7 +262,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    * {@inheritdoc}
    */
   public function tips($long = FALSE): string {
-    return $this->t('Convert internal links by content ID to actual links.');
+    return $this->t('Convert internal links by relative paths to an actual aliases.');
   }
 
 }
