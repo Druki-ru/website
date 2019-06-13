@@ -620,7 +620,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     $paragraph->set('druki_note_type', $note->getType());
     $paragraph->set('druki_textarea_formatted', [
       'value' => $note->getContent(),
-      'format' => filter_default_format(),
+      'format' => $this->filterDefaultFormat,
     ]);
     $paragraph->save();
 
