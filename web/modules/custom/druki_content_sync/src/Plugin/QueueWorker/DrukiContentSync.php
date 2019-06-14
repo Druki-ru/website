@@ -290,8 +290,8 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     if ($meta->has('category')) {
       $category = $meta->get('category')->getValue();
       $category_area = $category['area'];
-      $category_order = !isset($category['order']) ? $category['order'] : 0;
-      $category_title = !isset($category['title']) ? $category['title'] : NULL;
+      $category_order = (isset($category['order'])) ? $category['order'] : 0;
+      $category_title = (isset($category['title'])) ? $category['title'] : NULL;
 
       $druki_content->setCategory($category_area, $category_order, $category_title);
     }
@@ -520,6 +520,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
         $data = file_get_contents($file_uri);
 
         // Ensure folder is exists and writable.
+        // @todo replace deprecated.
         if (file_prepare_directory($destination_uri, FILE_CREATE_DIRECTORY)) {
           $file = file_save_data($data, $destination_uri . '/' . $basename);
           if ($file instanceof FileInterface) {
