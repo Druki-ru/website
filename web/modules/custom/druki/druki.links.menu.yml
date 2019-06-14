@@ -4,8 +4,14 @@ druki.admin:
   route_name: druki.admin
   weight: -50
 
+druki.admin_general:
+  title: 'General settings'
+  parent: druki.admin
+  route_name: druki.admin
+  weight: -10
+
 druki.frontpage_settings:
   title: Frontpage
   description: Settings for frontpage.
   route_name: druki.frontpage_settings
-  parent: druki.admin
+  parent: druki.admin_general

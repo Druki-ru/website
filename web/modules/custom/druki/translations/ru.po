@@ -27,3 +27,6 @@ msgstr "Главная страница"
 
 msgid "Settings for frontpage."
 msgstr "Настройки для главной страницы."
+
+msgid "General settings"
+msgstr "Общие настройки"

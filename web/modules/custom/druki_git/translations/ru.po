@@ -39,3 +39,6 @@ msgstr "Настройки Git"
 
 msgid "Settings and status"
 msgstr "Настройки и статус"
+
+msgid "Status about last commit, git pull, settings for webhook URL and repository path."
+msgstr "Статус о последнем коммите, git pull, настройки для URL вебхука и путь до репозитория."

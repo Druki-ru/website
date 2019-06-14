@@ -1,8 +1,9 @@
 druki.admin:
   path: '/admin/druki'
   defaults:
-    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _controller: '\Drupal\system\Controller\SystemController::overview'
     _title: 'Druki Settings'
+    link_id: 'druki.admin'
   requirements:
     _permission: 'access administration pages'
 
