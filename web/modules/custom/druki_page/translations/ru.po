@@ -1,3 +1,6 @@
+msgid ""
+msgstr ""
+
 msgid "Download Drupal"
 msgstr "Скачать Drupal"
 

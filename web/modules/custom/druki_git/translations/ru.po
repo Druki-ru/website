@@ -1,3 +1,6 @@
+msgid ""
+msgstr ""
+
 msgid "Git repository not found in provided path. Please, make sure you have actual repository in the path, or path is correct."
 msgstr "Git репозиторий не найден по указанному пути. Пожалуйста, убедитесь что репозиторий действительно существует по указанному пути, или путь указан верно."
 

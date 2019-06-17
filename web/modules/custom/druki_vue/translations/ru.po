@@ -1,2 +1,5 @@
+msgid ""
+msgstr ""
+
 msgid "Search"
 msgstr "Поиск"

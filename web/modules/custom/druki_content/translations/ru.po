@@ -1,3 +1,6 @@
+msgid ""
+msgstr ""
+
 msgid "Druki content"
 msgstr "Druki содержимое"
 

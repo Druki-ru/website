@@ -1,3 +1,6 @@
+msgid ""
+msgstr ""
+
 msgid "Optimized remote video"
 msgstr "Оптимизированное внешнее видео"
 

@@ -1,2 +1,5 @@
+msgid ""
+msgstr ""
+
 msgid "The required dependency @dependency is missing. Install it and try again."
 msgstr "Обязательная зависимость @dependency не найдена. Установите её и попробуйте снова."
