@@ -1,4 +1,9 @@
 services:
+  logger.channel.druki_content_sync:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: ['druki_content_sync']
+
   druki_content_sync.git_pull_finished_subscriber:
     class: Drupal\druki_content_sync\EventSubscriber\GitPullFinishedSubscriber
     arguments: ['@queue', '@druki_parser.folder', '@database', '@entity_type.manager']

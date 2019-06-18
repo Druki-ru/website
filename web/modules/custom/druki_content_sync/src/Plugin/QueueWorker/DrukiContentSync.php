@@ -199,7 +199,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
       $container->get('druki_file.tracker'),
       $container->get('config.factory'),
       $container->get('token'),
-      $container->get('logger.factory')->get('druki_content'),
+      $container->get('logger.channel.druki_content_sync'),
       $container->get('state')
     );
   }
@@ -266,6 +266,11 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   protected function processContent(ContentStructure $structured_data, ContentQueueItem $queue_item): void {
     $meta = $structured_data->getMetaInformation();
 
+    $this->logger->info('Start processing content ID "@content_id (@relative_pathname)".', [
+      '@content_id' => $meta->get('id')->getValue(),
+      '@relative_pathname' => $queue_item->getRelativePathname(),
+    ]);
+
     $druki_content = $this->loadContent(
       $meta->get('id')->getValue(),
       $queue_item->getLangcode(),
@@ -277,6 +282,10 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     // If force update is set in settings. Ignore rule above.
     $force_update = $this->state->get('druki_content_sync.settings.force_update', FALSE);
     if ($is_same_commit && !$force_update) {
+      $this->logger->info('The processing of "@content_id" was skipped, because content not changed from the last sync.', [
+        '@content_id' => $meta->get('id')->getValue(),
+      ]);
+
       return;
     }
 
@@ -327,6 +336,11 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     $this->processMetatags($druki_content, $structured_data);
 
     $druki_content->save();
+
+    $this->logger->info('The content "@content_id" was synced. Local ID is: @local_id', [
+      '@content_id' => $meta->get('id')->getValue(),
+      '@local_id' => $druki_content->id(),
+    ]);
   }
 
   /**
