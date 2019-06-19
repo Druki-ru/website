@@ -39,7 +39,7 @@ class NoteParser implements BlockParserInterface {
       return FALSE;
     }
 
-    preg_match("/\[\!(.+)\]/", $matched, $matches);
+    preg_match("/\[!(.+)]/", $matched, $matches);
     $note_type = mb_strtolower($matches[1]);
 
     $context->addBlock(new NoteElement($note_type));

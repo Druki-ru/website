@@ -170,6 +170,8 @@ class GitSettingsForm extends ConfigFormBase {
 
       return $messages;
     }
+
+    return NULL;
   }
 
   /**

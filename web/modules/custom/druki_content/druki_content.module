@@ -33,7 +33,7 @@ function druki_content_theme(): array {
  */
 function druki_content_cron(): void {
   // Clean missing content from database.
-  Drupal::service('entity_type.manager')
+  \Drupal::service('entity_type.manager')
     ->getStorage('druki_content')
     ->deleteMissing();
 }

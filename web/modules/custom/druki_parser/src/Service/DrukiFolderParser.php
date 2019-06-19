@@ -34,6 +34,9 @@ class DrukiFolderParser implements DrukiFolderParserInterface {
 
   /**
    * DrukiFolderParser constructor.
+   *
+   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   *   The language manager.
    */
   public function __construct(LanguageManagerInterface $language_manager) {
     $this->finder = new Finder();
@@ -57,7 +60,7 @@ class DrukiFolderParser implements DrukiFolderParserInterface {
     foreach ($this->finder as $file_info) {
       // Check if path any of enabled languages.
       foreach ($active_langcodes as $langcode) {
-        if (preg_match("/docs\/$langcode.*?/i", $file_info->getRelativePath())) {
+        if (preg_match("/docs/$langcode.*?/i", $file_info->getRelativePath())) {
           $parsed_files[$langcode][] = $file_info;
         }
       }

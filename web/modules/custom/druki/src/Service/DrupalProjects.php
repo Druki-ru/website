@@ -97,7 +97,7 @@ class DrupalProjects {
 
         // Find <releases>.
         while ($this->xmlReader->read() && $this->xmlReader->name !== 'releases') {
-          ;
+
         }
 
         if ($this->xmlReader->name == 'releases') {

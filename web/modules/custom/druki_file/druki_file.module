@@ -14,7 +14,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  */
 function druki_file_file_presave(EntityInterface $entity) {
   /** @var \Drupal\druki_file\Service\DrukiFileTracker $file_tracker */
-  $file_tracker = Drupal::service('druki_file.tracker');
+  $file_tracker = \Drupal::service('druki_file.tracker');
 
   try {
     $file_tracker->track($entity);
@@ -31,13 +31,15 @@ function druki_file_file_presave(EntityInterface $entity) {
  * Implements hook_entity_base_field_info().
  */
 function druki_file_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+
   if ($entity_type->id() === 'file') {
     // Add field for store file hash.
     $fields['druki_file_hash'] = BaseFieldDefinition::create('string')
       ->setLabel(t('File hash'))
       ->setDescription(t('The file md5 hash.'))
       ->setSetting('max_length', 255);
-
-    return $fields;
   }
+
+  return $fields;
 }

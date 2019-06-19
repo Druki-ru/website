@@ -4,6 +4,8 @@
   "description": "The parser for content.",
   "keywords": ["Drupal"],
   "require": {
+    "ext-dom": "*",
+    "ext-json": "*",
     "symfony/dom-crawler": "~3.0",
     "symfony/finder": "~3.0"
   }

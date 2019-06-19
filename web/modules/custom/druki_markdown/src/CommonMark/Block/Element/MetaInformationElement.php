@@ -79,7 +79,8 @@ class MetaInformationElement extends AbstractStringContainerBlock {
   }
 
   /**
-   * @param bool $isCloserFound
+   * @param bool $status
+   *   The status is closer found or not.
    */
   public function setIsCloserFound($status): void {
     $this->isCloserFound = $status;

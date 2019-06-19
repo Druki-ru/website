@@ -1,4 +1,4 @@
 services:
   druki.drupal_projects:
-    class: '\Drupal\druki\Service\DrupalProjects'
+    class: Drupal\druki\Service\DrupalProjects
     arguments: ['@http_client']

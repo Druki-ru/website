@@ -138,6 +138,8 @@ interface DrukiContentInterface extends ContentEntityInterface {
    *   The category area.
    * @param int $order
    *   The order inside area.
+   * @param string|null $title
+   *   The custom title for category.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.

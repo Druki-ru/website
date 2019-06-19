@@ -14,7 +14,7 @@ use Drupal\druki_content\Entity\DrukiContentInterface;
  */
 function druki_content_uninstall() {
   // Remove state settings.
-  Drupal::state()->delete('druki_content.settings.force_update');
+  \Drupal::state()->delete('druki_content.settings.force_update');
 }
 
 /**
@@ -28,11 +28,11 @@ function druki_content_uninstall() {
  * comment_post_update_enable_comment_admin_view().
  */
 function druki_content_update_8601(&$sandbox) {
-  $module_handler = Drupal::moduleHandler();
+  $module_handler = \Drupal::moduleHandler();
   $druki_content_module = $module_handler->getModule('druki_content');
   $config_install_path = $druki_content_module->getPath() . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
-  $definition_update_manager = Drupal::entityDefinitionUpdateManager();
-  $entity_type_manager = Drupal::entityTypeManager();
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_type_manager = \Drupal::entityTypeManager();
   // Load config folder.
   $storage = new FileStorage($config_install_path);
 
@@ -82,7 +82,7 @@ function druki_content_update_8601(&$sandbox) {
   $druki_content_storage = $entity_type_manager->getStorage('druki_content');
   /** @var \Drupal\Core\Entity\Sql\DefaultTableMapping $table_mapping */
   $table_mapping = $druki_content_storage->getTableMapping();
-  $database = Drupal::database();
+  $database = \Drupal::database();
 
   // Restore "forced_path" values.
   if ($forced_path_field) {
@@ -131,11 +131,11 @@ function druki_content_update_8601(&$sandbox) {
  * Adds metatag field to druki_content.
  */
 function druki_content_update_8602(&$sandbox) {
-  $module_handler = Drupal::moduleHandler();
+  $module_handler = \Drupal::moduleHandler();
   $druki_content_module = $module_handler->getModule('druki_content');
   $config_install_path = $druki_content_module->getPath() . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
-  $definition_update_manager = Drupal::entityDefinitionUpdateManager();
-  $entity_type_manager = Drupal::entityTypeManager();
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_type_manager = \Drupal::entityTypeManager();
   // Load config folder.
   $storage = new FileStorage($config_install_path);
 
@@ -153,6 +153,8 @@ function druki_content_update_8602(&$sandbox) {
       ->getStorage('field_config')
       ->create($storage->read('field.field.druki_content.druki_content.metatags'))
       ->save();
+
+    return t('The metatag field was installed.');
   }
   else {
     return t('The metatag field is found on druki_content entity. The update is skipped.');

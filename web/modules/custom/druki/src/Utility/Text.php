@@ -2,8 +2,6 @@
 
 namespace Drupal\druki\Utility;
 
-use Drupal;
-
 /**
  * Class Text with simple string utility.
  *
@@ -32,7 +30,7 @@ class Text {
     $iteration = 0;
 
     // Main processing for anchors.
-    $anchor = Drupal::transliteration()->transliterate($text);
+    $anchor = \Drupal::transliteration()->transliterate($text);
     $anchor = strtolower($anchor);
     $anchor = trim($anchor);
     // Replace all spaces with dash.
@@ -40,7 +38,7 @@ class Text {
     // Remove everything else. Only alphabet, numbers and dash is allowed.
     $anchor = preg_replace("/[^0-9a-z-]/", '', $anchor);
     // Replace multiple dashes with single. F.e. "Title with - dash".
-    $anchor = preg_replace('/\-{2,}/', '-', $anchor);
+    $anchor = preg_replace('/-{2,}/', '-', $anchor);
 
     while (!$anchor_generated) {
       $anchor_static = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $id . ':' . $anchor . ':' . $iteration);

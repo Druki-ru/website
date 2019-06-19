@@ -21,6 +21,9 @@ class DrukiGitEvent extends Event {
 
   /**
    * DrukiGitEvent constructor.
+   *
+   * @param \Drupal\druki_git\Service\GitInterface $git
+   *   The git service.
    */
   public function __construct(GitInterface $git) {
     $this->git = $git;

@@ -4,6 +4,7 @@
   "description": "The git integration.",
   "keywords": ["Drupal"],
   "require": {
-    "czproject/git-php": "^3.16.2"
+    "czproject/git-php": "^3.16.2",
+    "ext-json": "*"
   }
 }
