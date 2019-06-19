@@ -5,6 +5,7 @@ namespace Drupal\druki_file\Service;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\file\FileInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
 use Drupal\media\MediaInterface;
@@ -49,8 +50,8 @@ class DrukiFileTracker {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
-   *   The logger factory.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger.
    * @param \Drupal\file\FileUsage\FileUsageInterface $file_usage
    *   The file usage.
    *
@@ -59,12 +60,12 @@ class DrukiFileTracker {
    */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
-    LoggerChannelFactoryInterface $logger,
+    LoggerChannelInterface $logger,
     FileUsageInterface $file_usage
   ) {
 
     $this->fileStorage = $entity_type_manager->getStorage('file');
-    $this->logger = $logger->get('druki_file');
+    $this->logger = $logger;
     $this->fileUsage = $file_usage;
     $this->mediaStorage = $entity_type_manager->getStorage('media');
   }
@@ -170,6 +171,8 @@ class DrukiFileTracker {
       $file->set('druki_file_hash', NULL);
       $file->save();
     }
+
+    $this->logger->notice('The file tracking information is cleared.');
   }
 
   /**

@@ -48,7 +48,7 @@ class DrukiGitController extends ControllerBase implements ContainerInjectionInt
   public static function create(ContainerInterface $container): object {
     return new static(
       $container->get('request_stack')->getCurrentRequest(),
-      $container->get('logger.factory')->get('druki_git'),
+      $container->get('logger.channel.druki_git'),
       $container->get('druki_git')
     );
   }
@@ -61,14 +61,14 @@ class DrukiGitController extends ControllerBase implements ContainerInjectionInt
 
     if ($this->git->init() && $webhook_info->object_kind == 'push') {
       if ($this->git->pull()) {
-        $this->logger->info(t('Webhook is triggered, and content is successfully pulled.'));
+        $this->logger->info('Webhook is triggered, and content is successfully pulled.');
       }
       else {
-        $this->logger->warning(t('Webhook is triggered, the repository was found, but pull complete with error.'));
+        $this->logger->warning('Webhook is triggered, the repository was found, but pull complete with error.');
       }
     }
     else {
-      $this->logger->warning(t("Webhook is triggered, but git library can't init repository or webhook triggered not by push event."));
+      $this->logger->warning("Webhook is triggered, but git library can't init repository or webhook triggered not by push event.");
     }
 
     return new JsonResponse(['message' => 'Webhook processed.']);

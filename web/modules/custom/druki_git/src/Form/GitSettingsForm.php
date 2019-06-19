@@ -6,6 +6,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -44,13 +45,21 @@ class GitSettingsForm extends ConfigFormBase {
   protected $request;
 
   /**
+   * The logger.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   */
+  protected $logger;
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(
     ConfigFactoryInterface $config_factory,
     GitInterface $git,
     StateInterface $state,
-    Request $request
+    Request $request,
+    LoggerChannelInterface $logger
   ) {
 
     parent::__construct($config_factory);
@@ -58,6 +67,7 @@ class GitSettingsForm extends ConfigFormBase {
     $this->git = $git;
     $this->state = $state;
     $this->request = $request;
+    $this->logger = $logger;
   }
 
   /**
@@ -68,7 +78,8 @@ class GitSettingsForm extends ConfigFormBase {
       $container->get('config.factory'),
       $container->get('druki_git'),
       $container->get('state'),
-      $container->get('request_stack')->getCurrentRequest()
+      $container->get('request_stack')->getCurrentRequest(),
+      $container->get('logger.channel.druki_git')
     );
   }
 
@@ -165,6 +176,8 @@ class GitSettingsForm extends ConfigFormBase {
    * Pulls actual repository data from remote.
    */
   public function gitPullFromRemote(): void {
+    $this->logger->info('Manually requested git pull.');
+
     if ($this->git->pull()) {
       $this->messenger()->addStatus($this->t('Git pull executed successfully.'));
     }
@@ -179,6 +192,9 @@ class GitSettingsForm extends ConfigFormBase {
   public function regenerateWebhookKey(): void {
     $webhook_key = Crypt::randomBytesBase64(55);
     $this->state->set('druki_git.webhook_key', $webhook_key);
+    $this->logger->notice('The webhook key was regenerated manually to "@webhook_key".', [
+      '@webhook_key' => $webhook_key,
+    ]);
   }
 
   /**

@@ -20,10 +20,10 @@ function druki_file_file_presave(EntityInterface $entity) {
     $file_tracker->track($entity);
   }
   catch (Exception $e) {
-    \Drupal::logger('druki_file')
-      ->error(t('Problems with file hash creation. File ID: @fid.', [
+    \Drupal::service('logger.channel.druki_file')
+      ->error('Problems with file hash creation. File ID: @fid.', [
         '@fid' => $entity->id()
-      ]));
+      ]);
   }
 }
 
