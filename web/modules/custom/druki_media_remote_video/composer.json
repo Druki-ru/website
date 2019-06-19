@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_media_remote_video",
+  "type": "drupal-custom-module",
+  "description": "The custom code for media type Remote Video.",
+  "keywords": ["Drupal"]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_content_sync",
+  "type": "drupal-custom-module",
+  "description": "The code for sync content from different sources.",
+  "keywords": ["Drupal"]
+}

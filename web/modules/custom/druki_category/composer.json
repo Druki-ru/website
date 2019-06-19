@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_category",
+  "type": "drupal-custom-module",
+  "description": "The Category code.",
+  "keywords": ["Drupal"]
+}

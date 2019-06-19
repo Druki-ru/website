@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki",
+  "type": "drupal-custom-module",
+  "description": "The main module for common code.",
+  "keywords": ["Drupal"]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_media",
+  "type": "drupal-custom-module",
+  "description": "The media entity custom code.",
+  "keywords": ["Drupal"]
+}

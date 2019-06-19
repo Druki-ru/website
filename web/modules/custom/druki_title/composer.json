@@ -1,0 +1,6 @@
+{
+  "name": "drupal/druki_title",
+  "type": "drupal-custom-module",
+  "description": "The custom title code.",
+  "keywords": ["Drupal"]
+}

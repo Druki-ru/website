@@ -1,6 +1,6 @@
 {
   "name": "drupal/druki_vue",
-  "type": "drupal-module",
+  "type": "drupal-custom-module",
   "description": "Vue integration",
   "keywords": ["Drupal"],
   "require": {
