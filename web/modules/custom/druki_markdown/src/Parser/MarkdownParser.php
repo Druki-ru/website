@@ -1,17 +1,16 @@
 <?php
 
-namespace Drupal\druki_parser\Service;
+namespace Drupal\druki_markdown\Parser;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\markdown\Markdown;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Parser for Markdown.
  *
  * @package Drupal\druki_parser\Service
  */
-class DrukiMarkdownParser implements DrukiMarkdownParserInterface {
+class MarkdownParser implements MarkdownParserInterface {
 
   /**
    * The markdown parser.

@@ -1,7 +1,7 @@
 services:
-  druki_parser.markdown:
-    class: 'Drupal\druki_parser\Service\DrukiMarkdownParser'
-    arguments: ['@markdown', '@entity_type.manager']
+#  druki_parser.markdown:
+#    class: 'Drupal\druki_parser\Service\DrukiMarkdownParser'
+#    arguments: ['@markdown', '@entity_type.manager']
 
 #  druki_parser.folder:
 #    class: 'Drupal\druki_parser\Service\DrukiFolderParser'

@@ -16,12 +16,12 @@ use Drupal\druki_content_sync\Parser\HTMLParser;
 use Drupal\druki_content_sync\Queue\ContentQueueItem;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
+use Drupal\druki_markdown\Parser\MarkdownParserInterface;
 use Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode;
 use Drupal\druki_paragraph_heading\Common\ParagraphContent\ParagraphHeading;
 use Drupal\druki_paragraph_image\Common\ParagraphContent\ParagraphImage;
 use Drupal\druki_paragraph_note\Common\ParagraphContent\ParagraphNote;
 use Drupal\druki_paragraph_text\Common\ParagraphContent\ParagraphText;
-use Drupal\druki_parser\Service\DrukiMarkdownParserInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -48,7 +48,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * The markdown parser.
    *
-   * @var \Drupal\druki_parser\Service\DrukiMarkdownParserInterface
+   * @var \Drupal\druki_markdown\Parser\MarkdownParserInterface
    */
   protected $markdownParser;
 
@@ -135,7 +135,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *   The entity type manager.
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
-   * @param \Drupal\druki_parser\Service\DrukiMarkdownParserInterface $markdown_parser
+   * @param \Drupal\druki_markdown\Parser\MarkdownParserInterface $markdown_parser
    *   The markdown parser.
    * @param \Drupal\druki_content_sync\Parser\HTMLParser $html_parser
    *   The HTML parser.
@@ -159,7 +159,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     $plugin_definition,
     EntityTypeManagerInterface $entity_type_manager,
     EntityFieldManagerInterface $entity_field_manager,
-    DrukiMarkdownParserInterface $markdown_parser,
+    MarkdownParserInterface $markdown_parser,
     HTMLParser $html_parser,
     DrukiFileTracker $file_tracker,
     ConfigFactoryInterface $config_factory,
@@ -194,7 +194,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
       $plugin_definition,
       $container->get('entity_type.manager'),
       $container->get('entity_field.manager'),
-      $container->get('druki_parser.markdown'),
+      $container->get('druki_markdown.parser'),
       $container->get('druki_content_sync.html_parser'),
       $container->get('druki_file.tracker'),
       $container->get('config.factory'),

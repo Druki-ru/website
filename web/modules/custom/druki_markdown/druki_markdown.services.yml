@@ -1,0 +1,4 @@
+services:
+  druki_markdown.parser:
+    class: Drupal\druki_markdown\Parser\MarkdownParser
+    arguments: ['@markdown', '@entity_type.manager']

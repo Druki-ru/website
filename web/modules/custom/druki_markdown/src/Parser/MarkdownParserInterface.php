@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_parser\Service;
+namespace Drupal\druki_markdown\Parser;
 
 /**
  * Object for parse markdown and html and transform to specific data structures.
  *
  * @package Drupal\druki_parser\Service
  */
-interface DrukiMarkdownParserInterface {
+interface MarkdownParserInterface {
 
   /**
    * Parses markdown content.
