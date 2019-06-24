@@ -13,3 +13,6 @@ services:
   druki_content_sync.manager:
     class: Drupal\druki_content_sync\Queue\SyncQueueManager
     arguments: ['@queue', '@plugin.manager.queue_worker']
+
+  druki_content_sync.html_parser:
+    class: Drupal\druki_content_sync\Parser\HTMLParser

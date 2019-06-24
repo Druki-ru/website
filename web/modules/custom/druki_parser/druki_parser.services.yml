@@ -2,8 +2,7 @@ services:
   druki_parser.markdown:
     class: 'Drupal\druki_parser\Service\DrukiMarkdownParser'
     arguments: ['@markdown', '@entity_type.manager']
-  druki_parser.html:
-    class: 'Drupal\druki_parser\Service\DrukiHTMLParser'
+
   druki_parser.folder:
     class: 'Drupal\druki_parser\Service\DrukiFolderParser'
     arguments: ['@language_manager']

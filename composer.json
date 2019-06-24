@@ -21,6 +21,8 @@
     ],
     "require": {
         "php": ">=7.2",
+        "ext-dom": "*",
+        "ext-json": "*",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": "^2.5",

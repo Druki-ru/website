@@ -1,7 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\Service;
-
+namespace Drupal\druki_content_sync\Parser;
 
 use Drupal\druki_content_sync\Content\ContentStructure;
 
@@ -10,7 +9,7 @@ use Drupal\druki_content_sync\Content\ContentStructure;
  *
  * @package Drupal\druki_parser\Service
  */
-interface DrukiHTMLParserInterface {
+interface HTMLParserInterface {
 
   /**
    * Parses HTML to structured data.

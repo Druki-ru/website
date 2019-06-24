@@ -1,9 +1,7 @@
 <?php
 
-namespace Drupal\druki_parser\Service;
+namespace Drupal\druki_content_sync\Parser;
 
-use DOMElement;
-use DOMNode;
 use Drupal\druki_content_sync\Content\ContentList;
 use Drupal\druki_content_sync\Content\ContentStructure;
 use Drupal\druki_content_sync\MetaInformation\MetaInformation;
@@ -16,11 +14,9 @@ use Drupal\druki_paragraph_text\Common\ParagraphContent\ParagraphText;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Parser for HTML.
- *
- * @package Drupal\druki_parser\Service
+ * Parse HTML markup to structured value objects.
  */
-class DrukiHTMLParser implements DrukiHTMLParserInterface {
+class HTMLParser implements HTMLParserInterface {
 
   /**
    * {@inheritdoc}
@@ -99,7 +95,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(DOMElement $dom_element, MetaInformation $meta_information): bool {
+  protected function parseMetaInformation(\DOMElement $dom_element, MetaInformation $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $meta_block = $crawler->filter('div[id="meta-information"]');
 
@@ -124,12 +120,12 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @param $filepath
    *   The filepath of file in which this link was found.
    */
-  protected function processInternalLink(DOMNode $dom_element, $filepath) {
+  protected function processInternalLink(\DOMNode $dom_element, $filepath) {
     if (empty($dom_element->childNodes)) {
       return;
     }
 
-    /** @var DOMElement $child_node */
+    /** @var \DOMElement $child_node */
     foreach ($dom_element->childNodes as $child_node) {
 
       if ($child_node->nodeName == 'a') {
@@ -158,7 +154,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseNote(DOMElement $dom_element, ContentList $content): ?bool {
+  protected function parseNote(\DOMElement $dom_element, ContentList $content): ?bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $note_element = $crawler->filter('div[data-druki-note]');
 
@@ -191,7 +187,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseHeading(DOMElement $dom_element, ContentList $content): bool {
+  protected function parseHeading(\DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
@@ -216,7 +212,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseCode(DOMElement $dom_element, ContentList $content): bool {
+  protected function parseCode(\DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $code_elements = ['pre'];
 
@@ -241,7 +237,7 @@ class DrukiHTMLParser implements DrukiHTMLParserInterface {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseImage(DOMElement $dom_element, ContentList $content): bool {
+  protected function parseImage(\DOMElement $dom_element, ContentList $content): bool {
     $crawler = new Crawler($dom_element);
     $image = $crawler->filter('img')->first();
 
