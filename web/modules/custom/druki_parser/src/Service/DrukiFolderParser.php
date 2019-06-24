@@ -60,7 +60,7 @@ class DrukiFolderParser implements DrukiFolderParserInterface {
     foreach ($this->finder as $file_info) {
       // Check if path any of enabled languages.
       foreach ($active_langcodes as $langcode) {
-        if (preg_match("/docs/$langcode.*?/i", $file_info->getRelativePath())) {
+        if (preg_match("/docs\/{$langcode}.*?/i", $file_info->getRelativePath())) {
           $parsed_files[$langcode][] = $file_info;
         }
       }
