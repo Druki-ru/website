@@ -15,9 +15,3 @@ filters:
     weight: 0
     settings:
       parser: commonmark
-  druki_content_internal_links:
-    id: druki_content_internal_links
-    provider: druki_content
-    status: true
-    weight: -10
-    settings: {  }

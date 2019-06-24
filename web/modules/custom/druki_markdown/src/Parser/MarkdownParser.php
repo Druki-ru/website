@@ -35,7 +35,7 @@ class MarkdownParser implements MarkdownParserInterface {
     $user = $user_storage->load(1);
     // The markdown looking for filters available for provided user. If we call
     // it via Drush, we will be anonymous user, and if filter is not accessible
-    // to him, markdown will be converted without extensions. So we force in
+    // to it, markdown will be converted without extensions. So we force in
     // code to handle it via admin user.
     $this->markdownParser = $markdown->getParser('thephpleague/commonmark', 'markdown', $user);
   }
