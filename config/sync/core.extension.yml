@@ -30,7 +30,6 @@ module:
   druki_paragraph_image: 0
   druki_paragraph_note: 0
   druki_paragraph_text: 0
-  druki_parser: 0
   druki_search: 0
   druki_title: 0
   druki_vue: 0
