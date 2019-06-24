@@ -7,6 +7,8 @@
     ],
     "require": {
         "ext-dom": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "symfony/dom-crawler": "~3.0",
+        "symfony/finder": "~3.0"
     }
 }

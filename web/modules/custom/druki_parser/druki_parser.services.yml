@@ -3,6 +3,6 @@ services:
     class: 'Drupal\druki_parser\Service\DrukiMarkdownParser'
     arguments: ['@markdown', '@entity_type.manager']
 
-  druki_parser.folder:
-    class: 'Drupal\druki_parser\Service\DrukiFolderParser'
-    arguments: ['@language_manager']
+#  druki_parser.folder:
+#    class: 'Drupal\druki_parser\Service\DrukiFolderParser'
+#    arguments: ['@language_manager']

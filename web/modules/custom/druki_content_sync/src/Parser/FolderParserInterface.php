@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_parser\Service;
+namespace Drupal\druki_content_sync\Parser;
 
 /**
  * Parser for filesystem folders.
  *
  * @package Drupal\druki_parser\Service
  */
-interface DrukiFolderParserInterface {
+interface FolderParserInterface {
 
   /**
    * Parses markdown content.

@@ -6,7 +6,7 @@ services:
 
   druki_content_sync.git_pull_finished_subscriber:
     class: Drupal\druki_content_sync\EventSubscriber\GitPullFinishedSubscriber
-    arguments: ['@queue', '@druki_parser.folder', '@database', '@entity_type.manager']
+    arguments: ['@queue', '@druki_content_sync.folder_parser', '@database', '@entity_type.manager']
     tags:
       - { name: event_subscriber }
 
@@ -16,3 +16,7 @@ services:
 
   druki_content_sync.html_parser:
     class: Drupal\druki_content_sync\Parser\HTMLParser
+
+  druki_content_sync.folder_parser:
+    class: Drupal\druki_content_sync\Parser\FolderParser
+    arguments: ['@language_manager']

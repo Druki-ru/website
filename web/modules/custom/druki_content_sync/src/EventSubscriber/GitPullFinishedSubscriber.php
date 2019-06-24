@@ -5,10 +5,10 @@ namespace Drupal\druki_content_sync\EventSubscriber;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
+use Drupal\druki_content_sync\Parser\FolderParserInterface;
 use Drupal\druki_content_sync\Queue\ContentQueueItem;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
-use Drupal\druki_parser\Service\DrukiFolderParserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -28,7 +28,7 @@ class GitPullFinishedSubscriber implements EventSubscriberInterface {
   /**
    * The folder parser.
    *
-   * @var \Drupal\druki_parser\Service\DrukiFolderParserInterface
+   * @var \Drupal\druki_content_sync\Parser\FolderParserInterface
    */
   protected $folderParser;
 
@@ -51,7 +51,7 @@ class GitPullFinishedSubscriber implements EventSubscriberInterface {
    *
    * @param \Drupal\Core\Queue\QueueFactory $queue
    *   The queue factory.
-   * @param \Drupal\druki_parser\Service\DrukiFolderParserInterface $folder_parser
+   * @param \Drupal\druki_content_sync\Parser\FolderParserInterface $folder_parser
    *   The folder parser.
    * @param \Drupal\Core\Database\Connection $database
    *   The database connection.
@@ -63,7 +63,7 @@ class GitPullFinishedSubscriber implements EventSubscriberInterface {
    */
   public function __construct(
     QueueFactory $queue,
-    DrukiFolderParserInterface $folder_parser,
+    FolderParserInterface $folder_parser,
     Connection $database,
     EntityTypeManagerInterface $entity_type_manager
   ) {

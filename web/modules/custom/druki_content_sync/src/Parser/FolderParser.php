@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_parser\Service;
+namespace Drupal\druki_content_sync\Parser;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\Finder\Finder;
@@ -16,7 +16,7 @@ use Symfony\Component\Finder\Finder;
  *
  * @package Drupal\druki_parser\Service
  */
-class DrukiFolderParser implements DrukiFolderParserInterface {
+class FolderParser implements FolderParserInterface {
 
   /**
    * The finder component.
