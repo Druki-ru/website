@@ -2292,8 +2292,6 @@ pre[class*="language-"] {
   left: -24px;
   display: none;
   padding-right: 8px;
-  -webkit-transform: translateY(25%);
-          transform: translateY(25%);
   color: #bdbdbd; }
   .paragraph-druki-heading__anchor:before {
     content: "\F339";
