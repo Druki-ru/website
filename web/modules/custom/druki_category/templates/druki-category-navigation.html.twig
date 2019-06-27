@@ -1,3 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present category navigation.
+ *
+ * This templates is used on entity pages with druki_category field. It shows
+ * links to other entities of the same type with the same druki_category.area
+ * value.
+ *
+ * Available variables:
+ * - links: The array contains links to categories.
+ *   - attributes: The attributes for specific link.
+ *   - is_active: The boolean indicatior, if theme hook is being rendered on
+ *     the same page as this link.
+ *   - url: The URL for category page.
+ *   - text: The category name.
+ *
+ * @see template_preprocess_druki_category_navigation()
+ */
+#}
 {% set bem_block = 'druki-category-navigation' %}
 <div{{ attributes.addClass(bem_block) }}>
   {% if links %}
