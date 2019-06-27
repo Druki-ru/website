@@ -26,13 +26,14 @@ function druki_cron(): void {
     // Trying to get new last stable release for Drupal project.
     /** @var \Drupal\druki\Service\DrupalProjects $drupal_projects */
     $drupal_projects = \Drupal::service('druki.drupal_projects');
-    $release = $drupal_projects->getProjectLastStableRelease('drupal', '8.x');
+    $release = $drupal_projects->getProjectLastStableRelease('drupal');
 
     // If release can't be retrieved, we skip everything else and wait for next
     // cron to try again.
     if ($release) {
       $drupal_releases['last_stable_release'] = $release;
       $drupal_releases['expires'] = $request_time + (60 * 60 * 24);
+      \Drupal::state()->set('druki.drupal_releases', $drupal_releases);
 
       /** @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator */
       $cache_tags_invalidator = \Drupal::service('cache_tags.invalidator');
@@ -53,7 +54,7 @@ function druki_preprocess_page(array &$variables): void {
 
   $variables['last_drupal_release'] = NULL;
   if (isset($drupal_releases['last_stable_release'])) {
-    $variables['last_drupal_release'] = $drupal_releases->get('last_stable_release');
+    $variables['last_drupal_release'] = $drupal_releases['last_stable_release'];
   }
 
   $variables['#cache']['tags'][] = 'druki_last_stable_release';

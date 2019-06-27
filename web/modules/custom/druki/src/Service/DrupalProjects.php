@@ -2,46 +2,29 @@
 
 namespace Drupal\druki\Service;
 
-use GuzzleHttp\Client;
-use SimpleXMLElement;
-use XMLReader;
+use Drupal\update\UpdateFetcherInterface;
+use Exception;
 
 /**
- * Class DrupalProjects.
- *
- * @todo maybe replace or use UpdateFetcher, since there is the same code lol.
- *
- * This service is helps to find some project information.
+ * Fetches information about drupal projects.
  */
 class DrupalProjects {
 
   /**
-   * Base URL for projects API endpoint.
+   * The update fetcher.
+   *
+   * @var \Drupal\update\UpdateFetcherInterface
    */
-  const PROJECT_API_BASE_URL = 'https://updates.drupal.org/release-history';
+  protected $updateFetcher;
 
   /**
-   * The HTTP client.
+   * Constructs a new DrupalProjects object.
    *
-   * @var \GuzzleHttp\Client
+   * @param \Drupal\update\UpdateFetcherInterface $update_fetcher
+   *   The update fetcher.
    */
-  protected $httpClient;
-
-  /**
-   * The XML reader.
-   *
-   * @var \XMLReader
-   */
-  protected $xmlReader;
-
-  /**
-   * DrupalProjects constructor.
-   *
-   * @param \GuzzleHttp\Client $httpClient
-   */
-  public function __construct(Client $httpClient) {
-    $this->httpClient = $httpClient;
-    $this->xmlReader = new XMLReader();
+  public function __construct(UpdateFetcherInterface $update_fetcher) {
+    $this->updateFetcher = $update_fetcher;
   }
 
   /**
@@ -49,21 +32,20 @@ class DrupalProjects {
    *
    * @param string $project_name
    *   The project name.
-   * @param string $api_compatibility
-   *   The project API compatibility. E.g. "8.x".
    *
    * @return string|null
    *   The last stable release version, NULL if something wrong happens or
    *   stable release is missing.
    */
-  public function getProjectLastStableRelease(string $project_name, string $api_compatibility): ?string {
-    $releases = $this->getProjectReleases($project_name, $api_compatibility);
+  public function getProjectLastStableRelease(string $project_name): ?string {
+    $releases = $this->updateFetcher->fetchProjectData(['name' => $project_name]);
+    $data = $this->parseXml($releases);
 
-    if (!empty($releases)) {
-      foreach ($releases as $release) {
-        if ($release['stable']) {
-          return $release['version'];
-        }
+    foreach ($data['releases'] as $release) {
+      // Beta, alpha, rc and other not stable version will have additional value
+      // under key "version_extra".
+      if (!isset($release['version_extra'])) {
+        return $release['version'];
       }
     }
 
@@ -71,52 +53,54 @@ class DrupalProjects {
   }
 
   /**
-   * Gets project releases.
+   * Parses the XML of the Drupal release history info files.
    *
-   * @param string $project_name
-   *   The project name.
-   * @param string $api_compatibility
-   *   The project API compatibility. E.g. "8.x".
+   * @param string $raw_xml
+   *   A raw XML string of available release data for a given project.
    *
    * @return array
-   *   An array with releases info for provided project.
+   *   Array of parsed data about releases for a given project, or NULL if there
+   *   was an error parsing the string.
    */
-  public function getProjectReleases(string $project_name, string $api_compatibility): array {
-    $releases = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $project_name . ':' . $api_compatibility);
-
-    if (!isset($releases)) {
-      // Set default result if there is something wrong happens on the way.
-      $releases = [];
-      $uri = $this::PROJECT_API_BASE_URL . '/' . $project_name . '/' . $api_compatibility;
-
-      $response = $this->httpClient->get($uri);
-
-      if ($response->getStatusCode() == 200) {
-        $content = $response->getBody()->getContents();
-        $this->xmlReader->XML($content);
-
-        // Find <releases>.
-        while ($this->xmlReader->read() && $this->xmlReader->name !== 'releases') {
-
+  protected function parseXml($raw_xml) {
+    try {
+      $xml = new \SimpleXMLElement($raw_xml);
+    }
+    catch (Exception $e) {
+      // SimpleXMLElement::__construct produces an E_WARNING error message for
+      // each error found in the XML data and throws an exception if errors
+      // were detected. Catch any exception and return failure (NULL).
+      return NULL;
+    }
+    // If there is no valid project data, the XML is invalid, so return failure.
+    if (!isset($xml->short_name)) {
+      return NULL;
+    }
+    $data = [];
+    foreach ($xml as $k => $v) {
+      $data[$k] = (string) $v;
+    }
+    $data['releases'] = [];
+    if (isset($xml->releases)) {
+      foreach ($xml->releases->children() as $release) {
+        $version = (string) $release->version;
+        $data['releases'][$version] = [];
+        foreach ($release->children() as $k => $v) {
+          $data['releases'][$version][$k] = (string) $v;
         }
-
-        if ($this->xmlReader->name == 'releases') {
-          $releases_dom = new SimpleXMLElement($this->xmlReader->readOuterXml());
-
-          /** @var SimpleXMLElement $element */
-          foreach ($releases_dom as $element) {
-            $item = [
-              'version' => (string) $element->version,
-              'stable' => $element->version_extra ? FALSE : TRUE,
-            ];
-
-            $releases[] = $item;
+        $data['releases'][$version]['terms'] = [];
+        if ($release->terms) {
+          foreach ($release->terms->children() as $term) {
+            if (!isset($data['releases'][$version]['terms'][(string) $term->name])) {
+              $data['releases'][$version]['terms'][(string) $term->name] = [];
+            }
+            $data['releases'][$version]['terms'][(string) $term->name][] = (string) $term->value;
           }
         }
       }
     }
 
-    return $releases;
+    return $data;
   }
 
 }
