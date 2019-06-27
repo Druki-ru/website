@@ -2287,7 +2287,7 @@ pre[class*="language-"] {
 
 .paragraph-druki-heading__anchor {
   font-size: 1.125rem;
-  line-height: inherit;
+  line-height: 1.8em;
   position: absolute;
   left: -24px;
   display: none;
@@ -2305,8 +2305,6 @@ pre[class*="language-"] {
     display: inline-block;
     text-decoration: inherit;
     margin-right: 0; }
-  .paragraph-druki-heading__anchor::before {
-    top: 0; }
 
 .paragraph-druki-heading__heading {
   position: relative;

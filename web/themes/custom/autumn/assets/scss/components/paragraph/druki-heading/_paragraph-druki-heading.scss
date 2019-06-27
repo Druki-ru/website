@@ -3,17 +3,13 @@
 
   &__anchor {
     @include mdi-icon('link-variant', $margin-size: 0);
-    @include font-size(18px, inherit);
+    @include font-size(18px, 1.8em);
     position: absolute;
     left: spacing-unit(-3);
     display: none;
     padding-right: spacing-unit();
     transform: translateY(25%);
     color: gray(400);
-
-    &::before {
-      top: 0;
-    }
   }
 
   &__heading {
