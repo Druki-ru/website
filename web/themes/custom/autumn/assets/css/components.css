@@ -2285,39 +2285,48 @@ pre[class*="language-"] {
 .block-autumn-content a[href^="//"]:not([href*="druki.ru"])::after {
   color: #757575; }
 
-.paragraph-druki-heading {
-  position: relative; }
+.paragraph-druki-heading__anchor {
+  font-size: 1.125rem;
+  line-height: inherit;
+  position: absolute;
+  left: -24px;
+  display: none;
+  padding-right: 8px;
+  -webkit-transform: translateY(25%);
+          transform: translateY(25%);
+  color: #bdbdbd; }
+  .paragraph-druki-heading__anchor:before {
+    content: "\F339";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Material Design Icons";
+    display: inline-block;
+    text-decoration: inherit;
+    margin-right: 0; }
+  .paragraph-druki-heading__anchor::before {
+    top: 0; }
+
+.paragraph-druki-heading__heading {
+  position: relative;
+  margin: unset; }
+
+.paragraph-druki-heading__heading--h2 {
+  margin-top: 40px;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eeeeee; }
+
+.paragraph-druki-heading__heading--h3 {
+  margin-top: 40px; }
+
+.paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
+  display: block; }
+
+@media (max-width: 61.9375rem) {
   .paragraph-druki-heading__anchor {
-    font-size: 1.125rem;
-    line-height: inherit;
-    color: #bdbdbd;
-    position: relative; }
-    .paragraph-druki-heading__anchor:before {
-      content: "\F339";
-      font-style: normal;
-      font-variant: normal;
-      text-rendering: auto;
-      line-height: 1;
-      font-family: "Material Design Icons";
-      display: inline-block;
-      text-decoration: inherit;
-      margin-right: 0; }
-    .paragraph-druki-heading__anchor::before {
-      position: absolute;
-      left: -24px;
-      top: 0; }
-  .paragraph-druki-heading__heading {
-    margin: unset; }
-  .paragraph-druki-heading__heading--h2 {
-    margin-top: 40px;
-    margin-bottom: 24px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #eeeeee; }
-  .paragraph-druki-heading__heading--h3 {
-    margin-top: 40px; }
-  @media (max-width: 61.9375rem) {
-    .paragraph-druki-heading__anchor {
-      display: none; } }
+    display: none; } }
 
 .paragraph-druki-note {
   border-radius: 4px;

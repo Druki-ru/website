@@ -1,21 +1,23 @@
 .paragraph-druki-heading {
   $block: &;
-  position: relative;
 
   &__anchor {
     @include mdi-icon('link-variant', $margin-size: 0);
     @include font-size(18px, inherit);
+    position: absolute;
+    left: spacing-unit(-3);
+    display: none;
+    padding-right: spacing-unit();
+    transform: translateY(25%);
     color: gray(400);
-    position: relative;
 
     &::before {
-      position: absolute;
-      left: -24px;
       top: 0;
     }
   }
 
   &__heading {
+    position: relative;
     margin: unset;
   }
 
@@ -28,6 +30,10 @@
 
   &__heading--h3 {
     margin-top: spacing-unit(xl);
+  }
+
+  &:hover &__anchor {
+    display: block;
   }
 
   @include media-breakpoint-down(md) {
