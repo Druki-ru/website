@@ -2287,11 +2287,9 @@ pre[class*="language-"] {
 
 .paragraph-druki-heading__anchor {
   font-size: 1.125rem;
-  line-height: 1.8em;
-  position: absolute;
-  left: -24px;
   display: none;
-  padding-right: 8px;
+  margin-left: -25px;
+  vertical-align: middle;
   color: #bdbdbd; }
   .paragraph-druki-heading__anchor:before {
     content: "\F339";
@@ -2306,7 +2304,8 @@ pre[class*="language-"] {
 
 .paragraph-druki-heading__heading {
   position: relative;
-  margin: unset; }
+  margin: unset;
+  vertical-align: middle; }
 
 .paragraph-druki-heading__heading--h2 {
   margin-top: 40px;
@@ -2318,7 +2317,7 @@ pre[class*="language-"] {
   margin-top: 40px; }
 
 .paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
-  display: block; }
+  display: inline-block; }
 
 @media (max-width: 61.9375rem) {
   .paragraph-druki-heading__anchor {

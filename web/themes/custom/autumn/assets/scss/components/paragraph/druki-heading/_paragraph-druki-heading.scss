@@ -3,17 +3,17 @@
 
   &__anchor {
     @include mdi-icon('link-variant', $margin-size: 0);
-    @include font-size(18px, 1.8em);
-    position: absolute;
-    left: spacing-unit(-3);
+    @include font-size(18px, false);
     display: none;
-    padding-right: spacing-unit();
+    margin-left: -25px;
+    vertical-align: middle;
     color: gray(400);
   }
 
   &__heading {
     position: relative;
     margin: unset;
+    vertical-align: middle;
   }
 
   &__heading--h2 {
@@ -28,7 +28,7 @@
   }
 
   &:hover &__anchor {
-    display: block;
+    display: inline-block;
   }
 
   @include media-breakpoint-down(md) {
