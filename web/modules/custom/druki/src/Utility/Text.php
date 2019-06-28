@@ -2,6 +2,8 @@
 
 namespace Drupal\druki\Utility;
 
+use Drupal\Component\Transliteration\PhpTransliteration;
+
 /**
  * Class Text with simple string utility.
  *
@@ -30,7 +32,8 @@ class Text {
     $iteration = 0;
 
     // Main processing for anchors.
-    $anchor = \Drupal::transliteration()->transliterate($text);
+    $transliteration = new PhpTransliteration();
+    $anchor = $transliteration->transliterate($text);
     $anchor = strtolower($anchor);
     $anchor = trim($anchor);
     // Replace all spaces with dash.
