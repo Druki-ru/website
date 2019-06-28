@@ -1,4 +1,11 @@
-{# Don't extend becayse bem_block is not inhirit from parent ;( #}
+{#
+/**
+ * @file
+ * Default theme implementation to present paragrapgh note.
+ *
+ * We don't use extend here, because bem_block is not inherited from parent.
+ */
+#}
 {% set bem_block = bem_block ?: ('paragraph-' ~ paragraph.bundle ~ (view_mode != 'default' ? '-' ~ view_mode))|clean_class %}
 {% set classes = [
   bem_block,

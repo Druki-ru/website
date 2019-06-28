@@ -1,3 +1,16 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present remote video.
+ *
+ * Available variables:
+ * - thumbnail_uri: The URI of thumbnail image of the video.
+ * - thumbnail_alt: The alt value for thumbnail image.
+ * - thumbnail_style: The image style effect for thumbnail.
+ *
+ * @see template_preprocess_druki_media_remote_video_optimized()
+ */
+#}
 {% set bem_block = 'druki-media-remote-video-optimized' %}
 <div{{ attributes.addClass(bem_block) }}>
   <div class="{{ bem_block }}__preview">
