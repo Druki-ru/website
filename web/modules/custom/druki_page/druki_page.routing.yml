@@ -6,10 +6,10 @@ druki.download:
   requirements:
     _permission: 'access content'
 
-druki.docs:
-  path: '/docs'
+druki.wiki:
+  path: '/wiki'
   defaults:
-    _title: 'Documentation'
-    _controller: '\Drupal\druki_page\Controller\DrukiPageController::docsPage'
+    _title: 'Drupal Wiki'
+    _controller: '\Drupal\druki_page\Controller\DrukiPageController::wikiPage'
   requirements:
     _permission: 'access content'

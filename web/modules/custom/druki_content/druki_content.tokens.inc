@@ -37,20 +37,14 @@ function druki_content_tokens(string $type, array $tokens, array $data, array $o
       switch ($name) {
         case 'computed-alias':
           $path_parts = [];
+          // Force /wiki to be in path in every file.
+          $path_parts[] = 'wiki';
 
-          if (
-            $druki_content->hasField('forced_path')
-            && !$druki_content->get('forced_path')->isEmpty()
-          ) {
+          if ($druki_content->hasField('forced_path') && !$druki_content->get('forced_path')->isEmpty()) {
             $path_parts[] = $druki_content->get('forced_path')->value;
           }
           else {
-            $path_parts[] = 'docs';
-
-            if (
-              $druki_content->hasField('core')
-              && !$druki_content->get('core')->isEmpty()
-            ) {
+            if ($druki_content->hasField('core') && !$druki_content->get('core')->isEmpty()) {
               $path_parts[] = $druki_content->get('core')->value;
             }
 

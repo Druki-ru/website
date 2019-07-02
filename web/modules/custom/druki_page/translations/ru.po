@@ -4,5 +4,5 @@ msgstr ""
 msgid "Download Drupal"
 msgstr "Скачать Drupal"
 
-msgid "Documentation"
-msgstr "Документация"
+msgid "Drupal Wiki"
+msgstr "Drupal энциклопедия"

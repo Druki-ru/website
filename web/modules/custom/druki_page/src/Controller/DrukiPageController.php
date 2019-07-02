@@ -24,10 +24,10 @@ class DrukiPageController extends ControllerBase {
   /**
    * Builds the response.
    */
-  public function docsPage() {
+  public function wikiPage() {
 
     $build['content'] = [
-      '#theme' => 'druki_page_docs',
+      '#theme' => 'druki_page_wiki',
     ];
 
     return $build;

@@ -2088,26 +2088,26 @@ pre[class*="language-"] {
   .druki-page-download__cards {
     grid-template-columns: 1fr; } }
 
-.druki-page-docs__title {
+.druki-page-wiki__title {
   font-size: 2.125rem;
   line-height: 1.41176;
   font-weight: bold;
   text-align: center; }
 
-.druki-page-docs__subtitle {
+.druki-page-wiki__subtitle {
   font-size: 1.25rem;
   line-height: 1.6;
   font-weight: normal;
   text-align: center;
   color: #757575; }
 
-.druki-page-docs__header {
+.druki-page-wiki__header {
   margin-bottom: 40px; }
 
-.druki-page-docs__row {
+.druki-page-wiki__row {
   margin: 40px 0; }
 
-.druki-page-docs__row-title {
+.druki-page-wiki__row-title {
   font-size: 1.875rem;
   line-height: 1.33333;
   font-weight: bold;
@@ -2115,7 +2115,7 @@ pre[class*="language-"] {
   display: inline-block;
   margin-bottom: 32px;
   color: #3F2F17; }
-  .druki-page-docs__row-title::before {
+  .druki-page-wiki__row-title::before {
     position: absolute;
     z-index: -1;
     bottom: 2px;
@@ -2126,18 +2126,18 @@ pre[class*="language-"] {
     content: '';
     background-color: #FFD029; }
 
-.druki-page-docs__row-description {
+.druki-page-wiki__row-description {
   font-size: 1.125rem;
   line-height: 1.77778;
   margin-bottom: 32px; }
 
-.druki-page-docs__box-links {
+.druki-page-wiki__box-links {
   display: grid;
   grid-gap: 32px;
   grid-template-columns: repeat(4, 1fr);
   margin: 32px 0; }
 
-.druki-page-docs__box-links-item {
+.druki-page-wiki__box-links-item {
   background-color: #fff;
   box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1);
   padding: 16px;
@@ -2145,7 +2145,7 @@ pre[class*="language-"] {
   position: relative;
   overflow: hidden;
   transition: all .25s ease-in-out; }
-  .druki-page-docs__box-links-item::before {
+  .druki-page-wiki__box-links-item::before {
     content: '';
     display: block;
     position: absolute;
@@ -2157,30 +2157,30 @@ pre[class*="language-"] {
     height: 0;
     transition: all .3s ease; }
 
-.druki-page-docs__box-links-item:hover .druki-page-docs__box-links-item-title {
+.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-title {
   color: white; }
 
-.druki-page-docs__box-links-item:hover .druki-page-docs__box-links-item-description {
+.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-description {
   color: #eeeeee; }
 
-.druki-page-docs__box-links-item:hover::before {
+.druki-page-wiki__box-links-item:hover::before {
   width: 200%;
   padding-bottom: 200%;
   background-color: #0678BE; }
 
-.druki-page-docs__box-links-item-title {
+.druki-page-wiki__box-links-item-title {
   font-size: 1.125rem;
   line-height: 1.77778;
   color: #222330;
   position: relative; }
 
-.druki-page-docs__box-links-item-description {
+.druki-page-wiki__box-links-item-description {
   font-size: 0.875rem;
   line-height: 1.71429;
   color: #616161;
   position: relative; }
 
-.druki-page-docs__faq {
+.druki-page-wiki__faq {
   font-size: 0.875rem;
   line-height: 1.71429;
   color: #616161;
@@ -2188,24 +2188,24 @@ pre[class*="language-"] {
   max-width: 600px;
   margin: 0 auto; }
 
-.druki-page-docs__other-items {
+.druki-page-wiki__other-items {
   display: grid;
   grid-gap: 32px;
   grid-template-columns: repeat(4, 1fr); }
 
-.druki-page-docs__other-item-title {
+.druki-page-wiki__other-item-title {
   font-weight: bold; }
 
-.druki-page-docs__other-item-items {
+.druki-page-wiki__other-item-items {
   margin: unset;
   list-style-type: none; }
 
 @media (max-width: 47.9375rem) {
-  .druki-page-docs__box-links, .druki-page-docs__other-items {
+  .druki-page-wiki__box-links, .druki-page-wiki__other-items {
     grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 35.9375rem) {
-  .druki-page-docs__box-links, .druki-page-docs__other-items {
+  .druki-page-wiki__box-links, .druki-page-wiki__other-items {
     grid-template-columns: 1fr; } }
 
 .block-druki-content-toc {

@@ -13,7 +13,7 @@ function druki_page_theme(array $existing, string $type, string $theme, string $
     'druki_page_download' => [
       'variables' => [],
     ],
-    'druki_page_docs' => [
+    'druki_page_wiki' => [
       'variables' => [],
     ],
   ];
