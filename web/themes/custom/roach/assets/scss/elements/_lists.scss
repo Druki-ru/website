@@ -1,0 +1,11 @@
+// =============================================================================
+// Lists.
+// =============================================================================
+
+$list-margins: 1rem 0 1rem 2rem !default;
+$list-paddings: 0 !default;
+
+ol, ul {
+  margin: $list-margins;
+  padding: $list-paddings;
+}

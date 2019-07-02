@@ -1,0 +1,38 @@
+// =============================================================================
+// Typography.
+// =============================================================================
+
+$paragraph-margins: 0 0 1rem !default;
+
+$mark-bg: #fff9c4 !default;
+$mark-padding: .2em !default;
+$mark-color: inherit !default;
+
+p {
+  margin: $paragraph-margins;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+small {
+  @include font-size($global-font-size * 0.80);
+  font-weight: normal;
+}
+
+big {
+  @include font-size($global-font-size * 1.20);
+  font-weight: normal;
+}
+
+mark {
+  padding: $mark-padding;
+  background-color: $mark-bg;
+  color: $mark-color;
+}
+
+code {
+  font-size: $global-font-size;
+  font-family: $font-family-monospace;
+}

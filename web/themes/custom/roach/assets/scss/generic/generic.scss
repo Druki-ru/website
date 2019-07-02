@@ -1,0 +1,13 @@
+// =============================================================================
+// High-level styles such as resets and normalize.css.
+// =============================================================================
+
+// Settings.
+@import "../settings/core";
+
+// Tools.
+@import "../tools/core";
+
+// Generic.
+@import "../../../node_modules/normalize.css/normalize";
+@import "animations";

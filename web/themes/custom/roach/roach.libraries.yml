@@ -1,0 +1,27 @@
+style.base:
+  css:
+    base:
+      assets/css/generic.css: {}
+
+style.layout:
+  css:
+    layout:
+      assets/css/elements.css: {}
+      assets/css/objects.css: {}
+
+style.component:
+  css:
+    component:
+      assets/css/components.css: {}
+
+style.utilities:
+  css:
+    state:
+      assets/css/utilities.css: {}
+  dependencies:
+    - roach/google.fonts
+
+google.fonts:
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Ubuntu:400,400i,500,500i,700,700i&subset=cyrillic: { type: external, minified: true }
