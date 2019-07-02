@@ -1,3 +1,11 @@
+druki_content.admin:
+  path: '/admin/druki/content'
+  defaults:
+    _controller: Drupal\system\Controller\SystemController::systemAdminMenuBlockPage
+    _title: Druki content
+  requirements:
+    _permission: 'administer druki settings'
+
 entity.druki_content.settings:
   path: 'admin/structure/druki-content'
   defaults:

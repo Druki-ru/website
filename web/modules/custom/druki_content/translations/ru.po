@@ -54,3 +54,18 @@ msgstr "Конвертирует внутренние ссылки по их ID 
 
 msgid "Delete all druki content"
 msgstr "Удалить всё Druki содержимое"
+
+msgid "Settings for Druki content entity."
+msgstr "Настройки для сущности Druki содержимого."
+
+msgid "Entity settings"
+msgstr "Настройки сущности"
+
+msgid "Configure a Druki content entity type."
+msgstr "Конфигурации для сущности Druki содержимого."
+
+msgid "List of content"
+msgstr "Список содержимого"
+
+msgid "List of druki content."
+msgstr "Список Druki содержимого."
