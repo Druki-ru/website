@@ -31,16 +31,25 @@
 // Layout.
 @import "layout/app";
 @import "layout/main-layout";
-@import "layout/region-header";
+@import "layout/include.header";
+@import "layout/region-sidebar-second";
 @import "layout/region-content";
 @import "layout/region-footer";
 
 // Theme (hook_theme).
 
 // Block.
+@import "block/block-page-title";
+@import "block/block-branding";
+@import "block/block-main-menu";
 
 // Views.
 
 // Node.
 
 // Taxonomy term.
+
+// Paragraph.
+@import "paragraph/druki-heading/paragraph-druki-heading";
+@import "paragraph/druki-image/paragraph-druki-image";
+@import "paragraph/druki-note/paragraph-druki-note";

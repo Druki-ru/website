@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present page header.
+ */
+#}
+{% set bem_block = 'header' %}
+<header class="{{ bem_block }} app__header">
+  <div class="{{ bem_block }}__left">
+    <form action="/search" class="{{ bem_block }}__search">
+      <input name="text"
+             type="text"
+             placeholder="Поиск по эницклопедии"
+             autocomplete="off"
+             class="form-control {{ bem_block }}__search-input">
+      <span class="{{ bem_block }}__search-icon"></span>
+    </form>
+  </div>
+
+  <div class="{{ bem_block }}__center">
+
+  </div>
+
+  <div class="{{ bem_block }}__right">
+
+  </div>
+</header>

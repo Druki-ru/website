@@ -12,8 +12,6 @@ libraries:
   - roach/style.component
   - roach/style.utilities
 regions:
-  header: Header
-  navigation: Navigation
   content: Content
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'

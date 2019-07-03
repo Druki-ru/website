@@ -3,7 +3,7 @@
   min-width: 0; }
 
 :focus {
-  outline: 2px dashed rgba(25, 118, 210, 0.3);
+  outline: 0 dashed rgba(25, 118, 210, 0.3);
   outline-offset: 3px; }
 
 ::-moz-selection {
@@ -23,7 +23,7 @@ html {
 body {
   font-size: 1rem;
   line-height: 1.5;
-  background: #ffffff;
+  background: #F6F8FA;
   font-family: "Ubuntu", sans-serif;
   color: #202124; }
 
@@ -85,7 +85,7 @@ h6 {
   margin-bottom: 0.5rem; }
 
 a {
-  color: #1976d2;
+  color: #124594;
   text-decoration: none; }
   a:hover {
     color: #11508f;
@@ -94,6 +94,8 @@ a {
 ol, ul {
   margin: 1rem 0 1rem 2rem;
   padding: 0; }
+  ol li, ul li {
+    margin: 0.5em 0; }
 
 img {
   max-width: 100%;

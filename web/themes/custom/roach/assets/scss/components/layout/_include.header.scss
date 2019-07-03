@@ -1,0 +1,29 @@
+.header {
+  display: grid;
+  background-color: theme-color(header-background);
+  grid-gap: 0;
+  grid-template-columns: 280px 1fr 280px;
+  position: relative;
+  z-index: 10;
+
+  &__search {
+    position: relative;
+  }
+
+  &__search-icon {
+    @include mdi-icon('magnify', $margin-size: 0);
+    position: absolute;
+    top: 50%;
+    left: spacing-unit(tiny);
+    transform: translateY(-50%);
+  }
+
+  &__search-input {
+    @include font-size(14px);
+    padding-left: spacing-unit();
+    color: gray(600);
+    border: none;
+    border-radius: unset;
+    background-color: unset;
+  }
+}

@@ -1,6 +1,8 @@
 // This class added by includes/structure preprocess page hook. Don't forget
 // to rename STARTER to your theme name to make it works. Or just remove.
 .main-layout {
-  @include make-container;
-  @include make-container-max-widths;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: 280px 1fr 280px;
+  grid-template-areas: "left-sidebar content right-sidebar";
 }

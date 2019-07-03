@@ -2,7 +2,7 @@
 // Links.
 // =============================================================================
 
-$link-color: map-get($theme-colors, primary) !default;
+$link-color: map-get($theme-colors, link) !default;
 $link-decoration: none !default;
 $link-hover-color: theme-color-level(primary, 4) !default;
 $link-hover-decoration: none !default;

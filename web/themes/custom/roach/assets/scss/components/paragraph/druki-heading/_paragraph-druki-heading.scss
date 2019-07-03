@@ -1,0 +1,39 @@
+.paragraph-druki-heading {
+  $block: &;
+
+  &__anchor {
+    @include mdi-icon('link-variant', $margin-size: 0);
+    @include font-size(18px, false);
+    display: none;
+    margin-left: -25px;
+    vertical-align: middle;
+    color: gray(400);
+  }
+
+  &__heading {
+    position: relative;
+    margin: unset;
+    vertical-align: middle;
+  }
+
+  &__heading--h2 {
+    margin-top: spacing-unit(xl);
+    margin-bottom: spacing-unit(3);
+    padding-bottom: spacing-unit();
+    border-bottom: 1px solid gray(200);
+  }
+
+  &__heading--h3 {
+    margin-top: spacing-unit(xl);
+  }
+
+  &:hover &__anchor {
+    display: inline-block;
+  }
+
+  @include media-breakpoint-down(md) {
+    &__anchor {
+      display: none;
+    }
+  }
+}

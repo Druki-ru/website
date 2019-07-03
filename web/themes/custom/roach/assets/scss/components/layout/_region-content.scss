@@ -1,3 +1,6 @@
 .region-content {
-
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  grid-area: content;
+  padding: spacing-unit(large);
 }

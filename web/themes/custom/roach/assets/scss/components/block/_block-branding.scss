@@ -1,0 +1,24 @@
+.block-branding {
+  margin: spacing-unit(large) spacing-unit();
+
+  &__logo-and-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__logo {
+    width: 40px;
+  }
+
+  &__site-name {
+    @include font-size(36px);
+    font-weight: bold;
+    margin-left: spacing-unit(tiny);
+  }
+
+  &__description {
+    @include font-size(14px);
+    text-align: center;
+  }
+}

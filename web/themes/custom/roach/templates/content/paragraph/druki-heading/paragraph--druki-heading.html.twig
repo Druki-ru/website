@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present paragrapgh heading.
+ */
+#}
+{% extends 'paragraph.html.twig' %}
+
+{% block paragraph %}
+  <{{ heading_level }} id="{{ anchor }}" class="{{ bem_block }}__heading {{ bem_block }}__heading--{{ heading_level }}">
+    <a href="#{{ anchor }}" class="{{ bem_block }}__anchor"></a>
+    {{ title }}
+  </{{ heading_level }}>
+{% endblock paragraph %}

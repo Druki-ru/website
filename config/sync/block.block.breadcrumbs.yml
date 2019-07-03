@@ -1,0 +1,26 @@
+uuid: 48b5ac6d-52c8-4167-beb7-3cd9a5553719
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - system
+  theme:
+    - roach
+id: breadcrumbs
+theme: roach
+region: content
+weight: -3
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: 'Строка навигации'
+  provider: system
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

@@ -1,0 +1,22 @@
+uuid: aa36eabf-26f7-49ca-b6d3-f11fe69de979
+langcode: ru
+status: true
+dependencies:
+  theme:
+    - roach
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: roach_local_tasks
+theme: roach
+region: content
+weight: -1
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Вкладки
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }
