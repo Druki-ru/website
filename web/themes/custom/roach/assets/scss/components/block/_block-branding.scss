@@ -1,20 +1,24 @@
 .block-branding {
   margin: spacing-unit(large) spacing-unit();
 
-  &__logo-and-name {
+  &__content {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
+  &__name-and-description {
+    margin-left: spacing-unit(small);
+  }
+
   &__logo {
-    width: 40px;
+    width: 58px;
   }
 
   &__site-name {
-    @include font-size(36px);
+    @include font-size(36px, 1);
     font-weight: bold;
-    margin-left: spacing-unit(tiny);
+    color: $text-color;
   }
 
   &__description {

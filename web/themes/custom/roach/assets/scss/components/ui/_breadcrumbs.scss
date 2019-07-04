@@ -11,7 +11,7 @@ $breadcrumb-margin-bottom: 0 !default;
 $breadcrumb-bg: transparent !default;
 $breadcrumb-delimiter-content: '/' !default;
 $breadcrumb-delimiter-color: gray(500) !default;
-$breadcrumb-link-color: $link-color !default;
+$breadcrumb-link-color: gray(500) !default;
 $breadcrumb-font-size: $global-font-size !default;
 
 .breadcrumbs {
@@ -36,7 +36,7 @@ $breadcrumb-font-size: $global-font-size !default;
 
   &__delimiter {
     &::after {
-      margin: 0 4px;
+      margin: 0 spacing-unit(tiny);
       content: $breadcrumb-delimiter-content;
       color: $breadcrumb-delimiter-color;
     }

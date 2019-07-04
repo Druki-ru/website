@@ -12,19 +12,12 @@
 
   &__heading {
     position: relative;
-    margin: unset;
     vertical-align: middle;
   }
 
   &__heading--h2 {
-    margin-top: spacing-unit(xl);
-    margin-bottom: spacing-unit(3);
-    padding-bottom: spacing-unit();
+    padding-bottom: spacing-unit(tiny);
     border-bottom: 1px solid gray(200);
-  }
-
-  &__heading--h3 {
-    margin-top: spacing-unit(xl);
   }
 
   &:hover &__anchor {

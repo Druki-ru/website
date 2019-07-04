@@ -1,15 +1,15 @@
 {% extends "block.html.twig" %}
 
 {% block content %}
-  <div class="{{ bem_block }}__logo-and-name">
-    {% if site_logo %}
-      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="{{ bem_block }}__logo">
-        <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
-      </a>
-    {% endif %}
+  {% if site_logo %}
+    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="{{ bem_block }}__logo">
+      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+    </a>
+  {% endif %}
 
-    <div class="{{ bem_block }}__site-name">Druki</div>
+  <div class="{{ bem_block }}__name-and-description">
+    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="{{ bem_block }}__site-name">Druki</a>
+    <div class="{{ bem_block }}__description">Drupal энциклопедия</div>
   </div>
 
-  <div class="{{ bem_block }}__description">Drupal энциклопедия</div>
 {% endblock %}

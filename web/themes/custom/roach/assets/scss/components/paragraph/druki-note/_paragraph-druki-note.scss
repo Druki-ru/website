@@ -1,16 +1,20 @@
 .paragraph-druki-note {
   $block: &;
   border-radius: $border-radius-base;
-  background-color: theme-color(code-background);
-  padding: spacing-unit(2);
+  background-color: theme-color(background);
+  padding: spacing-unit(small);
 
   &__header {
-    margin-bottom: spacing-unit();
+    margin-bottom: spacing-unit(tiny);
     user-select: none;
   }
 
   &__note-type {
     font-weight: bold;
+  }
+
+  &__druki-textarea-formatted p:last-child {
+    margin-bottom: unset;
   }
 
   &--note {
@@ -51,7 +55,6 @@
     #{$block}__left {
       background-color: theme-color(success);
     }
-
 
     #{$block}__icon {
       @include mdi-icon('lightbulb-on-outline');

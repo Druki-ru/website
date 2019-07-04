@@ -1,0 +1,49 @@
+.druki-content-toc {
+  @include font-size(14px);
+
+  &__menu {
+    margin: unset;
+    padding: unset;
+  }
+
+  &__menu-item-link {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__submenu {
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 100%;
+      background-color: gray(300);
+      position: absolute;
+      left: -1rem;
+    }
+  }
+
+  ul {
+    counter-reset: item;
+
+    ul {
+      margin: 0 0 0 1rem;
+    }
+  }
+
+  li {
+    display: block;
+    vertical-align: top;
+  }
+
+  li a:before {
+    content: counters(item, ".") ". ";
+    counter-increment: item;
+    color: gray(500);
+    vertical-align: top;
+  }
+}

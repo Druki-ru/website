@@ -25,6 +25,7 @@
 @import "ui/text";
 @import "ui/ui-dialog";
 @import "ui/views-mini-pager";
+@import "ui/prismjs";
 
 // Form.
 
@@ -34,14 +35,21 @@
 @import "layout/include.header";
 @import "layout/region-sidebar-second";
 @import "layout/region-content";
-@import "layout/region-footer";
+@import "layout/include.footer";
 
 // Theme (hook_theme).
+@import "theme/druki-content-toc";
+@import "theme/druki-category-navigation";
 
 // Block.
 @import "block/block-page-title";
 @import "block/block-branding";
 @import "block/block-main-menu";
+@import "block/block-roach-druki-content-toc";
+@import "block/block-roach-druki-category-navigation";
+
+// Druki content
+@import "druki-content/druki-content-druki-content-full";
 
 // Views.
 

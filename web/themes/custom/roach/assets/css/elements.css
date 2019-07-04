@@ -24,13 +24,11 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   background: #F6F8FA;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #202124; }
 
 p {
-  margin: 0 0 1rem; }
-  p:last-child {
-    margin-bottom: 0; }
+  margin: 0 0 16px; }
 
 small {
   font-size: 0.8rem;
@@ -44,12 +42,27 @@ big {
 
 mark {
   padding: 0.2em;
-  background-color: #fff9c4;
-  color: inherit; }
+  color: inherit;
+  background-color: #FFF9C4; }
 
 code {
-  font-size: 16px;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+  font-family: "Fira Code", monospaced;
+  font-size: 90%;
+  padding: 4px 6px;
+  word-break: break-all;
+  border-radius: 4px;
+  background-color: #F6F8FA; }
+
+pre code {
+  padding: unset; }
+
+@media (max-width: 61.9375em) {
+  :target::before {
+    display: block;
+    width: 0;
+    height: 80px;
+    margin: -80px 0 0;
+    content: ""; } }
 
 h1 {
   font-size: 2.25rem;
@@ -81,11 +94,11 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: unset;
-  margin-bottom: 0.5rem; }
+  margin-top: 1.5rem;
+  margin-bottom: 1rem; }
 
 a {
-  color: #124594;
+  color: #0046b3;
   text-decoration: none; }
   a:hover {
     color: #11508f;

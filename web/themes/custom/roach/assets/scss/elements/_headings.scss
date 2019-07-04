@@ -9,8 +9,6 @@ $font-size-h4: 20px !default;
 $font-size-h5: 18px !default;
 $font-size-h6: 16px !default;
 
-$headings-margin-bottom: 0.5rem !default;
-
 h1 {
   @include font-size($font-size-h1);
 }
@@ -41,6 +39,6 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: unset;
-  margin-bottom: $headings-margin-bottom;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }

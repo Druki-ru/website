@@ -1,8 +1,11 @@
-$font-family: 'Ubuntu', sans-serif;
+$font-family: 'Roboto', sans-serif;
+$font-family-monospace: 'Fira Code', monospaced;
 
 $theme-colors: (
   background: #F6F8FA,
   header-background: #ECEEF2,
 
-  link: #124594,
+  link: #0046b3,
+
+  code-background: #F6F8FA,
 );
