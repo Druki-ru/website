@@ -3,16 +3,16 @@
   min-width: 0; }
 
 :focus {
-  outline: 0 dashed rgba(25, 118, 210, 0.3);
+  outline: 0 dashed rgba(255, 208, 41, 0.3);
   outline-offset: 3px; }
 
 ::-moz-selection {
-  background: #1976d2;
-  color: #ffffff; }
+  background: #FFD029;
+  color: #212121; }
 
 ::selection {
-  background: #1976d2;
-  color: #ffffff; }
+  background: #FFD029;
+  color: #212121; }
 
 html {
   font-size: 1rem;
@@ -101,7 +101,7 @@ a {
   color: #0046b3;
   text-decoration: none; }
   a:hover {
-    color: #11508f;
+    color: #ad8d1c;
     text-decoration: none; }
 
 ol, ul {

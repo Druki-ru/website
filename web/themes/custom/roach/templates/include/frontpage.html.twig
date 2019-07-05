@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present front page.
+ */
+#}
+{% set bem_block = 'frontpage' %}
+<div class="{{ bem_block }}">
+  <h1 class="{{ bem_block }}__title">
+    Drupal энциклопедия
+  </h1>
+  {% include '@roach/include/frontpage-promo.html.twig' %}
+</div>

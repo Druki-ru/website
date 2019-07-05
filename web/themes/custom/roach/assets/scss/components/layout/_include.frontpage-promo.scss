@@ -1,0 +1,42 @@
+.frontpage-promo {
+  position: relative;
+  padding: spacing-unit(large);
+  color: theme-color(on-primary);
+
+  &__image {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__description {
+    @include font-size(20px)
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__description {
+    max-width: 65%;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(white, 0.85);
+  }
+
+}
