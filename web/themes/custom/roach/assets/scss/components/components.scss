@@ -38,10 +38,15 @@
 @import "layout/include.footer";
 @import "layout/include.frontpage";
 @import "layout/include.frontpage-promo";
+@import "layout/include.frontpage-get-started-and-versions";
 
 // Theme (hook_theme).
 @import "theme/druki-content-toc";
 @import "theme/druki-category-navigation";
+@import "theme/druki-drupal-versions";
+@import "theme/druki-page-wiki";
+@import "theme/druki-page-download";
+@import "theme/druki-media-remote-video-optimized";
 
 // Block.
 @import "block/block-page-title";

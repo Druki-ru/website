@@ -2,7 +2,7 @@
 // Typography.
 // =============================================================================
 
-$paragraph-margins: 0 0 spacing-unit(small) !default;
+$paragraph-margins: spacing-unit(small) 0 !default;
 
 $mark-bg: #FFF9C4 !default;
 $mark-padding: .2em !default;

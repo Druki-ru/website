@@ -24,3 +24,8 @@ visibility:
     negate: false
     block_visibility_group: ''
     context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/wiki\r\n/download"
+    negate: true
+    context_mapping: {  }

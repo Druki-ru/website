@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present drupal versions.
+ *
+ * Available variables:
+ * - last_stable_release: An array with last stable release info.
+ * - last_minor_release: An array with last minor release info.
+ *
+ * @see template_preprocess_druki_drupal_versions()
+ */
+#}
+{% set bem_block = 'druki-drupal-versions' %}
+<div {{ attributes.addClass(bem_block) }}>
+  <div class="{{ bem_block }}__label">Обновления</div>
+
+  {% if last_minor_release|length %}
+    <div class="{{ bem_block }}__update">
+      <span class="{{ bem_block }}__update-label">Последняя версия:</span>
+      <a href="/wiki/8/releases/{{ last_minor_release.version }}" class="{{ bem_block }}__update-name">
+        {{ last_minor_release.version }}
+      </a>
+      {% if 'Security update' in last_minor_release.terms['Release type'] %}
+        <span title="Обновление безопасности">⚠</span>
+      {% endif %}
+      <span class="{{ bem_block }}__update-date">
+        ({{ last_minor_release.date|date('d.m.Y') }})
+      </span>
+    </div>
+  {% endif %}
+
+  {% if last_stable_release|length %}
+    <div class="{{ bem_block }}__update">
+      <span class="{{ bem_block }}__update-label">Последняя патч:</span>
+      <a href="/wiki/8/releases/{{ last_stable_release.version }}" class="{{ bem_block }}__update-name">
+        {{ last_stable_release.version }}
+      </a>
+      <span class="{{ bem_block }}__update-date">
+        ({{ last_stable_release.date|date('d.m.Y') }})
+      </span>
+    </div>
+  {% endif %}
+
+  <div class="{{ bem_block }}__update">
+    <span class="{{ bem_block }}__update-label">Следующая версия:</span>
+    <a href="/wiki/8/releases/8.8.0" class="{{ bem_block }}__update-name">8.8.0</a>
+    <span class="{{ bem_block }}__update-date">
+      (04.12.2019)
+    </span>
+  </div>
+
+  <a href="/wiki/8/releases" class="{{ bem_block }}__releases">Полный список релизов Drupal 8</a>
+</div>

@@ -4,6 +4,7 @@ namespace Drupal\druki\Service;
 
 use Drupal\update\UpdateFetcherInterface;
 use Exception;
+use SimpleXMLElement;
 
 /**
  * Fetches information about drupal projects.
@@ -28,28 +29,46 @@ class DrupalProjects {
   }
 
   /**
-   * Gets project last stable release.
+   * Gets last minor version info for Drupal core.
    *
-   * @param string $project_name
-   *   The project name.
-   *
-   * @return string|null
-   *   The last stable release version, NULL if something wrong happens or
-   *   stable release is missing.
+   * @return array|null
+   *   The version info.
    */
-  public function getProjectLastStableRelease(string $project_name): ?string {
-    $releases = $this->updateFetcher->fetchProjectData(['name' => $project_name]);
+  public function getCoreLastMinorVersion(): ?array {
+    $releases = $this->fetchProjectData('drupal');
     $data = $this->parseXml($releases);
 
-    foreach ($data['releases'] as $release) {
-      // Beta, alpha, rc and other not stable version will have additional value
-      // under key "version_extra".
-      if (!isset($release['version_extra'])) {
-        return $release['version'];
-      }
+    $last_stable_version = $this->getCoreLastStableVersion();
+    $minor_version_pieces = [
+      $last_stable_version['version_major'],
+      $last_stable_version['version_minor'],
+      0,
+    ];
+
+    $minor_version = implode('.', $minor_version_pieces);
+
+    return empty($data['releases'][$minor_version]) ? [] : $data['releases'][$minor_version];
+  }
+
+  /**
+   * Fetch project data.
+   *
+   * @param string $project_name
+   *   The Drupal project name.
+   *
+   * @return string
+   *   The request result.
+   */
+  protected function fetchProjectData(string $project_name): string {
+    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $project_name);
+
+    if (isset($result)) {
+      return $result;
     }
 
-    return NULL;
+    $result = $this->updateFetcher->fetchProjectData(['name' => $project_name]);
+
+    return $result;
   }
 
   /**
@@ -64,7 +83,7 @@ class DrupalProjects {
    */
   protected function parseXml($raw_xml) {
     try {
-      $xml = new \SimpleXMLElement($raw_xml);
+      $xml = new SimpleXMLElement($raw_xml);
     }
     catch (Exception $e) {
       // SimpleXMLElement::__construct produces an E_WARNING error message for
@@ -101,6 +120,28 @@ class DrupalProjects {
     }
 
     return $data;
+  }
+
+  /**
+   * Gets project last stable release.
+   *
+   * @return array|null
+   *   The last stable release version info, NULL if something wrong happens or
+   *   stable release is missing.
+   */
+  public function getCoreLastStableVersion(): ?array {
+    $releases = $this->fetchProjectData('drupal');
+    $data = $this->parseXml($releases);
+
+    foreach ($data['releases'] as $release) {
+      // Beta, alpha, rc and other not stable version will have additional value
+      // under key "version_extra".
+      if (!isset($release['version_extra'])) {
+        return $release;
+      }
+    }
+
+    return NULL;
   }
 
 }

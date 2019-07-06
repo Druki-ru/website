@@ -35,7 +35,7 @@ class DrupalProjectsServiceTest extends KernelTestBase {
    * Test getting project last stable release.
    */
   public function testGetProjectLastStableRelease() {
-    $actual = $this->drupalProjects->getProjectLastStableRelease('drupal');
+    $actual = $this->drupalProjects->getCoreLastStableVersion('drupal');
     dump($actual);
   }
 

@@ -958,8 +958,7 @@ pre[class*="language-"] {
 
 .frontpage-promo {
   position: relative;
-  padding: 64px;
-  color: #3F2F17; }
+  padding: 64px; }
   .frontpage-promo__image {
     position: absolute;
     z-index: 0;
@@ -989,6 +988,12 @@ pre[class*="language-"] {
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.85); }
+
+.frontpage-get-started-and-versions {
+  display: grid;
+  grid-gap: 32px;
+  padding: 64px;
+  grid-template-columns: 1fr 400px; }
 
 .druki-content-toc {
   font-size: 0.875rem;
@@ -1051,6 +1056,343 @@ pre[class*="language-"] {
     vertical-align: top;
     font-weight: normal; }
 
+.druki-drupal-versions {
+  padding: 16px;
+  border: 2px solid #e0e0e0; }
+  .druki-drupal-versions__label {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: bold;
+    margin-bottom: 16px; }
+  .druki-drupal-versions__update-label {
+    font-weight: bold;
+    color: #616161; }
+  .druki-drupal-versions__update-date {
+    font-size: 0.8125rem;
+    line-height: 1.84615;
+    color: #9e9e9e; }
+  .druki-drupal-versions__releases {
+    font-size: 0.875rem;
+    line-height: 1.71429;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    margin-top: 8px; }
+
+.druki-page-wiki__title {
+  font-size: 2.125rem;
+  line-height: 1.41176;
+  font-weight: bold;
+  text-align: center; }
+
+.druki-page-wiki__subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: normal;
+  text-align: center;
+  color: #757575; }
+
+.druki-page-wiki__header {
+  margin-bottom: 32px; }
+
+.druki-page-wiki__row {
+  margin: 32px 0; }
+
+.druki-page-wiki__row-title {
+  font-size: 1.875rem;
+  line-height: 1.33333;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 32px;
+  color: #3F2F17; }
+  .druki-page-wiki__row-title::before {
+    position: absolute;
+    z-index: -1;
+    bottom: 2px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    content: '';
+    background-color: #FFD029; }
+
+.druki-page-wiki__row-description {
+  font-size: 1.125rem;
+  line-height: 1.77778;
+  margin-bottom: 32px; }
+
+.druki-page-wiki__box-links {
+  display: grid;
+  grid-gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 32px 0; }
+
+.druki-page-wiki__box-links-item {
+  background-color: #fff;
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out; }
+  .druki-page-wiki__box-links-item::before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 0;
+    right: -50%;
+    bottom: -50%;
+    border-radius: 100%;
+    width: 0;
+    height: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease; }
+
+.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-title {
+  color: white; }
+
+.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-description {
+  color: #eeeeee; }
+
+.druki-page-wiki__box-links-item:hover::before {
+  width: 200%;
+  padding-bottom: 200%;
+  background-color: #FFD029; }
+
+.druki-page-wiki__box-links-item-title {
+  font-size: 1.125rem;
+  line-height: 1.77778;
+  position: relative; }
+
+.druki-page-wiki__box-links-item-description {
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  color: #616161;
+  position: relative; }
+
+.druki-page-wiki__faq {
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  color: #616161;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto; }
+
+.druki-page-wiki__other-items {
+  display: grid;
+  grid-gap: 32px;
+  grid-template-columns: repeat(4, 1fr); }
+
+.druki-page-wiki__other-item-title {
+  font-weight: bold; }
+
+.druki-page-wiki__other-item-items {
+  margin: unset;
+  list-style-type: none; }
+
+@media (max-width: 47.9375em) {
+  .druki-page-wiki__box-links, .druki-page-wiki__other-items {
+    grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 35.9375em) {
+  .druki-page-wiki__box-links, .druki-page-wiki__other-items {
+    grid-template-columns: 1fr; } }
+
+.druki-page-download__title {
+  font-size: 2.125rem;
+  line-height: 1.41176;
+  font-weight: bold;
+  text-align: center; }
+
+.druki-page-download__subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: normal;
+  text-align: center;
+  color: #757575; }
+
+.druki-page-download__command-pane {
+  display: table;
+  margin: auto 0;
+  color: white;
+  border-radius: 4px;
+  background-color: #212121;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+
+.druki-page-download__command {
+  font-family: "Fira Code", monospaced; }
+  .druki-page-download__command::before {
+    content: '>_ ';
+    color: #FFD029; }
+
+.druki-page-download__command-note {
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+  color: #757575; }
+
+.druki-page-download__cards {
+  display: grid;
+  -webkit-box-pack: center;
+          justify-content: center;
+  margin: 0;
+  grid-gap: 32px;
+  grid-template-columns: repeat(3, 300px); }
+
+.druki-page-download__card {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1); }
+
+.druki-page-download__card-icon--try:before {
+  content: "\F1E4";
+  font-family: "Material Design Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-page-download__card-icon--update:before {
+  content: "\F6AF";
+  font-family: "Material Design Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-page-download__card-icon--open-source:before {
+  content: "\FB8A";
+  font-family: "Material Design Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-page-download__card-icon--source-code:before {
+  content: "\FB7C";
+  font-family: "Material Design Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-page-download__card-icon--community:before {
+  content: "\F848";
+  font-family: "Material Design Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-page-download__card-icon--talk:before {
+  content: "\FB57";
+  font-family: "Material Design Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.druki-page-download__card-icon {
+  font-size: 3.75rem;
+  line-height: 1.2; }
+
+.druki-page-download__card-title {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: bold; }
+
+.druki-page-download__card-text {
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  color: #616161; }
+
+.druki-page-download__card-bottom {
+  font-weight: bold;
+  margin-top: auto; }
+
+@media (min-width: 36em) and (max-width: 61.9375em) {
+  .druki-page-download__cards {
+    grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 35.9375em) {
+  .druki-page-download__cards {
+    grid-template-columns: 1fr; } }
+
+.druki-media-remote-video-optimized {
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 56.25%;
+  border-radius: 6px;
+  box-shadow: 0 3px 25px 0 rgba(22, 22, 22, 0.15); }
+  .druki-media-remote-video-optimized__preview, .druki-media-remote-video-optimized__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%; }
+  .druki-media-remote-video-optimized__preview {
+    cursor: pointer; }
+  .druki-media-remote-video-optimized__thumbnail {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center; }
+  .druki-media-remote-video-optimized__play {
+    font-size: 1.875rem;
+    line-height: 50px;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8); }
+    .druki-media-remote-video-optimized__play:before {
+      content: "\F40A";
+      font-family: "Material Design Icons";
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      text-decoration: inherit;
+      margin-right: 0; }
+  .druki-media-remote-video-optimized__loading {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    display: none;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+  .druki-media-remote-video-optimized__loading--active {
+    display: block; }
+
 .block-page-title h1 {
   margin: 32px 0 64px; }
 
@@ -1095,7 +1437,7 @@ pre[class*="language-"] {
     font-weight: bold; }
 
 p {
-  margin: 0 0 16px; }
+  margin: 16px 0; }
 
 small {
   font-size: 0.8rem;
@@ -1132,7 +1474,7 @@ pre code {
     content: ""; } }
 
 .druki-content-druki-content-full__content-item {
-  margin: 0 0 16px; }
+  margin: 16px 0; }
 
 .paragraph-druki-heading__anchor {
   font-size: 1.125rem;

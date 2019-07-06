@@ -25,6 +25,8 @@ $spacing-units: map-merge((
   normal: $global-baseline * unit-factor(),
   large: $global-baseline * unit-factor(large),
   huge: $global-baseline * unit-factor(huge),
+
+  grid-gap: $global-baseline * 4,
 ), $spacing-units);
 
 // Font sizes.

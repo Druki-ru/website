@@ -1,0 +1,6 @@
+.frontpage-get-started-and-versions {
+  display: grid;
+  grid-gap: spacing-unit(grid-gap);
+  padding: spacing-unit(large);
+  grid-template-columns: 1fr 400px;
+}

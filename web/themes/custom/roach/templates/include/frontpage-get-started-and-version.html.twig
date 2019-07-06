@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present front page get started and versions.
+ */
+#}
+{% set bem_block = 'frontpage-get-started-and-versions' %}
+<div class="{{ bem_block }}">
+  <div class="{{ bem_block }}__get-started">
+    GET STARTED
+  </div>
+
+  <div class="{{ bem_block }}__versions">
+    {{ drupal_versions }}
+  </div>
+</div>

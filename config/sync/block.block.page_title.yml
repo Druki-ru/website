@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - block_visibility_groups
+    - system
   theme:
     - roach
 id: page_title
@@ -22,4 +23,9 @@ visibility:
     id: condition_group
     negate: false
     block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/wiki\r\n/download"
+    negate: true
     context_mapping: {  }
