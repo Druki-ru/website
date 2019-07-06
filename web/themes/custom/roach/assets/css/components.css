@@ -1101,22 +1101,7 @@ pre[class*="language-"] {
 
 .druki-page-wiki__row-title {
   font-size: 1.875rem;
-  line-height: 1.33333;
-  font-weight: bold;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 32px;
-  color: #3F2F17; }
-  .druki-page-wiki__row-title::before {
-    position: absolute;
-    z-index: -1;
-    bottom: 2px;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 4px;
-    content: '';
-    background-color: #FFD029; }
+  line-height: 1.33333; }
 
 .druki-page-wiki__row-description {
   font-size: 1.125rem;
@@ -1132,7 +1117,7 @@ pre[class*="language-"] {
 .druki-page-wiki__box-links-item {
   background-color: #fff;
   box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.1);
-  padding: 32px;
+  padding: 16px;
   border-radius: 4px;
   position: relative;
   overflow: hidden;
@@ -1165,7 +1150,8 @@ pre[class*="language-"] {
 .druki-page-wiki__box-links-item-title {
   font-size: 1.125rem;
   line-height: 1.77778;
-  position: relative; }
+  position: relative;
+  margin: unset; }
 
 .druki-page-wiki__box-links-item-description {
   font-size: 0.875rem;

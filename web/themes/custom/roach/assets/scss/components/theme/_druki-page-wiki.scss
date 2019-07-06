@@ -24,23 +24,6 @@
 
   &__row-title {
     @include font-size(30px);
-    font-weight: bold;
-    position: relative;
-    display: inline-block;
-    margin-bottom: spacing-unit();
-    color: theme-color(secondary);
-
-    &::before {
-      position: absolute;
-      z-index: -1;
-      bottom: 2px;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 4px;
-      content: '';
-      background-color: theme-color();
-    }
   }
 
   &__row-description {
@@ -58,7 +41,7 @@
   &__box-links-item {
     background-color: #fff;
     box-shadow: 0 0 20px 4px rgba(black, 0.1);
-    padding: spacing-unit();
+    padding: spacing-unit(small);
     border-radius: $border-radius-base;
     position: relative;
     overflow: hidden;
@@ -97,6 +80,7 @@
   &__box-links-item-title {
     @include font-size(18px);
     position: relative;
+    margin: unset;
   }
 
   &__box-links-item-description {
