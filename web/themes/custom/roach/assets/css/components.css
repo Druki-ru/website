@@ -939,9 +939,7 @@ pre[class*="language-"] {
   .footer__bottom {
     -webkit-box-pack: center;
             justify-content: center;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 2px dashed #e0e0e0; }
+    margin-top: 16px; }
   .footer__heart {
     color: #dc3545; }
     .footer__heart:before {
