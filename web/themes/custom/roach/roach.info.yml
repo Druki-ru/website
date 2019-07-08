@@ -11,6 +11,7 @@ libraries:
   - roach/style.layout
   - roach/style.component
   - roach/style.utilities
+  - druki_vue/main
 regions:
   content: Content
   sidebar_first: 'Sidebar first'

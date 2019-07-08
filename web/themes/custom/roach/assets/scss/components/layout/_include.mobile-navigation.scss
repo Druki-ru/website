@@ -1,0 +1,89 @@
+$icons: (
+  '/wiki': 'file-document-box-multiple',
+  '/download': 'download',
+  '/wiki/faq': 'help-circle-outline',
+  '/wiki/changelog': 'select-compare',
+);
+.mobile-navigation {
+  $block: &;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: -100vw;
+  overflow: hidden;
+  width: 100vw;
+  height: 100%;
+  transition: 0.25s ease-in-out background-color;
+  background-color: transparent;
+
+  &__sidebar {
+    position: fixed;
+    z-index: 201;
+    top: 0;
+    overflow-y: scroll;
+    width: 250px;
+    height: 100%;
+    transition: 0.5s ease-in-out transform;
+    transform: translateX(-250px);
+    background-color: #FFFFFF;
+  }
+
+  &__branding {
+    display: flex;
+    justify-content: center;
+    padding: spacing-unit(small);
+  }
+
+  &__branding-logo {
+    height: 100px;
+  }
+
+  &__navigation {
+    @include list-unstyled;
+  }
+
+  &__navigation-item {
+    margin: unset;
+  }
+
+  @each $href, $icon in $icons {
+    &__navigation-link[href^="#{$href}"] {
+      @include mdi-icon($icon, before, 0);
+    }
+  }
+
+  &__navigation-link {
+    display: flex;
+    align-items: center;
+    padding: spacing-unit(small);
+    color: gray(600);
+
+    &::before {
+      @include font-size(24px, 1, $important: true);
+      width: 24px;
+      margin-right: spacing-unit(small) !important;
+      text-align: center;
+    }
+  }
+
+  &--active {
+    left: 0;
+    background-color: rgba(black, 0.5);
+
+    #{$block}__sidebar {
+      transform: translateX(0);
+    }
+  }
+
+  &--hiding {
+    background-color: transparent;
+
+    #{$block}__sidebar {
+      transform: translateX(-250px);
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}

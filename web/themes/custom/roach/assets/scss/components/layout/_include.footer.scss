@@ -1,13 +1,12 @@
 .footer {
   @include font-size(13px);
   padding: spacing-unit() 0;
-  margin: 0 280px;
   color: gray(600);
+  max-width: 1920px;
+  margin: 0 auto;
 
   &__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    margin: 0 280px;
   }
 
   &__bottom {
@@ -35,5 +34,17 @@
   &__developer {
     color: #757AF7;
     font-weight: bold;
+  }
+
+  @include media-breakpoint-down(xl) {
+    &__inner {
+      margin: 0 spacing-unit() 0 280px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &__inner {
+      margin: 0 spacing-unit();
+    }
   }
 }

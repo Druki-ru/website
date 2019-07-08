@@ -14,16 +14,13 @@
   }
 
   &__description {
-    @include font-size(20px)
+    @include font-size(20px);
+    max-width: 65%;
   }
 
   &__inner {
     position: relative;
     z-index: 2;
-  }
-
-  &__description {
-    max-width: 65%;
   }
 
   &::before {
@@ -38,4 +35,11 @@
     background-color: rgba(white, 0.85);
   }
 
+  @include media-breakpoint-down(md) {
+    padding: spacing-unit();
+
+    &__description {
+      max-width: 100%;
+    }
+  }
 }

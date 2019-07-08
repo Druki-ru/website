@@ -39,6 +39,9 @@
 @import "layout/include.frontpage";
 @import "layout/include.frontpage-promo";
 @import "layout/include.frontpage-get-started-and-versions";
+@import "layout/region-sidebar-first";
+@import "layout/include.mobile-navigation";
+@import "layout/include.header-mobile";
 
 // Theme (hook_theme).
 @import "theme/druki-content-toc";
@@ -68,3 +71,6 @@
 @import "paragraph/druki-heading/paragraph-druki-heading";
 @import "paragraph/druki-image/paragraph-druki-image";
 @import "paragraph/druki-note/paragraph-druki-note";
+
+// Vue.js
+@import "vue/search";

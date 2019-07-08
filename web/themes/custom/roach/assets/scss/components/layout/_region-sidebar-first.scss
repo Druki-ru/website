@@ -1,5 +1,5 @@
-.app {
+.region-sidebar-first {
   @include media-breakpoint-down(md) {
-    padding-top: spacing-unit(large);
+    display: none;
   }
 }

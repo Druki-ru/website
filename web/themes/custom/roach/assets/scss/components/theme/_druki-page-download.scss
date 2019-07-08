@@ -9,7 +9,6 @@ $icons: (
 
 .druki-page-download {
   &__title {
-    @include font-size(34px);
     font-weight: bold;
     text-align: center;
   }
@@ -23,8 +22,8 @@ $icons: (
 
   &__command-pane {
     display: table;
-    margin: spacing-unit(6) auto 0;
-    padding: spacing-unit(3);
+    margin: spacing-unit() auto 0;
+    padding: spacing-unit(small);
     color: white;
     border-radius: $border-radius-base;
     background-color: gray(900);
@@ -43,17 +42,16 @@ $icons: (
   &__command-note {
     @include font-size(14px);
     font-style: italic;
-    margin: spacing-unit(3) 0;
+    margin: spacing-unit(small) 0;
     text-align: center;
     color: gray(600);
   }
 
   &__cards {
     display: grid;
-    justify-content: center;
-    margin: spacing-unit(6) 0;
+    margin: spacing-unit() 0;
     grid-gap: spacing-unit(grid-gap);
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   &__card {
@@ -61,11 +59,11 @@ $icons: (
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    padding: spacing-unit(sm);
+    padding: spacing-unit(small);
     text-align: center;
     border-radius: $border-radius-base;
-    background-color: #FFFFFF;
-    box-shadow: 0 0 20px 4px rgba(black, 0.1);
+    background-color: theme-color(background);
+    box-shadow: inset 0 0 10px 0 rgba(black, 0.1);
   }
 
   @each $modifier, $icon in $icons {
@@ -76,12 +74,13 @@ $icons: (
 
   &__card-icon {
     @include font-size(60px);
-    margin-bottom: spacing-unit(2);
+    margin-bottom: spacing-unit(tiny);
   }
 
   &__card-title {
     @include font-size(20px);
     font-weight: bold;
+    margin: unset;
   }
 
   &__card-text {
@@ -92,7 +91,7 @@ $icons: (
   &__card-bottom {
     font-weight: bold;
     margin-top: auto;
-    padding-top: spacing-unit(2);
+    padding-top: spacing-unit(tiny);
   }
 
   @include media-breakpoint-between(sm, md) {

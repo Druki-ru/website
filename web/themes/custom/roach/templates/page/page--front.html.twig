@@ -7,6 +7,7 @@
 {% set bem_block = 'app' %}
 <div class="{{ bem_block }}">
   {% include '@roach/include/header.html.twig' %}
+  {% include '@roach/include/header-mobile.html.twig' %}
 
   <main{{ main_layout_attributes.addClass(bem_block ~ '__content') }}>
     {{ page.sidebar_first }}
@@ -15,4 +16,5 @@
   </main>
 
   {% include '@roach/include/footer.html.twig' %}
+  {% include '@roach/include/mobile-navigation.html.twig' %}
 </div>

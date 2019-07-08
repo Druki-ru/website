@@ -2,7 +2,6 @@
   $block: &;
 
   &__title {
-    @include font-size(34px);
     font-weight: bold;
     text-align: center;
   }
@@ -39,8 +38,8 @@
   }
 
   &__box-links-item {
-    background-color: #fff;
-    box-shadow: 0 0 20px 4px rgba(black, 0.1);
+    background-color: theme-color(background);
+    box-shadow: inset 0 0 10px 0 rgba(black, 0.1);
     padding: spacing-unit(small);
     border-radius: $border-radius-base;
     position: relative;

@@ -1,10 +1,17 @@
 .header {
-  display: grid;
-  background-color: theme-color(header-background);
-  grid-gap: 0;
-  grid-template-columns: 280px 1fr 280px;
   position: relative;
   z-index: 10;
+  display: grid;
+  background-color: theme-color(header-background);
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    grid-gap: 0;
+    grid-template-columns: 280px 1fr 280px;
+  }
 
   &__search {
     position: relative;
@@ -25,5 +32,9 @@
     border: none;
     border-radius: unset;
     background-color: unset;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
   }
 }

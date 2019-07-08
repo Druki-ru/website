@@ -6,22 +6,24 @@
 #}
 {% set bem_block = 'header' %}
 <header class="{{ bem_block }} app__header">
-  <div class="{{ bem_block }}__left">
-    <form action="/search" class="{{ bem_block }}__search">
-      <input name="text"
-             type="text"
-             placeholder="Поиск по энциклопедии"
-             autocomplete="off"
-             class="form-control {{ bem_block }}__search-input">
-      <span class="{{ bem_block }}__search-icon"></span>
-    </form>
-  </div>
+  <div class="{{ bem_block }}__inner">
+    <div class="{{ bem_block }}__left">
+      <form action="/search" class="{{ bem_block }}__search">
+        <input name="text"
+               type="text"
+               placeholder="Поиск по энциклопедии"
+               autocomplete="off"
+               class="form-control {{ bem_block }}__search-input">
+        <span class="{{ bem_block }}__search-icon"></span>
+      </form>
+    </div>
 
-  <div class="{{ bem_block }}__center">
+    <div class="{{ bem_block }}__center">
 
-  </div>
+    </div>
 
-  <div class="{{ bem_block }}__right">
+    <div class="{{ bem_block }}__right">
 
+    </div>
   </div>
 </header>
