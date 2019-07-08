@@ -1588,7 +1588,8 @@ pre[class*="language-"] {
     -webkit-box-align: center;
             align-items: center;
     -webkit-box-pack: center;
-            justify-content: center; }
+            justify-content: center;
+    position: relative; }
   .block-branding__name-and-description {
     margin-left: 16px; }
   .block-branding__logo {
@@ -1602,6 +1603,16 @@ pre[class*="language-"] {
     font-size: 0.875rem;
     line-height: 1.71429;
     text-align: center; }
+  .block-branding__experiment {
+    font-size: 0.5rem;
+    line-height: 2;
+    text-transform: uppercase;
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    position: absolute;
+    right: -8px;
+    font-weight: bold;
+    color: #bdbdbd; }
 
 .block-main-menu {
   margin: 32px; }

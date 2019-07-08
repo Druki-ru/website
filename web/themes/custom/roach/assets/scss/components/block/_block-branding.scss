@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
 
   &__name-and-description {
@@ -24,5 +25,15 @@
   &__description {
     @include font-size(14px);
     text-align: center;
+  }
+
+  &__experiment {
+    @include font-size(8px);
+    text-transform: uppercase;
+    transform: rotate(-90deg);
+    position: absolute;
+    right: -8px;
+    font-weight: bold;
+    color: gray(400);
   }
 }
