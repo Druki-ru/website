@@ -925,7 +925,7 @@ pre[class*="language-"] {
   padding: 64px; }
   @media (max-width: 61.9375em) {
     .region-content {
-      padding: 32px; } }
+      padding: 16px; } }
 
 .footer {
   font-size: 0.8125rem;
