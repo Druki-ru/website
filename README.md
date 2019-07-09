@@ -7,6 +7,10 @@ This website is an experiment with a lot of different API's, techniques and othe
 
 It was inspired by many other documentation sites and their content editing process, but most important inspiration comes from ArchWiki. This project is trying to achieve the same things, but about Drupal and on Drupal, because, why not?
 
+## Local environment
+
+If you want to user local environment that used for development, just copy **docker-compose.yml.dist** to **docker-compose.yml**. Edit it to your needs and run with `make` or `docker-compose up -d`.
+
 ## Install a local copy
 
 1. Clone this repository.
