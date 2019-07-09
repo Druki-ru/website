@@ -1,9 +1,0 @@
-{
-  "name": "drupal/autumn",
-  "type": "drupal-theme",
-  "description": "",
-  "keywords": ["Drupal"],
-  "require": {
-    "npm-asset/firacode": "^1.206"
-  }
-}
