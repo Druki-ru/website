@@ -1,0 +1,22 @@
+uuid: 22166af9-58fb-4745-beda-68f6b1b4eb13
+langcode: ru
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - roach
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: roach_content
+theme: roach
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Содержимое страницы'
+  provider: system
+  label_display: '0'
+visibility: {  }

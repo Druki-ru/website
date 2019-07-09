@@ -1,0 +1,5 @@
+.app {
+  @include media-breakpoint-down(md) {
+    padding-top: spacing-unit(large);
+  }
+}

@@ -1,0 +1,40 @@
+.druki-category-navigation {
+  @include font-size(14px);
+
+  &__menu {
+    margin: unset;
+    padding: unset;
+  }
+
+  &__menu-item-link {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__menu-item-link--active {
+    font-weight: bold;
+  }
+
+  ul {
+    counter-reset: item;
+
+    ul {
+      margin: 0 0 0 1rem;
+    }
+  }
+
+  li {
+    display: block;
+    vertical-align: top;
+  }
+
+  li a:before {
+    content: counters(item, ".") ". ";
+    counter-increment: item;
+    color: gray(500);
+    vertical-align: top;
+    font-weight: normal;
+  }
+}

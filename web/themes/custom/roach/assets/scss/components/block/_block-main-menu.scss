@@ -1,0 +1,9 @@
+.block-main-menu {
+  margin: spacing-unit();
+
+  &__menu {
+    margin: unset;
+    padding: unset;
+    list-style: none;
+  }
+}

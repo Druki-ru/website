@@ -1,0 +1,49 @@
+style.base:
+  css:
+    base:
+      assets/css/generic.css: {}
+
+style.layout:
+  css:
+    layout:
+      assets/css/elements.css: {}
+      assets/css/objects.css: {}
+
+style.component:
+  css:
+    component:
+      assets/css/components.css: {}
+
+style.utilities:
+  css:
+    state:
+      assets/css/utilities.css: {}
+  dependencies:
+    - roach/google.fonts
+
+google.fonts:
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&subset=cyrillic: { type: external, minified: true }
+
+prism:
+  remote: https://prismjs.com/
+  version: 1.15
+  license:
+    name: MIT
+    gpl-compatible: true
+  js:
+    # Prism has no dist files in any repo. So we use prebuild JS from theme.
+    assets/js/prism.js: { minfied: true }
+
+# Before FiraCode not migrate to Google Fonts, handle it manualy.
+firacode:
+  remote: https://github.com/tonsky/FiraCode
+  version: 1.206
+  license:
+    name: OFL-1.1
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/firacode/distr/fira_code.css: {}
+

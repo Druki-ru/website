@@ -1,0 +1,83 @@
+.paragraph-druki-note {
+  $block: &;
+  border-radius: $border-radius-base;
+  background-color: theme-color(background);
+  padding: spacing-unit(small);
+
+  &__header {
+    margin-bottom: spacing-unit(tiny);
+    user-select: none;
+  }
+
+  &__note-type {
+    font-weight: bold;
+  }
+
+  &__druki-textarea-formatted p:last-child {
+    margin-bottom: unset;
+  }
+
+  &--note {
+    border-left: 6px solid theme-color(note);
+
+    #{$block}__left {
+      background-color: theme-color(note);
+    }
+
+    #{$block}__icon {
+      @include mdi-icon('information-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(note);
+    }
+  }
+
+  &--warning {
+    border-left: 6px solid theme-color(warning);
+
+    #{$block}__left {
+      background-color: theme-color(warning);
+    }
+
+    #{$block}__icon {
+      @include mdi-icon('alert-circle-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(warning);
+    }
+  }
+
+  &--tip {
+    border-left: 6px solid theme-color(success);
+
+    #{$block}__left {
+      background-color: theme-color(success);
+    }
+
+    #{$block}__icon {
+      @include mdi-icon('lightbulb-on-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(success);
+    }
+  }
+
+  &--important {
+    border-left: 6px solid theme-color(error);
+
+    #{$block}__left {
+      background-color: theme-color(error);
+    }
+
+    #{$block}__icon {
+      @include mdi-icon('alert-octagram-outline');
+    }
+
+    #{$block}__header {
+      color: theme-color(error);
+    }
+  }
+}

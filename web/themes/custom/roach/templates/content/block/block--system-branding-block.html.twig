@@ -1,0 +1,17 @@
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {% if site_logo %}
+    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="{{ bem_block }}__logo">
+      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+    </a>
+  {% endif %}
+
+  <div class="{{ bem_block }}__name-and-description">
+    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="{{ bem_block }}__site-name">Druki</a>
+    <div class="{{ bem_block }}__description">Drupal вики</div>
+  </div>
+
+  <div class="{{ bem_block }}__experiment">Experiment</div>
+
+{% endblock %}

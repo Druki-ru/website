@@ -1,0 +1,84 @@
+// =====================================
+// Apply styles for provided breakpoint and higher.
+// @example
+//   media-breakpoint-up(md)
+//   Will apply style to 768px and higher.
+// =====================================
+@mixin media-breakpoint-up($name, $breakpoints: $media-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    $em: ($min / $global-font-size) * 1em;
+    @media (min-width: $em) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// =====================================
+// Apply styles for provided breakpoint and lower.
+// @example
+//   media-breakpoint-down(md)
+//   Will apply style to 768px and lower.
+// =====================================
+@mixin media-breakpoint-down($name, $breakpoints: $media-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    $em: ($max / $global-font-size) * 1em;
+    @media (max-width: $em) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// =====================================
+// Apply styles for provided breakpoint and higher.
+// @example
+//   media-breakpoint-up(md)
+//   Will apply style to 768px and higher.
+// =====================================
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $media-breakpoints) {
+  @include media-breakpoint-up($lower, $breakpoints) {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// =====================================
+// Apply styles only for provided breakpoint.
+// @example
+//   media-breakpoint-only(md)
+//   Will apply style between 768px and 991px.
+// =====================================
+@mixin media-breakpoint-only($name, $breakpoints: $media-breakpoints) {
+  @include media-breakpoint-between($name, $name, $breakpoints) {
+    @content;
+  }
+}
+
+// =====================================
+// Container maximize width allowed for container without gutters.
+// =====================================
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $media-breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      width: ($container-max-width / $global-font-size) * 1em;
+      max-width: 100%;
+    }
+  }
+}
+
+// =====================================
+// Container max width with centering and gutters.
+// =====================================
+@mixin make-container($gutter: $grid-gutter-width) {
+  width: 100%;
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present front page promo section.
+ */
+#}
+{% set bem_block = 'frontpage-promo' %}
+<div class="{{ bem_block }}">
+  {% if promo_image_url %}
+    <img src="{{ promo_image_url }}" alt="Druki Promo" class="{{ bem_block }}__image">
+  {% endif %}
+
+  <div class="{{ bem_block }}__inner">
+    <div class="{{ bem_block }}__content">
+      <div class="{{ bem_block }}__description">
+        <p>
+          Добро пожаловать на <strong>Druki</strong> — вики, посвященная Drupal.
+        </p>
+        <p>
+          <a href="/wiki/drupal"><strong>Drupal</strong></a> — OpenSource <abbr title="Content Management System">CMS</abbr>\<abbr title="Content Management Framework">CMF</abbr> для разработки как <abbr title="Drupal отвечает как за backend часть, так и за frontend.">full-stack сайтов</abbr>, так и <abbr title="Drupal отвечает только за backend составляющую.">decoupled систем</abbr> любой сложности и масштаба.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

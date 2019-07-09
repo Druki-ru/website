@@ -1,0 +1,48 @@
+.footer {
+  @include font-size(13px);
+  padding: spacing-unit() 0;
+  color: gray(600);
+  max-width: 1920px;
+  margin: 0 auto;
+
+  &__inner {
+    margin: 0 280px;
+  }
+
+  &__bottom {
+    justify-content: center;
+    margin-top: spacing-unit(small);
+  }
+
+  &__heart {
+    @include mdi-icon('heart', before, 0);
+    color: color(red);
+  }
+
+  &__drupal {
+    @include mdi-icon('drupal');
+    color: color(blue);
+  }
+
+  &__gitlab {
+    @include mdi-icon('gitlab');
+    color: color(orange);
+  }
+
+  &__developer {
+    color: #757AF7;
+    font-weight: bold;
+  }
+
+  @include media-breakpoint-down(xl) {
+    &__inner {
+      margin: 0 spacing-unit() 0 280px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &__inner {
+      margin: 0 spacing-unit();
+    }
+  }
+}

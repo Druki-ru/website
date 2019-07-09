@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present paragrapgh note.
+ *
+ * We don't use extend here, because bem_block is not inherited from parent.
+ */
+#}
+{% set bem_block = bem_block ?: ('paragraph-' ~ paragraph.bundle ~ (view_mode != 'default' ? '-' ~ view_mode))|clean_class %}
+{% set classes = [
+  bem_block,
+  bem_block  ~ '--' ~ paragraph.druki_note_type.value,
+] %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="{{ bem_block }}__header">
+    <span class="{{ bem_block }}__icon"></span>
+    <span class="{{ bem_block }}__note-type">{{ note_type_label }}</span>
+  </div>
+
+  <div class="{{ bem_block }}__content">
+    {{ content }}
+  </div>
+</div>

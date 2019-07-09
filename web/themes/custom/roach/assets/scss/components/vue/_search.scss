@@ -1,0 +1,136 @@
+.search {
+  $block: &;
+  position: relative;
+
+  &__input-pane {
+    position: relative;
+  }
+
+  &__input {
+    @include font-size(20px);
+    padding-right: spacing-unit(large);
+    padding-left: spacing-unit(large);
+
+    &:focus {
+      padding-right: calc(#{spacing-unit(large)} - 1px);
+      padding-left: calc(#{spacing-unit(large)} - 1px);
+    }
+  }
+
+  &__input ~ &__input-icon {
+    @include mdi-icon('magnify', $margin-size: 0);
+    @include font-size(22px);
+    position: absolute;
+    top: 50%;
+    left: spacing-unit(small);
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: gray(400);
+  }
+
+  &__input-pane--focused {
+    #{$block}__input-icon {
+      color: theme-color();
+    }
+  }
+
+  &__results-pane {
+    display: flex;
+    width: 100%;
+    margin-top: spacing-unit(small);
+  }
+
+  &__loading {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(white, 0.5);
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__results-content {
+    display: grid;
+    grid-gap: spacing-unit(grid-gap);
+    grid-template-columns: 1fr 260px;
+    width: 100%;
+  }
+
+  &__filters {
+    padding: spacing-unit(small);
+    border-radius: $border-radius-base;
+  }
+
+  &__filter:not(:last-child) {
+    margin-bottom: spacing-unit(small);
+  }
+
+  &__filter-label {
+    font-weight: bold;
+    margin-bottom: spacing-unit(tiny);
+    padding-bottom: spacing-unit(tiny);
+    border-bottom: 1px solid gray(300);
+  }
+
+  &__filter-item {
+    display: flex;
+    align-items: flex-start;
+
+    input {
+      margin-top: 4px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: spacing-unit(tiny);
+    }
+  }
+
+  &__filter-item-label {
+    margin-left: spacing-unit(small);
+  }
+
+  &__filter-item-description {
+    @include font-size(13px, $modifier: -1);
+    color: gray(600);
+  }
+
+  &__result {
+    padding: spacing-unit(tiny) 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid gray(200);
+    }
+  }
+
+  &__result-title {
+    @include font-size(18px, $modifier: -1);
+    margin-bottom: unset;
+    color: $text-color;
+  }
+
+  &__result:hover &__result-title {
+    color: $link-hover-color;
+  }
+
+  &__result-url {
+    color: $link-color;
+  }
+
+  &__result-core {
+    color: gray(600);
+  }
+
+  @include media-breakpoint-down(sm) {
+    &__results-content {
+      grid-template-columns: 1fr;
+    }
+  }
+}

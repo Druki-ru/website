@@ -1,0 +1,31 @@
+uuid: b410ebc9-59a2-460f-b49b-3013b72d6695
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - system
+  theme:
+    - roach
+id: page_title
+theme: roach
+region: content
+weight: -2
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Заголовок страницы'
+  provider: core
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/wiki\r\n/download"
+    negate: true
+    context_mapping: {  }

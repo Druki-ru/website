@@ -36,7 +36,7 @@
       <ul class="{% if bem_base %}{{ bem_base }}submenu{% endif %}">
         {% for item in links %}
           <li class="{{ bem_base ~ 'menu-item' }}">
-            <a href="#{{ item.anchor }}" class="{{ bem_base ~ 'menu-item-link' }}">{{ item.text }}</a>
+            <a href="#{{ item.anchor }}" class="{{ bem_base ~ 'menu-item-link' }}" title="{{ item.text }}">{{ item.text }}</a>
             {% if item.children %}
               {{ toc.links(item.children, attributes, item.level + 1, bem_base) }}
             {% endif %}

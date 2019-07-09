@@ -1,0 +1,11 @@
+.region-sidebar-second {
+  grid-area: unset;
+
+  @include media-breakpoint-up(xxl) {
+    grid-area: right-sidebar;
+  }
+
+  @include media-breakpoint-down(xl) {
+    display: none;
+  }
+}

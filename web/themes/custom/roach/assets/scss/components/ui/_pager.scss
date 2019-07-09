@@ -1,0 +1,52 @@
+// =============================================================================
+// Drupal hook theme pager.
+// =============================================================================
+
+$pager-list-margin: 1rem auto !default;
+$pager-list-padding: 0 !default;
+$pager-list-background: #ffffff !default;
+
+$pager-item-color: #8c8c8c !default;
+$pager-item-margin: 0 !default;
+$pager-item-padding: 0 .25rem !default;
+
+$pager-item-link-border-bottom: 3px solid transparent !default;
+$pager-item-link-border-active-color: darken($link-color, 20%) !default;
+$pager-item-link-padding: 0 .25rem .25rem !default;
+$pager-item-link-font-weight: 600 !default;
+$pager-item-link-color: $link-color !default;
+$pager-item-link-active-color: darken($link-color, 20%) !default;
+
+.pager {
+  margin: $pager-list-margin;
+  padding: $pager-list-padding;
+
+  &__items {
+    @include list-unstyled;
+    list-style: none outside none;
+    display: table;
+  }
+
+  &__item {
+    display: inline-block;
+    color: $pager-item-color;
+    margin: $pager-item-margin;
+    padding: $pager-item-padding;
+
+    a {
+      display: block;
+      border-bottom: $pager-item-link-border-bottom;
+      padding: $pager-item-link-padding;
+      font-weight: $pager-item-link-font-weight;
+      text-decoration: none;
+      color: $pager-item-link-color;
+    }
+
+    &.is-active {
+      a {
+        border-bottom-color: $pager-item-link-border-active-color;
+        color: $pager-item-link-active-color;
+      }
+    }
+  }
+}
