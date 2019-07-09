@@ -20,6 +20,7 @@ style.utilities:
       assets/css/utilities.css: {}
   dependencies:
     - roach/google.fonts
+    - roach/firacode
 
 google.fonts:
   css:
@@ -46,4 +47,3 @@ firacode:
   css:
     theme:
       /libraries/firacode/distr/fira_code.css: {}
-
