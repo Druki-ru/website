@@ -6,10 +6,10 @@
   font-style: normal; }
 
 a {
-  color: #0046b3;
+  color: var(--theme-color-link);
   text-decoration: none; }
   a:hover {
-    color: #ad8d1c;
+    color: var(--theme-color-primary);
     text-decoration: none; }
 
 .breadcrumbs {
@@ -578,16 +578,16 @@ a.tabledrag-handle .handle {
   color: gray(600); }
 
 .text-info {
-  color: theme-color(info); }
+  color: theme-color(info, true); }
 
 .text-success {
-  color: theme-color(success); }
+  color: theme-color(success, true); }
 
 .text-warning {
-  color: theme-color(warning); }
+  color: theme-color(warning, true); }
 
 .text-error {
-  color: theme-color(error); }
+  color: theme-color(error, true); }
 
 .highlight, .highlight-info, .highlight-success, .highlight-warning, .highlight-error {
   padding: 1px 4px;
@@ -768,7 +768,7 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  background: rgba(255, 208, 41, 0.5); }
+  background: rgba(var(--theme-color-primary), 0.5); }
 
 /* Code blocks */
 pre[class*="language-"] {
@@ -779,7 +779,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background-color: #F6F8FA;
+  background-color: var(--theme-color-code-background);
   /* base3 */ }
 
 /* Inline code */
@@ -1154,7 +1154,7 @@ pre[class*="language-"] {
   -webkit-box-pack: justify;
           justify-content: space-between;
   height: 64px;
-  background-color: #F6F8FA;
+  background-color: var(--theme-color-background);
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); }
   .header-mobile__branding {
     font-size: 1.5rem;
@@ -1310,7 +1310,7 @@ pre[class*="language-"] {
   margin: 32px 0; }
 
 .druki-page-wiki__box-links-item {
-  background-color: #F6F8FA;
+  background-color: var(--theme-color-background);
   box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1);
   padding: 16px;
   border-radius: 4px;
@@ -1340,7 +1340,7 @@ pre[class*="language-"] {
 .druki-page-wiki__box-links-item:hover::before {
   width: 200%;
   padding-bottom: 200%;
-  background-color: #FFD029; }
+  background-color: var(--theme-color-primary); }
 
 .druki-page-wiki__box-links-item-title {
   font-size: 1.125rem;
@@ -1406,7 +1406,7 @@ pre[class*="language-"] {
   font-family: "Fira Code", monospaced; }
   .druki-page-download__command::before {
     content: '>_ ';
-    color: #FFD029; }
+    color: var(--theme-color-primary); }
 
 .druki-page-download__command-note {
   font-size: 0.875rem;
@@ -1433,7 +1433,7 @@ pre[class*="language-"] {
   padding: 16px;
   text-align: center;
   border-radius: 4px;
-  background-color: #F6F8FA;
+  background-color: var(--theme-color-background);
   box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1); }
 
 .druki-page-download__card-icon--try:before {
@@ -1722,7 +1722,7 @@ pre code {
   .paragraph-druki-note--note {
     border-left: 6px solid #0048DC; }
     .paragraph-druki-note--note .paragraph-druki-note__left {
-      background-color: #0048DC; }
+      background-color: var(--theme-color-note); }
     .paragraph-druki-note--note .paragraph-druki-note__icon:before {
       content: "\F2FD";
       font-family: "Material Design Icons";
@@ -1732,11 +1732,11 @@ pre code {
       text-decoration: inherit;
       margin-right: 0.4em; }
     .paragraph-druki-note--note .paragraph-druki-note__header {
-      color: #0048DC; }
+      color: var(--theme-color-note); }
   .paragraph-druki-note--warning {
-    border-left: 6px solid #ffc107; }
+    border-left: 6px solid var(--theme-color-warning); }
     .paragraph-druki-note--warning .paragraph-druki-note__left {
-      background-color: #ffc107; }
+      background-color: var(--theme-color-warning); }
     .paragraph-druki-note--warning .paragraph-druki-note__icon:before {
       content: "\F5D6";
       font-family: "Material Design Icons";
@@ -1746,11 +1746,11 @@ pre code {
       text-decoration: inherit;
       margin-right: 0.4em; }
     .paragraph-druki-note--warning .paragraph-druki-note__header {
-      color: #ffc107; }
+      color: var(--theme-color-warning); }
   .paragraph-druki-note--tip {
-    border-left: 6px solid #67c23a; }
+    border-left: 6px solid var(--theme-color-success); }
     .paragraph-druki-note--tip .paragraph-druki-note__left {
-      background-color: #67c23a; }
+      background-color: var(--theme-color-success); }
     .paragraph-druki-note--tip .paragraph-druki-note__icon:before {
       content: "\F6E8";
       font-family: "Material Design Icons";
@@ -1760,11 +1760,11 @@ pre code {
       text-decoration: inherit;
       margin-right: 0.4em; }
     .paragraph-druki-note--tip .paragraph-druki-note__header {
-      color: #67c23a; }
+      color: var(--theme-color-success); }
   .paragraph-druki-note--important {
-    border-left: 6px solid #dc3545; }
+    border-left: 6px solid var(--theme-color-error); }
     .paragraph-druki-note--important .paragraph-druki-note__left {
-      background-color: #dc3545; }
+      background-color: var(--theme-color-error); }
     .paragraph-druki-note--important .paragraph-druki-note__icon:before {
       content: "\FCC3";
       font-family: "Material Design Icons";
@@ -1774,7 +1774,7 @@ pre code {
       text-decoration: inherit;
       margin-right: 0.4em; }
     .paragraph-druki-note--important .paragraph-druki-note__header {
-      color: #dc3545; }
+      color: var(--theme-color-error); }
 
 .search {
   position: relative; }
@@ -1807,7 +1807,7 @@ pre code {
       text-decoration: inherit;
       margin-right: 0; }
   .search__input-pane--focused .search__input-icon {
-    color: #FFD029; }
+    color: var(--theme-color-primary); }
   .search__results-pane {
     display: -webkit-box;
     display: flex;

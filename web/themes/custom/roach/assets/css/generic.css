@@ -304,4 +304,17 @@ template {
 [hidden] {
   display: none; }
 
+:root {
+  --spacing-unit: 8px;
+  --spacing-xxs: calc(var(--spacing-unit) * 0.5);
+  --spacing-xs: calc(var(--spacing-unit) * 0.5);
+  --spacing-sm: calc(var(--spacing-unit) * 2);
+  --spacing-md: calc(var(--spacing-unit) * 4);
+  --spacing-lg: calc(var(--spacing-unit) * 8);
+  --spacing-xl: calc(var(--spacing-unit) * 16); }
+
+:root {
+  --color-primary: hsl(47, 100%, 58%);
+  --color-secondary: hsl(36, 47%, 17%); }
+
 /*# sourceMappingURL=maps/generic.css.map */

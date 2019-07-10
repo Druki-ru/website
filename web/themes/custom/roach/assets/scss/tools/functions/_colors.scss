@@ -88,15 +88,20 @@
 // =====================================
 // Return color by his key.
 // ====================================
-@function theme-color($key: primary) {
-  @return map-get($theme-colors, $key);
+@function theme-color($key: primary, $value: false) {
+  @if $value {
+    @return map-get($theme-colors, $key);
+  }
+  @else {
+    @return var(--theme-color-#{$key});
+  }
 }
 
 // =====================================
 // Return mixed color by his key.
 // ====================================
 @function theme-color-level($color-name: primary, $level: 0) {
-  $color: theme-color($color-name);
+  $color: theme-color($color-name, true);
   $color-base: if($level > 0, #000000, #FFFFFF);
   $level: abs($level);
   @return mix($color-base, $color, $level * $theme-color-interval);

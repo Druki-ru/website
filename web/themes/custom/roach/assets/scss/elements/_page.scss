@@ -2,16 +2,10 @@
 // Page.
 // =============================================================================
 
-html {
-  font-size: ($global-font-size / 16px) * 1rem;
-  line-height: $global-line-height / $global-font-size;
-  overflow-y: scroll;
-  min-height: 100%;
+:root {
+  --body-background: hsl(210, 29%, 97%);
 }
 
 body {
-  @include font-size($global-font-size);
-  background: theme-color(background);
-  font-family: $font-family;
-  color: $text-color;
+  background: var(--body-background);
 }

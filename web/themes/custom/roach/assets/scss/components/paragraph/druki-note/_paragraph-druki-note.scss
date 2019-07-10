@@ -1,7 +1,7 @@
 .paragraph-druki-note {
   $block: &;
   border-radius: $border-radius-base;
-  background-color: theme-color(background);
+  background-color: theme-color(background, true);
   padding: spacing-unit(small);
 
   &__header {
@@ -18,7 +18,7 @@
   }
 
   &--note {
-    border-left: 6px solid theme-color(note);
+    border-left: 6px solid theme-color(note, true);
 
     #{$block}__left {
       background-color: theme-color(note);

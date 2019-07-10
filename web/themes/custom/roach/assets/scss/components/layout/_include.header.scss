@@ -2,7 +2,7 @@
   position: relative;
   z-index: 10;
   display: grid;
-  background-color: theme-color(header-background);
+  background-color: theme-color(header-background, true);
 
   &__inner {
     position: relative;

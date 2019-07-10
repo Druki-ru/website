@@ -47,10 +47,10 @@ $text-color: #202124 !default;
 // @todo move or remove.
 $text-color-subtle: gray(500) !default;
 $text-color-highlight: gray(600) !default;
-$text-color-info: theme-color(info) !default;
-$text-color-success: theme-color(success) !default;
-$text-color-warning: theme-color(warning) !default;
-$text-color-error: theme-color(error) !default;
+$text-color-info: theme-color(info, true) !default;
+$text-color-success: theme-color(success, true) !default;
+$text-color-warning: theme-color(warning, true) !default;
+$text-color-error: theme-color(error, true) !default;
 
 // Border radius.
 $border-radius-small: 3px !default;

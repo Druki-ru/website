@@ -17,23 +17,23 @@ $btn-default-bg: #ffffff !default;
 $btn-default-border: #dcdfe6 !default;
 
 $btn-primary-color: white !default;
-$btn-primary-bg: theme-color(primary) !default;
-$btn-primary-border: theme-color(primary) !default;
+$btn-primary-bg: theme-color(primary, true) !default;
+$btn-primary-border: theme-color(primary, true) !default;
 
 $btn-success-color: white !default;
-$btn-success-bg: theme-color(success) !default;
+$btn-success-bg: theme-color(success, true) !default;
 $btn-success-border: darken($btn-success-bg, 5%) !default;
 
 $btn-warning-color: white !default;
-$btn-warning-bg: theme-color(warning) !default;
+$btn-warning-bg: theme-color(warning, true) !default;
 $btn-warning-border: darken($btn-warning-bg, 5%) !default;
 
 $btn-danger-color: white !default;
-$btn-danger-bg: theme-color(error) !default;
+$btn-danger-bg: theme-color(error, true) !default;
 $btn-danger-border: darken($btn-danger-bg, 5%) !default;
 
 $btn-info-color: white !default;
-$btn-info-bg: theme-color(info) !default;
+$btn-info-bg: theme-color(info, true) !default;
 $btn-info-border: darken($btn-info-bg, 5%) !default;
 
 // =====================================
