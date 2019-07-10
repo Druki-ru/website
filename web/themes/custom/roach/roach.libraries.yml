@@ -27,6 +27,26 @@ google.fonts:
     theme:
       //fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&subset=cyrillic: { type: external, minified: true }
 
+code_highlight:
+  js:
+    assets/js/code-highlight.js: {}
+  dependencies:
+    - core/drupal
+    - roach/prism
+    - roach/firacode
+
+loading_indicator:
+  js:
+    assets/js/loading-indicator.js: {}
+  dependencies:
+    - core/drupal
+
+mobile_navigation:
+  js:
+    assets/js/mobile-navigation.js: {}
+  dependencies:
+    - core/drupal
+
 prism:
   remote: https://prismjs.com/
   version: 1.15

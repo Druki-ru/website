@@ -12,6 +12,8 @@ libraries:
   - roach/style.component
   - roach/style.utilities
   - druki_vue/main
+  - roach/code_highlight
+  - roach/mobile_navigation
 regions:
   content: Content
   sidebar_first: 'Sidebar first'
