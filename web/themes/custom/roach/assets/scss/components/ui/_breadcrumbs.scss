@@ -2,9 +2,6 @@
 // Drupal breadcrumbs.
 // =============================================================================
 
-// Uses link variables.
-@import "../../elements/links";
-
 $breadcrumb-padding-vertical: 0 !default;
 $breadcrumb-padding-horizontal: 0 !default;
 $breadcrumb-margin-bottom: 0 !default;
@@ -14,8 +11,11 @@ $breadcrumb-delimiter-color: gray(500) !default;
 $breadcrumb-link-color: gray(500) !default;
 $breadcrumb-font-size: $global-font-size !default;
 
+:root {
+  --breadcrumb-padding: 0;
+}
+
 .breadcrumbs {
-  @include font-size($breadcrumb-font-size);
   background: $breadcrumb-bg;
   padding: $breadcrumb-padding-vertical $breadcrumb-padding-horizontal;
   margin-bottom: $breadcrumb-margin-bottom;
@@ -46,34 +46,34 @@ $breadcrumb-font-size: $global-font-size !default;
     display: inline;
   }
 
-  @include media-breakpoint-down(sm) {
-    &__path {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      flex-grow: 0;
-      flex-shrink: 1;
-    }
-
-    &__delimiter {
-      &:last-child {
-        display: none;
-      }
-    }
-
-    &__item-link--current {
-      &::before {
-        margin: 0 4px;
-        content: $breadcrumb-delimiter-content;
-        color: $breadcrumb-delimiter-color;
-      }
-    }
-
-    &__current {
-      display: block;
-      flex-grow: 1;
-      flex-shrink: 0;
-    }
-  }
+  //@include media-breakpoint-down(sm) {
+  //  &__path {
+  //    display: block;
+  //    overflow: hidden;
+  //    text-overflow: ellipsis;
+  //    white-space: nowrap;
+  //    flex-grow: 0;
+  //    flex-shrink: 1;
+  //  }
+  //
+  //  &__delimiter {
+  //    &:last-child {
+  //      display: none;
+  //    }
+  //  }
+  //
+  //  &__item-link--current {
+  //    &::before {
+  //      margin: 0 4px;
+  //      content: $breadcrumb-delimiter-content;
+  //      color: $breadcrumb-delimiter-color;
+  //    }
+  //  }
+  //
+  //  &__current {
+  //    display: block;
+  //    flex-grow: 1;
+  //    flex-shrink: 0;
+  //  }
+  //}
 }

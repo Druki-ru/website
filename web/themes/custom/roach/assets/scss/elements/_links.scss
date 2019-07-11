@@ -2,12 +2,17 @@
 // Links.
 // =============================================================================
 
+:root {
+  --link-color: var(--color-primary);
+  --link-color-hover: var(--color-primary);
+}
+
 a {
-  color: theme-color(link);
+  color: var(--link-color);
   text-decoration: none;
 
   &:hover {
-    color: theme-color(primary);
+    color: var(--link-color-hover);
     text-decoration: none;
   }
 }

@@ -2,13 +2,7 @@
 // Global configuration and variables.
 // =============================================================================
 
-@import "../tools/functions/math";
-@import "../tools/functions/unit-factor";
-@import "../tools/functions/spacing-unit";
-
 @import "variables.override";
-@import "global";
-@import "colors";
 @import "grid";
 @import "media-breakpoints";
 @import "lost-grid";

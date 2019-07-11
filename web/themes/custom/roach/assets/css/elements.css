@@ -5,39 +5,51 @@
 :focus {
   outline: none; }
 
+:root {
+  --selection-background: var(--color-primary);
+  --selection-color: var(--text-color); }
+
 ::-moz-selection {
-  background: #FFD029;
-  color: #212121; }
+  background: var(--selection-background);
+  color: var(--selection-color); }
 
 ::selection {
-  background: #FFD029;
-  color: #212121; }
+  background: var(--selection-background);
+  color: var(--selection-color); }
 
 :root {
-  --body-background: hsl(210, 29%, 97%); }
+  --page-background: hsl(210, 29%, 97%); }
 
 body {
-  background: var(--body-background); }
+  background: var(--page-background); }
 
 :root {
-  --font-size-base: 16px;
+  --text-base-size: 1em;
+  --text-scale-ratio: 1.2;
+  --text-xs: calc((var(--text-base-size) / var(--text-scale-ratio)) / var(--text-scale-ratio));
+  --text-sm: calc(var(--text-xs) * var(--text-scale-ratio));
+  --text-md: calc(var(--text-sm) * var(--text-scale-ratio));
+  --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+  --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+  --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+  --text-color: hsl(0, 0%, 7%);
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: Georgia, 'Times New Roman', Times, serif;
   --font-monospace: 'Fira Code', monospace;
   --font-family: var(--font-primary);
   --body-line-height: 1.4;
-  --text-color: hsl(0, 0%, 7%);
   --mark-background: hsl(60, 100%, 50%);
   --code-background: var(--body-background); }
 
 body {
   font-family: var(--font-family);
-  font-size: var(--font-size-base);
+  font-size: var(--text-base-size);
   line-height: var(--body-line-height);
   color: var(--text-color); }
 
 p {
-  margin: var(--spacing-sm) 0; }
+  margin: unset;
+  margin-bottom: var(--spacing-sm); }
 
 small {
   font-size: 80%;
@@ -62,37 +74,26 @@ code {
 pre code {
   padding: unset; }
 
-@media (max-width: 61.9375em) {
-  :target::before {
-    display: block;
-    width: 0;
-    height: 80px;
-    margin: -80px 0 0;
-    content: ""; } }
+:root {
+  --heading-line-height: 1.2; }
 
 h1 {
-  font-size: 2.25rem;
-  line-height: 1.33333; }
+  font-size: var(--text-xxl); }
 
 h2 {
-  font-size: 1.75rem;
-  line-height: 1.42857; }
+  font-size: var(--text-xl); }
 
 h3 {
-  font-size: 1.5rem;
-  line-height: 1.33333; }
+  font-size: var(--text-lg); }
 
 h4 {
-  font-size: 1.25rem;
-  line-height: 1.6; }
+  font-size: var(--text-md); }
 
 h5 {
-  font-size: 1.125rem;
-  line-height: 1.77778; }
+  font-size: var(--text-sm); }
 
 h6 {
-  font-size: 1rem;
-  line-height: 1.5; }
+  font-size: var(--text-xs); }
 
 h1,
 h2,
@@ -100,19 +101,29 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 1.5em;
-  margin-bottom: 1em; }
+  line-height: var(--heading-line-height);
+  margin: unset;
+  margin-bottom: var(--spacing-sm); }
+
+:root {
+  --link-color: var(--color-primary);
+  --link-color-hover: var(--color-primary); }
 
 a {
-  color: var(--theme-color-link);
+  color: var(--link-color);
   text-decoration: none; }
   a:hover {
-    color: var(--theme-color-primary);
+    color: var(--link-color-hover);
     text-decoration: none; }
 
-ol, ul {
-  margin: 1rem 0 1rem 2rem;
-  padding: 0; }
+:root {
+  --list-margin: 0 0 1rem 0;
+  --list-padding: 0 0 0 2rem; }
+
+ol,
+ul {
+  margin: var(--list-margin);
+  padding: var(--list-padding); }
 
 img {
   max-width: 100%;
@@ -120,13 +131,15 @@ img {
   font-style: italic;
   vertical-align: middle; }
 
-blockquote {
-  --blockquote-font-size: var(--global-font-size);
+:root {
+  --blockquote-font-size: var(--text-lg);
   --blockquote-border-size: 4px;
   --blockquote-paddings: var(--global-baseline);
   --blockquote-margins: calc(var(--global-baseline) * 2) 0;
   --blockquote-background: transparent;
-  --blockquote-border-color: #bdbdbd;
+  --blockquote-border-color: gray(400); }
+
+blockquote {
   font-size: var(--blockquote-font-size);
   padding: var(--blockquote-paddings);
   margin: var(--blockquote-margins);
@@ -134,8 +147,8 @@ blockquote {
   background: var(--blockquote-background); }
 
 hr {
-  margin: calc(var(--global-baseline) * 2) 0;
+  margin: var(--spacing-xl) 0;
   border: unset;
-  border-top: 1px solid #9e9e9e; }
+  border-top: 1px solid var(--color-contrast-low); }
 
 /*# sourceMappingURL=maps/elements.css.map */

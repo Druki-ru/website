@@ -3,9 +3,9 @@
 // =============================================================================
 
 :root {
-  --body-background: hsl(210, 29%, 97%);
+  --page-background: hsl(210, 29%, 97%);
 }
 
 body {
-  background: var(--body-background);
+  background: var(--page-background);
 }

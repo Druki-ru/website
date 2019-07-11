@@ -3,26 +3,37 @@
 // =============================================================================
 
 :root {
-  --font-size-base: 16px;
+  // Text sizes.
+  --text-base-size: 1em;
+  --text-scale-ratio: 1.2;
+  --text-xs: calc((var(--text-base-size) / var(--text-scale-ratio)) / var(--text-scale-ratio));
+  --text-sm: calc(var(--text-xs) * var(--text-scale-ratio));
+  --text-md: calc(var(--text-sm) * var(--text-scale-ratio));
+  --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+  --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+  --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+
+  --text-color: hsl(0, 0%, 7%);
+
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: Georgia, 'Times New Roman', Times, serif;
   --font-monospace: 'Fira Code', monospace;
   --font-family: var(--font-primary);
   --body-line-height: 1.4;
-  --text-color: hsl(0, 0%, 7%);
   --mark-background: hsl(60, 100%, 50%);
   --code-background: var(--body-background);
 }
 
 body {
   font-family: var(--font-family);
-  font-size: var(--font-size-base);
+  font-size: var(--text-base-size);
   line-height: var(--body-line-height);
   color: var(--text-color);
 }
 
 p {
-  margin: var(--spacing-sm) 0;
+  margin: unset;
+  margin-bottom: var(--spacing-sm);
 }
 
 small {
@@ -54,13 +65,14 @@ pre code {
   padding: unset;
 }
 
-@include media-breakpoint-down(md) {
-  // Offset for anchors.
-  :target::before {
-    display: block;
-    width: 0;
-    height: 80px;
-    margin: -80px 0 0;
-    content: "";
-  }
-}
+// @todo
+//@include media-breakpoint-down(md) {
+//  // Offset for anchors.
+//  :target::before {
+//    display: block;
+//    width: 0;
+//    height: 80px;
+//    margin: -80px 0 0;
+//    content: "";
+//  }
+//}
