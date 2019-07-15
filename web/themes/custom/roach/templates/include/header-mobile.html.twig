@@ -7,9 +7,11 @@
 {% set bem_block = 'header-mobile' %}
 <div class="{{ bem_block }}">
   <div class="mobile-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
+    <div class="mobile-toggle__inner">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 
   <a href="{{ url('<front>') }}" class="{{ bem_block }}__branding">

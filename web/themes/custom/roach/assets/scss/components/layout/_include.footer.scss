@@ -1,48 +1,44 @@
+// @todo improve this footer with margins. Such a mess right now.
 .footer {
-  @include font-size(13px);
-  padding: spacing-unit() 0;
-  color: gray(600);
-  max-width: 1920px;
-  margin: 0 auto;
+  font-size: var(--text-sm);
+  margin: var(--spacing-md) auto;
+  color: var(--color-contrast-medium);
+  max-width: var(--container-max-width);
+}
 
-  &__inner {
-    margin: 0 280px;
+.footer__inner {
+  padding: 0 var(--spacing-unit);
+
+  @include breakpoint(lg) {
+    margin-left: var(--sidebar-width);
+    padding: unset;
   }
 
-  &__bottom {
-    justify-content: center;
-    margin-top: spacing-unit(small);
+  @include breakpoint(xxl) {
+    margin-right: var(--sidebar-width);
   }
+}
 
-  &__heart {
-    @include mdi-icon('heart', before, 0);
-    color: color(red);
-  }
+.footer__bottom {
+  margin-top: var(--spacing-sm);
+}
 
-  &__drupal {
-    @include mdi-icon('drupal');
-    color: color(blue);
-  }
+.footer__heart {
+  @include mdi-icon('heart', before, 0);
+  color: red;
+}
 
-  &__gitlab {
-    @include mdi-icon('gitlab');
-    color: color(orange);
-  }
+.footer__drupal {
+  @include mdi-icon('drupal');
+  color: blue;
+}
 
-  &__developer {
-    color: #757AF7;
-    font-weight: bold;
-  }
+.footer__gitlab {
+  @include mdi-icon('gitlab');
+  color: orange;
+}
 
-  @include media-breakpoint-down(xl) {
-    &__inner {
-      margin: 0 spacing-unit() 0 280px;
-    }
-  }
-
-  @include media-breakpoint-down(md) {
-    &__inner {
-      margin: 0 spacing-unit();
-    }
-  }
+.footer__developer {
+  font-weight: bold;
+  color: #757af7;
 }

@@ -4,8 +4,8 @@ $icons: (
   '/wiki/faq': 'help-circle-outline',
   '/wiki/changelog': 'select-compare',
 );
+
 .mobile-navigation {
-  $block: &;
   position: fixed;
   z-index: 200;
   top: 0;
@@ -16,74 +16,74 @@ $icons: (
   transition: 0.25s ease-in-out background-color;
   background-color: transparent;
 
-  &__sidebar {
-    position: fixed;
-    z-index: 201;
-    top: 0;
-    overflow-y: scroll;
-    width: 250px;
-    height: 100%;
-    transition: 0.5s ease-in-out transform;
-    transform: translateX(-250px);
-    background-color: #FFFFFF;
-  }
-
-  &__branding {
-    display: flex;
-    justify-content: center;
-    padding: spacing-unit(small);
-  }
-
-  &__branding-logo {
-    height: 100px;
-  }
-
-  &__navigation {
-    @include list-unstyled;
-  }
-
-  &__navigation-item {
-    margin: unset;
-  }
-
-  @each $href, $icon in $icons {
-    &__navigation-link[href^="#{$href}"] {
-      @include mdi-icon($icon, before, 0);
-    }
-  }
-
-  &__navigation-link {
-    display: flex;
-    align-items: center;
-    padding: spacing-unit(small);
-    color: gray(600);
-
-    &::before {
-      @include font-size(24px, 1, $important: true);
-      width: 24px;
-      margin-right: spacing-unit(small) !important;
-      text-align: center;
-    }
-  }
-
-  &--active {
-    left: 0;
-    background-color: rgba(black, 0.5);
-
-    #{$block}__sidebar {
-      transform: translateX(0);
-    }
-  }
-
-  &--hiding {
-    background-color: transparent;
-
-    #{$block}__sidebar {
-      transform: translateX(-250px);
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
+  @include breakpoint(lg) {
     display: none;
+  }
+}
+
+.mobile-navigation--active {
+  left: 0;
+  background-color: rgba(black, 0.5);
+}
+
+.mobile-navigation--hiding {
+  background-color: transparent;
+}
+
+.mobile-navigation__sidebar {
+  position: fixed;
+  z-index: 201;
+  top: 0;
+  overflow-y: scroll;
+  width: 250px;
+  height: 100%;
+  transition: 0.5s ease-in-out transform;
+  transform: translateX(-250px);
+  background-color: #FFFFFF;
+}
+
+.mobile-navigation--active .mobile-navigation__sidebar {
+  transform: translateX(0);
+}
+
+.mobile-navigation--hiding .mobile-navigation__sidebar {
+  transform: translateX(-250px);
+}
+
+.mobile-navigation__branding {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-unit);
+}
+
+.mobile-navigation__branding-logo {
+  height: 100px;
+}
+
+.mobile-navigation__navigation {
+  @include list-unstyled;
+}
+
+.mobile-navigation__navigation-item {
+  margin: unset;
+}
+
+@each $href, $icon in $icons {
+  .mobile-navigation__navigation-link[href^="#{$href}"] {
+    @include mdi-icon($icon, before, 0);
+  }
+}
+
+.mobile-navigation__navigation-link {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm);
+  color: var(--color-contrast-medium);
+
+  &::before {
+    font-size: var(--text-lg);
+    width: 24px;
+    margin-right: var(--spacing-sm);
+    text-align: center;
   }
 }

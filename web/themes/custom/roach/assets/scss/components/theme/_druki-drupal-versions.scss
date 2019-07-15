@@ -1,27 +1,27 @@
 .druki-drupal-versions {
-  padding: spacing-unit(small);
-  border: 2px solid gray(300);
+  padding: var(--spacing-sm);
+  border: 2px solid var(--color-contrast-low);
+}
 
-  &__label {
-    @include font-size(20px);
-    font-weight: bold;
-    margin-bottom: spacing-unit(small);
-  }
+.druki-drupal-versions__label {
+  font-size: var(--text-lg);
+  font-weight: bold;
+  margin-bottom: var(--spacing-sm);
+}
 
-  &__update-label {
-    font-weight: bold;
-    color: gray(700);
-  }
+.druki-drupal-versions__update-label {
+  font-weight: bold;
+  color: var(--color-contrast-high);
+}
 
-  &__update-date {
-    @include font-size(13px);
-    color: gray(500);
-  }
+.druki-drupal-versions__update-date {
+  font-size: 14px;
+  color: var(--color-contrast-medium);
+}
 
-  &__releases {
-    @include font-size(14px);
-    display: flex;
-    justify-content: center;
-    margin-top: spacing-unit(tiny);
-  }
+.druki-drupal-versions__releases {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-unit);
 }

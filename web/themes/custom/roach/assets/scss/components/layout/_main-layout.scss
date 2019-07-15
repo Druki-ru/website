@@ -2,19 +2,18 @@
 // to rename STARTER to your theme name to make it works. Or just remove.
 .main-layout {
   display: grid;
-  max-width: 1920px;
-  margin: 0 auto;
-  grid-gap: 0;
-  grid-template-columns: 280px 1fr;
-  grid-template-areas: "left-sidebar content";
+  grid-template-columns: 1fr;
+  grid-template-areas: "content";
 
-  @include media-breakpoint-up(xxl) {
-    grid-template-columns: 280px 1fr 280px;
-    grid-template-areas: "left-sidebar content right-sidebar";
+  @include breakpoint(lg) {
+    grid-template-columns: var(--sidebar-width) 1fr;
+    grid-template-areas: "left-sidebar content";
   }
 
-  @include media-breakpoint-down(md) {
-    grid-template-columns: 1fr;
-    grid-template-areas: "content";
+  @include breakpoint(xxl) {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
+    grid-template-areas: "left-sidebar content right-sidebar";
   }
 }

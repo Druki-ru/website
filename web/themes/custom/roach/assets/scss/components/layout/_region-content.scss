@@ -1,10 +1,10 @@
 .region-content {
-  background-color: #FFFFFF;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: hsl(0, 0%, 100%);
   grid-area: content;
-  padding: spacing-unit(large);
+  padding: var(--spacing-sm);
 
-  @include media-breakpoint-down(md) {
-    padding: spacing-unit(small);
+  @include breakpoint(lg) {
+    padding: var(--spacing-lg);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 }

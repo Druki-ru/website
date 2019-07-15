@@ -1,7 +1,8 @@
 .block-roach-druki-category-navigation {
-  margin: spacing-unit();
+  margin: var(--spacing-sm);
+}
 
-  &__title {
-    font-weight: bold;
-  }
+.block-roach-druki-category-navigation__title {
+  font-weight: bold;
+  margin-bottom: var(--spacing-unit);
 }

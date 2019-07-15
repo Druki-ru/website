@@ -13,13 +13,14 @@
   --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
   --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
 
-  --text-color: hsl(0, 0%, 7%);
+  --text-color: hsl(0, 0%, 20%);
 
   --font-primary: 'Roboto', sans-serif;
-  --font-secondary: Georgia, 'Times New Roman', Times, serif;
+  --font-secondary: serif;
   --font-monospace: 'Fira Code', monospace;
   --font-family: var(--font-primary);
-  --body-line-height: 1.4;
+  --body-line-height: 1.5;
+
   --mark-background: hsl(60, 100%, 50%);
   --code-background: var(--body-background);
 }
@@ -32,7 +33,6 @@ body {
 }
 
 p {
-  margin: unset;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -61,18 +61,6 @@ code {
 }
 
 pre code {
-  // Fixes unwanted paddings for first and last line of code.
+  // Fixes unwanted padding for first and last line of code.
   padding: unset;
 }
-
-// @todo
-//@include media-breakpoint-down(md) {
-//  // Offset for anchors.
-//  :target::before {
-//    display: block;
-//    width: 0;
-//    height: 80px;
-//    margin: -80px 0 0;
-//    content: "";
-//  }
-//}

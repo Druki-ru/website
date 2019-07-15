@@ -1,7 +1,5 @@
-@import "../../elements/typography";
+.druki-content-druki-content-full { }
 
-.druki-content-druki-content-full {
-  &__content-item {
-    margin: $paragraph-margins;
-  }
+.druki-content-druki-content-full__content-item {
+  margin: var(--spacing-sm) 0;
 }

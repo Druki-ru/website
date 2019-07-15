@@ -1,9 +1,8 @@
 .block-main-menu {
-  margin: spacing-unit();
+  margin: var(--spacing-sm);
+}
 
-  &__menu {
-    margin: unset;
-    padding: unset;
-    list-style: none;
-  }
+.block-main-menu__menu {
+  @include list-unstyled;
+  line-height: 1.7;
 }

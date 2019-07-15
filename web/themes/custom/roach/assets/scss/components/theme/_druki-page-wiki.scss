@@ -1,127 +1,115 @@
 .druki-page-wiki {
-  $block: &;
+}
 
-  &__title {
-    font-weight: bold;
-    text-align: center;
-  }
+.druki-page-wiki__title {
+  font-weight: bold;
+  text-align: center;
+}
 
-  &__subtitle {
-    @include font-size(20px);
-    font-weight: normal;
-    text-align: center;
-    color: gray(600);
-  }
+.druki-page-wiki__subtitle {
+  font-size: var(--text-lg);
+  font-weight: normal;
+  text-align: center;
+  color: var(--color-contrast-medium);
+}
 
-  &__header {
-    margin-bottom: spacing-unit();
-  }
+.druki-page-wiki__header {
+  margin-bottom: var(--spacing-unit);
+}
 
-  &__row {
-    margin: spacing-unit() 0;
-  }
+.druki-page-wiki__row {
+  margin: var(--spacing-lg) 0;
+}
 
-  &__row-title {
-    @include font-size(30px);
-  }
+.druki-page-wiki__row-title {
+  font-size: var(--text-xxl);
+}
 
-  &__row-description {
-    @include font-size(18px);
-    margin-bottom: spacing-unit();
-  }
+.druki-page-wiki__row-description {
+  font-size: var(--text-md);
+  margin-bottom: var(--spacing-unit);
+}
 
-  &__box-links {
-    display: grid;
-    grid-gap: spacing-unit(grid-gap);
-    grid-template-columns: repeat(4, 1fr);
-    margin: spacing-unit() 0;
-  }
+.druki-page-wiki__box-links {
+  display: grid;
+  margin: var(--spacing-md) 0;
+  grid-gap: var(--spacing-sm);
+  grid-template-columns: repeat(2, 1fr);
 
-  &__box-links-item {
-    background-color: theme-color(background);
-    box-shadow: inset 0 0 10px 0 rgba(black, 0.1);
-    padding: spacing-unit(small);
-    border-radius: $border-radius-base;
-    position: relative;
-    overflow: hidden;
-    transition: all .25s ease-in-out;
-
-    &::before {
-      content: '';
-      display: block;
-      position: absolute;
-      z-index: 0;
-      right: -50%;
-      bottom: -50%;
-      border-radius: 100%;
-      width: 0;
-      height: 0;
-      transition: all .3s ease;
-    }
-  }
-
-  &__box-links-item:hover {
-    #{$block}__box-links-item-title {
-      color: white;
-    }
-
-    #{$block}__box-links-item-description {
-      color: gray(200);
-    }
-
-    &::before {
-      width: 200%;
-      padding-bottom: 200%;
-      background-color: theme-color();
-    }
-  }
-
-  &__box-links-item-title {
-    @include font-size(18px);
-    position: relative;
-    margin: unset;
-  }
-
-  &__box-links-item-description {
-    @include font-size(14px);
-    color: gray(700);
-    position: relative;
-  }
-
-  &__faq {
-    @include font-size(14px);
-    color: gray(700);
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  &__other-items {
-    display: grid;
-    grid-gap: spacing-unit(grid-gap);
+  @include breakpoint(xl) {
     grid-template-columns: repeat(4, 1fr);
   }
+}
 
-  &__other-item-title {
-    font-weight: bold;
-  }
+.druki-page-wiki__box-links-item {
+  position: relative;
+  overflow: hidden;
+  padding: var(--spacing-sm);
+  transition: all .25s ease-in-out;
+  border-radius: var(--radius);
+  background-color: var(--page-background);
+  box-shadow: inset 0 0 10px 0 rgba(black, 0.1);
 
-  &__other-item-items {
-    margin: unset;
-    list-style-type: none;
+  &::before {
+    position: absolute;
+    z-index: 0;
+    right: -50%;
+    bottom: -50%;
+    display: block;
+    width: 0;
+    height: 0;
+    content: '';
+    transition: all .3s ease;
+    border-radius: 100%;
   }
+}
 
-  @include media-breakpoint-down(sm) {
-    &__box-links,
-    &__other-items {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+.druki-page-wiki__box-links-item:hover::before {
+  width: 200%;
+  padding-bottom: 200%;
+  background-color: var(--color-primary);
+}
 
-  @include media-breakpoint-only(xs) {
-    &__box-links,
-    &__other-items {
-      grid-template-columns: 1fr;
-    }
-  }
+.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-title {
+  color: var(--color-contrast-higher)
+}
+
+.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-description {
+  color: var(--color-contrast-high);
+}
+
+.druki-page-wiki__box-links-item-title {
+  font-size: var(--text-lg);
+  position: relative;
+  margin: unset;
+  margin-bottom: var(--spacing-sm);
+}
+
+.druki-page-wiki__box-links-item-description {
+  font-size: 14px;
+  position: relative;
+  color: var(--color-contrast-high);
+}
+
+.druki-page-wiki__faq {
+  font-size: 14px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--color-contrast-high);
+}
+
+.druki-page-wiki__other-items {
+  display: grid;
+  grid-gap: var(--spacing-sm);
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.druki-page-wiki__other-item-title {
+  font-weight: bold;
+  margin-bottom: var(--spacing-unit);
+}
+
+.druki-page-wiki__other-item-items {
+  @include list-unstyled;
 }

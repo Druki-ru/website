@@ -2,78 +2,59 @@
 // Drupal breadcrumbs.
 // =============================================================================
 
-$breadcrumb-padding-vertical: 0 !default;
-$breadcrumb-padding-horizontal: 0 !default;
-$breadcrumb-margin-bottom: 0 !default;
-$breadcrumb-bg: transparent !default;
-$breadcrumb-delimiter-content: '/' !default;
-$breadcrumb-delimiter-color: gray(500) !default;
-$breadcrumb-link-color: gray(500) !default;
-$breadcrumb-font-size: $global-font-size !default;
-
-:root {
-  --breadcrumb-padding: 0;
+.breadcrumbs {
+  font-size: 14px;
+  display: flex;
+  margin-bottom: var(--spacing-sm);
 }
 
-.breadcrumbs {
-  background: $breadcrumb-bg;
-  padding: $breadcrumb-padding-vertical $breadcrumb-padding-horizontal;
-  margin-bottom: $breadcrumb-margin-bottom;
-  border-radius: $border-radius-base;
-  display: flex;
+.breadcrumbs__path {
+  display: block;
+  overflow: hidden;
+  flex-grow: 0;
+  flex-shrink: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
-  &__path {
+  @include breakpoint(sm) {
     display: inline;
   }
+}
 
-  &__item-link {
-    color: $breadcrumb-link-color;
+.breadcrumbs__item-link {
+  color: var(--link-color);
+}
+
+.breadcrumbs__item-link--text {
+  color: var(--text-color);
+}
+
+.breadcrumbs__item-link--current {
+  &::before {
+    margin: 0 4px;
+    content: '/';
+    color: var(--color-contrast-medium);
   }
+}
 
-  &__item-link--text {
-    color: $text-color;
-  }
+.breadcrumbs__current {
+  display: block;
+  flex-grow: 1;
+  flex-shrink: 0;
 
-  &__delimiter {
-    &::after {
-      margin: 0 spacing-unit(tiny);
-      content: $breadcrumb-delimiter-content;
-      color: $breadcrumb-delimiter-color;
-    }
-  }
-
-  &__current {
+  @include breakpoint(sm) {
     display: inline;
   }
+}
 
-  //@include media-breakpoint-down(sm) {
-  //  &__path {
-  //    display: block;
-  //    overflow: hidden;
-  //    text-overflow: ellipsis;
-  //    white-space: nowrap;
-  //    flex-grow: 0;
-  //    flex-shrink: 1;
-  //  }
-  //
-  //  &__delimiter {
-  //    &:last-child {
-  //      display: none;
-  //    }
-  //  }
-  //
-  //  &__item-link--current {
-  //    &::before {
-  //      margin: 0 4px;
-  //      content: $breadcrumb-delimiter-content;
-  //      color: $breadcrumb-delimiter-color;
-  //    }
-  //  }
-  //
-  //  &__current {
-  //    display: block;
-  //    flex-grow: 1;
-  //    flex-shrink: 0;
-  //  }
-  //}
+.breadcrumbs__delimiter {
+  &::after {
+    margin: 0 var(--spacing-unit);
+    content: '/';
+    color: var(--color-contrast-medium);
+  }
+
+  &:last-child {
+    display: none;
+  }
 }

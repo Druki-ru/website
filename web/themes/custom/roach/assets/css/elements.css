@@ -18,7 +18,7 @@
   color: var(--selection-color); }
 
 :root {
-  --page-background: hsl(210, 29%, 97%); }
+  --page-background: hsl(210, 28.6%, 97.3%); }
 
 body {
   background: var(--page-background); }
@@ -32,12 +32,12 @@ body {
   --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
   --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
   --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
-  --text-color: hsl(0, 0%, 7%);
+  --text-color: hsl(0, 0%, 20%);
   --font-primary: 'Roboto', sans-serif;
-  --font-secondary: Georgia, 'Times New Roman', Times, serif;
+  --font-secondary: serif;
   --font-monospace: 'Fira Code', monospace;
   --font-family: var(--font-primary);
-  --body-line-height: 1.4;
+  --body-line-height: 1.5;
   --mark-background: hsl(60, 100%, 50%);
   --code-background: var(--body-background); }
 
@@ -48,7 +48,6 @@ body {
   color: var(--text-color); }
 
 p {
-  margin: unset;
   margin-bottom: var(--spacing-sm); }
 
 small {
@@ -106,8 +105,8 @@ h6 {
   margin-bottom: var(--spacing-sm); }
 
 :root {
-  --link-color: var(--color-primary);
-  --link-color-hover: var(--color-primary); }
+  --link-color: hsl(215, 100%, 35%);
+  --link-color-hover: hsl(215, 100%, 15%); }
 
 a {
   color: var(--link-color);
@@ -134,10 +133,10 @@ img {
 :root {
   --blockquote-font-size: var(--text-lg);
   --blockquote-border-size: 4px;
-  --blockquote-paddings: var(--global-baseline);
-  --blockquote-margins: calc(var(--global-baseline) * 2) 0;
+  --blockquote-paddings: var(--spacing-unit);
+  --blockquote-margins: var(--spacing-sm) 0;
   --blockquote-background: transparent;
-  --blockquote-border-color: gray(400); }
+  --blockquote-border-color: var(--color-contrast-lower); }
 
 blockquote {
   font-size: var(--blockquote-font-size);
@@ -150,5 +149,17 @@ hr {
   margin: var(--spacing-xl) 0;
   border: unset;
   border-top: 1px solid var(--color-contrast-low); }
+
+fieldset {
+  min-width: 0;
+  padding: unset;
+  margin: unset;
+  border: unset; }
+
+legend {
+  display: block;
+  width: 100%;
+  padding: unset;
+  margin-bottom: var(--spacing-sm); }
 
 /*# sourceMappingURL=maps/elements.css.map */
