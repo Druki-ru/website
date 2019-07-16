@@ -1,3 +1,11 @@
+:root {
+  --paragraph-druki-heading-border-color: var(--color-contrast-lower);
+}
+
+[data-theme="dark"] {
+  --paragraph-druki-heading-border-color: var(--color-contrast-high);
+}
+
 .paragraph-druki-heading { }
 
 .paragraph-druki-heading__anchor {
@@ -20,5 +28,5 @@
 
 .paragraph-druki-heading__heading--h2 {
   padding-bottom: var(--spacing-unit);
-  border-bottom: 1px solid var(--color-contrast-lower);
+  border-bottom: 1px solid var(--paragraph-druki-heading-border-color);
 }

@@ -1,3 +1,11 @@
+:root {
+  --header-background: hsl(220, 19%, 94%);
+}
+
+[data-theme="dark"] {
+  --header-background: hsl(213, 31%, 18%);
+}
+
 .header {
   position: relative;
   z-index: 10;
@@ -15,10 +23,9 @@
   width: 100%;
   margin: 0 auto;
   grid-gap: 0;
-  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
 
   @include breakpoint(xxl) {
-    grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
     max-width: var(--container-max-width);
   }
 }
@@ -45,4 +52,13 @@
   &:focus {
     box-shadow: unset;
   }
+}
+
+.header__right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header .dark-mode-toggle {
+  padding: 0 var(--spacing-sm);
 }

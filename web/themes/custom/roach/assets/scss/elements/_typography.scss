@@ -13,16 +13,21 @@
   --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
   --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
 
-  --text-color: hsl(0, 0%, 20%);
+  --text-color: hsl(0, 0%, 14%);
 
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: serif;
   --font-monospace: 'Fira Code', monospace;
   --font-family: var(--font-primary);
-  --body-line-height: 1.5;
+  --body-line-height: 1.65;
 
   --mark-background: hsl(60, 100%, 50%);
-  --code-background: var(--body-background);
+  --code-background: hsl(0, 0%, 94%);
+}
+
+[data-theme="dark"] {
+  --text-color: hsl(210, 4%, 82%);
+  --code-background: hsl(0, 0%, 0%);
 }
 
 body {
@@ -33,6 +38,7 @@ body {
 }
 
 p {
+  margin-top: unset;
   margin-bottom: var(--spacing-sm);
 }
 

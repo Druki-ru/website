@@ -1,3 +1,11 @@
+:root {
+  --druki-download-command-color: var(--color-white);
+}
+
+[data-theme="dark"] {
+  --druki-download-command-color: var(--color-black);
+}
+
 $icons: (
   'try': 'drupal',
   'update': 'update',
@@ -7,102 +15,105 @@ $icons: (
   'talk': 'chat-processing'
 );
 
-.druki-page-download {
-  &__title {
-    font-weight: bold;
-    text-align: center;
+.druki-page-download { }
+
+.druki-page-download__title {
+  font-size: var(--page-title-font-size);
+  font-weight: bold;
+  text-align: center;
+}
+
+.druki-page-download__subtitle {
+  font-size: var(--text-lg);
+  font-weight: normal;
+  text-align: center;
+  color: var(--color-contrast-medium);
+}
+
+.druki-page-download__command-pane {
+  display: flex;
+  justify-content: center;
+  margin: var(--spacing-lg) auto 0;
+  padding: var(--spacing-sm);
+  color: white;
+  border-radius: var(--radius);
+  background-color: var(--color-contrast-higher);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.druki-page-download__command {
+  font-family: var(--font-monospace);
+  color: var(--druki-download-command-color);
+
+  &::before {
+    content: '>_ ';
+    color: var(--color-primary);
+  }
+}
+
+.druki-page-download__command-note {
+  font-size: 14px;
+  font-style: italic;
+  margin: var(--spacing-sm) 0;
+  text-align: center;
+  color: var(--color-contrast-medium);
+}
+
+.druki-page-download__cards {
+  display: grid;
+  margin: var(--spacing-lg) 0 0 0;
+  grid-gap: var(--spacing-sm);
+  grid-template-columns: 1fr;
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  &__subtitle {
-    @include font-size(20px);
-    font-weight: normal;
-    text-align: center;
-    color: gray(600);
+  @include breakpoint(lg) {
+    grid-gap: var(--spacing-md);
   }
 
-  &__command-pane {
-    display: table;
-    margin: spacing-unit() auto 0;
-    padding: spacing-unit(small);
-    color: white;
-    border-radius: $border-radius-base;
-    background-color: gray(900);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  }
-
-  &__command {
-    font-family: $font-family-monospace;
-
-    &::before {
-      content: '>_ ';
-      color: theme-color();
-    }
-  }
-
-  &__command-note {
-    @include font-size(14px);
-    font-style: italic;
-    margin: spacing-unit(small) 0;
-    text-align: center;
-    color: gray(600);
-  }
-
-  &__cards {
-    display: grid;
-    margin: spacing-unit() 0;
-    grid-gap: spacing-unit(grid-gap);
+  @include breakpoint(xxl) {
     grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  &__card {
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    padding: spacing-unit(small);
-    text-align: center;
-    border-radius: $border-radius-base;
-    background-color: theme-color(background);
-    box-shadow: inset 0 0 10px 0 rgba(black, 0.1);
-  }
+.druki-page-download__card {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  padding: var(--spacing-sm);
+  text-align: center;
+  border-radius: var(--radius);
+  background-color: var(--page-background);
+  box-shadow: inset 0 0 10px 0 rgba(black, 0.1);
+}
 
-  @each $modifier, $icon in $icons {
-    &__card-icon--#{$modifier} {
-      @include mdi-icon($icon, $margin-size: 0);
-    }
+@each $modifier, $icon in $icons {
+  .druki-page-download__card-icon--#{$modifier} {
+    @include mdi-icon($icon, $margin-size: 0);
   }
+}
 
-  &__card-icon {
-    @include font-size(60px);
-    margin-bottom: spacing-unit(tiny);
-  }
+.druki-page-download__card-icon {
+  font-size: 60px;
+}
 
-  &__card-title {
-    @include font-size(20px);
-    font-weight: bold;
-    margin: unset;
-  }
+.druki-page-download__card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: unset;
+  margin-bottom: var(--spacing-sm);
+}
 
-  &__card-text {
-    @include font-size(14px);
-    color: gray(700);
-  }
+.druki-page-download__card-text {
+  font-size: 14px;
+  color: var(--color-contrast-medium);
+}
 
-  &__card-bottom {
-    font-weight: bold;
-    margin-top: auto;
-    padding-top: spacing-unit(tiny);
-  }
-
-  @include media-breakpoint-between(sm, md) {
-    &__cards {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @include media-breakpoint-only(xs) {
-    &__cards {
-      grid-template-columns: 1fr;
-    }
-  }
+.druki-page-download__card-bottom {
+  font-weight: bold;
+  margin-top: auto;
+  padding-top: var(--spacing-unit);
 }

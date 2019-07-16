@@ -1,5 +1,13 @@
+:root {
+  --region-content-background: hsl(0, 0%, 100%);
+}
+
+[data-theme="dark"] {
+  --region-content-background: hsl(215, 34%, 13%);
+}
+
 .region-content {
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--region-content-background);
   grid-area: content;
   padding: var(--spacing-sm);
 

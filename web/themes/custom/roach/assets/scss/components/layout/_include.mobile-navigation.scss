@@ -39,7 +39,15 @@ $icons: (
   height: 100%;
   transition: 0.5s ease-in-out transform;
   transform: translateX(-250px);
-  background-color: #FFFFFF;
+  background-color: var(--page-background);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-navigation__sidebar .dark-mode-toggle {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: var(--spacing-sm);
 }
 
 .mobile-navigation--active .mobile-navigation__sidebar {

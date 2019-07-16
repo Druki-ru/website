@@ -2,6 +2,7 @@
 }
 
 .druki-page-wiki__title {
+  font-size: var(--page-title-font-size);
   font-weight: bold;
   text-align: center;
 }
@@ -61,6 +62,10 @@
     content: '';
     transition: all .3s ease;
     border-radius: 100%;
+  }
+
+  &:hover {
+    text-decoration: none;
   }
 }
 

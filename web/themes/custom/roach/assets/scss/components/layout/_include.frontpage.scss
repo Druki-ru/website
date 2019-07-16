@@ -1,5 +1,5 @@
 .frontpage {
-  background-color: #FFFFFF;
+  background-color: var(--region-content-background, hsl(0, 0%, 100%));
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   grid-area: content;
 }

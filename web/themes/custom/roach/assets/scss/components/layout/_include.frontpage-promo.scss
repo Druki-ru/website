@@ -1,6 +1,14 @@
+:root {
+  --frontpage-promo-background: hsla(0, 0%, 100%, 0.85);
+}
+
+[data-theme="dark"] {
+  --frontpage-promo-background: hsla(0, 0%, 0%, 0.85);
+}
+
 .frontpage-promo {
   position: relative;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm);
 
   &::before {
     content: '';
@@ -11,7 +19,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(white, 0.85);
+    background-color: var(--frontpage-promo-background);
+  }
+
+  @include breakpoint(lg) {
+    padding: var(--spacing-lg);
   }
 }
 

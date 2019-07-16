@@ -22,6 +22,8 @@
 @import "ui/table";
 @import "ui/tabs";
 @import "ui/vertical-tabs";
+@import "ui/dark-mode-toggle";
+@import "ui/prismjs";
 
 // Form.
 
@@ -44,8 +46,8 @@
 @import "theme/druki-category-navigation";
 @import "theme/druki-drupal-versions";
 @import "theme/druki-page-wiki";
-//@import "theme/druki-page-download";
-//@import "theme/druki-media-remote-video-optimized";
+@import "theme/druki-page-download";
+@import "theme/druki-media-remote-video-optimized";
 
 // Block.
 @import "block/block-page-title";
@@ -66,7 +68,7 @@
 // Paragraph.
 @import "paragraph/druki-heading/paragraph-druki-heading";
 @import "paragraph/druki-image/paragraph-druki-image";
-//@import "paragraph/druki-note/paragraph-druki-note";
-//
-//// Vue.js
-//@import "vue/search";
+@import "paragraph/druki-note/paragraph-druki-note";
+
+// Vue.js
+@import "vue/search";

@@ -3,7 +3,7 @@
 // =============================================================================
 
 :root {
-  --heading-line-height: 1.2;
+  --heading-line-height: 1.3;
 }
 
 h1 {
@@ -37,6 +37,5 @@ h4,
 h5,
 h6 {
   line-height: var(--heading-line-height);
-  margin: unset;
   margin-bottom: var(--spacing-sm);
 }

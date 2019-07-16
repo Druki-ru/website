@@ -14,6 +14,7 @@ libraries:
   - druki_vue/main
   - roach/code_highlight
   - roach/mobile_navigation
+  - roach/dark_mode
 regions:
   content: Content
   sidebar_first: 'Sidebar first'

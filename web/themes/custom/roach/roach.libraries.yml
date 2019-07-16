@@ -47,6 +47,13 @@ mobile_navigation:
   dependencies:
     - core/drupal
 
+dark_mode:
+  js:
+    # For as fast as possible execution.
+    assets/js/dark-mode.js: { }
+  dependencies:
+    - core/drupal
+
 prism:
   remote: https://prismjs.com/
   version: 1.15

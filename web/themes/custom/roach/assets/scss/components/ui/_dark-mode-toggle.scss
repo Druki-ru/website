@@ -1,0 +1,10 @@
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dark-mode-toggle__icon {
+  @include mdi-icon('theme-light-dark', $margin-size: 0);
+}

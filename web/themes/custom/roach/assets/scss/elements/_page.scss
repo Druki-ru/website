@@ -6,6 +6,10 @@
   --page-background: hsl(210, 28.6%, 97.3%);
 }
 
+[data-theme="dark"] {
+  --page-background: hsl(212, 28%, 9%);
+}
+
 body {
   background: var(--page-background);
 }
