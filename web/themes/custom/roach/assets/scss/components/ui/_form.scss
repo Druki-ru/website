@@ -3,12 +3,17 @@
 // =============================================================================
 
 :root {
+  --form-control-background: var(--color-white);
   --form-control-font-size: 1em;
   --form-control-padding-y: 0.5em;
   --form-control-padding-x: 0.75em;
   --form-control-border-radius: var(--radius);
   --form-control-radius: var(--radius);
   --form-control-focus-shadow-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.2);
+}
+
+[data-theme="dark"] {
+  --form-control-background: hsl(249, 10%, 14%);
 }
 
 // =============================================================================
@@ -86,7 +91,7 @@
   padding-left: var(--form-control-padding-x);
   border: 2px solid var(--color-contrast-low);
   border-radius: var(--form-control-border-radius);
-  background-color: var(--color-white);
+  background-color: var(--form-control-background);
 
   &:focus {
     border-color: var(--color-primary);

@@ -18,10 +18,10 @@
   color: var(--selection-color); }
 
 :root {
-  --page-background: hsl(210, 28.6%, 97.3%); }
+  --page-background: hsl(233, 29%, 95%); }
 
 [data-theme="dark"] {
-  --page-background: hsl(212, 28%, 9%); }
+  --page-background: hsl(252, 11%, 9%); }
 
 body {
   background: var(--page-background); }
@@ -45,7 +45,7 @@ body {
   --code-background: hsl(0, 0%, 94%); }
 
 [data-theme="dark"] {
-  --text-color: hsl(210, 4%, 82%);
+  --text-color: hsl(0, 0%, 100%);
   --code-background: hsl(0, 0%, 0%); }
 
 body {
@@ -112,12 +112,8 @@ h6 {
   margin-bottom: var(--spacing-sm); }
 
 :root {
-  --link-color: hsl(220, 60%, 50%);
-  --link-color-hover: hsl(220, 60%, 50%); }
-
-[data-theme="dark"] {
-  --link-color: hsl(209, 90%, 65%);
-  --link-color-hover: hsl(209, 90%, 45%); }
+  --link-color: hsl(211, 100%, 54%);
+  --link-color-hover: hsl(211, 100%, 44%); }
 
 a {
   color: var(--link-color);

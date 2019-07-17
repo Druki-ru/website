@@ -1,3 +1,20 @@
+$icons: (
+  '/': 'home',
+  '/wiki': 'file-document-box-multiple-outline',
+  '/download': 'download',
+  '/wiki/drupal': 'drupal',
+);
+
+:root {
+  --block-main-menu-link-color: hsl(226, 7%, 43%);
+  --block-main-menu-icon-background: hsl(224, 18%, 88%);
+}
+
+[data-theme="dark"] {
+  --block-main-menu-link-color: hsl(226, 7%, 53%);
+  --block-main-menu-icon-background: hsl(231, 9%, 15%);
+}
+
 .block-main-menu {
   margin: var(--spacing-sm);
 }
@@ -5,4 +22,38 @@
 .block-main-menu__menu {
   @include list-unstyled;
   line-height: 1.7;
+}
+
+.block-main-menu__menu-item:not(:last-child) {
+  margin-bottom: var(--spacing-unit);
+}
+
+.block-main-menu__menu-item-link {
+  padding: var(--spacing-xs);
+  border-radius: var(--radius);
+  color: var(--block-main-menu-link-color);
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@each $href, $icon in $icons {
+  .block-main-menu__menu-item-link[href="#{$href}"] {
+    @include mdi-icon($icon, $margin-size: 0);
+  }
+}
+
+.block-main-menu__menu-item-link::before {
+  padding: var(--spacing-unit);
+  border-radius: var(--radius);
+  background-color: var(--block-main-menu-icon-background);
+  margin-right: var(--spacing-sm) !important;
+}
+
+.block-main-menu__menu-item-link:hover::before {
+  background-color: var(--link-color);
+  color: var(--color-contrast-lower);
 }

@@ -343,7 +343,7 @@ template {
   --color-contrast-higher: hsl(240, 8%, 12%); }
 
 [data-theme="dark"] {
-  --color-contrast-lower: hsl(240, 8%, 12%);
+  --color-contrast-lower: hsl(0, 0%, 16%);
   --color-contrast-low: hsl(240, 4%, 20%);
   --color-contrast-medium: hsl(240, 1%, 48%);
   --color-contrast-high: hsl(240, 1%, 83%);

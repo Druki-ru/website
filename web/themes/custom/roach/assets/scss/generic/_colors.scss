@@ -1,13 +1,13 @@
 :root {
-  @include hsl-color-variable(color-primary, 47, 100%, 58%);
-  @include hsl-color-variable(color-secondary, 36, 46%, 17%);
+  @include hsl-color-variable(--color-primary, 47, 100%, 58%);
+  @include hsl-color-variable(--color-secondary, 36, 46%, 17%);
 
   --color-black: hsl(240, 7%, 12%);
   --color-white: hsl(0, 0%, 100%);
 
-  @include hsl-color-variable(color-success, 120, 100%, 50%);
-  @include hsl-color-variable(color-warning, 28, 100%, 55%);
-  @include hsl-color-variable(color-error, 3, 100%, 61%);
+  @include hsl-color-variable(--color-success, 120, 100%, 50%);
+  @include hsl-color-variable(--color-warning, 28, 100%, 55%);
+  @include hsl-color-variable(--color-error, 3, 100%, 61%);
 
   --color-contrast-lower: hsl(0, 0%, 95%);
   --color-contrast-low: hsl(240, 1%, 83%);
@@ -17,7 +17,7 @@
 }
 
 [data-theme="dark"] {
-  --color-contrast-lower: hsl(240, 8%, 12%);
+  --color-contrast-lower: hsl(0, 0%, 16%);
   --color-contrast-low: hsl(240, 4%, 20%);
   --color-contrast-medium: hsl(240, 1%, 48%);
   --color-contrast-high: hsl(240, 1%, 83%);

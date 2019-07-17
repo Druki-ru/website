@@ -14,7 +14,7 @@
 }
 
 [data-theme="dark"] {
-  --prismjs-background: hsl(240, 13%, 13%);
+  --prismjs-background: var(--page-background);
   --prismjs-keyword: hsl(15, 62%, 68%);
   --prismjs-punctuatuion: hsl(240, 8%, 80%);
   --prismjs-tag: hsl(15, 62%, 68%);

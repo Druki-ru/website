@@ -92,12 +92,16 @@
   padding-left: var(--spacing-md); }
 
 :root {
+  --form-control-background: var(--color-white);
   --form-control-font-size: 1em;
   --form-control-padding-y: 0.5em;
   --form-control-padding-x: 0.75em;
   --form-control-border-radius: var(--radius);
   --form-control-radius: var(--radius);
   --form-control-focus-shadow-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.2); }
+
+[data-theme="dark"] {
+  --form-control-background: hsl(249, 10%, 14%); }
 
 .form-item {
   margin: 0 0 var(--spacing-unit); }
@@ -149,7 +153,7 @@
   padding-left: var(--form-control-padding-x);
   border: 2px solid var(--color-contrast-low);
   border-radius: var(--form-control-border-radius);
-  background-color: var(--color-white); }
+  background-color: var(--form-control-background); }
   .form-control:focus {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--form-control-focus-shadow-color);
@@ -407,7 +411,7 @@
   --prismjs-this: hsl(0, 100%, 20%); }
 
 [data-theme="dark"] {
-  --prismjs-background: hsl(240, 13%, 13%);
+  --prismjs-background: var(--page-background);
   --prismjs-keyword: hsl(15, 62%, 68%);
   --prismjs-punctuatuion: hsl(240, 8%, 80%);
   --prismjs-tag: hsl(15, 62%, 68%);
@@ -545,10 +549,10 @@ pre[class*="language-"] {
       grid-template-areas: "left-sidebar content right-sidebar"; } }
 
 :root {
-  --header-background: hsl(220, 19%, 94%); }
+  --header-background: hsl(224, 18%, 88%); }
 
 [data-theme="dark"] {
-  --header-background: hsl(213, 31%, 18%); }
+  --header-background: hsl(231, 9%, 15%); }
 
 .header {
   position: relative;
@@ -625,7 +629,7 @@ pre[class*="language-"] {
   --region-content-background: hsl(0, 0%, 100%); }
 
 [data-theme="dark"] {
-  --region-content-background: hsl(215, 34%, 13%); }
+  --region-content-background: hsl(220, 10%, 11%); }
 
 .region-content {
   background-color: var(--region-content-background);
@@ -1436,6 +1440,14 @@ pre[class*="language-"] {
   pointer-events: none;
   color: var(--color-contrast-low); }
 
+:root {
+  --block-main-menu-link-color: hsl(226, 7%, 43%);
+  --block-main-menu-icon-background: hsl(224, 18%, 88%); }
+
+[data-theme="dark"] {
+  --block-main-menu-link-color: hsl(226, 7%, 53%);
+  --block-main-menu-icon-background: hsl(231, 9%, 15%); }
+
 .block-main-menu {
   margin: var(--spacing-sm); }
 
@@ -1444,6 +1456,74 @@ pre[class*="language-"] {
   padding: 0;
   list-style: none;
   line-height: 1.7; }
+
+.block-main-menu__menu-item:not(:last-child) {
+  margin-bottom: var(--spacing-unit); }
+
+.block-main-menu__menu-item-link {
+  padding: var(--spacing-xs);
+  border-radius: var(--radius);
+  color: var(--block-main-menu-link-color);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center; }
+  .block-main-menu__menu-item-link:hover {
+    text-decoration: none; }
+
+.block-main-menu__menu-item-link[href="/"]:before {
+  content: "\F2DC";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.block-main-menu__menu-item-link[href="/wiki"]:before {
+  content: "\FAB7";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.block-main-menu__menu-item-link[href="/download"]:before {
+  content: "\F1DA";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.block-main-menu__menu-item-link[href="/wiki/drupal"]:before {
+  content: "\F1E4";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
+
+.block-main-menu__menu-item-link::before {
+  padding: var(--spacing-unit);
+  border-radius: var(--radius);
+  background-color: var(--block-main-menu-icon-background);
+  margin-right: var(--spacing-sm) !important; }
+
+.block-main-menu__menu-item-link:hover::before {
+  background-color: var(--link-color);
+  color: var(--color-contrast-lower); }
 
 .block-roach-druki-content-toc {
   margin: var(--spacing-sm); }
@@ -1466,7 +1546,7 @@ pre[class*="language-"] {
   --paragraph-druki-heading-border-color: var(--color-contrast-lower); }
 
 [data-theme="dark"] {
-  --paragraph-druki-heading-border-color: var(--color-contrast-high); }
+  --paragraph-druki-heading-border-color: var(--color-contrast-lower); }
 
 .paragraph-druki-heading__anchor {
   font-size: 18px;

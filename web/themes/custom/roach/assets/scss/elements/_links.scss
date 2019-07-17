@@ -3,13 +3,13 @@
 // =============================================================================
 
 :root {
-  --link-color: hsl(220, 60%, 50%);
-  --link-color-hover: hsl(220, 60%, 50%);
+  --link-color: hsl(211, 100%, 54%);
+  --link-color-hover: hsl(211, 100%, 44%);
 }
 
 [data-theme="dark"] {
-  --link-color: hsl(209, 90%, 65%);
-  --link-color-hover: hsl(209, 90%, 45%);
+  //--link-color: hsl(231, 5%, 54%);
+  //--link-color-hover: hsl(231, 5%, 64%);
 }
 
 a {
