@@ -8,34 +8,4 @@
 // Tools.
 @import "../tools/core";
 
-// UI elements.
-@import "ui/**/*.scss";
-
-// Form.
-
-// Layout.
-@import "layout/**/*.scss";
-
-// Theme (hook_theme).
-@import "theme/**/*.scss";
-
-// Block.
-@import "block/**/*.scss";
-
-// Druki content
-@import "druki-content/**/*.scss";
-
-// Views.
-@import "views/**/*.scss";
-
-// Node.
-@import "node/**/*.scss";
-
-// Taxonomy term.
-@import "taxonomy-term/**/*.scss";
-
-// Paragraph.
-@import "paragraph/**/*.scss";
-
-// Vue.js
-@import "vue/**/*.scss";
+@import "**/*.scss";

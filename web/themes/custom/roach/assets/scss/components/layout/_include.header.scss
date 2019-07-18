@@ -1,5 +1,6 @@
 :root {
   --header-background: hsl(224, 18%, 88%);
+  --header-height: 40px;
 }
 
 [data-theme="dark"] {
@@ -10,10 +11,11 @@
   position: relative;
   z-index: 10;
   display: none;
+  height: var(--header-height);
   background-color: var(--header-background);
 
   @include breakpoint(lg) {
-    display: block;
+    display: flex;
   }
 }
 
@@ -32,6 +34,8 @@
 
 .header__search {
   position: relative;
+  display: flex;
+  flex-grow: 1;
 }
 
 .header__search-icon {
@@ -43,21 +47,27 @@
 }
 
 .header__search-input {
+  padding: unset;
   padding-left: var(--spacing-md);
   color: var(--color-contrast-medium);
   border: none;
   border-radius: unset;
   background-color: unset;
+  width: 100%;
 
   &:focus {
     box-shadow: unset;
   }
 }
 
+.header__left {
+  display: flex;
+}
+
 .header__right {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .header .dark-mode-toggle {
