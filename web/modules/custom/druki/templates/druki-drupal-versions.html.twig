@@ -20,9 +20,6 @@
       <a href="/wiki/8/releases/{{ last_minor_release.version }}" class="{{ bem_block }}__update-name">
         {{ last_minor_release.version }}
       </a>
-      {% if 'Security update' in last_minor_release.terms['Release type'] %}
-        <span title="Обновление безопасности">⚠</span>
-      {% endif %}
       <span class="{{ bem_block }}__update-date">
         ({{ last_minor_release.date|date('d.m.Y') }})
       </span>
@@ -35,6 +32,9 @@
       <a href="/wiki/8/releases/{{ last_stable_release.version }}" class="{{ bem_block }}__update-name">
         {{ last_stable_release.version }}
       </a>
+      {% if 'Security update' in last_stable_release.terms['Release type'] %}
+        <span class="{{ bem_block }}__security" title="Обновление безопасности">⚠</span>
+      {% endif %}
       <span class="{{ bem_block }}__update-date">
         ({{ last_stable_release.date|date('d.m.Y') }})
       </span>
