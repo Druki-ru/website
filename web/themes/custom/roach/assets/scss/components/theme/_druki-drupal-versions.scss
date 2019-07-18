@@ -1,24 +1,9 @@
-.druki-drupal-versions {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  padding: var(--spacing-sm);
-  transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
-  border: 2px solid transparent;
-  border-radius: var(--radius);
-  background-color: var(--druki-download-card-background);
-  box-shadow: var(--shadow-xs);
-
-  &:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--druki-download-card-hover-border-color);
-  }
+.druki-drupal-versions__card-title {
+  font-size: var(--text-base-size);
 }
 
 .druki-drupal-versions__label {
-  font-size: var(--text-lg);
-  font-weight: bold;
-  margin-bottom: var(--spacing-sm);
+  font-size: var(--text-sm);
 }
 
 .druki-drupal-versions__update-label {
@@ -41,4 +26,8 @@
 .druki-drupal-versions__security {
   color: var(--color-error);
   cursor: help;
+}
+
+.druki-drupal-versions__icon {
+  @include mdi-icon('update', $margin-size: 0);
 }

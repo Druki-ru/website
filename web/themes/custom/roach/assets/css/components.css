@@ -150,6 +150,21 @@
   font-size: var(--page-title-font-size);
   margin: var(--spacing-sm) 0 var(--spacing-lg); }
 
+.block-roach-content a[href*="//"]:not([href*="druki.ru"]):not([href*="druki.localhost"]):after {
+  content: "\F3CC";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-left: 0.1em; }
+
+.block-roach-content a[href*="//"]:not([href*="druki.ru"]):not([href*="druki.localhost"])::after {
+  color: var(--color-contrast-medium);
+  text-decoration: none; }
+
 .block-roach-druki-category-navigation {
   margin: var(--spacing-sm); }
 
@@ -621,10 +636,9 @@
   --paragraph-druki-heading-border-color: var(--color-contrast-lower); }
 
 .paragraph-druki-heading__anchor {
-  font-size: 18px;
+  font-size: var(--text-md);
   display: none;
-  margin-left: -25px;
-  vertical-align: middle;
+  margin-left: var(--spacing-unit);
   color: var(--color-contrast-medium); }
   .paragraph-druki-heading__anchor:before {
     content: "\F339";
@@ -636,13 +650,11 @@
     display: inline-block;
     text-decoration: inherit;
     margin-right: 0; }
+  .paragraph-druki-heading__anchor:hover {
+    text-decoration: none; }
 
 .paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
   display: inline-block; }
-
-.paragraph-druki-heading__heading {
-  position: relative;
-  vertical-align: middle; }
 
 .paragraph-druki-heading__heading--h2 {
   padding-bottom: var(--spacing-unit);
@@ -851,28 +863,11 @@
   vertical-align: top;
   color: var(--color-contrast-medium); }
 
-.druki-drupal-versions {
-  display: -webkit-box;
-  display: flex;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  padding: var(--spacing-sm);
-  -webkit-transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
-  transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
-  border: 2px solid transparent;
-  border-radius: var(--radius);
-  background-color: var(--druki-download-card-background);
-  box-shadow: var(--shadow-xs); }
-  .druki-drupal-versions:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--druki-download-card-hover-border-color); }
+.druki-drupal-versions__card-title {
+  font-size: var(--text-base-size); }
 
 .druki-drupal-versions__label {
-  font-size: var(--text-lg);
-  font-weight: bold;
-  margin-bottom: var(--spacing-sm); }
+  font-size: var(--text-sm); }
 
 .druki-drupal-versions__update-label {
   font-weight: bold;
@@ -893,6 +888,17 @@
 .druki-drupal-versions__security {
   color: var(--color-error);
   cursor: help; }
+
+.druki-drupal-versions__icon:before {
+  content: "\F6AF";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Material Design Icons";
+  display: inline-block;
+  text-decoration: inherit;
+  margin-right: 0; }
 
 .druki-media-remote-video-optimized {
   position: relative;
@@ -960,11 +966,9 @@
   display: block; }
 
 :root {
-  --druki-download-card-background: white;
   --druki-download-card-hover-border-color: var(--link-color); }
 
 [data-theme="dark"] {
-  --druki-download-card-background: hsl(252, 11%, 9%);
   --druki-download-card-hover-border-color: var(--color-contrast-low); }
 
 .druki-page-download__title {
@@ -986,7 +990,7 @@
   margin: var(--spacing-lg) auto 0;
   padding: var(--spacing-sm);
   border-radius: var(--radius);
-  background-color: var(--druki-download-card-background);
+  background-color: var(--code-background);
   box-shadow: var(--shadow-xs); }
 
 .druki-page-download__command {
@@ -1019,21 +1023,10 @@
       grid-template-columns: repeat(3, 1fr); } }
 
 .druki-page-download__card {
-  display: -webkit-box;
-  display: flex;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  padding: var(--spacing-sm);
-  -webkit-transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
-  transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
   border: 2px solid transparent;
-  border-radius: var(--radius);
-  background-color: var(--druki-download-card-background);
-  box-shadow: var(--shadow-xs); }
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out; }
   .druki-page-download__card:hover {
-    box-shadow: var(--shadow-md);
     border-color: var(--druki-download-card-hover-border-color); }
 
 .druki-page-download__card-icon--try:before {
@@ -1102,25 +1095,14 @@
   text-decoration: inherit;
   margin-right: 0; }
 
-.druki-page-download__card-icon {
-  font-weight: normal;
-  position: absolute;
-  left: 0; }
-
 .druki-page-download__card-title {
-  font-size: 17px;
-  position: relative;
-  margin: unset;
-  margin-bottom: var(--spacing-sm);
-  padding-left: 30px; }
+  font-size: var(--text-base-size); }
 
-.druki-page-download__card-text {
-  font-size: 14px;
-  color: var(--color-contrast-medium); }
+.druki-page-download__card-content {
+  font-size: var(--text-sm); }
 
-.druki-page-download__card-bottom {
-  margin-top: auto;
-  padding-top: var(--spacing-unit); }
+.druki-page-download__card-content p:last-child {
+  margin-bottom: unset; }
 
 .druki-page-download__card-link {
   font-size: 14px;
@@ -1154,75 +1136,47 @@
   font-size: var(--text-xxl); }
 
 .druki-page-wiki__row-description {
-  font-size: var(--text-md);
+  font-size: var(--text-base-size);
   margin-bottom: var(--spacing-unit); }
 
-.druki-page-wiki__box-links {
+.druki-page-wiki__cards {
   display: grid;
   margin: var(--spacing-md) 0;
   grid-gap: var(--spacing-sm);
-  grid-template-columns: repeat(2, 1fr); }
+  grid-template-columns: 1fr; }
+  @media (min-width: 540px) {
+    .druki-page-wiki__cards {
+      grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1140px) {
-    .druki-page-wiki__box-links {
+    .druki-page-wiki__cards {
       grid-template-columns: repeat(4, 1fr); } }
 
-.druki-page-wiki__box-links-item {
-  position: relative;
-  overflow: hidden;
-  padding: var(--spacing-sm);
-  -webkit-transition: all .25s ease-in-out;
-  transition: all .25s ease-in-out;
-  border-radius: var(--radius);
-  background-color: var(--page-background);
-  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1); }
-  .druki-page-wiki__box-links-item::before {
-    position: absolute;
-    z-index: 0;
-    right: -50%;
-    bottom: -50%;
-    display: block;
-    width: 0;
-    height: 0;
-    content: '';
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
-    border-radius: 100%; }
-  .druki-page-wiki__box-links-item:hover {
-    text-decoration: none; }
+.druki-page-wiki__card-title {
+  font-size: var(--text-base-size); }
 
-.druki-page-wiki__box-links-item:hover::before {
-  width: 200%;
-  padding-bottom: 200%;
-  background-color: var(--color-primary); }
+.druki-page-wiki__card-content {
+  font-size: var(--text-sm); }
 
-.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-title {
-  color: var(--color-contrast-higher); }
-
-.druki-page-wiki__box-links-item:hover .druki-page-wiki__box-links-item-description {
-  color: var(--color-contrast-high); }
-
-.druki-page-wiki__box-links-item-title {
-  font-size: var(--text-lg);
-  position: relative;
-  margin: unset;
-  margin-bottom: var(--spacing-sm); }
-
-.druki-page-wiki__box-links-item-description {
-  font-size: 14px;
-  position: relative;
-  color: var(--color-contrast-high); }
+.druki-page-wiki__card-content p:last-child {
+  margin-bottom: unset; }
 
 .druki-page-wiki__faq {
   font-size: 14px;
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
-  color: var(--color-contrast-high); }
+  color: var(--color-contrast-medium); }
 
 .druki-page-wiki__other-items {
   display: grid;
   grid-gap: var(--spacing-sm);
-  grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: 1fr; }
+  @media (min-width: 540px) {
+    .druki-page-wiki__other-items {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1140px) {
+    .druki-page-wiki__other-items {
+      grid-template-columns: repeat(4, 1fr); } }
 
 .druki-page-wiki__other-item-title {
   font-weight: bold;

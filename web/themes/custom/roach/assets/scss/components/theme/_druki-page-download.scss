@@ -8,12 +8,10 @@ $icons: (
 );
 
 :root {
-  --druki-download-card-background: white;
   --druki-download-card-hover-border-color: var(--link-color);
 }
 
 [data-theme="dark"] {
-  --druki-download-card-background: hsl(252, 11%, 9%);
   --druki-download-card-hover-border-color: var(--color-contrast-low);
 }
 
@@ -39,7 +37,7 @@ $icons: (
   margin: var(--spacing-lg) auto 0;
   padding: var(--spacing-sm);
   border-radius: var(--radius);
-  background-color: var(--druki-download-card-background);
+  background-color: var(--code-background);
   box-shadow: var(--shadow-xs);
 }
 
@@ -81,18 +79,10 @@ $icons: (
 }
 
 .druki-page-download__card {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  padding: var(--spacing-sm);
-  transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
   border: 2px solid transparent;
-  border-radius: var(--radius);
-  background-color: var(--druki-download-card-background);
-  box-shadow: var(--shadow-xs);
+  transition: all 0.25s ease-in-out;
 
   &:hover {
-    box-shadow: var(--shadow-md);
     border-color: var(--druki-download-card-hover-border-color);
   }
 }
@@ -103,28 +93,16 @@ $icons: (
   }
 }
 
-.druki-page-download__card-icon {
-  font-weight: normal;
-  position: absolute;
-  left: 0;
-}
-
 .druki-page-download__card-title {
-  font-size: 17px;
-  position: relative;
-  margin: unset;
-  margin-bottom: var(--spacing-sm);
-  padding-left: 30px;
+  font-size: var(--text-base-size);
 }
 
-.druki-page-download__card-text {
-  font-size: 14px;
-  color: var(--color-contrast-medium);
+.druki-page-download__card-content {
+  font-size: var(--text-sm);
 }
 
-.druki-page-download__card-bottom {
-  margin-top: auto;
-  padding-top: var(--spacing-unit);
+.druki-page-download__card-content p:last-child {
+  margin-bottom: unset;
 }
 
 .druki-page-download__card-link {

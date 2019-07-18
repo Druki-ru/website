@@ -6,24 +6,23 @@
   --paragraph-druki-heading-border-color: var(--color-contrast-lower);
 }
 
-.paragraph-druki-heading { }
+.paragraph-druki-heading__heading {
+}
 
 .paragraph-druki-heading__anchor {
   @include mdi-icon('link-variant', $margin-size: 0);
-  font-size: 18px;
+  font-size: var(--text-md);
   display: none;
-  margin-left: -25px;
-  vertical-align: middle;
+  margin-left: var(--spacing-unit);
   color: var(--color-contrast-medium);
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .paragraph-druki-heading:hover .paragraph-druki-heading__anchor {
   display: inline-block;
-}
-
-.paragraph-druki-heading__heading {
-  position: relative;
-  vertical-align: middle;
 }
 
 .paragraph-druki-heading__heading--h2 {
