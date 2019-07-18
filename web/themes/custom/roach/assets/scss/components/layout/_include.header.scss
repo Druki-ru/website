@@ -57,8 +57,9 @@
 .header__right {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .header .dark-mode-toggle {
-  padding: 0 var(--spacing-sm);
+  margin-right: var(--spacing-sm);
 }

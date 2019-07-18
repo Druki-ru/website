@@ -1,12 +1,16 @@
 .frontpage-get-started-and-versions {
   display: grid;
-  grid-gap: var(--spacing-lg);
+  grid-gap: var(--spacing-md);
   padding: var(--spacing-sm);
   grid-template-columns: 1fr;
 
-  @include breakpoint(xl) {
-    grid-template-columns: 1fr 400px;
+  @include breakpoint(lg) {
     padding: var(--spacing-lg);
+  }
+
+  @include breakpoint(xl) {
+    grid-gap: var(--spacing-lg);
+    grid-template-columns: 1fr 400px;
   }
 }
 

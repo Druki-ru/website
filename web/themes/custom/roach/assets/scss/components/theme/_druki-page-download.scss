@@ -1,11 +1,3 @@
-:root {
-  --druki-download-command-color: var(--color-white);
-}
-
-[data-theme="dark"] {
-  --druki-download-command-color: var(--color-black);
-}
-
 $icons: (
   'try': 'drupal',
   'update': 'update',
@@ -15,7 +7,18 @@ $icons: (
   'talk': 'chat-processing'
 );
 
-.druki-page-download { }
+:root {
+  --druki-download-card-background: white;
+  --druki-download-card-hover-border-color: var(--link-color);
+}
+
+[data-theme="dark"] {
+  --druki-download-card-background: hsl(252, 11%, 9%);
+  --druki-download-card-hover-border-color: var(--color-contrast-low);
+}
+
+.druki-page-download {
+}
 
 .druki-page-download__title {
   font-size: var(--page-title-font-size);
@@ -35,15 +38,14 @@ $icons: (
   justify-content: center;
   margin: var(--spacing-lg) auto 0;
   padding: var(--spacing-sm);
-  color: white;
   border-radius: var(--radius);
-  background-color: var(--color-contrast-higher);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  background-color: var(--druki-download-card-background);
+  box-shadow: var(--shadow-xs);
 }
 
 .druki-page-download__command {
   font-family: var(--font-monospace);
-  color: var(--druki-download-command-color);
+  color: var(--text-color);
 
   &::before {
     content: '>_ ';
@@ -79,15 +81,20 @@ $icons: (
 }
 
 .druki-page-download__card {
-  position: relative;
   display: flex;
   overflow: hidden;
   flex-direction: column;
   padding: var(--spacing-sm);
-  text-align: center;
+  transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
+  border: 2px solid transparent;
   border-radius: var(--radius);
-  background-color: var(--page-background);
-  box-shadow: inset 0 0 10px 0 rgba(black, 0.1);
+  background-color: var(--druki-download-card-background);
+  box-shadow: var(--shadow-xs);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--druki-download-card-hover-border-color);
+  }
 }
 
 @each $modifier, $icon in $icons {
@@ -97,14 +104,17 @@ $icons: (
 }
 
 .druki-page-download__card-icon {
-  font-size: 60px;
+  font-weight: normal;
+  position: absolute;
+  left: 0;
 }
 
 .druki-page-download__card-title {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 17px;
+  position: relative;
   margin: unset;
   margin-bottom: var(--spacing-sm);
+  padding-left: 30px;
 }
 
 .druki-page-download__card-text {
@@ -113,7 +123,20 @@ $icons: (
 }
 
 .druki-page-download__card-bottom {
-  font-weight: bold;
   margin-top: auto;
   padding-top: var(--spacing-unit);
+}
+
+.druki-page-download__card-link {
+  font-size: 14px;
+  padding: var(--spacing-unit) var(--spacing-sm);
+  border: 1px solid var(--color-contrast-low);
+  border-radius: var(--radius);
+
+  &:hover {
+    text-decoration: none;
+    color: var(--color-white);
+    border-color: var(--link-color-hover);
+    background-color: var(--link-color);
+  }
 }
