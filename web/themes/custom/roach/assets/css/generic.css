@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Material Design Icons";
+  src: url("../../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot?v=3.7.95");
+  src: url("../../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot?#iefix&v=3.7.95") format("embedded-opentype"), url("../../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2?v=3.7.95") format("woff2"), url("../../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff?v=3.7.95") format("woff"), url("../../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf?v=3.7.95") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -305,15 +312,6 @@ template {
   display: none; }
 
 :root {
-  --spacing-unit: 8px;
-  --spacing-xxs: calc(var(--spacing-unit) * 0.375);
-  --spacing-xs: calc(var(--spacing-unit) * 0.5);
-  --spacing-sm: calc(var(--spacing-unit) * 2);
-  --spacing-md: calc(var(--spacing-unit) * 4);
-  --spacing-lg: calc(var(--spacing-unit) * 8);
-  --spacing-xl: calc(var(--spacing-unit) * 16); }
-
-:root {
   --color-primary-h: 47;
   --color-primary-s: 100%;
   --color-primary-l: 58%;
@@ -350,14 +348,14 @@ template {
   --color-contrast-higher: hsl(0, 0%, 95%); }
 
 :root {
+  --sidebar-width: 280px;
+  --container-max-width: 1920px; }
+
+:root {
   --radius: 0.25em;
   --radius-sm: calc(var(--radius) / 2);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) * 2); }
-
-:root {
-  --sidebar-width: 280px;
-  --container-max-width: 1920px; }
 
 :root {
   --shadow-xs: 0 1px 3px hsla(0, 0%, 0%, 0.12), 0 1px 2px hsla(0, 0%, 0%, 0.24);
@@ -365,5 +363,14 @@ template {
   --shadow-md: 0 10px 20px hsla(0, 0%, 0%, 0.19), 0 6px 6px hsla(0, 0%, 0%, 0.23);
   --shadow-lg: 0 14px 28px hsla(0, 0%, 0%, 0.25), 0 10px 10px hsla(0, 0%, 0%, 0.22);
   --shadow-xl: 0 19px 38px hsla(0, 0%, 0%, 0.3), 0 15px 12px hsla(0, 0%, 0%, 0.22); }
+
+:root {
+  --spacing-unit: 8px;
+  --spacing-xxs: calc(var(--spacing-unit) * 0.375);
+  --spacing-xs: calc(var(--spacing-unit) * 0.5);
+  --spacing-sm: calc(var(--spacing-unit) * 2);
+  --spacing-md: calc(var(--spacing-unit) * 4);
+  --spacing-lg: calc(var(--spacing-unit) * 8);
+  --spacing-xl: calc(var(--spacing-unit) * 16); }
 
 /*# sourceMappingURL=maps/generic.css.map */
