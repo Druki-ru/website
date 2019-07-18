@@ -1,3 +1,12 @@
+:root {
+  --druki-content-toc-link-color: hsl(226, 7%, 43%);
+  --druki-content-toc-link-hover-color: hsl(226, 7%, 23%);
+}
+
+[data-theme="dark"] {
+  --druki-content-toc-link-hover-color: hsl(226, 7%, 63%);
+}
+
 .druki-content-toc {
   font-size: 14px;
   line-height: 1.7;
@@ -8,11 +17,17 @@
   padding: unset;
 }
 
-.druki-content-toc__menu-item-link {
+.druki-content-toc__link {
   display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: var(--druki-content-toc-link-color);
+
+  &:hover {
+    text-decoration: none;
+    color: var(--druki-content-toc-link-hover-color);
+  }
 }
 
 .druki-content-toc__submenu {

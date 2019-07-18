@@ -1,3 +1,13 @@
+:root {
+  --druki-category-navigation-link-color: hsl(226, 7%, 43%);
+  --druki-category-navigation-link-hover-color: hsl(226, 7%, 23%);
+}
+
+[data-theme="dark"] {
+  --druki-category-navigation-link-hover-color: hsl(226, 7%, 63%);
+}
+
+
 .druki-category-navigation {
   font-size: 14px;
 }
@@ -17,6 +27,12 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: var(--druki-category-navigation-link-color);
+
+  &:hover {
+    color: var(--druki-category-navigation-link-hover-color);
+    text-decoration: none;
+  }
 }
 
 .druki-category-navigation__menu-item-link--active {
