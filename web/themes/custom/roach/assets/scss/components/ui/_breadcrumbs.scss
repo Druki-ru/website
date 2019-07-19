@@ -22,7 +22,7 @@
 }
 
 .breadcrumbs__item-link {
-  color: var(--link-color);
+  color: var(--color-contrast-medium);
 }
 
 .breadcrumbs__item-link--text {
@@ -30,6 +30,8 @@
 }
 
 .breadcrumbs__item-link--current {
+  color: var(--link-color);
+
   &::before {
     margin: 0 4px;
     content: '/';

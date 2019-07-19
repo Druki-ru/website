@@ -1206,15 +1206,17 @@
       display: inline; } }
 
 .breadcrumbs__item-link {
-  color: var(--link-color); }
+  color: var(--color-contrast-medium); }
 
 .breadcrumbs__item-link--text {
   color: var(--text-color); }
 
-.breadcrumbs__item-link--current::before {
-  margin: 0 4px;
-  content: '/';
-  color: var(--color-contrast-medium); }
+.breadcrumbs__item-link--current {
+  color: var(--link-color); }
+  .breadcrumbs__item-link--current::before {
+    margin: 0 4px;
+    content: '/';
+    color: var(--color-contrast-medium); }
 
 .breadcrumbs__current {
   display: block;
