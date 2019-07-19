@@ -55,7 +55,6 @@ class DrukiContentLinks extends RenderElement {
       '#title' => t('View'),
       '#url' => $entity->toUrl('canonical'),
       '#attributes' => [
-        'target' => '_blank',
         'rel' => 'nofollow noopener',
         'class' => [
           'druki-content-tabs__link',
