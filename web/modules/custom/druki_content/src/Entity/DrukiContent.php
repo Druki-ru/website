@@ -26,8 +26,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
- *     }
+ *       "html" = "Drupal\druki_content\Routing\DrukiContentRouteProvider",
+ *     },
+ *     "redirect_controller" = "Drupal\druki_content\Handler\DrukiContentRedirectController",
  *   },
  *   base_table = "druki_content",
  *   data_table = "druki_content_field_data",
@@ -44,7 +45,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "canonical" = "/druki_content/{druki_content}",
  *     "edit-form" = "/admin/druki/content/{druki_content}/edit",
  *     "delete-form" = "/admin/druki/content/{druki_content}/delete",
- *     "collection" = "/admin/content/druki-content"
+ *     "collection" = "/admin/content/druki-content",
+ *     "edit-remote" = "/druki_content/{druki_content}/edit-remote",
+ *     "history-remote" = "/druki_content/{druki_content}/history-remote",
  *   },
  *   field_ui_base_route = "entity.druki_content.settings"
  * )

@@ -1,0 +1,21 @@
+.druki-content-tabs {
+  display: flex;
+  align-items: center;
+}
+
+.druki-content-tabs__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--header-height);
+  padding: 0 var(--spacing-sm);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.druki-content-tabs__link--read {
+  background-color: var(--page-background);
+  color: var(--text-color);
+}
