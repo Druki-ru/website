@@ -40,7 +40,7 @@ function roach_preprocess_page(array &$variables) {
     '#attributes' => [
       'rel' => 'preload',
       'as' => 'font',
-      'href' => '/themes/custom/svzar_theme/node_modules/mdi/fonts/materialdesignicons-webfont.woff2',
+      'href' => '/themes/custom/roach/node_modules/%40mdi/font/fonts/materialdesignicons-webfont.woff2',
       'type' => 'font/woff2',
       'crossorigin' => 'anonymous',
     ],
