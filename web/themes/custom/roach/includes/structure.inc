@@ -33,6 +33,51 @@ function roach_preprocess_page(array &$variables) {
   else {
     $main_layout_attributes->addClass('main-layout--no-sidebars');
   }
+
+  // Some optimizations.
+  $preload_mdi = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'preload',
+      'as' => 'font',
+      'href' => '/themes/custom/svzar_theme/node_modules/mdi/fonts/materialdesignicons-webfont.woff2',
+      'type' => 'font/woff2',
+      'crossorigin' => 'anonymous',
+    ],
+    '#weight' => -100,
+  ];
+
+  $google_font_styles = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'preconnect',
+      'href' => 'https://fonts.googleapis.com/',
+    ],
+    '#weight' => -99,
+  ];
+
+  $google_font_files = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'preconnect',
+      'href' => 'https://fonts.gstatic.com/',
+    ],
+    '#weight' => -98,
+  ];
+
+  $gtm = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'preconnect',
+      'href' => 'https://www.googletagmanager.com/',
+    ],
+    '#weight' => -97,
+  ];
+
+  $variables['#attached']['html_head'][] = [$preload_mdi, 'preload_mdi'];
+  $variables['#attached']['html_head'][] = [$google_font_styles, 'google_font_styles'];
+  $variables['#attached']['html_head'][] = [$google_font_files, 'google_font_files'];
+  $variables['#attached']['html_head'][] = [$gtm, 'google_tag_manager'];
 }
 
 /**
