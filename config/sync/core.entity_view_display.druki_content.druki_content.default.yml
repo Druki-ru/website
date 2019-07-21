@@ -29,6 +29,11 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  extra_field_next_prev:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   category: true
   difficulty: true

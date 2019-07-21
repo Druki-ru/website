@@ -35,7 +35,7 @@ class DrukiContentLinks extends RenderElement {
    *
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
-  public static function preRender(array $element) {
+  public static function preRenderElement(array $element) {
     if (!$element['#entity'] instanceof DrukiContentInterface) {
       return [];
     }
@@ -100,7 +100,7 @@ class DrukiContentLinks extends RenderElement {
   public function getInfo() {
     return [
       '#pre_render' => [
-        [get_class($this), 'preRender'],
+        [get_class($this), 'preRenderElement'],
       ],
       '#entity' => NULL,
     ];
