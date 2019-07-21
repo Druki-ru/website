@@ -80,7 +80,7 @@ $icons: (
 
 .druki-page-download__card {
   border: 2px solid transparent;
-  transition: all 0.25s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
 
   &:hover {
     border-color: var(--druki-download-card-hover-border-color);
