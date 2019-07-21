@@ -103,17 +103,23 @@ class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPluginIn
     $sort_direction = $direction == 'next' ? 'ASC' : 'DESC';
     $order_condition_operator = $sort_direction == 'ASC' ? '>' : '<';
 
-    $result = $this
+    $query = $this
       ->contentStorage
       ->getQuery()
       ->condition('category.area', $entity->get('category')->area)
       ->condition('category.order', $entity->get('category')->order, $order_condition_operator)
-      ->condition('internal_id', $entity->id(), '!=')
-      ->condition('core', $entity->getCore())
+      ->condition('internal_id', $entity->id(), '!=');
+
+    if (!$entity->get('core')->isEmpty()) {
+      $query->condition('core', $entity->getCore());
+    }
+
+    $result = $query
       ->range(0, 1)
       ->sort('category.order', $sort_direction)
       ->execute();
 
+    dump($result);
     if (empty($result)) {
       return NULL;
     }
