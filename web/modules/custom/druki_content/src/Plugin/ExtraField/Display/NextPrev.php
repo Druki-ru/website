@@ -119,7 +119,6 @@ class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPluginIn
       ->sort('category.order', $sort_direction)
       ->execute();
 
-    dump($result);
     if (empty($result)) {
       return NULL;
     }
