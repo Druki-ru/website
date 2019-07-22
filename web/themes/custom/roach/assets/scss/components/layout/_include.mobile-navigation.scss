@@ -1,8 +1,8 @@
 $icons: (
-  '/wiki': 'file-document-box-multiple',
+  '/': 'home',
+  '/wiki': 'file-document-box-multiple-outline',
   '/download': 'download',
-  '/wiki/faq': 'help-circle-outline',
-  '/wiki/changelog': 'select-compare',
+  '/wiki/drupal': 'drupal',
 );
 
 .mobile-navigation {
@@ -34,14 +34,14 @@ $icons: (
   position: fixed;
   z-index: 201;
   top: 0;
+  display: flex;
   overflow-y: scroll;
+  flex-direction: column;
   width: 250px;
   height: 100%;
   transition: 0.5s ease-in-out transform;
   transform: translateX(-250px);
   background-color: var(--page-background);
-  display: flex;
-  flex-direction: column;
 }
 
 .mobile-navigation__sidebar .dark-mode-toggle {
@@ -70,6 +70,7 @@ $icons: (
 
 .mobile-navigation__navigation {
   @include list-unstyled;
+  margin: var(--spacing-sm) var(--spacing-unit);
 }
 
 .mobile-navigation__navigation-item {
@@ -85,13 +86,27 @@ $icons: (
 .mobile-navigation__navigation-link {
   display: flex;
   align-items: center;
-  padding: var(--spacing-sm);
-  color: var(--color-contrast-medium);
+  padding: var(--spacing-xs);
+  color: var(--block-main-menu-link-color);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
 
-  &::before {
-    font-size: var(--text-lg);
-    width: 24px;
-    margin-right: var(--spacing-sm);
-    text-align: center;
+  &:hover {
+    text-decoration: none;
+    color: var(--block-main-menu-link-hover-color);
+    border: 1px solid var(--block-main-menu-link-hover-border-color);
+    background: var(--block-main-menu-link-hover-background);
   }
+}
+
+.mobile-navigation__navigation-link::before {
+  margin-right: var(--spacing-sm) !important;
+  padding: var(--spacing-unit);
+  border-radius: var(--radius);
+  background-color: var(--block-main-menu-icon-background);
+}
+
+.mobile-navigation__navigation-link:hover::before {
+  color: var(--block-main-menu-link-hover-icon-color);
+  background-color: var(--block-main-menu-link-hover-icon-background);
 }
