@@ -33,3 +33,6 @@ msgstr "Настройки для главной страницы."
 
 msgid "General settings"
 msgstr "Общие настройки"
+
+msgid "Wiki"
+msgstr "Энциклопедия"
