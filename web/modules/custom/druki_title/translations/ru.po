@@ -1,8 +1,0 @@
-msgid ""
-msgstr ""
-
-msgid "Page title"
-msgstr "Заголовок страницы"
-
-msgid "Druki title"
-msgstr "Заголовок Druki"
