@@ -52,8 +52,7 @@ class DrukiContentRedirectController extends ControllerBase {
    *   The redirect response.
    */
   public function build(DrukiContentInterface $druki_content, string $redirect_to) {
-    // @todo add config for this and use it.
-    $repository_url = 'https://gitlab.com/druki/content';
+    $repository_url = $this->gitConfig->get('repository_url');
     $relative_pathname = $druki_content->getRelativePathname();
 
     switch ($redirect_to) {

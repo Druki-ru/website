@@ -36,6 +36,16 @@ class DrukiGitController extends ControllerBase implements ContainerInjectionInt
    */
   protected $git;
 
+  /**
+   * Constructs a new DrukiGitController object.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger.
+   * @param \Drupal\druki_git\Service\GitInterface $git
+   *   The GIT service.
+   */
   public function __construct(Request $request, LoggerChannelInterface $logger, GitInterface $git) {
     $this->request = $request;
     $this->logger = $logger;
@@ -43,7 +53,7 @@ class DrukiGitController extends ControllerBase implements ContainerInjectionInt
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): object {
     return new static(

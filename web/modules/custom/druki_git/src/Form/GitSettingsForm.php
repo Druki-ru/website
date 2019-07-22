@@ -87,7 +87,7 @@ class GitSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function getFormId(): string {
-    return 'druki_git_git_settings';
+    return 'druki_git_settings';
   }
 
   /**
@@ -129,8 +129,8 @@ class GitSettingsForm extends ConfigFormBase {
 
     $webhook_description = '<p>' . $this->t('The Webhook URL which can be used to trigger pull events and all consecutive operations.') . '</p>';
     $webhook_description .= '<p>' . new TranslatableMarkup('The Webhook URL: <a href=":url">:url</a>', [
-        ':url' => $webhook_url,
-      ]);
+      ':url' => $webhook_url,
+    ]);
     $form['webhook']['description'] = [
       '#markup' => $webhook_description,
     ];
@@ -142,14 +142,33 @@ class GitSettingsForm extends ConfigFormBase {
       '#submit' => [[$this, 'regenerateWebhookKey']],
     ];
 
-    $form['repository_path'] = [
+    $form['repository'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Repository settings'),
+    ];
+
+    $form['repository']['repository_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Repository URL'),
+      '#description' => $this->t('The remote repository URL.'),
+      '#attributes' => [
+        'placeholder' => 'https://gitlab.com/druki/content',
+      ],
+      '#default_value' => $this
+        ->config('druki_git.git_settings')
+        ->get('repository_url'),
+      '#required' => TRUE,
+    ];
+
+    $form['repository']['repository_path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Repository path'),
       '#description' => $this->t('The local path to repository cloning.'),
       '#attributes' => [
         'placeholder' => 'public://path/to/store/repository',
       ],
-      '#default_value' => $this->config('druki_git.git_settings')
+      '#default_value' => $this
+        ->config('druki_git.git_settings')
         ->get('repository_path'),
       '#required' => TRUE,
     ];
@@ -212,6 +231,7 @@ class GitSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('druki_git.git_settings')
       ->set('repository_path', $form_state->getValue('repository_path'))
+      ->set('repository_url', $form_state->getValue('repository_url'))
       ->save();
     parent::submitForm($form, $form_state);
   }

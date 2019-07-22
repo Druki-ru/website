@@ -14,6 +14,8 @@ use Drupal\druki_git\Event\DrukiGitEvents;
  * Service wrapper to git library.
  *
  * @package Drupal\druki_git\Service
+ *
+ * @deprecated use Drupal\druki_git\Git\Git instead.
  */
 class Git implements GitInterface {
 
@@ -73,6 +75,9 @@ class Git implements GitInterface {
     $this->configuration = $config_factory->get('druki_git.git_settings');
     $this->fileSystem = $file_system;
     $this->eventDispatcher = $event_dispatcher;
+
+    $this->repositoryPath = $this->configuration->get('repository_path');
+    $this->repositoryRealpath = $this->fileSystem->realpath($this->repositoryPath);
   }
 
   /**
