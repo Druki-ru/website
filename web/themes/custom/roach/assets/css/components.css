@@ -259,6 +259,54 @@
   background-color: var(--page-background);
   color: var(--text-color); }
 
+.druki-mobile-toc__header {
+  display: -webkit-box;
+  display: flex; }
+
+.druki-mobile-toc__toggle {
+  font-weight: bold;
+  margin-bottom: -2px;
+  padding: var(--spacing-unit) var(--spacing-sm);
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 2px solid var(--color-contrast-low);
+  background-color: var(--page-background); }
+  .druki-mobile-toc__toggle:before {
+    content: "\F140";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Material Design Icons";
+    display: inline-block;
+    text-decoration: inherit;
+    margin-right: 0.4em; }
+
+.druki-mobile-toc__content {
+  padding: var(--spacing-unit) var(--spacing-sm);
+  border: 2px solid var(--color-contrast-low);
+  background-color: var(--page-background);
+  display: none; }
+
+.druki-mobile-toc--active .druki-mobile-toc__content {
+  display: block; }
+
+.druki-mobile-toc--active .druki-mobile-toc__toggle {
+  border-bottom-width: 0; }
+  .druki-mobile-toc--active .druki-mobile-toc__toggle:before {
+    content: "\F143";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Material Design Icons";
+    display: inline-block;
+    text-decoration: inherit;
+    margin-right: 0.4em; }
+
 .app {
   padding-top: var(--mobile-header-height, 60px); }
   @media (min-width: 960px) {

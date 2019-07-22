@@ -47,6 +47,12 @@ mobile_navigation:
   dependencies:
     - core/drupal
 
+mobile_contents:
+  js:
+    assets/js/mobile-contents.js: {}
+  dependencies:
+    - core/drupal
+
 dark_mode:
   js:
     # For as fast as possible execution.

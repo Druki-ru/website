@@ -69,3 +69,6 @@ msgstr "Список содержимого"
 
 msgid "List of druki content."
 msgstr "Список Druki содержимого."
+
+msgid "Contents"
+msgstr "Содержание"
