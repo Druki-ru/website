@@ -1,5 +1,7 @@
 .druki-mobile-toc {
-
+  @include breakpoint(xxl) {
+    display: none;
+  }
 }
 
 .druki-mobile-toc__header {

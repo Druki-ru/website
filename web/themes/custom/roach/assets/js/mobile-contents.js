@@ -28,7 +28,7 @@
       return;
     }
 
-    const contentsElement = context.querySelector('.druki-content-toc');
+    const contentsElement = context.querySelector('.druki-content-toc').cloneNode(true);
 
     if (!contentsElement) {
       return;
@@ -77,8 +77,8 @@
       mobileTocElement.classList.toggle('druki-mobile-toc--active');
     };
 
-    mobileTocElement.removeEventListener('click', listener);
-    mobileTocElement.addEventListener('click', listener);
+    toggleElement.removeEventListener('click', listener);
+    toggleElement.addEventListener('click', listener);
   };
 
 })(Drupal);
