@@ -16,7 +16,7 @@ dependencies:
 _core:
   default_config_hash: 1F1cSZ5MlvxdwjdyrwnH2I8CWngOp8Pu2SXDzix2QUc
 id: media_library
-label: 'Media library'
+label: Медиа-библиотека
 module: views
 description: ''
 tag: ''
