@@ -1639,7 +1639,7 @@
   border-radius: var(--radius); }
 
 :root {
-  --prismjs-background: var(--code-background);
+  --prismjs-background: var(--page-background);
   --prismjs-color: var(--text-color);
   --prismjs-keyword: hsl(234, 91%, 30%);
   --prismjs-punctuatuion: hsl(0, 0%, 0%);

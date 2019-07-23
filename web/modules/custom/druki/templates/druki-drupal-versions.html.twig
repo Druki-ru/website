@@ -39,7 +39,7 @@
           {{ last_stable_release.version -}}
         </a>
         {% if 'Security update' in last_stable_release.terms['Release type'] %}
-          <span class="{{ bem_block }}__security" title="Обновление безопасности">⚠</span>
+          <span class="{{ bem_block }}__security" title="Обновление безопасности">🔴</span>
         {% endif %}
         <span class="{{ bem_block }}__update-date">
         ({{ last_stable_release.date|date('d.m.Y') }})

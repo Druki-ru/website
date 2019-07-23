@@ -12,7 +12,3 @@ use Drupal\druki_git\Git\Git;
 //$git->pull();
 //$git->init();
 //dump($git->getFileLastCommitId('docs/ru/the-drupal-way.md'));
-
-$dir = drupal_realpath('public://druki-content-source');
-dump(Git::pull($dir));
-dump(Git::getLastCommitId($dir));

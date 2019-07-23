@@ -2,20 +2,18 @@
 
 namespace Drupal\druki_git\Service;
 
-use Cz\Git\GitException;
-use Cz\Git\GitRepository;
 use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
+use Drupal\druki_git\Exception\GitCommandFailedException;
+use Drupal\druki_git\Git\Git as GitUtils;
 
 /**
  * Service wrapper to git library.
  *
  * @package Drupal\druki_git\Service
- *
- * @deprecated use Drupal\druki_git\Git\Git instead.
  */
 class Git implements GitInterface {
 
@@ -25,13 +23,6 @@ class Git implements GitInterface {
    * @var \Drupal\Core\Config\ImmutableConfig
    */
   protected $configuration;
-
-  /**
-   * The git repository.
-   *
-   * @var \Cz\Git\GitRepository
-   */
-  protected $git;
 
   /**
    * The file system.
@@ -71,7 +62,12 @@ class Git implements GitInterface {
    * @param \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher $event_dispatcher
    *   The event dispatcher.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, FileSystemInterface $file_system, ContainerAwareEventDispatcher $event_dispatcher) {
+  public function __construct(
+    ConfigFactoryInterface $config_factory,
+    FileSystemInterface $file_system,
+    ContainerAwareEventDispatcher $event_dispatcher
+  ) {
+
     $this->configuration = $config_factory->get('druki_git.git_settings');
     $this->fileSystem = $file_system;
     $this->eventDispatcher = $event_dispatcher;
@@ -83,52 +79,18 @@ class Git implements GitInterface {
   /**
    * {@inheritdoc}
    */
-  public function init(): ?GitInterface {
-    $this->repositoryPath = $this->configuration->get('repository_path');
-    // Git library don't detect stream wrappers, so we need to convert our uri
-    // to real valid path.
-    $this->repositoryRealpath = $this->fileSystem->realpath($this->repositoryPath);
-
+  public function pull(): bool {
     try {
-      $this->git = new GitRepository($this->repositoryRealpath);
+      GitUtils::pull($this->getRepositoryRealpath());
 
-      return $this;
-    }
-    catch (GitException $e) {
-      return NULL;
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function pull(): ?GitInterface {
-    try {
-      $this->git->pull();
-
-      // Fire event.
       $event = new DrukiGitEvent($this);
       $this->eventDispatcher->dispatch(DrukiGitEvents::FINISH_PULL, $event);
 
-      return $this;
+      return TRUE;
     }
-    catch (GitException $e) {
-      return NULL;
+    catch (GitCommandFailedException $e) {
+      return FALSE;
     }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLastCommitId(): string {
-    return $this->git->getLastCommitId();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getRepositoryPath(): string {
-    return $this->repositoryPath;
   }
 
   /**
@@ -141,47 +103,34 @@ class Git implements GitInterface {
   /**
    * {@inheritdoc}
    */
+  public function getLastCommitId(): string {
+    return rtrim(GitUtils::getLastCommitId($this->getRepositoryRealpath()));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRepositoryPath(): string {
+    return $this->repositoryPath;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getFileLastCommitId($relative_path): ?string {
-    $commit_hash = $this->git->execute([
-      'log',
-      '-n 1',
-      '--pretty=format:%H',
-      '--',
-      $relative_path,
-    ]);
-
-    if (preg_match('/^[0-9a-f]{40}$/i', $commit_hash[0])) {
-      return $commit_hash[0];
+    try {
+      return rtrim(GitUtils::getFileLastCommitId($relative_path, $this->getRepositoryRealpath()));
     }
-
-    return NULL;
+    catch (GitCommandFailedException $e) {
+      return NULL;
+    }
   }
 
   /**
    * {@inheritdoc}
    */
   public function getFileCommitsInfo($relative_path): array {
-    $result = $this->git->execute([
-      'shortlog',
-      // @see https://stackoverflow.com/a/43042363/4751623
-      'HEAD',
-      '-sen',
-      '--',
-      $relative_path,
-    ]);
-
-    $commits_info = [];
-    foreach ($result as $item) {
-      preg_match_all("/(\d+)\s(.+)\s<([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)>/", $item, $matches);
-
-      $commits_info[] = [
-        'count' => $matches[1][0],
-        'name' => $matches[2][0],
-        'email' => $matches[3][0],
-      ];
-    }
-
-    return $commits_info;
+    return GitUtils::getFileCommitsInfo($relative_path, $this->getRepositoryRealpath());
   }
 
 }

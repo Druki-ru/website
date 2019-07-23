@@ -11,6 +11,7 @@ use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki_git\Exception\GitCommandFailedException;
 use Drupal\druki_git\Service\GitInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -183,14 +184,15 @@ class GitSettingsForm extends ConfigFormBase {
    *   An array with status information or NULL, if repository not found.
    */
   public function fetchRepositoryInfo(): ?array {
-    if ($this->git->init()) {
+    try {
       $messages = [];
       $messages[] = $this->t('<strong>Last commit ID:</strong> @value', ['@value' => $this->git->getLastCommitId()]);
 
       return $messages;
     }
-
-    return NULL;
+    catch (GitCommandFailedException $e) {
+      return NULL;
+    }
   }
 
   /**
@@ -216,13 +218,6 @@ class GitSettingsForm extends ConfigFormBase {
     $this->logger->notice('The webhook key was regenerated manually to "@webhook_key".', [
       '@webhook_key' => $webhook_key,
     ]);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
-    parent::validateForm($form, $form_state);
   }
 
   /**
