@@ -3,7 +3,6 @@
 
 .druki-page-wiki__title {
   font-size: var(--page-title-font-size);
-  font-weight: bold;
   text-align: center;
 }
 
@@ -52,6 +51,20 @@
 
 .druki-page-wiki__card-content p:last-child {
   margin-bottom: unset;
+}
+
+.druki-page-wiki__card-link {
+  font-size: 14px;
+  padding: var(--spacing-unit) var(--spacing-sm);
+  border: 1px solid var(--color-contrast-low);
+  border-radius: var(--radius);
+
+  &:hover {
+    text-decoration: none;
+    color: var(--color-white);
+    border-color: var(--link-color-hover);
+    background-color: var(--link-color);
+  }
 }
 
 .druki-page-wiki__faq {
