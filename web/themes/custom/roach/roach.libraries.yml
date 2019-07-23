@@ -25,7 +25,7 @@ style.utilities:
 google.fonts:
   css:
     theme:
-      //fonts.googleapis.com/css?family=Montserrat:400,600,700|Roboto:400,500,700&subset=cyrillic&display=swap: { type: external, minified: true }
+      //fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto:400,500,700&subset=cyrillic&display=swap: { type: external, minified: true }
 
 code_highlight:
   js:
