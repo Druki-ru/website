@@ -2,3 +2,4 @@ repository_path: 'public://druki-content-source'
 _core:
   default_config_hash: 19JOkXt_CVJ8cAcafYogRhuG1SIiRdCYvEC87EoGZ-g
 langcode: ru
+repository_url: 'https://gitlab.com/druki/content'
