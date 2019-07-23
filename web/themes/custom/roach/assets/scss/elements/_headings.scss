@@ -3,7 +3,7 @@
 // =============================================================================
 
 :root {
-  --heading-font-family: Montserrat, sans-serif;
+  --heading-font-family: Ubuntu, sans-serif;
   --heading-line-height: 1.3;
   --heading-color: var(--color-primary);
 }
@@ -43,7 +43,6 @@ h4,
 h5,
 h6 {
   font-family: var(--heading-font-family);
-  font-weight: 500;
   line-height: var(--heading-line-height);
   margin-bottom: var(--spacing-sm);
   color: var(--heading-color);
