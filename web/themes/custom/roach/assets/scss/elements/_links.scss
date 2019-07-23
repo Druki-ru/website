@@ -3,13 +3,12 @@
 // =============================================================================
 
 :root {
-  --link-color: hsl(211, 100%, 54%);
-  --link-color-hover: hsl(211, 100%, 44%);
+  --link-color: var(--color-accent);
+  --link-color-hover: hsl(var(--color-accent-h), var(--color-accent-s), calc(var(--color-accent-l) - 20%));
 }
 
 [data-theme="dark"] {
-  //--link-color: hsl(231, 5%, 54%);
-  //--link-color-hover: hsl(231, 5%, 64%);
+  --link-color-hover: hsl(var(--color-accent-h), var(--color-accent-s), calc(var(--color-accent-l) + 20%));
 }
 
 a {

@@ -312,14 +312,18 @@ template {
   display: none; }
 
 :root {
-  --color-primary-h: 47;
+  --color-primary-h: 197;
   --color-primary-s: 100%;
-  --color-primary-l: 58%;
+  --color-primary-l: 22%;
   --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
-  --color-secondary-h: 36;
-  --color-secondary-s: 46%;
-  --color-secondary-l: 17%;
+  --color-secondary-h: 0;
+  --color-secondary-s: 0%;
+  --color-secondary-l: 27%;
   --color-secondary: hsl(var(--color-secondary-h), var(--color-secondary-s), var(--color-secondary-l));
+  --color-accent-h: 208;
+  --color-accent-s: 100%;
+  --color-accent-l: 54%;
+  --color-accent: hsl(var(--color-accent-h), var(--color-accent-s), var(--color-accent-l));
   --color-black: hsl(240, 7%, 12%);
   --color-white: hsl(0, 0%, 100%);
   --color-success-h: 120;

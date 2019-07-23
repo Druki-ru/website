@@ -144,7 +144,7 @@
   background-color: var(--block-main-menu-link-hover-icon-background); }
 
 :root {
-  --page-title-font-size: 28px; }
+  --page-title-font-size: var(--text-xxl); }
 
 .block-page-title h1 {
   font-size: var(--page-title-font-size);
@@ -509,8 +509,9 @@
     margin-bottom: 3px; }
 
 :root {
-  --header-background: hsl(224, 18%, 88%);
-  --header-height: 50px; }
+  --header-background: hsl(var(--color-primary-h), var(--color-primary-s), 20%);
+  --header-height: 50px;
+  --header-color: white; }
 
 [data-theme="dark"] {
   --header-background: hsl(231, 9%, 15%); }
@@ -520,6 +521,7 @@
   z-index: 10;
   display: none;
   height: var(--header-height);
+  color: var(--header-color);
   background-color: var(--header-background); }
   @media (min-width: 960px) {
     .header {
@@ -562,13 +564,13 @@
     margin-right: 0; }
 
 .header__search-input {
+  width: 100%;
   padding: unset;
   padding-left: var(--spacing-md);
-  color: var(--color-contrast-medium);
+  color: var(--header-color);
   border: none;
   border-radius: unset;
-  background-color: unset;
-  width: 100%; }
+  background-color: unset; }
   .header__search-input:focus {
     box-shadow: unset; }
 
@@ -750,7 +752,7 @@
       grid-template-areas: "left-sidebar content right-sidebar"; } }
 
 :root {
-  --region-content-background: hsl(220, 37%, 99%); }
+  --region-content-background: hsl(0, 0%, 100%); }
 
 [data-theme="dark"] {
   --region-content-background: hsl(220, 10%, 11%); }
@@ -1018,7 +1020,7 @@
   font-size: var(--text-sm); }
 
 .druki-drupal-versions__update-label {
-  font-weight: bold;
+  font-weight: 500;
   color: var(--color-contrast-high); }
 
 .druki-drupal-versions__update-date {
@@ -1279,9 +1281,6 @@
 
 .druki-page-wiki__row {
   margin: var(--spacing-lg) 0; }
-
-.druki-page-wiki__row-title {
-  font-size: var(--text-xxl); }
 
 .druki-page-wiki__row-description {
   font-size: var(--text-base-size);

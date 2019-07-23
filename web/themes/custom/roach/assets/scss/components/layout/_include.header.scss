@@ -1,6 +1,7 @@
 :root {
-  --header-background: hsl(224, 18%, 88%);
+  --header-background: hsl(var(--color-primary-h), var(--color-primary-s), 20%);
   --header-height: 50px;
+  --header-color: white;
 }
 
 [data-theme="dark"] {
@@ -12,6 +13,7 @@
   z-index: 10;
   display: none;
   height: var(--header-height);
+  color: var(--header-color);
   background-color: var(--header-background);
 
   @include breakpoint(lg) {
@@ -47,13 +49,13 @@
 }
 
 .header__search-input {
+  width: 100%;
   padding: unset;
   padding-left: var(--spacing-md);
-  color: var(--color-contrast-medium);
+  color: var(--header-color);
   border: none;
   border-radius: unset;
   background-color: unset;
-  width: 100%;
 
   &:focus {
     box-shadow: unset;

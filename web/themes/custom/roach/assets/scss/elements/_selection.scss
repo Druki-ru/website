@@ -3,7 +3,7 @@
 // =============================================================================
 
 :root {
-  --selection-background: var(--color-primary);
+  --selection-background: hsla(var(--color-accent-h), var(--color-accent-s), var(--color-accent-l), 0.2);
   --selection-color: var(--text-color);
 }
 

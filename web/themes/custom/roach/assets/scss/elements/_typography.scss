@@ -11,7 +11,7 @@
   --text-md: 20px;
   --text-lg: 24px;
   --text-xl: 28px;
-  --text-xxl: 32px;
+  --text-xxl: 40px;
 
   --text-color: hsl(0, 0%, 14%);
 
@@ -45,6 +45,10 @@ p {
 small {
   font-size: 80%;
   font-weight: normal;
+}
+
+strong {
+  font-weight: 500;
 }
 
 big {
