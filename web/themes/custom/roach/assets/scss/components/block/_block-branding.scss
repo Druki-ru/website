@@ -33,9 +33,13 @@
   font-size: 24px;
   font-weight: bold;
   position: absolute;
+  padding: 0 var(--spacing-unit);
   user-select: none;
   transform: rotate(-17deg);
   text-transform: uppercase;
   pointer-events: none;
-  color: var(--color-contrast-low);
+  opacity: 0.95;
+  color: hsl(5, 53%, 45%);
+  border: 2px solid hsl(5, 53%, 45%);
+  border-radius: var(--radius);
 }

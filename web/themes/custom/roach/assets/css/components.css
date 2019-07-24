@@ -36,6 +36,7 @@
   font-size: 24px;
   font-weight: bold;
   position: absolute;
+  padding: 0 var(--spacing-unit);
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -44,7 +45,10 @@
           transform: rotate(-17deg);
   text-transform: uppercase;
   pointer-events: none;
-  color: var(--color-contrast-low); }
+  opacity: 0.95;
+  color: #b04036;
+  border: 2px solid #b04036;
+  border-radius: var(--radius); }
 
 :root {
   --block-main-menu-link-color: hsl(226, 7%, 43%);
