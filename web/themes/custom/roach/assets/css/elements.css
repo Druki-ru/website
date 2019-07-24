@@ -83,9 +83,9 @@ h6 {
   color: var(--heading-color); }
 
 hr {
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-md) 0;
   border: unset;
-  border-top: 1px solid var(--color-contrast-low); }
+  border-top: 1px solid var(--color-contrast-lower); }
 
 img {
   max-width: 100%;
