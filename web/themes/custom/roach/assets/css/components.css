@@ -321,6 +321,15 @@
     .app {
       padding-top: unset; } }
 
+.drupalcon-promo {
+  box-shadow: var(--shadow-xs);
+  border-radius: var(--radius);
+  overflow: hidden;
+  -webkit-transition: box-shadow 0.25s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out; }
+  .drupalcon-promo:hover {
+    box-shadow: var(--shadow-md); }
+
 .footer {
   font-size: var(--text-sm);
   margin: var(--spacing-md) auto;
@@ -395,6 +404,11 @@
     .frontpage-get-started-and-versions {
       grid-gap: var(--spacing-lg);
       grid-template-columns: 1fr 400px; } }
+
+.frontpage-get-started-and-versions__versions {
+  display: grid;
+  grid-gap: var(--spacing-md);
+  grid-template-columns: 1fr; }
 
 :root {
   --frontpage-promo-background: hsla(0, 0%, 100%, 0.85); }

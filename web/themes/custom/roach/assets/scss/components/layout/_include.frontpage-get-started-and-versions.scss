@@ -14,3 +14,8 @@
   }
 }
 
+.frontpage-get-started-and-versions__versions {
+  display: grid;
+  grid-gap: var(--spacing-md);
+  grid-template-columns: 1fr;
+}
