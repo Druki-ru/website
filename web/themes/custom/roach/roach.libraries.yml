@@ -20,12 +20,11 @@ style.utilities:
       assets/css/utilities.css: {}
   dependencies:
     - roach/google.fonts
-    - roach/firacode
 
 google.fonts:
   css:
     theme:
-      //fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto:400,500,700&subset=cyrillic&display=swap: { type: external, minified: true }
+      //fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto:400,500,700|Fira+Code:400,700&subset=cyrillic&display=swap: { type: external, minified: true }
 
 code_highlight:
   js:
@@ -33,7 +32,6 @@ code_highlight:
   dependencies:
     - core/drupal
     - roach/prism
-    - roach/firacode
 
 loading_indicator:
   js:
@@ -70,13 +68,3 @@ prism:
     # Prism has no dist files in any repo. So we use prebuild JS from theme.
     assets/js/prism.js: { minfied: true }
 
-# Before FiraCode not migrate to Google Fonts, handle it manualy.
-firacode:
-  remote: https://github.com/tonsky/FiraCode
-  version: 1.206
-  license:
-    name: OFL-1.1
-    gpl-compatible: true
-  css:
-    theme:
-      /libraries/firacode/distr/fira_code.css: {}
