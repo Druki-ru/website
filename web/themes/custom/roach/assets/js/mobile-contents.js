@@ -28,14 +28,14 @@
       return;
     }
 
-    const contentsElement = context.querySelector('.druki-content-toc').cloneNode(true);
+    const contentsElement = context.querySelector('.druki-content-toc');
 
     if (!contentsElement) {
       return;
     }
 
     Drupal.roach.mobileContents.found = true;
-    const mobileTocElement = Drupal.roach.mobileContents.prepareElement(contentsElement);
+    const mobileTocElement = Drupal.roach.mobileContents.prepareElement(contentsElement.cloneNode(true));
     const contentElement = context.querySelector('.druki-content-druki-content-full');
     contentElement.prepend(mobileTocElement);
     Drupal.roach.mobileContents.attachClickEvents(mobileTocElement);
