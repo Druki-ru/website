@@ -29,6 +29,13 @@ class FrontpageSettingsForm extends ConfigFormBase {
   protected $mediaViewBuilder;
 
   /**
+   * The responsive image style sotrage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $responsiveImageStyleStorage;
+
+  /**
    * Constructs a FrontpageSettingsForm object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -48,10 +55,11 @@ class FrontpageSettingsForm extends ConfigFormBase {
 
     $this->mediaStorage = $entity_type_manager->getStorage('media');
     $this->mediaViewBuilder = $entity_type_manager->getViewBuilder('media');
+    $this->responsiveImageStyleStorage = $entity_type_manager->getStorage('responsive_image_style');
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): object {
     return new static(
@@ -120,9 +128,13 @@ class FrontpageSettingsForm extends ConfigFormBase {
       '#default_value' => $default_image,
     ];
 
-    $image_style_options = image_style_options(FALSE);
-    $image_style_names = array_keys($image_style_options);
-    $default_style = reset($image_style_names);
+    $responsive_image_styles = $this->responsiveImageStyleStorage->loadMultiple();
+    $responsive_image_style_options = [];
+    foreach ($responsive_image_styles as $responsive_image_style) {
+      $responsive_image_style_options[$responsive_image_style->id()] = $responsive_image_style->label();
+    }
+    $responsive_image_style_names = array_keys($responsive_image_style_options);
+    $default_style = reset($responsive_image_style_names);
 
     if (isset($promo_settings['style'])) {
       $default_style = $promo_settings['style'];
@@ -130,7 +142,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
 
     $form['promo']['style'] = [
       '#type' => 'select',
-      '#options' => $image_style_options,
+      '#options' => $responsive_image_style_options,
       '#default_value' => $default_style,
       '#title' => t('Promo image style'),
     ];

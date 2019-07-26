@@ -6,9 +6,7 @@
 #}
 {% set bem_block = 'frontpage-promo' %}
 <div class="{{ bem_block }}">
-  {% if promo_image_url %}
-    <img src="{{ promo_image_url }}" alt="Druki Promo" class="{{ bem_block }}__image">
-  {% endif %}
+  {{ promo_image }}
 
   <div class="{{ bem_block }}__inner">
     <div class="{{ bem_block }}__content">

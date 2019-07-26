@@ -5,8 +5,8 @@
  * Theme and preprocess functions for page, html, etc
  */
 
-use Drupal\image\ImageStyleInterface;
 use Drupal\media\MediaInterface;
+use Drupal\responsive_image\ResponsiveImageStyleInterface;
 
 /**
  * Implements hook_preprocess_HOOK() for page.html.twig.
@@ -75,8 +75,14 @@ function roach_preprocess_page(array &$variables) {
   ];
 
   $variables['#attached']['html_head'][] = [$preload_mdi, 'preload_mdi'];
-  $variables['#attached']['html_head'][] = [$google_font_styles, 'google_font_styles'];
-  $variables['#attached']['html_head'][] = [$google_font_files, 'google_font_files'];
+  $variables['#attached']['html_head'][] = [
+    $google_font_styles,
+    'google_font_styles',
+  ];
+  $variables['#attached']['html_head'][] = [
+    $google_font_files,
+    'google_font_files',
+  ];
   $variables['#attached']['html_head'][] = [$gtm, 'google_tag_manager'];
 }
 
@@ -91,19 +97,27 @@ function roach_preprocess_page__front(array &$variables): void {
   /** @var \Drupal\media\MediaStorage $media_storage */
   $media_storage = \Drupal::entityTypeManager()->getStorage('media');
   $media_view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
-  /** @var \Drupal\Core\Entity\EntityStorageInterface $image_style_storage */
-  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  /** @var \Drupal\Core\Entity\EntityStorageInterface $responsive_image_style_storage */
+  $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
   $promo_settings = $frontpage_settings->get('promo');
   $why_settings = $frontpage_settings->get('why');
 
   // Promo area.
   $promo_image = $media_storage->load($promo_settings['image']);
-  $promo_style = $image_style_storage->load($promo_settings['style']);
+  $promo_style = $responsive_image_style_storage->load($promo_settings['style']);
   // Check is media and style is really existed.
-  if ($promo_image instanceof MediaInterface && $promo_style instanceof ImageStyleInterface) {
+  if ($promo_image instanceof MediaInterface && $promo_style instanceof ResponsiveImageStyleInterface) {
     /** @var \Drupal\file\FileInterface $file */
     $file = $promo_image->get('field_media_image')->entity;
-    $variables['promo_image_url'] = $promo_style->buildUrl($file->getFileUri());
+    $variables['promo_image'] = [
+      '#type' => 'responsive_image',
+      '#responsive_image_style_id' => $promo_style->id(),
+      '#uri' => $file->getFileUri(),
+      '#attributes' => [
+        'alt' => 'Druki Promo',
+        'class' => ['frontpage-promo__image'],
+      ],
+    ];
   }
 
   // Why Drupal area.

@@ -1,6 +1,6 @@
 promo:
   image: '10'
-  style: hero_image
+  style: frontpage_promo
 why:
   video: '11'
 langcode: ru

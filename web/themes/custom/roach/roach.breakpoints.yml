@@ -1,0 +1,42 @@
+# Those breakpoints is tied with _media-breakpoints.scss data.
+roach.xs:
+  label: xs
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+
+roach.sm:
+  label: sm
+  mediaQuery: 'all and (min-width: 540px)'
+  weight: 1
+  multipliers:
+    - 1x
+
+roach.md:
+  label: md
+  mediaQuery: 'all and (min-width: 720px)'
+  weight: 1
+  multipliers:
+    - 1x
+
+roach.lg:
+  label: lg
+  mediaQuery: 'all and (min-width: 960px)'
+  weight: 1
+  multipliers:
+    - 1x
+
+roach.xl:
+  label: xl
+  mediaQuery: 'all and (min-width: 1140px)'
+  weight: 1
+  multipliers:
+    - 1x
+
+roach.xxl:
+  label: xxl
+  mediaQuery: 'all and (min-width: 1540px)'
+  weight: 1
+  multipliers:
+    - 1x
