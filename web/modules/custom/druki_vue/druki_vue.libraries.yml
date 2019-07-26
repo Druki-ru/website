@@ -15,4 +15,4 @@ vuejs:
     url: https://github.com/vuejs/vue/blob/dev/LICENSE
     gpl-compatible: true
   js:
-    /libraries/vue/dist/vue.js: {}
+    /libraries/vue/dist/vue.min.js: { minified: true }

@@ -3,8 +3,19 @@
 /**
  * @file
  * Primary module hooks for Druki - Vue.js module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
  */
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function druki_vue_library_info_alter(&$libraries, $extension) {
+  if ($extension != 'druki_vue') {
+    return;
+  }
+
+  // Use unminified version only for development environment.
+  if (getenv('ENV') == 'development') {
+    unset($libraries['vuejs']['js']);
+    $libraries['vuejs']['js']['/libraries/vue/dist/vue.js'] = [];
+  }
+}
