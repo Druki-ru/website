@@ -11,7 +11,7 @@
 
 .paragraph-druki-heading__anchor {
   @include mdi-icon('link-variant', $margin-size: 0);
-  font-size: var(--text-md);
+  font-size: inherit;
   display: none;
   margin-left: var(--spacing-unit);
   color: var(--color-contrast-medium);

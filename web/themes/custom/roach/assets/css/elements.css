@@ -109,7 +109,7 @@ a {
 
 :root {
   --list-margin: 0 0 1rem 0;
-  --list-padding: 0 0 0 1rem; }
+  --list-padding: 0 0 0 2rem; }
 
 ol,
 ul {

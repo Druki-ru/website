@@ -804,7 +804,7 @@
   --paragraph-druki-heading-border-color: var(--color-contrast-lower); }
 
 .paragraph-druki-heading__anchor {
-  font-size: var(--text-md);
+  font-size: inherit;
   display: none;
   margin-left: var(--spacing-unit);
   color: var(--color-contrast-medium); }
