@@ -1,0 +1,6 @@
+{% set bem_block = 'frontpage-important-info' %}
+<div class="{{ bem_block }}">
+  {{ drupal_versions }}
+  {% include '@roach/include/drupalcon-promo.html.twig' %}
+</div>
+

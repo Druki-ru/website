@@ -1,0 +1,40 @@
+.frontpage-drupal {
+  display: grid;
+  margin: var(--spacing-sm);
+  grid-gap: var(--spacing-md);
+  grid-template-columns: 1fr;
+
+  @include breakpoint(xl) {
+    margin: var(--spacing-lg);
+  }
+
+  @include breakpoint(xl) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.frontpage-drupal__buttons {
+  display: grid;
+  margin-top: var(--spacing-md);
+  grid-gap: var(--spacing-sm);
+  grid-template-columns: 1fr;
+
+  @include breakpoint(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.frontpage-drupal__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-unit);
+  color: var(--text-color);
+  border: 1px solid var(--color-contrast-low);
+  border-radius: var(--radius);
+
+  &:hover {
+    text-decoration: none;
+    border-color: var(--link-color);
+  }
+}

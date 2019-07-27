@@ -1,8 +1,9 @@
 .drupalcon-promo {
-  box-shadow: var(--shadow-xs);
-  border-radius: var(--radius);
   overflow: hidden;
+  max-width: 400px;
   transition: box-shadow 0.25s ease-in-out;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-xs);
 
   &:hover {
     box-shadow: var(--shadow-md);

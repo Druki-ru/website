@@ -322,11 +322,12 @@
       padding-top: unset; } }
 
 .drupalcon-promo {
-  box-shadow: var(--shadow-xs);
-  border-radius: var(--radius);
   overflow: hidden;
+  max-width: 400px;
   -webkit-transition: box-shadow 0.25s ease-in-out;
-  transition: box-shadow 0.25s ease-in-out; }
+  transition: box-shadow 0.25s ease-in-out;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-xs); }
   .drupalcon-promo:hover {
     box-shadow: var(--shadow-md); }
 
@@ -392,23 +393,61 @@
   font-weight: bold;
   color: #757af7; }
 
-.frontpage-get-started-and-versions {
+.frontpage-drupal {
   display: grid;
+  margin: var(--spacing-sm);
   grid-gap: var(--spacing-md);
-  padding: var(--spacing-sm);
   grid-template-columns: 1fr; }
-  @media (min-width: 960px) {
-    .frontpage-get-started-and-versions {
-      padding: var(--spacing-lg); } }
   @media (min-width: 1140px) {
-    .frontpage-get-started-and-versions {
-      grid-gap: var(--spacing-lg);
-      grid-template-columns: 1fr 400px; } }
+    .frontpage-drupal {
+      margin: var(--spacing-lg); } }
+  @media (min-width: 1140px) {
+    .frontpage-drupal {
+      grid-template-columns: repeat(2, 1fr); } }
 
-.frontpage-get-started-and-versions__versions {
+.frontpage-drupal__buttons {
   display: grid;
+  margin-top: var(--spacing-md);
+  grid-gap: var(--spacing-sm);
+  grid-template-columns: 1fr; }
+  @media (min-width: 540px) {
+    .frontpage-drupal__buttons {
+      grid-template-columns: repeat(2, 1fr); } }
+
+.frontpage-drupal__button {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  padding: var(--spacing-unit);
+  color: var(--text-color);
+  border: 1px solid var(--color-contrast-low);
+  border-radius: var(--radius); }
+  .frontpage-drupal__button:hover {
+    text-decoration: none;
+    border-color: var(--link-color); }
+
+.frontpage-important-info {
+  display: grid;
+  margin: var(--spacing-sm);
   grid-gap: var(--spacing-md);
   grid-template-columns: 1fr; }
+  @media (min-width: 1140px) {
+    .frontpage-important-info {
+      margin: var(--spacing-lg);
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1540px) {
+    .frontpage-important-info {
+      grid-template-columns: repeat(3, 1fr); } }
+
+.frontpage-important-info .druki-drupal-versions {
+  align-self: flex-start; }
+
+.frontpage-important-info .drupalcon-promo {
+  align-self: flex-start;
+  justify-self: center; }
 
 :root {
   --frontpage-promo-background: hsla(0, 0%, 100%, 0.85); }

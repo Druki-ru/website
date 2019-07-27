@@ -14,11 +14,12 @@
 {% set bem_block = 'druki-media-remote-video-optimized' %}
 <div{{ attributes.addClass(bem_block) }}>
   <div class="{{ bem_block }}__preview">
-    <img src="{{ thumbnail_uri|image_style(thumbnail_style) }}" alt="{{ thumbnail_alt }}" class="{{ bem_block }}__thumbnail">
+    {{ thumbnail }}
 
     <div class="{{ bem_block }}__play"></div>
 
     <div class="{{ bem_block }}__loading">
+      {# @todo replace it or do something. Svg is not presented anymore. #}
       <svg width="128" height="128" viewBox="0 0 680 666">
         <use xlink:href="#druki-loading-svg" />
       </svg>

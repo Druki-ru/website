@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_media\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
@@ -25,13 +26,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The image styles.
-   *
-   * @var array
-   */
-  protected $imageStyles;
-
-  /**
    * The URL resolver.
    *
    * @var \Drupal\media\OEmbed\UrlResolverInterface
@@ -44,6 +38,13 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
    * @var \Drupal\media\OEmbed\ResourceFetcherInterface
    */
   protected $resourceFetcher;
+
+  /**
+   * The responsive image style storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  private $responsiveStyleStorage;
 
   /**
    * OptimizedRemoteVideoFormatter constructor.
@@ -66,6 +67,8 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
    *   The URL resolver.
    * @param \Drupal\media\OEmbed\ResourceFetcherInterface $resource_fetcher
    *   The resource fetcher.
+   * @param \Drupal\Core\Entity\EntityStorageInterface $responsive_image_style_storage
+   *   The responsive image style storage.
    */
   public function __construct(
     $plugin_id,
@@ -76,7 +79,8 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
     $view_mode,
     array $third_party_settings,
     UrlResolverInterface $url_resolver,
-    ResourceFetcherInterface $resource_fetcher
+    ResourceFetcherInterface $resource_fetcher,
+    EntityStorageInterface $responsive_image_style_storage
   ) {
 
     parent::__construct(
@@ -89,7 +93,7 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
       $third_party_settings
     );
 
-    $this->imageStyles = image_style_options();
+    $this->responsiveStyleStorage = $responsive_image_style_storage;
 
     $this->urlResolver = $url_resolver;
     $this->resourceFetcher = $resource_fetcher;
@@ -108,7 +112,8 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
       $configuration['view_mode'],
       $configuration['third_party_settings'],
       $container->get('media.oembed.url_resolver'),
-      $container->get('media.oembed.resource_fetcher')
+      $container->get('media.oembed.resource_fetcher'),
+      $container->get('entity_type.manager')->getStorage('responsive_image_style')
     );
   }
 
@@ -116,13 +121,9 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
    * {@inheritdoc}
    */
   public static function defaultSettings(): array {
-    $image_styles = image_style_options();
-    $image_style_names = array_keys($image_styles);
-    $first_style = array_shift($image_style_names);
-
     return [
-      'thumbnail_style' => $first_style,
-    ] + parent::defaultSettings();
+        'thumbnail_style' => '',
+      ] + parent::defaultSettings();
   }
 
   /**
@@ -139,10 +140,15 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state): array {
+    $responsive_image_styles = $this->responsiveStyleStorage->loadMultiple();
+    $responsive_image_style_options = [];
+    foreach ($responsive_image_styles as $responsive_image_style) {
+      $responsive_image_style_options[$responsive_image_style->id()] = $responsive_image_style->label();
+    }
 
     $elements['thumbnail_style'] = [
       '#type' => 'select',
-      '#options' => $this->imageStyles,
+      '#options' => $responsive_image_style_options,
       '#title' => $this->t('Thumbnail style'),
       '#default_value' => $this->getSetting('thumbnail_style'),
     ];
@@ -154,10 +160,10 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
    * {@inheritdoc}
    */
   public function settingsSummary(): array {
-    $summary[] = $this->t(
-      'Thumbnail style: @style', [
-      '@style' => $this->imageStyles[$this->getSetting('thumbnail_style')],
+    $summary[] = $this->t('Thumbnail style: @style', [
+      '@style' => $this->getSetting('thumbnail_style'),
     ]);
+
     return $summary;
   }
 
@@ -184,9 +190,9 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
 
         if ($provider_id) {
           $element[$delta] = [
-            '#theme' => 'druki_media_remote_video_optimized',
+            '#type' => 'druki_media_remote_video_optimized',
+            '#thumbnail_style_id' => $this->getSetting('thumbnail_style'),
             '#thumbnail_uri' => $thumbnail_file->getFileUri(),
-            '#thumbnail_style' => $this->getSetting('thumbnail_style'),
             '#thumbnail_alt' => $media->label(),
             '#video_provider' => $provider_name,
             '#video_id' => $provider_id,
