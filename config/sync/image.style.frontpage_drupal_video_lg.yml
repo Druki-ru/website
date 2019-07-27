@@ -1,0 +1,15 @@
+uuid: b27e9555-85ef-49a5-9843-47bbb3a26f84
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_video_lg
+label: 'Frontpage Drupal Video: LG'
+effects:
+  5ace3509-7e47-4565-b58b-3776210fd5c7:
+    uuid: 5ace3509-7e47-4565-b58b-3776210fd5c7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 825
+      height: 466
+      anchor: center-center

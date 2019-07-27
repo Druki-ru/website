@@ -1,0 +1,48 @@
+uuid: b6de1eab-5dc0-4659-a735-8cfc6b429e97
+langcode: ru
+status: true
+dependencies:
+  config:
+    - image.style.frontpage_drupal_video
+    - image.style.frontpage_drupal_video_lg
+    - image.style.frontpage_drupal_video_md
+    - image.style.frontpage_drupal_video_sm
+    - image.style.frontpage_drupal_video_xl
+    - image.style.frontpage_drupal_video_xxl
+  theme:
+    - roach
+id: frontpage_drupal_video
+label: 'Frontpage Drupal Video'
+image_style_mappings:
+  -
+    breakpoint_id: roach.xxl
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_drupal_video_xxl
+  -
+    breakpoint_id: roach.xl
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_drupal_video_xl
+  -
+    breakpoint_id: roach.lg
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_drupal_video_lg
+  -
+    breakpoint_id: roach.md
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_drupal_video_md
+  -
+    breakpoint_id: roach.sm
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_drupal_video_sm
+  -
+    breakpoint_id: roach.xs
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_drupal_video
+breakpoint_group: roach
+fallback_image_style: '_empty image_'

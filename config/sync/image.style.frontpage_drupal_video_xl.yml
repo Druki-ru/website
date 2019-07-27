@@ -1,0 +1,15 @@
+uuid: 6d0c4dd1-ea4e-4cda-a072-3e995b7a1160
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_video_xl
+label: 'Frontpage Drupal Video: XL'
+effects:
+  3babebb5-fa22-417d-b975-a7dc630b3ded:
+    uuid: 3babebb5-fa22-417d-b975-a7dc630b3ded
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 550
+      height: 310
+      anchor: center-center
