@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_media_remote_video\Plugin\Field\FieldFormatter;
+namespace Drupal\druki_media\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -121,8 +121,8 @@ class RemoteVideoOptimizedFormatter extends FormatterBase implements ContainerFa
     $first_style = array_shift($image_style_names);
 
     return [
-        'thumbnail_style' => $first_style,
-      ] + parent::defaultSettings();
+      'thumbnail_style' => $first_style,
+    ] + parent::defaultSettings();
   }
 
   /**

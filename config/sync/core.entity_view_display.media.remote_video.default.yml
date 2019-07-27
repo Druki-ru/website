@@ -5,8 +5,6 @@ dependencies:
   config:
     - field.field.media.remote_video.field_media_oembed_video
     - media.type.remote_video
-  module:
-    - druki_media_remote_video
 _core:
   default_config_hash: gUaDZKMQD3lmLKWPn727X3JHVdKJ525g4EJCCcDVAqk
 id: media.remote_video.default
@@ -15,16 +13,17 @@ bundle: remote_video
 mode: default
 content:
   field_media_oembed_video:
-    type: druki_media_remote_video_optimized
+    type: string
     weight: 0
     label: hidden
     settings:
-      thumbnail_style: hero_image
+      link_to_entity: false
     third_party_settings: {  }
     region: content
 hidden:
   created: true
   langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true
