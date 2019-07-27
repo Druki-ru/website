@@ -1,8 +1,7 @@
 <?php
 
-namespace Drupal\druki_paragraph_code\Common\ParagraphContent;
+namespace Drupal\druki_paragraph\Common\ParagraphContent;
 
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentBase;
 use InvalidArgumentException;
 
 /**
@@ -10,7 +9,7 @@ use InvalidArgumentException;
  *
  * The value for paragraph code type.
  *
- * @package Drupal\druki_paragraph_code\Common\ParagraphContent
+ * @package Drupal\druki_paragraph\Common\ParagraphContent
  */
 final class ParagraphCode extends ParagraphContentBase {
 

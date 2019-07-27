@@ -28,7 +28,7 @@ function roach_preprocess_paragraph__druki_heading(array &$variables): void {
  * Implements hook_preprocess_HOOK() for paragraph--druki-code.html.twig.
  */
 function roach_preprocess_paragraph__druki_code(array &$variables): void {
-  $variables['#attached']['library'][] = 'autumn/code_highlight';
+  $variables['#attached']['library'][] = 'roach/code_highlight';
 }
 
 /**

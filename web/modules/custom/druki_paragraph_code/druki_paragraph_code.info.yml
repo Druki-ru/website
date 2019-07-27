@@ -1,7 +1,0 @@
-name: Druki Paragraph - Code
-type: module
-description: The custom code for paragraph type Code.
-package: druki
-core: 8.x
-dependencies:
-  - druki_paragraph:druki_paragraph

@@ -6,11 +6,11 @@ use Drupal\druki_content_sync\Content\ContentList;
 use Drupal\druki_content_sync\Content\ContentStructure;
 use Drupal\druki_content_sync\MetaInformation\MetaInformation;
 use Drupal\druki_content_sync\MetaInformation\MetaValue;
-use Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode;
-use Drupal\druki_paragraph_heading\Common\ParagraphContent\ParagraphHeading;
-use Drupal\druki_paragraph_image\Common\ParagraphContent\ParagraphImage;
-use Drupal\druki_paragraph_note\Common\ParagraphContent\ParagraphNote;
-use Drupal\druki_paragraph_text\Common\ParagraphContent\ParagraphText;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphHeading;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphImage;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphNote;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphText;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

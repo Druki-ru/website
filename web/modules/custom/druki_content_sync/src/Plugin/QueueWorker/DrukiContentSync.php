@@ -17,11 +17,11 @@ use Drupal\druki_content_sync\Queue\ContentQueueItem;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_file\Service\DrukiFileTracker;
 use Drupal\druki_markdown\Parser\MarkdownParserInterface;
-use Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode;
-use Drupal\druki_paragraph_heading\Common\ParagraphContent\ParagraphHeading;
-use Drupal\druki_paragraph_image\Common\ParagraphContent\ParagraphImage;
-use Drupal\druki_paragraph_note\Common\ParagraphContent\ParagraphNote;
-use Drupal\druki_paragraph_text\Common\ParagraphContent\ParagraphText;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphHeading;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphImage;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphNote;
+use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphText;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -422,7 +422,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates content paragraph.
    *
-   * @param \Drupal\druki_paragraph_text\Common\ParagraphContent\ParagraphText $text
+   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphText $text
    *   The text object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -444,7 +444,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates heading paragraph.
    *
-   * @param \Drupal\druki_paragraph_heading\Common\ParagraphContent\ParagraphHeading $heading
+   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphHeading $heading
    *   The heading object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -467,8 +467,8 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates code paragraph.
    *
-   * @param \Drupal\druki_paragraph_code\Common\ParagraphContent\ParagraphCode $code
-   *   The code object..
+   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode $code
+   *   The code object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
    *   The created paragraph.
@@ -489,7 +489,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates image paragraph.
    *
-   * @param \Drupal\druki_paragraph_image\Common\ParagraphContent\ParagraphImage $image
+   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphImage $image
    *   The image object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null
@@ -622,7 +622,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates note paragraph.
    *
-   * @param \Drupal\druki_paragraph_note\Common\ParagraphContent\ParagraphNote $note
+   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphNote $note
    *   The note object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null

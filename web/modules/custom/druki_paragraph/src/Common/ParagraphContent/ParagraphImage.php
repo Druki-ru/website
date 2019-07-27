@@ -1,8 +1,6 @@
 <?php
 
-namespace Drupal\druki_paragraph_image\Common\ParagraphContent;
-
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentBase;
+namespace Drupal\druki_paragraph\Common\ParagraphContent;
 
 /**
  * Class ParagraphImage.

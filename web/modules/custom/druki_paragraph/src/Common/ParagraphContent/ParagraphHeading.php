@@ -1,9 +1,8 @@
 <?php
 
-namespace Drupal\druki_paragraph_heading\Common\ParagraphContent;
+namespace Drupal\druki_paragraph\Common\ParagraphContent;
 
 use Drupal\Component\Render\FormattableMarkup;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentBase;
 use InvalidArgumentException;
 
 /**
@@ -11,7 +10,7 @@ use InvalidArgumentException;
  *
  * The value for paragraph heading type.
  *
- * @package Drupal\druki_paragraph_heading\Common\ParagraphContent
+ * @package Drupal\druki_paragraph\Common\ParagraphContent
  */
 final class ParagraphHeading extends ParagraphContentBase {
 
