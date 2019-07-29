@@ -6,11 +6,7 @@
 
   @include breakpoint(xl) {
     margin: var(--spacing-lg);
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include breakpoint(xxl) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 390px 213px;
   }
 }
 

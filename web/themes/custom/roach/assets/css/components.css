@@ -330,6 +330,9 @@
   box-shadow: var(--shadow-xs); }
   .drupalcon-promo:hover {
     box-shadow: var(--shadow-md); }
+  @media (min-width: 1140px) {
+    .drupalcon-promo {
+      max-width: 213px; } }
 
 .footer {
   font-size: var(--text-sm);
@@ -437,10 +440,7 @@
   @media (min-width: 1140px) {
     .frontpage-important-info {
       margin: var(--spacing-lg);
-      grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1540px) {
-    .frontpage-important-info {
-      grid-template-columns: repeat(3, 1fr); } }
+      grid-template-columns: 390px 213px; } }
 
 .frontpage-important-info .druki-drupal-versions {
   align-self: flex-start; }

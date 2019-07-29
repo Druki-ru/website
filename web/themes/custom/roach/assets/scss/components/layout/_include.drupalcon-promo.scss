@@ -8,4 +8,8 @@
   &:hover {
     box-shadow: var(--shadow-md);
   }
+
+  @include breakpoint(xl) {
+    max-width: 213px;
+  }
 }
