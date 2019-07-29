@@ -10,7 +10,6 @@
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: var(--mobile-header-height);
   background-color: var(--page-background);
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
@@ -21,10 +20,10 @@
 }
 
 .header-mobile__branding {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: bold;
   line-height: var(--mobile-header-height);
-  text-transform: uppercase;
+  color: var(--text-color);
 }
 
 .header-mobile__search {
@@ -32,6 +31,7 @@
   font-size: var(--text-lg);
   line-height: var(--mobile-header-height);
   display: block;
+  margin-left: auto;
   padding: 0 var(--spacing-sm);
   text-align: center;
   color: var(--color-contrast-high);
@@ -39,11 +39,11 @@
 
 .mobile-toggle {
   position: relative;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
   padding: 0 var(--spacing-sm);
   cursor: pointer;
-  align-self: stretch;
-  align-items: center;
-  display: flex;
 
   span {
     display: block;
