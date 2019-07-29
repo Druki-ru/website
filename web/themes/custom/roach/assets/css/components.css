@@ -321,18 +321,27 @@
     .app {
       padding-top: unset; } }
 
-.drupalcon-promo {
+.drupal-event-promo {
+  position: relative;
   overflow: hidden;
-  max-width: 400px;
   -webkit-transition: box-shadow 0.25s ease-in-out;
   transition: box-shadow 0.25s ease-in-out;
   border-radius: var(--radius);
   box-shadow: var(--shadow-xs); }
-  .drupalcon-promo:hover {
+  .drupal-event-promo:hover {
     box-shadow: var(--shadow-md); }
-  @media (min-width: 1140px) {
-    .drupalcon-promo {
-      max-width: 213px; } }
+
+.drupal-event-promo__link {
+  display: block; }
+
+.drupal-event-promo__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; }
 
 .footer {
   font-size: var(--text-sm);

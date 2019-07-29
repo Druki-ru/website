@@ -5,6 +5,7 @@
  * Theme and preprocess functions for page, html, etc
  */
 
+use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
 use Drupal\responsive_image\ResponsiveImageStyleInterface;
 
@@ -101,6 +102,7 @@ function roach_preprocess_page__front(array &$variables): void {
   $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
   $promo_settings = $frontpage_settings->get('promo');
   $why_settings = $frontpage_settings->get('why');
+  $event_settings = $frontpage_settings->get('event');
 
   // Promo area.
   $promo_image = $media_storage->load($promo_settings['image']);
@@ -118,6 +120,28 @@ function roach_preprocess_page__front(array &$variables): void {
         'class' => ['frontpage-promo__image'],
       ],
     ];
+  }
+
+  if ($event_settings['status']) {
+    $event_image = $media_storage->load($event_settings['image']);
+    $event_style = $responsive_image_style_storage->load($event_settings['style']);
+
+    if ($event_image instanceof MediaInterface && $event_style instanceof ResponsiveImageStyleInterface) {
+      /** @var \Drupal\file\FileInterface $file */
+      $file = $event_image->get('field_media_image')->entity;
+
+      $variables['drupal_event_promo_link'] = $event_settings['url'];
+
+      $variables['drupal_event_promo_image'] = [
+        '#type' => 'responsive_image',
+        '#responsive_image_style_id' => $event_style->id(),
+        '#uri' => $file->getFileUri(),
+        '#attributes' => [
+          'alt' => 'Drupal Event Promo',
+          'class' => ['drupal-event-promo__image'],
+        ],
+      ];
+    }
   }
 
   // Why Drupal area.

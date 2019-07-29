@@ -81,6 +81,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $this->buildPromoSettings($form, $form_state);
     $this->buildWhyDrupalSettings($form, $form_state);
+    $this->buildDrupalEventSettings($form, $form_state);
 
     return parent::buildForm($form, $form_state);
   }
@@ -128,24 +129,37 @@ class FrontpageSettingsForm extends ConfigFormBase {
       '#default_value' => $default_image,
     ];
 
+    $form['promo']['style'] = [
+      '#type' => 'select',
+      '#options' => $this->getResponsiveImageStyleOptions(),
+      '#default_value' => isset($promo_settings['style']) ? $promo_settings['style'] : NULL,
+      '#title' => t('Promo image style'),
+    ];
+  }
+
+  /**
+   * Gets options for responsive styles.
+   *
+   * @return array
+   *   The array contains responsive image styles, where key is responsive image
+   *   style id, and the value is label.
+   */
+  protected function getResponsiveImageStyleOptions(): array {
+    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
+
+    if (isset($result)) {
+      return $result;
+    }
+
     $responsive_image_styles = $this->responsiveImageStyleStorage->loadMultiple();
     $responsive_image_style_options = [];
     foreach ($responsive_image_styles as $responsive_image_style) {
       $responsive_image_style_options[$responsive_image_style->id()] = $responsive_image_style->label();
     }
-    $responsive_image_style_names = array_keys($responsive_image_style_options);
-    $default_style = reset($responsive_image_style_names);
 
-    if (isset($promo_settings['style'])) {
-      $default_style = $promo_settings['style'];
-    }
+    $result = $responsive_image_style_options;
 
-    $form['promo']['style'] = [
-      '#type' => 'select',
-      '#options' => $responsive_image_style_options,
-      '#default_value' => $default_style,
-      '#title' => t('Promo image style'),
-    ];
+    return $result;
   }
 
   /**
@@ -191,6 +205,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
       '#default_value' => $default_video,
     ];
 
+    // @todo remove code duplication with above part.
     $default_video = NULL;
     if (isset($promo_settings['video'])) {
       $media = $this->mediaStorage->load($promo_settings['video']);
@@ -208,12 +223,76 @@ class FrontpageSettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Builds settings for drupal event promo.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   */
+  protected function buildDrupalEventSettings(array &$form, FormStateInterface $form_state): void {
+    $event_settings = $this->config('druki.frontpage_settings')->get('event');
+
+    $form['event'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Drupal event'),
+      '#tree' => TRUE,
+    ];
+
+    $form['event']['status'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable'),
+      '#default_value' => isset($event_settings['status']) ? $event_settings['status'] : FALSE,
+    ];
+
+    $default_image = NULL;
+    if (isset($event_settings['image'])) {
+      $media = $this->mediaStorage->load($event_settings['image']);
+
+      if ($media instanceof MediaInterface) {
+        $default_image = $media;
+
+        $preview = $this->mediaViewBuilder->view($default_image, 'media_library');
+        $preview['#prefix'] = '<div class="media-library-item">';
+        $preview['#suffix'] = '</div>';
+        $form['event']['image_preview'] = $preview;
+        $form['#attached']['library'][] = 'media_library/style';
+      }
+    }
+
+    $form['event']['image'] = [
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'media',
+      '#selection_settings' => [
+        'target_bundles' => ['image'],
+      ],
+      '#title' => t('Event image'),
+      '#description' => t('Media entity that contains an event promo image.'),
+      '#default_value' => $default_image,
+    ];
+
+    $form['event']['style'] = [
+      '#type' => 'select',
+      '#options' => $this->getResponsiveImageStyleOptions(),
+      '#default_value' => isset($event_settings['style']) ? $event_settings['style'] : NULL,
+      '#title' => t('Promo image style'),
+    ];
+
+    $form['event']['url'] = [
+      '#type' => 'url',
+      '#title' => $this->t('URL'),
+      '#default_value' => isset($event_settings['url']) ? $event_settings['url'] : '',
+    ];
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('druki.frontpage_settings')
       ->set('promo', $form_state->getValue('promo'))
       ->set('why', $form_state->getValue('why'))
+      ->set('event', $form_state->getValue('event'))
       ->save();
     parent::submitForm($form, $form_state);
   }

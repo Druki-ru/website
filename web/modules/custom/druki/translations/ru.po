@@ -8,7 +8,7 @@ msgid "Promo image"
 msgstr "Промо-изображение"
 
 msgid "Media entity that contains a promo image."
-msgstr "Медиа сущность которая содержит промо-изображение."
+msgstr "Медиа-сущность, которая содержит промо-изображение."
 
 msgid "Promo image style"
 msgstr "Стиль промо-изображения"
@@ -36,3 +36,12 @@ msgstr "Общие настройки"
 
 msgid "Wiki"
 msgstr "Энциклопедия"
+
+msgid "Drupal event"
+msgstr "Drupal мероприятие"
+
+msgid "Event image"
+msgstr "Изображение мероприятия"
+
+msgid "Media entity that contains an event promo image"
+msgstr "Медиа-сущность, которая содержит промо-изображение для мероприятия."

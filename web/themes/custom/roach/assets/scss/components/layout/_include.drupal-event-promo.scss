@@ -1,0 +1,24 @@
+.drupal-event-promo {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease-in-out;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-xs);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.drupal-event-promo__link {
+  display: block;
+}
+
+.drupal-event-promo__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

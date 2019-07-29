@@ -1,6 +1,11 @@
 promo:
   image: '10'
-  style: frontpage_promo
+  style: frontpage_drupal_video
 why:
   video: '11'
 langcode: ru
+event:
+  status: 1
+  image: '10'
+  style: frontpage_drupal_video
+  url: 'https://google.ru'
