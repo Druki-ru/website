@@ -8,4 +8,4 @@ event:
   status: 1
   image: '10'
   style: frontpage_drupal_video
-  url: 'https://google.ru'
+  url: /wiki/events/drupalcon-list

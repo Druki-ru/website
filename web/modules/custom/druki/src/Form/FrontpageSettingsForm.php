@@ -279,7 +279,9 @@ class FrontpageSettingsForm extends ConfigFormBase {
     ];
 
     $form['event']['url'] = [
-      '#type' => 'url',
+      // Using string instead of URL, because url HTML element allows only for
+      // absolute paths.
+      '#type' => 'textfield',
       '#title' => $this->t('URL'),
       '#default_value' => isset($event_settings['url']) ? $event_settings['url'] : '',
     ];
