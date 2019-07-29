@@ -1,4 +1,9 @@
 .paragraph-druki-image {
   display: flex;
   justify-content: center;
+  margin: 0 calc(var(--spacing-sm) * -1);
+
+  @include breakpoint(lg) {
+    margin: 0 calc(var(--spacing-lg) * -1);
+  }
 }

@@ -15,6 +15,7 @@ entity.druki_content.settings:
     _permission: 'administer druki content'
 
 # @todo try to use it as alias for system entity clear controller.
+# system.prepare_modules_entity_uninstall
 druki_content.delete_all:
   path: '/admin/druki/content/delete-all'
   defaults:

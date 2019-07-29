@@ -1,0 +1,15 @@
+uuid: 6bf40cef-23da-4b90-aeda-0ce82fae85e0
+langcode: ru
+status: true
+dependencies: {  }
+name: paragraph_druki_image_thumbnail_sm
+label: 'Paragraph - Druki Image - Thumbnail: SM'
+effects:
+  7320e6e6-1f48-42b3-87e4-254390980cda:
+    uuid: 7320e6e6-1f48-42b3-87e4-254390980cda
+    id: image_scale
+    weight: 1
+    data:
+      width: 719
+      height: null
+      upscale: false

@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: paragraph_druki_image_thumbnail_xxl
+label: 'Paragraph - Druki Image - Thumbnail: XXL'
+effects:
+  0763c5dd-4950-45ec-b9a8-6a590647fdd7:
+    uuid: 0763c5dd-4950-45ec-b9a8-6a590647fdd7
+    id: image_scale
+    weight: 1
+    data:
+      width: 1360
+      height: null
+      upscale: false

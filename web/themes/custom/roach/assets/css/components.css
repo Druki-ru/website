@@ -871,7 +871,11 @@
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  margin: 0 calc(var(--spacing-sm) * -1); }
+  @media (min-width: 960px) {
+    .paragraph-druki-image {
+      margin: 0 calc(var(--spacing-lg) * -1); } }
 
 :root {
   --druki-note-background: var(--page-background);

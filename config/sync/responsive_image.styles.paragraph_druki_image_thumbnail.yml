@@ -1,0 +1,48 @@
+uuid: 0ff304bc-d946-4be4-9f11-6dc53154437a
+langcode: ru
+status: true
+dependencies:
+  config:
+    - image.style.paragraph_druki_image_thumbnail_lg
+    - image.style.paragraph_druki_image_thumbnail_md
+    - image.style.paragraph_druki_image_thumbnail_sm
+    - image.style.paragraph_druki_image_thumbnail_xl
+    - image.style.paragraph_druki_image_thumbnail_xs
+    - image.style.paragraph_druki_image_thumbnail_xxl
+  theme:
+    - roach
+id: paragraph_druki_image_thumbnail
+label: 'Paragraph - Druki Image - Thumbnail'
+image_style_mappings:
+  -
+    breakpoint_id: roach.xxl
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xxl
+  -
+    breakpoint_id: roach.xl
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xl
+  -
+    breakpoint_id: roach.lg
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_lg
+  -
+    breakpoint_id: roach.md
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_md
+  -
+    breakpoint_id: roach.sm
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_sm
+  -
+    breakpoint_id: roach.xs
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xs
+breakpoint_group: roach
+fallback_image_style: '_empty image_'

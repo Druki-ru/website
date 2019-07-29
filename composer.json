@@ -100,6 +100,9 @@
         "patches": {
             "drupal/markdown": {
                 "Compatibility with 0.19 library. https://www.drupal.org/project/markdown/issues/3048976": "https://www.drupal.org/files/issues/2019-04-20/commonmark_update-3048976-3.patch"
+            },
+            "drupal/photoswipe":{
+                "Responsive image support. https://www.drupal.org/project/photoswipe/issues/2980534":"https://www.drupal.org/files/issues/2019-06-03/responsive-image-fromatter-2980534-18.patch"
             }
         },
         "installer-types": ["bower-asset", "npm-asset"],
