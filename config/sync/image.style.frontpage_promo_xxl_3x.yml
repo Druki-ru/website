@@ -1,0 +1,15 @@
+uuid: e684f365-483d-45cb-8e38-791163c50495
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_promo_xxl_3x
+label: 'Frontpage Promo: XXL 3x'
+effects:
+  d02e99a7-3dd6-4509-8cf0-03c255fbf5d5:
+    uuid: d02e99a7-3dd6-4509-8cf0-03c255fbf5d5
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 4108
+      height: 810
+      anchor: center-center

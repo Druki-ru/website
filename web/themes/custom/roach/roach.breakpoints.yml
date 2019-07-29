@@ -5,6 +5,10 @@ roach.xs:
   weight: 0
   multipliers:
     - 1x
+    - 1.5x
+    - 2x
+    - 2.5x
+    - 3x
 
 roach.sm:
   label: sm
@@ -12,6 +16,8 @@ roach.sm:
   weight: 1
   multipliers:
     - 1x
+    - 2x
+    - 3x
 
 roach.md:
   label: md
@@ -19,6 +25,8 @@ roach.md:
   weight: 1
   multipliers:
     - 1x
+    - 2x
+    - 3x
 
 roach.lg:
   label: lg
@@ -26,6 +34,8 @@ roach.lg:
   weight: 1
   multipliers:
     - 1x
+    - 2x
+    - 3x
 
 roach.xl:
   label: xl
@@ -33,6 +43,8 @@ roach.xl:
   weight: 1
   multipliers:
     - 1x
+    - 2x
+    - 3x
 
 roach.xxl:
   label: xxl
@@ -40,3 +52,5 @@ roach.xxl:
   weight: 1
   multipliers:
     - 1x
+    - 2x
+    - 3x

@@ -1,0 +1,15 @@
+uuid: 9af95898-6db6-4d53-aa71-942f25532410
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_promo_sm_3x
+label: 'Frontpage Promo: SM 3x'
+effects:
+  62911ba4-20db-4458-8a3d-9205dc8518a2:
+    uuid: 62911ba4-20db-4458-8a3d-9205dc8518a2
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2158
+      height: 540
+      anchor: center-center

@@ -1,0 +1,15 @@
+uuid: c517b304-6644-490e-b47a-a161800a206c
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_promo_xs_2x
+label: 'Frontpage Promo: XS 2x'
+effects:
+  4737d84b-5718-497a-9d3f-13e47e43a497:
+    uuid: 4737d84b-5718-497a-9d3f-13e47e43a497
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1078
+      height: 500
+      anchor: center-center
