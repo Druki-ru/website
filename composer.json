@@ -33,6 +33,7 @@
         "drupal/extra_field": "^1.0",
         "drupal/glisseo": "1.0-alpha10",
         "drupal/google_tag": "^1.1",
+        "drupal/imagemagick": "^2.5",
         "drupal/markdown": "2.x-dev",
         "drupal/metatag": "^1.8",
         "drupal/pathauto": "^1.3",

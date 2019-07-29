@@ -526,7 +526,8 @@
   font-size: var(--text-lg);
   font-weight: bold;
   line-height: var(--mobile-header-height);
-  color: var(--text-color); }
+  color: var(--text-color);
+  margin-left: var(--spacing-sm); }
 
 .header-mobile__search {
   font-size: var(--text-lg);
