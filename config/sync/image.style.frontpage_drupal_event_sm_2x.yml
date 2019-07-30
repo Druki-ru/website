@@ -1,0 +1,15 @@
+uuid: 7936f550-b748-47e2-b6e5-bd33d2415caf
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_sm_2x
+label: 'Frontpage Drupal event: SM 2x'
+effects:
+  bf06dd23-2fe2-4ab1-aa83-135e72130f5a:
+    uuid: bf06dd23-2fe2-4ab1-aa83-135e72130f5a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1374
+      height: 776
+      anchor: center-center

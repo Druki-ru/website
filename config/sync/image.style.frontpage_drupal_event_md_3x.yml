@@ -1,0 +1,15 @@
+uuid: 36725c32-8015-4cbe-8ae6-d3f94b4823a8
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_md_3x
+label: 'Frontpage Drupal event: MD 3x'
+effects:
+  f6ed088f-8a39-46bb-8cd8-b1ff00af754a:
+    uuid: f6ed088f-8a39-46bb-8cd8-b1ff00af754a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2782
+      height: 1566
+      anchor: center-center

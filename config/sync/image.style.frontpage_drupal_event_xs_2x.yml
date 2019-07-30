@@ -1,0 +1,15 @@
+uuid: 3223b261-1118-48f9-a302-7e9bc7feaa51
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_xs_2x
+label: 'Frontpage Drupal event: XS 2x'
+effects:
+  488b5ec4-4cbb-4a19-9c61-694d1ed5c168:
+    uuid: 488b5ec4-4cbb-4a19-9c61-694d1ed5c168
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1014
+      height: 570
+      anchor: center-center

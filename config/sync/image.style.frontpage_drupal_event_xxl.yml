@@ -1,0 +1,15 @@
+uuid: bf26125b-a667-43eb-b6e3-d3824a1a4f87
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_xxl
+label: 'Frontpage Drupal event: XXL'
+effects:
+  6036f584-0ed3-4fc4-a0ee-7404e5025986:
+    uuid: 6036f584-0ed3-4fc4-a0ee-7404e5025986
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 390
+      height: 220
+      anchor: center-center

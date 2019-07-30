@@ -6,7 +6,11 @@
 
   @include breakpoint(xl) {
     margin: var(--spacing-lg);
-    grid-template-columns: 390px 213px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(xxl) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -14,7 +18,7 @@
   align-self: flex-start;
 }
 
-.frontpage-important-info .drupalcon-promo {
+.frontpage-important-info .drupal-event-promo {
   align-self: flex-start;
   justify-self: center;
 }

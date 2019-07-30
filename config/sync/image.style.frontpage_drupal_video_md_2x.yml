@@ -1,0 +1,15 @@
+uuid: bb44ca02-6d22-48bb-b1ec-a222d1366ec3
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_video_md_2x
+label: 'Frontpage Drupal Video: MD 2x'
+effects:
+  cbe59a24-26c1-4a6a-89cf-868556a77683:
+    uuid: cbe59a24-26c1-4a6a-89cf-868556a77683
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1854
+      height: 1044
+      anchor: center-center

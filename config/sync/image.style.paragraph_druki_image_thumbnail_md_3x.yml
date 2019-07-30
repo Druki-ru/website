@@ -1,0 +1,15 @@
+uuid: dc7d79ba-bce5-47fb-8ad6-afd4d5748b65
+langcode: ru
+status: true
+dependencies: {  }
+name: paragraph_druki_image_thumbnail_md_3x
+label: 'Paragraph - Druki Image - Thumbnail: MD 3x'
+effects:
+  e33cf6e3-6a74-4a15-b512-139442d5f3d1:
+    uuid: e33cf6e3-6a74-4a15-b512-139442d5f3d1
+    id: image_scale
+    weight: 1
+    data:
+      width: 2878
+      height: null
+      upscale: false

@@ -1,0 +1,15 @@
+uuid: 84ee66db-d65b-4c5f-a781-acc993df8d20
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_sm_3x
+label: 'Frontpage Drupal event: SM 3x'
+effects:
+  ca8ec5ea-f3e1-4e3c-9248-cdb64ac8f418:
+    uuid: ca8ec5ea-f3e1-4e3c-9248-cdb64ac8f418
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2062
+      height: 1164
+      anchor: center-center

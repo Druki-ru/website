@@ -7,5 +7,5 @@ langcode: ru
 event:
   status: 1
   image: '10'
-  style: frontpage_drupal_video
+  style: frontpage_drupal_event
   url: /wiki/events/drupalcon-list

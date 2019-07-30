@@ -1,0 +1,15 @@
+uuid: 926cfb65-3884-4951-96b6-20d202cb2564
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_video_sm_3ch
+label: 'Frontpage Drupal Video: SM 3x'
+effects:
+  c6f1d499-274b-4e4f-b2ec-34120f02b49b:
+    uuid: c6f1d499-274b-4e4f-b2ec-34120f02b49b
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2062
+      height: 1162
+      anchor: center-center

@@ -1,0 +1,15 @@
+uuid: 74faf6ce-7920-4f4c-b1b1-39ca27c2e0ea
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_video_xs_2x
+label: 'Frontpage Drupal Video: XS 2x'
+effects:
+  d1219a9d-0222-461c-8ef3-3a3bca565363:
+    uuid: d1219a9d-0222-461c-8ef3-3a3bca565363
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1014
+      height: 572
+      anchor: center-center

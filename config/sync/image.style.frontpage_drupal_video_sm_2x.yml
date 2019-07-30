@@ -1,0 +1,15 @@
+uuid: 28786d61-b8e5-4706-8aff-3e07d6fc2a0c
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_video_sm_2x
+label: 'Frontpage Drupal Video: SM 2x'
+effects:
+  9bd4ca0d-bee5-4dcc-8271-a15eb944e298:
+    uuid: 9bd4ca0d-bee5-4dcc-8271-a15eb944e298
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1374
+      height: 774
+      anchor: center-center

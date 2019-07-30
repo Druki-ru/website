@@ -1,0 +1,15 @@
+uuid: b455c14f-67df-4128-9712-8a109e824499
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_lg_2x
+label: 'Frontpage Drupal event: LG 2x'
+effects:
+  a697f7b1-09ec-402b-8490-cd09dec7431e:
+    uuid: a697f7b1-09ec-402b-8490-cd09dec7431e
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1704
+      height: 932
+      anchor: center-center

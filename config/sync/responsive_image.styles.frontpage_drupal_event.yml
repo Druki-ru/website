@@ -1,30 +1,30 @@
-uuid: b6de1eab-5dc0-4659-a735-8cfc6b429e97
+uuid: 79387209-6755-4e31-8976-53ed6b0ef13d
 langcode: ru
 status: true
 dependencies:
   config:
-    - image.style.frontpage_drupal_video
-    - image.style.frontpage_drupal_video_lg
-    - image.style.frontpage_drupal_video_lg_2x
-    - image.style.frontpage_drupal_video_lg_3x
-    - image.style.frontpage_drupal_video_md
-    - image.style.frontpage_drupal_video_md_2x
-    - image.style.frontpage_drupal_video_md_3x
-    - image.style.frontpage_drupal_video_sm
-    - image.style.frontpage_drupal_video_sm_2x
-    - image.style.frontpage_drupal_video_sm_3ch
-    - image.style.frontpage_drupal_video_xl
-    - image.style.frontpage_drupal_video_xl_2x
-    - image.style.frontpage_drupal_video_xl_3x
-    - image.style.frontpage_drupal_video_xs_2x
-    - image.style.frontpage_drupal_video_xs_3x
+    - image.style.frontpage_drupal_event_lg
+    - image.style.frontpage_drupal_event_lg_2x
+    - image.style.frontpage_drupal_event_lg_3x
+    - image.style.frontpage_drupal_event_md
+    - image.style.frontpage_drupal_event_md_2x
+    - image.style.frontpage_drupal_event_md_3x
+    - image.style.frontpage_drupal_event_sm
+    - image.style.frontpage_drupal_event_sm_2x
+    - image.style.frontpage_drupal_event_sm_3x
+    - image.style.frontpage_drupal_event_xl
+    - image.style.frontpage_drupal_event_xl_2x
+    - image.style.frontpage_drupal_event_xl_3x
+    - image.style.frontpage_drupal_event_xs
+    - image.style.frontpage_drupal_event_xs_2x
+    - image.style.frontpage_drupal_event_xs_3x
+    - image.style.frontpage_drupal_event_xxl_2x
+    - image.style.frontpage_drupal_event_xxl_3x
     - image.style.frontpage_drupal_video_xxl
-    - image.style.frontpage_drupal_video_xxl_2x
-    - image.style.frontpage_drupal_video_xxl_3x
   theme:
     - roach
-id: frontpage_drupal_video
-label: 'Frontpage Drupal Video'
+id: frontpage_drupal_event
+label: 'Frontpage Drupal event'
 image_style_mappings:
   -
     breakpoint_id: roach.xxl
@@ -35,86 +35,86 @@ image_style_mappings:
     breakpoint_id: roach.xxl
     multiplier: 2x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_xxl_2x
+    image_mapping: frontpage_drupal_event_xxl_2x
   -
     breakpoint_id: roach.xxl
     multiplier: 3x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_xxl_3x
+    image_mapping: frontpage_drupal_event_xxl_3x
   -
     breakpoint_id: roach.xl
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_xl
+    image_mapping: frontpage_drupal_event_xl
   -
     breakpoint_id: roach.xl
     multiplier: 2x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_xl_2x
+    image_mapping: frontpage_drupal_event_xl_2x
   -
     breakpoint_id: roach.xl
     multiplier: 3x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_xl_3x
+    image_mapping: frontpage_drupal_event_xl_3x
   -
     breakpoint_id: roach.lg
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_lg
+    image_mapping: frontpage_drupal_event_lg
   -
     breakpoint_id: roach.lg
     multiplier: 2x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_lg_2x
+    image_mapping: frontpage_drupal_event_lg_2x
   -
     breakpoint_id: roach.lg
     multiplier: 3x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_lg_3x
+    image_mapping: frontpage_drupal_event_lg_3x
   -
     breakpoint_id: roach.md
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_md
+    image_mapping: frontpage_drupal_event_md
   -
     breakpoint_id: roach.md
     multiplier: 2x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_md_2x
+    image_mapping: frontpage_drupal_event_md_2x
   -
     breakpoint_id: roach.md
     multiplier: 3x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_md_3x
+    image_mapping: frontpage_drupal_event_md_3x
   -
     breakpoint_id: roach.sm
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_sm
+    image_mapping: frontpage_drupal_event_sm
   -
     breakpoint_id: roach.sm
     multiplier: 2x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_sm_2x
+    image_mapping: frontpage_drupal_event_sm_2x
   -
     breakpoint_id: roach.sm
     multiplier: 3x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_sm_3ch
+    image_mapping: frontpage_drupal_event_sm_3x
   -
     breakpoint_id: roach.xs
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video
+    image_mapping: frontpage_drupal_event_xs
   -
     breakpoint_id: roach.xs
     multiplier: 2x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_xs_2x
+    image_mapping: frontpage_drupal_event_xs_2x
   -
     breakpoint_id: roach.xs
     multiplier: 3x
     image_mapping_type: image_style
-    image_mapping: frontpage_drupal_video_xs_3x
+    image_mapping: frontpage_drupal_event_xs_3x
 breakpoint_group: roach
 fallback_image_style: '_empty image_'

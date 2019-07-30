@@ -1,0 +1,15 @@
+uuid: 1f18e299-ec6f-4af0-a241-807bfad6a42e
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_video_lg_3x
+label: 'Frontpage Drupal Video: LG 3x'
+effects:
+  045d009c-0dac-466a-a3ad-91e1f4cd4092:
+    uuid: 045d009c-0dac-466a-a3ad-91e1f4cd4092
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2475
+      height: 1398
+      anchor: center-center

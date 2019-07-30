@@ -1,0 +1,15 @@
+uuid: 92465065-82f1-4ee2-b056-166ce79983ff
+langcode: ru
+status: true
+dependencies: {  }
+name: paragraph_druki_image_thumbnail_lg_3x
+label: 'Paragraph - Druki Image - Thumbnail: LG 3x'
+effects:
+  abdd1eef-6b9f-4254-8e5d-b3485ace8223:
+    uuid: abdd1eef-6b9f-4254-8e5d-b3485ace8223
+    id: image_scale
+    weight: 1
+    data:
+      width: 2578
+      height: null
+      upscale: false

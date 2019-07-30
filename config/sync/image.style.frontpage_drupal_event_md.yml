@@ -1,0 +1,15 @@
+uuid: 99579319-ac69-4d1c-b78e-edcc30d1d24e
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_md
+label: 'Frontpage Drupal event: MD'
+effects:
+  1560faa2-d7a2-4e48-bb4f-97b6406068c7:
+    uuid: 1560faa2-d7a2-4e48-bb4f-97b6406068c7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 927
+      height: 522
+      anchor: center-center

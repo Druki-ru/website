@@ -1,0 +1,15 @@
+uuid: 23e8f2bf-8fea-472c-b66f-941d48cb1c53
+langcode: ru
+status: true
+dependencies: {  }
+name: paragraph_druki_image_thumbnail_xxl_3x
+label: 'Paragraph - Druki Image - Thumbnail: XXL 3x'
+effects:
+  6c137352-1ad1-4410-9d40-bbc19bbfe91a:
+    uuid: 6c137352-1ad1-4410-9d40-bbc19bbfe91a
+    id: image_scale
+    weight: 1
+    data:
+      width: 4080
+      height: null
+      upscale: false

@@ -1,0 +1,15 @@
+uuid: 10166ce6-122d-419f-a59e-d49ad9850466
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_lg_3x
+label: 'Frontpage Drupal event: LG 3x'
+effects:
+  cb38327c-c306-4871-9a66-e4665302c445:
+    uuid: cb38327c-c306-4871-9a66-e4665302c445
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2556
+      height: 1398
+      anchor: center-center

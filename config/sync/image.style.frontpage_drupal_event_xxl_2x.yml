@@ -1,0 +1,15 @@
+uuid: 8c412f02-c247-4eae-bce6-143cf96ea160
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_xxl_2x
+label: 'Frontpage Drupal event: XXL 2x'
+effects:
+  c855d0af-614a-4407-9896-69158b87654f:
+    uuid: c855d0af-614a-4407-9896-69158b87654f
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 780
+      height: 440
+      anchor: center-center

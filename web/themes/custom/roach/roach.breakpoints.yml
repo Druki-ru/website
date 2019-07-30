@@ -5,9 +5,7 @@ roach.xs:
   weight: 0
   multipliers:
     - 1x
-    - 1.5x
     - 2x
-    - 2.5x
     - 3x
 
 roach.sm:

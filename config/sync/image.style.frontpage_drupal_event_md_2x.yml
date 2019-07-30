@@ -1,0 +1,15 @@
+uuid: 8e5ddb1f-7640-41be-af5c-82cede4cad41
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_drupal_event_md_2x
+label: 'Frontpage Drupal event: MD 2x'
+effects:
+  57809f50-4528-47c6-9409-6a8d14c9879d:
+    uuid: 57809f50-4528-47c6-9409-6a8d14c9879d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1854
+      height: 1044
+      anchor: center-center

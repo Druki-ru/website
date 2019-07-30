@@ -1,0 +1,15 @@
+uuid: ea3fa1aa-f77e-4439-a44f-0afe9378682c
+langcode: ru
+status: true
+dependencies: {  }
+name: paragraph_druki_image_thumbnail_sm_2x
+label: 'Paragraph - Druki Image - Thumbnail: SM 2x'
+effects:
+  261d81bb-5e89-4067-bcc5-0e94d0c78a7c:
+    uuid: 261d81bb-5e89-4067-bcc5-0e94d0c78a7c
+    id: image_scale
+    weight: 1
+    data:
+      width: 1438
+      height: null
+      upscale: false
