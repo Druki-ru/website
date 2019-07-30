@@ -9,7 +9,9 @@ It was inspired by many other documentation sites and their content editing proc
 
 ## Local environment
 
-If you want to user local environment that used for development, just copy **docker-compose.yml.dist** to **docker-compose.yml**. Edit it to your needs and run with `make` or `docker-compose up -d`.
+If you want to user local environment that used for development, just copy **docker-compose.yml.dist** to **docker-compose.yml** and **.env.dist** to **.env**. Edit it to your needs and run with `make` or `docker-compose up -d`.
+
+Add this line `$config['config_split.config_split.dev']['status'] = TRUE;` to **settings.php**.
 
 ## Install a local copy
 
