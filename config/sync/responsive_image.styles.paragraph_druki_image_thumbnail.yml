@@ -4,11 +4,23 @@ status: true
 dependencies:
   config:
     - image.style.paragraph_druki_image_thumbnail_lg
+    - image.style.paragraph_druki_image_thumbnail_lg_2x
+    - image.style.paragraph_druki_image_thumbnail_lg_3x
     - image.style.paragraph_druki_image_thumbnail_md
+    - image.style.paragraph_druki_image_thumbnail_md_2x
+    - image.style.paragraph_druki_image_thumbnail_md_3x
     - image.style.paragraph_druki_image_thumbnail_sm
+    - image.style.paragraph_druki_image_thumbnail_sm_2x
+    - image.style.paragraph_druki_image_thumbnail_sm_3x
     - image.style.paragraph_druki_image_thumbnail_xl
+    - image.style.paragraph_druki_image_thumbnail_xl_2x
+    - image.style.paragraph_druki_image_thumbnail_xl_3x
     - image.style.paragraph_druki_image_thumbnail_xs
+    - image.style.paragraph_druki_image_thumbnail_xs_2x
+    - image.style.paragraph_druki_image_thumbnail_xs_3x
     - image.style.paragraph_druki_image_thumbnail_xxl
+    - image.style.paragraph_druki_image_thumbnail_xxl_2x
+    - image.style.paragraph_druki_image_thumbnail_xxl_3x
   theme:
     - roach
 id: paragraph_druki_image_thumbnail
@@ -20,29 +32,89 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xxl
   -
+    breakpoint_id: roach.xxl
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xxl_2x
+  -
+    breakpoint_id: roach.xxl
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xxl_3x
+  -
     breakpoint_id: roach.xl
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xl
+  -
+    breakpoint_id: roach.xl
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xl_2x
+  -
+    breakpoint_id: roach.xl
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xl_3x
   -
     breakpoint_id: roach.lg
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_lg
   -
+    breakpoint_id: roach.lg
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_lg_2x
+  -
+    breakpoint_id: roach.lg
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_lg_3x
+  -
     breakpoint_id: roach.md
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_md
+  -
+    breakpoint_id: roach.md
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_md_2x
+  -
+    breakpoint_id: roach.md
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_md_3x
   -
     breakpoint_id: roach.sm
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_sm
   -
+    breakpoint_id: roach.sm
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_sm_2x
+  -
+    breakpoint_id: roach.sm
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_sm_3x
+  -
     breakpoint_id: roach.xs
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xs
+  -
+    breakpoint_id: roach.xs
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xs_2x
+  -
+    breakpoint_id: roach.xs
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: paragraph_druki_image_thumbnail_xs_3x
 breakpoint_group: roach
 fallback_image_style: '_empty image_'
