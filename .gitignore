@@ -28,3 +28,7 @@ node_modules/
 yarn-error.log
 docker-compose.yml
 phpunit.xml
+
+# Config Split
+# We only save structure for folder, not config by itself.
+/config/split
