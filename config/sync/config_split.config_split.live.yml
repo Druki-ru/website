@@ -1,0 +1,17 @@
+uuid: 17627068-03ed-4a06-ad2b-7da44251df66
+langcode: ru
+status: false
+dependencies: {  }
+id: live
+label: Live
+description: 'The production configurations.'
+folder: ../config/split/live
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist:
+  - druki.frontpage_settings
+  - druki_git.git_settings
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

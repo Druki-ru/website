@@ -1,0 +1,17 @@
+uuid: 43abbb01-98bc-4317-9266-0867ca92e581
+langcode: ru
+status: false
+dependencies: {  }
+id: dev
+label: Development
+description: 'Development configurations.'
+folder: ../config/split/dev
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist:
+  - druki.frontpage_settings
+  - druki_git.git_settings
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
