@@ -148,11 +148,14 @@
   background-color: var(--block-main-menu-link-hover-icon-background); }
 
 :root {
-  --page-title-font-size: var(--text-xxl); }
+  --page-title-font-size: var(--text-xl); }
 
 .block-page-title h1 {
   font-size: var(--page-title-font-size);
   margin: var(--spacing-sm) 0 var(--spacing-lg); }
+  @media (min-width: 960px) {
+    .block-page-title h1 {
+      --page-title-font-size: var(--text-xxl); } }
 
 .block-roach-content a[href*="//"]:not([href*="druki.ru"]):not([href*="druki.localhost"]):after {
   content: "\F3CC";

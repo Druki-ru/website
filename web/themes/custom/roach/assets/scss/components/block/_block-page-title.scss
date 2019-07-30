@@ -1,10 +1,14 @@
 :root {
-  --page-title-font-size: var(--text-xxl);
+  --page-title-font-size: var(--text-xl);
 }
 
-.block-page-title { }
+.block-page-title {}
 
 .block-page-title h1 {
   font-size: var(--page-title-font-size);
   margin: var(--spacing-sm) 0 var(--spacing-lg);
+
+  @include breakpoint(lg) {
+    --page-title-font-size: var(--text-xxl);
+  }
 }

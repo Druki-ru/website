@@ -12,11 +12,12 @@
 }
 
 a {
-  color: var(--link-color);
   text-decoration: none;
+  word-break: break-word;
+  color: var(--link-color);
 
   &:hover {
-    color: var(--link-color-hover);
     text-decoration: underline;
+    color: var(--link-color-hover);
   }
 }

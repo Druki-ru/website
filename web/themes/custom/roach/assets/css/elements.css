@@ -80,7 +80,8 @@ h6 {
   font-family: var(--heading-font-family);
   line-height: var(--heading-line-height);
   margin-bottom: var(--spacing-sm);
-  color: var(--heading-color); }
+  color: var(--heading-color);
+  word-break: break-word; }
 
 hr {
   margin: var(--spacing-md) 0;
@@ -101,11 +102,12 @@ img {
   --link-color-hover: hsl(var(--color-accent-h), var(--color-accent-s), calc(var(--color-accent-l) + 20%)); }
 
 a {
-  color: var(--link-color);
-  text-decoration: none; }
+  text-decoration: none;
+  word-break: break-word;
+  color: var(--link-color); }
   a:hover {
-    color: var(--link-color-hover);
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: var(--link-color-hover); }
 
 :root {
   --list-margin: 0 0 1rem 0;
