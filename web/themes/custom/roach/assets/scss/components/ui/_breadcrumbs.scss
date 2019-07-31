@@ -31,7 +31,7 @@
 
 .breadcrumbs__current {
   &::before {
-    margin: 0 4px;
+    margin: 0 var(--spacing-unit);
     content: '/';
     color: var(--color-contrast-medium);
   }
