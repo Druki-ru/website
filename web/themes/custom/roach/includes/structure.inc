@@ -53,6 +53,7 @@ function roach_preprocess_page(array &$variables) {
     '#attributes' => [
       'rel' => 'preconnect',
       'href' => 'https://fonts.googleapis.com/',
+      'crossorigin' => 'anonymous',
     ],
     '#weight' => -99,
   ];
@@ -62,6 +63,7 @@ function roach_preprocess_page(array &$variables) {
     '#attributes' => [
       'rel' => 'preconnect',
       'href' => 'https://fonts.gstatic.com/',
+      'crossorigin' => 'anonymous',
     ],
     '#weight' => -98,
   ];
@@ -71,6 +73,7 @@ function roach_preprocess_page(array &$variables) {
     '#attributes' => [
       'rel' => 'preconnect',
       'href' => 'https://www.googletagmanager.com/',
+      'crossorigin' => 'anonymous',
     ],
     '#weight' => -97,
   ];
