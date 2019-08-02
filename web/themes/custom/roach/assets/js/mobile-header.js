@@ -12,7 +12,7 @@
      *
      * Before page will be scrolled to this value, header will remain untouched.
      */
-    hideHeaderAfter: 400,
+    hideHeaderAfter: 200,
 
     /**
      * The mobile header element.
@@ -48,6 +48,7 @@
           return;
         }
 
+        console.log(window.pageYOffset);
         let isThresholdPassed = (window.pageYOffset < this.hideHeaderAfter);
         let isScrolledTop = (window.pageYOffset < lastYOffset);
 
