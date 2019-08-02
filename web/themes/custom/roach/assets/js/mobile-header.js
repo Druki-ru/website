@@ -48,7 +48,6 @@
           return;
         }
 
-        console.log(window.pageYOffset);
         let isThresholdPassed = (window.pageYOffset < this.hideHeaderAfter);
         let isScrolledTop = (window.pageYOffset < lastYOffset);
 
