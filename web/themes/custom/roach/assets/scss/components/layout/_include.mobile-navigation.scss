@@ -13,7 +13,7 @@ $icons: (
   overflow: hidden;
   width: 100vw;
   height: 100%;
-  transition: 0.25s ease-in-out background-color;
+  transition: 0.2s ease-in-out background-color;
   background-color: transparent;
 
   @include breakpoint(lg) {
@@ -34,13 +34,15 @@ $icons: (
   position: fixed;
   z-index: 201;
   top: 0;
+  right: 0;
   display: flex;
+  visibility: hidden;
   overflow-y: scroll;
   flex-direction: column;
   width: 250px;
   height: 100%;
-  transition: 0.5s ease-in-out transform;
-  transform: translateX(-250px);
+  transition: 0.2s ease-in-out transform;
+  transform: translateX(100%);
   background-color: var(--page-background);
 }
 
@@ -52,10 +54,11 @@ $icons: (
 
 .mobile-navigation--active .mobile-navigation__sidebar {
   transform: translateX(0);
+  visibility: visible;
 }
 
 .mobile-navigation--hiding .mobile-navigation__sidebar {
-  transform: translateX(-250px);
+  transform: translateX(100%);
 }
 
 .mobile-navigation__branding {

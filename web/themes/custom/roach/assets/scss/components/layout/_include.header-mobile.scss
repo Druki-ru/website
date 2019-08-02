@@ -13,6 +13,7 @@
   height: var(--mobile-header-height);
   background-color: var(--page-background);
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  transition: transform 0.2s ease;
 
   @include breakpoint(lg) {
     display: none;
@@ -36,6 +37,11 @@
   padding: 0 var(--spacing-sm);
   text-align: center;
   color: var(--color-contrast-high);
+}
+
+.header-mobile--hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
 }
 
 .mobile-toggle {

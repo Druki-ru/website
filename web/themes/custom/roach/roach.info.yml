@@ -14,8 +14,9 @@ libraries:
   - druki_vue/main
   - roach/code_highlight
   - roach/mobile_navigation
-  - roach/dark_mode
   - roach/mobile_contents
+  - roach/mobile_header
+  - roach/dark_mode
 
 regions:
   content: Content

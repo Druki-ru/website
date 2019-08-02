@@ -51,6 +51,13 @@ mobile_contents:
   dependencies:
     - core/drupal
 
+mobile_header:
+  js:
+    assets/js/mobile-header.js: {}
+  dependencies:
+    - core/drupal
+    - druki/throttle
+
 dark_mode:
   js:
     # For as fast as possible execution.
