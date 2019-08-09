@@ -25,7 +25,7 @@ function druki_cron(): void {
     'last_minor_release' => NULL,
   ]);
 
-  if ($request_time > $drupal_releases['expires'] || TRUE) {
+  if ($request_time > $drupal_releases['expires']) {
     // Trying to get new last stable release for Drupal project.
     /** @var \Drupal\druki\Service\DrupalProjects $drupal_projects */
     $drupal_projects = \Drupal::service('druki.drupal_projects');
