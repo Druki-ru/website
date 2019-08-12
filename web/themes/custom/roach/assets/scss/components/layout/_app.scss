@@ -1,7 +1,7 @@
 .app {
   padding-top: var(--mobile-header-height, 60px);
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     padding-top: unset;
   }
 }

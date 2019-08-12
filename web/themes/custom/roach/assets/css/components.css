@@ -474,7 +474,7 @@
     right: 0;
     bottom: 0;
     background-color: var(--frontpage-promo-background); }
-  @media (min-width: 960px) {
+  @media (min-width: 1140px) {
     .frontpage-promo {
       padding: var(--spacing-lg); } }
 
@@ -1603,10 +1603,7 @@
   display: block;
   width: 100%;
   max-width: 100%;
-  padding-top: var(--form-control-padding-y);
-  padding-right: var(--form-control-padding-x);
-  padding-bottom: var(--form-control-padding-y);
-  padding-left: var(--form-control-padding-x);
+  padding: var(--form-control-padding-y) var(--form-control-padding-x);
   border: 2px solid var(--color-contrast-low);
   border-radius: var(--form-control-border-radius);
   background-color: var(--form-control-background);

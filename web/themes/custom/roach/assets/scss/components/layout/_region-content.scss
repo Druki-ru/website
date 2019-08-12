@@ -11,7 +11,7 @@
   grid-area: content;
   padding: var(--spacing-sm);
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     padding: var(--spacing-lg);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }

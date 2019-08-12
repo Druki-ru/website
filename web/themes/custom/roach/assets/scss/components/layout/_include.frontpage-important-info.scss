@@ -4,12 +4,12 @@
   grid-gap: var(--spacing-md);
   grid-template-columns: 1fr;
 
-  @include breakpoint(xl) {
+  @media (--xl) {
     margin: var(--spacing-lg);
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint(xxl) {
+  @media (--xxl) {
     grid-template-columns: repeat(3, 1fr);
   }
 }

@@ -3,7 +3,7 @@
   grid-gap: 24px;
   grid-template-columns: 1fr;
 
-  @include breakpoint(xl) {
+  @media (--xl) {
     grid-template-columns: 1fr 1fr;
   }
 }

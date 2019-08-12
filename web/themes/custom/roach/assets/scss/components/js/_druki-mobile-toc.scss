@@ -1,5 +1,5 @@
 .druki-mobile-toc {
-  @include breakpoint(xxl) {
+  @media (--xxl) {
     display: none;
   }
 }

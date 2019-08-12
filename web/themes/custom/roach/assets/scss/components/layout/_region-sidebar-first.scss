@@ -1,7 +1,7 @@
 .region-sidebar-first {
   display: none;
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     display: block;
   }
 }

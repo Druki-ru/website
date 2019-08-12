@@ -16,7 +16,7 @@
   color: var(--header-color);
   background-color: var(--header-background);
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     display: flex;
   }
 }
@@ -29,7 +29,7 @@
   grid-gap: 0;
   grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
 
-  @include breakpoint(xxl) {
+  @media (--xxl) {
     max-width: var(--container-max-width);
   }
 }

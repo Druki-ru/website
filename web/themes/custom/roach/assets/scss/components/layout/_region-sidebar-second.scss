@@ -2,7 +2,7 @@
   display: none;
   grid-area: right-sidebar;
 
-  @include breakpoint(xxl) {
+  @media (--xxl) {
     display: block;
   }
 }

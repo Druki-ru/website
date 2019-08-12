@@ -3,7 +3,7 @@
   justify-content: center;
   margin: 0 calc(var(--spacing-sm) * -1);
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     margin: 0 calc(var(--spacing-lg) * -1);
   }
 }

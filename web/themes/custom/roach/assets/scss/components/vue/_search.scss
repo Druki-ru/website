@@ -51,7 +51,7 @@
   grid-gap: var(--spacing-md);
   grid-template-columns: 1fr;
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     grid-template-columns: 1fr 260px;
   }
 }

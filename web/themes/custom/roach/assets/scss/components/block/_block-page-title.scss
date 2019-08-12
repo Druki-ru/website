@@ -8,7 +8,7 @@
   font-size: var(--page-title-font-size);
   margin: var(--spacing-sm) 0 var(--spacing-lg);
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     --page-title-font-size: var(--text-xxl);
   }
 }

@@ -354,7 +354,6 @@ template {
 :root {
   --sidebar-width: 280px;
   --container-max-width: 1920px; }
-
 :root {
   --radius: 0.25em;
   --radius-sm: calc(var(--radius) / 2);

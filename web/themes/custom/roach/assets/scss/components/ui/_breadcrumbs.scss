@@ -16,7 +16,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  @include breakpoint(sm) {
+  @media (--sm) {
     display: inline;
   }
 }
@@ -46,7 +46,7 @@
   flex-grow: 1;
   flex-shrink: 0;
 
-  @include breakpoint(sm) {
+  @media (--sm) {
     display: inline;
   }
 }

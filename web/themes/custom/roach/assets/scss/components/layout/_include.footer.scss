@@ -9,12 +9,12 @@
 .footer__inner {
   padding: 0 var(--spacing-unit);
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     margin-left: var(--sidebar-width);
     padding: unset;
   }
 
-  @include breakpoint(xxl) {
+  @media (--xxl) {
     margin-right: var(--sidebar-width);
   }
 }

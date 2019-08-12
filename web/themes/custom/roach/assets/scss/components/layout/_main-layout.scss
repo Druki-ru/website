@@ -5,12 +5,12 @@
   grid-template-columns: 1fr;
   grid-template-areas: "content";
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     grid-template-columns: var(--sidebar-width) 1fr;
     grid-template-areas: "left-sidebar content";
   }
 
-  @include breakpoint(xxl) {
+  @media (--xxl) {
     max-width: var(--container-max-width);
     margin: 0 auto;
     grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);

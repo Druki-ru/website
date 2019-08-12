@@ -32,11 +32,11 @@
   grid-gap: var(--spacing-sm);
   grid-template-columns: 1fr;
 
-  @include breakpoint(sm) {
+  @media (--sm) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint(xl) {
+  @media (--xl) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -80,11 +80,11 @@
   grid-gap: var(--spacing-sm);
   grid-template-columns: 1fr;
 
-  @include breakpoint(sm) {
+  @media (--sm) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint(xl) {
+  @media (--xl) {
     grid-template-columns: repeat(4, 1fr);
   }
 }

@@ -22,7 +22,7 @@
     background-color: var(--frontpage-promo-background);
   }
 
-  @include breakpoint(lg) {
+  @media (--xl) {
     padding: var(--spacing-lg);
   }
 }
@@ -41,7 +41,7 @@
 .frontpage-promo__description {
   font-size: 20px;
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     max-width: 65%;
   }
 }

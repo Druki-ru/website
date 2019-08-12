@@ -16,7 +16,7 @@ $icons: (
   transition: 0.2s ease-in-out background-color;
   background-color: transparent;
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     display: none;
   }
 }

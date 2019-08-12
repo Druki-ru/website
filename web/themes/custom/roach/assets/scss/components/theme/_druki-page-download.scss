@@ -65,15 +65,15 @@ $icons: (
   grid-gap: var(--spacing-sm);
   grid-template-columns: 1fr;
 
-  @include breakpoint(md) {
+  @media (--md) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint(lg) {
+  @media (--lg) {
     grid-gap: var(--spacing-md);
   }
 
-  @include breakpoint(xxl) {
+  @media (--xxl) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
