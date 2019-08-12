@@ -72,7 +72,8 @@ $icons: (
 }
 
 .mobile-navigation__navigation {
-  @include list-unstyled;
+  padding: unset;
+  list-style: none;
   margin: var(--spacing-sm) var(--spacing-unit);
 }
 

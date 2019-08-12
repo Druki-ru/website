@@ -95,5 +95,7 @@
 }
 
 .druki-page-wiki__other-item-items {
-  @include list-unstyled;
+  margin: unset;
+  padding: unset;
+  list-style: none;
 }

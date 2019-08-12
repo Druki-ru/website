@@ -70,10 +70,10 @@
   margin: var(--spacing-sm); }
 
 .block-main-menu__menu {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  line-height: 1.7; }
+  line-height: 1.7;
+  margin: unset;
+  padding: unset;
+  list-style: none; }
 
 .block-main-menu__menu-item:not(:last-child) {
   margin-bottom: var(--spacing-unit); }
@@ -734,8 +734,7 @@
   height: 100px; }
 
 .mobile-navigation__navigation {
-  margin: 0;
-  padding: 0;
+  padding: unset;
   list-style: none;
   margin: var(--spacing-sm) var(--spacing-unit); }
 
@@ -1419,8 +1418,8 @@
   margin-bottom: var(--spacing-unit); }
 
 .druki-page-wiki__other-item-items {
-  margin: 0;
-  padding: 0;
+  margin: unset;
+  padding: unset;
   list-style: none; }
 
 .breadcrumbs {
@@ -1622,11 +1621,11 @@
     border-color: var(--color-error); }
 
 .links--inline {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: -webkit-box;
-  display: flex; }
+  display: flex;
+  margin: unset;
+  padding: unset;
+  list-style: none; }
 
 .links--inline .links__item:not(:last-child) {
   margin-right: var(--spacing-unit); }
@@ -1673,13 +1672,12 @@
   --message-border-color: var(--color-warning); }
 
 .pager__items {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
           justify-content: center;
+  margin: unset;
+  padding: unset;
   list-style: none outside none; }
 
 .pager__item {
@@ -1702,11 +1700,11 @@
     background-color: var(--color-contrast-lower); }
 
 .pager__item--active a {
-  background-color: var(--color-primary);
-  color: var(--color-white); }
+  color: var(--color-white);
+  background-color: var(--color-primary); }
   .pager__item--active a:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white); }
+    color: var(--color-white);
+    background-color: var(--color-primary); }
 
 .pager__item--ellipsis {
   display: -webkit-inline-box;

@@ -28,8 +28,10 @@ $icons: (
 }
 
 .block-main-menu__menu {
-  @include list-unstyled;
   line-height: 1.7;
+  margin: unset;
+  padding: unset;
+  list-style: none;
 }
 
 .block-main-menu__menu-item:not(:last-child) {
