@@ -4,16 +4,9 @@ stages:
 deploy:
   stage: deploy
   only:
-    - 8.x
+    - tags
+    - schedules
+    - web
   script:
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && git fetch && git checkout"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && chmod +w web/sites/default"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && git pull origin 8.x"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && composer install --no-dev -o -n"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush updatedb -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush config-split:export live -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush config:import --diff -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush config-split:import live -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush locale:check -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush locale:update -y"
-    - ssh $USER@$HOST "cd $PROJECT_ROOT && drush cache:rebuild -y"
+    - chmod u+x ./scripts/deploy.sh
+    - bash ./scripts/deploy.sh
