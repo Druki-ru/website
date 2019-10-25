@@ -18,6 +18,7 @@ ssh "$USER"@"$HOST" <<EOF
   chmod +w ./web/sites/default;
   # Pull new data.
   git pull origin $CI_DEFAULT_BRANCH;
+  git checkout $CI_COMMIT_TAG;
   # Install dependencies.
   composer install --no-dev -o -n;
   # Update Drupal database.
