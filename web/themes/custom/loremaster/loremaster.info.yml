@@ -1,0 +1,25 @@
+# Theme base information.
+screenshot: screenshot.png
+name: Loremaster
+type: theme
+base theme: glisseo
+description: 'Loremaster of Drupal.'
+package: Glisseo
+core: 8.x
+
+libraries:
+  - loremaster/style.base
+  - loremaster/style.layout
+  - loremaster/style.component
+  - loremaster/style.utilities
+
+regions:
+  header: Header
+  navigation: Navigation
+  content: Content
+  sidebar_right: 'Sidebar Right'
+  footer: Footer
+
+# Disable system libraries.
+libraries-override:
+  system/base: false

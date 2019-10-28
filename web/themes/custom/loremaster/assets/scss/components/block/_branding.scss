@@ -1,0 +1,16 @@
+.branding {
+  display: grid;
+  align-items: center;
+  grid-gap: var(--spacing-unit);
+  grid-template-columns: 40px 1fr;
+}
+
+.branding__name {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.branding__slogan {
+  color: var(--color-contrast-medium);
+  font-size: var(--text-sm);
+}

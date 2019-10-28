@@ -1,0 +1,27 @@
+style.base:
+  css:
+    base:
+      assets/css/generic.css: {}
+
+style.layout:
+  css:
+    layout:
+      assets/css/elements.css: {}
+      assets/css/objects.css: {}
+
+style.component:
+  css:
+    component:
+      assets/css/components.css: {}
+
+style.utilities:
+  css:
+    state:
+      assets/css/utilities.css: {}
+  dependencies:
+    - loremaster/google.fonts
+
+google.fonts:
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto:400,400i,500,700&subset=cyrillic&display=swap: { type: external, minified: true }

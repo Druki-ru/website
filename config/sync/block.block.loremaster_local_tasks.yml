@@ -1,0 +1,22 @@
+uuid: effda0d2-a8e1-40ff-9822-77d14b450aba
+langcode: ru
+status: true
+dependencies:
+  theme:
+    - loremaster
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: loremaster_local_tasks
+theme: loremaster
+region: content
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Вкладки
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

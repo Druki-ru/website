@@ -19,3 +19,4 @@ _default_container:
   environment_id: ''
   environment_token: ''
   langcode: ru
+langcode: ru

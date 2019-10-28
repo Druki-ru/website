@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+{% set bem_block = 'branding' %}
+<div{{ attributes.addCLass(bem_block) }}>
+  <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="{{ bem_block }}__logo">
+    <img src="{{ site_logo }}" alt="Druki — Drupal вики" class="{{ bem_block }}__img" />
+  </a>
+  <a href="{{ path('<front>') }}" class="{{ bem_block }}__right">
+    <div class="{{ bem_block }}__name">Druki</div>
+    <div class="{{ bem_block }}__slogan">Drupal вики</div>
+  </a>
+</div>

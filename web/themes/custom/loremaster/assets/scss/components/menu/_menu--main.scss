@@ -1,0 +1,49 @@
+$icons: (
+  '/': 'home.svg',
+  '/wiki': 'books-stack-of-three.svg',
+  '/download': 'download-outline.svg',
+  '/wiki/drupal': 'drupal.svg',
+);
+
+.menu--main {
+  display: flex;
+  align-items: center;
+}
+
+.menu--main .menu__item {
+  padding: var(--spacing-sm) 0;
+}
+
+.menu--main .menu__item:not(:last-child) {
+  margin-right: var(--spacing-sm);
+}
+
+.menu--main .menu__link {
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-unit);
+  border: 2px solid var(--color-contrast-low);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  --link-color: var(--text-color);
+}
+
+@each $href, $icon in $icons {
+  .menu--main .menu__link[href="#{$href}"] {
+    background-image: svg-load('#{$icon}', fill=#121212);
+
+    &:hover {
+      background-image: svg-load('#{$icon}', fill=#dd2c00);
+    }
+  }
+}
+
+.menu--main .menu__link {
+  background-repeat: no-repeat;
+  background-position: var(--spacing-unit) center;
+  background-size: 16px;
+  padding-left: var(--spacing-md);
+}
+
+.menu--main .menu__link:hover {
+  border-color: var(--link-color-hover);
+}

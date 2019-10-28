@@ -1,0 +1,10 @@
+.top-line {
+  padding: 0 var(--grid-container-inner-gap);
+  margin: var(--spacing-sm) 0;
+  display: flex;
+  align-items: center;
+}
+
+.top-line__right {
+  margin-left: auto;
+}

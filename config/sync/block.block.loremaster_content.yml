@@ -1,0 +1,22 @@
+uuid: a21a6216-03b7-4684-89c1-a505f9788779
+langcode: ru
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - loremaster
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: loremaster_content
+theme: loremaster
+region: content
+weight: -3
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Содержимое страницы'
+  provider: system
+  label_display: '0'
+visibility: {  }

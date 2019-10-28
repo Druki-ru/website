@@ -1,0 +1,17 @@
+{%
+  set branding_config = {
+    use_site_logo: true,
+    use_site_slogan:true,
+    use_site_name: true,
+  }
+%}
+{% set bem_block = 'top-line' %}
+<div class="{{ bem_block }}">
+  <div class="{{ bem_block }}__left">
+    {{ drupal_block('system_branding_block', branding_config) }}
+  </div>
+
+  <div class="{{ bem_block }}__right">
+    right
+  </div>
+</div>

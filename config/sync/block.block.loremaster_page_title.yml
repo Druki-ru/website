@@ -1,0 +1,20 @@
+uuid: bcd67895-6559-4028-9ded-55d255b7cac2
+langcode: ru
+status: true
+dependencies:
+  theme:
+    - loremaster
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: loremaster_page_title
+theme: loremaster
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Заголовок страницы'
+  provider: core
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,13 @@
+// =============================================================================
+// Selection.
+// =============================================================================
+
+:root {
+  --selection-background: var(--color-primary);
+  --selection-color: var(--text-color);
+}
+
+::selection {
+  background: var(--selection-background);
+  color: var(--selection-color);
+}

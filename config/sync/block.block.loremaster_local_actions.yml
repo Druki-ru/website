@@ -1,0 +1,20 @@
+uuid: f69138c1-ac18-43b1-bc5f-72cfd640814e
+langcode: ru
+status: true
+dependencies:
+  theme:
+    - loremaster
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: loremaster_local_actions
+theme: loremaster
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Основные действия администратора'
+  provider: core
+  label_display: '0'
+visibility: {  }

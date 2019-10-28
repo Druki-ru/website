@@ -1,0 +1,14 @@
+:root {
+  --grid-gap: var(--spacing-sm);
+  --grid-container-max-width: 1240px;
+  --grid-template-columns-12: repeat(12, [col] 1fr);
+  --grid-container-inner-gap: var(--spacing-md);
+
+  @media (--lg) {
+    --grid-container-max-width: 940px;
+  }
+
+  @media (--xl) {
+    --grid-container-max-width: 1120px;
+  }
+}
