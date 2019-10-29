@@ -32,7 +32,7 @@ $icons: (
     background-image: svg-load('#{$icon}', fill=#121212);
 
     &:hover {
-      background-image: svg-load('#{$icon}', fill=#dd2c00);
+      background-image: svg-load('#{$icon}', fill=#0049db);
     }
   }
 }

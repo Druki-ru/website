@@ -12,7 +12,7 @@
   --text-xl: 28px;
   --text-xxl: 32px;
 
-  --text-color: hsl(0, 0%, 7%);
+  --text-color: hsl(var(--color-primary-h), var(--color-primary-s), 2%);
 
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: 'Montserrat', sans-serif;

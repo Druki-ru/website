@@ -1,7 +1,11 @@
 .main-layout {
   display: grid;
-  width: 100%;
-  max-width: var(--grid-container-max-width);
-  margin: var(--spacing-md) auto;
   grid-gap: var(--grid-gap);
+  grid-template-areas: "content";
+  grid-template-columns: 1fr;
+}
+
+.main-layout--sidebar-right {
+  grid-template-areas: "content sidebar";
+  grid-template-columns: 1fr 300px;
 }

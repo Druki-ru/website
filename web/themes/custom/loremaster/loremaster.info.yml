@@ -18,7 +18,6 @@ regions:
   navigation: Navigation
   content: Content
   sidebar_right: 'Sidebar Right'
-  footer: Footer
 
 # Disable system libraries.
 libraries-override:

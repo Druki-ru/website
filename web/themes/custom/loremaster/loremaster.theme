@@ -5,12 +5,14 @@
  * Custom hooks and functions special for theme.
  */
 
+use Drupal\druki\Utility\Text;
+
 /**
  * Implements hook_preprocess_HOOK() for page.html.twig.
  *
  * @Example. You can safely remove this hook completely.
  */
-function STARTER_preprocess_page(array &$variables) {
+function loremaster_preprocess_page(array &$variables) {
   /** @var \Drupal\Core\Template\Attribute $main_layout_attributes */
   $main_layout_attributes = &$variables['main_layout_attributes'];
 
@@ -18,14 +20,8 @@ function STARTER_preprocess_page(array &$variables) {
   $main_layout_attributes->addClass('main-layout');
 
   // Handle sidebar modifiers.
-  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $main_layout_attributes->addClass('main-layout--two-sidebars');
-  }
-  elseif (!empty($variables['page']['sidebar_first'])) {
-    $main_layout_attributes->addClass('main-layout--sidebar-first');
-  }
-  elseif (!empty($variables['page']['sidebar_second'])) {
-    $main_layout_attributes->addClass('main-layout--sidebar-second');
+  if (!empty($variables['page']['sidebar_right'])) {
+    $main_layout_attributes->addClass('main-layout--sidebar-right');
   }
   else {
     $main_layout_attributes->addClass('main-layout--no-sidebars');
@@ -56,4 +52,41 @@ function STARTER_preprocess_page(array &$variables) {
     '#weight' => -97,
   ];
   $variables['#attached']['html_head'][] = [$gtm, 'google_tag_manager'];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--druki-heading.html.twig.
+ */
+function loremaster_preprocess_paragraph__druki_heading(array &$variables): void {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $title = strip_tags($paragraph->get('druki_textfield_formatted')->processed, '<code><strong><em>');
+
+  $variables['heading_level'] = $paragraph->get('druki_heading_level')->value;
+  $variables['title'] = $title;
+
+  $variables['anchor'] = Text::anchor($title, 'druki_content_toc_theme');
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--druki-code.html.twig.
+ */
+function loremaster_preprocess_paragraph__druki_code(array &$variables): void {
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--druki-note.html.twig.
+ */
+function loremaster_preprocess_paragraph__druki_note(array &$variables): void {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+  $druki_note_type = $paragraph->get('druki_note_type');
+  $types = $druki_note_type
+    ->getFieldDefinition()
+    ->getFieldStorageDefinition()
+    ->getSetting('allowed_values');
+
+  $variables['note_type_label'] = $types[$druki_note_type->value];
 }

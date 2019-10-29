@@ -1,4 +1,8 @@
-.druki-content-druki-content-full {
+.druki-content-content__item:not(:last-child) {
+  margin-bottom: var(--spacing-sm);
+}
+
+.druki-content-content {
   --link-border: 1px solid hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.2);
   --link-border-hover: 1px solid hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.5);
 }

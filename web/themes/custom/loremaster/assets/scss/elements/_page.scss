@@ -3,7 +3,7 @@
 // =============================================================================
 
 :root {
-  --page-background: hsl(53, 50%, 97%);
+  --page-background: hsl(var(--color-primary-h), var(--color-primary-s), 99%);
 }
 
 body {

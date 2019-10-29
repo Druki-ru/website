@@ -1,0 +1,26 @@
+uuid: 9fe239d8-7bdc-4022-a9aa-cb82c1ff3128
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - druki_content
+  theme:
+    - loremaster
+id: content_links
+theme: loremaster
+region: sidebar_right
+weight: -4
+provider: null
+plugin: druki_content_links
+settings:
+  id: druki_content_links
+  label: Ссылки
+  provider: druki_content
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

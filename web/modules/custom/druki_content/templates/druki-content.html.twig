@@ -14,7 +14,7 @@
  * @see template_preprocess_druki_content()
  */
 #}
-{% set bem_block = bem_block ?: ('druki-content-' ~ druki_content.bundle ~ (view_mode != 'default' ? '-' ~ view_mode))|clean_class %}
+{% set bem_block = bem_block ?: ('druki-content' ~ (view_mode != 'default' ? '-' ~ view_mode))|clean_class %}
 {% set classes = [
   bem_block,
 ] %}

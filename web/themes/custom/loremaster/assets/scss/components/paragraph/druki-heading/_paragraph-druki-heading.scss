@@ -1,0 +1,29 @@
+.paragraph-druki-heading {
+  margin: unset;
+  --anchor-size: 24px;
+  --link-border: none;
+  --link-border-hover: none;
+}
+
+.paragraph-druki-heading--h2 {
+  margin-top: var(--spacing-md);
+  padding-bottom: var(--spacing-unit);
+  border-bottom: 1px solid var(--color-contrast-lower);
+  --anchor-size: 22px;
+}
+
+.paragraph-druki-heading--h3 {
+  margin-top: var(--spacing-md);
+  --anchor-size: 20px;
+}
+
+.paragraph-druki-heading__anchor {
+  display: inline-block;
+  width: var(--anchor-size);
+  height: var(--anchor-size);
+  margin-left: var(--spacing-unit);
+  content: '';
+  vertical-align: middle;
+  background-image: svg-load('pound.svg', fill=#ececec);
+  background-size: var(--anchor-size);
+}

@@ -1,4 +1,6 @@
 .region--navigation {
-  background-color: hsl(48, 50%, 96%);
+  background-color: hsl(var(--color-primary-h), var(--color-primary-s), 97%);
   padding: 0 var(--grid-container-inner-gap);
+  border-top: 1px solid var(--color-contrast-low);
+  border-bottom: 1px solid var(--color-contrast-low);
 }

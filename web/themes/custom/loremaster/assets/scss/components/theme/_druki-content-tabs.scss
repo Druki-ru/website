@@ -1,0 +1,35 @@
+.druki-content-tabs {
+  --icon-size: 18px;
+  --icon-image: none;
+}
+
+.druki-content-tabs__link {
+  --link-color: var(--color-contrast-medium);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs) 0;
+}
+
+.druki-content-tabs__link::before {
+  content: '';
+  width: var(--icon-size);
+  height: var(--icon-size);
+  background-image: var(--icon-image);
+  background-size: var(--icon-size);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: var(--spacing-unit);
+}
+
+.druki-content-tabs__link--read {
+  font-weight: bold;
+  --icon-image: svg-load('eye-outline.svg');
+}
+
+.druki-content-tabs__link--edit {
+  --icon-image: svg-load('file-document-edit-outline.svg');
+}
+
+.druki-content-tabs__link--history {
+  --icon-image: svg-load('history.svg');
+}

@@ -68,7 +68,8 @@ h6 {
   font-family: var(--font-secondary);
   line-height: var(--heading-line-height);
   margin: unset;
-  margin-bottom: var(--spacing-sm); }
+  margin-bottom: var(--spacing-sm);
+  color: hsl(var(--color-primary-h), var(--color-primary-s), 12%); }
 
 hr {
   margin: var(--spacing-lg) 0;
@@ -106,7 +107,7 @@ ul {
   padding: var(--list-padding); }
 
 :root {
-  --page-background: hsl(53, 50%, 97%); }
+  --page-background: hsl(var(--color-primary-h), var(--color-primary-s), 99%); }
 
 body {
   background: var(--page-background); }
@@ -131,7 +132,7 @@ body {
   --text-lg: 24px;
   --text-xl: 28px;
   --text-xxl: 32px;
-  --text-color: hsl(0, 0%, 7%);
+  --text-color: hsl(var(--color-primary-h), var(--color-primary-s), 2%);
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: 'Montserrat', sans-serif;
   --font-monospace: 'Fira Code', monospace;

@@ -1,0 +1,54 @@
+.footer {
+  font-size: var(--text-sm);
+  padding: var(--spacing-md) 0;
+  background-color: hsl(var(--color-primary-h), var(--color-primary-s), 97%);
+}
+
+.footer__container {
+  padding: 0 var(--grid-container-inner-gap);
+}
+
+.footer__some-love {
+  margin-top: var(--spacing-md);
+}
+
+.footer__heart {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: top;
+  background-image: svg-load('heart-outline.svg', fill=#ff0000);
+  background-size: 16px;
+}
+
+.footer__drupal {
+  font-weight: bold;
+  color: #0678be;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    background-image: svg-load('drupal.svg', fill=#0678be);
+    background-size: 16px;
+    margin-right: var(--spacing-xs);
+  }
+}
+
+.footer__gitlab {
+  font-weight: bold;
+  color: #ffa200;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    background-image: svg-load('gitlab.svg', fill=#ffa200);
+    background-size: 16px;
+    margin-right: var(--spacing-xs);
+  }
+}

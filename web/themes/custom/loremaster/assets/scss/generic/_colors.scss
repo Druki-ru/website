@@ -1,6 +1,6 @@
 :root {
   // Primary color.
-  --color-primary-h: 12;
+  --color-primary-h: 220;
   --color-primary-s: 100%;
   --color-primary-l: 43%;
   --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
@@ -33,9 +33,9 @@
   --color-error-l: 61%;
   --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
 
-  --color-contrast-lower: hsl(12, 0%, 95%);
-  --color-contrast-low: hsl(12, 1%, 83%);
-  --color-contrast-medium: hsl(12, 1%, 48%);
-  --color-contrast-high: hsl(12, 4%, 20%);
-  --color-contrast-higher: hsl(12, 8%, 12%);
+  --color-contrast-lower: hsl(var(--color-primary-h), 0%, 95%);
+  --color-contrast-low: hsl(var(--color-primary-h), 1%, 83%);
+  --color-contrast-medium: hsl(var(--color-primary-h), 1%, 48%);
+  --color-contrast-high: hsl(var(--color-primary-h), 4%, 20%);
+  --color-contrast-higher: hsl(var(--color-primary-h), 8%, 12%);
 }

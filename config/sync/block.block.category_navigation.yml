@@ -1,0 +1,26 @@
+uuid: 44e1d7f4-f0d3-451b-8c04-eaf29244c474
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - druki_category
+  theme:
+    - loremaster
+id: category_navigation
+theme: loremaster
+region: sidebar_right
+weight: -3
+provider: null
+plugin: druki_category_navigation
+settings:
+  id: druki_category_navigation
+  label: 'Навигация по категории'
+  provider: druki_category
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
