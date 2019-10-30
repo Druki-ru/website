@@ -114,7 +114,7 @@ body {
 
 :root {
   --selection-background: var(--color-primary);
-  --selection-color: var(--text-color); }
+  --selection-color: var(--color-white); }
 
 ::-moz-selection {
   background: var(--selection-background);
@@ -137,9 +137,9 @@ body {
   --font-secondary: 'Montserrat', sans-serif;
   --font-monospace: 'Fira Code', monospace;
   --font-family: var(--font-primary);
-  --body-line-height: 1.4;
+  --body-line-height: 1.5;
   --mark-background: hsl(60, 100%, 50%);
-  --code-background: var(--body-background); }
+  --code-background: var(--color-primary-50); }
 
 body {
   font-family: var(--font-family);

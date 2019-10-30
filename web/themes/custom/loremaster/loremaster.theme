@@ -88,5 +88,6 @@ function loremaster_preprocess_paragraph__druki_note(array &$variables): void {
     ->getFieldStorageDefinition()
     ->getSetting('allowed_values');
 
+  $variables['note_type'] = $druki_note_type->value;
   $variables['note_type_label'] = $types[$druki_note_type->value];
 }

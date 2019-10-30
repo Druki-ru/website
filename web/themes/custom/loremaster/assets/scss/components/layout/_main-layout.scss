@@ -1,6 +1,5 @@
 .main-layout {
   display: grid;
-  grid-gap: var(--grid-gap);
   grid-template-areas: "content";
   grid-template-columns: 1fr;
 }

@@ -24,4 +24,21 @@ style.utilities:
 google.fonts:
   css:
     theme:
-      //fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto:400,400i,500,700&subset=cyrillic&display=swap: { type: external, minified: true }
+      //fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto:400,400i,500,700|Fira+Code:400,700&subset=cyrillic&display=swap: { type: external, minified: true }
+
+code-highlight:
+  js:
+    assets/js/code-highlight.js: {}
+  dependencies:
+    - core/drupal
+    - loremaster/prismjs
+
+prismjs:
+  remote: https://prismjs.com/
+  version: 1.15
+  license:
+    name: MIT
+    gpl-compatible: true
+  js:
+    # Prism has no dist files in any repo. So we use prebuild JS from theme.
+    assets/js/prism.js: { minfied: true }

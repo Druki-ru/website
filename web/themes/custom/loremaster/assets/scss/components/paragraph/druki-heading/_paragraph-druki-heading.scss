@@ -17,6 +17,14 @@
   --anchor-size: 20px;
 }
 
+.paragraph-druki-heading--h4 {
+  --anchor-size: 18px;
+}
+
+.paragraph-druki-heading--h5 {
+  --anchor-size: 16px;
+}
+
 .paragraph-druki-heading__anchor {
   display: inline-block;
   width: var(--anchor-size);
@@ -24,6 +32,6 @@
   margin-left: var(--spacing-unit);
   content: '';
   vertical-align: middle;
-  background-image: svg-load('pound.svg', fill=#ececec);
+  background-image: svg-load('pound.svg', fill=#dddddd);
   background-size: var(--anchor-size);
 }

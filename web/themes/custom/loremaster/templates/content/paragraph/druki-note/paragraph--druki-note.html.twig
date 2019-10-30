@@ -1,0 +1,16 @@
+{% set bem_block = ('paragraph-' ~ paragraph.bundle() ~ (view_mode != 'default' ? '-' ~ view_mode))|clean_class|replace({'--': '-'}) %}
+{%
+  set classes = [
+    bem_block,
+  ]
+%}
+{% set bem_modifiers = [note_type]|merge(bem_modifiers) %}
+{% for bem_modifier in bem_modifiers %}
+  {% if bem_modifier|length %}
+    {% set classes = classes|merge([bem_block ~ '--' ~ bem_modifier]) %}
+  {% endif %}
+{% endfor %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="{{ bem_block }}__label">{{ note_type_label }}</div>
+  {{ content }}
+</div>

@@ -12,6 +12,7 @@ libraries:
   - loremaster/style.layout
   - loremaster/style.component
   - loremaster/style.utilities
+  - loremaster/code-highlight
 
 regions:
   header: Header
