@@ -311,6 +311,7 @@ template {
   --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
   --color-primary-50: hsl(var(--color-primary-h), var(--color-primary-s), 97%);
   --color-primary-100: hsl(var(--color-primary-h), var(--color-primary-s), 95%);
+  --color-primary-200: hsl(var(--color-primary-h), var(--color-primary-s), 85%);
   --color-accent-h: 50;
   --color-accent-s: 100%;
   --color-accent-l: 50%;
@@ -340,7 +341,7 @@ template {
   --grid-container-max-width: 1240px;
   --grid-template-columns-12: repeat(12, [col] 1fr);
   --grid-container-inner-gap: var(--spacing-md); }
-  @media (min-width: 960px) {
+  @media (min-width: 992px) {
     :root {
       --grid-container-max-width: 940px; } }
   @media (min-width: 1140px) {

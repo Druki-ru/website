@@ -1,0 +1,97 @@
+.frontpage-hero {
+  position: relative;
+  overflow: hidden;
+  margin-top: -79px;
+  padding-top: 79px;
+}
+
+.frontpage-hero::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  //background: rgb(2,0,36);
+  content: '';
+  background: linear-gradient(180deg, hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.4) 0%, hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.7) 100%);
+}
+
+.frontpage-hero__image {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+}
+
+.frontpage-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: calc(var(--spacing-unit) * 20) var(--grid-container-inner-gap);
+}
+
+.frontpage-hero__title {
+  font-weight: bold;
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+  color: white;
+  text-shadow: var(--shadow-xs);
+}
+
+.frontpage-hero__description {
+  font-size: var(--text-md);
+  text-align: center;
+  color: white;
+  text-shadow: var(--shadow-xs);
+}
+
+.frontpage-hero__form {
+  position: relative;
+  max-width: 700px;
+  margin: var(--spacing-md) auto 0 auto;
+}
+
+.frontpage-hero__search {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-xs);
+}
+
+.frontpage-hero__submit {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  right: var(--spacing-sm);
+  cursor: pointer;
+  transform: translateY(-50%);
+  border: none;
+  background-color: unset;
+  width: 32px;
+  height: 32px;
+}
+
+.frontpage-hero__submit::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: svg-load('magnify.svg', fill=#111);
+}
+
+.frontpage-hero__submit:hover::before {
+  background-image: svg-load('magnify.svg', fill=#004adc);
+}

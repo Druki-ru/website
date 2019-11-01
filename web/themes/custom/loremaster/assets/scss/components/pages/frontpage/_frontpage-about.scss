@@ -1,0 +1,27 @@
+.frontpage-about {
+  display: grid;
+  padding: var(--grid-container-inner-gap);
+  grid-gap: var(--grid-gap);
+  grid-template-columns: 1fr 1fr;
+}
+
+.frontpage-about__buttons {
+  display: grid;
+  margin-top: var(--spacing-md);
+  grid-gap: var(--spacing-unit);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.frontpage-about__button {
+  display: block;
+  padding: var(--spacing-unit) var(--spacing-sm);
+  text-align: center;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  --link-border-hover: 1px solid var(--color-primary);
+}
+
+.frontpage-about__button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}

@@ -126,8 +126,8 @@ body {
 
 :root {
   --text-base-size: 16px;
-  --text-xs: 13px;
-  --text-sm: 14px;
+  --text-xs: 14px;
+  --text-sm: 15px;
   --text-md: 18px;
   --text-lg: 24px;
   --text-xl: 28px;

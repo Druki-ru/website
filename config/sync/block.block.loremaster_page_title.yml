@@ -2,6 +2,9 @@ uuid: bcd67895-6559-4028-9ded-55d255b7cac2
 langcode: ru
 status: true
 dependencies:
+  module:
+    - block_visibility_groups
+    - system
   theme:
     - loremaster
 _core:
@@ -17,4 +20,14 @@ settings:
   label: 'Заголовок страницы'
   provider: core
   label_display: '0'
-visibility: {  }
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

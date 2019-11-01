@@ -1,0 +1,40 @@
+loremaster.xs:
+  label: XS
+  mediaQuery: '(min-width: 0px)'
+  weight: 0
+  multipliers:
+  - 1x
+  - 2x
+  - 3x
+loremaster.sm:
+  label: SM
+  mediaQuery: '(min-width: 576px)'
+  weight: 0
+  multipliers:
+  - 1x
+  - 2x
+  - 3x
+loremaster.md:
+  label: MD
+  mediaQuery: '(min-width: 768px)'
+  weight: 0
+  multipliers:
+  - 1x
+  - 2x
+  - 3x
+loremaster.lg:
+  label: LG
+  mediaQuery: '(min-width: 992px)'
+  weight: 0
+  multipliers:
+  - 1x
+  - 2x
+  - 3x
+loremaster.xl:
+  label: XL
+  mediaQuery: '(min-width: 1140px)'
+  weight: 0
+  multipliers:
+  - 1x
+  - 2x
+  - 3x

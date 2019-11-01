@@ -1,0 +1,53 @@
+uuid: 2c10b90a-5d87-4084-92f9-32be3a0e78b1
+langcode: ru
+status: true
+dependencies:
+  config:
+    - image.style.frontpage_drupal_video
+    - image.style.frontpage_drupal_video_lg
+    - image.style.frontpage_drupal_video_lg_2x
+    - image.style.frontpage_drupal_video_lg_3x
+    - image.style.frontpage_drupal_video_md
+    - image.style.frontpage_drupal_video_md_2x
+    - image.style.frontpage_drupal_video_md_3x
+    - image.style.frontpage_drupal_video_sm
+    - image.style.frontpage_drupal_video_sm_2x
+    - image.style.frontpage_drupal_video_sm_3ch
+    - image.style.frontpage_drupal_video_xl
+    - image.style.frontpage_drupal_video_xl_2x
+    - image.style.frontpage_drupal_video_xl_3x
+    - image.style.frontpage_drupal_video_xs_2x
+    - image.style.frontpage_drupal_video_xs_3x
+    - image.style.frontpage_drupal_video_xxl
+    - image.style.frontpage_drupal_video_xxl_2x
+    - image.style.frontpage_drupal_video_xxl_3x
+id: frontpage_drupal_video
+label: 'Frontpage Drupal Video'
+image_style_mappings:
+  -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 1140px) 520px, (min-width: 960px) 430px, (min-width: 720px) 440px, (min-width: 540px) 230px, 100vw'
+      sizes_image_styles:
+        - frontpage_drupal_video
+        - frontpage_drupal_video_lg
+        - frontpage_drupal_video_lg_2x
+        - frontpage_drupal_video_lg_3x
+        - frontpage_drupal_video_md
+        - frontpage_drupal_video_md_2x
+        - frontpage_drupal_video_md_3x
+        - frontpage_drupal_video_sm
+        - frontpage_drupal_video_sm_2x
+        - frontpage_drupal_video_sm_3ch
+        - frontpage_drupal_video_xl
+        - frontpage_drupal_video_xl_2x
+        - frontpage_drupal_video_xl_3x
+        - frontpage_drupal_video_xs_2x
+        - frontpage_drupal_video_xs_3x
+        - frontpage_drupal_video_xxl
+        - frontpage_drupal_video_xxl_2x
+        - frontpage_drupal_video_xxl_3x
+breakpoint_group: responsive_image
+fallback_image_style: '_empty image_'

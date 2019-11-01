@@ -5,6 +5,8 @@
  * Primary module hooks for Druki module.
  */
 
+use Drupal\Core\Breadcrumb\Breadcrumb;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\imagemagick\ImagemagickExecArguments;
 
 /**

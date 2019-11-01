@@ -2,6 +2,8 @@ uuid: 9fe239d8-7bdc-4022-a9aa-cb82c1ff3128
 langcode: ru
 status: true
 dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.druki_content_page
   module:
     - block_visibility_groups
     - druki_content
@@ -22,5 +24,5 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
+    block_visibility_group: druki_content_page
     context_mapping: {  }

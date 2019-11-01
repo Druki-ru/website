@@ -3,8 +3,37 @@
   margin: var(--spacing-sm) 0;
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 10;
 }
 
 .top-line__right {
   margin-left: auto;
+}
+
+.top-line__button {
+  --button-background-color: var(--color-primary-50);
+  --button-border: 1px solid var(--color-primary-200);
+  --link-border-hover: var(--button-border);
+  height: 32px;
+  width: 32px;
+  background-size: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.top-line__button--search {
+  background-image: svg-load('file-document-box-search-outline.svg');
+}
+
+.top-line__button--search:hover {
+  background-image: svg-load('file-document-box-search.svg')
+}
+
+.top-line__button--settings {
+  background-image: svg-load('settings-outline.svg');
+}
+
+.top-line__button--settings:hover {
+  background-image: svg-load('settings.svg');
 }
