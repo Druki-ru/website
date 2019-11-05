@@ -2,15 +2,16 @@ uuid: 3e2f63f3-df8f-40b5-9d8c-93fce0885537
 langcode: ru
 status: true
 dependencies:
+  config:
+    - field.storage.druki_content.category
+    - field.storage.druki_content.labels
+    - field.storage.druki_content.search_keywords
+    - search_api.server.database
   module:
     - druki_content
     - search_api
     - druki_search
     - snowball_stemmer
-  config:
-    - field.storage.druki_content.labels
-    - field.storage.druki_content.search_keywords
-    - search_api.server.database
 _core:
   default_config_hash: znEv_GoqzJ8bJd0azpMIu7pgamAYgxhgglY7QX_smLU
 id: global
@@ -25,8 +26,8 @@ field_settings:
     type: text
     boost: !!float 2
     dependencies:
-      module:
-        - druki_content
+      config:
+        - field.storage.druki_content.category
   core:
     label: 'Druki Content Core'
     property_path: druki_content_core
@@ -89,6 +90,10 @@ field_settings:
     dependencies:
       module:
         - druki_content
+  url:
+    label: URI
+    property_path: search_api_url
+    type: string
 datasource_settings:
   'entity:druki_content':
     languages:
@@ -101,6 +106,16 @@ processor_settings:
       add_properties: 20
   druki_content_core: {  }
   druki_content_difficulty: {  }
+  highlight:
+    highlight: always
+    highlight_partial: true
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
   html_filter:
     all_fields: false
     fields:

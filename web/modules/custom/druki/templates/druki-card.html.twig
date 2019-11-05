@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present card element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - title: The title
+ * - subhead: The subtitle.
+ * - supporting_text: Additional text or description.
+ * - buttons: An array with links.
+ * - style: The card style.
+ * - primary_url: The Url for primary action.
+ *
+ * @see template_preprocess_druki_card()
+ */
+#}
+{% set bem_block = 'druki-card' %}
+{% set classes = [
+  bem_block,
+] %}
+{% set bem_modifiers = bem_modifiers|merge([
+  style
+]) %}
+{% for modifier in bem_modifiers %}
+  {% set classes = classes|merge([bem_block ~ '--' ~ modifier]) %}
+{% endfor %}
+<div{{ attributes.addClass(classes) }}>
+  {% if primary_url %}
+  <a href="{{ primary_url }}" class="{{ bem_block }}__primary-action {{ bem_block }}__primary-action--link">
+    {% else %}
+    <div class="{{ bem_block }}__primary-action">
+      {% endif %}
+      <div class="{{ bem_block }}__primary">
+        <div class="{{ bem_block }}__title">{{ title }}</div>
+        {% if subhead %}
+          <div class="{{ bem_block }}__subtitle">{{ subhead }}</div>
+        {% endif %}
+      </div>
+      {% if supporting_text %}
+        <div class="{{ bem_block }}__secondary">
+          {{ supporting_text }}
+        </div>
+      {% endif %}
+      {% if primary_url %}
+  </a>
+  {% else %}
+</div>
+{% endif %}
+</div>

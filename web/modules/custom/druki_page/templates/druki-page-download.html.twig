@@ -6,131 +6,72 @@
 #}
 {% set bem_block = 'druki-page-download' %}
 <div{{ attributes.addClass(bem_block) }}>
-  <h1 class="{{ bem_block }}__title">Скачать Drupal</h1>
-  <h2 class="{{ bem_block }}__subtitle">
-    Всего одна команда отделяет вас от Drupal 🚀
-  </h2>
+  <header class="{{ bem_block }}__head">
+    <h2 class="{{ bem_block }}__subtitle">
+      Всего одна команда отделяет вас от Drupal 🚀
+    </h2>
 
-  <div class="{{ bem_block }}__command-pane">
+    <div class="{{ bem_block }}__command-pane">
     <span class="{{ bem_block }}__command">
       composer create-project drupal-composer/drupal-project:8.x-dev <strong>my_new_site</strong> -n
     </span>
-  </div>
+    </div>
 
-  <div class="{{ bem_block }}__command-note">
-    <p>Узнайте больше о <a href="/wiki/composer">Composer</a> и <a href="/wiki/composer-drupal-project">Composer Drupal
-        Project</a>. Возникли сложности? Обратитесь к <a href="/wiki/8/installation">руководству по
-        установке</a>.</p>
-  </div>
+    <div class="{{ bem_block }}__command-note">
+      <p>Узнайте больше о <a href="/wiki/composer">Composer</a> и <a href="/wiki/composer-drupal-project">Composer Drupal
+          Project</a>. Возникли сложности? Обратитесь к <a href="/wiki/8/installation">руководству по
+          установке</a>.</p>
+    </div>
+  </header>
 
   <div class="{{ bem_block }}__cards">
-    <div class="o-card {{ bem_block }}__card">
-      <header class="o-card__header">
-        <div class="o-card__icon {{ bem_block }}__card-icon--try"></div>
-        <h5 class="o-card__title {{ bem_block }}__card-title">
-          Демо-сайт на Drupal
-        </h5>
-      </header>
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Демо-сайт на Drupal',
+      '#subhead': 'Попробуйте Drupal онлайн',
+      '#supporting_text': 'Самый быстрый способ познакомиться и попробовать Drupal.',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/simplytest',
+    } }}
 
-      <div class="o-card__content {{ bem_block }}__card-content">
-        <p>Самый быстрый способ познакомиться и попробовать Drupal.</p>
-      </div>
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Следите за обновлениями',
+      '#supporting_text': 'Не упустите новые возможности Drupal, а также, предоставьте сайту
+          максимальную защиту.',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/8/releases',
+    } }}
 
-      <div class="o-card__actions o-card__actions--divider">
-        <a href="/wiki/simplytest" class="{{ bem_block }}__card-link">
-          Попробовать Drupal
-        </a>
-      </div>
-    </div>
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Бесплатный, с открытым исходным кодом',
+      '#supporting_text': 'Вы можете использовать Drupal, как для личных, так и для коммерчиских проектов. Никаких отчислений и подписок!',
+      '#style': 'outlined',
+    } }}
 
-    <div class="o-card {{ bem_block }}__card">
-      <header class="o-card__header">
-        <div class="o-card__icon {{ bem_block }}__card-icon--update"></div>
-        <h5 class="o-card__title {{ bem_block }}__card-title">
-          Следите за обновлениями
-        </h5>
-      </header>
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Исходный код Drupal',
+      '#supporting_text': 'Разработка Drupal ведется открыто и доступна для всех.',
+      '#style': 'outlined',
+      '#primary_url': 'https://git.drupalcode.org/project/drupal',
+    } }}
 
-      <div class="o-card__content {{ bem_block }}__card-content">
-        <p>Не упустите новые возможности Drupal, а также, предоставьте сайту
-          максимальную защиту.</p>
-      </div>
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Присоединяйтесь к сообществу',
+      '#supporting_text': 'Мы всегда рады новым лицам в сообществе!',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/community',
+    } }}
 
-      <div class="o-card__actions o-card__actions--divider">
-        <a href="/wiki/8/releases" class="{{ bem_block }}__card-link">
-          Список изменений
-        </a>
-      </div>
-    </div>
-
-    <div class="o-card {{ bem_block }}__card">
-      <header class="o-card__header">
-        <div class="o-card__icon {{ bem_block }}__card-icon--open-source"></div>
-        <h5 class="o-card__title {{ bem_block }}__card-title">
-          Бесплатный, с открытым исходным кодом
-        </h5>
-      </header>
-
-      <div class="o-card__content {{ bem_block }}__card-content">
-        <p>Вы можете использовать Drupal, как для личных, так и для коммерчиских проектов. Никаких отчислений и подписок!</p>
-      </div>
-    </div>
-
-    <div class="o-card {{ bem_block }}__card">
-      <header class="o-card__header">
-        <div class="o-card__icon {{ bem_block }}__card-icon--source-code"></div>
-        <h5 class="o-card__title {{ bem_block }}__card-title">
-          Исходный код Drupal
-        </h5>
-      </header>
-
-      <div class="o-card__content {{ bem_block }}__card-content">
-        <p>Разработка Drupal ведется открыто и доступна для всех.</p>
-      </div>
-
-      <div class="o-card__actions o-card__actions--divider">
-        <a href="https://git.drupalcode.org/project/drupal" class="{{ bem_block }}__card-link">
-          Смотреть исходный код
-        </a>
-      </div>
-    </div>
-
-    <div class="o-card {{ bem_block }}__card">
-      <header class="o-card__header">
-        <div class="o-card__icon {{ bem_block }}__card-icon--community"></div>
-        <h5 class="o-card__title {{ bem_block }}__card-title">
-          Присоединяйтесь к сообществу
-        </h5>
-      </header>
-
-      <div class="o-card__content {{ bem_block }}__card-content">
-        <p>Мы всегда рады новым лицам в сообществе!</p>
-      </div>
-
-      <div class="o-card__actions o-card__actions--divider">
-        <a href="/wiki/community" class="{{ bem_block }}__card-link">
-          Узнать о сообществе
-        </a>
-      </div>
-    </div>
-
-    <div class="o-card {{ bem_block }}__card">
-      <header class="o-card__header">
-        <div class="o-card__icon {{ bem_block }}__card-icon--talk"></div>
-        <h5 class="o-card__title {{ bem_block }}__card-title">
-          Скажите, Привет!
-        </h5>
-      </header>
-
-      <div class="o-card__content {{ bem_block }}__card-content">
-        <p>Подключайтесь к чатам — здесь вам помогут и ответят на интересующие вопросы.</p>
-      </div>
-
-      <div class="o-card__actions o-card__actions--divider">
-        <a href="/wiki/community/resources" class="{{ bem_block }}__card-link">
-          Интернет-ресурсы сообщества
-        </a>
-      </div>
-    </div>
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Скажите, Привет!',
+      '#supporting_text': 'Подключайтесь к чатам — здесь вам помогут и ответят на интересующие вопросы.',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/community/resources',
+    } }}
   </div>
 </div>

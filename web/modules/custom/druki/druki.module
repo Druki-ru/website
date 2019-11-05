@@ -71,6 +71,16 @@ function druki_theme($existing, $type, $theme, $path) {
       'variables' => [],
       'file' => 'druki.theme.inc',
     ],
+    'druki_card' => [
+      'variables' => [
+        'title' => NULL,
+        'subhead' => NULL,
+        'supporting_text' => NULL,
+        'buttons' => [],
+        'style' => NULL,
+        'primary_url' => NULL,
+      ],
+    ],
   ];
 }
 

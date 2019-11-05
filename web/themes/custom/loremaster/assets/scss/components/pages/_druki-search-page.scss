@@ -1,0 +1,7 @@
+.druki-search-page {
+
+}
+
+.druki-search-page__result:not(:last-child) {
+  margin-bottom: var(--spacing-md);
+}

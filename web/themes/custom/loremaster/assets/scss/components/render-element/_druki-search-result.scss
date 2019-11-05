@@ -1,0 +1,28 @@
+.druki-search-result {
+
+}
+
+.druki-search-result__link {
+  display: block;
+}
+
+.druki-search-result__title {
+  font-size: var(--text-md);
+  color: var(--link-color);
+}
+
+.druki-search-result__link:hover .druki-search-result__title {
+  text-decoration: underline;
+}
+
+.druki-search-result__url {
+  font-size: var(--text-sm);
+  color: green;
+  margin-top: var(--spacing-xs);
+}
+
+.druki-search-result__supporting-text {
+  font-size: var(--text-xs);
+  margin-top: var(--spacing-unit);
+  color: var(--color-contrast-high);
+}

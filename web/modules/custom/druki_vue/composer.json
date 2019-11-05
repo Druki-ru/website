@@ -1,9 +1,0 @@
-{
-  "name": "drupal/druki_vue",
-  "type": "drupal-custom-module",
-  "description": "Vue integration",
-  "keywords": ["Drupal"],
-  "require": {
-    "npm-asset/vue": "^2.6"
-  }
-}

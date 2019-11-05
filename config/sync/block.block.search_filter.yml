@@ -1,0 +1,32 @@
+uuid: 4388c1b9-a9aa-4ebc-9ac0-fafe60a8e4e9
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - druki_search
+    - system
+  theme:
+    - loremaster
+id: search_filter
+theme: loremaster
+region: sidebar_right
+weight: 0
+provider: null
+plugin: druki_search_page_filter
+settings:
+  id: druki_search_page_filter
+  label: 'Search page filter'
+  provider: druki_search
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /search
+    negate: false
+    context_mapping: {  }

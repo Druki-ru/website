@@ -3,8 +3,20 @@
 /**
  * @file
  * Primary module hooks for Druki - Search module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
  */
+
+/**
+ * Implements hook_theme().
+ */
+function druki_search_theme($existing, $type, $theme, $path) {
+  return [
+    'druki_search_result' => [
+      'variables' => [
+        'title' => NULL,
+        'url' => NULL,
+        'display_url' => NULL,
+        'supporting_text' => NULL,
+      ],
+    ],
+  ];
+}

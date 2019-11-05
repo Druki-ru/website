@@ -1,7 +1,7 @@
-druki_vue.search:
+druki_search.page:
   path: '/search'
   defaults:
     _title: 'Search'
-    _controller: '\Drupal\druki_vue\Controller\DrukiVueController::searchPage'
+    _controller: 'Drupal\druki_search\SearchPage\PageController::build'
   requirements:
     _permission: 'access content'

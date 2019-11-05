@@ -6,3 +6,26 @@
   font-weight: bold;
   text-align: center;
 }
+
+.druki-page-wiki__cards {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.druki-page-wiki__row {
+  margin: var(--spacing-lg) 0;
+}
+
+.druki-page-wiki__faq {
+  margin: var(--spacing-md) 0;
+  text-align: center;
+  color: var(--color-contrast-medium);
+}
+
+
+.druki-page-wiki__other-items {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: repeat(3, 1fr);
+}

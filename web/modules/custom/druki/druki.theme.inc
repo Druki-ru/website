@@ -5,6 +5,8 @@
  * Main file for custom theme hook preprocess.
  */
 
+use Drupal\Core\Render\Element;
+
 /**
  * Implements hook_preprocess_HOOK() for druki-drupal-versions.html.twig.
  */
