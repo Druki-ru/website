@@ -3,9 +3,11 @@
 namespace Drupal\druki_search\SearchPage;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class PageController implements ContainerInjectionInterface {
 
@@ -18,8 +20,24 @@ class PageController implements ContainerInjectionInterface {
 
   protected $limit = 20;
 
-  public function __construct(QueryHelper $query_helper) {
+  /**
+   * The request.
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
+  protected $request;
+
+  /**
+   * The form builder.
+   *
+   * @var \Drupal\Core\Form\FormBuilderInterface
+   */
+  protected $formBuilder;
+
+  public function __construct(QueryHelper $query_helper, Request $request, FormBuilderInterface $form_builder) {
     $this->queryHelper = $query_helper;
+    $this->request = $request;
+    $this->formBuilder = $form_builder;
   }
 
   /**
@@ -27,14 +45,21 @@ class PageController implements ContainerInjectionInterface {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('druki_search.page.query_helper')
+      $container->get('druki_search.page.query_helper'),
+      $container->get('request_stack')->getCurrentRequest(),
+      $container->get('form_builder')
     );
   }
 
   public function build() {
-    $query = $this->queryHelper->getQuery();
-    $query->keys('ContainerInjectionInterface');
-    $query->range(0, $this->limit);
+    $search_text = $this->request->get('text', NULL);
+
+    $query = $this->queryHelper->getQuery(QueryHelper::FILTERED);
+
+    $total_items = $this->queryHelper->getQuery(QueryHelper::FILTERED)->execute()->getResultCount();
+    $current_page = pager_default_initialize($total_items, $this->limit);
+    $query->range($current_page * $this->limit, $this->limit);
+    $query->keys($search_text);
     $results = $query->execute();
 
     $search_results = [];
@@ -62,6 +87,13 @@ class PageController implements ContainerInjectionInterface {
       '#attributes' => [
         'class' => ['druki-search-page'],
       ],
+      'search_form' => [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['druki-search-page__form'],
+        ],
+        0 => $this->formBuilder->getForm('Drupal\druki_search\SearchPage\SearchForm'),
+      ],
       'search_results' => [
         '#type' => 'container',
         '#attributes' => [
@@ -69,10 +101,20 @@ class PageController implements ContainerInjectionInterface {
         ],
         0 => $search_results,
       ],
+      'pager' => [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['druki-search-page__pager'],
+        ],
+        0 => [
+          '#type' => 'pager',
+        ],
+      ],
       '#cache' => [
         'keys' => [
           'druki_search',
           'search_page',
+          'results',
         ],
         'contexts' => [
           'url.path',

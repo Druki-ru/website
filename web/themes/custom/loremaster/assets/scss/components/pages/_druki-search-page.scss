@@ -3,5 +3,13 @@
 }
 
 .druki-search-page__result:not(:last-child) {
+  margin-bottom: var(--spacing-sm);
+}
+
+.druki-search-page__form {
   margin-bottom: var(--spacing-md);
+}
+
+.druki-search-page__pager {
+  margin-top: var(--spacing-md);
 }

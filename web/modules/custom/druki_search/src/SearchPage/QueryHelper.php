@@ -8,9 +8,9 @@ use Drupal\search_api\Utility\QueryHelperInterface;
 
 class QueryHelper {
 
-  public const QUERY_FULL_RESULTS = 'druki_search.search_page.full';
+  public const FULL = 'druki_search.search_page.full';
 
-  public const QUERY_FILTERED_RESULTS = 'druki_search.search_page.full';
+  public const FILTERED = 'druki_search.search_page.filtered';
 
   /**
    * The query helper.
@@ -32,7 +32,7 @@ class QueryHelper {
     $this->parseModeManager = $parse_mode_plugin_manager;
   }
 
-  public function getQuery($search_id = self::QUERY_FULL_RESULTS) {
+  public function getQuery($search_id = self::FULL) {
     $index = $this->indexStorage->load('global');
     $query = $this->queryHelper->createQuery($index);
     $parse_mode = $this->parseModeManager->createInstance('terms');

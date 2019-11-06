@@ -7,22 +7,22 @@
 }
 
 h1 {
-  font-size: var(--text-xxl);
+  font-size: var(--text-xl);
   font-weight: 500;
 }
 
 h2 {
-  font-size: var(--text-xl);
-  font-weight: 600;
-}
-
-h3 {
   font-size: var(--text-lg);
   font-weight: 600;
 }
 
-h4 {
+h3 {
   font-size: var(--text-md);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: var(--text-base-size);
   font-weight: 600;
 }
 

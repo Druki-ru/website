@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ *
+ * @ingroup themeable
+ */
+#}
+{% spaceless %}
+<label for="{{ element['#id'] }}" class="checkbox">
+  <input{{ attributes.addClass('checkbox__input') }} />
+  <div class="checkbox__element">
+    <svg class="checkbox__checkmark" viewBox="0 0 24 24">
+      <path class="checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+    </svg>
+  </div>
+</label>
+{% endspaceless %}
+{{- children -}}

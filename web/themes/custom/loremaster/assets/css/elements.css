@@ -36,19 +36,19 @@ legend {
   --heading-line-height: 1.2; }
 
 h1 {
-  font-size: var(--text-xxl);
+  font-size: var(--text-xl);
   font-weight: 500; }
 
 h2 {
-  font-size: var(--text-xl);
-  font-weight: 600; }
-
-h3 {
   font-size: var(--text-lg);
   font-weight: 600; }
 
-h4 {
+h3 {
   font-size: var(--text-md);
+  font-weight: 600; }
+
+h4 {
+  font-size: var(--text-base-size);
   font-weight: 600; }
 
 h5 {
@@ -132,7 +132,7 @@ body {
   --text-lg: 24px;
   --text-xl: 28px;
   --text-xxl: 32px;
-  --text-color: hsl(var(--color-primary-h), var(--color-primary-s), 2%);
+  --text-color: hsl(0, 0%, 20%);
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: 'Montserrat', sans-serif;
   --font-monospace: 'Fira Code', monospace;
@@ -166,7 +166,7 @@ mark {
 code {
   font-family: var(--font-monospace);
   font-size: 90%;
-  padding: 4px 6px;
+  padding: 2px 4px;
   word-break: break-all;
   border-radius: 4px;
   background-color: var(--code-background); }
