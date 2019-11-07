@@ -5,6 +5,7 @@ namespace Drupal\druki_search\SearchPage;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,12 @@ class PageController implements ContainerInjectionInterface {
    */
   protected $queryHelper;
 
-  protected $limit = 20;
+  /**
+   * The amount of results per page.
+   *
+   * @var int
+   */
+  protected $limit = 10;
 
   /**
    * The request.
@@ -53,10 +59,9 @@ class PageController implements ContainerInjectionInterface {
 
   public function build() {
     $search_text = $this->request->get('text', NULL);
-
     $query = $this->queryHelper->getQuery(QueryHelper::FILTERED);
 
-    $total_items = $this->queryHelper->getQuery(QueryHelper::FILTERED)->execute()->getResultCount();
+    $total_items = $this->queryHelper->getQuery(QueryHelper::FILTERED)->keys($search_text)->execute()->getResultCount();
     $current_page = pager_default_initialize($total_items, $this->limit);
     $query->range($current_page * $this->limit, $this->limit);
     $query->keys($search_text);
@@ -80,6 +85,10 @@ class PageController implements ContainerInjectionInterface {
           ],
         ],
       ];
+    }
+
+    if (empty($search_results)) {
+      $search_results = ['#markup' => new TranslatableMarkup('Nothing was found.')];
     }
 
     return [

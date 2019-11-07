@@ -1,0 +1,13 @@
+.form--druki-search-page-filter .fieldset {
+  margin-bottom: var(--spacing-md);
+}
+
+.form--druki-search-page-filter .fieldset__legend {
+  font-weight: bold;
+}
+
+.form--druki-search-page-filter .form-submit {
+  width: 100%;
+  cursor: pointer;
+  --button-padding-y: var(--spacing-sm);
+}

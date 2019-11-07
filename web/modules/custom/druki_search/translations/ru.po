@@ -21,3 +21,9 @@ msgstr "Что поищем сегодня?"
 
 msgid "Apply filters"
 msgstr "Применить фильтры"
+
+msgid "Not applicable"
+msgstr "Не применимо"
+
+msgid "Nothing was found."
+msgstr "Ничего не найдено."

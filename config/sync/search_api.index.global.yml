@@ -117,9 +117,18 @@ processor_settings:
     weights:
       postprocess_query: 0
   html_filter:
-    all_fields: false
+    all_fields: true
     fields:
+      - category
+      - core
+      - difficulty
+      - external_id
+      - filename
+      - labels
       - rendered_item
+      - search_keywords
+      - title
+      - url
     title: true
     alt: true
     tags:
@@ -130,26 +139,30 @@ processor_settings:
       string: 2
     weights:
       preprocess_index: -48
-      preprocess_query: -6
+      preprocess_query: -49
   ignorecase:
-    all_fields: false
+    all_fields: true
     fields:
       - category
+      - core
+      - difficulty
       - external_id
       - filename
       - labels
       - rendered_item
       - search_keywords
       - title
+      - url
     weights:
       preprocess_index: -50
-      preprocess_query: -8
+      preprocess_query: -47
+  language_with_fallback: {  }
   rendered_item:
     weights:
       add_properties: 0
       pre_index_save: -10
   snowball_stemmer:
-    all_fields: 0
+    all_fields: 1
     fields:
       - category
       - external_id
@@ -163,13 +176,17 @@ processor_settings:
       mexican: mexic
     weights:
       preprocess_index: -45
-      preprocess_query: 0
+      preprocess_query: -44
   stopwords:
-    all_fields: false
+    all_fields: true
     fields:
       - category
+      - external_id
+      - filename
       - labels
       - rendered_item
+      - search_keywords
+      - title
     stopwords:
       - a
       - an
@@ -408,9 +425,9 @@ processor_settings:
       - свыше
     weights:
       preprocess_index: -49
-      preprocess_query: -10
+      preprocess_query: -48
   tokenizer:
-    all_fields: false
+    all_fields: true
     fields:
       - category
       - external_id
@@ -424,20 +441,23 @@ processor_settings:
     minimum_word_size: '3'
     weights:
       preprocess_index: -46
-      preprocess_query: -5
+      preprocess_query: -45
   transliteration:
-    all_fields: false
+    all_fields: true
     fields:
       - category
+      - core
+      - difficulty
       - external_id
       - filename
       - labels
       - rendered_item
       - search_keywords
       - title
+      - url
     weights:
       preprocess_index: -47
-      preprocess_query: -7
+      preprocess_query: -46
 tracker_settings:
   default:
     indexing_order: fifo

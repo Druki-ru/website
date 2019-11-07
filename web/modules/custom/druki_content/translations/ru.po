@@ -72,3 +72,6 @@ msgstr "Список Druki содержимого."
 
 msgid "Contents"
 msgstr "Содержание"
+
+msgid "Difficulty"
+msgstr "Сложность"

@@ -44,6 +44,10 @@ class FilterForm extends FormBase {
       $filter_group->addCondition('difficulty', $request->query->get('difficulty', []), 'IN');
     }
 
+    if ($request->query->has('core')) {
+      $filter_group->addCondition('core', $request->query->get('core'));
+    }
+
     $query->addConditionGroup($filter_group);
   }
 
@@ -61,7 +65,7 @@ class FilterForm extends FormBase {
     $form['#tree'] = TRUE;
 
     $form['difficulty'] = $this->buildFilterCheckboxes('difficulty', new TranslatableMarkup('Difficulty'));
-    // Make difficulty user-riendly.
+    // Make difficulty labels user-riendly.
     $form['difficulty']['filter']['#options'] = array_map(function ($option) {
       switch ($option) {
         case 'none':
@@ -71,6 +75,25 @@ class FilterForm extends FormBase {
           return $option;
       }
     }, $form['difficulty']['filter']['#options']);
+
+    $form['core'] = $this->buildFilterCheckboxes('core', new TranslatableMarkup('Core version'));
+    // Make core labels user-riendly.
+    $form['core']['filter']['#options'] = array_map(function ($option) {
+      switch ($option) {
+        case 'none':
+          return new TranslatableMarkup('Not applicable');
+
+        case '8':
+          return 'Drupal 8';
+
+        case '9':
+          return 'Drupal 9';
+
+        default:
+          return $option;
+      }
+    }, $form['core']['filter']['#options']);
+    ksort($form['core']['filter']['#options']);
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -137,6 +160,7 @@ class FilterForm extends FormBase {
 
     foreach ([
       'difficulty',
+      'core',
     ] as $filter) {
       $filter_name = str_replace('_', '-', $filter);
       $filter_value = $form_state->getValue($filter);

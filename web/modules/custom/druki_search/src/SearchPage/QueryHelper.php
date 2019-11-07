@@ -35,6 +35,7 @@ class QueryHelper {
   public function getQuery($search_id = self::FULL) {
     $index = $this->indexStorage->load('global');
     $query = $this->queryHelper->createQuery($index);
+    $query->setParseModeManager($this->parseModeManager);
     $parse_mode = $this->parseModeManager->createInstance('terms');
     $query->setParseMode($parse_mode);
     $query->setSearchId($search_id);
