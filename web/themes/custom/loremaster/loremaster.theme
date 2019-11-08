@@ -69,6 +69,8 @@ function loremaster_preprocess_paragraph__druki_heading(array &$variables): void
   $variables['title'] = $title;
 
   $variables['anchor'] = Text::anchor($title, 'druki_content_toc_theme');
+
+  $variables['bem_modifiers'][] = $variables['heading_level'];
 }
 
 /**
@@ -92,6 +94,8 @@ function loremaster_preprocess_paragraph__druki_note(array &$variables): void {
 
   $variables['note_type'] = $druki_note_type->value;
   $variables['note_type_label'] = $types[$druki_note_type->value];
+
+  $variables['bem_modifiers'][] = $variables['note_type'];
 }
 
 /**

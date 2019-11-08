@@ -1,19 +1,3 @@
-{% set bem_block = ('paragraph-' ~ paragraph.bundle() ~ (view_mode != 'default' ? '-' ~ view_mode))|clean_class|replace({'--': '-'}) %}
-{%
-  set classes = [
-    bem_block,
-  ]
-%}
-{%
-  set bem_modifiers = [
-    heading_level|clean_class
-  ]|merge(bem_modifiers)
-%}
-{% for bem_modifier in bem_modifiers %}
-  {% if bem_modifier|length %}
-    {% set classes = classes|merge([bem_block ~ '--' ~ bem_modifier]) %}
-  {% endif %}
-{% endfor %}
-<{{ heading_level }}{{ attributes.addClass(classes).setAttribute('id', anchor) }}>
+<{{ heading_level }}{{ attributes.addClass(bem_classes).setAttribute('id', anchor) }}>
   {{- title -}}<a href="#{{ anchor }}" class="{{ bem_block }}__anchor"></a>
 </{{ heading_level }}>
