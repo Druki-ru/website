@@ -80,6 +80,7 @@ function druki_theme($existing, $type, $theme, $path) {
         'style' => NULL,
         'primary_url' => NULL,
       ],
+      'file' => 'druki.theme.inc',
     ],
   ];
 }

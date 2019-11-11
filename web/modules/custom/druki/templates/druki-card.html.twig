@@ -15,17 +15,7 @@
  * @see template_preprocess_druki_card()
  */
 #}
-{% set bem_block = 'druki-card' %}
-{% set classes = [
-  bem_block,
-] %}
-{% set bem_modifiers = bem_modifiers|merge([
-  style
-]) %}
-{% for modifier in bem_modifiers %}
-  {% set classes = classes|merge([bem_block ~ '--' ~ modifier]) %}
-{% endfor %}
-<div{{ attributes.addClass(classes) }}>
+<div{{ attributes.addClass(bem_classes) }}>
   {% if primary_url %}
   <a href="{{ primary_url }}" class="{{ bem_block }}__primary-action {{ bem_block }}__primary-action--link">
     {% else %}
