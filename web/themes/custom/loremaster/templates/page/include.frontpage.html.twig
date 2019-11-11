@@ -7,5 +7,6 @@
 {% set bem_block = 'frontpage' %}
 <div class="{{ bem_block }}">
   {% include '@loremaster/page/include.frontpage.hero.html.twig' %}
+  {{ {'#theme': 'druki_drupal_versions'} }}
   {% include '@loremaster/page/include.frontpage.about.html.twig' %}
 </div>

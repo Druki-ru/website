@@ -31,6 +31,11 @@
   background-color: var(--button-background-color);
 }
 
+.button:hover {
+  color: var(--button-color);
+  background-color: var(--button-background-color);
+}
+
 .button--primary {
   --button-background-color: var(--color-primary);
   --button-color: var(--color-white);
@@ -38,7 +43,11 @@
 
 .button--accent {
   --button-background-color: var(--color-accent);
-  --button-color: var(--color-white);
+  --button-color: var(--text-color);
+}
+
+.button--accent:hover {
+  --button-background-color: var(--color-white);
 }
 
 .button--danger {

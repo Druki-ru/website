@@ -10,16 +10,12 @@
  * @see template_preprocess_druki_drupal_versions()
  */
 #}
-{% set bem_block = 'druki-drupal-versions' %}
-<div {{ attributes.addClass('o-card').addClass(bem_block) }}>
-  <header class="o-card__header">
-    <div class="o-card__icon {{ bem_block }}__icon"></div>
-    <h3 class="o-card__title {{ bem_block }}__card-title">
-      Обновления
-    </h3>
+<div{{ attributes.addClass(bem_classes) }}>
+  <header class="{{ bem_block }}__header">
+    <h3 class="{{ bem_block }}__title">Обновления</h3>
   </header>
 
-  <div class="o-card__content">
+  <div class="{{ bem_block }}__content">
     {% if last_minor_release|length %}
       <div class="{{ bem_block }}__update">
         <span class="{{ bem_block }}__update-label">Актуальный релиз:</span>

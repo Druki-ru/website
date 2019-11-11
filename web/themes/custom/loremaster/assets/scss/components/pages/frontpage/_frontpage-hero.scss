@@ -101,16 +101,16 @@
 }
 
 .frontpage-hero__actions {
-  display: flex;
+  display: grid;
   justify-content: center;
   max-width: 700px;
-  margin: var(--spacing-md) auto 0 auto;
+  margin: var(--spacing-sm) auto 0 auto;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: 1fr 1fr;
 }
 
 .frontpage-hero__action {
   font-weight: bold;
-  display: block;
-  margin: 0 var(--spacing-sm);
   box-shadow: var(--shadow-xs);
   --button-padding-y: var(--spacing-sm);
   --button-padding-x: var(--spacing-md);

@@ -84,18 +84,14 @@ img {
 
 :root {
   --link-color: var(--color-primary);
-  --link-color-hover: var(--color-primary);
-  --link-border: none;
-  --link-border-hover: none; }
+  --link-color-hover: var(--color-primary); }
 
 a {
   color: var(--link-color);
-  text-decoration: none;
-  border-bottom: var(--link-border); }
+  text-decoration: none; }
   a:hover {
     color: var(--link-color-hover);
-    text-decoration: none;
-    border-bottom: var(--link-border-hover); }
+    text-decoration: none; }
 
 :root {
   --list-margin: 0 0 1rem 0;

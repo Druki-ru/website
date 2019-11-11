@@ -1,6 +1,7 @@
 .druki-content-tabs {
   --icon-size: 18px;
   --icon-image: none;
+  font-size: var(--text-sm);
 }
 
 .druki-content-tabs__link {
@@ -23,6 +24,7 @@
 
 .druki-content-tabs__link--read {
   font-weight: bold;
+  --link-color: var(--color-primary);
   --icon-image: svg-load('eye-outline.svg');
 }
 
