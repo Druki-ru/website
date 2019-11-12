@@ -407,6 +407,27 @@
   background-color: var(--color-primary);
   color: var(--color-white); }
 
+.frontpage-drupal-for {
+  display: grid;
+  padding: var(--grid-container-inner-gap);
+  grid-gap: var(--spacing-md);
+  grid-template-columns: repeat(3, 1fr); }
+
+.frontpage-drupal-for__subtitle {
+  font-family: var(--font-secondary);
+  font-size: var(--text-lg); }
+
+.frontpage-drupal-for__title {
+  font-family: var(--font-secondary);
+  font-size: var(--text-xxl);
+  font-weight: bold;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-primary); }
+
+.frontpage-drupal-for__description {
+  margin-top: var(--spacing-sm); }
+
 .frontpage-hero {
   position: relative;
   overflow: hidden;
@@ -866,6 +887,66 @@
   counter-increment: item;
   vertical-align: top;
   color: var(--color-contrast-medium); }
+
+.druki-drupal-versions {
+  display: grid;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: var(--grid-container-inner-gap);
+  background-color: var(--color-contrast-lowest);
+  grid-gap: var(--spacing-md);
+  grid-template-columns: repeat(4, 1fr); }
+
+.druki-drupal-versions__name {
+  font-family: var(--font-secondary);
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 1;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-bottom: var(--spacing-sm); }
+
+.druki-drupal-versions__label {
+  font-family: var(--font-secondary);
+  font-size: var(--text-md);
+  font-weight: bold;
+  color: var(--color-contrast-high); }
+
+.druki-drupal-versions__date {
+  font-size: var(--text-sm);
+  color: var(--color-contrast-medium); }
+
+.druki-drupal-versions__security {
+  display: -webkit-box;
+  display: flex;
+  margin-left: var(--spacing-unit); }
+
+.druki-drupal-versions__security::before {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  content: '';
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='UTF-8'?%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24' fill='%23d50000'%3E%3Cpath d='M2.2,16.06L3.88,12L2.2,7.94L6.26,6.26L7.94,2.2L12,3.88L16.06,2.2L17.74,6.26L21.8,7.94L20.12,12L21.8,16.06L17.74,17.74L16.06,21.8L12,20.12L7.94,21.8L6.26,17.74L2.2,16.06M13,17V15H11V17H13M13,13V7H11V13H13Z'/%3E%3C/svg%3E");
+  background-size: contain; }
+
+.druki-drupal-versions__more {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column; }
+
+.druki-drupal-versions__more-title {
+  font-weight: bold;
+  font-size: var(--text-lg); }
+
+.druki-drupal-versions__more-subtitle {
+  color: var(--color-contrast-medium);
+  font-size: var(--text-xs);
+  line-height: 1.2; }
 
 .druki-media-remote-video-optimized {
   position: relative;

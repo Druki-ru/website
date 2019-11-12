@@ -11,50 +11,45 @@
  */
 #}
 <div{{ attributes.addClass(bem_classes) }}>
-  <header class="{{ bem_block }}__header">
-    <h3 class="{{ bem_block }}__title">Обновления</h3>
-  </header>
-
-  <div class="{{ bem_block }}__content">
-    {% if last_minor_release|length %}
-      <div class="{{ bem_block }}__update">
-        <span class="{{ bem_block }}__update-label">Актуальный релиз:</span>
-        <a href="/wiki/8/releases/{{ last_minor_release.version }}" class="{{ bem_block }}__update-name">
-          {{ last_minor_release.version -}}
-        </a>
-        <span class="{{ bem_block }}__update-date">
-        ({{ last_minor_release.date|date('d.m.Y') }})
-      </span>
-      </div>
-    {% endif %}
-
-    {% if last_stable_release|length %}
-      <div class="{{ bem_block }}__update">
-        <span class="{{ bem_block }}__update-label">Актуальный патч:</span>
-        <a href="/wiki/8/releases/{{ last_stable_release.version }}" class="{{ bem_block }}__update-name">
-          {{ last_stable_release.version -}}
-        </a>
-        {% if 'Security update' in last_stable_release.terms['Release type'] %}
-          <span class="{{ bem_block }}__security" title="Обновление безопасности">🔴</span>
-        {% endif %}
-        <span class="{{ bem_block }}__update-date">
-        ({{ last_stable_release.date|date('d.m.Y') }})
-      </span>
-      </div>
-    {% endif %}
-
+  {% if last_minor_release|length %}
     <div class="{{ bem_block }}__update">
-      <span class="{{ bem_block }}__update-label">Будущий релиз:</span>
-      <a href="/wiki/8/releases/8.8.0" class="{{ bem_block }}__update-name">8.8.0</a>
-      <span class="{{ bem_block }}__update-date">
-      (04.12.2019)
-    </span>
+      <a href="/wiki/8/releases/{{ last_minor_release.version }}" class="{{ bem_block }}__name">
+        {{ last_minor_release.version -}}
+      </a>
+      <div class="{{ bem_block }}__label">Актуальный релиз</div>
+      <div class="{{ bem_block }}__date">
+        От {{ last_minor_release.date|date('d.m.Y') }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if last_stable_release|length %}
+    <div class="{{ bem_block }}__update">
+      <a href="/wiki/8/releases/{{ last_stable_release.version }}" class="{{ bem_block }}__name">
+        {{ last_stable_release.version -}}
+
+        {% if 'Security update' in last_stable_release.terms['Release type'] %}
+          <span class="{{ bem_block }}__security" title="Обновление безопасности"></span>
+        {% endif %}
+      </a>
+      <div class="{{ bem_block }}__label">Актуальный патч</div>
+      <div class="{{ bem_block }}__date">
+        От {{ last_stable_release.date|date('d.m.Y') }}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="{{ bem_block }}__update">
+    <a href="/wiki/8/releases/8.8.0" class="{{ bem_block }}__name">8.8.0</a>
+    <div class="{{ bem_block }}__label">Будущий релиз</div>
+    <div class="{{ bem_block }}__date">
+      От 04.12.2019
     </div>
   </div>
 
-  <div class="o-card__actions o-card__actions--divider">
-    <a href="/wiki/8/releases" class="{{ bem_block }}__card-link">
-      Полный список релизов Drupal 8
-    </a>
-  </div>
+  <a href="/wiki/8/releases" class="{{ bem_block }}__more">
+{#    <div class="{{ bem_block }}__more-icon"></div>#}
+    <div class="{{ bem_block }}__more-title">Все релизы Drupal 8</div>
+    <div class="{{ bem_block }}__more-subtitle">Даты прошедших и будущих релизов, списки изменений.</div>
+  </a>
 </div>

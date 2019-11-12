@@ -117,6 +117,7 @@ class PageController implements ContainerInjectionInterface {
         ],
         0 => [
           '#type' => 'pager',
+          '#quantity' => 3,
         ],
       ],
       '#cache' => [

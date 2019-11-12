@@ -331,6 +331,7 @@ template {
   --color-error-s: 100%;
   --color-error-l: 61%;
   --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
+  --color-contrast-lowest: hsl(var(--color-primary-h), 0%, 97%);
   --color-contrast-lower: hsl(var(--color-primary-h), 0%, 95%);
   --color-contrast-low: hsl(var(--color-primary-h), 1%, 83%);
   --color-contrast-medium: hsl(var(--color-primary-h), 1%, 48%);
