@@ -1,27 +1,23 @@
 .frontpage-about {
-  display: grid;
+  position: relative;
+  background-color: white;
   padding: var(--grid-container-inner-gap);
-  grid-gap: var(--grid-gap);
-  grid-template-columns: 1fr 1fr;
 }
 
-.frontpage-about__buttons {
-  display: grid;
-  margin-top: var(--spacing-md);
-  grid-gap: var(--spacing-unit);
-  grid-template-columns: repeat(2, 1fr);
+.frontpage-about__background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  background: linear-gradient(90deg, white 30%, transparent 60%);
+  box-shadow: inset 0 0 50px 80px hsl(0, 0%, 100%);
 }
 
-.frontpage-about__button {
-  display: block;
-  padding: var(--spacing-unit) var(--spacing-sm);
-  text-align: center;
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius);
-  --link-border-hover: 1px solid var(--color-primary);
-}
-
-.frontpage-about__button:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+.frontpage-about__description {
+  position: relative;
+  z-index: 3;
+  padding: var(--spacing-lg) 0;
+  width: 50%;
 }
