@@ -386,24 +386,90 @@
 .frontpage-about {
   position: relative;
   background-color: white;
-  padding: var(--grid-container-inner-gap); }
+  padding: var(--grid-container-inner-gap);
+  display: grid;
+  grid-gap: var(--spacing-xl);
+  grid-template-columns: 1fr 1fr;
+  -webkit-box-align: center;
+          align-items: center; }
 
-.frontpage-about__background {
+.frontpage-about__subtitle {
+  font-family: var(--font-secondary);
+  font-size: var(--text-lg); }
+
+.frontpage-about__title {
+  font-family: var(--font-secondary);
+  font-size: var(--text-xxl);
+  font-weight: bold;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-primary); }
+
+.frontpage-community {
+  position: relative;
+  overflow: hidden;
+  padding: var(--spacing-xl) var(--grid-container-inner-gap);
+  color: white;
+  text-shadow: var(--shadow-xs); }
+
+.frontpage-community__image {
   position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center; }
+
+.frontpage-community__overlay {
+  position: absolute;
+  z-index: 2;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 2;
-  background: -webkit-gradient(linear, left top, right top, color-stop(30%, white), color-stop(60%, transparent));
-  background: linear-gradient(90deg, white 30%, transparent 60%);
-  box-shadow: inset 0 0 50px 80px white; }
+  background-color: rgba(0, 0, 0, 0.7); }
 
-.frontpage-about__description {
+.frontpage-community__content {
   position: relative;
   z-index: 3;
-  padding: var(--spacing-lg) 0;
-  width: 50%; }
+  width: 100%;
+  max-width: 600px; }
+
+.frontpage-community__title {
+  font-size: 52px;
+  font-weight: bold;
+  margin-top: unset;
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  color: var(--color-primary-100); }
+
+.frontpage-community__subtitle {
+  font-size: var(--text-xs);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase; }
+
+.frontpage-community__description {
+  font-size: var(--text-md); }
+
+.frontpage-community__actions {
+  margin-top: var(--spacing-lg);
+  text-shadow: none; }
+
+.frontpage-community__action {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--text-md);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid white;
+  color: white;
+  text-transform: uppercase; }
+
+.frontpage-community__action:hover {
+  background-color: white;
+  color: var(--color-primary); }
 
 .frontpage-drupal-for {
   display: grid;
