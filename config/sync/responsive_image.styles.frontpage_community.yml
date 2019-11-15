@@ -1,0 +1,31 @@
+uuid: d022d7fa-9bf5-4f1d-b03e-4707e2fb338d
+langcode: ru
+status: true
+dependencies:
+  config:
+    - image.style.frontpage_community_xl
+    - image.style.frontpage_community_xl_2x
+    - image.style.frontpage_community_xl_3x
+    - image.style.thumbnail
+  theme:
+    - loremaster
+id: frontpage_community
+label: 'Frontpage: Community'
+image_style_mappings:
+  -
+    breakpoint_id: loremaster.xl
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_xl
+  -
+    breakpoint_id: loremaster.xl
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_xl_2x
+  -
+    breakpoint_id: loremaster.xl
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_xl_3x
+breakpoint_group: loremaster
+fallback_image_style: thumbnail

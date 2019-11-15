@@ -19,3 +19,13 @@ druki.frontpage_settings:
         video:
           type: string
           label: 'Media ID'
+    community:
+      type: mapping
+      label: 'Community area'
+      mapping:
+        image:
+          type: string
+          label: 'Media ID'
+        style:
+          type: string
+          label: 'Image style'

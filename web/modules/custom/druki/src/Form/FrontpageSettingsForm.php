@@ -82,6 +82,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
     $this->buildPromoSettings($form, $form_state);
     $this->buildWhyDrupalSettings($form, $form_state);
     $this->buildDrupalEventSettings($form, $form_state);
+    $this->buildDrupalCommunitySettings($form, $form_state);
 
     return parent::buildForm($form, $form_state);
   }
@@ -288,6 +289,57 @@ class FrontpageSettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Build community settings area.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   */
+  protected function buildDrupalCommunitySettings(array &$form, FormStateInterface $form_state): void {
+    $community_settings = $this->config('druki.frontpage_settings')->get('community');
+
+    $form['community'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Community'),
+      '#tree' => TRUE,
+    ];
+
+    $default_image = NULL;
+    if (isset($community_settings['image'])) {
+      $media = $this->mediaStorage->load($community_settings['image']);
+
+      if ($media instanceof MediaInterface) {
+        $default_image = $media;
+
+        $preview = $this->mediaViewBuilder->view($default_image, 'media_library');
+        $preview['#prefix'] = '<div class="media-library-item">';
+        $preview['#suffix'] = '</div>';
+        $form['community']['image_preview'] = $preview;
+        $form['#attached']['library'][] = 'media_library/style';
+      }
+    }
+
+    $form['community']['image'] = [
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'media',
+      '#selection_settings' => [
+        'target_bundles' => ['image'],
+      ],
+      '#title' => t('Promo image'),
+      '#description' => t('Media entity that contains a promo image.'),
+      '#default_value' => $default_image,
+    ];
+
+    $form['community']['style'] = [
+      '#type' => 'select',
+      '#options' => $this->getResponsiveImageStyleOptions(),
+      '#default_value' => isset($community_settings['style']) ? $community_settings['style'] : NULL,
+      '#title' => t('Promo image style'),
+    ];
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
@@ -295,6 +347,7 @@ class FrontpageSettingsForm extends ConfigFormBase {
       ->set('promo', $form_state->getValue('promo'))
       ->set('why', $form_state->getValue('why'))
       ->set('event', $form_state->getValue('event'))
+      ->set('community', $form_state->getValue('community'))
       ->save();
     parent::submitForm($form, $form_state);
   }

@@ -24,6 +24,10 @@
   --code-background: var(--color-primary-50);
 }
 
+[data-theme="dark"] {
+  --text-color: white;
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--text-base-size);

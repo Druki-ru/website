@@ -13,6 +13,7 @@
 
   <div class="{{ bem_block }}__right">
     <a href="/search" class="button {{ bem_block }}__button {{ bem_block }}__button--search"></a>
-    <a href="/search" class="button {{ bem_block }}__button {{ bem_block }}__button--settings"></a>
+    {{ attach_library('loremaster/dark-mode') }}
+    <span class="button {{ bem_block }}__button {{ bem_block }}__button--theme-switcher js-dark-mode-switcher"></span>
   </div>
 </div>

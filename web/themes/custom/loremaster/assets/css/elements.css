@@ -105,6 +105,9 @@ ul {
 :root {
   --page-background: hsl(var(--color-primary-h), var(--color-primary-s), 99%); }
 
+[data-theme="dark"] {
+  --page-background: hsl(252, 11%, 9%); }
+
 body {
   background: var(--page-background); }
 
@@ -136,6 +139,9 @@ body {
   --body-line-height: 1.5;
   --mark-background: hsl(60, 100%, 50%);
   --code-background: var(--color-primary-50); }
+
+[data-theme="dark"] {
+  --text-color: white; }
 
 body {
   font-family: var(--font-family);

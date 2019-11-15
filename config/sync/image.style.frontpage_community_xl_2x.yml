@@ -1,0 +1,15 @@
+uuid: b4d34ced-9c40-421c-970e-c6d5fa25598e
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_community_xl_2x
+label: 'Frontpage Community: XL 2x'
+effects:
+  93fc48c8-9b95-4d8f-b8ef-6a52e346be80:
+    uuid: 93fc48c8-9b95-4d8f-b8ef-6a52e346be80
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2240
+      height: 1400
+      anchor: center-center

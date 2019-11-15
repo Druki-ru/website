@@ -30,10 +30,10 @@
   background-image: svg-load('file-document-box-search.svg')
 }
 
-.top-line__button--settings {
+.top-line__button--theme-switcher {
   background-image: svg-load('settings-outline.svg');
 }
 
-.top-line__button--settings:hover {
+.top-line__button--theme-switcher:hover {
   background-image: svg-load('settings.svg');
 }

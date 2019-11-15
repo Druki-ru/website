@@ -1,5 +1,13 @@
+:root {
+  --navigation-background-color: var(--color-primary-50);
+}
+
+[data-theme="dark"] {
+  --navigation-background-color: hsl(231, 9%, 15%);
+}
+
 .region--navigation {
-  background-color: var(--color-primary-50);
+  background-color: var(--navigation-background-color);
   padding: 0 var(--grid-container-inner-gap);
   border-top: 1px solid var(--color-contrast-low);
   border-bottom: 1px solid var(--color-contrast-low);

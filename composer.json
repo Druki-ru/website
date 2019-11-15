@@ -102,6 +102,9 @@
         "patches": {
             "drupal/photoswipe":{
                 "Responsive image support. https://www.drupal.org/project/photoswipe/issues/2980534":"https://www.drupal.org/files/issues/2019-06-03/responsive-image-fromatter-2980534-18.patch"
+            },
+            "drupal/core": {
+                "https://www.drupal.org/project/drupal/issues/2693675": "https://www.drupal.org/files/issues/2019-06-30/profile_causing_notices-2693675-36.patch"
             }
         },
         "installer-types": ["bower-asset", "npm-asset"],

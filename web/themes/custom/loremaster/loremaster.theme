@@ -114,6 +114,7 @@ function loremaster_preprocess_page__front(array &$variables): void {
   $promo_settings = $frontpage_settings->get('promo');
   $why_settings = $frontpage_settings->get('why');
   $event_settings = $frontpage_settings->get('event');
+  $community_settings = $frontpage_settings->get('community');
 
   // Promo area.
   $promo_image = $media_storage->load($promo_settings['image']);
@@ -153,6 +154,24 @@ function loremaster_preprocess_page__front(array &$variables): void {
         ],
       ];
     }
+  }
+
+  // Community area.
+  $community_image = $media_storage->load($community_settings['image']);
+  $community_style = $responsive_image_style_storage->load($community_settings['style']);
+  // Check is media and style is really existed.
+  if ($community_image instanceof MediaInterface && $community_style instanceof ResponsiveImageStyleInterface) {
+    /** @var \Drupal\file\FileInterface $file */
+    $file = $community_image->get('field_media_image')->entity;
+    $variables['community_image'] = [
+      '#type' => 'responsive_image',
+      '#responsive_image_style_id' => $community_style->id(),
+      '#uri' => $file->getFileUri(),
+      '#attributes' => [
+        'alt' => 'Drupal сообщество',
+        'class' => ['frontpage-community__image'],
+      ],
+    ];
   }
 
   // Why Drupal area.

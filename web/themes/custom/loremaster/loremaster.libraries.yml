@@ -42,3 +42,9 @@ prismjs:
   js:
     # Prism has no dist files in any repo. So we use prebuild JS from theme.
     assets/js/prism.js: { minfied: true }
+
+dark-mode:
+  js:
+    assets/js/dark-mode.js: {}
+  dependencies:
+    - core/drupal
