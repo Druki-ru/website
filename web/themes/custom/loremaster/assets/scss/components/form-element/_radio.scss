@@ -48,6 +48,6 @@
 }
 
 .radio__input:disabled + .radio__element {
-  --radio-color: var(--color-contrast-low);
-  --radio-active-color: var(--color-contrast-low);
+  --radio-color: var(--color-gray-60);
+  --radio-active-color: var(--color-gray-10);
 }

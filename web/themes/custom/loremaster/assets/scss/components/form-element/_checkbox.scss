@@ -75,6 +75,6 @@
 }
 
 .checkbox__input:disabled + .checkbox__element {
-  --checkbox-color: var(--color-contrast-low);
-  --checkbox-active-color: var(--color-contrast-low);
+  --checkbox-color: var(--color-gray-60);
+  --checkbox-active-color: var(--color-gray-10);
 }

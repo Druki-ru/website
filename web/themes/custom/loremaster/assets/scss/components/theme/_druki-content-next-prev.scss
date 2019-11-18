@@ -2,7 +2,7 @@
   display: grid;
   grid-gap: var(--grid-gap);
   grid-template-columns: 1fr 1fr;
-  --link-border: 2px solid var(--color-contrast-low);
+  --link-border: 2px solid var(--color-gray-20);
   --link-border-hover: 2px solid var(--color-primary);
   --link-color: var(--text-color);
   --link-color-hover: var(--color-primary);

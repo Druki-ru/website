@@ -12,7 +12,7 @@
 }
 
 .druki-card--outlined {
-  border: 1px solid var(--color-contrast-low);
+  border: 1px solid var(--color-gray-20);
 }
 
 .druki-card__primary {
@@ -23,7 +23,7 @@
   font-size: var(--text-xs);
   padding: var(--spacing-sm);
   padding-top: 0;
-  color: var(--color-contrast-medium);
+  color: var(--text-color);
 }
 
 .druki-card__title {
@@ -35,7 +35,7 @@
 .druki-card__subtitle {
   font-size: var(--text-xs);
   font-weight: 500;
-  color: var(--color-contrast-medium);
+  color: var(--color-gray-80);
 }
 
 .druki-card__primary-action {

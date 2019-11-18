@@ -1,5 +1,5 @@
 :root {
-  --druki-category-navigation-link-color: var(--color-contrast-medium);
+  --druki-category-navigation-link-color: var(--color-gray-90);
   --druki-category-navigation-link-hover-color: var(--link-color);
 }
 
@@ -32,7 +32,7 @@
 
 .druki-category-navigation__menu-item-link--active {
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--link-color);
 }
 
 .druki-category-navigation__submenu {
@@ -45,7 +45,7 @@
     width: 2px;
     height: 100%;
     content: '';
-    background-color: var(--color-contrast-low);
+    background-color: var(--text-color);
   }
 }
 
@@ -67,5 +67,5 @@
   content: counters(item, ".") ". ";
   counter-increment: item;
   vertical-align: top;
-  color: var(--color-contrast-medium);
+  color: var(--text-color);
 }

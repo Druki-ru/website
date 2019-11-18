@@ -4,6 +4,7 @@
 
 :root {
   --heading-line-height: 1.2;
+  --heading-color: #00152b;
 }
 
 h1 {
@@ -46,5 +47,5 @@ h6 {
   line-height: var(--heading-line-height);
   margin: unset;
   margin-bottom: var(--spacing-sm);
-  color: hsl(var(--color-primary-h), var(--color-primary-s), 12%)
+  color: var(--heading-color);
 }

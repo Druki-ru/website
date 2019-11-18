@@ -3,7 +3,7 @@
 // =============================================================================
 
 :root {
-  --page-background: hsl(var(--color-primary-h), var(--color-primary-s), 99%);
+  --page-background: var(--color-black-01);
 }
 
 [data-theme="dark"] {

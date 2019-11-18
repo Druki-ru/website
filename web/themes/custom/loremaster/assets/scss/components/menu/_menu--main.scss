@@ -11,7 +11,6 @@ $icons: (
 }
 
 .menu--main .menu__item {
-  padding: var(--spacing-sm) 0;
 }
 
 .menu--main .menu__item:not(:last-child) {
@@ -19,31 +18,24 @@ $icons: (
 }
 
 .menu--main .menu__link {
+  font-weight: bold;
+  line-height: 60px;
   display: block;
-  padding: var(--spacing-xs) var(--spacing-unit);
-  border: 2px solid var(--color-contrast-low);
-  border-radius: var(--radius-md);
-  background-color: var(--color-white);
-  --link-color: var(--text-color);
+  padding: 0 var(--spacing-sm);
+  padding-left: calc(30px + var(--spacing-sm));
+  background-repeat: no-repeat;
+  background-position: var(--spacing-unit) center;
+  background-size: 30px;
+  --link-color: var(--color-white);
+  --link-color-hover: var(--color-white);
 }
 
 @each $href, $icon in $icons {
   .menu--main .menu__link[href="#{$href}"] {
-    background-image: svg-load('#{$icon}', fill=#121212);
-
-    &:hover {
-      background-image: svg-load('#{$icon}', fill=#0049db);
-    }
+    background-image: svg-load('#{$icon}', fill=#ffffff);
   }
 }
 
-.menu--main .menu__link {
-  background-repeat: no-repeat;
-  background-position: var(--spacing-unit) center;
-  background-size: 16px;
-  padding-left: var(--spacing-md);
-}
-
 .menu--main .menu__link:hover {
-  border-color: var(--link-color-hover);
+  background-color: var(--color-black-10);
 }

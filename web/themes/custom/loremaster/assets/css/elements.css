@@ -1,10 +1,10 @@
 :root {
-  --blockquote-font-size: var(--text-lg);
+  --blockquote-font-size: var(--text-base-size);
   --blockquote-border-size: 4px;
   --blockquote-paddings: var(--spacing-unit);
   --blockquote-margins: var(--spacing-sm) 0;
   --blockquote-background: transparent;
-  --blockquote-border-color: gray(400); }
+  --blockquote-border-color: var(--color-gray-10); }
 
 blockquote {
   font-size: var(--blockquote-font-size);
@@ -12,6 +12,9 @@ blockquote {
   margin: var(--blockquote-margins);
   border-left: var(--blockquote-border-size) solid var(--blockquote-border-color);
   background: var(--blockquote-background); }
+
+blockquote p:last-child {
+  margin-bottom: unset; }
 
 fieldset {
   min-width: 0;
@@ -33,7 +36,8 @@ legend {
   min-width: 0; }
 
 :root {
-  --heading-line-height: 1.2; }
+  --heading-line-height: 1.2;
+  --heading-color: #00152b; }
 
 h1 {
   font-size: var(--text-xl);
@@ -69,12 +73,12 @@ h6 {
   line-height: var(--heading-line-height);
   margin: unset;
   margin-bottom: var(--spacing-sm);
-  color: hsl(var(--color-primary-h), var(--color-primary-s), 12%); }
+  color: var(--heading-color); }
 
 hr {
   margin: var(--spacing-lg) 0;
   border: unset;
-  border-top: 1px solid var(--color-contrast-low); }
+  border-top: 1px solid var(--color-gray-10); }
 
 img {
   max-width: 100%;
@@ -84,7 +88,7 @@ img {
 
 :root {
   --link-color: var(--color-primary);
-  --link-color-hover: var(--color-primary); }
+  --link-color-hover: var(--color-primary-strong); }
 
 a {
   color: var(--link-color);
@@ -103,7 +107,7 @@ ul {
   padding: var(--list-padding); }
 
 :root {
-  --page-background: hsl(var(--color-primary-h), var(--color-primary-s), 99%); }
+  --page-background: var(--color-black-01); }
 
 [data-theme="dark"] {
   --page-background: hsl(252, 11%, 9%); }
@@ -138,7 +142,7 @@ body {
   --font-family: var(--font-primary);
   --body-line-height: 1.5;
   --mark-background: hsl(60, 100%, 50%);
-  --code-background: var(--color-primary-50); }
+  --code-background: var(--color-gray-10); }
 
 [data-theme="dark"] {
   --text-color: white; }

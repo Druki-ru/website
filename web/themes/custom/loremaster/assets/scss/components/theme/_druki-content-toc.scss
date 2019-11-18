@@ -1,5 +1,5 @@
 :root {
-  --druki-content-toc-link-color: var(--color-contrast-medium);
+  --druki-content-toc-link-color: var(--color-gray-90);
   --druki-content-toc-link-hover-color: var(--link-color);
 }
 
@@ -36,7 +36,7 @@
     width: 2px;
     height: 100%;
     content: '';
-    background-color: var(--color-contrast-low);
+    background-color: var(--color-gray-10);
   }
 }
 
@@ -58,5 +58,5 @@
   content: counters(item, ".") ". ";
   counter-increment: item;
   vertical-align: top;
-  color: var(--color-contrast-medium);
+  color: var(--druki-content-toc-link-color);
 }

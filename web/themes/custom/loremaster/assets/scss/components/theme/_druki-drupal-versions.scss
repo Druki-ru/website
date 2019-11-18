@@ -2,7 +2,7 @@
   display: grid;
   align-items: center;
   padding: var(--grid-container-inner-gap);
-  background-color: var(--color-contrast-lowest);
+  background-color: var(--color-black-05);
   grid-gap: var(--spacing-md);
   grid-template-columns: repeat(4, 1fr);
 }
@@ -21,12 +21,12 @@
   font-family: var(--font-secondary);
   font-size: var(--text-md);
   font-weight: bold;
-  color: var(--color-contrast-high);
+  color: var(--color-black-90);
 }
 
 .druki-drupal-versions__date {
   font-size: var(--text-sm);
-  color: var(--color-contrast-medium);
+  color: var(--color-gray-90);
 }
 
 .druki-drupal-versions__security {
@@ -49,24 +49,13 @@
   flex-direction: column;
 }
 
-//.druki-drupal-versions__more-icon::before {
-//  display: inline-block;
-//  width: 40px;
-//  height: 40px;
-//  content: '';
-//  vertical-align: middle;
-//  background-image: svg-load('arrow-left.svg', fill=#313235);
-//  background-size: contain;
-//  transform: rotate(180deg);
-//}
-
 .druki-drupal-versions__more-title {
   font-weight: bold;
   font-size: var(--text-lg);
 }
 
 .druki-drupal-versions__more-subtitle {
-  color: var(--color-contrast-medium);
+  color: var(--color-gray-90);
   font-size: var(--text-xs);
   line-height: 1.2;
 }

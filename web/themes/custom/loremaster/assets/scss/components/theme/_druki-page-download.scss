@@ -6,7 +6,7 @@
   margin: calc(var(--grid-container-inner-gap) * -1);
   margin-bottom: var(--grid-container-inner-gap);
   padding: var(--grid-container-inner-gap);
-  background: var(--color-primary-50);
+  background-color: var(--color-blue-10);
 }
 
 .druki-page-download__subtitle {
@@ -17,8 +17,8 @@
   display: table;
   margin: 0 auto;
   padding: var(--spacing-sm);
-  border: 1px solid var(--color-primary-100);
-  background-color: var(--color-white);
+  border: 1px solid var(--color-black-20);
+  background-color: var(--color-black-05);
 }
 
 .druki-page-download__command-pane {
@@ -30,7 +30,7 @@
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
-  color: var(--color-contrast-medium);
+  color: var(--color-gray-90);
 }
 
 .druki-page-download__cards {

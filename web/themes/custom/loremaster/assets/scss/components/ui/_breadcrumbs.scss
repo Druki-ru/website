@@ -22,7 +22,7 @@
 }
 
 .breadcrumbs__item-link {
-  --link-color: var(--color-contrast-medium);
+  --link-color: var(--color-gray-70);
 }
 
 .breadcrumbs__item-link--current {
@@ -41,7 +41,7 @@
   &::before {
     margin: 0 var(--spacing-unit);
     content: '/';
-    color: var(--color-contrast-medium);
+    color: var(--color-gray-70);
   }
 
   @media (--sm) {
@@ -53,7 +53,7 @@
   &::after {
     margin: 0 var(--spacing-unit);
     content: '/';
-    color: var(--color-contrast-medium);
+    color: var(--color-gray-70);
   }
 
   &:last-child {
