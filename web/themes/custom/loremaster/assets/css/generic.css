@@ -368,6 +368,7 @@ template {
   --color-blue-80: rgba(0, 73, 219, 0.8);
   --color-blue-90: rgba(0, 73, 219, 0.9);
   --color-yellow: rgb(255, 213, 0);
+  --color-yellow-intense: rgb(199, 159, 0);
   --color-yellow-10: rgba(255, 213, 0, 0.1);
   --color-yellow-20: rgba(255, 213, 0, 0.2);
   --color-yellow-30: rgba(255, 213, 0, 0.3);
@@ -380,6 +381,7 @@ template {
   --color-primary: var(--color-blue);
   --color-primary-strong: var(--color-blue-intense);
   --color-accent: var(--color-yellow);
+  --color-accent-strong: var(--color-yellow-intense);
   --color-success-h: 120;
   --color-success-s: 100%;
   --color-success-l: 50%;
@@ -391,7 +393,13 @@ template {
   --color-error-h: 3;
   --color-error-s: 100%;
   --color-error-l: 61%;
-  --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l)); }
+  --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
+  --color-contrast-lowest: hsl(0, 0%, 98%);
+  --color-contrast-lower: hsl(0, 0%, 95%);
+  --color-contrast-low: hsl(0, 0%, 86%);
+  --color-contrast-medium: hsl(0, 0%, 55%);
+  --color-contrast-high: hsl(0, 0%, 20%);
+  --color-contrast-higher: hsl(0, 0%, 12%); }
 
 :root {
   --grid-gap: var(--spacing-sm);

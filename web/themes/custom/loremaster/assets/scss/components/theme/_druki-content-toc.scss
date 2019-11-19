@@ -1,6 +1,12 @@
 :root {
   --druki-content-toc-link-color: var(--color-gray-90);
   --druki-content-toc-link-hover-color: var(--link-color);
+  --druki-content-toc-counter-color: var(--link-color);
+  --druki-content-toc-submenu-line-color: var(--color-blue-20);
+}
+
+[data-theme="dark"] {
+  --druki-content-toc-link-color: var(--color-white-80);
 }
 
 .druki-content-toc {
@@ -36,7 +42,7 @@
     width: 2px;
     height: 100%;
     content: '';
-    background-color: var(--color-gray-10);
+    background-color: var(--druki-content-toc-submenu-line-color);
   }
 }
 
@@ -58,5 +64,5 @@
   content: counters(item, ".") ". ";
   counter-increment: item;
   vertical-align: top;
-  color: var(--druki-content-toc-link-color);
+  color: var(--druki-content-toc-counter-color);
 }

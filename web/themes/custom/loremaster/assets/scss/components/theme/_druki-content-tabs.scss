@@ -1,11 +1,26 @@
+:root {
+  --druki-content-tabs-icon: none;
+  --druki-content-tabs-link-read-icon: svg-load('eye-outline.svg');
+  --druki-content-tabs-link-edit-icon: svg-load('file-document-edit-outline.svg');
+  --druki-content-tabs-link-history-icon: svg-load('history.svg');
+  --druki-content-tabs-icon-size: 18px;
+  --druki-content-tabs-link-color: var(--color-gray-90);
+  --druki-content-tabs-active-link-color: var(--link-color);
+}
+
+[data-theme="dark"] {
+  --druki-content-tabs-link-read-icon: svg-load('eye-outline.svg', fill=#FFF);
+  --druki-content-tabs-link-edit-icon: svg-load('file-document-edit-outline.svg', fill=#FFF);
+  --druki-content-tabs-link-history-icon: svg-load('history.svg', fill=#FFF);
+  --druki-content-tabs-link-color: var(--color-white-80);
+}
+
 .druki-content-tabs {
-  --icon-size: 18px;
-  --icon-image: none;
   font-size: var(--text-sm);
 }
 
 .druki-content-tabs__link {
-  --link-color: var(--color-gray-90);
+  --link-color: var(--druki-content-tabs-link-color);
   display: flex;
   align-items: center;
   padding: var(--spacing-xs) 0;
@@ -13,10 +28,10 @@
 
 .druki-content-tabs__link::before {
   content: '';
-  width: var(--icon-size);
-  height: var(--icon-size);
-  background-image: var(--icon-image);
-  background-size: var(--icon-size);
+  width: var(--druki-content-tabs-icon-size);
+  height: var(--druki-content-tabs-icon-size);
+  background-image: var(--druki-content-tabs-icon);
+  background-size: var(--druki-content-tabs-icon-size);
   background-repeat: no-repeat;
   background-position: center;
   margin-right: var(--spacing-unit);
@@ -24,14 +39,14 @@
 
 .druki-content-tabs__link--read {
   font-weight: bold;
-  --link-color: var(--color-primary);
-  --icon-image: svg-load('eye-outline.svg');
+  --link-color: var(--druki-content-tabs-active-link-color);
+  --druki-content-tabs-icon: var(--druki-content-tabs-link-read-icon);
 }
 
 .druki-content-tabs__link--edit {
-  --icon-image: svg-load('file-document-edit-outline.svg');
+  --druki-content-tabs-icon: var(--druki-content-tabs-link-edit-icon);
 }
 
 .druki-content-tabs__link--history {
-  --icon-image: svg-load('history.svg');
+  --druki-content-tabs-icon: var(--druki-content-tabs-link-history-icon);
 }

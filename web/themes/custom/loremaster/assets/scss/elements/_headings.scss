@@ -7,6 +7,10 @@
   --heading-color: #00152b;
 }
 
+[data-theme="dark"] {
+  --heading-color: var(--color-white);
+}
+
 h1 {
   font-size: var(--text-xl);
   font-weight: 500;

@@ -32,7 +32,7 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
         "drupal/extra_field": "^1.0",
-        "drupal/glisseo": "1.x-dev#8222f67",
+        "drupal/glisseo": "1.x-dev#14e024f",
         "drupal/google_tag": "^1.1",
         "drupal/imagemagick": "^2.5",
         "drupal/markdown": "2.x-dev",

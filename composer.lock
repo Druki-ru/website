@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81c4bcde83631653b56ba0f8fd68a6ef",
+    "content-hash": "a20f32d3e64deda44dd0efc0548fb9dd",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1474,16 +1474,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "c15dcd24b756f9e52ea7c3ae8227354f3628f11a"
+                "reference": "89a5c76c39c292f7798f964ab3c836c3f8192a55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/c15dcd24b756f9e52ea7c3ae8227354f3628f11a",
-                "reference": "c15dcd24b756f9e52ea7c3ae8227354f3628f11a",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/89a5c76c39c292f7798f964ab3c836c3f8192a55",
+                "reference": "89a5c76c39c292f7798f964ab3c836c3f8192a55",
                 "shasum": ""
             },
             "require": {
@@ -1553,7 +1553,7 @@
                 "riak",
                 "xcache"
             ],
-            "time": "2019-11-11T10:31:52+00:00"
+            "time": "2019-11-15T14:31:57+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -3116,7 +3116,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/glisseo.git",
-                "reference": "8222f67"
+                "reference": "14e024f"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -3127,8 +3127,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha13+9-dev",
-                    "datestamp": "1572264484",
+                    "version": "8.x-1.0-alpha13+11-dev",
+                    "datestamp": "1573477386",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3151,7 +3151,7 @@
                 "source": "https://git.drupalcode.org/project/glisseo",
                 "issues": "https://www.drupal.org/project/issues/glisseo"
             },
-            "time": "2019-11-08T12:42:52+00:00"
+            "time": "2019-11-19T12:18:20+00:00"
         },
         {
             "name": "drupal/google_tag",

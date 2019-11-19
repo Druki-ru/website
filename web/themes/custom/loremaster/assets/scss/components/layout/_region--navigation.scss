@@ -3,7 +3,7 @@
 }
 
 [data-theme="dark"] {
-  --navigation-background-color: hsl(231, 9%, 15%);
+  --navigation-background-color: var(--color-white-05);
 }
 
 .region--navigation {

@@ -39,6 +39,9 @@ legend {
   --heading-line-height: 1.2;
   --heading-color: #00152b; }
 
+[data-theme="dark"] {
+  --heading-color: var(--color-white); }
+
 h1 {
   font-size: var(--text-xl);
   font-weight: 500; }
@@ -90,6 +93,10 @@ img {
   --link-color: var(--color-primary);
   --link-color-hover: var(--color-primary-strong); }
 
+[data-theme="dark"] {
+  --link-color: var(--color-accent);
+  --link-color-hover: var(--color-accent-strong); }
+
 a {
   color: var(--link-color);
   text-decoration: none; }
@@ -110,7 +117,7 @@ ul {
   --page-background: var(--color-black-01); }
 
 [data-theme="dark"] {
-  --page-background: hsl(252, 11%, 9%); }
+  --page-background: #121212; }
 
 body {
   background: var(--page-background); }
@@ -142,10 +149,10 @@ body {
   --font-family: var(--font-primary);
   --body-line-height: 1.5;
   --mark-background: hsl(60, 100%, 50%);
-  --code-background: var(--color-gray-10); }
+  --code-background: var(--color-black-03); }
 
 [data-theme="dark"] {
-  --text-color: white; }
+  --text-color: var(--color-white-80); }
 
 body {
   font-family: var(--font-family);

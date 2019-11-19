@@ -3,7 +3,7 @@
 }
 
 [data-theme="dark"] {
-  --app-background: hsl(220, 11%, 11%);
+  --app-background: var(--color-white-05);
 }
 
 .app {

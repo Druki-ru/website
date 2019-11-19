@@ -7,6 +7,11 @@
   --link-color-hover: var(--color-primary-strong);
 }
 
+[data-theme="dark"] {
+  --link-color: var(--color-accent);
+  --link-color-hover: var(--color-accent-strong);
+}
+
 a {
   color: var(--link-color);
   text-decoration: none;
