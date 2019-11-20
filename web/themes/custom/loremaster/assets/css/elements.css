@@ -37,7 +37,7 @@ legend {
 
 :root {
   --heading-line-height: 1.2;
-  --heading-color: #00152b; }
+  --heading-color: var(--color-black); }
 
 [data-theme="dark"] {
   --heading-color: var(--color-white); }
@@ -162,7 +162,7 @@ body {
 
 p {
   margin-top: unset;
-  margin-bottom: var(--spacing-sm); }
+  margin-bottom: calc(var(--spacing-unit) * 3); }
 
 small {
   font-size: 80%;

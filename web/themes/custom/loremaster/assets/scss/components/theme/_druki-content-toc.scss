@@ -7,6 +7,7 @@
 
 [data-theme="dark"] {
   --druki-content-toc-link-color: var(--color-white-80);
+  --druki-content-toc-submenu-line-color: var(--color-yellow-20);
 }
 
 .druki-content-toc {
@@ -30,6 +31,11 @@
     text-decoration: none;
     color: var(--druki-content-toc-link-hover-color);
   }
+}
+
+.druki-content-toc__link--active {
+  font-weight: bold;
+  color: var(--link-color);
 }
 
 .druki-content-toc__submenu {

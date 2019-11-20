@@ -5,36 +5,13 @@
 
 (function(Drupal) {
 
-  /**
-   * The selector name for TOC element.
-   */
-  const TOC_SELECTOR = '.druki-content-toc';
-
-  /**
-   * The class name applied when it processed.
-   */
-  const TOC_SELECTOR_PROCESSED = TOC_SELECTOR + '--processed';
-
-  /**
-   * Link selector inside TOC.
-   */
-  const TOC_LINK_SELECTOR = TOC_SELECTOR + '__menu-item-link';
-
-  /**
-   * Class which added to active TOC link.
-   */
-  const TOC_LINK_ACTIVE_CLASS = 'druki-content-toc__menu-item-link--active';
-
   Drupal.behaviors.drukiContentTOC = {
     attach: function(context, settings) {
-      let tocs = context.querySelectorAll(
-        `${TOC_SELECTOR}:not(${TOC_SELECTOR_PROCESSED})`,
-      );
+      let toc = context.querySelector('.druki-content-toc');
 
-      if (tocs.length) {
-        tocs.forEach(element => {
-          this.processTOC(context, element);
-        });
+      if (toc && !toc.processed) {
+        toc.processed = true;
+        this.processTOC(context, toc);
       }
     },
 
@@ -42,7 +19,7 @@
      * Process TOC element.
      */
     processTOC: function(context, element) {
-      let links = element.querySelectorAll(TOC_LINK_SELECTOR);
+      let links = element.querySelectorAll('.druki-content-toc__link');
       this.attachEvents(context, links);
     },
 
@@ -76,15 +53,16 @@
         let closestLink = null;
 
         linksWithPosition.forEach(linkInfo => {
-          linkInfo.link.classList.remove(TOC_LINK_ACTIVE_CLASS);
+          linkInfo.link.classList.remove('druki-content-toc__link--active');
 
-          if (linkInfo.top < 0) {
+          // 24px is gap for activate link a bit earlier.
+          if (linkInfo.top < 24) {
             closestLink = linkInfo.link;
           }
         });
 
         if (closestLink) {
-          closestLink.classList.add(TOC_LINK_ACTIVE_CLASS);
+          closestLink.classList.add('druki-content-toc__link--active');
         }
       };
 

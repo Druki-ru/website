@@ -37,7 +37,7 @@ body {
 
 p {
   margin-top: unset;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
 small {

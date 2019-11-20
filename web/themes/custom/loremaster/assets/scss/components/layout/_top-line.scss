@@ -24,14 +24,7 @@
   background-image: svg-load('file-document-box-search-outline.svg');
 }
 
-.top-line__button--search:hover {
-  background-image: svg-load('file-document-box-search.svg')
-}
-
 .top-line__button--theme-switcher {
-  background-image: svg-load('settings-outline.svg');
+  background-image: svg-load('theme-light-dark.svg');
 }
 
-.top-line__button--theme-switcher:hover {
-  background-image: svg-load('settings.svg');
-}

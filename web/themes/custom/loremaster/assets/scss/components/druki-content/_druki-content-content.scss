@@ -1,13 +1,13 @@
 .druki-content-content__item:not(:last-child) {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
 .druki-content-content a {
-  border-bottom: 1px solid hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.2);
+  border-bottom: 1px solid var(--color-blue-20);
 }
 
 .druki-content-content a:hover {
-  border-bottom: 1px solid hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.5);
+  border-bottom: 1px solid var(--color-blue);
 }
 
 .druki-content-content a[href*="//"]:not([href*="druki.ru"]):not([href*="druki.localhost"])::after {

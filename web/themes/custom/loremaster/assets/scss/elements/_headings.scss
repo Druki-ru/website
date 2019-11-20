@@ -4,7 +4,7 @@
 
 :root {
   --heading-line-height: 1.2;
-  --heading-color: #00152b;
+  --heading-color: var(--color-black);
 }
 
 [data-theme="dark"] {
