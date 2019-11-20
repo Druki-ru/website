@@ -5,20 +5,27 @@
 :root {
   --blockquote-font-size: var(--text-base-size);
   --blockquote-border-size: 4px;
-  --blockquote-paddings: var(--spacing-unit);
-  --blockquote-margins: var(--spacing-sm) 0;
-  --blockquote-background: transparent;
-  --blockquote-border-color: var(--color-gray-10);
+  --blockquote-paddings: calc(var(--spacing-unit) * 3);
+  --blockquote-margin: calc(var(--spacing-unit) * 3);
+  --blockquote-background: var(--color-black-02);
+  --blockquote-border-color: var(--color-gray-20);
 }
 
 blockquote {
   font-size: var(--blockquote-font-size);
   padding: var(--blockquote-paddings);
-  margin: var(--blockquote-margins);
+  margin: unset;
+  margin-bottom: var(--blockquote-margin);
   border-left: var(--blockquote-border-size) solid var(--blockquote-border-color);
   background: var(--blockquote-background);
 }
 
 blockquote p:last-child {
   margin-bottom: unset;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: var(--spacing-unit);
+  font-weight: bold;
 }

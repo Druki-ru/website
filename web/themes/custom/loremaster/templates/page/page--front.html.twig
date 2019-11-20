@@ -1,16 +1,17 @@
-{% set bem_block = 'app' %}
-<div class="{{ bem_block }}">
-  <div class="{{ bem_block }}__header">
-    {% include '@loremaster/page/include.top-line.html.twig' %}
-    {{ page.header }}
-    {{ page.navigation }}
+<div class="app">
+  {{ page.navigation }}
+
+  <div class="app__middle">
+    <div class="app__header">
+      {{ page.header }}
+    </div>
+
+    <main{{ main_layout_attributes.addClass(bem_block ~ '__content') }}>
+      {% include '@loremaster/page/include.frontpage.html.twig' %}
+    </main>
   </div>
 
-  <main{{ main_layout_attributes.addClass(bem_block ~ '__content') }}>
-    {% include '@loremaster/page/include.frontpage.html.twig' %}
-  </main>
-
-  <div class="{{ bem_block }}__footer">
+  <div class="app__footer">
     {% include '@loremaster/page/include.footer.html.twig' %}
   </div>
 </div>

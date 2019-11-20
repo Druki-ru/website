@@ -1,11 +1,10 @@
 .footer {
   font-size: var(--text-sm);
   padding: var(--spacing-md) 0;
-  border-top: 2px solid var(--color-gray-10);
-}
-
-.footer__container {
-  padding: 0 var(--grid-container-inner-gap);
+  margin: 0 auto;
+  max-width: var(--grid-container-max-width);
+  color: var(--color-black-40);
+  --link-color: var(--color-blue-70);
 }
 
 .footer__some-love {
