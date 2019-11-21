@@ -82,6 +82,10 @@ function druki_theme($existing, $type, $theme, $path) {
       ],
       'file' => 'druki.theme.inc',
     ],
+    'druki_header_branding_navigation' => [
+      'variables' => [],
+      'file' => 'druki.theme.inc',
+    ],
   ];
 }
 

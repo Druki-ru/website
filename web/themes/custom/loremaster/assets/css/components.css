@@ -43,6 +43,10 @@
   background-repeat: no-repeat;
   border: none; }
 
+.druki-content-content ol li,
+.druki-content-content ul li {
+  margin: var(--spacing-xs) 0; }
+
 .druki-content-full .druki-content-next-prev {
   margin-top: var(--spacing-md); }
 
@@ -286,14 +290,20 @@
   margin: var(--spacing-lg) 0; }
 
 :root {
-  --navigation-background-color: var(--color-blue-80); }
+  --navigation-background-color: var(--color-blue-80);
+  --navigation-height: 60px; }
 
 [data-theme="dark"] {
   --navigation-background-color: var(--color-white-05); }
 
 .region--navigation {
   background-color: var(--navigation-background-color);
-  padding: 0 var(--grid-container-inner-gap); }
+  height: var(--navigation-height); }
+
+.region--navigation .region__content {
+  max-width: var(--grid-container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md); }
 
 .region--sidebar-right {
   padding: var(--spacing-md);
@@ -574,21 +584,21 @@
   --link-border-hover: none; }
 
 .paragraph-druki-heading--h2 {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-lg);
   padding-bottom: var(--spacing-unit);
   border-bottom: 1px solid var(--color-gray-10);
   --anchor-size: 22px; }
 
 .paragraph-druki-heading--h3 {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-lg);
   --anchor-size: 20px; }
 
 .paragraph-druki-heading--h4 {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-lg);
   --anchor-size: 18px; }
 
 .paragraph-druki-heading--h5 {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-lg);
   --anchor-size: 16px; }
 
 .paragraph-druki-heading__anchor {
@@ -1039,6 +1049,35 @@
   color: var(--color-gray-90);
   font-size: var(--text-xs);
   line-height: 1.2; }
+
+.druki-header-branding-navigation {
+  width: 240px;
+  padding: 0 var(--spacing-md);
+  display: -webkit-box;
+  display: flex; }
+
+.druki-header-branding-navigation:hover {
+  background-color: var(--color-black-20); }
+
+.druki-header-branding-navigation__link {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  height: var(--navigation-height); }
+
+.druki-header-branding-navigation__logo {
+  width: 30px;
+  margin-right: var(--spacing-unit); }
+
+.druki-header-branding-navigation__site-name {
+  font-weight: bold;
+  color: var(--color-white);
+  font-size: var(--text-md);
+  text-transform: uppercase; }
+
+.druki-header-branding-navigation__burger {
+  margin-left: var(--spacing-md); }
 
 .druki-media-remote-video-optimized {
   position: relative;

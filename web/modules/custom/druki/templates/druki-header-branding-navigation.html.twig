@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present header navigation with branding.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - site_logo: The current logo for current theme.
+ *
+ * @see template_preprocess_druki_header_branding_navigation()
+ */
+#}
+<div class="druki-header-branding-navigation">
+  <a href="{{ url('<front>') }}" class="druki-header-branding-navigation__link">
+    {{ site_logo }}
+    <div class="druki-header-branding-navigation__site-name">Druki</div>
+  </a>
+  <button class="druki-header-branding-navigation__burger">menu</button>
+</div>

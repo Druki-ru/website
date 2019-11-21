@@ -1,0 +1,26 @@
+uuid: 645728fe-aca3-422b-a025-acd73a543edf
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - druki
+  theme:
+    - loremaster
+id: header_branding_navigation
+theme: loremaster
+region: navigation
+weight: 0
+provider: null
+plugin: druki_header_branding_navigation
+settings:
+  id: druki_header_branding_navigation
+  label: 'Header branding navigation'
+  provider: druki
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

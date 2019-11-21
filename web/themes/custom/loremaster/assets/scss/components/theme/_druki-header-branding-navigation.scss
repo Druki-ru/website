@@ -1,0 +1,31 @@
+.druki-header-branding-navigation {
+  width: 240px;
+  padding: 0 var(--spacing-md);
+  display: flex;
+}
+
+.druki-header-branding-navigation:hover {
+  background-color: var(--color-black-20);
+}
+
+.druki-header-branding-navigation__link {
+  display: flex;
+  align-items: center;
+  height: var(--navigation-height);
+}
+
+.druki-header-branding-navigation__logo {
+  width: 30px;
+  margin-right: var(--spacing-unit);
+}
+
+.druki-header-branding-navigation__site-name {
+  font-weight: bold;
+  color: var(--color-white);
+  font-size: var(--text-md);
+  text-transform: uppercase;
+}
+
+.druki-header-branding-navigation__burger {
+  margin-left: var(--spacing-md);
+}

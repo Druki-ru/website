@@ -23,3 +23,8 @@
   background-repeat: no-repeat;
   border: none;
 }
+
+.druki-content-content ol li,
+.druki-content-content ul li {
+  margin: var(--spacing-xs) 0;
+}

@@ -3,7 +3,7 @@
 // =============================================================================
 
 :root {
-  --list-margin: 0 0 1rem 0;
+  --list-margin: 0 0 calc(var(--spacing-unit) * 3) 0;
   --list-padding: 0 0 0 2rem;
 }
 
@@ -11,4 +11,11 @@ ol,
 ul {
   margin: var(--list-margin);
   padding: var(--list-padding);
+}
+
+ol ul,
+ol ol,
+ul ul,
+ul ol {
+  margin-bottom: unset;
 }

@@ -1,5 +1,6 @@
 :root {
   --navigation-background-color: var(--color-blue-80);
+  --navigation-height: 60px;
 }
 
 [data-theme="dark"] {
@@ -8,5 +9,11 @@
 
 .region--navigation {
   background-color: var(--navigation-background-color);
-  padding: 0 var(--grid-container-inner-gap);
+  height: var(--navigation-height);
+}
+
+.region--navigation .region__content {
+  max-width: var(--grid-container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
