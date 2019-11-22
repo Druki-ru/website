@@ -1,14 +1,14 @@
 .druki-header-branding-navigation {
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 240px;
   padding: 0 var(--spacing-md);
-  display: flex;
-}
-
-.druki-header-branding-navigation:hover {
-  background-color: var(--color-black-20);
 }
 
 .druki-header-branding-navigation__link {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   height: var(--navigation-height);
@@ -20,12 +20,61 @@
 }
 
 .druki-header-branding-navigation__site-name {
-  font-weight: bold;
-  color: var(--color-white);
   font-size: var(--text-md);
+  font-weight: bold;
   text-transform: uppercase;
+  color: var(--color-white);
 }
 
 .druki-header-branding-navigation__burger {
-  margin-left: var(--spacing-md);
+  position: relative;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  margin-left: var(--spacing-sm);
+  border: none;
+  background-color: unset;
+  background-image: svg-load('menu.svg', fill=#ffffff);
+  background-position: center;
+  background-size: contain;
+}
+
+.druki-header-branding-navigation__navigation:hover .druki-header-branding-navigation__dropdown {
+  display: block;
+}
+
+.druki-header-branding-navigation__dropdown {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black-20);
+}
+
+.druki-header-branding-navigation__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-white);
+  box-shadow: 0 6px 10px var(--color-black-10);
+}
+
+.druki-header-branding-navigation__group {
+  margin: var(--spacing-sm);
+}
+
+.druki-header-branding-navigation__group-title {
+  font-size: var(--text-xxs);
+  font-weight: bold;
+  margin-bottom: var(--spacing-unit);
+  text-transform: uppercase;
+  color: var(--color-black-30);
+}
+
+.druki-header-branding-navigation__menu-link {
+  display: block;
 }

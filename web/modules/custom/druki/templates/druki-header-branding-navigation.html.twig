@@ -15,5 +15,30 @@
     {{ site_logo }}
     <div class="druki-header-branding-navigation__site-name">Druki</div>
   </a>
-  <button class="druki-header-branding-navigation__burger">menu</button>
+  <div class="druki-header-branding-navigation__navigation">
+    <div class="druki-header-branding-navigation__burger"></div>
+    <div class="druki-header-branding-navigation__dropdown">
+      <div class="druki-header-branding-navigation__menu">
+        <div class="druki-header-branding-navigation__group">
+          <a href="{{ url('<front>') }}" class="druki-header-branding-navigation__menu-link">Главная</a>
+          <a href="{{ url('druki.wiki') }}" class="druki-header-branding-navigation__menu-link">Энциклопедия</a>
+          <a href="{{ url('druki.download') }}" class="druki-header-branding-navigation__menu-link">Загрузить Drupal</a>
+          <a href="/wiki/drupal" class="druki-header-branding-navigation__menu-link">О Drupal</a>
+        </div>
+
+        <div class="druki-header-branding-navigation__group">
+          <div class="druki-header-branding-navigation__group-title">Обновления</div>
+          <a href="/wiki/8/releases" class="druki-header-branding-navigation__menu-link">Релизы и изменения</a>
+          <a href="/wiki/security" class="druki-header-branding-navigation__menu-link">Объявления безопасности</a>
+        </div>
+
+        <div class="druki-header-branding-navigation__group">
+          <div class="druki-header-branding-navigation__group-title">Сообщество</div>
+          <a href="/wiki/community" class="druki-header-branding-navigation__menu-link">Сообщество</a>
+          <a href="/wiki/community/resources" class="druki-header-branding-navigation__menu-link">Интернет-ресурсы</a>
+          <a href="/wiki/events" class="druki-header-branding-navigation__menu-link">Мероприятия</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

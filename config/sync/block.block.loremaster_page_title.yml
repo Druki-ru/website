@@ -28,6 +28,6 @@ visibility:
     context_mapping: {  }
   request_path:
     id: request_path
-    pages: '<front>'
+    pages: "<front>\r\n/wiki\r\n/download"
     negate: true
     context_mapping: {  }

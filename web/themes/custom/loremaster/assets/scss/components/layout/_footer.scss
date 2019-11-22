@@ -15,7 +15,7 @@
   display: inline-block;
   width: 16px;
   height: 16px;
-  vertical-align: top;
+  vertical-align: middle;
   background-image: svg-load('heart-outline.svg', fill=#ff0000);
   background-size: 16px;
 }
@@ -29,7 +29,7 @@
     display: inline-block;
     width: 16px;
     height: 16px;
-    vertical-align: top;
+    vertical-align: middle;
     background-image: svg-load('drupal.svg', fill=#0678be);
     background-size: 16px;
     margin-right: var(--spacing-xs);
@@ -45,7 +45,7 @@
     display: inline-block;
     width: 16px;
     height: 16px;
-    vertical-align: top;
+    vertical-align: middle;
     background-image: svg-load('gitlab.svg', fill=#ffa200);
     background-size: 16px;
     margin-right: var(--spacing-xs);

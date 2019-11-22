@@ -1,10 +1,17 @@
 .druki-page-wiki {
+  margin-top: var(--spacing-lg);
+}
 
+.druki-page-wiki__title {
+  font-size: var(--text-lg);
+  text-align: center;
 }
 
 .druki-page-wiki__subtitle {
   font-weight: bold;
   text-align: center;
+  font-size: var(--text-xxl);
+  color: var(--color-primary);
 }
 
 .druki-page-wiki__cards {

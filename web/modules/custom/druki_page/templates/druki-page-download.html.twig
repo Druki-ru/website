@@ -7,19 +7,19 @@
 {% set bem_block = 'druki-page-download' %}
 <div{{ attributes.addClass(bem_block) }}>
   <header class="{{ bem_block }}__head">
+    <h1 class="{{ bem_block }}__title">Загрузить Drupal</h1>
     <h2 class="{{ bem_block }}__subtitle">
       Всего одна команда отделяет вас от Drupal 🚀
     </h2>
 
     <div class="{{ bem_block }}__command-pane">
     <span class="{{ bem_block }}__command">
-      composer create-project drupal-composer/drupal-project:8.x-dev <strong>my_new_site</strong> -n
+      composer -n create-project drupal/recommended-project:^8.8@dev <strong>my_new_site</strong>
     </span>
     </div>
 
     <div class="{{ bem_block }}__command-note">
-      <p>Узнайте больше о <a href="/wiki/composer">Composer</a> и <a href="/wiki/composer-drupal-project">Composer Drupal
-          Project</a>. Возникли сложности? Обратитесь к <a href="/wiki/8/installation">руководству по
+      <p>Узнайте больше о <a href="/wiki/composer">Composer</a> и шаблонах проектов. Возникли сложности в процессе установки? Обратитесь к <a href="/wiki/8/installation">руководству по
           установке</a>.</p>
     </div>
   </header>
