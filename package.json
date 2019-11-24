@@ -7,7 +7,7 @@
   "license": "GPL v2",
   "private": true,
   "scripts": {
-    "build theme": "THEME_PATH=web/themes/custom/loremaster; gulp default --gulpfile=$THEME_PATH/gulpfile.js;"
+    "autobuild-theme": "THEME_PATH=web/themes/custom/loremaster; gulp default --gulpfile=$THEME_PATH/gulpfile.js;"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.3",

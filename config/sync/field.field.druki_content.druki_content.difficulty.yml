@@ -13,7 +13,7 @@ id: druki_content.druki_content.difficulty
 field_name: difficulty
 entity_type: druki_content
 bundle: druki_content
-label: Difficulty
+label: Сложность
 description: ''
 required: false
 translatable: false

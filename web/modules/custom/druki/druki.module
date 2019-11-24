@@ -86,6 +86,11 @@ function druki_theme($existing, $type, $theme, $path) {
       'variables' => [],
       'file' => 'druki.theme.inc',
     ],
+    'druki_header_search' => [
+      'variables' => [
+        'default_value' => '',
+      ],
+    ],
   ];
 }
 

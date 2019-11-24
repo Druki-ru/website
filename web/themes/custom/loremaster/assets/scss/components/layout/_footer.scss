@@ -1,9 +1,17 @@
+:root {
+  --footer-color: var(--color-black-40);
+}
+
+[data-theme="dark"] {
+  --footer-color: var(--color-white-40);
+}
+
 .footer {
   font-size: var(--text-sm);
   padding: var(--spacing-md) 0;
   margin: 0 auto;
   max-width: var(--grid-container-max-width);
-  color: var(--color-black-40);
+  color: var(--footer-color);
   --link-color: var(--color-blue-70);
 }
 

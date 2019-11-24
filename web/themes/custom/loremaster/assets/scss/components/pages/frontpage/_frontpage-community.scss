@@ -1,3 +1,11 @@
+:root {
+  --frontpage-community-overlay-background-color: var(--color-blue-70);
+}
+
+[data-theme="dark"] {
+  --frontpage-community-overlay-background-color: var(--color-black-70);
+}
+
 .frontpage-community {
   position: relative;
   overflow: hidden;
@@ -24,7 +32,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: var(--color-blue-70);
+  background-color: var(--frontpage-community-overlay-background-color);
 }
 
 .frontpage-community__content {
@@ -61,7 +69,7 @@
 .frontpage-community__action {
   padding: var(--spacing-sm) var(--spacing-md);
   font-size: var(--text-md);
-  background-color: rgba(0,0,0,0.5);
+  background-color: var(--color-black-50);
   border: 1px solid white;
   color: white;
   text-transform: uppercase;

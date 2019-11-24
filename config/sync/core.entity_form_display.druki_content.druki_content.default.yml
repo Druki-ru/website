@@ -27,8 +27,8 @@ content:
     weight: 3
     region: content
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
+      title: Параграф
+      title_plural: Параграфы
       edit_mode: closed
       closed_mode: summary
       autocollapse: none

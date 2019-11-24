@@ -1,3 +1,13 @@
+:root {
+  --druki-header-branding-navigation-menu-background-color: var(--color-white);
+  --druki-header-branding-navigation-menu-group-title-color: var(--color-black-30);
+}
+
+[data-theme="dark"] {
+  --druki-header-branding-navigation-menu-background-color: #1E1E1E;
+  --druki-header-branding-navigation-menu-group-title-color: var(--color-white-30);
+}
+
 .druki-header-branding-navigation {
   position: relative;
   display: flex;
@@ -8,7 +18,7 @@
 
 .druki-header-branding-navigation__link {
   position: relative;
-  z-index: 2;
+  z-index: 101;
   display: flex;
   align-items: center;
   height: var(--navigation-height);
@@ -45,7 +55,7 @@
 
 .druki-header-branding-navigation__dropdown {
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   top: 0;
   left: 0;
   display: none;
@@ -59,7 +69,7 @@
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: var(--color-white);
+  background-color: var(--druki-header-branding-navigation-menu-background-color);
   box-shadow: 0 6px 10px var(--color-black-10);
 }
 
@@ -72,7 +82,7 @@
   font-weight: bold;
   margin-bottom: var(--spacing-unit);
   text-transform: uppercase;
-  color: var(--color-black-30);
+  color: var(--druki-header-branding-navigation-menu-group-title-color);
 }
 
 .druki-header-branding-navigation__menu-link {

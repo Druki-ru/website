@@ -1,0 +1,9 @@
+// @see \Drupal\druki\Plugin\Block\HeaderDarkModeSwitcher
+.header-dark-mode-switcher {
+  width: var(--navigation-height);
+  height: var(--navigation-height);
+  background-image: svg-load('theme-light-dark.svg', fill=#FFF);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}

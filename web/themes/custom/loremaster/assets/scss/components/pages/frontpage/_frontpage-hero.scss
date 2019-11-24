@@ -1,8 +1,14 @@
+:root {
+  --frontpage-hero-overlay-background-color: var(--color-blue-70);
+}
+
+[data-theme="dark"] {
+  --frontpage-hero-overlay-background-color: var(--color-black-70);
+}
+
 .frontpage-hero {
   position: relative;
   overflow: hidden;
-  margin-top: -79px;
-  padding-top: 79px;
 }
 
 .frontpage-hero::before {
@@ -14,7 +20,7 @@
   width: 100%;
   height: 100%;
   content: '';
-  background: var(--color-blue-50);
+  background: var(--frontpage-hero-overlay-background-color);
 }
 
 .frontpage-hero__image {
@@ -107,6 +113,8 @@
 .frontpage-hero__action {
   font-weight: bold;
   box-shadow: var(--shadow-xs);
+  --button-background-color: var(--color-accent);
+  --button-color: var(--color-black-90);
   --button-padding-y: var(--spacing-sm);
   --button-padding-x: var(--spacing-md);
   --link-color-hover: var(--color-white);

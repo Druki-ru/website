@@ -10,6 +10,12 @@ use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @todo refactor:
+ *   - Add page title like "[search-text] — search results"
+ *   - Remove unused dependencies such as form builder.
+ *   - Investigate why search query so slow.
+ */
 class PageController implements ContainerInjectionInterface {
 
   /**
@@ -95,13 +101,6 @@ class PageController implements ContainerInjectionInterface {
       '#type' => 'container',
       '#attributes' => [
         'class' => ['druki-search-page'],
-      ],
-      'search_form' => [
-        '#type' => 'container',
-        '#attributes' => [
-          'class' => ['druki-search-page__form'],
-        ],
-        0 => $this->formBuilder->getForm('Drupal\druki_search\SearchPage\SearchForm'),
       ],
       'search_results' => [
         '#type' => 'container',

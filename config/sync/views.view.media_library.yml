@@ -48,7 +48,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: 'Apply Filters'
+          submit_button: 'Применить фильтры'
           reset_button: false
           reset_button_label: Сбросить
           exposed_sorts_label: 'Сортировать по'

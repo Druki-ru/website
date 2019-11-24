@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present header search form.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - default_value: Default value for input.
+ */
+#}
+<form action="/search" class="druki-header-search">
+  <input type="text" name="text" placeholder="Поиск по энциклопедии" autocomplete="off" class="druki-header-search__input" value="{{ default_value }}">
+  <button class="druki-header-search__submit"></button>
+</form>

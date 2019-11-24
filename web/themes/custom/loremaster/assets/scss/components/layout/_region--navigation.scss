@@ -4,7 +4,7 @@
 }
 
 [data-theme="dark"] {
-  --navigation-background-color: var(--color-white-05);
+  --navigation-background-color: var(--color-gray-30);
 }
 
 .region--navigation {
@@ -15,4 +15,6 @@
 .region--navigation .region__content {
   max-width: var(--grid-container-max-width);
   margin: 0 auto;
+  display: flex;
+  align-items: center;
 }

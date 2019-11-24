@@ -165,7 +165,8 @@ body {
   --code-background: var(--color-black-03); }
 
 [data-theme="dark"] {
-  --text-color: var(--color-white-80); }
+  --text-color: var(--color-white-80);
+  --code-background: var(--color-white-05); }
 
 body {
   font-family: var(--font-family);

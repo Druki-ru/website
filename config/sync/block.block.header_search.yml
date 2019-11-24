@@ -1,4 +1,4 @@
-uuid: 645728fe-aca3-422b-a025-acd73a543edf
+uuid: 313e22fe-f3eb-47f0-af0b-edc0447f2b1b
 langcode: ru
 status: true
 dependencies:
@@ -7,15 +7,15 @@ dependencies:
     - druki
   theme:
     - loremaster
-id: header_branding_navigation
+id: header_search
 theme: loremaster
 region: navigation
-weight: -6
+weight: -5
 provider: null
-plugin: druki_header_branding_navigation
+plugin: druki_header_search
 settings:
-  id: druki_header_branding_navigation
-  label: 'Header branding navigation'
+  id: druki_header_search
+  label: 'Header search'
   provider: druki
   label_display: '0'
 visibility:

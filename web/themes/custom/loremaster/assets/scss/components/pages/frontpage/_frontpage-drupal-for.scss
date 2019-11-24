@@ -1,6 +1,7 @@
 .frontpage-drupal-for {
   display: grid;
   padding: var(--grid-container-inner-gap);
+  padding-top: unset;
   grid-gap: var(--spacing-md);
   grid-template-columns: repeat(3, 1fr);
 }

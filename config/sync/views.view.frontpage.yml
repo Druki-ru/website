@@ -31,7 +31,7 @@ display:
       empty:
         area_text_custom:
           admin_label: ''
-          content: 'No front page content has been created yet.<br/>Follow the <a target="_blank" href="https://www.drupal.org/docs/user_guide/en/index.html">User Guide</a> to start building your site.'
+          content: 'Материалов для отображения на главной странице еще не создано.<br>Следуйте <a target="_blank" href="https://www.drupal.org/ru/docs/user_guide/ru/index.html">Руководству Пользователя</a> для начала создания сайта.'
           empty: true
           field: area_text_custom
           group_type: group

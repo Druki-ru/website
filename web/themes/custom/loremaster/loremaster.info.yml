@@ -13,6 +13,7 @@ libraries:
   - loremaster/style.component
   - loremaster/style.utilities
   - loremaster/code-highlight
+  - loremaster/dark-mode
 
 regions:
   header: Header

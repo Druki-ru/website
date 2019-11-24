@@ -1,8 +1,18 @@
+:root {
+  --druki-drupal-versions-background-color: var(--color-black-05);
+  --druki-drupal-versions-label-color: var(--color-black-90);
+}
+
+[data-theme="dark"] {
+  --druki-drupal-versions-background-color: var(--color-black-40);
+  --druki-drupal-versions-label-color: var(--color-white-90);
+}
+
 .druki-drupal-versions {
   display: grid;
   align-items: center;
   padding: var(--grid-container-inner-gap);
-  background-color: var(--color-black-05);
+  background-color: var(--druki-drupal-versions-background-color);
   grid-gap: var(--spacing-md);
   grid-template-columns: repeat(4, 1fr);
 }
@@ -21,7 +31,7 @@
   font-family: var(--font-secondary);
   font-size: var(--text-md);
   font-weight: bold;
-  color: var(--color-black-90);
+  color: var(--druki-drupal-versions-label-color);
 }
 
 .druki-drupal-versions__date {
