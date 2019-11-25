@@ -2,7 +2,11 @@
   --grid-gap: var(--spacing-sm);
   --grid-container-max-width: 1280px;
   --grid-template-columns-12: repeat(12, [col] 1fr);
-  --grid-container-inner-gap: var(--spacing-lg);
+  --grid-container-inner-gap: var(--spacing-md);
+
+  @media (--md) {
+    --grid-container-inner-gap: var(--spacing-lg);
+  }
 
   @media (--lg) {
     --grid-container-max-width: 940px;

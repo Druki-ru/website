@@ -1,5 +1,5 @@
 :root {
-  --navigation-background-color: var(--color-blue-80);
+  --navigation-background-color: var(--color-blue);
   --navigation-height: 60px;
 }
 
@@ -10,6 +10,8 @@
 .region--navigation {
   background-color: var(--navigation-background-color);
   height: var(--navigation-height);
+  position: relative;
+  z-index: 10;
 }
 
 .region--navigation .region__content {

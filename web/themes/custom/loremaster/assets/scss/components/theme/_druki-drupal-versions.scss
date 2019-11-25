@@ -14,7 +14,15 @@
   padding: var(--grid-container-inner-gap);
   background-color: var(--druki-drupal-versions-background-color);
   grid-gap: var(--spacing-md);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .druki-drupal-versions__name {

@@ -10,3 +10,10 @@ throttle:
     assets/js/throttle.js: {}
   dependencies:
     - core/drupal
+
+header-branding-navigation:
+  version: VERSION
+  js:
+    assets/js/druki-header-branding-navigation.js: {}
+  dependencies:
+    - core/drupal

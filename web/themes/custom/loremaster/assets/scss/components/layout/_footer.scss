@@ -8,11 +8,15 @@
 
 .footer {
   font-size: var(--text-sm);
-  padding: var(--spacing-md) 0;
-  margin: 0 auto;
   max-width: var(--grid-container-max-width);
+  margin: 0 auto;
+  padding: var(--grid-container-inner-gap);
   color: var(--footer-color);
   --link-color: var(--color-blue-70);
+
+  @media (--lg) {
+    padding: var(--spacing-md) 0;
+  }
 }
 
 .footer__some-love {
@@ -33,14 +37,14 @@
   color: #0678be;
 
   &::before {
-    content: '';
     display: inline-block;
     width: 16px;
     height: 16px;
+    margin-right: var(--spacing-xs);
+    content: '';
     vertical-align: middle;
     background-image: svg-load('drupal.svg', fill=#0678be);
     background-size: 16px;
-    margin-right: var(--spacing-xs);
   }
 }
 
@@ -49,13 +53,13 @@
   color: #ffa200;
 
   &::before {
-    content: '';
     display: inline-block;
     width: 16px;
     height: 16px;
+    margin-right: var(--spacing-xs);
+    content: '';
     vertical-align: middle;
     background-image: svg-load('gitlab.svg', fill=#ffa200);
     background-size: 16px;
-    margin-right: var(--spacing-xs);
   }
 }

@@ -3,7 +3,11 @@
   padding: var(--grid-container-inner-gap);
   padding-top: unset;
   grid-gap: var(--spacing-md);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+
+  @media (--md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .frontpage-drupal-for__subtitle {

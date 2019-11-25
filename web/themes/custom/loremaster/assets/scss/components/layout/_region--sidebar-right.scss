@@ -1,6 +1,11 @@
 .region--sidebar-right {
   padding: var(--spacing-md);
   border-left: 1px solid var(--color-gray-10);
+  display: none;
+
+  @media (--lg) {
+    display: block;
+  }
 }
 
 .region--sidebar-right .block:not(:last-child) {

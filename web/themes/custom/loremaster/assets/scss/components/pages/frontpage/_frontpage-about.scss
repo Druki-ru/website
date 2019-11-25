@@ -2,9 +2,14 @@
   position: relative;
   padding: var(--grid-container-inner-gap);
   display: grid;
-  grid-gap: var(--spacing-xl);
-  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--grid-gap);
   align-items: center;
+  grid-template-columns: 1fr;
+
+  @media (--md) {
+    grid-gap: var(--spacing-xl);
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .frontpage-about__subtitle {

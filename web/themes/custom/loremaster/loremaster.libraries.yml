@@ -48,3 +48,9 @@ dark-mode:
     assets/js/dark-mode.js: {}
   dependencies:
     - core/drupal
+
+mobile-toc:
+  js:
+    assets/js/mobile-toc.js: {}
+  dependencies:
+    - core/drupal

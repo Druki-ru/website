@@ -47,3 +47,17 @@ function template_preprocess_druki_header_branding_navigation(array &$variables)
     ],
   ];
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for 'druki-mobile-header.html.twig'.
+ */
+function template_preprocess_druki_mobile_header(array &$variables): void {
+  $variables['site_logo'] = [
+    '#theme' => 'image',
+    '#uri' => theme_get_setting('logo.url'),
+    '#alt' => new TranslatableMarkup('Home'),
+    '#attributes' => [
+      'class' => ['druki-mobile-header__logo'],
+    ],
+  ];
+}

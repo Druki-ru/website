@@ -51,7 +51,7 @@ function druki_cron(): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for page.html.twig.
+ * Implements hook_preprocess_HOOK() for 'page--front.html.twig'.
  */
 function druki_preprocess_page__front(array &$variables): void {
   $variables['drupal_versions'] = [

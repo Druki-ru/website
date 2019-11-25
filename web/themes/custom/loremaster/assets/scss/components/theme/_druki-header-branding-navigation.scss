@@ -4,7 +4,7 @@
 }
 
 [data-theme="dark"] {
-  --druki-header-branding-navigation-menu-background-color: #1E1E1E;
+  --druki-header-branding-navigation-menu-background-color: #1e1e1e;
   --druki-header-branding-navigation-menu-group-title-color: var(--color-white-30);
 }
 
@@ -12,8 +12,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 240px;
   padding: 0 var(--spacing-md);
+
+  @media (--lg) {
+    width: 240px;
+  }
 }
 
 .druki-header-branding-navigation__link {
@@ -38,10 +41,11 @@
 
 .druki-header-branding-navigation__burger {
   position: relative;
-  z-index: 2;
+  z-index: 101;
   width: 24px;
   height: 24px;
   margin-left: var(--spacing-sm);
+  cursor: pointer;
   border: none;
   background-color: unset;
   background-image: svg-load('menu.svg', fill=#ffffff);
@@ -64,13 +68,21 @@
   background-color: var(--color-black-20);
 }
 
+.druki-header-branding-navigation__dropdown--active {
+  display: block;
+}
+
 .druki-header-branding-navigation__menu {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
+  width: 320px;
   background-color: var(--druki-header-branding-navigation-menu-background-color);
   box-shadow: 0 6px 10px var(--color-black-10);
+
+  @media (--lg) {
+    width: 100%;
+  }
 }
 
 .druki-header-branding-navigation__group {

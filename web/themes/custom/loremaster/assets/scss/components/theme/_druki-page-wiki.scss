@@ -8,16 +8,24 @@
 }
 
 .druki-page-wiki__subtitle {
+  font-size: var(--text-xxl);
   font-weight: bold;
   text-align: center;
-  font-size: var(--text-xxl);
   color: var(--color-primary);
 }
 
 .druki-page-wiki__cards {
   display: grid;
   grid-gap: var(--grid-gap);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .druki-page-wiki__row {
@@ -34,5 +42,19 @@
 .druki-page-wiki__other-items {
   display: grid;
   grid-gap: var(--grid-gap);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.druki-page-wiki__other-item-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

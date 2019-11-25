@@ -107,7 +107,11 @@
   max-width: 700px;
   margin: var(--spacing-sm) auto 0 auto;
   grid-gap: var(--grid-gap);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .frontpage-hero__action {

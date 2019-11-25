@@ -10,14 +10,15 @@
  * @see template_preprocess_druki_header_branding_navigation()
  */
 #}
+{{ attach_library('druki/header-branding-navigation') }}
 <div class="druki-header-branding-navigation">
   <a href="{{ url('<front>') }}" class="druki-header-branding-navigation__link">
     {{ site_logo }}
     <div class="druki-header-branding-navigation__site-name">Druki</div>
   </a>
   <div class="druki-header-branding-navigation__navigation">
-    <div class="druki-header-branding-navigation__burger"></div>
-    <div class="druki-header-branding-navigation__dropdown">
+    <div class="druki-header-branding-navigation__burger js-header-branding-burger"></div>
+    <div class="druki-header-branding-navigation__dropdown js-header-branding-dropdown">
       <div class="druki-header-branding-navigation__menu">
         <div class="druki-header-branding-navigation__group">
           <a href="{{ url('<front>') }}" class="druki-header-branding-navigation__menu-link">Главная</a>
