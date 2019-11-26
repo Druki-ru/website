@@ -1,7 +1,0 @@
-.app {
-  padding-top: var(--mobile-header-height, 60px);
-
-  @media (--lg) {
-    padding-top: unset;
-  }
-}
