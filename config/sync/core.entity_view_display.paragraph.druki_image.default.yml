@@ -4,12 +4,29 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.druki_image.druki_image
+    - image.style.paragraph_druki_image_big_image
     - paragraphs.paragraphs_type.druki_image
+    - responsive_image.styles.paragraph_druki_image_thumbnail
+  module:
+    - photoswipe
 id: paragraph.druki_image.default
 targetEntityType: paragraph
 bundle: druki_image
 mode: default
-content: {  }
+content:
+  druki_image:
+    type: photoswipe_respoinsive_field_formatter
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      photoswipe_node_style_first: ''
+      photoswipe_node_style: paragraph_druki_image_thumbnail
+      photoswipe_image_style: paragraph_druki_image_big_image
+      photoswipe_reference_image_field: field_media_image
+      photoswipe_caption: title
+      photoswipe_caption_custom: ''
+      photoswipe_view_mode: default
+    third_party_settings: {  }
 hidden:
-  druki_image: true
   search_api_excerpt: true

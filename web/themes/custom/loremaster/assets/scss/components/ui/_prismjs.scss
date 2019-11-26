@@ -56,7 +56,7 @@ code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-select
 /* Code blocks */
 pre[class*="language-"] {
   overflow: auto;
-  margin: var(--spacing-sm) 0;
+  margin: calc(var(--spacing-unit) * 3) 0;
 }
 
 :not(pre) > code[class*="language-"],

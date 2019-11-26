@@ -1,0 +1,15 @@
+uuid: e6744998-92fa-4b1c-a415-22bf4ed7b72e
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_community_md_2x
+label: 'Frontpage Community: MD 2x'
+effects:
+  9f25b0c6-1b4a-4806-844a-06015a6849c1:
+    uuid: 9f25b0c6-1b4a-4806-844a-06015a6849c1
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1982
+      height: 1496
+      anchor: center-center

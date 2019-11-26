@@ -1,0 +1,15 @@
+uuid: 65cba31b-404d-4f50-8cbb-5283f90efa99
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_community_sm_3x
+label: 'Frontpage Community: SM 3x'
+effects:
+  e885c1e9-e44b-40c1-9664-2bb1447d2060:
+    uuid: e885c1e9-e44b-40c1-9664-2bb1447d2060
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2301
+      height: 2226
+      anchor: center-center

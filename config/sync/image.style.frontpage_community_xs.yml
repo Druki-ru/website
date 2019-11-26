@@ -1,0 +1,15 @@
+uuid: 57d34054-6c4a-4b04-87ff-8e8af0b04afe
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_community_xs
+label: 'Frontpage Community: XS'
+effects:
+  ced1686d-32f3-40ac-95c2-c3339fba532d:
+    uuid: ced1686d-32f3-40ac-95c2-c3339fba532d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 575
+      height: 799
+      anchor: center-center

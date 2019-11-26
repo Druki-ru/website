@@ -1,0 +1,7 @@
+.paragraph-druki-code {
+  margin: 0 calc(var(--grid-container-inner-gap) * -1);
+}
+
+.paragraph-druki-code pre[class*="language-"] {
+  padding: var(--spacing-sm) var(--grid-container-inner-gap);
+}

@@ -1,5 +1,36 @@
 .druki-mobile-toc {
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--color-black-10);
+  padding: var(--spacing-sm);
+
   @media (--lg) {
     display: none;
   }
+}
+
+.druki-mobile-toc__header {
+}
+
+.druki-mobile-toc__toggle {
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.druki-mobile-toc__toggle::before {
+  //content: '';
+  //display: inline-block;
+  //width: 16px;
+  //height: 16px;
+  //margin-right: var(--spacing-unit);
+}
+
+.druki-mobile-toc__content {
+  display: none;
+}
+
+.druki-mobile-toc--active .druki-mobile-toc__content {
+  margin-top: var(--spacing-sm);
+  display: block;
 }

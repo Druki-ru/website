@@ -1,0 +1,15 @@
+uuid: 62f070a7-4875-4377-a53c-63fea5642a58
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_community_md_3x
+label: 'Frontpage Community: MD 3x'
+effects:
+  0e64f223-e735-492e-b04f-264d96fa4343:
+    uuid: 0e64f223-e735-492e-b04f-264d96fa4343
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2973
+      height: 2244
+      anchor: center-center

@@ -3,14 +3,26 @@ langcode: ru
 status: true
 dependencies:
   config:
+    - image.style.frontpage_community_lg
+    - image.style.frontpage_community_lg_2x
+    - image.style.frontpage_community_lg_3x
+    - image.style.frontpage_community_md
+    - image.style.frontpage_community_md_2x
+    - image.style.frontpage_community_md_3x
+    - image.style.frontpage_community_sm
+    - image.style.frontpage_community_sm_3x
+    - image.style.frontpage_community_smm
     - image.style.frontpage_community_xl
     - image.style.frontpage_community_xl_2x
     - image.style.frontpage_community_xl_3x
+    - image.style.frontpage_community_xs
+    - image.style.frontpage_community_xs_2x
+    - image.style.frontpage_community_xs_3x
     - image.style.thumbnail
   theme:
     - loremaster
 id: frontpage_community
-label: 'Frontpage: Community'
+label: 'Frontpage Community'
 image_style_mappings:
   -
     breakpoint_id: loremaster.xl
@@ -27,5 +39,65 @@ image_style_mappings:
     multiplier: 3x
     image_mapping_type: image_style
     image_mapping: frontpage_community_xl_3x
+  -
+    breakpoint_id: loremaster.lg
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_lg
+  -
+    breakpoint_id: loremaster.lg
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_lg_2x
+  -
+    breakpoint_id: loremaster.lg
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_lg_3x
+  -
+    breakpoint_id: loremaster.md
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_md
+  -
+    breakpoint_id: loremaster.md
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_md_2x
+  -
+    breakpoint_id: loremaster.md
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_md_3x
+  -
+    breakpoint_id: loremaster.sm
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_sm
+  -
+    breakpoint_id: loremaster.sm
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_smm
+  -
+    breakpoint_id: loremaster.sm
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_sm_3x
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_xs
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_xs_2x
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: frontpage_community_xs_3x
 breakpoint_group: loremaster
 fallback_image_style: thumbnail

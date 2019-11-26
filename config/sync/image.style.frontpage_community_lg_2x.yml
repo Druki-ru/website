@@ -1,0 +1,15 @@
+uuid: 49a97390-0ae3-45a0-9d01-fb59292c0471
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_community_lg_2x
+label: 'Frontpage Community: LG 2x'
+effects:
+  4a9baee6-8bf2-4ce9-84d7-bbddc3b61fe7:
+    uuid: 4a9baee6-8bf2-4ce9-84d7-bbddc3b61fe7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1880
+      height: 1496
+      anchor: center-center

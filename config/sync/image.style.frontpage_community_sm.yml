@@ -1,0 +1,15 @@
+uuid: e54157f1-c770-46f0-b80d-89b27618da2d
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_community_sm
+label: 'Frontpage Community: SM'
+effects:
+  b73865f5-14a7-44aa-b51e-8a6d581090f0:
+    uuid: b73865f5-14a7-44aa-b51e-8a6d581090f0
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 767
+      height: 742
+      anchor: center-center

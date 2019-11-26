@@ -4,9 +4,7 @@
   </div>
 
   <div class="app__middle">
-    <div class="app__header">
-      {{ page.header }}
-    </div>
+    {{ page.header }}
 
     <main{{ main_layout_attributes.addClass(bem_block ~ '__content') }}>
       {% include '@loremaster/page/include.frontpage.html.twig' %}
