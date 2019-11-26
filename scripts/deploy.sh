@@ -11,8 +11,6 @@
 ssh "$USER"@"$HOST" <<EOF
   # Navigates to project root.
   cd $PROJECT_ROOT;
-  # Disable old theme.
-  drush pmu roachl
   # Fetch project from repository to log changes.
   git fetch && git checkout;
   # Force to fix write permission to directory. Sometimes it mess up after
