@@ -188,6 +188,18 @@ function loremaster_page_attachments_alter(array &$attachments) {
       ],
       'google_analytics',
     ],
+    [
+      [
+        '#tag' => 'link',
+        '#attributes' => [
+          'rel' => 'preconnect',
+          'href' => '//stats.g.doubleclick.net',
+          'crossorigin' => 'anonymous',
+        ],
+        '#weight' => -96,
+      ],
+      'google_doubleclick',
+    ]
   ];
 
   $attachments['#attached']['html_head'] = array_merge($attachments['#attached']['html_head'], $network_optimizations);
