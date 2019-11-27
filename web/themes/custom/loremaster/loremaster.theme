@@ -28,32 +28,6 @@ function loremaster_preprocess_page(array &$variables) {
   else {
     $main_layout_attributes->addClass('main-layout--no-sidebars');
   }
-
-  // Some optimizations.
-  $google_font_styles = [
-    '#tag' => 'link',
-    '#attributes' => [
-      'rel' => 'preconnect',
-      'href' => 'https://fonts.googleapis.com/',
-      'crossorigin' => 'anonymous',
-    ],
-    '#weight' => -99,
-  ];
-  $variables['#attached']['html_head'][] = [
-    $google_font_styles,
-    'google_font_styles',
-  ];
-
-  $gtm = [
-    '#tag' => 'link',
-    '#attributes' => [
-      'rel' => 'preconnect',
-      'href' => 'https://www.googletagmanager.com/',
-      'crossorigin' => 'anonymous',
-    ],
-    '#weight' => -97,
-  ];
-  $variables['#attached']['html_head'][] = [$gtm, 'google_tag_manager'];
 }
 
 /**
@@ -158,4 +132,63 @@ function loremaster_preprocess_page__front(array &$variables): void {
   if ($why_video instanceof MediaInterface) {
     $variables['why_drupal_video'] = $media_view_builder->view($why_video);
   }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function loremaster_page_attachments_alter(array &$attachments) {
+  // Network optimizations. In the same order as requests will be executed.
+  $network_optimizations = [
+    [
+      [
+        '#tag' => 'link',
+        '#attributes' => [
+          'rel' => 'preconnect',
+          'href' => '//fonts.googleapis.com',
+          'crossorigin' => 'anonymous',
+        ],
+        '#weight' => -99,
+      ],
+      'google_font_styles',
+    ],
+    [
+      [
+        '#tag' => 'link',
+        '#attributes' => [
+          'rel' => 'preconnect',
+          'href' => '//www.googletagmanager.com',
+          'crossorigin' => 'anonymous',
+        ],
+        '#weight' => -98,
+      ],
+      'google_tag_manager',
+    ],
+    [
+      [
+        '#tag' => 'link',
+        '#attributes' => [
+          'rel' => 'preconnect',
+          'href' => '//fonts.gstatic.com',
+          'crossorigin' => 'anonymous',
+        ],
+        '#weight' => -97,
+      ],
+      'google_font_cache',
+    ],
+    [
+      [
+        '#tag' => 'link',
+        '#attributes' => [
+          'rel' => 'preconnect',
+          'href' => '//www.google-analytics.com',
+          'crossorigin' => 'anonymous',
+        ],
+        '#weight' => -96,
+      ],
+      'google_analytics',
+    ],
+  ];
+
+  $attachments['#attached']['html_head'] = array_merge($attachments['#attached']['html_head'], $network_optimizations);
 }
