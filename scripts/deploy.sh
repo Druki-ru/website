@@ -24,11 +24,11 @@ ssh "$USER"@"$HOST" <<EOF
   # Update Drupal database.
   drush updatedb -y;
   # Export config_split changes.
-  #drush config-split:export live -y;
+  drush config-split:export live -y;
   # Import configuration changes with diff output for logs.
   drush config:import --diff -y;
   # Import config_split back.
-  #drush config-split:import live -y;
+  drush config-split:import live -y;
   # Check for localization updates.
   drush locale:check;
   # Apply localization updates.
