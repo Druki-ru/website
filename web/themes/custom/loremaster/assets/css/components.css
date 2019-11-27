@@ -334,7 +334,10 @@
 
 .page-title {
   margin-bottom: unset;
-  font-size: 36px; }
+  font-size: 26px; }
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 36px; } }
 
 .region--content {
   padding: 0 var(--grid-container-inner-gap) var(--grid-container-inner-gap); }

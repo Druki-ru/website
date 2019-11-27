@@ -1,4 +1,8 @@
 .page-title {
   margin-bottom: unset;
-  font-size: 36px;
+  font-size: 26px;
+
+  @media (--md) {
+    font-size: 36px
+  }
 }
