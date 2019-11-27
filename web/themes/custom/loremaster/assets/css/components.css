@@ -429,7 +429,7 @@
 
 .frontpage-about {
   position: relative;
-  padding: var(--grid-container-inner-gap);
+  padding: var(--spacing-md) var(--grid-container-inner-gap);
   display: grid;
   grid-gap: var(--grid-gap);
   -webkit-box-align: center;
@@ -937,7 +937,7 @@
 .druki-content-next-prev {
   display: grid;
   grid-gap: var(--grid-gap);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   --link-border: 2px solid var(--color-gray-20);
   --link-border-hover: 2px solid var(--color-primary);
   --link-color: var(--text-color);
@@ -945,6 +945,9 @@
   --icon-size: 18px;
   --icon-url: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='UTF-8'?%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z'/%3E%3C/svg%3E");
   --icon-hover-url: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='UTF-8'?%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24' fill='%230049db'%3E%3Cpath d='M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z'/%3E%3C/svg%3E"); }
+  @media (min-width: 768px) {
+    .druki-content-next-prev {
+      grid-template-columns: 1fr 1fr; } }
 
 .druki-content-next-prev__link {
   font-weight: bold;
@@ -1107,7 +1110,7 @@
   display: grid;
   -webkit-box-align: center;
           align-items: center;
-  padding: var(--grid-container-inner-gap);
+  padding: var(--spacing-md) var(--grid-container-inner-gap);
   background-color: var(--druki-drupal-versions-background-color);
   grid-gap: var(--spacing-md);
   grid-template-columns: 1fr; }
@@ -1183,9 +1186,10 @@
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  padding: 0 var(--spacing-md); }
+  padding: 0 var(--grid-container-inner-gap); }
   @media (min-width: 992px) {
     .druki-header-branding-navigation {
+      padding: 0 var(--spacing-md);
       width: 240px; } }
 
 .druki-header-branding-navigation__link {

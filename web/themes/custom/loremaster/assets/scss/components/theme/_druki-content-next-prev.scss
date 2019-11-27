@@ -1,7 +1,7 @@
 .druki-content-next-prev {
   display: grid;
   grid-gap: var(--grid-gap);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   --link-border: 2px solid var(--color-gray-20);
   --link-border-hover: 2px solid var(--color-primary);
   --link-color: var(--text-color);
@@ -9,6 +9,10 @@
   --icon-size: 18px;
   --icon-url: svg-load('arrow-left.svg');
   --icon-hover-url: svg-load('arrow-left.svg', fill=#0049db);
+
+  @media (--md) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .druki-content-next-prev__link {

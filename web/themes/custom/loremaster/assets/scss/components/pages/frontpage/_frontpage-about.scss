@@ -1,6 +1,6 @@
 .frontpage-about {
   position: relative;
-  padding: var(--grid-container-inner-gap);
+  padding:  var(--spacing-md) var(--grid-container-inner-gap);
   display: grid;
   grid-gap: var(--grid-gap);
   align-items: center;

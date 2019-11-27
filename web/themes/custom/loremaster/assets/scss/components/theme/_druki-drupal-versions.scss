@@ -11,7 +11,7 @@
 .druki-drupal-versions {
   display: grid;
   align-items: center;
-  padding: var(--grid-container-inner-gap);
+  padding: var(--spacing-md) var(--grid-container-inner-gap);
   background-color: var(--druki-drupal-versions-background-color);
   grid-gap: var(--spacing-md);
   grid-template-columns: 1fr;
