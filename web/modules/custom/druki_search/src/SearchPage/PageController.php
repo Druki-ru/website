@@ -67,7 +67,10 @@ class PageController implements ContainerInjectionInterface {
     $search_text = $this->request->get('text', NULL);
     $query = $this->queryHelper->getQuery(QueryHelper::FILTERED);
 
-    $total_items = $this->queryHelper->getQuery(QueryHelper::FILTERED)->keys($search_text)->execute()->getResultCount();
+    $total_items = $this->queryHelper->getQuery(QueryHelper::FILTERED)
+      ->keys($search_text)
+      ->execute()
+      ->getResultCount();
     $current_page = pager_default_initialize($total_items, $this->limit);
     $query->range($current_page * $this->limit, $this->limit);
     $query->keys($search_text);
@@ -98,6 +101,7 @@ class PageController implements ContainerInjectionInterface {
     }
 
     return [
+      '#title' => new TranslatableMarkup('Search results for "%keys"', ['%keys' => $search_text]),
       '#type' => 'container',
       '#attributes' => [
         'class' => ['druki-search-page'],
@@ -133,4 +137,5 @@ class PageController implements ContainerInjectionInterface {
       ],
     ];
   }
+
 }

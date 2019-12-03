@@ -9,6 +9,10 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\search_api\Query\QueryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * @todo refactor or remove. Fore refactoring the form needs to have cache for
+ *   search filter results.
+ */
 class FilterForm extends FormBase {
 
   /**
@@ -126,6 +130,7 @@ class FilterForm extends FormBase {
   }
 
   protected function getOptionsFromResults(string $value_field, string $name_field): array {
+
     $options = [];
     $results = $this->getResultsFromIndex();
     /** @var \Drupal\search_api\Item\Item $result */

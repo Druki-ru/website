@@ -28,3 +28,6 @@ msgstr "Не применимо"
 
 msgid "Nothing was found."
 msgstr "Ничего не найдено."
+
+msgid "Search results for \"%keys\""
+msgstr "Результаты поиска для \"%keys\""
