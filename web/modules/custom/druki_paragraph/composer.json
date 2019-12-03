@@ -1,5 +1,5 @@
 {
-  "name": "drupal/druki_paragraph",
+  "name": "druki/druki_paragraph",
   "type": "drupal-custom-module",
   "description": "The custom code for paragraph entity type.",
   "keywords": ["Drupal"],

@@ -1,5 +1,5 @@
 {
-  "name": "drupal/druki_git",
+  "name": "druki/druki_git",
   "type": "drupal-custom-module",
   "description": "The git integration.",
   "keywords": ["Drupal"],

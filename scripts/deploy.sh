@@ -6,9 +6,10 @@
 # - HOST: The hostname for server.
 # - PROJECT_ROOT: The root path of the project relative to USER home.
 # There are predifined variables exist as well: https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+# @todo try to execute it like "cat scripts/deploy.sh | ssh user@host"
 
 # Connect to server and run deploy pipeline.
-ssh "$USER"@"$HOST" <<EOF
+ssh "$USER"@"$HOST" /bin/bash <<EOF
   # Navigates to project root.
   cd $PROJECT_ROOT;
   # Fetch project from repository to log changes.

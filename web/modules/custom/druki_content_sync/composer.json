@@ -1,5 +1,5 @@
 {
-    "name": "drupal/druki_content_sync",
+    "name": "druki/druki_content_sync",
     "type": "drupal-custom-module",
     "description": "The code for sync content from different sources.",
     "keywords": [
@@ -8,7 +8,7 @@
     "require": {
         "ext-dom": "*",
         "ext-json": "*",
-        "symfony/dom-crawler": "~3.0",
-        "symfony/finder": "~3.0"
+        "symfony/dom-crawler": "~4.0",
+        "symfony/finder": "~4.0"
     }
 }

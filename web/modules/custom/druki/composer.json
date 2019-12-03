@@ -1,5 +1,5 @@
 {
-    "name": "drupal/druki",
+    "name": "druki/druki",
     "type": "drupal-custom-module",
     "description": "The main module for common code.",
     "keywords": [

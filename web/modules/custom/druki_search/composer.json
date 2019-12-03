@@ -1,5 +1,5 @@
 {
-  "name": "drupal/druki_search",
+  "name": "druki/druki_search",
   "type": "drupal-custom-module",
   "description": "Helpers and improvements for search.",
   "keywords": ["Drupal"]
