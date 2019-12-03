@@ -346,7 +346,7 @@ display:
             description: ''
             required: false
             reduce: false
-            label: Language
+            label: Язык
             operator_limit_selection: false
             operator: langcode_op
             identifier: langcode

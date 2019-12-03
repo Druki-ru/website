@@ -1,22 +1,22 @@
-uuid: a56ceb09-5fd8-4246-a155-f1b792040758
+uuid: b023deb9-dc4e-4862-bf1f-dae1e80e7b98
 langcode: ru
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bartik
+    - claro
 _core:
-  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
-id: bartik_content
-theme: bartik
+  default_config_hash: QTwkfDaGeBUk6aerktJBDXso4fCsqLTQOuWKXE1xMPU
+id: claro_content
+theme: claro
 region: content
 weight: 0
 provider: null
 plugin: system_main_block
 settings:
   id: system_main_block
-  label: 'Содержимое страницы'
+  label: 'Main page content'
   provider: system
   label_display: '0'
 visibility: {  }

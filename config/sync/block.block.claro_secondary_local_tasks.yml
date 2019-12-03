@@ -1,20 +1,20 @@
-uuid: a44e864b-c142-4bf6-82e5-d7815c37fcc1
+uuid: 01fed9f7-b7cc-4fdf-ad37-c4a7ac3c9327
 langcode: ru
 status: true
 dependencies:
   theme:
-    - seven
+    - claro
 _core:
-  default_config_hash: QeZBeCilQfeET3GeW6ZtJkEiwROADTZktFgKWwPieD4
-id: seven_secondary_local_tasks
-theme: seven
+  default_config_hash: D_hUB_AW2IvKbVo3lVG-B2KfTsX6xJ-CxfOcRYUnL3E
+id: claro_secondary_local_tasks
+theme: claro
 region: pre_content
 weight: 0
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
-  label: 'Вторичные вкладки'
+  label: 'Secondary tabs'
   provider: core
   label_display: '0'
   primary: false
