@@ -35,6 +35,8 @@ yarn-error.log
 
 # Ignore split configurations
 config/split
+
+# Appended by core.
 .csslintrc
 .eslintignore
 .eslintrc.json

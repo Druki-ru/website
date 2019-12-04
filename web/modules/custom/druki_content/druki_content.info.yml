@@ -3,6 +3,7 @@ type: module
 description: 'Provides a druki content entity.'
 package: druki
 core: 8.x
+core_version_requirement: ^8 || ^9
 configure: entity.druki_content.settings
 
 dependencies:

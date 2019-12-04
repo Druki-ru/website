@@ -24,16 +24,3 @@ function druki_search_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
-
-/**
- * Implements hook_search_api_query_alter().
- */
-function druki_search_search_api_query_alter(QueryInterface $query) {
-  if (!$query->getIndex()->getServerInstance()->supportsFeature('search_api_facets')) {
-    return;
-  }
-
-  if ($query->getSearchId() == QueryHelper::FILTERED) {
-    FilterForm::alterQuery($query);
-  }
-}

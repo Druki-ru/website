@@ -31,3 +31,12 @@ msgstr "Ничего не найдено."
 
 msgid "Search results for \"%keys\""
 msgstr "Результаты поиска для \"%keys\""
+
+msgid "No results found for \"%keys\""
+msgstr "Результаты по запросу \"%keys\" не найдены"
+
+msgid "No results found."
+msgstr "Ничего не найдено."
+
+msgid "You didn't enter a search query."
+msgstr "Вы не указали поисковый запрос."
