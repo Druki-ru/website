@@ -1140,6 +1140,9 @@
           align-items: center;
   margin-bottom: var(--spacing-sm); }
 
+.druki-drupal-versions__name:not(:last-child) {
+  margin-bottom: unset; }
+
 .druki-drupal-versions__label {
   font-family: var(--font-secondary);
   font-size: var(--text-md);
