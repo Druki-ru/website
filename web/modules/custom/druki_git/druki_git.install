@@ -21,22 +21,3 @@ function druki_git_install(): void {
 function druki_git_uninstall(): void {
   \Drupal::state()->delete('druki_git.webhook_key');
 }
-
-/**
- * Implements hook_requirements().
- */
-function druki_git_requirements($phase): array {
-  $requirements = [];
-
-  if ($phase == 'install') {
-    if (!class_exists('Cz\Git\GitRepository')) {
-      $requirements['druki_git_status'] = [
-        'title' => 'Druki Git',
-        'value' => t('The required dependency @dependency is missing. Install it and try again.', ['@dependency' => 'czproject/git-php']),
-        'severity' => REQUIREMENT_ERROR,
-      ];
-    }
-  }
-
-  return $requirements;
-}
