@@ -93,7 +93,7 @@
                 "web-root": "web/"
             },
             "file-mapping": {
-                "[web-root]/sites/development.services.yml": false,
+                "[web-root]/sites/development.services.yml": false
             }
         },
         "installer-types": [

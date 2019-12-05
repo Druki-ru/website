@@ -1685,11 +1685,11 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/druki_git",
-                "reference": "db1eb41d12af84dc6a68ec57812aa551ff1b0b16"
+                "reference": "34ec52ad49ca87120fd51ed98f09768acfb2287d"
             },
             "require": {
                 "ext-json": "*",
-                "symfony/process": "^3.4.0"
+                "symfony/process": "^3.4|^4.0"
             },
             "type": "drupal-custom-module",
             "description": "The git integration.",
@@ -1975,16 +1975,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.8.0-rc1",
+            "version": "8.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "2e16925020254f876c0ba3a4e11c4cd9ccbc6856"
+                "reference": "c4890669449ccbab770818de9c9cb7a9f0ffc32e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/2e16925020254f876c0ba3a4e11c4cd9ccbc6856",
-                "reference": "2e16925020254f876c0ba3a4e11c4cd9ccbc6856",
+                "url": "https://api.github.com/repos/drupal/core/zipball/c4890669449ccbab770818de9c9cb7a9f0ffc32e",
+                "reference": "c4890669449ccbab770818de9c9cb7a9f0ffc32e",
                 "shasum": ""
             },
             "require": {
@@ -2201,11 +2201,11 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2019-11-22T22:29:01+00:00"
+            "time": "2019-12-04T08:44:18+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "8.8.0-rc1",
+            "version": "8.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2252,16 +2252,16 @@
         },
         {
             "name": "drupal/core-recommended",
-            "version": "8.8.0-rc1",
+            "version": "8.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "61f27d317449bfbac21e3e1ca020e900fd934eaa"
+                "reference": "8d7b0ddac7c3a39e55f8cbbf71b9f4f6ecf765e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/61f27d317449bfbac21e3e1ca020e900fd934eaa",
-                "reference": "61f27d317449bfbac21e3e1ca020e900fd934eaa",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/8d7b0ddac7c3a39e55f8cbbf71b9f4f6ecf765e6",
+                "reference": "8d7b0ddac7c3a39e55f8cbbf71b9f4f6ecf765e6",
                 "shasum": ""
             },
             "require": {
@@ -2274,7 +2274,7 @@
                 "doctrine/common": "v2.7.3",
                 "doctrine/inflector": "v1.2.0",
                 "doctrine/lexer": "1.0.2",
-                "drupal/core": "8.8.0-rc1",
+                "drupal/core": "8.8.0",
                 "easyrdf/easyrdf": "0.9.1",
                 "egulias/email-validator": "2.1.11",
                 "guzzlehttp/guzzle": "6.3.3",
@@ -2328,7 +2328,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
-            "time": "2019-11-22T22:29:01+00:00"
+            "time": "2019-12-04T08:44:18+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -3018,17 +3018,17 @@
         },
         {
             "name": "drupal/pathauto",
-            "version": "1.6.0-beta1",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/pathauto.git",
-                "reference": "8.x-1.6-beta1"
+                "reference": "8.x-1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.6-beta1.zip",
-                "reference": "8.x-1.6-beta1",
-                "shasum": "07b803ac76d62e2b72da47cf116cfbfe86152b90"
+                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.6.zip",
+                "reference": "8.x-1.6",
+                "shasum": "eb976ae110d73c06fafb1b657adb967dd2cb8246"
             },
             "require": {
                 "drupal/core": "^8.6",
@@ -3041,11 +3041,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.6-beta1",
-                    "datestamp": "1573505285",
+                    "version": "8.x-1.6",
+                    "datestamp": "1575467285",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -3519,16 +3519,16 @@
         },
         {
             "name": "drush/drush",
-            "version": "10.0.2",
+            "version": "10.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "d3d7a16016de72393fe2178ce0d79260ba1c103a"
+                "reference": "d5c867dc44b74792d0082dc1cf7c5fd323d41f89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/d3d7a16016de72393fe2178ce0d79260ba1c103a",
-                "reference": "d3d7a16016de72393fe2178ce0d79260ba1c103a",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/d5c867dc44b74792d0082dc1cf7c5fd323d41f89",
+                "reference": "d5c867dc44b74792d0082dc1cf7c5fd323d41f89",
                 "shasum": ""
             },
             "require": {
@@ -3547,7 +3547,7 @@
                 "psy/psysh": "~0.6",
                 "symfony/event-dispatcher": "^3.4 || ^4.0",
                 "symfony/finder": "^3.4 || ^4.0",
-                "symfony/var-dumper": "^3.4 || ^4.0",
+                "symfony/var-dumper": "^3.4 || ^4.0 || ^5.0",
                 "symfony/yaml": "^3.4 || ^4.0",
                 "webflo/drupal-finder": "^1.2",
                 "webmozart/path-util": "^2.1.0"
@@ -3645,7 +3645,7 @@
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2019-11-08T17:44:01+00:00"
+            "time": "2019-12-04T16:34:19+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -9377,16 +9377,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.2",
+            "version": "3.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "65b12cdeaaa6cd276d4c3033a95b9b88b12701e7"
+                "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/65b12cdeaaa6cd276d4c3033a95b9b88b12701e7",
-                "reference": "65b12cdeaaa6cd276d4c3033a95b9b88b12701e7",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
+                "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
                 "shasum": ""
             },
             "require": {
@@ -9424,7 +9424,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-10-28T04:36:32+00:00"
+            "time": "2019-12-04T04:46:47+00:00"
         },
         {
             "name": "symfony/browser-kit",

@@ -35,10 +35,10 @@
   margin-bottom: calc(var(--spacing-unit) * 3); }
 
 .druki-content-content a {
-  border-bottom: 1px solid var(--color-blue-20); }
+  text-decoration: underline; }
 
 .druki-content-content a:hover {
-  border-bottom: 1px solid var(--color-blue); }
+  text-decoration: none; }
 
 .druki-content-content a[href*="//"]:not([href*="druki.ru"]):not([href*="druki.localhost"])::after {
   content: '';
