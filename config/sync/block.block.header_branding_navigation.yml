@@ -9,8 +9,8 @@ dependencies:
     - loremaster
 id: header_branding_navigation
 theme: loremaster
-region: navigation
-weight: -6
+region: header
+weight: -5
 provider: null
 plugin: druki_header_branding_navigation
 settings:
