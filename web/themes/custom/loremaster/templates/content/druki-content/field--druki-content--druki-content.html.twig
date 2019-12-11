@@ -1,0 +1,7 @@
+{% extends 'field.html.twig' %}
+
+{% block items %}
+  {% for item in items %}
+    {{ block('item') }}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,23 @@
+:root {
+  --navigation-background-color: var(--color-blue);
+  --navigation-height: 60px;
+}
+
+[data-theme="dark"] {
+  --navigation-background-color: var(--color-gray-30);
+}
+
+.header {
+  background-color: var(--navigation-background-color);
+  height: var(--navigation-height);
+  position: relative;
+  z-index: 10;
+}
+
+.header__content {
+  max-width: var(--grid-container-max-width);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}

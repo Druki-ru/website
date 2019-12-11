@@ -23,6 +23,8 @@
 
   --mark-background: hsl(60, 100%, 50%);
   --code-background: var(--color-black-03);
+
+  --paragraph-margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
 [data-theme="dark"] {
@@ -39,7 +41,7 @@ body {
 
 p {
   margin-top: unset;
-  margin-bottom: calc(var(--spacing-unit) * 3);
+  margin-bottom: var(--paragraph-margin-bottom);
 }
 
 small {

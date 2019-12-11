@@ -1,4 +1,8 @@
 .paragraph-druki-image-druki-image {
+  margin: 0 calc(var(--grid-container-inner-gap) * -1);
+}
+
+.paragraph-druki-image-druki-image__value {
   display: table;
   margin: 0 auto;
 }

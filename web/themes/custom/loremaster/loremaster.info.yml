@@ -19,6 +19,7 @@ libraries:
 regions:
   header: Header
   navigation: Navigation
+  content_header: Content header
   content: Content
   sidebar_right: 'Sidebar Right'
 

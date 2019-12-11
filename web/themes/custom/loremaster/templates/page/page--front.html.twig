@@ -1,17 +1,7 @@
-<div class="app">
-  <div class="app__header">
-    {{ page.navigation }}
-  </div>
+{{ page.header }}
 
-  <div class="app__middle">
-    {{ page.header }}
+<main{{ main_layout_attributes }}>
+  {% include '@loremaster/page/include.frontpage.html.twig' %}
+</main>
 
-    <main{{ main_layout_attributes.addClass(bem_block ~ '__content') }}>
-      {% include '@loremaster/page/include.frontpage.html.twig' %}
-    </main>
-  </div>
-
-  <div class="app__footer">
-    {% include '@loremaster/page/include.footer.html.twig' %}
-  </div>
-</div>
+{% include '@loremaster/page/include.footer.html.twig' %}

@@ -5,6 +5,12 @@
 
 .druki-header-search {
   position: relative;
+  margin: 0 var(--spacing-sm);
+  display: none;
+
+  @media (--lg) {
+    display: block;
+  }
 }
 
 .druki-header-search__input {

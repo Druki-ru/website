@@ -1,10 +1,23 @@
-.main-layout {
-  display: grid;
-  grid-template-areas: "content";
-  grid-template-columns: 1fr;
+:root {
+  --main-layout-background: var(--color-white);
 }
 
-.main-layout--sidebar-right {
+[data-theme="dark"] {
+  --main-layout-background: var(--color-white-05);
+}
+
+
+.main-layout {
+  width: 100%;
+  max-width: var(--grid-container-max-width);
+  margin: 0 auto;
+  background-color: var(--main-layout-background);
+  box-shadow: 0 4px 45px rgba(0, 0, 0, 0.05), 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.main-layout--sidebar-right .main-layout__content {
+  display: grid;
+
   @media (--lg) {
     grid-template-areas: "content sidebar";
     grid-template-columns: 1fr 300px;
