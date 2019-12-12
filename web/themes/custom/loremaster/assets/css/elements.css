@@ -194,6 +194,9 @@ mark {
   padding: var(--spacing-xs);
   background-color: var(--mark-background); }
 
+pre {
+  overflow: auto; }
+
 code {
   font-family: var(--font-monospace);
   font-size: 90%;

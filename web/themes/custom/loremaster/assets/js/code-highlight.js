@@ -5,21 +5,29 @@
 
 (function (Drupal) {
 
+  /**
+   * Highlight the code blocks.
+   *
+   * We highlight only visible code blocks on the page to increase performance
+   * for mobile devices on pages where a lot of code needs to be highlighted.
+   */
   Drupal.behaviors.loremasterCodeHighlight = {
     attach: function (context, settings) {
-      let elements = context.querySelectorAll('pre code');
+      const codeBlocks = [].slice.call(document.querySelectorAll('pre code'));
 
-      if (elements.length) {
-        Object.keys(elements).forEach(item => {
-          let element = elements[item];
-          if (!element.processed) {
-            // Mark as processed. Replace for jquery.once.
-            element.processed = true;
+      if ('IntersectionObserver' in window) {
+        let codeBlockObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              let codeBlock = entry.target;
+              Prism.highlightElement(codeBlock);
+              codeBlockObserver.unobserve(codeBlock);
+            }
+          });
+        });
 
-            let language = element.classList[0];
-            // Add prism class.
-            element.classList.add('code-highlight-processed');
-          }
+        codeBlocks.forEach(function (codeBlock) {
+          codeBlockObserver.observe(codeBlock);
         });
       }
     }

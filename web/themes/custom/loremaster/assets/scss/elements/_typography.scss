@@ -59,6 +59,10 @@ mark {
   background-color: var(--mark-background);
 }
 
+pre {
+  overflow: auto;
+}
+
 code {
   font-family: var(--font-monospace);
   font-size: 90%;

@@ -41,7 +41,12 @@ prismjs:
     gpl-compatible: true
   js:
     # Prism has no dist files in any repo. So we use prebuild JS from theme.
-    assets/js/prism.js: { minfied: true }
+    assets/js/prism.js: {
+      minfied: true,
+      attributes: {
+        data-manual: true
+      }
+    }
 
 dark-mode:
   js:
