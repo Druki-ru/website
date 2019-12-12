@@ -54,7 +54,7 @@
         "druki/druki_paragraph": "8.x-dev",
         "druki/druki_search": "8.x-dev",
         "drupal/extra_field": "^1.0",
-        "drupal/glisseo": "1.x-dev#c9a1e9b",
+        "drupal/glisseo": "1.x-dev#61a1c98",
         "drupal/google_tag": "^1.1",
         "drupal/imagemagick": "^2.5",
         "drupal/markdown": "2.x-dev",

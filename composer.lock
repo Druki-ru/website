@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e66387e23f8f2d74372566db36b1a903",
+    "content-hash": "2efc6a5f08cc61423377bd0d8034051e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2631,7 +2631,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/glisseo.git",
-                "reference": "c9a1e9b"
+                "reference": "61a1c98"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2642,8 +2642,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha14+1-dev",
-                    "datestamp": "1576051984",
+                    "version": "8.x-1.0-alpha14+2-dev",
+                    "datestamp": "1576055280",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2666,7 +2666,7 @@
                 "source": "https://git.drupalcode.org/project/glisseo",
                 "issues": "https://www.drupal.org/project/issues/glisseo"
             },
-            "time": "2019-12-11T09:05:38+00:00"
+            "time": "2019-12-12T13:09:24+00:00"
         },
         {
             "name": "drupal/google_tag",
