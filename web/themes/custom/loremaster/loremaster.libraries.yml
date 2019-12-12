@@ -54,3 +54,13 @@ mobile-toc:
     assets/js/mobile-toc.js: {}
   dependencies:
     - core/drupal
+
+lazysizes:
+  remote: https://github.com/aFarkas/lazysizes
+  version: 5.1
+  license:
+    name: MIT
+    gpl-compatible: true
+  js:
+    # Prism has no dist files in any repo. So we use prebuild JS from theme.
+    /libraries/lazysizes/lazysizes.min.js: { minfied: true }

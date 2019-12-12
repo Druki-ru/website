@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2efc6a5f08cc61423377bd0d8034051e",
+    "content-hash": "00edfe8cdb8b7317fbc234bbf4642114",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4499,6 +4499,18 @@
                 "php"
             ],
             "time": "2019-11-08T13:50:10+00:00"
+        },
+        {
+            "name": "npm-asset/lazysizes",
+            "version": "5.1.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/lazysizes/-/lazysizes-5.1.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "npm-asset/photoswipe",
