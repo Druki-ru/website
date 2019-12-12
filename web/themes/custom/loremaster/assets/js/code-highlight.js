@@ -30,6 +30,10 @@
       });
 
       codeBlocks.forEach(function (codeBlock) {
+        if (codeBlock.processed) {
+          return;
+        }
+        codeBlock.processed = true;
         codeBlockObserver.observe(codeBlock);
       });
     }
