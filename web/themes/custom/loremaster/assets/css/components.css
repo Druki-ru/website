@@ -1913,6 +1913,12 @@ pre[class*="language-"] {
 .token.this {
   color: var(--prismjs-this); }
 
+.pswp__bg {
+  background-color: var(--color-white-90); }
+
+.pswp__ui--fit .pswp__top-bar {
+  background-color: var(--color-primary); }
+
 .table {
   width: 100%;
   max-width: 100%;
