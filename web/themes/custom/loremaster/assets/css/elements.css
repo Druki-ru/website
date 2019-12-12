@@ -165,8 +165,8 @@ body {
   --font-family: var(--font-primary);
   --body-line-height: 1.5;
   --mark-background: hsl(60, 100%, 50%);
-  --code-background: var(--color-black-03);
-  --paragraph-margin-bottom: calc(var(--spacing-unit) * 3); }
+  --code-background: var(--color-blue-03);
+  --p-margin-bottom: calc(var(--spacing-unit) * 3); }
 
 [data-theme="dark"] {
   --text-color: var(--color-white-80);
@@ -180,7 +180,7 @@ body {
 
 p {
   margin-top: unset;
-  margin-bottom: var(--paragraph-margin-bottom); }
+  margin-bottom: var(--p-margin-bottom); }
 
 small {
   font-size: 80%;

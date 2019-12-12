@@ -22,9 +22,9 @@
   --body-line-height: 1.5;
 
   --mark-background: hsl(60, 100%, 50%);
-  --code-background: var(--color-black-03);
+  --code-background: var(--color-blue-03);
 
-  --paragraph-margin-bottom: calc(var(--spacing-unit) * 3);
+  --p-margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
 [data-theme="dark"] {
@@ -41,7 +41,7 @@ body {
 
 p {
   margin-top: unset;
-  margin-bottom: var(--paragraph-margin-bottom);
+  margin-bottom: var(--p-margin-bottom);
 }
 
 small {
