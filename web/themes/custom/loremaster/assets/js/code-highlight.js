@@ -13,23 +13,25 @@
    */
   Drupal.behaviors.loremasterCodeHighlight = {
     attach: function (context, settings) {
+      if (!'IntersectionObserver' in window) {
+        return;
+      }
+
       const codeBlocks = [].slice.call(document.querySelectorAll('pre code'));
 
-      if ('IntersectionObserver' in window) {
-        let codeBlockObserver = new IntersectionObserver(function (entries, observer) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              let codeBlock = entry.target;
-              Prism.highlightElement(codeBlock);
-              codeBlockObserver.unobserve(codeBlock);
-            }
-          });
+      let codeBlockObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            let codeBlock = entry.target;
+            Prism.highlightElement(codeBlock);
+            codeBlockObserver.unobserve(codeBlock);
+          }
         });
+      });
 
-        codeBlocks.forEach(function (codeBlock) {
-          codeBlockObserver.observe(codeBlock);
-        });
-      }
+      codeBlocks.forEach(function (codeBlock) {
+        codeBlockObserver.observe(codeBlock);
+      });
     }
   };
 
