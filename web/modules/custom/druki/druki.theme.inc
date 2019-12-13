@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\media\MediaInterface;
+use Drupal\responsive_image\ResponsiveImageStyleInterface;
 
 /**
  * Implements hook_preprocess_HOOK() for druki-drupal-versions.html.twig.
@@ -60,4 +62,38 @@ function template_preprocess_druki_mobile_header(array &$variables): void {
       'class' => ['druki-mobile-header__logo'],
     ],
   ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for 'druki-official-user-guide.html.twig'.
+ */
+function template_preprocess_druki_official_user_guide(array &$variables) {
+  $user_guide_settings = \Drupal::config('druki.official_user_guide_settings');
+  /** @var \Drupal\media\MediaStorage $media_storage */
+  $media_storage = \Drupal::entityTypeManager()->getStorage('media');
+  $media_view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
+  /** @var \Drupal\file\FileStorageInterface $file_storage */
+  $file_storage = \Drupal::entityTypeManager()->getStorage('file');
+  /** @var \Drupal\Core\Entity\EntityStorageInterface $responsive_image_style_storage */
+  $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
+  $image_settings = $user_guide_settings->get('image');
+
+  /** @var \Drupal\media\MediaInterface $image_media */
+  $image_media = $media_storage->load($image_settings['media']);
+  $image_style = $responsive_image_style_storage->load($image_settings['style']);
+  $variables['image'] = NULL;
+  // Check is media and style is really existed.
+  if ($image_media instanceof MediaInterface && $image_style instanceof ResponsiveImageStyleInterface) {
+    $fid = $image_media->getSource()->getSourceFieldValue($image_media);
+    /** @var \Drupal\file\FileInterface $file */
+    $file = $file_storage->load($fid);
+    $variables['image'] = [
+      '#type' => 'responsive_image',
+      '#responsive_image_style_id' => $image_style->id(),
+      '#uri' => $file->getFileUri(),
+      '#attributes' => [
+        'alt' => new TranslatableMarkup('Official user guide'),
+      ],
+    ];
+  }
 }

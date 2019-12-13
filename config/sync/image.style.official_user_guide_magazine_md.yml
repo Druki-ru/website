@@ -1,0 +1,15 @@
+uuid: 0ae715cf-b351-4093-b9f2-d867393013e2
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_md
+label: 'Official user guide magazine: MD'
+effects:
+  43180290-fd5b-4918-80dc-7aabbcafff03:
+    uuid: 43180290-fd5b-4918-80dc-7aabbcafff03
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 283
+      anchor: center-center

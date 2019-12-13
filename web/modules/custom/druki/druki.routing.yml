@@ -14,3 +14,11 @@ druki.frontpage_settings:
     _form: 'Drupal\druki\Form\FrontpageSettingsForm'
   requirements:
     _permission: 'administer site configuration'
+
+druki.official_user_guide_settings:
+  path: '/admin/druki/official-user-guide'
+  defaults:
+    _title: 'Official user guide settings'
+    _form: 'Drupal\druki\Form\OfficialUserGuideSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

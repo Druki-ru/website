@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present official user guide advice.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - :
+ *
+ * @see template_preprocess_druki_official_user_guide()
+ */
+#}
+<div class="official-user-guide">
+  <div class="official-user-guide__image">
+    {{ image }}
+  </div>
+  <div class="official-user-guide__content">
+    <h2 class="official-user-guide__title">Руководство пользователя</h2>
+    <p>Официальное руководство пользователя. Подойдет при любом уровне подготовке. Вы узнаете что такое CMS, как устанавливать и настраивать Drupal, создавать и управлять своими типами содержимого, обслуживать свой сайт и многое другое.</p>
+
+    <div class="official-user-guide__links">
+      <a href="https://www.drupal.org/ru/docs/user_guide/ru/index.html" target="_blank" rel="nofollow noopener" class="official-user-guide__link">
+        <div class="official-user-guide__link-icon official-user-guide__link-icon--read"></div>
+        <div class="official-user-guide__link-content">
+          <div class="official-user-guide__link-title">Читать онлайн</div>
+        </div>
+      </a>
+
+      <a href="https://www.drupal.org/docs/8/understanding-drupal-8/user-guide-e-book-downloads" target="_blank" rel="nofollow noopener" class="official-user-guide__link">
+        <div class="official-user-guide__link-icon official-user-guide__link-icon--download"></div>
+        <div class="official-user-guide__link-content">
+          <div class="official-user-guide__link-title">Загрузить</div>
+          <div class="official-user-guide__link-description">Читайте на любом устройстве в формате PDF, ePub, Mobi и AZW3.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@ blacklist: {  }
 graylist:
   - druki.frontpage_settings
   - druki_git.git_settings
+  - druki.official_user_guide_settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0

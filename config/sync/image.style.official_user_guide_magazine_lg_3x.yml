@@ -1,0 +1,15 @@
+uuid: 3d526a8a-0467-4fb4-94d9-74a6578aa906
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_lg_3x
+label: 'Official user guide magazine: LG 3x'
+effects:
+  96314942-b83d-4e5c-9e8c-f93efa31b277:
+    uuid: 96314942-b83d-4e5c-9e8c-f93efa31b277
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1122
+      height: 795
+      anchor: center-center

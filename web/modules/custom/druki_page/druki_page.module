@@ -9,12 +9,14 @@
  * Implements hook_theme().
  */
 function druki_page_theme(array $existing, string $type, string $theme, string $path): array {
+  $file = 'druki_page.theme.inc';
   return [
     'druki_page_download' => [
       'variables' => [],
     ],
     'druki_page_wiki' => [
       'variables' => [],
+      'file' => $file,
     ],
   ];
 }

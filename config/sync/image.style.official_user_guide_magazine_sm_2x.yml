@@ -1,0 +1,15 @@
+uuid: 43e343ed-8c87-4bf6-82b3-23be33565749
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_sm_2x
+label: 'Official user guide magazine: SM 2x'
+effects:
+  e8fa766f-2a04-472f-afc5-8589c55a2a28:
+    uuid: e8fa766f-2a04-472f-afc5-8589c55a2a28
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 448
+      height: 318
+      anchor: center-center

@@ -1,0 +1,15 @@
+uuid: ac50b060-1653-4025-8a09-54b97ec4f84c
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_xl
+label: 'Official user guide magazine: XL'
+effects:
+  8f78fd02-c31b-462b-b0e7-61c68aecd371:
+    uuid: 8f78fd02-c31b-462b-b0e7-61c68aecd371
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 500
+      height: 354
+      anchor: center-center

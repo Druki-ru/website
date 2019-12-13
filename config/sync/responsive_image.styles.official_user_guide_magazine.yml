@@ -1,0 +1,102 @@
+uuid: 3e7b0f75-e44e-49a1-b149-b1d1efa9cb92
+langcode: ru
+status: true
+dependencies:
+  config:
+    - image.style.official_user_guide_magazine_lg
+    - image.style.official_user_guide_magazine_lg_2x
+    - image.style.official_user_guide_magazine_lg_3x
+    - image.style.official_user_guide_magazine_md
+    - image.style.official_user_guide_magazine_md_2x
+    - image.style.official_user_guide_magazine_md_3x
+    - image.style.official_user_guide_magazine_sm
+    - image.style.official_user_guide_magazine_sm_2x
+    - image.style.official_user_guide_magazine_sm_3x
+    - image.style.official_user_guide_magazine_xl
+    - image.style.official_user_guide_magazine_xl_2x
+    - image.style.official_user_guide_magazine_xl_3x
+    - image.style.official_user_guide_magazine_xs
+    - image.style.official_user_guide_magazine_xs_2x
+    - image.style.official_user_guide_magazine_xs_3x
+  theme:
+    - loremaster
+id: official_user_guide_magazine
+label: 'Official user guide magazine'
+image_style_mappings:
+  -
+    breakpoint_id: loremaster.xl
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_xl
+  -
+    breakpoint_id: loremaster.xl
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_xl_2x
+  -
+    breakpoint_id: loremaster.xl
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_xl_3x
+  -
+    breakpoint_id: loremaster.lg
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_lg
+  -
+    breakpoint_id: loremaster.lg
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_lg_2x
+  -
+    breakpoint_id: loremaster.lg
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_lg_3x
+  -
+    breakpoint_id: loremaster.md
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_md
+  -
+    breakpoint_id: loremaster.md
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_md_2x
+  -
+    breakpoint_id: loremaster.md
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_md_3x
+  -
+    breakpoint_id: loremaster.sm
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_sm
+  -
+    breakpoint_id: loremaster.sm
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_sm_2x
+  -
+    breakpoint_id: loremaster.sm
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_sm_3x
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_xs
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_xs_2x
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 3x
+    image_mapping_type: image_style
+    image_mapping: official_user_guide_magazine_xs_3x
+breakpoint_group: loremaster
+fallback_image_style: '_empty image_'

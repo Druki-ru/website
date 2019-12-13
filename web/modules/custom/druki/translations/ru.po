@@ -46,3 +46,12 @@ msgstr "Изображение мероприятия"
 
 msgid "Media entity that contains an event promo image"
 msgstr "Медиа-сущность, которая содержит промо-изображение для мероприятия."
+
+msgid "Official user guide settings"
+msgstr "Настройки официального руководства пользователя"
+
+msgid "Official user guide"
+msgstr "Официальное руководство пользователя"
+
+msgid "Settings for displaying the official user guide."
+msgstr "Настройки отображения официального руководства пользователя."

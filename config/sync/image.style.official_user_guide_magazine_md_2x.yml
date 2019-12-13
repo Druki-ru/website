@@ -1,0 +1,15 @@
+uuid: ce0c436c-5373-47ba-bcbf-8075944cc912
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_md_2x
+label: 'Official user guide magazine: MD 2x'
+effects:
+  6c64eff3-3585-46e8-972f-3f9486a3bc48:
+    uuid: 6c64eff3-3585-46e8-972f-3f9486a3bc48
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 566
+      anchor: center-center

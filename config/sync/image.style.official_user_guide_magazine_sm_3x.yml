@@ -1,0 +1,15 @@
+uuid: a54d00ba-5b17-4adf-8a5e-6f1a0d4ca192
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_sm_3x
+label: 'Official user guide magazine: SM 3x'
+effects:
+  177bf4ad-00a3-494b-9a99-26c4e4e66465:
+    uuid: 177bf4ad-00a3-494b-9a99-26c4e4e66465
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 672
+      height: 477
+      anchor: center-center

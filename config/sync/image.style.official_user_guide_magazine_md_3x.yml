@@ -1,0 +1,15 @@
+uuid: 01290a40-15dd-410b-ab16-7bf164374704
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_md_3x
+label: 'Official user guide magazine: MD 3x'
+effects:
+  961740db-a599-43fa-b170-5e14946616fe:
+    uuid: 961740db-a599-43fa-b170-5e14946616fe
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 849
+      anchor: center-center

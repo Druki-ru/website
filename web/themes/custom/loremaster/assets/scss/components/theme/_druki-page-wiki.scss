@@ -32,6 +32,37 @@
   margin: var(--spacing-lg) 0;
 }
 
+.druki-page-wiki__row--user-guide {
+  padding: var(--spacing-xl) var(--grid-container-inner-gap);
+  margin: var(--spacing-lg) calc(var(--grid-container-inner-gap) * -1);
+  position: relative;
+  background-color: var(--color-blue-02);
+}
+
+.druki-page-wiki__row--user-guide::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+      var(--color-black-04) 0%,
+      var(--color-black-02) 10%,
+      transparent 40%,
+      transparent 60%,
+      var(--color-black-02) 90%,
+      var(--color-black-04) 100%
+  );
+}
+
+.druki-page-wiki__row--user-guide .official-user-guide {
+  position: relative;
+  z-index: 1;
+}
+
 .druki-page-wiki__faq {
   margin: var(--spacing-md) 0;
   text-align: center;

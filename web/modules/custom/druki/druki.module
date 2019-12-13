@@ -91,6 +91,10 @@ function druki_theme($existing, $type, $theme, $path) {
         'default_value' => '',
       ],
     ],
+    'druki_official_user_guide' => [
+      'variables' => [],
+      'file' => 'druki.theme.inc',
+    ],
   ];
 }
 

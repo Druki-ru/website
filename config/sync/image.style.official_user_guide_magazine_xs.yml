@@ -1,0 +1,15 @@
+uuid: 4d11a322-d019-4f86-ad8c-013ec9c205f6
+langcode: ru
+status: true
+dependencies: {  }
+name: official_user_guide_magazine_xs
+label: 'Official user guide magazine: XS'
+effects:
+  3c5f0b28-86ab-4c1c-b983-d1f57fa4cf7f:
+    uuid: 3c5f0b28-86ab-4c1c-b983-d1f57fa4cf7f
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 543
+      height: 385
+      anchor: center-center
