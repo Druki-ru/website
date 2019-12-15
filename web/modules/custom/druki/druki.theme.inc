@@ -66,6 +66,8 @@ function template_preprocess_druki_mobile_header(array &$variables): void {
 
 /**
  * Implements hook_preprocess_HOOK() for 'druki-official-user-guide.html.twig'.
+ *
+ * // @todo cache tags.
  */
 function template_preprocess_druki_official_user_guide(array &$variables) {
   $user_guide_settings = \Drupal::config('druki.official_user_guide_settings');

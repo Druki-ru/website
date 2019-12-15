@@ -18,7 +18,6 @@ dependencies:
     - image.style.paragraph_druki_image_thumbnail_xs
     - image.style.paragraph_druki_image_thumbnail_xs_2x
     - image.style.paragraph_druki_image_thumbnail_xs_3x
-    - image.style.thumbnail
   theme:
     - loremaster
 id: paragraph_druki_image_thumbnail
@@ -100,4 +99,4 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xs_3x
 breakpoint_group: loremaster
-fallback_image_style: thumbnail
+fallback_image_style: '_empty image_'

@@ -10,6 +10,6 @@ effects:
     id: image_scale_and_crop
     weight: 1
     data:
-      width: 1725
-      height: 2397
+      width: 960
+      height: 3114
       anchor: center-center
