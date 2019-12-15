@@ -52,7 +52,7 @@ dark-mode:
 
 mobile-toc:
   js:
-    assets/js/mobile-toc.js: { weight: 100 }
+    assets/js/mobile-toc.js: {}
   dependencies:
     - core/drupal
 
