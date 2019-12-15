@@ -45,13 +45,14 @@ prismjs:
 
 dark-mode:
   js:
-    assets/js/dark-mode.js: {}
+    # The earlier library will execute, the less "screen flash" will be.
+    assets/js/dark-mode.js: { weight: -100 }
   dependencies:
     - core/drupal
 
 mobile-toc:
   js:
-    assets/js/mobile-toc.js: {}
+    assets/js/mobile-toc.js: { weight: 100 }
   dependencies:
     - core/drupal
 
@@ -63,4 +64,4 @@ lazysizes:
     gpl-compatible: true
   js:
     # Prism has no dist files in any repo. So we use prebuild JS from theme.
-    /libraries/lazysizes/lazysizes.min.js: { minfied: true }
+    /libraries/lazysizes/lazysizes.min.js: { minfied: true, weight: -1000 }
