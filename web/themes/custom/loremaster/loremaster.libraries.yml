@@ -46,7 +46,8 @@ prismjs:
 dark-mode:
   js:
     # The earlier library will execute, the less "screen flash" will be.
-    assets/js/dark-mode.js: { weight: -100 }
+    # Drupal global variable init occurs at -17 weight, so we place it after it.
+    assets/js/dark-mode.js: { weight: -16 }
   dependencies:
     - core/drupal
 
