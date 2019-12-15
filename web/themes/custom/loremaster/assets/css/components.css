@@ -253,18 +253,17 @@
   padding: 0 var(--grid-container-inner-gap) var(--grid-container-inner-gap); }
 
 :root {
-  --footer-color: var(--color-black-40); }
+  --footer-color: var(--color-black); }
 
 [data-theme="dark"] {
-  --footer-color: var(--color-white-40); }
+  --footer-color: var(--color-white); }
 
 .footer {
   font-size: var(--text-sm);
   max-width: var(--grid-container-max-width);
   margin: 0 auto;
   padding: var(--grid-container-inner-gap);
-  color: var(--footer-color);
-  --link-color: var(--color-blue-70); }
+  color: var(--footer-color); }
   @media (min-width: 992px) {
     .footer {
       padding: var(--spacing-md) 0; } }
@@ -281,8 +280,7 @@
   background-size: 16px; }
 
 .footer__drupal {
-  font-weight: bold;
-  color: #0678be; }
+  font-weight: bold; }
   .footer__drupal::before {
     display: inline-block;
     width: 16px;
@@ -294,8 +292,7 @@
     background-size: 16px; }
 
 .footer__gitlab {
-  font-weight: bold;
-  color: #ffa200; }
+  font-weight: bold; }
   .footer__gitlab::before {
     display: inline-block;
     width: 16px;
@@ -1154,7 +1151,7 @@
 
 .druki-drupal-versions__date {
   font-size: var(--text-sm);
-  color: var(--color-gray-90); }
+  color: var(--color-black-80); }
 
 .druki-drupal-versions__security {
   display: -webkit-box;
@@ -1182,7 +1179,7 @@
   font-size: var(--text-lg); }
 
 .druki-drupal-versions__more-subtitle {
-  color: var(--color-gray-90);
+  color: var(--color-black-80);
   font-size: var(--text-xs);
   line-height: 1.2; }
 

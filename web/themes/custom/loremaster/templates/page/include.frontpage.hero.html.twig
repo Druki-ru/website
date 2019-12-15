@@ -5,8 +5,8 @@
     <h1 class="{{ bem_block }}__title">Drupal энциклопедия</h1>
     <div class="{{ bem_block }}__description">Структурированный, свободный и открытый источник информации о Drupal.</div>
     <form action="/search" class="{{ bem_block }}__form">
-      <input type="text" class="{{ bem_block }}__search" placeholder="Что вы хотите узнать сегодня?" name="text" autocomplete="off">
-      <button class="{{ bem_block }}__submit"></button>
+      <input type="text" class="{{ bem_block }}__search" placeholder="Что вы хотите узнать сегодня?" name="text" autocomplete="off" aria-label="Поиск по сайту">
+      <button class="{{ bem_block }}__submit" aria-label="Искать"></button>
     </form>
     <div class="{{ bem_block }}__actions">
       <a href="/wiki" class="button {{ bem_block }}__action {{ bem_block }}__action--wiki">Перейти в энциклопедию</a>
