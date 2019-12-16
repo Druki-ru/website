@@ -9,19 +9,22 @@ It was inspired by many other documentation sites and their content editing proc
 
 ## Local environment
 
-If you want to user local environment that used for development, just copy **docker-compose.yml.dist** to **docker-compose.yml** and **.env.dist** to **.env**. Edit it to your needs and run with `make` or `docker-compose up -d`.
-
 Add this line `$config['config_split.config_split.dev']['status'] = TRUE;` to **settings.php**.
 
 ## Install a local copy
 
 1. Clone this repository.
-2. Run `composer install -o`
-3. Run Drupal installation as usual.
-4. Select the preferred language.
-5. Select "Use existing configuration" and continue.
+1. Run `composer install -o`
+1. (optional) Run `yarn install`
+1. Run Drupal installation as usual.
+1. Select the preferred language.
+1. Select "Use existing configuration" and continue.
 
     ![Profile](https://i.imgur.com/vsVKAHD.png)
-    
-6. Make a cup of coffee ☕️ and wait until the installation is finished.
-7. Enjoy your copy.
+
+1. Make a cup of coffee ☕️ and wait until the installation is finished.
+1. Enjoy your copy.
+
+## Content synchronization in separate process
+
+Content sync runs manually via command `drush druki-content:synchronization-process`. Don't forget to add it to cron job separately from other commands. This allocate separate process for content synchronization.

@@ -42,7 +42,6 @@ function druki_content_requirements($phase): array {
  */
 function druki_content_uninstall() {
   // Remove state settings.
-  // @todo check is it correct or not.
   \Drupal::state()->delete('druki_content.settings.force_update');
 }
 

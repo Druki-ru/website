@@ -4,7 +4,6 @@ namespace Drupal\druki_content\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Synchronization\Queue\QueueManager;
@@ -41,14 +40,12 @@ class DrukiContentSettingsForm extends FormBase {
    *
    * @param \Drupal\Core\State\State $state
    *   The state.
-   * @param \Drupal\Core\Queue\QueueInterface $queue
-   *   The queue.
    * @param \Drupal\druki_content\Synchronization\Queue\QueueManager $queue_manager
    *   The queue manager.
    */
-  public function __construct(State $state, QueueInterface $queue, QueueManager $queue_manager) {
+  public function __construct(State $state, QueueManager $queue_manager) {
     $this->state = $state;
-    $this->queue = $queue;
+    $this->queue = $queue_manager->queue();
     $this->queueManager = $queue_manager;
   }
 
@@ -58,7 +55,6 @@ class DrukiContentSettingsForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('state'),
-      $container->get('queue')->get('druki_content_sync'),
       $container->get('druki_content.synchronization.queue_manager')
     );
   }

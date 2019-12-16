@@ -30,10 +30,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides queue processor for content synchronization.
  *
+ * The 'cron' option omitted, because we don't want to run the queue during
+ * cron. We have separate command which allows us to run this queue in separate
+ * PHP process and don't block other processes.
+ *
  * @QueueWorker(
  *   id = "druki_content_sync",
  *   title = @Translation("Druki content sync."),
- *   cron = {"time" = 60}
  * )
  *
  * @todo improve updating. If id changed and\or added core in meta tags, content
@@ -283,7 +286,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     // Don't update content if last commit for source file is the same.
     $is_same_commit = ($druki_content->get('last_commit_id')->value == $queue_item->getLastCommitId());
     // If force update is set in settings. Ignore rule above.
-    $force_update = $this->state->get('druki_content_sync.settings.force_update', FALSE);
+    $force_update = $this->state->get('druki_content.settings.force_update', FALSE);
     if ($is_same_commit && !$force_update) {
       $this->logger->info('The processing of "@content_id" was skipped, because content not changed from the last sync.', [
         '@content_id' => $meta->get('id')->getValue(),
