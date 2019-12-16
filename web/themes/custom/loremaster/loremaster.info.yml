@@ -14,7 +14,6 @@ libraries:
   - loremaster/style.utilities
   - loremaster/code-highlight
   - loremaster/dark-mode
-  - loremaster/mobile-toc
 
 regions:
   header: Header

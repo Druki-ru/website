@@ -250,6 +250,7 @@ function loremaster_theme_suggestions_block_alter(array &$suggestions, array $va
     'loremaster_breadcrumbs',
     'loremaster_page_title',
     'loremaster_content',
+    'druki_content_toc_mobile',
   ];
 
   if (isset($variables['elements']['#id']) && in_array($variables['elements']['#id'], $block_ids)) {

@@ -6,6 +6,12 @@ toc:
     - druki/throttle
     - core/drupal
 
+mobile-toc:
+  js:
+    assets/js/druki-mobile-toc.js: {}
+  dependencies:
+    - core/drupal
+
 form:
   version: VERSION
   css:

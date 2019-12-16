@@ -52,12 +52,6 @@ dark-mode:
   dependencies:
     - core/drupal
 
-mobile-toc:
-  js:
-    assets/js/mobile-toc.js: {}
-  dependencies:
-    - core/drupal
-
 lazysizes:
   remote: https://github.com/aFarkas/lazysizes
   version: 5.1
