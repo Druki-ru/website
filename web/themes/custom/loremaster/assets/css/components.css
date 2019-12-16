@@ -1436,7 +1436,7 @@
       grid-template-columns: repeat(3, 1fr); } }
 
 .druki-page-wiki {
-  margin-top: var(--spacing-lg); }
+  padding-top: var(--spacing-lg); }
 
 .druki-page-wiki__title {
   font-size: var(--text-lg);
