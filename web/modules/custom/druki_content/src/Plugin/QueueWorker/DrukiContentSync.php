@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content_sync\Plugin\QueueWorker;
+namespace Drupal\druki_content\Plugin\QueueWorker;
 
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -11,10 +11,10 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Utility\Token;
-use Drupal\druki_content_sync\Content\ContentStructure;
-use Drupal\druki_content_sync\Parser\HTMLParser;
-use Drupal\druki_content_sync\Queue\ContentQueueItem;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Synchronization\Content\ContentStructure;
+use Drupal\druki_content\Synchronization\Parser\HTMLParser;
+use Drupal\druki_content\Synchronization\Queue\ContentItem;
 use Drupal\druki_file\Service\DrukiFileTracker;
 use Drupal\druki_markdown\Parser\MarkdownParserInterface;
 use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode;
@@ -28,13 +28,16 @@ use Drupal\paragraphs\ParagraphInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
+ * Provides queue processor for content synchronization.
+ *
  * @QueueWorker(
  *   id = "druki_content_sync",
  *   title = @Translation("Druki content sync."),
  *   cron = {"time" = 60}
  * )
+ *
  * @todo improve updating. If id changed and\or added core in meta tags, content
- * can be found but this values wont change.
+ *   can be found but this values wont change.
  */
 class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
@@ -55,7 +58,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * The HTML parser.
    *
-   * @var \Drupal\druki_content_sync\Parser\HTMLParser
+   * @var \Drupal\druki_content\Synchronization\Parser\HTMLParser
    */
   protected $htmlParser;
 
@@ -137,7 +140,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *   The entity field manager.
    * @param \Drupal\druki_markdown\Parser\MarkdownParserInterface $markdown_parser
    *   The markdown parser.
-   * @param \Drupal\druki_content_sync\Parser\HTMLParser $html_parser
+   * @param \Drupal\druki_content\Synchronization\Parser\HTMLParser $html_parser
    *   The HTML parser.
    * @param \Drupal\druki_file\Service\DrukiFileTracker $file_tracker
    *   The file tracker.
@@ -195,11 +198,11 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
       $container->get('entity_type.manager'),
       $container->get('entity_field.manager'),
       $container->get('druki_markdown.parser'),
-      $container->get('druki_content_sync.html_parser'),
+      $container->get('druki_content.synchronization.html_parser'),
       $container->get('druki_file.tracker'),
       $container->get('config.factory'),
       $container->get('token'),
-      $container->get('logger.channel.druki_content_sync'),
+      $container->get('logger.channel.druki_content'),
       $container->get('state')
     );
   }
@@ -207,12 +210,12 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * {@inheritdoc}
    *
-   * @see GitPullFinishedSubscriber::onPullFinish().
+   * @see GitSubscriber::onPullFinish().
    */
   public function processItem($queue_item): void {
     // First of all, check is item is value object we expected. We ignore all
     // values not passed via our object.
-    if (!$queue_item instanceof ContentQueueItem) {
+    if (!$queue_item instanceof ContentItem) {
       $this->logger->error('Queue got unexpected item value. @debug', [
         '@debug' => '<pre><code>' . print_r($queue_item, TRUE) . '</code></pre>',
       ]);
@@ -241,10 +244,10 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    * @param string $filepath
    *   The URI to file with content.
    *
-   * @return ContentStructure
+   * @return \Drupal\druki_content\Synchronization\Content\ContentStructure
    *   The structured content.
    *
-   * @see \Drupal\druki_content_sync\Parser\HTMLParser::parse()
+   * @see \Drupal\druki_content\Synchronization\Parser\HTMLParserInterface::parse()
    */
   protected function parseContent(string $filepath): ContentStructure {
     $content = file_get_contents($filepath);
@@ -256,14 +259,14 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates or updates druki content entity.
    *
-   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
    *   The structured content.
-   * @param \Drupal\druki_content_sync\Queue\ContentQueueItem $queue_item
+   * @param \Drupal\druki_content\Synchronization\Queue\ContentItem $queue_item
    *   The queue item object.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function processContent(ContentStructure $structured_data, ContentQueueItem $queue_item): void {
+  protected function processContent(ContentStructure $structured_data, ContentItem $queue_item): void {
     $meta = $structured_data->getMetaInformation();
 
     $this->logger->info('Start processing content ID "@content_id (@relative_pathname)".', [
@@ -379,7 +382,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The content entity.
-   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
    *   The structured data.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
@@ -647,7 +650,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processDifficulty(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -678,7 +681,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processLabels(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -696,7 +699,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processSearchKeywords(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
@@ -714,7 +717,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content_sync\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
    *   The content structure.
    */
   protected function processMetatags(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {

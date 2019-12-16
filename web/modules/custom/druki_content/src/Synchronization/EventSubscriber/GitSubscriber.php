@@ -1,22 +1,20 @@
 <?php
 
-namespace Drupal\druki_content_sync\EventSubscriber;
+namespace Drupal\druki_content\Synchronization\EventSubscriber;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
-use Drupal\druki_content_sync\Parser\FolderParserInterface;
-use Drupal\druki_content_sync\Queue\ContentQueueItem;
+use Drupal\druki_content\Synchronization\Parser\FolderParserInterface;
+use Drupal\druki_content\Synchronization\Queue\ContentItem;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class GitPullFinishedSubscriber
- *
- * @package Drupal\druki_content\EventSubscriber
+ * Provides git events subscriber.
  */
-class GitPullFinishedSubscriber implements EventSubscriberInterface {
+class GitSubscriber implements EventSubscriberInterface {
 
   /**
    * The queue object.
@@ -28,7 +26,7 @@ class GitPullFinishedSubscriber implements EventSubscriberInterface {
   /**
    * The folder parser.
    *
-   * @var \Drupal\druki_content_sync\Parser\FolderParserInterface
+   * @var \Drupal\druki_content\Synchronization\Parser\FolderParserInterface
    */
   protected $folderParser;
 
@@ -51,7 +49,7 @@ class GitPullFinishedSubscriber implements EventSubscriberInterface {
    *
    * @param \Drupal\Core\Queue\QueueFactory $queue
    *   The queue factory.
-   * @param \Drupal\druki_content_sync\Parser\FolderParserInterface $folder_parser
+   * @param \Drupal\druki_content\Synchronization\Parser\FolderParserInterface $folder_parser
    *   The folder parser.
    * @param \Drupal\Core\Database\Connection $database
    *   The database connection.
@@ -84,7 +82,7 @@ class GitPullFinishedSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Reacts on successful pull
+   * Reacts on successful pull.
    *
    * @param \Drupal\druki_git\Event\DrukiGitEvent $event
    *   The git event.
@@ -118,7 +116,7 @@ class GitPullFinishedSubscriber implements EventSubscriberInterface {
           ->git()
           ->getFileCommitsInfo($item->getRelativePathname());
 
-        $queue_item = new ContentQueueItem(
+        $queue_item = new ContentItem(
           $langcode,
           $item->getPathname(),
           $item->getRelativePathname(),

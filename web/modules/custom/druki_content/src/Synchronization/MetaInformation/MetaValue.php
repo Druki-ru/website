@@ -1,13 +1,9 @@
 <?php
 
-namespace Drupal\druki_content_sync\MetaInformation;
+namespace Drupal\druki_content\Synchronization\MetaInformation;
 
 /**
- * Class MetaValue.
- *
- * Contains value for MetaInformation.
- *
- * @package Drupal\druki_content_sync\MetaInformation
+ * Provides value object for store specific metadata value.
  */
 final class MetaValue {
 

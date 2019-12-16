@@ -7,13 +7,42 @@
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+
+/**
+ * Implements hook_requirements().
+ */
+function druki_content_requirements($phase): array {
+  $requirements = [];
+
+  if ($phase == 'install') {
+    if (!class_exists('Symfony\Component\DomCrawler\Crawler')) {
+      $requirements['druki_parser_status'] = [
+        'title' => 'Druki Content Sync',
+        'value' => t('The required dependency @dependency is missing. Install it and try again.', ['@dependency' => 'symfony/dom-crawler']),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+
+    if (!class_exists('Symfony\Component\Finder\Finder')) {
+      $requirements['druki_parser_status'] = [
+        'title' => 'Druki Content Sync',
+        'value' => t('The required dependency @dependency is missing. Install it and try again.', ['@dependency' => 'symfony/finder']),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+  }
+
+  return $requirements;
+}
 
 /**
  * Implements hook_uninstall()
  */
 function druki_content_uninstall() {
   // Remove state settings.
+  // @todo check is it correct or not.
   \Drupal::state()->delete('druki_content.settings.force_update');
 }
 
@@ -159,4 +188,16 @@ function druki_content_update_8602(&$sandbox) {
   else {
     return t('The metatag field is found on druki_content entity. The update is skipped.');
   }
+}
+
+/**
+ * Migrate druki_content_sync state value to druki_content.
+ */
+function druki_content_update_8801(array &$sandbox) {
+ $state = \Drupal::state();
+ $value = $state->get('druki_content_sync.settings.force_update', FALSE);
+ $state->delete('druki_content_sync.settings.force_update');
+ $state->set('druki_content.settings.force_update', $value);
+
+ return new TranslatableMarkup('Sync settings was migrated.');
 }

@@ -1,38 +1,34 @@
 <?php
 
-namespace Drupal\druki_content_sync\Content;
+namespace Drupal\druki_content\Synchronization\Content;
 
-use Drupal\druki_content_sync\MetaInformation\MetaInformation;
+use Drupal\druki_content\Synchronization\MetaInformation\MetaInformation;
 
 /**
- * Class Content.
- *
- * The main object contains all necessary information for content.
- *
- * @package Drupal\druki_content\ContentStructure
+ * Provides value object for content structure.
  */
 final class ContentStructure {
 
   /**
    * The meta information for this content.
    *
-   * @var \Drupal\druki_content_sync\MetaInformation\MetaInformation
+   * @var \Drupal\druki_content\Synchronization\MetaInformation\MetaInformation
    */
   protected $metaInformation;
 
   /**
    * The list of content.
    *
-   * @var \Drupal\druki_content_sync\Content\ContentList
+   * @var \Drupal\druki_content\Synchronization\Content\ContentList
    */
   protected $content;
 
   /**
    * ContentStructure constructor.
    *
-   * @param \Drupal\druki_content_sync\MetaInformation\MetaInformation $meta_information
+   * @param \Drupal\druki_content\Synchronization\MetaInformation\MetaInformation $meta_information
    *   The content meta information.
-   * @param \Drupal\druki_content_sync\Content\ContentList $content
+   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
    *   The content list.
    */
   public function __construct(MetaInformation $meta_information, ContentList $content) {
@@ -56,7 +52,7 @@ final class ContentStructure {
   /**
    * Gets meta information.
    *
-   * @return \Drupal\druki_content_sync\MetaInformation\MetaInformation The meta information.
+   * @return \Drupal\druki_content\Synchronization\MetaInformation\MetaInformation
    *   The meta information.
    */
   public function getMetaInformation(): MetaInformation {
@@ -66,7 +62,7 @@ final class ContentStructure {
   /**
    * Gets content.
    *
-   * @return \Drupal\druki_content_sync\Content\ContentList
+   * @return \Drupal\druki_content\Synchronization\Content\ContentList
    *   The content list.
    */
   public function getContent(): ContentList {

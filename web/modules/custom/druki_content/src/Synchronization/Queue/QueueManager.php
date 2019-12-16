@@ -1,15 +1,17 @@
 <?php
 
-namespace Drupal\druki_content_sync\Queue;
+namespace Drupal\druki_content\Synchronization\Queue;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Exception;
 
-class SyncQueueManager {
+/**
+ * Provide queue manager for content synchronization.
+ */
+class QueueManager {
 
   /**
    * The queue of processing content.

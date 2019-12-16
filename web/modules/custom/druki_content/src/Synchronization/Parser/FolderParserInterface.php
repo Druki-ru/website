@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content_sync\Parser;
+namespace Drupal\druki_content\Synchronization\Parser;
 
 /**
  * Parser for filesystem folders.
@@ -18,6 +18,6 @@ interface FolderParserInterface {
    * @return array
    *   An array with files grouped by langcode.
    */
-  public function parse($directory): array ;
+  public function parse($directory): array;
 
 }
