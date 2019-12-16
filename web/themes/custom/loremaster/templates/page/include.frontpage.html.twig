@@ -4,11 +4,8 @@
  * Default theme implementation to present front page.
  */
 #}
-{% set bem_block = 'frontpage' %}
-<div class="{{ bem_block }}">
-  {% include '@loremaster/page/include.frontpage.hero.html.twig' %}
-  {{ {'#theme': 'druki_drupal_versions'} }}
-  {% include '@loremaster/page/include.frontpage.about.html.twig' %}
-  {% include '@loremaster/page/include.frontpage.for.html.twig' %}
-  {% include '@loremaster/page/include.frontpage.community.html.twig' %}
-</div>
+{% include '@loremaster/page/include.frontpage.hero.html.twig' %}
+{{ {'#theme': 'druki_drupal_versions'} }}
+{% include '@loremaster/page/include.frontpage.about.html.twig' %}
+{% include '@loremaster/page/include.frontpage.for.html.twig' %}
+{% include '@loremaster/page/include.frontpage.community.html.twig' %}
