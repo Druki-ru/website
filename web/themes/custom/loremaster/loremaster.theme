@@ -274,3 +274,18 @@ function loremaster_preprocess_responsive_image(array &$variables) {
 
   $variables['#attached']['library'][] = 'loremaster/lazysizes';
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for 'image.html.twig'.
+ *
+ * Integrate lazysizes.js library for lazy loading.
+ */
+function loremaster_preprocess_image(array &$variables) {
+  // @see https://github.com/aFarkas/lazysizes#modern-transparent-srcset-pattern
+  if (isset($variables['attributes']['srcset'])) {
+    $variables['attributes']['data-srcset'] = $variables['attributes']['srcset'];
+  }
+  $variables['attributes']['srcset'] = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+  $variables['attributes']['class'][] = 'lazyload';
+  $variables['#attached']['library'][] = 'loremaster/lazysizes';
+}
