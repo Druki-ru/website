@@ -99,4 +99,4 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: frontpage_drupal_video_xs_3x
 breakpoint_group: loremaster
-fallback_image_style: '_empty image_'
+fallback_image_style: frontpage_drupal_video
