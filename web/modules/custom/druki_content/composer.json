@@ -1,6 +1,15 @@
 {
-  "name": "druki/druki_content",
-  "type": "drupal-custom-module",
-  "description": "Provides a druki content entity.",
-  "keywords": ["Drupal"]
+    "name": "druki/druki_content",
+    "type": "drupal-custom-module",
+    "description": "Provides a druki content entity.",
+    "keywords": [
+        "Drupal"
+    ],
+    "require": {
+        "ext-dom": "*",
+        "ext-json": "*",
+        "symfony/css-selector": "~3.0|~4.0",
+        "symfony/dom-crawler": "~4.0",
+        "symfony/finder": "~4.0"
+    }
 }

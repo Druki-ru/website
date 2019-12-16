@@ -41,7 +41,6 @@
         "druki/druki": "8.x-dev",
         "druki/druki_category": "8.x-dev",
         "druki/druki_content": "8.x-dev",
-        "druki/druki_content_sync": "8.x-dev",
         "druki/druki_file": "8.x-dev",
         "druki/druki_git": "8.x-dev",
         "druki/druki_markdown": "8.x-dev",

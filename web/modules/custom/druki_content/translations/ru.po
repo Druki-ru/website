@@ -76,3 +76,27 @@ msgstr "Содержание"
 
 msgid "Difficulty"
 msgstr "Сложность"
+
+msgid "Update queue"
+msgstr "Очередь обновлений"
+
+msgid "Current queue items: @count"
+msgstr "Текущее количество элементов очереди: @count"
+
+msgid "Force content processing"
+msgstr "Принудительная обработка содержимого"
+
+msgid "Content will be processed even if it not updated from last queue."
+msgstr "Содержимое будет обработано даже в том случае, если оно не изменилось с момента прошлой очереди."
+
+msgid "Run queue"
+msgstr "Запустить очередь"
+
+msgid "Clear queue"
+msgstr "Очистить очередь"
+
+msgid "Druki content sync."
+msgstr "Синхронизация Druki содержимого."
+
+msgid "The required dependency @dependency is missing. Install it and try again."
+msgstr "Обязательная зависимость @dependency не найдена. Установите её и попробуйте снова."

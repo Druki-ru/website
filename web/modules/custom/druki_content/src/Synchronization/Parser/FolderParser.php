@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content_sync\Parser;
+namespace Drupal\druki_content\Synchronization\Parser;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\Finder\Finder;

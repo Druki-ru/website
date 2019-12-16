@@ -1,15 +1,11 @@
 <?php
 
-namespace Drupal\druki_content_sync\Queue;
+namespace Drupal\druki_content\Synchronization\Queue;
 
 /**
- * Class ContentQueueItem.
- *
- * Contains queue information for druki_content update.
- *
- * @package Drupal\druki_content_sync\Queue
+ * Provides data-object represents queue single item to process.
  */
-final class ContentQueueItem {
+final class ContentItem {
 
   /**
    * The langcode.

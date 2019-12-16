@@ -1,0 +1,22 @@
+services:
+  logger.channel.druki_content:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: ['druki_content']
+
+  druki_content.synchronization.queue_manager:
+    class: Drupal\druki_content\Synchronization\Queue\QueueManager
+    arguments: ['@queue', '@plugin.manager.queue_worker']
+
+  druki_content.synchronization.html_parser:
+    class: Drupal\druki_content\Synchronization\Parser\HTMLParser
+
+  druki_content.synchronization.folder_parser:
+    class: Drupal\druki_content\Synchronization\Parser\FolderParser
+    arguments: ['@language_manager']
+
+  druki_content.synchronization.git_subscriber:
+    class: Drupal\druki_content\Synchronization\EventSubscriber\GitSubscriber
+    arguments: ['@queue', '@druki_content.synchronization.folder_parser', '@database', '@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

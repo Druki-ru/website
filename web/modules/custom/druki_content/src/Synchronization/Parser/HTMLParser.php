@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_content_sync\Parser;
+namespace Drupal\druki_content\Synchronization\Parser;
 
-use Drupal\druki_content_sync\Content\ContentList;
-use Drupal\druki_content_sync\Content\ContentStructure;
-use Drupal\druki_content_sync\MetaInformation\MetaInformation;
-use Drupal\druki_content_sync\MetaInformation\MetaValue;
+use Drupal\druki_content\Synchronization\Content\ContentList;
+use Drupal\druki_content\Synchronization\Content\ContentStructure;
+use Drupal\druki_content\Synchronization\MetaInformation\MetaInformation;
+use Drupal\druki_content\Synchronization\MetaInformation\MetaValue;
 use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode;
 use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphHeading;
 use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphImage;
@@ -89,7 +89,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content_sync\MetaInformation\MetaInformation $meta_information
+   * @param \Drupal\druki_content\Synchronization\MetaInformation\MetaInformation $meta_information
    *   The content meta information.
    *
    * @return bool|null
@@ -117,10 +117,10 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMNode $dom_element
    *   The DOM element to process.
-   * @param $filepath
+   * @param string $filepath
    *   The filepath of file in which this link was found.
    */
-  protected function processInternalLink(\DOMNode $dom_element, $filepath) {
+  protected function processInternalLink(\DOMNode $dom_element, string $filepath) {
     if (empty($dom_element->childNodes)) {
       return;
     }
@@ -148,7 +148,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content_sync\Content\ContentList $content
+   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -181,7 +181,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content_sync\Content\ContentList $content
+   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -206,7 +206,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content_sync\Content\ContentList $content
+   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -231,7 +231,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content_sync\Content\ContentList $content
+   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool

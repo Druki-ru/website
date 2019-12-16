@@ -1,17 +1,13 @@
 <?php
 
-namespace Drupal\druki_content_sync\Content;
+namespace Drupal\druki_content\Synchronization\Content;
 
 use ArrayIterator;
 use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentInterface;
 use IteratorAggregate;
 
 /**
- * Class ContentList.
- *
- * Stores all content.
- *
- * @package Drupal\druki_content\Common\Content
+ * Provides value object for store list of content.
  */
 final class ContentList implements IteratorAggregate {
 
@@ -28,7 +24,7 @@ final class ContentList implements IteratorAggregate {
    * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentInterface $content
    *   The content instance.
    *
-   * @return \Drupal\druki_content_sync\Content\ContentList
+   * @return \Drupal\druki_content\Synchronization\Content\ContentList The current instance.
    *   The current instance.
    */
   public function add(ParagraphContentInterface $content): ContentList {

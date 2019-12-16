@@ -1,13 +1,11 @@
 <?php
 
-namespace Drupal\druki_content_sync\Parser;
+namespace Drupal\druki_content\Synchronization\Parser;
 
-use Drupal\druki_content_sync\Content\ContentStructure;
+use Drupal\druki_content\Synchronization\Content\ContentStructure;
 
 /**
  * Object for parse markdown and html and transform to specific data structures.
- *
- * @package Drupal\druki_parser\Service
  */
 interface HTMLParserInterface {
 
@@ -19,7 +17,7 @@ interface HTMLParserInterface {
    * @param null|string $filepath
    *   The filepath of parsed file. Will be used for internal links processing.
    *
-   * @return \Drupal\druki_content_sync\Content\ContentStructure The structured value object with content.
+   * @return \Drupal\druki_content\Synchronization\Content\ContentStructure
    *   The structured value object with content.
    */
   public function parse($content, $filepath = NULL): ContentStructure;
