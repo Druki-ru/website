@@ -285,6 +285,9 @@ function loremaster_preprocess_image(array &$variables) {
   if (isset($variables['attributes']['srcset'])) {
     $variables['attributes']['data-srcset'] = $variables['attributes']['srcset'];
   }
+  else {
+    $variables['attributes']['data-srcset'] = $variables['attributes']['src'];
+  }
   $variables['attributes']['srcset'] = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
   $variables['attributes']['class'][] = 'lazyload';
   $variables['#attached']['library'][] = 'loremaster/lazysizes';
