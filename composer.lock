@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "158837df1768aaf16a4b72cbb9ebbd4f",
+    "content-hash": "c184d92a83c086af01de9a78fecc279d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1612,20 +1612,6 @@
             },
             "type": "drupal-custom-module",
             "description": "The main module for common code.",
-            "keywords": [
-                "Drupal"
-            ]
-        },
-        {
-            "name": "druki/druki_category",
-            "version": "8.x-dev",
-            "dist": {
-                "type": "path",
-                "url": "web/modules/custom/druki_category",
-                "reference": "3e093027312d7f2b81cdb8d1784e824ff732ee00"
-            },
-            "type": "drupal-custom-module",
-            "description": "The Category code.",
             "keywords": [
                 "Drupal"
             ]
@@ -9646,7 +9632,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "druki/druki": 20,
-        "druki/druki_category": 20,
         "druki/druki_content": 20,
         "druki/druki_file": 20,
         "druki/druki_git": 20,

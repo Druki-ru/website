@@ -1,4 +1,0 @@
-services:
-  druki_category.navigation:
-    class: Drupal\druki_category\Service\CategoryNavigation
-    arguments: ['@current_route_match', '@entity_type.manager']

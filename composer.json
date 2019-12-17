@@ -39,7 +39,6 @@
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "druki/druki": "8.x-dev",
-        "druki/druki_category": "8.x-dev",
         "druki/druki_content": "8.x-dev",
         "druki/druki_file": "8.x-dev",
         "druki/druki_git": "8.x-dev",

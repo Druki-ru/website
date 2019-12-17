@@ -1,9 +1,0 @@
-name: Druki - Category
-type: module
-description: The Category code.
-package: druki
-core: 8.x
-core_version_requirement: ^8 || ^9
-
-'interface translation project': druki_category
-'interface translation server pattern': modules/custom/%project/translations/%language.po
