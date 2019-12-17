@@ -20,3 +20,7 @@ services:
     arguments: ['@queue', '@druki_content.synchronization.folder_parser', '@database', '@entity_type.manager']
     tags:
       - { name: event_subscriber }
+
+  druki_content.category.navigation:
+    class: Drupal\druki_content\Category\CategoryNavigation
+    arguments: ['@current_route_match', '@entity_type.manager']

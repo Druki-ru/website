@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_category\Plugin\Field\FieldType;
+namespace Drupal\druki_content\Plugin\Field\FieldType;
 
 use Drupal\Component\Utility\Random;
 use Drupal\Core\Field\FieldDefinitionInterface;
@@ -13,7 +13,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *
  * @FieldType(
  *   id = "druki_category",
- *   label = @Translation("Druki category"),
+ *   label = @Translation("Druki content category"),
  *   category = @Translation("Druki"),
  *   no_ui = TRUE,
  * )

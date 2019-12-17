@@ -100,3 +100,9 @@ msgstr "Синхронизация Druki содержимого."
 
 msgid "The required dependency @dependency is missing. Install it and try again."
 msgstr "Обязательная зависимость @dependency не найдена. Установите её и попробуйте снова."
+
+msgid "Druki category"
+msgstr "Druki категория"
+
+msgid "Category navigation"
+msgstr "Навигация по категории"

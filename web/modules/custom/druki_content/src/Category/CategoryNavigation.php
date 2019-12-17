@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_category\Service;
+namespace Drupal\druki_content\Category;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -8,8 +8,6 @@ use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Class CategoryNavigation for building category navigation links.
- *
- * @package Drupal\druki_category
  */
 class CategoryNavigation {
 

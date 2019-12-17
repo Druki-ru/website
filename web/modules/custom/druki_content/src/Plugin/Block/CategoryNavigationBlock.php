@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_category\Plugin\Block;
+namespace Drupal\druki_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\druki_category\Service\CategoryNavigation;
+use Drupal\druki_content\Category\CategoryNavigation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -22,7 +22,7 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
   /**
    * The category navigation.
    *
-   * @var \Drupal\druki_category\Service\CategoryNavigation
+   * @var \Drupal\druki_content\Category\CategoryNavigation
    */
   protected $categoryNavigation;
 
@@ -38,7 +38,7 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\druki_category\Service\CategoryNavigation $category_navigation
+   * @param \Drupal\druki_content\Category\CategoryNavigation $category_navigation
    *   The category navigation.
    */
   public function __construct(
@@ -60,7 +60,7 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('druki_category.navigation')
+      $container->get('druki_content.category.navigation')
     );
   }
 
@@ -73,7 +73,7 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
 
     if ($links) {
       $build['navigation'] = [
-        '#theme' => 'druki_category_navigation',
+        '#theme' => 'druki_content_category_navigation',
         '#links' => $links,
       ];
     }

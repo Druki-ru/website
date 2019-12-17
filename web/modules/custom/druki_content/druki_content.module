@@ -5,6 +5,7 @@
  * Provides a druki content entity type.
  */
 
+use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -22,6 +23,12 @@ function druki_content_theme(): array {
     'druki_content_toc' => [
       'variables' => [
         'druki_content' => NULL,
+      ],
+      'file' => 'druki_content.theme.inc',
+    ],
+    'druki_content_category_navigation' => [
+      'variables' => [
+        'links' => [],
       ],
       'file' => 'druki_content.theme.inc',
     ],
@@ -44,4 +51,11 @@ function druki_content_cron(): void {
 function druki_content_form_block_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   // @see https://www.drupal.org/node/2284687
   unset($form['visibility']['druki_content']);
+}
+
+/**
+ * Implements hook_block_view_BASE_BLOCK_ID_alter().
+ */
+function druki_category_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block) {
+  $build['#configuration']['label'] = $block->label();
 }

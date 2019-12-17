@@ -1,3 +1,17 @@
 condition.plugin.druki_content:
   type: condition.plugin
   label: 'Druki Content condition'
+
+field.value.druki_category:
+  type: mapping
+  label: Default value
+  mapping:
+    area:
+      type: string
+      label: Area
+    order:
+      type: integer
+      label: Order
+    title:
+      type: string
+      label: Category title
