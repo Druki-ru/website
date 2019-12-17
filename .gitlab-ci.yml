@@ -8,5 +8,4 @@ deploy:
     - schedules
     - web
   script:
-    - chmod u+x ./scripts/deploy.sh
-    - bash ./scripts/deploy.sh
+    - dep deploy

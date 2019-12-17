@@ -72,7 +72,8 @@
     },
     "require-dev": {
         "drupal/coder": "^8.3",
-        "drupal/core-dev": "^8.7"
+        "drupal/core-dev": "^8.7",
+        "deployer/deployer": "^6.7"
     },
     "conflict": {
         "drupal/drupal": "*"
