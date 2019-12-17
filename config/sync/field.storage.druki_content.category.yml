@@ -3,14 +3,13 @@ langcode: ru
 status: true
 dependencies:
   module:
-    - druki_category
     - druki_content
 id: druki_content.category
 field_name: category
 entity_type: druki_content
 type: druki_category
 settings: {  }
-module: druki_category
+module: druki_content
 locked: true
 cardinality: 1
 translatable: true

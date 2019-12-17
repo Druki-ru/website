@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.druki_content.category
   module:
-    - druki_category
     - druki_content
 id: druki_content.druki_content.category
 field_name: category
