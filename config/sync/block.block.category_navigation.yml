@@ -6,7 +6,7 @@ dependencies:
     - block_visibility_groups.block_visibility_group.druki_content_page
   module:
     - block_visibility_groups
-    - druki_category
+    - druki_content
   theme:
     - loremaster
 id: category_navigation

@@ -56,6 +56,6 @@ function druki_content_form_block_form_alter(array &$form, FormStateInterface $f
 /**
  * Implements hook_block_view_BASE_BLOCK_ID_alter().
  */
-function druki_category_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block) {
+function druki_content_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block) {
   $build['#configuration']['label'] = $block->label();
 }

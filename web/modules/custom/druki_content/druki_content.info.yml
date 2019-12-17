@@ -12,7 +12,6 @@ dependencies:
   - druki_git:druki_git
   - druki_markdown:druki_markdown
   - druki_file:druki_file
-  - druki_category:druki_category
   - pathauto:pathauto
   - metatag:metatag
 
