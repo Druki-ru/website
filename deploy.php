@@ -69,7 +69,7 @@ task('deploy', [
   'deploy:config-split-export',
   'deploy:config-import',
   'deploy:config-split-import',
-  'deploy:minifyjs',
+//  'deploy:minifyjs',
   'deploy:rebuild-cache',
   'deploy:unlock',
   'cleanup',

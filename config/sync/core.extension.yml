@@ -53,7 +53,6 @@ module:
   metatag_twitter_cards: 0
   metatag_verification: 0
   metatag_views: 0
-  minifyjs: 0
   node: 0
   options: 0
   page_cache: 0
