@@ -14,6 +14,7 @@ gulp.task('sass', function() {
     'assets/scss/objects/objects.scss',
     'assets/scss/components/components.scss',
     'assets/scss/utilities/utilities.scss',
+    'assets/scss/generic/fonts.scss',
   ])
     .pipe(sourcemaps.init())
     .pipe(sassGlob())

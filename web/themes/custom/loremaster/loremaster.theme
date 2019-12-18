@@ -84,7 +84,8 @@ function loremaster_preprocess_page__front(array &$variables): void {
   $media_storage = \Drupal::entityTypeManager()->getStorage('media');
   $media_view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
   /** @var \Drupal\Core\Entity\EntityStorageInterface $responsive_image_style_storage */
-  $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
+  $responsive_image_style_storage = \Drupal::entityTypeManager()
+    ->getStorage('responsive_image_style');
   $promo_settings = $frontpage_settings->get('promo');
   $why_settings = $frontpage_settings->get('why');
   $community_settings = $frontpage_settings->get('community');
@@ -145,18 +146,6 @@ function loremaster_page_attachments_alter(array &$attachments) {
         '#tag' => 'link',
         '#attributes' => [
           'rel' => 'preconnect',
-          'href' => '//fonts.googleapis.com',
-          'crossorigin' => 'anonymous',
-        ],
-        '#weight' => -99,
-      ],
-      'google_font_styles',
-    ],
-    [
-      [
-        '#tag' => 'link',
-        '#attributes' => [
-          'rel' => 'preconnect',
           'href' => '//www.googletagmanager.com',
           'crossorigin' => 'anonymous',
         ],
@@ -169,36 +158,12 @@ function loremaster_page_attachments_alter(array &$attachments) {
         '#tag' => 'link',
         '#attributes' => [
           'rel' => 'preconnect',
-          'href' => '//fonts.gstatic.com',
-          'crossorigin' => 'anonymous',
-        ],
-        '#weight' => -97,
-      ],
-      'google_font_cache',
-    ],
-    [
-      [
-        '#tag' => 'link',
-        '#attributes' => [
-          'rel' => 'preconnect',
           'href' => '//www.google-analytics.com',
           'crossorigin' => 'anonymous',
         ],
         '#weight' => -96,
       ],
       'google_analytics',
-    ],
-    [
-      [
-        '#tag' => 'link',
-        '#attributes' => [
-          'rel' => 'preconnect',
-          'href' => '//stats.g.doubleclick.net',
-          'crossorigin' => 'anonymous',
-        ],
-        '#weight' => -96,
-      ],
-      'google_doubleclick',
     ],
   ];
 
@@ -254,7 +219,7 @@ function loremaster_theme_suggestions_block_alter(array &$suggestions, array $va
   ];
 
   if (isset($variables['elements']['#id']) && in_array($variables['elements']['#id'], $block_ids)) {
-    $suggestions[] =  'block__no_markup';
+    $suggestions[] = 'block__no_markup';
   }
 }
 
