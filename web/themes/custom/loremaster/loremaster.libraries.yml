@@ -18,8 +18,8 @@ style.utilities:
   css:
     state:
       assets/css/utilities.css: {}
-  dependencies:
-    - loremaster/google.fonts
+#  dependencies:
+#    - loremaster/google.fonts
 
 google.fonts:
   css:

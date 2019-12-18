@@ -29,6 +29,42 @@
         {
             "type": "path",
             "url": "web/modules/custom/*"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "google-webfonts-helper/montserrat",
+                "type": "drupal-library",
+                "version": "master",
+                "dist": {
+                    "url": "https://google-webfonts-helper.herokuapp.com/api/fonts/montserrat?download=zip&subsets=latin,cyrillic&variants=500,600,700&formats=woff,woff2",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "google-webfonts-helper/roboto",
+                "type": "drupal-library",
+                "version": "master",
+                "dist": {
+                    "url": "https://google-webfonts-helper.herokuapp.com/api/fonts/roboto?download=zip&subsets=latin,cyrillic&variants=500,700,regular,italic&formats=woff,woff2",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "google-webfonts-helper/fira-code",
+                "type": "drupal-library",
+                "version": "master",
+                "dist": {
+                    "url": "https://google-webfonts-helper.herokuapp.com/api/fonts/fira-code?download=zip&subsets=latin&variants=700,regular&formats=woff,woff2",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
@@ -66,6 +102,9 @@
         "drupal/twig_tweak": "^2.1",
         "drupal/webp": "1.x-dev",
         "drush/drush": "^10.0",
+        "google-webfonts-helper/fira-code": "master",
+        "google-webfonts-helper/montserrat": "master",
+        "google-webfonts-helper/roboto": "master",
         "npm-asset/lazysizes": "^5.1",
         "npm-asset/photoswipe": "^4.1",
         "oomphinc/composer-installers-extender": "^1.1"
