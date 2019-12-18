@@ -53,7 +53,8 @@ task('deploy:rebuild-cache', function () {
 
 task('deploy:minifyjs', function () {
   cd('{{deploy_path}}/current');
-  run('drush minifyjs -y');
+  run('drush scan-js');
+  run('drush minify-js');
 });
 
 task('deploy', [
@@ -69,7 +70,7 @@ task('deploy', [
   'deploy:config-split-export',
   'deploy:config-import',
   'deploy:config-split-import',
-//  'deploy:minifyjs',
+  'deploy:minifyjs',
   'deploy:rebuild-cache',
   'deploy:unlock',
   'cleanup',
