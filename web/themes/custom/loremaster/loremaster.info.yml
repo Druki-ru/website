@@ -12,7 +12,6 @@ libraries:
   - loremaster/style.layout
   - loremaster/style.component
   - loremaster/style.utilities
-  - loremaster/code-highlight
   - loremaster/dark-mode
 
 regions:
@@ -25,3 +24,6 @@ regions:
 # Disable system libraries.
 libraries-override:
   system/base: false
+  # We don't support older browser like IE 9-11 anyway, so there is no need to
+  # load polyfills which will overhead JS engine for  nothing.
+  core/picturefill: false
