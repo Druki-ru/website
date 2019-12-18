@@ -46,6 +46,7 @@ function template_preprocess_druki_header_branding_navigation(array &$variables)
     '#alt' => new TranslatableMarkup('Home'),
     '#attributes' => [
       'class' => ['druki-header-branding-navigation__logo'],
+      'lazy' => 'off',
     ],
   ];
 }

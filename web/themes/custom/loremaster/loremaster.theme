@@ -104,6 +104,7 @@ function loremaster_preprocess_page__front(array &$variables): void {
       '#attributes' => [
         'alt' => 'Druki Promo',
         'class' => ['frontpage-hero__image'],
+        'lazy' => 'off',
       ],
     ];
   }
@@ -229,6 +230,11 @@ function loremaster_theme_suggestions_block_alter(array &$suggestions, array $va
  * Integrate lazysizes.js library for lazy loading.
  */
 function loremaster_preprocess_responsive_image(array &$variables) {
+  if (isset($variables['attributes']['lazy']) && $variables['attributes']['lazy'] == 'off') {
+    unset($variables['attributes']['lazy']);
+    return;
+  }
+
   /** @var \Drupal\Core\Template\Attribute $source */
   foreach ($variables['sources'] as $source) {
     $srcset = $source->offsetGet('srcset');
@@ -247,6 +253,11 @@ function loremaster_preprocess_responsive_image(array &$variables) {
  * Integrate lazysizes.js library for lazy loading.
  */
 function loremaster_preprocess_image(array &$variables) {
+  if (isset($variables['attributes']['lazy']) && $variables['attributes']['lazy'] == 'off') {
+    unset($variables['attributes']['lazy']);
+    return;
+  }
+
   // @see https://github.com/aFarkas/lazysizes#modern-transparent-srcset-pattern
   if (isset($variables['attributes']['srcset'])) {
     $variables['attributes']['data-srcset'] = $variables['attributes']['srcset'];
