@@ -42,7 +42,7 @@ function loremaster_preprocess_paragraph__druki_heading(array &$variables): void
   $variables['heading_level'] = $paragraph->get('druki_heading_level')->value;
   $variables['title'] = $title;
 
-  $variables['anchor'] = Text::anchor($title, 'druki_content_toc_theme');
+  $variables['anchor'] = Text::anchor($title, 'druki_content_toc_theme', Text::ANCHOR_DRUPLCATE_REUSE);
 
   $variables['bem_modifiers'][] = $variables['heading_level'];
 }

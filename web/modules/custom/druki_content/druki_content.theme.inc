@@ -115,7 +115,7 @@ function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $l
   return [
     'id' => $internal_id,
     'text' => $title,
-    'anchor' => Text::anchor($title, 'druki_content_toc'),
+    'anchor' => Text::anchor($title, 'druki_content_toc', Text::ANCHOR_DRUPLCATE_REUSE),
     'level' => $heading_level_int,
     'parent_id' => $parent_id,
   ];

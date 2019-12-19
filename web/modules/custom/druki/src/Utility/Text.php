@@ -12,8 +12,24 @@ use Drupal\Component\Transliteration\PhpTransliteration;
 class Text {
 
   /**
+   * Indicated incremental anchors.
+   *
+   * @var int
+   */
+  const ANCHOR_DUPLICATE_COUNTER = 1;
+
+  /**
+   * Indicates reusable anchors.
+   *
+   * @var int
+   */
+  const ANCHOR_DRUPLCATE_REUSE = 2;
+
+  /**
    * Generates anchor for string.
    *
+   * @param string $text
+   *   The string to generate anchor from.
    * @param string $id
    *   The string ID for static caching during a single request. This helps
    *   generate unique anchors for the provided ID. When you generate anchors
@@ -21,13 +37,16 @@ class Text {
    *   each individual entity, but there is a change that one entity can contain
    *   two "Title" headings, so first will have anchor "title", second "title-1"
    *   and so on.
-   * @param string $text
-   *   The string to generate anchor from.
+   * @param int $duplicate_mode
+   *   The mode used when anchor for provided text and id is already exists.
+   *   Available values:
+   *   - ANCHOR_DUPLICATE_COUNTER: Each new anchor will have suffix "-N".
+   *   - ANCHOR_DRUPLCATE_REUSE: Will return already generated anchor.
    *
    * @return string
    *   The anchor string.
    */
-  public static function anchor(string $text, string $id = 'default'): string {
+  public static function anchor(string $text, string $id = 'default', int $duplicate_mode = self::ANCHOR_DUPLICATE_COUNTER): string {
     $anchor_generated = FALSE;
     $iteration = 0;
 
@@ -48,7 +67,7 @@ class Text {
 
       // If anchor not stored in static cache, we generate new one.
       if (!isset($anchor_static)) {
-        if ($iteration > 0) {
+        if ($iteration > 0 && $duplicate_mode == self::ANCHOR_DUPLICATE_COUNTER) {
           $anchor .= '-' . $iteration;
         }
 
