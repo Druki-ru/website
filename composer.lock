@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26f6a72419450404ab5df6d9cfd07039",
+    "content-hash": "0c51645f18bf0f0919cdf2244b7eb01b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2928,6 +2928,9 @@
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Fix drush command": "https://www.drupal.org/files/issues/2019-12-19/3102189-1.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
