@@ -18,8 +18,10 @@ style.utilities:
   css:
     state:
       assets/css/utilities.css: {}
-      assets/css/fonts.css: {}
-#  dependencies:
+  dependencies:
+    - google_webfonts_helper/roboto
+    - google_webfonts_helper/montserrat
+    - google_webfonts_helper/fira_code
 #    - loremaster/google.fonts
 
 google.fonts:

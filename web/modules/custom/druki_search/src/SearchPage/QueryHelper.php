@@ -8,6 +8,8 @@ use Drupal\search_api\Utility\QueryHelperInterface;
 
 /**
  * Provides query helper for global search.
+ *
+ * @todo delete. Don't need it for now.
  */
 class QueryHelper {
 

@@ -36,6 +36,7 @@ module:
   file_mdm_exif: 0
   filter: 0
   google_tag: 0
+  google_webfonts_helper: 0
   help: 0
   history: 0
   image: 0

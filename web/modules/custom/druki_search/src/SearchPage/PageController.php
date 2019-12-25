@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Provides search page controller.
+ *
+ * @todo refactor it.
  */
 class PageController implements ContainerInjectionInterface {
 
