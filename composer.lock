@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf21d0b6dac60f67b7f1940305acfd3a",
+    "content-hash": "8ebad0825303962c328c40c2f1a58db7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2689,17 +2689,17 @@
         },
         {
             "name": "drupal/google_webfonts_helper",
-            "version": "1.0.0-alpha3",
+            "version": "1.0.0-alpha4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/google_webfonts_helper.git",
-                "reference": "8.x-1.0-alpha3"
+                "reference": "8.x-1.0-alpha4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/google_webfonts_helper-8.x-1.0-alpha3.zip",
-                "reference": "8.x-1.0-alpha3",
-                "shasum": "067f597438bf63cd90e4e19ce19d50439e6d9faa"
+                "url": "https://ftp.drupal.org/files/projects/google_webfonts_helper-8.x-1.0-alpha4.zip",
+                "reference": "8.x-1.0-alpha4",
+                "shasum": "0ad7126b1bd8b80ab6526b284e95ffdb152f7c99"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -2712,8 +2712,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha3",
-                    "datestamp": "1577278383",
+                    "version": "8.x-1.0-alpha4",
+                    "datestamp": "1577368383",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"

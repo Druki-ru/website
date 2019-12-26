@@ -54,7 +54,7 @@
         "drupal/extra_field": "^1.0",
         "drupal/glisseo": "1.x-dev#61a1c98",
         "drupal/google_tag": "^1.1",
-        "drupal/google_webfonts_helper": "1.0-alpha3",
+        "drupal/google_webfonts_helper": "1.0-alpha4",
         "drupal/imagemagick": "^2.5",
         "drupal/markdown": "2.x-dev",
         "drupal/metatag": "^1.8",

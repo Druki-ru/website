@@ -14,3 +14,4 @@ subsets:
   cyrillic: cyrillic
   latin: latin
 css_target: modern
+css_weight: base
