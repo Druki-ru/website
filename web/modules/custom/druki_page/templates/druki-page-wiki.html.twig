@@ -143,11 +143,68 @@
       <p>
         Установили Drupal? Круто! Вы уже проделали не малый путь, и определенно
         узнали что-то новое, но после установки, скорее всего, назрели вопросы:
-        "С чего начать?", "Куда двигаться дальше?" — в этом разделе собран
+        «С чего начать?», «Куда двигаться дальше?» — в этом разделе собран
         основной арсенал Drupal. Вы не только начнете узнавать всё больше и
         глубже, но и, мы надеемся, будете улучшать свои навыки.
       </p>
     </div>
+  </div>
+
+  <div class="{{ bem_block }}__row">
+    <div class="{{ bem_block }}__row-content">
+      <div class="{{ bem_block }}__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Drupal API',
+          '#supporting_text': 'Обзор Drupal API.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/8/api',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="{{ bem_block }}__row">
+    <h3 class="{{ bem_block }}__row-title">
+      Drupal Component API
+    </h3>
+
+    <div class="{{ bem_block }}__row-content">
+      <div class="{{ bem_block }}__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Плагины',
+          '#subhead': 'Plugin API',
+          '#supporting_text': 'Расширяйте и используйте возможности других модулей.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/8/plugins',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Сервисы',
+          '#subhead': 'Services и Dependency Injection (DI)',
+          '#supporting_text': 'Создавайте объекты с Dependency Injection.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/8/services',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'События',
+          '#subhead': 'Events и EventSubscribers',
+          '#supporting_text': 'События позволяют подписываться на различные этапы обработки и реагировать как вам необходимо.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/8/events',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="{{ bem_block }}__row">
+    <h3 class="{{ bem_block }}__row-title">
+      Drupal Core API
+    </h3>
 
     <div class="{{ bem_block }}__row-content">
       <div class="{{ bem_block }}__cards">
@@ -169,6 +226,14 @@
 
         {{ {
           '#type': 'druki_card',
+          '#title': 'Дистрибутивы',
+          '#supporting_text': 'Установочные профили Drupal, которые позволяют создавать коробочные решения.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/8/distributions',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
           '#title': 'Маршрутизация',
           '#subhead': 'Routes и Controllers',
           '#supporting_text': 'Создавайте свои собственные страницы, с уникальным поведением.',
@@ -178,29 +243,11 @@
 
         {{ {
           '#type': 'druki_card',
-          '#title': 'Плагины',
-          '#subhead': 'Plugin API',
-          '#supporting_text': 'Расширяйте и используйте возможности других модулей.',
-          '#style': 'outlined',
-          '#primary_url': '/wiki/8/plugins',
-        } }}
-
-        {{ {
-          '#type': 'druki_card',
           '#title': 'Хуки',
           '#subhead': 'Hooks',
           '#supporting_text': 'Внедряйтесь на различных этапах работы системы, влияйте на поведение и результат.',
           '#style': 'outlined',
           '#primary_url': '/wiki/8/hooks',
-        } }}
-
-        {{ {
-          '#type': 'druki_card',
-          '#title': 'Сервисы',
-          '#subhead': 'Services и Dependency Injection (DI)',
-          '#supporting_text': 'Создавайте объекты с Dependency Injection.',
-          '#style': 'outlined',
-          '#primary_url': '/wiki/8/services',
         } }}
 
         {{ {
@@ -219,15 +266,6 @@
           '#supporting_text': 'Создавайте формы, валидируйте, изменяйте, расширяйте.',
           '#style': 'outlined',
           '#primary_url': '/wiki/8/forms',
-        } }}
-
-        {{ {
-          '#type': 'druki_card',
-          '#title': 'События',
-          '#subhead': 'Events и EventSubscribers',
-          '#supporting_text': 'События позволяют подписываться на различные этапы обработки и реагировать как вам необходимо.',
-          '#style': 'outlined',
-          '#primary_url': '/wiki/8/events',
         } }}
 
         {{ {
@@ -284,6 +322,41 @@
           </li>
           <li class="{{ bem_block }}__other-item-item">
             <a href="/wiki/drush">Drush</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="{{ bem_block }}__other-item">
+        <h4 class="{{ bem_block }}__other-item-title">Дистрибутивы Drupal</h4>
+
+        <ul class="{{ bem_block }}__other-item-items">
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/8/distributions/standard">Стандартный</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/8/distributions/minimal">Минимальный</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/8/distributions/demo-umami">Демонстрационный: Кулинарный журнал Umami</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="{{ bem_block }}__other-item">
+        <h4 class="{{ bem_block }}__other-item-title">Composer пакеты</h4>
+
+        <ul class="{{ bem_block }}__other-item-items">
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-recommended-project">drupal/recommended-project</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-legacy-project">drupal/legacy-project</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-core-recommended">drupal/core-recommended</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-core-composer-scaffold">drupal/core-composer-scaffold</a>
           </li>
         </ul>
       </div>

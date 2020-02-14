@@ -3,12 +3,12 @@
 namespace Drupal\Tests\druki\Unit;
 
 use Drupal\druki\Utility\Text;
-use Drupal\Tests\UnitTestCase;
+use Drupal\KernelTests\KernelTestBase;
 
 /**
  * Tests text utility object.
  */
-class TextTest extends UnitTestCase {
+class TextTest extends KernelTestBase {
 
   /**
    * Tests anchor generation.
