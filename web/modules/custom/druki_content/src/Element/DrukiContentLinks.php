@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 
 /**
@@ -65,7 +66,7 @@ class DrukiContentLinks extends RenderElement {
 
     $element['wrapper']['edit'] = [
       '#type' => 'link',
-      '#title' => t('Edit'),
+      '#title' => new TranslatableMarkup('Edit'),
       '#url' => $entity->toUrl('edit-remote'),
       '#attributes' => [
         'target' => '_blank',

@@ -1,20 +1,12 @@
 module:
-  automated_cron: 0
-  big_pipe: 0
   block: 0
-  block_content: 0
   block_visibility_groups: 0
   breakpoint: 0
-  ckeditor: 0
-  color: 0
-  comment: 0
   config: 0
   config_filter: 0
   config_split: 0
-  contact: 0
   contextual: 0
   ctools: 0
-  datetime: 0
   dblog: 0
   druki: 0
   druki_content: 0
@@ -37,8 +29,6 @@ module:
   filter: 0
   google_tag: 0
   google_webfonts_helper: 0
-  help: 0
-  history: 0
   image: 0
   imagemagick: 0
   language: 0
@@ -55,29 +45,23 @@ module:
   metatag_verification: 0
   metatag_views: 0
   minifyjs: 0
-  node: 0
   options: 0
   page_cache: 0
   path: 0
   path_alias: 0
   photoswipe: 0
-  quickedit: 0
-  rdf: 0
   responsive_image: 0
   rest: 0
   restui: 0
   search_api: 0
   search_api_db: 0
   serialization: 0
-  shortcut: 0
   simple_sitemap: 0
   snowball_stemmer: 0
   system: 0
-  taxonomy: 0
   text: 0
   token: 0
   toolbar: 0
-  tour: 0
   twig_tweak: 0
   update: 0
   user: 0

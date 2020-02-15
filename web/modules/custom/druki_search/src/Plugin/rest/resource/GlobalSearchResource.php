@@ -24,6 +24,8 @@ use Symfony\Component\HttpFoundation\Request;
  *     "canonical" = "/api/search/global",
  *   }
  * )
+ *
+ * @deprecated remote after 15.02.19 commits. Unused.
  */
 class GlobalSearchResource extends ResourceBase {
 

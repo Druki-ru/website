@@ -22,3 +22,11 @@ druki.official_user_guide_settings:
     _form: 'Drupal\druki\Form\OfficialUserGuideSettingsForm'
   requirements:
     _permission: 'administer site configuration'
+
+druki.frontpage:
+  path: '/frontpage'
+  defaults:
+    _title: 'Drupal Encyclopedia'
+    _controller: '\Drupal\druki\Controller\FrontpageController::build'
+  requirements:
+    _permission: 'access content'
