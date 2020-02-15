@@ -106,22 +106,6 @@ processor_settings:
       add_properties: 20
   druki_content_core: {  }
   druki_content_difficulty: {  }
-  highlight:
-    highlight: always
-    highlight_partial: false
-    excerpt: true
-    excerpt_length: 256
-    exclude_fields:
-      - category
-      - external_id
-      - filename
-      - labels
-      - search_keywords
-      - title
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
   html_filter:
     all_fields: true
     fields:
