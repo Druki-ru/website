@@ -290,6 +290,24 @@
   </div>
 
   <div class="{{ bem_block }}__row">
+    <h3 class="{{ bem_block }}__row-title">
+      Прочее
+    </h3>
+
+    <div class="{{ bem_block }}__row-content">
+      <div class="{{ bem_block }}__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'settings.php',
+          '#subhead': 'settings.php и settings.local.php',
+          '#supporting_text': 'Обзор настроек окружения Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/8/settings-php',
+        } }}
+      </div>
+    </div>
+
+  <div class="{{ bem_block }}__row">
     <div class="{{ bem_block }}__other-items">
       <div class="{{ bem_block }}__other-item">
         <h4 class="{{ bem_block }}__other-item-title">Полезная информация</h4>

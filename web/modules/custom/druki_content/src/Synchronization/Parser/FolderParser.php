@@ -14,7 +14,7 @@ use Symfony\Component\Finder\Finder;
  *    the same name as langcode in Drupal.
  * --- All other files.
  *
- * @package Drupal\druki_parser\Service
+ * @todo Refactor to "Discovery".
  */
 class FolderParser implements FolderParserInterface {
 

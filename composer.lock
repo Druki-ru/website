@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ebad0825303962c328c40c2f1a58db7",
+    "content-hash": "7e09ea17592c4d8d36a3297f144ca7cc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2150,6 +2150,9 @@
                         "[web-root]/profiles/README.txt": "assets/scaffold/files/profiles.README.txt",
                         "[web-root]/themes/README.txt": "assets/scaffold/files/themes.README.txt"
                     }
+                },
+                "patches_applied": {
+                    "Implement Server Timing performance metrics (https://www.drupal.org/project/drupal/issues/3104566)": "https://www.drupal.org/files/issues/2020-02-13/server-timing-3104566-37.patch"
                 }
             },
             "autoload": {
