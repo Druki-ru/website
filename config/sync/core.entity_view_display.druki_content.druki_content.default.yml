@@ -44,5 +44,6 @@ hidden:
   last_commit_id: true
   metatags: true
   relative_pathname: true
+  search_api_excerpt: true
   search_keywords: true
   title: true

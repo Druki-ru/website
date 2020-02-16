@@ -41,6 +41,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @todo improve updating. If id changed and\or added core in meta tags, content
  *   can be found but this values wont change.
+ * @todo move this from queue worker to separate object and split it.
  */
 class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
@@ -187,7 +188,9 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     $this->token = $token;
     $this->logger = $logger;
     $this->state = $state;
-    $this->filterDefaultFormat = 'markdown';
+    // Use full html for default form since we convert markdown during sync.
+    // Using markdown filter will only reduce performance for nothing.
+    $this->filterDefaultFormat = 'full_html';
   }
 
   /**
