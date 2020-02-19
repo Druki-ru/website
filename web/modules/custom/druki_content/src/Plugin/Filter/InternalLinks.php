@@ -2,16 +2,14 @@
 
 namespace Drupal\druki_content\Plugin\Filter;
 
+use DOMXPath;
 use Drupal\Component\Utility\Crypt;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Handler\DrukiContentStorage;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Provides a 'InternalLinks' filter.
@@ -26,13 +24,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class InternalLinks extends FilterBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The dom crawler.
-   *
-   * @var \Symfony\Component\DomCrawler\Crawler
-   */
-  protected $crawler;
-
-  /**
    * An array with cache tags for lazy re-render.
    *
    * @var array
@@ -44,21 +35,21 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    *
    * @var \Drupal\druki_content\Handler\DrukiContentStorage
    */
-  protected $drukiContentStorage;
+  protected $contentStorage;
 
   /**
    * The git settings.
    *
    * @var \Drupal\Core\Config\ImmutableConfig
    */
-  protected $drukiGitSettings;
+  protected $gitSettings;
 
   /**
    * The repository path.
    *
    * @var array|null
    */
-  protected $drukiGitRepositoryPath;
+  protected $gitRepositoryPath;
 
   /**
    * The file system.
@@ -72,55 +63,42 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    *
    * @var false|string
    */
-  protected $drukiGitRepositoryRealpath;
+  protected $gitRepositoryRealpath;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
-    DrukiContentStorage $druki_content_storage,
-    ConfigFactoryInterface $config_factory,
-    FileSystemInterface $file_system
-  ) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): InternalLinks {
+    $instance = new static($configuration, $plugin_id, $plugin_definition);
+    $instance->contentStorage = $container->get('entity_type.manager')->getStorage('druki_content');
+    $instance->gitSettings = $container->get('config.factory')->get('druki_git.git_settings');
+    $instance->gitRepositoryPath = $instance->gitSettings->get('repository_path');
+    $instance->fileSystem = $container->get('file_system');
+    $instance->gitRepositoryRealpath = $instance->fileSystem->realpath($instance->gitRepositoryPath);
 
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-
-    $this->crawler = new Crawler();
-    $this->drukiContentStorage = $druki_content_storage;
-    $this->drukiGitSettings = $config_factory->get('druki_git.git_settings');
-    $this->drukiGitRepositoryPath = $this->drukiGitSettings->get('repository_path');
-    $this->fileSystem = $file_system;
-    $this->drukiGitRepositoryRealpath = $this->fileSystem->realpath($this->drukiGitRepositoryPath);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): object {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager')->getStorage('druki_content'),
-      $container->get('config.factory'),
-      $container->get('file_system')
-    );
+    return $instance;
   }
 
   /**
    * {@inheritdoc}
    */
   public function process($text, $langcode): FilterProcessResult {
-    $this->crawler->addContent($text);
+    $result = new FilterProcessResult($text);
 
-    $replace_link = function ($node) {
-      $original_href = $node->getNode(0)->getAttribute('href');
+    if (stristr($text, '<a') === FALSE) {
+      return $result;
+    }
+
+    $dom = Html::load($text);
+    $xpath = new DOMXPath($dom);
+
+    // <a href="services/services.md" data-druki-internal-link-filepath="public://druki-content-source/docs/ru/8/settings-php.md">сервис</a>
+    /** @var \DOMElement $node */
+    foreach ($xpath->query('//a[@data-druki-internal-link-filepath]') as $node) {
       // Initial value for all broken links.
       $destination_href = '#';
-      $link_source_filepath = $node->getNode(0)->getAttribute('data-druki-internal-link-filepath');
+      $original_href = $node->getAttribute('href');
+      $link_source_filepath = $node->getAttribute('data-druki-internal-link-filepath');
       $source_realpath = $this->fileSystem->realpath($link_source_filepath);
       $source_dirname = dirname($source_realpath);
       // realpath() checks for file existence. So we wrap it to condition.
@@ -135,11 +113,10 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
       // Now we need to get "relative_pathname" for this file relative to
       // repository root.
       // We also remove leading slash from repository path. This is needed
-      // because "relative_pathname" stored without it: docs/ru/file.md
-      $destination_relative_pathname = str_replace($this->drukiGitRepositoryRealpath . '/', '', $destination_realpath);
+      // because "relative_pathname" stored without it: docs/ru/file.md.
+      $destination_relative_pathname = str_replace($this->gitRepositoryRealpath . '/', '', $destination_realpath);
       if (realpath($destination_realpath)) {
         // If we are here, this means the path is valid and file is exist.
-
         // Now we need to find the druki_content entity associated with this
         // relative pathname.
         $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
@@ -157,20 +134,10 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
       $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
 
       // Replace href value.
-      $node->getNode(0)->setAttribute('href', $destination_href);
-      $node->getNode(0)->removeAttribute('data-druki-internal-link-filepath');
-    };
+      $node->setAttribute('href', $destination_href);
+      $node->removeAttribute('data-druki-internal-link-filepath');
+    }
 
-    // Dom Crawler not intended to change DOM, but small changes as ours is
-    // possible.
-    $this
-      ->crawler
-      ->filter('a[data-druki-internal-link-filepath]')
-      ->each($replace_link);
-
-    $text = $this->crawler->html();
-
-    $result = new FilterProcessResult($text);
     // The main reason for this, is to handle links, which can be created at
     // particular moment, but can be later.
     // F.e. we have two content "Page 1" and "Page 2", they're imported
@@ -183,6 +150,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
     // will be more less CPU intended in long run. But who knows, we can rework
     // it if you prove it.
     $result->setCacheTags($this->lazyCacheTags);
+    $result->setProcessedText(Html::serialize($dom));
 
     return $result;
   }
@@ -239,7 +207,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
 
     if (!isset($result)) {
       $content_ids = $this
-        ->drukiContentStorage
+        ->contentStorage
         ->getQuery()
         ->condition('relative_pathname', $relative_pathname)
         ->range(0, 1)
@@ -247,7 +215,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
 
       if (!empty($content_ids)) {
         $content_id = array_shift($content_ids);
-        $result = $this->drukiContentStorage->load($content_id);
+        $result = $this->contentStorage->load($content_id);
       }
     }
 

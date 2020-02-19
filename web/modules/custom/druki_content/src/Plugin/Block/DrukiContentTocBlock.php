@@ -5,7 +5,6 @@ namespace Drupal\druki_content\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -28,16 +27,6 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
   protected $routeMatch;
 
   /**
-   * {@inheritDoc}
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CurrentRouteMatch $current_route_match) {
-
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-
-    $this->routeMatch = $current_route_match;
-  }
-
-  /**
    * Creates an instance of the plugin.
    *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
@@ -53,12 +42,9 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
    *   Returns an instance of this plugin.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): object {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('current_route_match')
-    );
+    $instance = new static($configuration, $plugin_id, $plugin_definition);
+    $instance->routeMatch = $container->get('current_route_match');
+    return $instance;
   }
 
   /**
