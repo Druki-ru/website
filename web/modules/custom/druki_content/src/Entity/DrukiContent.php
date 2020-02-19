@@ -159,9 +159,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
     // @see CategoryNavigationBlock::getCacheTags().
     // @todo maybe move it to its module.
     if (!$this->get('category')->isEmpty()) {
-      $transliteration = \Drupal::transliteration();
-      $category_area = $transliteration->transliterate($this->get('category')->area);
-      $cache_tags[] = 'druki_category_navigation:' . $category_area;
+      $cache_tags[] = 'druki_category_navigation:' . Crypt::hashBase64($this->get('category')->area);
     }
 
     return $cache_tags;

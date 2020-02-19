@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_content\Plugin\Block;
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -113,8 +114,7 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
     $cache_tags = [];
 
     if ($category_area = $this->categoryNavigation->getCategoryAreaFromRoute()) {
-      $category_latin = $this->transliteration()->transliterate($category_area);
-      $cache_tags[] = 'druki_category_navigation:' . $category_latin;
+      $cache_tags[] = 'druki_category_navigation:' . Crypt::hashBase64($category_area);
     }
 
     $links = $this->categoryNavigation->getCategoryLinksFromRoute();
