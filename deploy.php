@@ -57,6 +57,11 @@ task('deploy:minifyjs', function () {
   run('drush minify-js');
 });
 
+task('deploy:cache-warming', function () {
+  cd('{{deploy_path}}/current');
+  writeln(run('drush warmer:enqueue sitemap --run-queue'));
+});
+
 task('deploy', [
   'deploy:prepare',
   'deploy:lock',
@@ -73,6 +78,7 @@ task('deploy', [
   'deploy:minifyjs',
   'deploy:rebuild-cache',
   'deploy:unlock',
+  'deploy:cache-warming',
   'cleanup',
   'success',
 ]);

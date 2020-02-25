@@ -1,0 +1,19 @@
+warmers:
+  sitemap:
+    id: sitemap
+    frequency: 300
+    batchSize: 50
+    sitemaps: {  }
+    minPriority: !!float 0
+    headers: {  }
+    verify: true
+  cdn:
+    id: cdn
+    frequency: 300
+    batchSize: 50
+    urls: {  }
+    headers: {  }
+    verify: true
+_core:
+  default_config_hash: wLhhL58IKPWkAbhxcI6gpCna7d431Q7kM0y-Om92BUQ
+langcode: ru
