@@ -14,7 +14,7 @@ use Symfony\Component\Finder\Finder;
  *    the same name as langcode in Drupal.
  * --- All other files.
  *
- * @todo Refactor to "Discovery".
+ * @deprecated In flavor of \Drupal\druki_content\Finder\SourceContentFinder
  */
 class FolderParser implements FolderParserInterface {
 

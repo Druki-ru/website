@@ -7,6 +7,7 @@
     ],
     "require": {
         "ext-simplexml": "*",
-        "ext-xmlreader": "*"
+        "ext-xmlreader": "*",
+        "symfony/finder": "~4.0"
     }
 }

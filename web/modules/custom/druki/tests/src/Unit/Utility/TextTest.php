@@ -1,14 +1,14 @@
 <?php
 
-namespace Drupal\Tests\druki\Unit;
+namespace Drupal\Tests\druki\Unit\Utility;
 
 use Drupal\druki\Utility\Text;
-use Drupal\KernelTests\KernelTestBase;
+use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests text utility object.
  */
-class TextTest extends KernelTestBase {
+class TextTest extends UnitTestCase {
 
   /**
    * Tests anchor generation.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki_markdown\Kernel;
+namespace Drupal\Tests\druki\Kernel\Service;
 
 use Drupal\Tests\token\Kernel\KernelTestBase;
 
@@ -36,7 +36,6 @@ class DrupalProjectsServiceTest extends KernelTestBase {
    */
   public function testGetProjectLastStableRelease() {
     $actual = $this->drupalProjects->getCoreLastStableVersion('drupal');
-    dump($actual);
   }
 
 }

@@ -5,7 +5,7 @@ namespace Drupal\druki_content\Synchronization\Parser;
 /**
  * Parser for filesystem folders.
  *
- * @package Drupal\druki_parser\Service
+ * @deprecated In flavor of \Drupal\druki_content\Finder\SourceContentFinder
  */
 interface FolderParserInterface {
 

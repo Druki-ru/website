@@ -12,6 +12,7 @@ services:
     class: Drupal\druki_content\Synchronization\Parser\HTMLParser
 
   druki_content.synchronization.folder_parser:
+    deprecated: 'Service %service_id% deprecated in flavor of druki_content.source_content_finder'
     class: Drupal\druki_content\Synchronization\Parser\FolderParser
     arguments: ['@language_manager']
 
@@ -24,3 +25,7 @@ services:
   druki_content.category.navigation:
     class: Drupal\druki_content\Category\CategoryNavigation
     arguments: ['@current_route_match', '@entity_type.manager']
+
+  druki_content.source_content_finder:
+    class: Drupal\druki_content\Finder\SourceContentFinder
+    arguments: ['@language_manager']
