@@ -7,6 +7,7 @@
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 
@@ -206,4 +207,35 @@ function druki_content_update_8801(array &$sandbox) {
  */
 function druki_content_update_8802(array &$sandbox) {
 
+}
+
+/**
+ * Removes "filename" field from druki_content entity.
+ *
+ * @see https://gitlab.com/druki/website/issues/88
+ */
+function druki_content_update_8803(array &$sandbox) {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  if ($filename_definition = $definition_update_manager->getFieldStorageDefinition('filename', 'druki_content')) {
+    $definition_update_manager->uninstallFieldStorageDefinition($filename_definition);
+  }
+}
+
+/**
+ * Adds new base field "sync_timestamp" to druki_content entity.
+ *
+ * @see https://gitlab.com/druki/website/issues/88
+ */
+function druki_content_update_8804(array &$sandbox) {
+  $field_storage_definition = BaseFieldDefinition::create('timestamp')
+    ->setLabel(new TranslatableMarkup('Last synchronization timestamp'))
+    ->setDescription(new TranslatableMarkup('The time of last synchronization where this content was presented.'))
+    ->setDisplayOptions('form', [
+      'region' => 'hidden',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('sync_timestamp', 'druki_content', 'druki_content', $field_storage_definition);
 }

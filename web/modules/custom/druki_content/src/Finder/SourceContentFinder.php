@@ -56,7 +56,7 @@ final class SourceContentFinder {
    *     ],
    *   ],
    */
-  public function findAll(string $directory) {
+  public function findAll(string $directory): array {
     $all = [];
     // Source directory must contain "/docs" folder.
     $directory .= '/docs';

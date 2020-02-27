@@ -43,7 +43,7 @@ final class MarkdownDirectoryFinder {
    * @return array
    *   An array with founded files keyed by pathname.
    */
-  public function findAll() {
+  public function findAll(): array {
     $all = [];
 
     foreach ($this->directories as $directory) {

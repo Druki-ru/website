@@ -6,6 +6,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Defines the druki content entity class.
@@ -98,19 +99,6 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ])
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['filename'] = BaseFieldDefinition::create('string')
-      ->setTranslatable(TRUE)
-      ->setLabel(t('Filename'))
-      ->setDescription(t('The filename of source file.'))
-      ->setRequired(TRUE)
-      ->setSetting('max_length', 255)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => -3,
-      ])
-      ->setDisplayConfigurable('view', TRUE);
-
     $fields['last_commit_id'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
       ->setLabel(t('Last commit ID'))
@@ -136,6 +124,15 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ->setLabel('The core version for this content.')
       ->setRequired(FALSE)
       ->setReadOnly(TRUE);
+
+    $fields['sync_timestamp'] = BaseFieldDefinition::create('timestamp')
+      ->setLabel(new TranslatableMarkup('Last synchronization timestamp'))
+      ->setDescription(new TranslatableMarkup('The time of last synchronization where this content was presented.'))
+      ->setDisplayOptions('form', [
+        'region' => 'hidden',
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
 
     return $fields;
   }
@@ -175,6 +172,13 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
+  public function getRelativePathname(): string {
+    return $this->get('relative_pathname')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getTitle(): string {
     return $this->get('title')->value;
   }
@@ -191,31 +195,8 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getRelativePathname(): string {
-    return $this->get('relative_pathname')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function setRelativePathname(string $relative_pathname): DrukiContentInterface {
     $this->set('relative_pathname', $relative_pathname);
-
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getFilename(): string {
-    return $this->get('filename')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setFilename(string $filename): DrukiContentInterface {
-    $this->set('filename', $filename);
 
     return $this;
   }
@@ -286,6 +267,21 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
    */
   public function getCategory(): array {
     return $this->get('category')->first()->getValue();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSyncTimestamp(): int {
+    return $this->get('sync_timestamp')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSyncTimestamp(int $timestamp): self {
+    $this->set('sync_timestamp', $timestamp);
+    return $this;
   }
 
 }

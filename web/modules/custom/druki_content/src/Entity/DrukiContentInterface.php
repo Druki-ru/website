@@ -48,25 +48,6 @@ interface DrukiContentInterface extends ContentEntityInterface {
   public function setRelativePathname(string $relative_pathname): DrukiContentInterface;
 
   /**
-   * Gets filename of source file.
-   *
-   * @return string
-   *   The filename.
-   */
-  public function getFilename(): string;
-
-  /**
-   * Sets filename of source file.
-   *
-   * @param string $filename
-   *   The filename.
-   *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
-   *   The called druki content entity.
-   */
-  public function setFilename(string $filename): DrukiContentInterface;
-
-  /**
    * Gets last commit id of source file.
    *
    * @return string
@@ -153,5 +134,23 @@ interface DrukiContentInterface extends ContentEntityInterface {
    *   The category info.
    */
   public function getCategory(): array;
+
+  /**
+   * Gets last sync timestamp where content was found.
+   *
+   * @return int
+   *   The last sync timestamp.
+   */
+  public function getSyncTimestamp(): int;
+
+  /**
+   * Sets last synchronization timestamp for this content.
+   *
+   * @param int $timestamp
+   *   The last sync timestamp.
+   *
+   * @return $this
+   */
+  public function setSyncTimestamp(int $timestamp): self;
 
 }
