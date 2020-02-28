@@ -44,6 +44,7 @@ function druki_content_requirements($phase): array {
 function druki_content_uninstall() {
   // Remove state settings.
   \Drupal::state()->delete('druki_content.settings.force_update');
+  \Drupal::state()->delete('druki_content.last_sync_timestamp');
 }
 
 /**

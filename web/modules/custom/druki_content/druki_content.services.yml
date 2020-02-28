@@ -16,20 +16,20 @@ services:
     class: Drupal\druki_content\Synchronization\Parser\FolderParser
     arguments: ['@language_manager']
 
-  druki_content.synchronization.git_subscriber:
-    class: Drupal\druki_content\Synchronization\EventSubscriber\GitSubscriber
-    arguments: ['@queue', '@druki_content.synchronization.folder_parser', '@database', '@entity_type.manager']
+  druki_content.git_subscriber:
+    class: Drupal\druki_content\EventSubscriber\GitSubscriber
+    arguments: ['@druki_content.sync_queue_builder']
     tags:
       - { name: event_subscriber }
 
-  druki_content.synchronization.queue_builder:
+  druki_content.sync_queue_builder:
     class: Drupal\druki_content\Sync\SyncQueueManager
-    arguments: ['@druki_content.source_content_finder', '@queue']
+    arguments: ['@druki_content.content_source_finder', '@queue', '@state', '@datetime.time']
 
   druki_content.category.navigation:
     class: Drupal\druki_content\Category\CategoryNavigation
     arguments: ['@current_route_match', '@entity_type.manager']
 
-  druki_content.source_content_finder:
-    class: Drupal\druki_content\Finder\SourceContentFinder
+  druki_content.content_source_finder:
+    class: Drupal\druki_content\SourceContent\SourceContentFinder
     arguments: ['@language_manager']

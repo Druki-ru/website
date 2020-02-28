@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_content\Sync;
+namespace Drupal\druki_content\SourceContent;
 
 use SplFileInfo;
 
 /**
- * Provides value object stores single item for synchronization.
+ * Provides value object stores single source content.
  */
-final class SyncItem {
+final class SourceContent {
 
   /**
    * The source content path URI.
@@ -31,7 +31,7 @@ final class SyncItem {
   protected $file = NULL;
 
   /**
-   * Constructs a new SyncItem object.
+   * Constructs a new SourceContent object.
    *
    * @param string $uri
    *   The content URI path.
@@ -41,6 +41,16 @@ final class SyncItem {
   public function __construct(string $uri, string $language) {
     $this->uri = $uri;
     $this->language = $language;
+  }
+
+  /**
+   * Gets content source URI.
+   *
+   * @return string
+   *   The URI path to content source.
+   */
+  public function getUri(): string {
+    return $this->uri;
   }
 
   /**

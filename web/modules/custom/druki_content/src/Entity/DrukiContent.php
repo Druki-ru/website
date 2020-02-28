@@ -279,7 +279,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function setSyncTimestamp(int $timestamp): self {
+  public function setSyncTimestamp(int $timestamp): DrukiContentInterface {
     $this->set('sync_timestamp', $timestamp);
     return $this;
   }

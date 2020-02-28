@@ -151,6 +151,6 @@ interface DrukiContentInterface extends ContentEntityInterface {
    *
    * @return $this
    */
-  public function setSyncTimestamp(int $timestamp): self;
+  public function setSyncTimestamp(int $timestamp): DrukiContentInterface;
 
 }

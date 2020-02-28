@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Finder;
+namespace Drupal\druki_content\SourceContent;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\druki\Finder\MarkdownDirectoryFinder;
@@ -9,6 +9,7 @@ use Drupal\druki\Finder\MarkdownDirectoryFinder;
  * Provides finder for source content files.
  *
  * Source folder always must follow this structure:
+ *
  * @code
  * source/
  * └─ docs/
@@ -47,17 +48,11 @@ final class SourceContentFinder {
    * @param string $directory
    *   The directory path with sources.
    *
-   * @return array
-   *   An array with found sources, keyed by pathname and grouped by langcode.
-   *   E.g.:
-   *   [
-   *     'ru' => [
-   *       'public://content-source/docs/ru/drupal.md' => 'drupal.md',
-   *     ],
-   *   ],
+   * @return \Drupal\druki_content\SourceContent\SourceContentList
+   *   Source content list.
    */
-  public function findAll(string $directory): array {
-    $all = [];
+  public function findAll(string $directory): SourceContentList {
+    $all = new SourceContentList();
     // Source directory must contain "/docs" folder.
     $directory .= '/docs';
 
@@ -67,7 +62,9 @@ final class SourceContentFinder {
     // Find all source content grouped by langcode.
     foreach ($active_langcodes as $langcode) {
       $finder = new MarkdownDirectoryFinder(["{$directory}/{$langcode}"]);
-      $all[$langcode] = $finder->findAll();
+      foreach ($finder->findAll() as $uri => $filename) {
+        $all->add(new SourceContent($uri, $langcode));
+      }
     }
 
     return $all;
