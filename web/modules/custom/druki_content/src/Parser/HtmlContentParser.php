@@ -1,27 +1,35 @@
 <?php
 
-namespace Drupal\druki_content\Synchronization\Parser;
+namespace Drupal\druki_content\Parser;
 
-use Drupal\druki_content\Synchronization\Content\ContentList;
-use Drupal\druki_content\Synchronization\Content\ContentStructure;
-use Drupal\druki_content\Synchronization\MetaInformation\MetaInformation;
-use Drupal\druki_content\Synchronization\MetaInformation\MetaValue;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphHeading;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphImage;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphNote;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphText;
+use Drupal\druki_content\ParsedContent\Content\ContentList;
+use Drupal\druki_content\ParsedContent\Content\ParagraphCode;
+use Drupal\druki_content\ParsedContent\Content\ParagraphHeading;
+use Drupal\druki_content\ParsedContent\Content\ParagraphImage;
+use Drupal\druki_content\ParsedContent\Content\ParagraphNote;
+use Drupal\druki_content\ParsedContent\Content\ParagraphText;
+use Drupal\druki_content\ParsedContent\FrontMatter\FrontMatter;
+use Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterValue;
+use Drupal\druki_content\ParsedContent\ParsedContent;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Parse HTML markup to structured value objects.
  */
-class HTMLParser implements HTMLParserInterface {
+final class HtmlContentParser {
 
   /**
-   * {@inheritdoc}
+   * Parses HTML to structured data.
+   *
+   * @param string $html
+   *   The HTML with content.
+   * @param null|string $filepath
+   *   The filepath of parsed file. Will be used for internal links processing.
+   *
+   * @return \Drupal\druki_content\ParsedContent\ParsedContent
+   *   The structured value object with content.
    */
-  public function parse($html, $filepath = NULL): ContentStructure {
+  public function parse(string $html, $filepath = NULL): ParsedContent {
     $crawler = new Crawler($html);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');
@@ -32,7 +40,7 @@ class HTMLParser implements HTMLParserInterface {
     // - code: for pre > code.
     // Each content node after another merge to previous.
     $content = new ContentList();
-    $meta_information = new MetaInformation();
+    $meta_information = new FrontMatter();
 
     // Move through elements and structure them.
     foreach ($crawler->children() as $dom_element) {
@@ -79,7 +87,7 @@ class HTMLParser implements HTMLParserInterface {
       }
     }
 
-    return new ContentStructure($meta_information, $content);
+    return new ParsedContent($meta_information, $content);
   }
 
   /**
@@ -89,20 +97,20 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Synchronization\MetaInformation\MetaInformation $meta_information
+   * @param \Drupal\druki_content\ParsedContent\FrontMatter\FrontMatter $meta_information
    *   The content meta information.
    *
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(\DOMElement $dom_element, MetaInformation $meta_information): bool {
+  protected function parseMetaInformation(\DOMElement $dom_element, FrontMatter $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $meta_block = $crawler->filter('div[id="meta-information"]');
 
     if (count($meta_block)) {
       $meta_array = json_decode($meta_block->text(), TRUE);
       foreach ($meta_array as $key => $value) {
-        $meta_value = new MetaValue($key, $value);
+        $meta_value = new FrontMatterValue($key, $value);
         $meta_information->add($meta_value);
       }
 
@@ -148,7 +156,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
+   * @param \Drupal\druki_content\ParsedContent\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -181,7 +189,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
+   * @param \Drupal\druki_content\ParsedContent\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -206,7 +214,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
+   * @param \Drupal\druki_content\ParsedContent\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool
@@ -231,7 +239,7 @@ class HTMLParser implements HTMLParserInterface {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentList $content
+   * @param \Drupal\druki_content\ParsedContent\Content\ContentList $content
    *   The value object of content list.
    *
    * @return bool

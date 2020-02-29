@@ -1,9 +1,8 @@
 <?php
 
-namespace Drupal\druki_content\Synchronization\Content;
+namespace Drupal\druki_content\ParsedContent\Content;
 
 use ArrayIterator;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentInterface;
 use IteratorAggregate;
 
 /**
@@ -21,11 +20,10 @@ final class ContentList implements IteratorAggregate {
   /**
    * Adds content to list.
    *
-   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentInterface $content
+   * @param \Drupal\druki_content\ParsedContent\Content\ParagraphContentInterface $content
    *   The content instance.
    *
-   * @return \Drupal\druki_content\Synchronization\Content\ContentList The current instance.
-   *   The current instance.
+   * @return $this
    */
   public function add(ParagraphContentInterface $content): ContentList {
     $this->content[] = $content;
@@ -36,7 +34,7 @@ final class ContentList implements IteratorAggregate {
   /**
    * Set the internal pointer of list to its last element.
    *
-   * @return \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentInterface
+   * @return \Drupal\druki_content\ParsedContent\Content\ParagraphContentInterface
    *   The last content element if exists.
    */
   public function end(): ?ParagraphContentInterface {
@@ -53,7 +51,7 @@ final class ContentList implements IteratorAggregate {
   /**
    * Pop the content off the end of list.
    *
-   * @return \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphContentInterface|null
+   * @return \Drupal\druki_content\ParsedContent\Content\ParagraphContentInterface|null
    *   The popped content element.
    */
   public function pop(): ?ParagraphContentInterface {

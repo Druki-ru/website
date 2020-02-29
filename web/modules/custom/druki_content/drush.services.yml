@@ -1,6 +1,0 @@
-services:
-  druki_content.synchronization.commands:
-    class: Drupal\druki_content\Synchronization\Drush\SynchronizationCommands
-    arguments: ['@druki_content.synchronization.queue_manager', '@lock']
-    tags:
-      - { name: drush.command }

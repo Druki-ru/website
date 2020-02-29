@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Synchronization\MetaInformation;
+namespace Drupal\druki_content\ParsedContent\FrontMatter;
 
 /**
- * Provides value object for store specific metadata value.
+ * Provides value object for store single Front Matter value.
  */
-final class MetaValue {
+final class FrontMatterValue {
 
   /**
    * The key.
@@ -22,7 +22,7 @@ final class MetaValue {
   private $value;
 
   /**
-   * MetaValue constructor.
+   * FrontMatterValue constructor.
    *
    * @param string $key
    *   The value key.

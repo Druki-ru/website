@@ -24,7 +24,3 @@ Add this line `$config['config_split.config_split.dev']['status'] = TRUE;` to **
 
 1. Make a cup of coffee ☕️ and wait until the installation is finished.
 1. Enjoy your copy.
-
-## Content synchronization in separate process
-
-Content sync runs manually via command `drush druki-content:synchronization-process`. Don't forget to add it to cron job separately from other commands. This allocate separate process for content synchronization.

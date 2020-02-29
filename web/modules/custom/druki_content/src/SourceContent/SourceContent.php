@@ -44,13 +44,13 @@ final class SourceContent {
   }
 
   /**
-   * Gets content source URI.
+   * Checks is files is readable.
    *
-   * @return string
-   *   The URI path to content source.
+   * @return bool
+   *   TRUE is readable, FALSE if file is not readable or not exists.
    */
-  public function getUri(): string {
-    return $this->uri;
+  public function isReadable(): bool {
+    return $this->getFile()->isReadable();
   }
 
   /**
@@ -65,6 +65,26 @@ final class SourceContent {
     }
 
     return $this->file;
+  }
+
+  /**
+   * Gets file content.
+   *
+   * @return string
+   *   The file content.
+   */
+  public function getContent(): string {
+    return file_get_contents($this->getUri());
+  }
+
+  /**
+   * Gets content source URI.
+   *
+   * @return string
+   *   The URI path to content source.
+   */
+  public function getUri(): string {
+    return $this->uri;
   }
 
 }

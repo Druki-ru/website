@@ -12,16 +12,16 @@ use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Synchronization\Content\ContentStructure;
-use Drupal\druki_content\Synchronization\Parser\HTMLParser;
+use Drupal\druki_content\ParsedContent\Content\ParagraphCode;
+use Drupal\druki_content\ParsedContent\Content\ParagraphHeading;
+use Drupal\druki_content\ParsedContent\Content\ParagraphImage;
+use Drupal\druki_content\ParsedContent\Content\ParagraphNote;
+use Drupal\druki_content\ParsedContent\Content\ParagraphText;
+use Drupal\druki_content\ParsedContent\ParsedContent;
+use Drupal\druki_content\Synchronization\Parser\HtmlContentParser;
 use Drupal\druki_content\Synchronization\Queue\ContentItem;
 use Drupal\druki_file\Service\DrukiFileTracker;
 use Drupal\druki_markdown\Parser\MarkdownParserInterface;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphHeading;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphImage;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphNote;
-use Drupal\druki_paragraph\Common\ParagraphContent\ParagraphText;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -62,7 +62,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * The HTML parser.
    *
-   * @var \Drupal\druki_content\Synchronization\Parser\HTMLParser
+   * @var \Drupal\druki_content\Synchronization\Parser\HtmlContentParser
    */
   protected $htmlParser;
 
@@ -144,7 +144,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *   The entity field manager.
    * @param \Drupal\druki_markdown\Parser\MarkdownParserInterface $markdown_parser
    *   The markdown parser.
-   * @param \Drupal\druki_content\Synchronization\Parser\HTMLParser $html_parser
+   * @param \Drupal\druki_content\Synchronization\Parser\HtmlContentParser $html_parser
    *   The HTML parser.
    * @param \Drupal\druki_file\Service\DrukiFileTracker $file_tracker
    *   The file tracker.
@@ -167,7 +167,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
     EntityTypeManagerInterface $entity_type_manager,
     EntityFieldManagerInterface $entity_field_manager,
     MarkdownParserInterface $markdown_parser,
-    HTMLParser $html_parser,
+    HtmlContentParser $html_parser,
     DrukiFileTracker $file_tracker,
     ConfigFactoryInterface $config_factory,
     Token $token,
@@ -250,12 +250,12 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    * @param string $filepath
    *   The URI to file with content.
    *
-   * @return \Drupal\druki_content\Synchronization\Content\ContentStructure
+   * @return \Drupal\druki_content\ParsedContent\ParsedContent
    *   The structured content.
    *
    * @see \Drupal\druki_content\Synchronization\Parser\HTMLParserInterface::parse()
    */
-  protected function parseContent(string $filepath): ContentStructure {
+  protected function parseContent(string $filepath): ParsedContent {
     $content = file_get_contents($filepath);
     $content_html = $this->markdownParser->parse($content);
 
@@ -265,15 +265,15 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates or updates druki content entity.
    *
-   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\ParsedContent\ParsedContent $structured_data
    *   The structured content.
    * @param \Drupal\druki_content\Synchronization\Queue\ContentItem $queue_item
    *   The queue item object.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function processContent(ContentStructure $structured_data, ContentItem $queue_item): void {
-    $meta = $structured_data->getMetaInformation();
+  protected function processContent(ParsedContent $structured_data, ContentItem $queue_item): void {
+    $meta = $structured_data->getFrontMatter();
 
     $this->logger->info('Start processing content ID "@content_id (@relative_pathname)".', [
       '@content_id' => $meta->get('id')->getValue(),
@@ -388,12 +388,12 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The content entity.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\ParsedContent\ParsedContent $structured_data
    *   The structured data.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createParagraphs(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
+  protected function createParagraphs(DrukiContentInterface $druki_content, ParsedContent $structured_data): void {
     foreach ($structured_data->getContent() as $content) {
       $paragraph = NULL;
 
@@ -431,7 +431,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates content paragraph.
    *
-   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphText $text
+   * @param \Drupal\druki_content\ParsedContent\Content\ParagraphText $text
    *   The text object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -453,7 +453,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates heading paragraph.
    *
-   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphHeading $heading
+   * @param \Drupal\druki_content\ParsedContent\Content\ParagraphHeading $heading
    *   The heading object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -476,7 +476,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates code paragraph.
    *
-   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphCode $code
+   * @param \Drupal\druki_content\ParsedContent\Content\ParagraphCode $code
    *   The code object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface
@@ -498,7 +498,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates image paragraph.
    *
-   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphImage $image
+   * @param \Drupal\druki_content\ParsedContent\Content\ParagraphImage $image
    *   The image object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null
@@ -631,7 +631,7 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Creates note paragraph.
    *
-   * @param \Drupal\druki_paragraph\Common\ParagraphContent\ParagraphNote $note
+   * @param \Drupal\druki_content\ParsedContent\Content\ParagraphNote $note
    *   The note object.
    *
    * @return \Drupal\paragraphs\ParagraphInterface|null
@@ -656,13 +656,13 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\ParsedContent\ParsedContent $structured_data
    *   The content structure.
    */
-  protected function processDifficulty(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
+  protected function processDifficulty(DrukiContentInterface $druki_content, ParsedContent $structured_data): void {
     // Reset value. Assumes that value was cleared.
     $druki_content->set('difficulty', NULL);
-    $meta = $structured_data->getMetaInformation();
+    $meta = $structured_data->getFrontMatter();
 
     if ($meta->has('difficulty')) {
       // Get available values directly from field.
@@ -687,13 +687,13 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\ParsedContent\ParsedContent $structured_data
    *   The content structure.
    */
-  protected function processLabels(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
+  protected function processLabels(DrukiContentInterface $druki_content, ParsedContent $structured_data): void {
     // Reset value. Assumes that value was cleared.
     $druki_content->set('labels', NULL);
-    $meta = $structured_data->getMetaInformation();
+    $meta = $structured_data->getFrontMatter();
 
     if ($meta->has('labels')) {
       $druki_content->set('labels', $meta->get('labels')->getValue());
@@ -705,13 +705,13 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\ParsedContent\ParsedContent $structured_data
    *   The content structure.
    */
-  protected function processSearchKeywords(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
+  protected function processSearchKeywords(DrukiContentInterface $druki_content, ParsedContent $structured_data): void {
     // Reset value. Assumes that value was cleared.
     $druki_content->set('search_keywords', NULL);
-    $meta = $structured_data->getMetaInformation();
+    $meta = $structured_data->getFrontMatter();
 
     if ($meta->has('search-keywords')) {
       $druki_content->set('search_keywords', $meta->get('search-keywords')->getValue());
@@ -723,12 +723,12 @@ class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPlugin
    *
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
    *   The entity to save value.
-   * @param \Drupal\druki_content\Synchronization\Content\ContentStructure $structured_data
+   * @param \Drupal\druki_content\ParsedContent\ParsedContent $structured_data
    *   The content structure.
    */
-  protected function processMetatags(DrukiContentInterface $druki_content, ContentStructure $structured_data): void {
+  protected function processMetatags(DrukiContentInterface $druki_content, ParsedContent $structured_data): void {
     $druki_content->set('metatags', NULL);
-    $meta = $structured_data->getMetaInformation();
+    $meta = $structured_data->getFrontMatter();
 
     if ($meta->has('metatags')) {
       $metatags = $meta->get('metatags')->getValue();

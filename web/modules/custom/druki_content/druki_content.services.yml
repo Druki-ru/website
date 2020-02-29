@@ -4,18 +4,6 @@ services:
     factory: logger.factory:get
     arguments: ['druki_content']
 
-  druki_content.synchronization.queue_manager:
-    class: Drupal\druki_content\Synchronization\Queue\QueueManager
-    arguments: ['@queue', '@plugin.manager.queue_worker']
-
-  druki_content.synchronization.html_parser:
-    class: Drupal\druki_content\Synchronization\Parser\HTMLParser
-
-  druki_content.synchronization.folder_parser:
-    deprecated: 'Service %service_id% deprecated in flavor of druki_content.source_content_finder'
-    class: Drupal\druki_content\Synchronization\Parser\FolderParser
-    arguments: ['@language_manager']
-
   druki_content.git_subscriber:
     class: Drupal\druki_content\EventSubscriber\GitSubscriber
     arguments: ['@druki_content.sync_queue_builder']
@@ -24,12 +12,16 @@ services:
 
   druki_content.sync_queue_builder:
     class: Drupal\druki_content\Sync\SyncQueueManager
-    arguments: ['@druki_content.content_source_finder', '@queue', '@state', '@datetime.time']
+    arguments: ['@druki_content.source_content_finder', '@queue', '@state', '@datetime.time']
 
   druki_content.category.navigation:
     class: Drupal\druki_content\Category\CategoryNavigation
     arguments: ['@current_route_match', '@entity_type.manager']
 
-  druki_content.content_source_finder:
+  druki_content.source_content_finder:
     class: Drupal\druki_content\SourceContent\SourceContentFinder
     arguments: ['@language_manager']
+
+  druki_content.source_content_parser:
+    class: Drupal\druki_content\SourceContent\SourceContentParser
+    arguments: ['@druki_markdown.parser']

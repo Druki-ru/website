@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_paragraph\Common\ParagraphContent;
+namespace Drupal\druki_content\ParsedContent\Content;
 
 use Drupal\Component\Render\FormattableMarkup;
 use InvalidArgumentException;
@@ -10,7 +10,7 @@ use InvalidArgumentException;
  *
  * The value for paragraph note type.
  *
- * @package Drupal\druki_paragraph\Common\ParagraphContent
+ * @package Drupal\druki_content\ParsedContent\Content
  */
 final class ParagraphNote extends ParagraphContentBase {
 

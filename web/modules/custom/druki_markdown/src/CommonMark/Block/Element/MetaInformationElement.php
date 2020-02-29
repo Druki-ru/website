@@ -23,7 +23,7 @@ class MetaInformationElement extends AbstractStringContainerBlock {
   protected $isCloserFound;
 
   /**
-   * MetaInformation constructor.
+   * FrontMatter constructor.
    */
   public function __construct() {
     parent::__construct();

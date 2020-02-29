@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_paragraph\Common\ParagraphContent;
+namespace Drupal\druki_content\ParsedContent\Content;
 
 /**
  * Class ParagraphImage.

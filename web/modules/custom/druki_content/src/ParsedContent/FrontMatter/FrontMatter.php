@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Synchronization\MetaInformation;
+namespace Drupal\druki_content\ParsedContent\FrontMatter;
 
 /**
- * Provides value object for meta information.
+ * Provides value object for Front Matter storage.
  */
-final class MetaInformation {
+final class FrontMatter {
 
   /**
    * The meta values.
@@ -17,12 +17,12 @@ final class MetaInformation {
   /**
    * Adds new value to meta information.
    *
-   * @param \Drupal\druki_content\Synchronization\MetaInformation\MetaValue $value
+   * @param \Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterValue $value
    *   The value.
    *
    * @return $this
    */
-  public function add(MetaValue $value): MetaInformation {
+  public function add(FrontMatterValue $value): FrontMatter {
     $this->values[] = $value;
 
     return $this;
@@ -31,7 +31,7 @@ final class MetaInformation {
   /**
    * Gets all values added to meta information.
    *
-   * @return \Drupal\druki_content\Synchronization\MetaInformation\MetaValue[]
+   * @return \Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterValue[]
    *   An array containing all meta values.
    */
   public function getValues(): array {
@@ -44,11 +44,11 @@ final class MetaInformation {
    * @param string $key
    *   The key to get.
    *
-   * @return \Drupal\druki_content\Synchronization\MetaInformation\MetaValue|null
+   * @return \Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterValue|null
    *   The meta value instance, NULL if not found.
    */
-  public function get(string $key): ?MetaValue {
-    /** @var \Drupal\druki_content\Synchronization\MetaInformation\MetaValue $value */
+  public function get(string $key): ?FrontMatterValue {
+    /** @var \Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterValue $value */
     foreach ($this->values as $value) {
       if ($value->getKey() == $key) {
         return $value;
@@ -92,7 +92,7 @@ final class MetaInformation {
    *   The result of search, TRUE if found, FALSE otherwise.
    */
   public function has(string $key): bool {
-    /** @var \Drupal\druki_content\Synchronization\MetaInformation\MetaValue $value */
+    /** @var \Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterValue $value */
     foreach ($this->values as $value) {
       if ($value->getKey() == $key) {
         return TRUE;

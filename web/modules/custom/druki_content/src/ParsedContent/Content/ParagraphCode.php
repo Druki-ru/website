@@ -1,27 +1,27 @@
 <?php
 
-namespace Drupal\druki_paragraph\Common\ParagraphContent;
+namespace Drupal\druki_content\ParsedContent\Content;
 
 use InvalidArgumentException;
 
 /**
- * Class ParagraphText.
+ * Class ParagraphCode.
  *
- * The value for paragraph text type.
+ * The value for paragraph code type.
  *
- * @package Drupal\druki_paragraph\Common\ParagraphContent
+ * @package Drupal\druki_content\ParsedContent\Content
  */
-final class ParagraphText extends ParagraphContentBase {
+final class ParagraphCode extends ParagraphContentBase {
 
   /**
    * The paragraph type.
    *
    * @var string
    */
-  protected $paragraphType = 'druki_text';
+  protected $paragraphType = 'druki_code';
 
   /**
-   * The text content.
+   * The heading content.
    *
    * @var string
    */
@@ -31,31 +31,30 @@ final class ParagraphText extends ParagraphContentBase {
    * ParagraphNote constructor.
    *
    * @param string $content
-   *   The text content.
+   *   The code content.
    */
   public function __construct(string $content) {
     $this->setContent($content);
   }
 
   /**
-   * Sets and validates content.
+   * Validates and sets content value.
    *
    * @param string $content
-   *   The content value.
    */
-  private function setContent(string $content) {
+  private function setContent(string $content): void {
     if (!mb_strlen($content)) {
-      throw new InvalidArgumentException("The text content can't be empty.");
+      throw new InvalidArgumentException("The code content can't be empty.");
     }
 
     $this->content = $content;
   }
 
   /**
-   * Gets text content.
+   * Gets heading content.
    *
    * @return string
-   *   The text content.
+   *   The heading content.
    */
   public function getContent(): string {
     return $this->content;
