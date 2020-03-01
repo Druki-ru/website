@@ -6,8 +6,7 @@
 .druki-content-form-layout {
   display: grid;
   grid-gap: 24px;
-  grid-template-areas: "main advanced"
-                       "footer footer";
+  grid-template-areas: "main advanced" "footer footer";
   grid-template-columns: 65% calc(35% - 24px);
 }
 

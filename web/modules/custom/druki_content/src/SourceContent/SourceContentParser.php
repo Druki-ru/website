@@ -2,7 +2,6 @@
 
 namespace Drupal\druki_content\SourceContent;
 
-use Drupal\druki_content\ParsedContent\ParsedContent;
 use Drupal\druki_content\Parser\HtmlContentParser;
 use Drupal\druki_markdown\Parser\MarkdownParserInterface;
 
@@ -39,14 +38,28 @@ final class SourceContentParser {
     $this->htmlParser = new HtmlContentParser();
   }
 
-  public function parse(SourceContent $source_content): ?ParsedContent {
+  /**
+   * Parse content from its source to structured format.
+   *
+   * This will read file, make all conversions and wrap result to structured
+   * value object suitable to consume.
+   *
+   * @param \Drupal\druki_content\SourceContent\SourceContent $source_content
+   *   The source content to parse.
+   *
+   * @return \Drupal\druki_content\SourceContent\ParsedSourceContent|null
+   *   The parsed content. NULL if there is some problems with file.
+   */
+  public function parse(SourceContent $source_content): ?ParsedSourceContent {
     if (!$source_content->isReadable()) {
       return NULL;
     }
 
     $content = $source_content->getContent();
     $html = $this->markdownParser->parse($content);
-    return $this->htmlParser->parse($html);
+    $parsed_content = $this->htmlParser->parse($html);
+
+    return new ParsedSourceContent($source_content, $parsed_content);
   }
 
 }

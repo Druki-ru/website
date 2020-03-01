@@ -1,6 +1,8 @@
 {
-  "name": "druki/druki_file",
-  "type": "drupal-custom-module",
-  "description": "The File entity integration.",
-  "keywords": ["Drupal"]
+    "name": "druki/druki_file",
+    "type": "drupal-custom-module",
+    "description": "The File entity integration.",
+    "keywords": [
+        "Drupal"
+    ]
 }

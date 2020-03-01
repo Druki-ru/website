@@ -2,13 +2,8 @@
 
 namespace Drupal\druki_content\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki_content\Entity\DrukiContentInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a druki content toc block for mobile phones..

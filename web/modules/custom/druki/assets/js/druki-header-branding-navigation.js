@@ -6,7 +6,7 @@
 
   Drupal.behaviors.drukiHeaderBrandingNavigation = {
     attach: function (context, settings) {
-       this.attachNavigation(context, settings);
+      this.attachNavigation(context, settings);
     },
 
     attachNavigation: function (context, settings) {

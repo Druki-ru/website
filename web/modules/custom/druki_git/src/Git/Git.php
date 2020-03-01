@@ -80,10 +80,10 @@ class Git {
    * @param string $dir
    *   The absolute path to working dir.
    *
-   * @see https://stackoverflow.com/a/43042363/4751623
-   *
    * @return array
    *   The array with contribution statistics.
+   * @see https://stackoverflow.com/a/43042363/4751623
+   *
    */
   public static function getFileCommitsInfo(string $filepath, string $dir): array {
     $process = new Process('git shortlog HEAD -sen -- ' . $filepath, $dir);

@@ -195,12 +195,12 @@ function druki_content_update_8602(&$sandbox) {
  * Migrate druki_content_sync state value to druki_content.
  */
 function druki_content_update_8801(array &$sandbox) {
- $state = \Drupal::state();
- $value = $state->get('druki_content_sync.settings.force_update', FALSE);
- $state->delete('druki_content_sync.settings.force_update');
- $state->set('druki_content.settings.force_update', $value);
+  $state = \Drupal::state();
+  $value = $state->get('druki_content_sync.settings.force_update', FALSE);
+  $state->delete('druki_content_sync.settings.force_update');
+  $state->set('druki_content.settings.force_update', $value);
 
- return new TranslatableMarkup('Sync settings was migrated.');
+  return new TranslatableMarkup('Sync settings was migrated.');
 }
 
 /**

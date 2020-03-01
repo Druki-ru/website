@@ -54,16 +54,17 @@ final class SourceContentFinder {
   public function findAll(string $directory): SourceContentList {
     $all = new SourceContentList();
     // Source directory must contain "/docs" folder.
-    $directory .= '/docs';
+    $docs_folder = 'docs';
 
     $active_languages = $this->languageManager->getLanguages();
     $active_langcodes = array_keys($active_languages);
 
     // Find all source content grouped by langcode.
     foreach ($active_langcodes as $langcode) {
-      $finder = new MarkdownDirectoryFinder(["{$directory}/{$langcode}"]);
-      foreach ($finder->findAll() as $uri => $filename) {
-        $all->add(new SourceContent($uri, $langcode));
+      $finder = new MarkdownDirectoryFinder(["{$directory}/{$docs_folder}/{$langcode}"]);
+      foreach ($finder->findAll() as $file) {
+        $relative_pathname = "{$docs_folder}/{$langcode}/{$file->getRelativePathname()}";
+        $all->add(new SourceContent($file->getRealPath(), $relative_pathname, $langcode));
       }
     }
 

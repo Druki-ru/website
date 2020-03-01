@@ -15,26 +15,6 @@ use Drupal\Core\Url;
 class Card extends RenderElement {
 
   /**
-   * {@inheritdoc}
-   */
-  public function getInfo() {
-    $class = get_class($this);
-    return [
-      '#theme' => 'druki_card',
-      '#title' => NULL,
-      '#subhead' => NULL,
-      '#supporting_text' => NULL,
-      '#buttons' => [],
-      '#style' => 'elevated',
-      '#variant' => 'basic',
-      '#primary_url' => NULL,
-      '#pre_render' => [
-        [$class, 'preRender'],
-      ],
-    ];
-  }
-
-  /**
    * Additional processing for element.
    *
    * @param array $element
@@ -56,6 +36,26 @@ class Card extends RenderElement {
     }
 
     return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getInfo() {
+    $class = get_class($this);
+    return [
+      '#theme' => 'druki_card',
+      '#title' => NULL,
+      '#subhead' => NULL,
+      '#supporting_text' => NULL,
+      '#buttons' => [],
+      '#style' => 'elevated',
+      '#variant' => 'basic',
+      '#primary_url' => NULL,
+      '#pre_render' => [
+        [$class, 'preRender'],
+      ],
+    ];
   }
 
 }

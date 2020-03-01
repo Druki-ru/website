@@ -6,8 +6,6 @@
  */
 
 use Drupal\druki_search\SearchPage\FilterForm;
-use Drupal\druki_search\SearchPage\QueryHelper;
-use Drupal\search_api\Query\QueryInterface;
 
 /**
  * Implements hook_theme().

@@ -10,17 +10,13 @@ entity_type: paragraph
 type: list_string
 settings:
   allowed_values:
-    -
-      value: note
+    - value: note
       label: note
-    -
-      value: warning
+    - value: warning
       label: warning
-    -
-      value: tip
+    - value: tip
       label: tip
-    -
-      value: important
+    - value: important
       label: important
   allowed_values_function: ''
 module: options

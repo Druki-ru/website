@@ -10,14 +10,11 @@ entity_type: druki_content
 type: list_string
 settings:
   allowed_values:
-    -
-      value: basic
+    - value: basic
       label: Basic
-    -
-      value: medium
+    - value: medium
       label: Medium
-    -
-      value: advanced
+    - value: advanced
       label: Advanced
   allowed_values_function: ''
 module: options

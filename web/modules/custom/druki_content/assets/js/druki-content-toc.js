@@ -3,10 +3,10 @@
  * Druki Content TOC behaviors.
  */
 
-(function(Drupal) {
+(function (Drupal) {
 
   Drupal.behaviors.drukiContentTOC = {
-    attach: function(context, settings) {
+    attach: function (context, settings) {
       let toc = context.querySelector('.druki-content-toc');
 
       if (toc && !toc.processed) {
@@ -18,7 +18,7 @@
     /**
      * Process TOC element.
      */
-    processTOC: function(context, element) {
+    processTOC: function (context, element) {
       let links = element.querySelectorAll('.druki-content-toc__link');
       this.attachEvents(context, links);
     },
@@ -26,7 +26,7 @@
     /**
      * Find heading for link and it's position.
      */
-    processLinks: function(context, links) {
+    processLinks: function (context, links) {
       let result = [];
 
       links.forEach(link => {
@@ -47,7 +47,7 @@
     /**
      * Attach all needed events.
      */
-    attachEvents: function(context, links) {
+    attachEvents: function (context, links) {
       let scrollListener = event => {
         let linksWithPosition = this.processLinks(context, links);
         let closestLink = null;

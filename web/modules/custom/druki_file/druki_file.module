@@ -22,7 +22,7 @@ function druki_file_file_presave(EntityInterface $entity) {
   catch (Exception $e) {
     \Drupal::service('logger.channel.druki_file')
       ->error('Problems with file hash creation. File ID: @fid.', [
-        '@fid' => $entity->id()
+        '@fid' => $entity->id(),
       ]);
   }
 }

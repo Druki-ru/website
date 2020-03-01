@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Sync;
 
 use Drupal\druki_content\SourceContent\SourceContentList;
+use InvalidArgumentException;
 
 /**
  * Provides value object that holds queue data for single processing.
@@ -15,7 +16,7 @@ final class SyncQueueItem {
    * This operation will create or update content from source files added to
    * item.
    */
-  public const SYNCHRONIZATION = 'synchronization';
+  public const SYNC = 'synchronization';
 
   /**
    * The queue clean operation.
@@ -53,18 +54,38 @@ final class SyncQueueItem {
   }
 
   /**
+   * Gets item operation type.
+   *
+   * @return string
+   *   The operation type.
+   */
+  public function getOperation(): string {
+    return $this->operation;
+  }
+
+  /**
    * Sets operation for current queue item.
    *
    * @param string $operation
    *   The operation name.
    */
   protected function setOperation(string $operation): void {
-    $allowed = [self::SYNCHRONIZATION, self::CLEAN];
+    $allowed = [self::SYNC, self::CLEAN];
     if (!in_array($operation, $allowed)) {
       throw new InvalidSyncQueueOperationException($operation, $allowed);
     }
 
     $this->operation = $operation;
+  }
+
+  /**
+   * Gets item payload.
+   *
+   * @return \Drupal\druki_content\SourceContent\SourceContentList|int
+   *   The queue item payload.
+   */
+  public function getPayload() {
+    return $this->payload;
   }
 
   /**
@@ -75,15 +96,15 @@ final class SyncQueueItem {
    */
   protected function setPayload($payload): void {
     switch ($this->operation) {
-      case self::SYNCHRONIZATION:
+      case self::SYNC:
         if (!$payload instanceof SourceContentList) {
-          throw new \InvalidArgumentException('The synchronization queue operation only allowed for \Drupal\druki_content\SourceContent\SourceContentList as data.');
+          throw new InvalidArgumentException('The synchronization queue operation only allowed for \Drupal\druki_content\SourceContent\SourceContentList as data.');
         }
         break;
 
       case self::CLEAN:
         if (!is_int($payload)) {
-          throw new \InvalidArgumentException('The clean queue operation only allowed for integer.');
+          throw new InvalidArgumentException('The clean queue operation only allowed for integer.');
         }
         break;
     }

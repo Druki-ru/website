@@ -2,9 +2,7 @@
 
 namespace Drupal\druki_file\Service;
 
-use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\file\FileInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
@@ -71,47 +69,6 @@ class DrukiFileTracker {
   }
 
   /**
-   * Updates tracking information about file or creates new one if this is new.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   *
-   * @return bool
-   *   TRUE if tracking was successful, FALSE if file is not permanent.
-   *
-   * @throws \Exception
-   */
-  public function track(FileInterface $file): bool {
-    if ($file->isPermanent()) {
-      $file_hash = $this->getFileHash($file->getFileUri());
-      $file->set('druki_file_hash', $file_hash);
-
-      return TRUE;
-    }
-
-    return FALSE;
-  }
-
-  /**
-   * Gets file hash.
-   *
-   * @param string $uri
-   *   The URI to file.
-   *
-   * @return string
-   *   The file hash.
-   */
-  protected function getFileHash($uri): string {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $uri);
-
-    if (!isset($result)) {
-      $result = md5_file($uri);
-    }
-
-    return $result;
-  }
-
-  /**
    * Checks if file from provided uri is duplicate on of the existed.
    *
    * @param string $uri
@@ -137,6 +94,25 @@ class DrukiFileTracker {
     }
 
     return NULL;
+  }
+
+  /**
+   * Gets file hash.
+   *
+   * @param string $uri
+   *   The URI to file.
+   *
+   * @return string
+   *   The file hash.
+   */
+  protected function getFileHash($uri): string {
+    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $uri);
+
+    if (!isset($result)) {
+      $result = md5_file($uri);
+    }
+
+    return $result;
   }
 
   /**
@@ -173,6 +149,28 @@ class DrukiFileTracker {
     }
 
     $this->logger->notice('The file tracking information is cleared.');
+  }
+
+  /**
+   * Updates tracking information about file or creates new one if this is new.
+   *
+   * @param \Drupal\file\FileInterface $file
+   *   The file entity.
+   *
+   * @return bool
+   *   TRUE if tracking was successful, FALSE if file is not permanent.
+   *
+   * @throws \Exception
+   */
+  public function track(FileInterface $file): bool {
+    if ($file->isPermanent()) {
+      $file_hash = $this->getFileHash($file->getFileUri());
+      $file->set('druki_file_hash', $file_hash);
+
+      return TRUE;
+    }
+
+    return FALSE;
   }
 
   /**

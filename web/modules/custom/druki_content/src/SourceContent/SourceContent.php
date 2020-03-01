@@ -14,7 +14,7 @@ final class SourceContent {
    *
    * @var string
    */
-  protected $uri;
+  protected $realpath;
 
   /**
    * The source content language.
@@ -31,15 +31,25 @@ final class SourceContent {
   protected $file = NULL;
 
   /**
+   * The relative pathname.
+   *
+   * @var string
+   */
+  protected $relativePathname;
+
+  /**
    * Constructs a new SourceContent object.
    *
-   * @param string $uri
+   * @param string $realpath
    *   The content URI path.
+   * @param string $relative_pathname
+   *   The relative pathname.
    * @param string $language
    *   The content language.
    */
-  public function __construct(string $uri, string $language) {
-    $this->uri = $uri;
+  public function __construct(string $realpath, string $relative_pathname, string $language) {
+    $this->realpath = $realpath;
+    $this->relativePathname = $relative_pathname;
     $this->language = $language;
   }
 
@@ -61,7 +71,7 @@ final class SourceContent {
    */
   protected function getFile(): SplFileInfo {
     if (!$this->file) {
-      $this->file = new SplFileInfo($this->uri);
+      $this->file = new SplFileInfo($this->realpath);
     }
 
     return $this->file;
@@ -74,17 +84,40 @@ final class SourceContent {
    *   The file content.
    */
   public function getContent(): string {
-    return file_get_contents($this->getUri());
+    return file_get_contents($this->getRealpath());
   }
 
   /**
-   * Gets content source URI.
+   * Gets absolute path to the file.
    *
    * @return string
    *   The URI path to content source.
    */
-  public function getUri(): string {
-    return $this->uri;
+  public function getRealpath(): string {
+    return $this->realpath;
+  }
+
+  /**
+   * Gets relative pathname.
+   *
+   * The path must be relative to content source (git root). It will include
+   * full path including docs folder name and langcode.
+   *
+   * @return string
+   *   The relative pathname.
+   */
+  public function getRelativePathname(): string {
+    return $this->relativePathname;
+  }
+
+  /**
+   * The source content language.
+   *
+   * @return string
+   *   The langcode.
+   */
+  public function getLanguage(): string {
+    return $this->language;
   }
 
 }

@@ -194,6 +194,19 @@ class GlobalSearchResource extends ResourceBase {
   }
 
   /**
+   * Checks is this string contain russian chars or not.
+   *
+   * @param string $string
+   *   The string to test.
+   *
+   * @return bool
+   *   TRUE if contain russian chars, FALSE otherwise.
+   */
+  protected function isRussian(string $string): bool {
+    return preg_match('/[А-Яа-яЁё]/u', $string);
+  }
+
+  /**
    * If string not
    */
   protected function ytNfHfcrkflrf(string $string): string {
@@ -237,19 +250,6 @@ class GlobalSearchResource extends ResourceBase {
     ];
 
     return strtr($string, $replacements);
-  }
-
-  /**
-   * Checks is this string contain russian chars or not.
-   *
-   * @param string $string
-   *   The string to test.
-   *
-   * @return bool
-   *   TRUE if contain russian chars, FALSE otherwise.
-   */
-  protected function isRussian(string $string): bool {
-    return preg_match('/[А-Яа-яЁё]/u', $string);
   }
 
 }

@@ -7,6 +7,7 @@ use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\SourceContent\SourceContentFinder;
+use Drupal\druki_content\SourceContent\SourceContentList;
 
 /**
  * Provides queue manager for synchronization content.
@@ -77,6 +78,16 @@ final class SyncQueueManager {
    */
   public function buildFromPath(string $directory): void {
     $content_list = $this->contentFinder->findAll($directory);
+    $this->buildFromSourceContentList($content_list);
+  }
+
+  /**
+   * Builds new queue from source content list.
+   *
+   * @param \Drupal\druki_content\SourceContent\SourceContentList $source_content_list
+   *   The source content list.
+   */
+  public function buildFromSourceContentList(SourceContentList $source_content_list) {
     if (empty($content_list)) {
       return;
     }
@@ -84,8 +95,8 @@ final class SyncQueueManager {
     // Clear queue to exclude duplicate work.
     $this->queue->deleteQueue();
     $items_per_queue = Settings::get('entity_update_batch_size', 50);
-    foreach ($content_list->chunk($items_per_queue) as $content_list_chunk) {
-      $this->queue->createItem(new SyncQueueItem(SyncQueueItem::SYNCHRONIZATION, $content_list_chunk));
+    foreach ($source_content_list->chunk($items_per_queue) as $content_list_chunk) {
+      $this->queue->createItem(new SyncQueueItem(SyncQueueItem::SYNC, $content_list_chunk));
     }
 
     $sync_timestamp = $this->time->getRequestTime();

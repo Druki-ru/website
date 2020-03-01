@@ -5,7 +5,6 @@ namespace Drupal\druki_content\Form;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -63,7 +62,7 @@ class DrukiContentDeleteAllForm extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $druki_content = $this->drukiContentStorage->loadMultiple();
     $this->drukiContentStorage->delete($druki_content);
-    
+
     $form_state->setRedirectUrl($this->getCancelUrl());
   }
 

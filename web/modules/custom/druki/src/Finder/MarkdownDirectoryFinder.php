@@ -40,7 +40,7 @@ final class MarkdownDirectoryFinder {
   /**
    * Scans directories for Markdown files.
    *
-   * @return array
+   * @return \Symfony\Component\Finder\SplFileInfo[]
    *   An array with founded files keyed by pathname.
    */
   public function findAll(): array {
@@ -54,7 +54,7 @@ final class MarkdownDirectoryFinder {
         continue;
       }
       foreach ($this->finder as $file_info) {
-        $all[$file_info->getPathname()] = $file_info->getFilename();
+        $all[] = $file_info;
       }
     }
 

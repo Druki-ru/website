@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_content\Handler;
 
+use Drupal;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
@@ -65,7 +66,7 @@ class DrukiContentListBuilder extends EntityListBuilder {
   public function render(): array {
     $build['table'] = parent::render();
 
-    $total = \Drupal::database()
+    $total = Drupal::database()
       ->query('SELECT COUNT(*) FROM {druki_content}')
       ->fetchField();
 

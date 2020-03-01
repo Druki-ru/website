@@ -18,19 +18,6 @@ final class SourceContentList implements IteratorAggregate {
   protected $items = [];
 
   /**
-   * Adds content source item to collection.
-   *
-   * @param \Drupal\druki_content\SourceContent\SourceContent $source_content
-   *   The content source item.
-   *
-   * @return $this
-   */
-  public function add(SourceContent $source_content): SourceContentList {
-    $this->items[] = $source_content;
-    return $this;
-  }
-
-  /**
    * Split items into chunks.
    *
    * @param int $size
@@ -51,6 +38,19 @@ final class SourceContentList implements IteratorAggregate {
     }
 
     return $result;
+  }
+
+  /**
+   * Adds content source item to collection.
+   *
+   * @param \Drupal\druki_content\SourceContent\SourceContent $source_content
+   *   The content source item.
+   *
+   * @return $this
+   */
+  public function add(SourceContent $source_content): SourceContentList {
+    $this->items[] = $source_content;
+    return $this;
   }
 
   /**

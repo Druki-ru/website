@@ -2,21 +2,13 @@
 
 namespace Drupal\druki_content\Handler;
 
-use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class DrukiContentStorage
- *
- * @package Drupal\druki_content
+ * Provides storage handler for "druki_content" entity.
  */
 class DrukiContentStorage extends SqlContentEntityStorage {
 
@@ -30,34 +22,11 @@ class DrukiContentStorage extends SqlContentEntityStorage {
   /**
    * {@inheritdoc}
    */
-  public function __construct(
-    EntityTypeInterface $entity_type,
-    Connection $database,
-    EntityManagerInterface $entity_manager,
-    CacheBackendInterface $cache,
-    LanguageManagerInterface $language_manager,
-    ConfigFactoryInterface $config_factory,
-    MemoryCacheInterface $memory_cache = NULL
-  ) {
-
-    parent::__construct($entity_type, $database, $entity_manager, $cache, $language_manager, $memory_cache);
-
-    $this->gitSettings = $config_factory->get('druki_git.git_settings');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
-    return new static(
-      $entity_type,
-      $container->get('database'),
-      $container->get('entity.manager'),
-      $container->get('cache.entity'),
-      $container->get('language_manager'),
-      $container->get('config.factory'),
-      $container->get('entity.memory_cache')
-    );
+    $instance = parent::createInstance($container, $entity_type);
+    $config_factory = $container->get('config.factory');
+    $instance->gitSettings = $config_factory->get('druki_git.git_settings');
+    return $instance;
   }
 
   /**
@@ -70,23 +39,26 @@ class DrukiContentStorage extends SqlContentEntityStorage {
    * @param null|string $core
    *   The core version, if applicable.
    *
-   * @return \Drupal\Core\Entity\EntityInterface|mixed|null
-   *
-   * @deprecated looks like no more need it.
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
+   *   The content.
    */
-  public function loadByMeta(string $external_id, string $langcode = NULL, string $core = NULL): ?DrukiContentInterface {
+  public function loadByExternalId(string $external_id, string $langcode = NULL, string $core = NULL): ?DrukiContentInterface {
     if (!$langcode) {
       $langcode = $this->languageManager->getCurrentLanguage()->getId();
     }
 
     $entity_query = $this->getQuery();
     $entity_query->accessCheck(FALSE);
-    $entity_query->condition('external_id', $external_id)
-      ->condition('langcode', $langcode);
-
+    $and = $entity_query->andConditionGroup();
+    $and->condition('external_id', $external_id);
+    $and->condition('langcode', $langcode);
     if ($core) {
-      $entity_query->condition('core', $core);
+      $and->condition('core', $core);
     }
+    else {
+      $and->notExists('core');
+    }
+    $entity_query->condition($and);
 
     $result = $entity_query->execute();
     if (!empty($result)) {
@@ -100,48 +72,26 @@ class DrukiContentStorage extends SqlContentEntityStorage {
   }
 
   /**
-   * Loads content by its relative filepath value.
+   * Clean outdated content.
    *
-   * @param string $relative_pathname
-   *   The relative pathname
+   * The "outdated" content is the one which "sync_timestamp" value is lower
+   * than last sync was complete. This means this content was not presented in
+   * any way and should be removed.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
-   *   The entity object, NULL otherwise.
+   * @param string $timestamp
+   *   The last sync timestamp.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function loadByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
-    $entity_query = $this->getQuery();
-    $entity_query->accessCheck(FALSE);
-    $entity_query->condition('relative_pathname', $relative_pathname);
+  public function cleanOutdated(string $timestamp): void {
+    $ids = $this
+      ->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('sync_timestamp', $timestamp, '<')
+      ->execute();
 
-    $result = $entity_query->execute();
-    if (!empty($result)) {
-      reset($result);
-      $first = key($result);
-
-      return $this->load($first);
-    }
-
-    return NULL;
-  }
-
-  /**
-   * Delete missing druki_content.
-   *
-   * This find and delete missing content. Missing content means content which
-   * original file is not found in actual repo.
-   */
-  public function deleteMissing(): void {
-    $repository_path = trim($this->gitSettings->get('repository_path'), '/');
-    $entities = $this->doLoadMultiple();
-
-    /** @var \Drupal\druki_content\Entity\DrukiContentInterface $entity */
-    foreach ($entities as $entity) {
-      $fullpath = $repository_path . '/' . $entity->get('relative_pathname')->value;
-
-      if (!file_exists($fullpath)) {
-        $entity->delete();
-      }
-    }
+    $entities = $this->loadMultiple($ids);
+    $this->delete($entities);
   }
 
 }

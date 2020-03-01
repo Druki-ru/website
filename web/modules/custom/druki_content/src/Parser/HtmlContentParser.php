@@ -2,6 +2,8 @@
 
 namespace Drupal\druki_content\Parser;
 
+use DOMElement;
+use DOMNode;
 use Drupal\druki_content\ParsedContent\Content\ContentList;
 use Drupal\druki_content\ParsedContent\Content\ParagraphCode;
 use Drupal\druki_content\ParsedContent\Content\ParagraphHeading;
@@ -103,7 +105,7 @@ final class HtmlContentParser {
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(\DOMElement $dom_element, FrontMatter $meta_information): bool {
+  protected function parseMetaInformation(DOMElement $dom_element, FrontMatter $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $meta_block = $crawler->filter('div[id="meta-information"]');
 
@@ -128,7 +130,7 @@ final class HtmlContentParser {
    * @param string $filepath
    *   The filepath of file in which this link was found.
    */
-  protected function processInternalLink(\DOMNode $dom_element, string $filepath) {
+  protected function processInternalLink(DOMNode $dom_element, string $filepath) {
     if (empty($dom_element->childNodes)) {
       return;
     }
@@ -162,7 +164,7 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseNote(\DOMElement $dom_element, ContentList $content): ?bool {
+  protected function parseNote(DOMElement $dom_element, ContentList $content): ?bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $note_element = $crawler->filter('div[data-druki-note]');
 
@@ -195,7 +197,7 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseHeading(\DOMElement $dom_element, ContentList $content): bool {
+  protected function parseHeading(DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
@@ -220,7 +222,7 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseCode(\DOMElement $dom_element, ContentList $content): bool {
+  protected function parseCode(DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $code_elements = ['pre'];
 
@@ -245,7 +247,7 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseImage(\DOMElement $dom_element, ContentList $content): bool {
+  protected function parseImage(DOMElement $dom_element, ContentList $content): bool {
     $crawler = new Crawler($dom_element);
     $image = $crawler->filter('img')->first();
 

@@ -32,7 +32,7 @@
     /**
      * Handler for YouTube provider.
      */
-    handleYouTube: function(element, previewElement, playElement, loadingElement) {
+    handleYouTube: function (element, previewElement, playElement, loadingElement) {
       let videoId = element.getAttribute('data-video-id');
       let iframeUrl = new URL('https://www.youtube.com/embed/' + videoId);
       iframeUrl.searchParams.set('autoplay', 1);
