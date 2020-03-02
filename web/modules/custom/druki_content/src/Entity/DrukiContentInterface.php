@@ -37,7 +37,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
   public function getRelativePathname(): string;
 
   /**
-   * Sets relative pathname
+   * Sets relative pathname.
    *
    * @param string $relative_pathname
    *   The relative pathname.
@@ -46,44 +46,6 @@ interface DrukiContentInterface extends ContentEntityInterface {
    *   The called druki content entity.
    */
   public function setRelativePathname(string $relative_pathname): DrukiContentInterface;
-
-  /**
-   * Gets last commit id of source file.
-   *
-   * @return string
-   *   The commit id.
-   */
-  public function getLastCommitId(): string;
-
-  /**
-   * Sets last commit id of source file.
-   *
-   * @param string $commit_id
-   *   The commit id.
-   *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
-   *   The called druki content entity.
-   */
-  public function setLastCommitId(string $commit_id): DrukiContentInterface;
-
-  /**
-   * Gets contribution statistics.
-   *
-   * @return array
-   *   The contribution statistics.
-   */
-  public function getContributionStatistics(): array;
-
-  /**
-   * Sets contribution statistics.
-   *
-   * @param array $contribution_statistics
-   *   The contribution statistics.
-   *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
-   *   The called druki content entity.
-   */
-  public function setContributionStatistics(array $contribution_statistics): DrukiContentInterface;
 
   /**
    * Gets content external ID.
@@ -152,5 +114,23 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return $this
    */
   public function setSyncTimestamp(int $timestamp): DrukiContentInterface;
+
+  /**
+   * Gets source hash.
+   *
+   * @return string|null
+   *   The source hash.
+   */
+  public function getSourceHash(): ?string;
+
+  /**
+   * Sets source hash.
+   *
+   * @param string $hash
+   *   The hash/
+   *
+   * @return $this
+   */
+  public function setSourceHash(string $hash): DrukiContentInterface;
 
 }

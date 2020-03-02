@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_content\SourceContent;
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\druki_content\ParsedContent\ParsedContent;
 
 /**
@@ -54,6 +55,19 @@ final class ParsedSourceContent {
    */
   public function getParsedSource(): ParsedContent {
     return $this->parsed;
+  }
+
+  /**
+   * Gets the parsed source content hash.
+   *
+   * This used for determine that content not changed.
+   *
+   * @return string
+   *   The hash for source and parsed source content combined.
+   */
+  public function getSourceHash(): string {
+    $string = serialize($this->source) . serialize($this->parsed);
+    return Crypt::hashBase64($string);
   }
 
 }

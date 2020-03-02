@@ -99,27 +99,6 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
       ])
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['last_commit_id'] = BaseFieldDefinition::create('string')
-      ->setTranslatable(TRUE)
-      ->setLabel(t('Last commit ID'))
-      ->setDescription(t('The last commit ID of source file.'))
-      ->setRequired(TRUE)
-      ->setSetting('max_length', 255)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => -2,
-      ])
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['contribution_statistics'] = BaseFieldDefinition::create('map')
-      ->setTranslatable(TRUE)
-      ->setLabel(t('Contribution statistics'))
-      ->setDescription(t('The contribution statistics of source file.'))
-      ->setRequired(TRUE)
-      ->setDisplayConfigurable('form', FALSE)
-      ->setDisplayConfigurable('view', FALSE);
-
     $fields['core'] = BaseFieldDefinition::create('string')
       ->setLabel('The core version for this content.')
       ->setRequired(FALSE)
@@ -133,6 +112,13 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
         'weight' => 0,
       ])
       ->setDisplayConfigurable('form', TRUE);
+
+    $fields['source_hash'] = BaseFieldDefinition::create('string')
+      ->setLabel(new TranslatableMarkup('Source content hash'))
+      ->setDescription(new TranslatableMarkup('Store the last parsed content hash used for current content.'))
+      ->setRequired(FALSE)
+      ->setSetting('max_length', 255)
+      ->setReadOnly(TRUE);
 
     return $fields;
   }
@@ -204,38 +190,6 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getLastCommitId(): string {
-    return $this->get('last_commit_id')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setLastCommitId(string $commit_id): DrukiContentInterface {
-    $this->set('last_commit_id', $commit_id);
-
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getContributionStatistics(): array {
-    return $this->get('contribution_statistics')->first()->getValue();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setContributionStatistics(array $contribution_statistics): DrukiContentInterface {
-    $this->set('contribution_statistics', serialize($contribution_statistics));
-
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function setCore(string $core): DrukiContentInterface {
     $this->set('core', $core);
 
@@ -281,6 +235,21 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
    */
   public function setSyncTimestamp(int $timestamp): DrukiContentInterface {
     $this->set('sync_timestamp', $timestamp);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSourceHash(): ?string {
+    return $this->get('source_hash')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSourceHash(string $hash): DrukiContentInterface {
+    $this->set('source_hash', $hash);
     return $this;
   }
 

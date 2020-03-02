@@ -95,7 +95,8 @@
                 "Fix drush command": "https://www.drupal.org/files/issues/2019-12-19/3102189-1.patch"
             },
             "drupal/core": {
-                "Implement Server Timing performance metrics (https://www.drupal.org/project/drupal/issues/3104566)": "https://www.drupal.org/files/issues/2020-02-13/server-timing-3104566-37.patch"
+                "Implement Server Timing performance metrics (https://www.drupal.org/project/drupal/issues/3104566)": "https://www.drupal.org/files/issues/2020-02-13/server-timing-3104566-37.patch",
+                "MapItem definition (dgo.to/2887105)": "./patches/drupal-core-2887105-12.patch"
             }
         },
         "drupal-scaffold": {

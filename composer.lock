@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b67121d12951787c60806fd4d2a16831",
+    "content-hash": "3044b2df83302c58e0ea4e374b6e35a4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2152,7 +2152,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Implement Server Timing performance metrics (https://www.drupal.org/project/drupal/issues/3104566)": "https://www.drupal.org/files/issues/2020-02-13/server-timing-3104566-37.patch"
+                    "Implement Server Timing performance metrics (https://www.drupal.org/project/drupal/issues/3104566)": "https://www.drupal.org/files/issues/2020-02-13/server-timing-3104566-37.patch",
+                    "MapItem definition (dgo.to/2887105)": "./patches/drupal-core-2887105-12.patch"
                 }
             },
             "autoload": {

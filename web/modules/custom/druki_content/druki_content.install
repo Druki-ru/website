@@ -240,3 +240,44 @@ function druki_content_update_8804(array &$sandbox) {
   \Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('sync_timestamp', 'druki_content', 'druki_content', $field_storage_definition);
 }
+
+/**
+ * Removes "last_commit_id" field for druki_content entity.
+ *
+ * @see https://gitlab.com/druki/website/issues/88
+ */
+function druki_content_update_8805(array &$sandbox) {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  if ($last_commit_id_definition = $definition_update_manager->getFieldStorageDefinition('last_commit_id', 'druki_content')) {
+    $definition_update_manager->uninstallFieldStorageDefinition($last_commit_id_definition);
+  }
+}
+
+/**
+ * Removes "contribution_statistics" field from druki_content entity.
+ *
+ * @see https://gitlab.com/druki/website/issues/88
+ */
+function druki_content_update_8806(array &$sandbox) {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  if ($contribution_statistics_definition = $definition_update_manager->getFieldStorageDefinition('contribution_statistics', 'druki_content')) {
+    $definition_update_manager->uninstallFieldStorageDefinition($contribution_statistics_definition);
+  }
+}
+
+/**
+ * Adds new "source_hash" field for druki_content entity.
+ *
+ * @see https://gitlab.com/druki/website/issues/88
+ */
+function druki_content_update_8807(array &$sandbox) {
+  $field_storage_definition = BaseFieldDefinition::create('string')
+    ->setLabel(new TranslatableMarkup('Source content hash'))
+    ->setDescription(new TranslatableMarkup('Store the last parsed content hash used for current content.'))
+    ->setRequired(FALSE)
+    ->setSetting('max_length', 255)
+    ->setReadOnly(TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('source_hash', 'druki_content', 'druki_content', $field_storage_definition);
+}

@@ -101,7 +101,7 @@ final class SyncQueueManager {
 
     $sync_timestamp = $this->time->getRequestTime();
     $this->queue->createItem(new SyncQueueItem(SyncQueueItem::CLEAN, $sync_timestamp));
-    $this->state->set('druki_content.last_sync_timestamp', $items_per_queue);
+    $this->state->set('druki_content.last_sync_timestamp', $this->time->getRequestTime());
   }
 
 }
