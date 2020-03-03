@@ -28,7 +28,7 @@ services:
 
   druki_content.sync_queue_processor:
     class: Drupal\druki_content\Sync\SyncQueueProcessor
-    arguments: ['@entity_type.manager', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@state', '@database']
+    arguments: ['@entity_type.manager', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@state']
 
   druki_content.parsed_source_content_loader:
     class: Drupal\druki_content\SourceContent\ParsedSourceContentLoader

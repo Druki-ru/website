@@ -2,9 +2,7 @@
 
 namespace Drupal\druki_content\Sync;
 
-use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\SourceContent\ParsedSourceContentLoader;
 use Drupal\druki_content\SourceContent\SourceContent;
@@ -45,13 +43,6 @@ final class SyncQueueProcessor {
   protected $state;
 
   /**
-   * The current database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  protected $connection;
-
-  /**
    * Constructs a new SyncQueueProcessor object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -62,18 +53,15 @@ final class SyncQueueProcessor {
    *   The parsed content loader.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state storage.
-   * @param \Drupal\Core\Database\Connection $connection
-   *   The current database connection.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, SourceContentParser $source_content_parser, ParsedSourceContentLoader $parsed_content_loader, StateInterface $state, Connection $connection) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, SourceContentParser $source_content_parser, ParsedSourceContentLoader $parsed_content_loader, StateInterface $state) {
     $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');
     $this->sourceContentParser = $source_content_parser;
     $this->parsedSourceContentLoader = $parsed_content_loader;
     $this->state = $state;
-    $this->connection = $connection;
   }
 
   /**
@@ -81,23 +69,18 @@ final class SyncQueueProcessor {
    *
    * @param \Drupal\druki_content\Sync\SyncQueueItem $queue_item
    *   The queue item to process.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function processItem(SyncQueueItem $queue_item): void {
-    $transaction = $this->connection->startTransaction();
-    try {
-      switch ($queue_item->getOperation()) {
-        case SyncQueueItem::SYNC:
-          $this->processSync($queue_item->getPayload());
-          break;
+    switch ($queue_item->getOperation()) {
+      case SyncQueueItem::SYNC:
+        $this->processSync($queue_item->getPayload());
+        break;
 
-        case SyncQueueItem::CLEAN:
-          $this->processClean($queue_item->getPayload());
-          break;
-      }
-    }
-    catch (\Exception $e) {
-      $transaction->rollBack();
-      throw new RequeueException();
+      case SyncQueueItem::CLEAN:
+        $this->processClean($queue_item->getPayload());
+        break;
     }
   }
 

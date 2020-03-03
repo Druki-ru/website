@@ -60,4 +60,14 @@ final class SourceContentList implements IteratorAggregate {
     return new ArrayIterator($this->items);
   }
 
+  /**
+   * Gets number of source content items.
+   *
+   * @return int
+   *   The number of items.
+   */
+  public function numberOfItems(): int {
+    return count($this->items);
+  }
+
 }
