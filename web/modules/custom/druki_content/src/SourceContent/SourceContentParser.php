@@ -57,7 +57,7 @@ final class SourceContentParser {
 
     $content = $source_content->getContent();
     $html = $this->markdownParser->parse($content);
-    $parsed_content = $this->htmlParser->parse($html);
+    $parsed_content = $this->htmlParser->parse($html, $source_content->getRealpath());
 
     return new ParsedSourceContent($source_content, $parsed_content);
   }

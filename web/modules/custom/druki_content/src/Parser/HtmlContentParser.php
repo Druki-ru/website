@@ -48,7 +48,7 @@ final class HtmlContentParser {
     foreach ($crawler->children() as $dom_element) {
       // Parse it once, or until it get valid. But actually only once.
       if (!$meta_information->valid()) {
-        if ($this->parseMetaInformation($dom_element, $meta_information)) {
+        if ($this->parseFrontMatter($dom_element, $meta_information)) {
           continue;
         }
       }
@@ -105,7 +105,7 @@ final class HtmlContentParser {
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseMetaInformation(DOMElement $dom_element, FrontMatter $meta_information): bool {
+  protected function parseFrontMatter(DOMElement $dom_element, FrontMatter $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $meta_block = $crawler->filter('div[id="meta-information"]');
 
