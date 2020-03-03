@@ -127,7 +127,7 @@ final class SourceContent {
     $vars = get_object_vars($this);
     // SplFileInfo is not serializable and don't need to be serialized.
     unset($vars['file']);
-    return $vars;
+    return array_keys($vars);
   }
 
 }

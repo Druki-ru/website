@@ -64,7 +64,7 @@ final class SourceContentFinder {
       $finder = new MarkdownDirectoryFinder(["{$directory}/{$docs_folder}/{$langcode}"]);
       foreach ($finder->findAll() as $file) {
         $relative_pathname = "{$docs_folder}/{$langcode}/{$file->getRelativePathname()}";
-        $all->add(new SourceContent($file->getRealPath(), $relative_pathname, $langcode));
+        $all->add(new SourceContent($file->getPathname(), $relative_pathname, $langcode));
       }
     }
 
