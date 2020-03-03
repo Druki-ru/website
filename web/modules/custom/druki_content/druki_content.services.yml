@@ -32,4 +32,44 @@ services:
 
   druki_content.parsed_source_content_loader:
     class: Drupal\druki_content\SourceContent\ParsedSourceContentLoader
-    arguments: ['@entity_type.manager', '@datetime.time']
+    arguments: ['@druki_content.parsed_content_loader', '@entity_type.manager', '@datetime.time']
+
+  druki_content.parsed_content_loader:
+    class: Drupal\druki_content\ParsedContent\ParsedContentLoader
+    tags:
+      - { name: service_collector, tag: druki_parsed_content_loader, call: addLoader }
+
+  druki_content.parsed_content_loader.front_matter:
+    class: Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterLoader
+    tags:
+      - { name: druki_parsed_content_loader }
+
+  druki_content.parsed_content_loader.paragraph_base:
+    abstract: true
+    class: Drupal\druki_content\ParsedContent\Content\ParagraphLoaderBase
+    arguments: ['@entity_type.manager']
+
+  druki_content.parsed_content_loader.paragraph_text:
+    parent: druki_content.parsed_content_loader.paragraph_base
+    class: Drupal\druki_content\ParsedContent\Content\ParagraphTextLoader
+    tags:
+      - { name: druki_parsed_content_loader }
+
+  druki_content.parsed_content_loader.paragraph_heading:
+    parent: druki_content.parsed_content_loader.paragraph_base
+    class: Drupal\druki_content\ParsedContent\Content\ParagraphHeadingLoader
+    tags:
+      - { name: druki_parsed_content_loader }
+
+  druki_content.parsed_content_loader.paragraph_code:
+    parent: druki_content.parsed_content_loader.paragraph_base
+    class: Drupal\druki_content\ParsedContent\Content\ParagraphCodeLoader
+    tags:
+      - { name: druki_parsed_content_loader }
+
+  druki_content.parsed_content_loader.paragraph_image:
+    parent: druki_content.parsed_content_loader.paragraph_base
+    class: Drupal\druki_content\ParsedContent\Content\ParagraphImageLoader
+    arguments: ['@config.factory', '@druki_file.tracker', '@entity_field.manager', '@token', '@file_system']
+    tags:
+      - { name: druki_parsed_content_loader }

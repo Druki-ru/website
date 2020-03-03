@@ -88,7 +88,7 @@ final class SyncQueueManager {
    *   The source content list.
    */
   public function buildFromSourceContentList(SourceContentList $source_content_list) {
-    if (empty($content_list)) {
+    if (empty($source_content_list)) {
       return;
     }
 

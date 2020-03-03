@@ -4,8 +4,8 @@ namespace Drupal\druki_content\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki_content\Sync\SyncQueueManager;
 use Drupal\druki_content\Synchronization\Queue\QueueManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -31,32 +31,19 @@ class DrukiContentSettingsForm extends FormBase {
   /**
    * The queue manager.
    *
-   * @var \Drupal\druki_content\Synchronization\Queue\QueueManager
+   * @var \Drupal\druki_content\Sync\SyncQueueManager
    */
   protected $queueManager;
-
-  /**
-   * Constructs a new DrukiContentSettingsForm object.
-   *
-   * @param \Drupal\Core\State\State $state
-   *   The state.
-   * @param \Drupal\druki_content\Synchronization\Queue\QueueManager $queue_manager
-   *   The queue manager.
-   */
-  public function __construct(State $state, QueueManager $queue_manager) {
-    $this->state = $state;
-    $this->queue = $queue_manager->queue();
-    $this->queueManager = $queue_manager;
-  }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('state'),
-      $container->get('druki_content.synchronization.queue_manager')
-    );
+    $instance = new static();
+    $instance->state = $container->get('state');
+    $instance->queue = $container->get('queue')->get(SyncQueueManager::QUEUE_NAME);
+    $instance->queueManager = $container->get('druki_content.sync_queue_manager');
+    return $instance;
   }
 
   /**
