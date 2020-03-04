@@ -104,7 +104,7 @@ class DrukiContentSettingsForm extends FormBase {
       '#type' => 'submit',
       '#button_type' => 'secondary',
       '#value' => new TranslatableMarkup('Run queue'),
-      '#submit' => [[$this->queueManager, 'run']],
+      '#submit' => [[$this, 'runQueue']],
     ];
 
     $form['content_sync']['actions']['clear'] = [
@@ -115,6 +115,15 @@ class DrukiContentSettingsForm extends FormBase {
     ];
 
     return $form;
+  }
+
+  /**
+   * Runs queue worker.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\PluginException
+   */
+  protected function runQueue() {
+    $this->queueManager->run();
   }
 
   /**

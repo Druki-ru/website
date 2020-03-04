@@ -105,7 +105,16 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
     // If scheme is exists, then we treat this file as remote.
     if (isset($host['scheme'])) {
       $filename = basename($src);
-      $file_uri = system_retrieve_file($src, 'temporary://' . $filename);
+      try {
+        // Sometimes url can be broken, slow or not accessible at this time.
+        // The cURL will throw exception, and we softly skip it.
+        // @todo some kind of logging to inform about such kind of problem
+        //   links.
+        $file_uri = system_retrieve_file($src, 'temporary://' . $filename);
+      }
+      catch (\Exception $e) {
+        return;
+      }
     }
     else {
       // If no scheme is set, we treat this file as local and relative to

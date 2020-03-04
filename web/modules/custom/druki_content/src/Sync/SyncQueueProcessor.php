@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_content\Sync;
 
+use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\SourceContent\ParsedSourceContentLoader;
@@ -43,6 +44,13 @@ final class SyncQueueProcessor {
   protected $state;
 
   /**
+   * The entity memory cache.
+   *
+   * @var \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface
+   */
+  protected $cache;
+
+  /**
    * Constructs a new SyncQueueProcessor object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -53,15 +61,18 @@ final class SyncQueueProcessor {
    *   The parsed content loader.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state storage.
+   * @param \Drupal\Core\Cache\MemoryCache\MemoryCacheInterface $cache
+   *   The entity memory cache.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, SourceContentParser $source_content_parser, ParsedSourceContentLoader $parsed_content_loader, StateInterface $state) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, SourceContentParser $source_content_parser, ParsedSourceContentLoader $parsed_content_loader, StateInterface $state, MemoryCacheInterface $cache) {
     $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');
     $this->sourceContentParser = $source_content_parser;
     $this->parsedSourceContentLoader = $parsed_content_loader;
     $this->state = $state;
+    $this->cache = $cache;
   }
 
   /**
@@ -98,6 +109,8 @@ final class SyncQueueProcessor {
     $force_update = $this->state->get('druki_content.settings.force_update', FALSE);
     foreach ($source_content_list as $source_content) {
       $this->processSourceContent($source_content, $force_update);
+      // Clear entity memory cache from entities which not needed anymore.
+      $this->cache->deleteAll();
     }
   }
 

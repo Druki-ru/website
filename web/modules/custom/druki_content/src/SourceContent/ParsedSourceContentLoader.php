@@ -161,10 +161,7 @@ final class ParsedSourceContentLoader {
     }
 
     $paragraphs = $druki_content->get('content')->referencedEntities();
-    /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
-    foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
-    }
+    $this->paragraphStorage->delete($paragraphs);
 
     $druki_content->set('content', NULL);
   }
