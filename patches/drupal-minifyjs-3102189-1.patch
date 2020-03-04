@@ -1,0 +1,17 @@
+diff --git a/src/Commands/MinifyJsCommands.php b/src/Commands/MinifyJsCommands.php
+index bb36039..c0d2e89 100644
+--- a/src/Commands/MinifyJsCommands.php
++++ b/src/Commands/MinifyJsCommands.php
+@@ -98,8 +98,9 @@ class MinifyJsCommands extends DrushCommands {
+    */
+   public function scanJs() {
+     $this->output()->writeln('Scanning for JS files...');
+-    FileManager::scan(TRUE);
++    $file_manager = new FileManager();
++    $file_manager->scan(TRUE);
+     $this->output()->writeln('Complete!');
+   }
+ 
+-}
+\ No newline at end of file
++}

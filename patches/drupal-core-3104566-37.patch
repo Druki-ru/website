@@ -1,0 +1,160 @@
+diff --git a/core/core.services.yml b/core/core.services.yml
+index e5a7130057..4e862a43da 100644
+--- a/core/core.services.yml
++++ b/core/core.services.yml
+@@ -789,6 +789,12 @@ services:
+      arguments: ['%cors.config%']
+      tags:
+        - { name: http_middleware, priority: 250 }
++  http_middleware.server_timing:
++    class: Drupal\Core\StackMiddleware\ServerTiming
++    tags:
++      # Use a higher priority than any other middleware to ensure
++      # that timing is accurate.
++      - { name: http_middleware, priority: 9999 }
+   psr7.http_foundation_factory:
+     class: Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory
+   psr7.http_message_factory:
+diff --git a/core/lib/Drupal/Core/StackMiddleware/ServerTiming.php b/core/lib/Drupal/Core/StackMiddleware/ServerTiming.php
+new file mode 100644
+index 0000000000..dea36ed427
+--- /dev/null
++++ b/core/lib/Drupal/Core/StackMiddleware/ServerTiming.php
+@@ -0,0 +1,42 @@
++<?php
++
++namespace Drupal\Core\StackMiddleware;
++
++use Symfony\Component\HttpFoundation\Request;
++use Symfony\Component\HttpKernel\HttpKernelInterface;
++
++/**
++ * Adds Server Timing header.
++ *
++ * @see https://www.w3.org/TR/server-timing/
++ */
++class ServerTiming implements HttpKernelInterface {
++
++  /**
++   * The decorated kernel.
++   *
++   * @var \Symfony\Component\HttpKernel\HttpKernelInterface
++   */
++  protected $httpKernel;
++
++  /**
++   * Constructs the ServerTiming object.
++   *
++   * @param \Symfony\Component\HttpKernel\HttpKernelInterface $http_kernel
++   *   The decorated kernel.
++   */
++  public function __construct(HttpKernelInterface $http_kernel) {
++    $this->httpKernel = $http_kernel;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = TRUE) {
++    $response = $this->httpKernel->handle($request, $type, $catch);
++    $duration = round(1000 * (microtime(TRUE) - $request->server->get('REQUEST_TIME_FLOAT')), 2);
++    $response->headers->set('Server-Timing', 'total;desc="Page execution time";dur=' . $duration, FALSE);
++    return $response;
++  }
++
++}
+diff --git a/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php b/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php
+index 18944192d5..d75d0b061c 100644
+--- a/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php
++++ b/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php
+@@ -1025,6 +1025,7 @@ public function testGetIndividual() {
+       'X-Drupal-Dynamic-Cache',
+       'Transfer-Encoding',
+       'Vary',
++      'Server-Timing',
+     ];
+     $header_cleaner = function ($headers) use ($ignored_headers) {
+       foreach ($headers as $header => $value) {
+diff --git a/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php b/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php
+index da39d3b2cd..8ff81b245f 100644
+--- a/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php
++++ b/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php
+@@ -626,7 +626,7 @@ public function testGet() {
+     // 'Vary' headers are also added to the list of headers to ignore, as they
+     // may be added to GET requests, depending on web server configuration. They
+     // are usually 'Transfer-Encoding: chunked' and 'Vary: Accept-Encoding'.
+-    $ignored_headers = ['Date', 'Content-Length', 'X-Drupal-Cache', 'X-Drupal-Dynamic-Cache', 'Transfer-Encoding', 'Vary'];
++    $ignored_headers = ['Date', 'Content-Length', 'X-Drupal-Cache', 'X-Drupal-Dynamic-Cache', 'Transfer-Encoding', 'Vary', 'Server-Timing'];
+     $header_cleaner = function ($headers) use ($ignored_headers) {
+       foreach ($headers as $header => $value) {
+         if (strpos($header, 'X-Drupal-Assertion-') === 0 || in_array($header, $ignored_headers)) {
+diff --git a/core/tests/Drupal/FunctionalTests/Bootstrap/UncaughtExceptionTest.php b/core/tests/Drupal/FunctionalTests/Bootstrap/UncaughtExceptionTest.php
+index 61a6f2db04..88cfe70734 100644
+--- a/core/tests/Drupal/FunctionalTests/Bootstrap/UncaughtExceptionTest.php
++++ b/core/tests/Drupal/FunctionalTests/Bootstrap/UncaughtExceptionTest.php
+@@ -279,7 +279,7 @@ public function testLoggerException() {
+ 
+     // Find fatal error logged to the error.log
+     $errors = file(\Drupal::root() . '/' . $this->siteDirectory . '/error.log');
+-    $this->assertIdentical(count($errors), 8, 'The error + the error that the logging service is broken has been written to the error log.');
++    $this->assertIdentical(count($errors), 10, 'The error + the error that the logging service is broken has been written to the error log.');
+     $this->assertTrue(strpos($errors[0], 'Failed to log error') !== FALSE, 'The error handling logs when an error could not be logged to the logger.');
+ 
+     $expected_path = \Drupal::root() . '/core/modules/system/tests/modules/error_service_test/src/MonkeysInTheControlRoom.php';
+diff --git a/core/tests/Drupal/Tests/Core/StackMiddleware/ServerTimingTest.php b/core/tests/Drupal/Tests/Core/StackMiddleware/ServerTimingTest.php
+new file mode 100644
+index 0000000000..539c9e1b3e
+--- /dev/null
++++ b/core/tests/Drupal/Tests/Core/StackMiddleware/ServerTimingTest.php
+@@ -0,0 +1,51 @@
++<?php
++
++namespace Drupal\Tests\Core\StackMiddleware;
++
++use Drupal\Core\StackMiddleware\ServerTiming;
++use Drupal\Tests\UnitTestCase;
++use Prophecy\Argument;
++use Symfony\Bridge\PhpUnit\ClockMock;
++use Symfony\Component\HttpFoundation\Request;
++use Symfony\Component\HttpFoundation\Response;
++use Symfony\Component\HttpKernel\HttpKernelInterface;
++
++/**
++ * Tests the ServerTiming middleware.
++ *
++ * @coversDefaultClass \Drupal\Core\StackMiddleware\ServerTiming
++ * @group ServerTiming
++ */
++class ServerTimingTest extends UnitTestCase {
++
++  /**
++   * @covers ::handle
++   */
++  public function testServerTiming() {
++    // Set initial Server-Timing header to make sure it is merged with the one
++    // provided by the middleware.
++    $response = new Response();
++    $response->headers->set('Server-Timing', 'example;desc="Example";dur=456');
++
++    $http_kernel = $this->prophesize(HttpKernelInterface::class);
++    $http_kernel->handle(Argument::type(Request::class), HttpKernelInterface::MASTER_REQUEST, TRUE)
++      ->willReturn($response);
++
++    $middleware = new ServerTiming($http_kernel->reveal());
++    $request = new Request();
++
++    ClockMock::register(__CLASS__);
++    ClockMock::withClockMock($request->server->get('REQUEST_TIME_FLOAT') + 0.123123);
++
++    $response = $middleware->handle($request);
++
++    ClockMock::withClockMock(FALSE);
++
++    $expected_headers = [
++      'example;desc="Example";dur=456',
++      'total;desc="Page execution time";dur=123.12',
++    ];
++    self::assertSame($expected_headers, $response->headers->get('Server-Timing', NULL, FALSE));
++  }
++
++}
