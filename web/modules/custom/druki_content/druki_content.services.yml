@@ -67,6 +67,12 @@ services:
     tags:
       - { name: druki_parsed_content_loader }
 
+  druki_content.parsed_content_loader.paragraph_note:
+    parent: druki_content.parsed_content_loader.paragraph_base
+    class: Drupal\druki_content\ParsedContent\Content\ParagraphNoteLoader
+    tags:
+      - { name: druki_parsed_content_loader }
+
   druki_content.parsed_content_loader.paragraph_image:
     parent: druki_content.parsed_content_loader.paragraph_base
     class: Drupal\druki_content\ParsedContent\Content\ParagraphImageLoader
