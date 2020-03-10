@@ -5,6 +5,7 @@
  * Primary module hooks for Druki module.
  */
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\imagemagick\ImagemagickExecArguments;
 
 /**
@@ -37,7 +38,23 @@ function druki_cron(): void {
     if ($stable_version && $minor_version) {
       $drupal_releases['last_stable_release'] = $stable_version;
       $drupal_releases['last_minor_release'] = $minor_version;
-      $drupal_releases['expires'] = $request_time + (60 * 60 * 24);
+      // We check releases on wednesday evey hour, since it release window.
+      $request_datetime = DrupalDateTime::createFromTimestamp($request_time);
+      $next_wednesday = new DrupalDateTime('next wednesday');
+      $next_wednesday_interval = $request_datetime->diff($next_wednesday);
+      if ($next_wednesday_interval->d == 6) {
+        // It's wednesday my dudes.
+        $drupal_releases['expires'] = $request_time + (60 * 60 * 1);
+      }
+      elseif ($next_wednesday_interval->d == 0) {
+        // Wednesday is tomorrow. Delay it to the beginning of the day.
+        $drupal_releases['expires'] = $next_wednesday->getTimestamp();
+      }
+      else {
+        // On other days check once a day.
+        $drupal_releases['expires'] = $request_time + (60 * 60 * 24);
+      }
+
       \Drupal::state()->set('druki.drupal_releases', $drupal_releases);
 
       /** @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator */
