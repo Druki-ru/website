@@ -680,15 +680,16 @@
   padding: var(--spacing-sm) var(--grid-container-inner-gap); }
 
 .paragraph-druki-heading {
-  margin-bottom: var(--p-margin-bottom);
-  --anchor-size: 24px;
   --link-border: none;
-  --link-border-hover: none; }
+  --link-border-hover: none;
+  margin-bottom: var(--p-margin-bottom);
+  scroll-margin-top: var(--spacing-md);
+  --anchor-size: 24px; }
 
 .paragraph-druki-heading--h2 {
+  border-bottom: 1px solid var(--color-gray-10);
   margin-top: var(--spacing-lg);
   padding-bottom: var(--spacing-unit);
-  border-bottom: 1px solid var(--color-gray-10);
   --anchor-size: 22px; }
 
 .paragraph-druki-heading--h3 {
@@ -704,14 +705,14 @@
   --anchor-size: 16px; }
 
 .paragraph-druki-heading__anchor {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='UTF-8'?%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24' fill='%23dddddd'%3E%3Cpath d='M5.41,21L6.12,17H2.12L2.47,15H6.47L7.53,9H3.53L3.88,7H7.88L8.59,3H10.59L9.88,7H15.88L16.59,3H18.59L17.88,7H21.88L21.53,9H17.53L16.47,15H20.47L20.12,17H16.12L15.41,21H13.41L14.12,17H8.12L7.41,21H5.41M9.53,9L8.47,15H14.47L15.53,9H9.53Z'/%3E%3C/svg%3E");
+  background-size: var(--anchor-size);
+  content: '';
   display: inline-block;
-  width: var(--anchor-size);
   height: var(--anchor-size);
   margin-left: var(--spacing-unit);
-  content: '';
   vertical-align: middle;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='UTF-8'?%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24' fill='%23dddddd'%3E%3Cpath d='M5.41,21L6.12,17H2.12L2.47,15H6.47L7.53,9H3.53L3.88,7H7.88L8.59,3H10.59L9.88,7H15.88L16.59,3H18.59L17.88,7H21.88L21.53,9H17.53L16.47,15H20.47L20.12,17H16.12L15.41,21H13.41L14.12,17H8.12L7.41,21H5.41M9.53,9L8.47,15H14.47L15.53,9H9.53Z'/%3E%3C/svg%3E");
-  background-size: var(--anchor-size); }
+  width: var(--anchor-size); }
 
 .paragraph-druki-image-druki-image {
   margin: 0 calc(var(--grid-container-inner-gap) * -1) var(--p-margin-bottom); }

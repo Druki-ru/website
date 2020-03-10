@@ -1,14 +1,15 @@
 .paragraph-druki-heading {
-  margin-bottom: var(--p-margin-bottom);
-  --anchor-size: 24px;
   --link-border: none;
   --link-border-hover: none;
+  margin-bottom: var(--p-margin-bottom);
+  scroll-margin-top: var(--spacing-md);
+  --anchor-size: 24px;
 }
 
 .paragraph-druki-heading--h2 {
+  border-bottom: 1px solid var(--color-gray-10);
   margin-top: var(--spacing-lg);
   padding-bottom: var(--spacing-unit);
-  border-bottom: 1px solid var(--color-gray-10);
   --anchor-size: 22px;
 }
 
@@ -28,12 +29,12 @@
 }
 
 .paragraph-druki-heading__anchor {
-  display: inline-block;
-  width: var(--anchor-size);
-  height: var(--anchor-size);
-  margin-left: var(--spacing-unit);
-  content: '';
-  vertical-align: middle;
   background-image: svg-load('pound.svg', fill=#dddddd);
   background-size: var(--anchor-size);
+  content: '';
+  display: inline-block;
+  height: var(--anchor-size);
+  margin-left: var(--spacing-unit);
+  vertical-align: middle;
+  width: var(--anchor-size);
 }
