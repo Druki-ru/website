@@ -106,3 +106,27 @@ msgstr "Druki категория"
 
 msgid "Category navigation"
 msgstr "Навигация по категории"
+
+msgid "Content sync"
+msgstr "Синхронизация содержимого"
+
+msgid "Manage queue"
+msgstr "Управление очередью"
+
+msgid "Queue builder"
+msgstr "Построитель очереди"
+
+msgid "Build from Git"
+msgstr "Собрать из Git"
+
+msgid "Pull from Git"
+msgstr "Запросить из Git"
+
+msgid "The \"git pull\" command will be invoked, which will trigger event and build queue from it."
+msgstr "Будет выполнена команда \"git pull\", которая вызовет событие, которое, в свою очередь, соберёт очередь."
+
+msgid "Build from folder"
+msgstr "Собрать из директории"
+
+msgid "The URI with source content."
+msgstr "URI до директории с исходным содержимым."

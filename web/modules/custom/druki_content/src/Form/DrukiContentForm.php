@@ -30,7 +30,7 @@ class DrukiContentForm extends ContentEntityForm {
 
     $form = parent::form($form, $form_state);
 
-    $form['git_information'] = [
+    $form['content_info'] = [
       '#type' => 'container',
       '#group' => 'advanced',
       '#weight' => -10,
@@ -39,7 +39,7 @@ class DrukiContentForm extends ContentEntityForm {
       '#tree' => TRUE,
     ];
 
-    $form['git_information']['external_id'] = [
+    $form['content_info']['external_id'] = [
       '#type' => 'item',
       '#title' => $this->t('External ID'),
       '#markup' => $druki_content->get('external_id')->value,
@@ -50,33 +50,23 @@ class DrukiContentForm extends ContentEntityForm {
       ],
     ];
 
-    $form['git_information']['core'] = [
-      '#type' => 'item',
-      '#title' => $this->t('Core version'),
-      '#markup' => $druki_content->get('core')->value,
-      '#wrapper_attributes' => [
-        'class' => [
-          'container-inline',
+    if (!$druki_content->get('core')->isEmpty()) {
+      $form['content_info']['core'] = [
+        '#type' => 'item',
+        '#title' => $this->t('Core version'),
+        '#markup' => $druki_content->get('core')->value,
+        '#wrapper_attributes' => [
+          'class' => [
+            'container-inline',
+          ],
         ],
-      ],
-    ];
+      ];
+    }
 
-    $form['git_information']['relative_pathname'] = [
+    $form['content_info']['relative_pathname'] = [
       '#type' => 'item',
       '#title' => $this->t('Relative pathname'),
       '#markup' => $druki_content->get('relative_pathname')->value,
-      '#wrapper_attributes' => [
-        'class' => [
-          'container-inline',
-        ],
-      ],
-    ];
-
-    $form['git_information']['last_commit_id'] = [
-      '#type' => 'item',
-      '#title' => $this->t('Last commit ID'),
-      '#markup' => $druki_content->get('last_commit_id')->value,
-      '#access' => !$druki_content->get('last_commit_id')->isEmpty(),
       '#wrapper_attributes' => [
         'class' => [
           'container-inline',
