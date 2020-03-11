@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Handler;
+namespace Drupal\druki_content\Entity\Handler;
 
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;

@@ -19,7 +19,7 @@ final class ParsedSourceContentLoader {
   /**
    * The druki content storage.
    *
-   * @var \Drupal\druki_content\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
    */
   protected $drukiContentStorage;
 

@@ -16,11 +16,11 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki content"),
  *   handlers = {
- *     "storage" = "Drupal\druki_content\Handler\DrukiContentStorage",
+ *     "storage" = "Drupal\druki_content\Entity\Handler\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\druki_content\Handler\DrukiContentListBuilder",
+ *     "list_builder" = "Drupal\druki_content\Entity\Handler\DrukiContentListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *     "access" = "Drupal\druki_content\Handler\DrukiContentAccessControlHandler",
+ *     "access" = "Drupal\druki_content\Entity\Handler\DrukiContentAccessControlHandler",
  *     "form" = {
  *       "add" = "Drupal\druki_content\Form\DrukiContentForm",
  *       "edit" = "Drupal\druki_content\Form\DrukiContentForm",
@@ -29,7 +29,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *     "route_provider" = {
  *       "html" = "Drupal\druki_content\Routing\DrukiContentRouteProvider",
  *     },
- *     "redirect_controller" = "Drupal\druki_content\Handler\DrukiContentRedirectController",
+ *     "redirect_controller" = "Drupal\druki_content\Entity\Handler\DrukiContentRedirectController",
  *   },
  *   base_table = "druki_content",
  *   data_table = "druki_content_field_data",

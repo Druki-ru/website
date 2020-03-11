@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Handler;
+namespace Drupal\druki_content\Entity\Handler;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;

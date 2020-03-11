@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Handler;
+namespace Drupal\druki_content\Entity\Handler;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;

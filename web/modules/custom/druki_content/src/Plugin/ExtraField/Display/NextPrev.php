@@ -6,7 +6,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Handler\DrukiContentStorage;
+use Drupal\druki_content\Entity\Handler\DrukiContentStorage;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -28,7 +28,7 @@ class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPluginIn
   /**
    * The druki content storage.
    *
-   * @var \Drupal\druki_content\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
    */
   private $contentStorage;
 
@@ -41,7 +41,7 @@ class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPluginIn
    *   The plugin ID.
    * @param array $plugin_definition
    *   The plugin definition.
-   * @param \Drupal\druki_content\Handler\DrukiContentStorage $content_storage
+   * @param \Drupal\druki_content\Entity\Handler\DrukiContentStorage $content_storage
    *   The druki content storage.
    */
   public function __construct(array $configuration, string $plugin_id, array $plugin_definition, DrukiContentStorage $content_storage) {

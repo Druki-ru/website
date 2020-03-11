@@ -33,7 +33,7 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
   /**
    * The druki content sotrage.
    *
-   * @var \Drupal\druki_content\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
    */
   protected $contentStorage;
 
