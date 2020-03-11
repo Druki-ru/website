@@ -77,6 +77,7 @@ task('deploy', [
   'deploy:config-split-import',
   'deploy:minifyjs',
   'deploy:rebuild-cache',
+  'deploy:update-locale',
   'deploy:unlock',
   'deploy:cache-warming',
   'cleanup',
