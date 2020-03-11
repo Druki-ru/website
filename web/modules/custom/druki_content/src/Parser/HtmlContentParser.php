@@ -107,7 +107,7 @@ final class HtmlContentParser {
    */
   protected function parseFrontMatter(DOMElement $dom_element, FrontMatter $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
-    $meta_block = $crawler->filter('div[id="meta-information"]');
+    $meta_block = $crawler->filter('div[data-druki-element="front-matter"]');
 
     if (count($meta_block)) {
       $meta_array = json_decode($meta_block->text(), TRUE);

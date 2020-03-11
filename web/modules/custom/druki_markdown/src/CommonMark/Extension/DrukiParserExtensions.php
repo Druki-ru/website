@@ -2,23 +2,17 @@
 
 namespace Drupal\druki_markdown\CommonMark\Extension;
 
-use Drupal\druki_markdown\CommonMark\Block\Parser\MetaInformationParser;
+use Drupal\druki_markdown\CommonMark\Block\Parser\FrontMatterParser;
 use Drupal\druki_markdown\CommonMark\Block\Parser\NoteParser;
-use Drupal\druki_markdown\CommonMark\Block\Renderer\MetaInformationRenderer;
+use Drupal\druki_markdown\CommonMark\Block\Renderer\FrontMatterRenderer;
 use Drupal\druki_markdown\CommonMark\Block\Renderer\NoteRenderer;
-use Drupal\druki_markdown\CommonMark\DocumentProcessor\InternalLinkProcessor;
-use Drupal\druki_markdown\CommonMark\Inline\Parser\CloseBracerParser;
-use Drupal\druki_markdown\CommonMark\Inline\Parser\OpenBracerParser;
-use Drupal\druki_markdown\CommonMark\Inline\Renderer\InternalLinkRenderer;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
 
 /**
- * Class MetaInformationExtension
- *
- * @package Drupal\CommonMark
+ * Provides class with custom Common Mark extensions.
  */
-class DrukiParserExtensions implements ExtensionInterface {
+final class DrukiParserExtensions implements ExtensionInterface {
 
   /**
    * {@inheritdoc}
@@ -30,10 +24,10 @@ class DrukiParserExtensions implements ExtensionInterface {
         'Drupal\druki_markdown\CommonMark\Block\Element\NoteElement',
         new NoteRenderer()
       )
-      ->addBlockParser(new MetaInformationParser(), 30)
+      ->addBlockParser(new FrontMatterParser(), 30)
       ->addBlockRenderer(
-        'Drupal\druki_markdown\CommonMark\Block\Element\MetaInformationElement',
-        new MetaInformationRenderer()
+        'Drupal\druki_markdown\CommonMark\Block\Element\FrontMatterElement',
+        new FrontMatterRenderer()
       );
   }
 

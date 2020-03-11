@@ -2,17 +2,15 @@
 
 namespace Drupal\druki_markdown\CommonMark\Block\Parser;
 
-use Drupal\druki_markdown\CommonMark\Block\Element\MetaInformationElement;
+use Drupal\druki_markdown\CommonMark\Block\Element\FrontMatterElement;
 use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 
 /**
- * Class MetaInformationParser
- *
- * @package Drupal\druki_markdown\CommonMark\Block\Parser
+ * Provides Front Matter parser.
  */
-class MetaInformationParser implements BlockParserInterface {
+class FrontMatterParser implements BlockParserInterface {
 
   /**
    * {@inheritdoc}
@@ -33,7 +31,7 @@ class MetaInformationParser implements BlockParserInterface {
       return FALSE;
     }
 
-    $context->addBlock(new MetaInformationElement());
+    $context->addBlock(new FrontMatterElement());
 
     return TRUE;
   }

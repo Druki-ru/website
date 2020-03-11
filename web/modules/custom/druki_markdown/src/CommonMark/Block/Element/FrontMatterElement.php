@@ -9,11 +9,9 @@ use League\CommonMark\Cursor;
 use League\CommonMark\Util\RegexHelper;
 
 /**
- * Class MetaInformationElement
- *
- * @package Drupal\druki_markdown\Plugin\Markdown\Extension
+ * Provides Front Matter element.
  */
-class MetaInformationElement extends AbstractStringContainerBlock {
+class FrontMatterElement extends AbstractStringContainerBlock {
 
   /**
    * Indicates is meta information closing block found.

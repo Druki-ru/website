@@ -9,11 +9,9 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 
 /**
- * Class MetaInformationRenderer
- *
- * @package Drupal\druki_markdown\CommonMark\Renderer
+ * Provides Front Matter renderer.
  */
-class MetaInformationRenderer implements BlockRendererInterface {
+class FrontMatterRenderer implements BlockRendererInterface {
 
   /**
    * {@inheritdoc}
@@ -32,7 +30,7 @@ class MetaInformationRenderer implements BlockRendererInterface {
     // @see https://github.com/symfony/symfony/issues/14542
     return new HtmlElement(
       'div',
-      ['id' => 'meta-information'],
+      ['data-druki-element' => 'front-matter'],
       json_encode($content)
     );
   }
