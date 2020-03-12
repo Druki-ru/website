@@ -28,6 +28,7 @@ class DrupalProjectsTest extends KernelTestBase {
    */
   public function setUp() {
     parent::setUp();
+    define('DRUPAL_TEST_IN_CHILD_SITE', TRUE);
     $this->drupalProjects = $this->container->get('druki.drupal_projects');
   }
 

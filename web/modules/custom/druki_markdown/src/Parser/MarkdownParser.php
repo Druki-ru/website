@@ -31,13 +31,14 @@ class MarkdownParser implements MarkdownParserInterface {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(Markdown $markdown, EntityTypeManagerInterface $entity_type_manager) {
+    // @todo test without user loading and pass as NULL.
     $user_storage = $entity_type_manager->getStorage('user');
     $user = $user_storage->load(1);
     // The markdown looking for filters available for provided user. If we call
     // it via Drush, we will be anonymous user, and if filter is not accessible
     // to it, markdown will be converted without extensions. So we force in
     // code to handle it via admin user.
-    $this->markdownParser = $markdown->getParser('thephpleague/commonmark', 'markdown', $user);
+    $this->markdownParser = $markdown->getParser('thephpleague/commonmark', NULL, $user);
   }
 
   /**
