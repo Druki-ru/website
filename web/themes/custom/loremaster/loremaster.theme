@@ -5,7 +5,7 @@
  * Custom hooks and functions special for theme.
  */
 
-use Drupal\druki\Utility\Text;
+use Drupal\druki\Utility\Anchor;
 use Drupal\media\MediaInterface;
 use Drupal\responsive_image\ResponsiveImageStyleInterface;
 
@@ -42,7 +42,7 @@ function loremaster_preprocess_paragraph__druki_heading(array &$variables): void
   $variables['heading_level'] = $paragraph->get('druki_heading_level')->value;
   $variables['title'] = $title;
 
-  $variables['anchor'] = Text::anchor($title, 'druki_content_toc_theme', Text::ANCHOR_DRUPLCATE_REUSE);
+  $variables['anchor'] = Anchor::generate($title, 'druki_content_toc_theme', Anchor::REUSE);
 
   $variables['bem_modifiers'][] = $variables['heading_level'];
 }

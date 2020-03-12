@@ -2,12 +2,14 @@
 
 namespace Drupal\Tests\druki\Kernel\Service;
 
-use Drupal\Tests\token\Kernel\KernelTestBase;
+use Drupal\KernelTests\KernelTestBase;
 
 /**
  * Test druki.drupal_projects service.
+ *
+ * @coversDefaultClass \Drupal\druki\Service\DrupalProjects
  */
-class DrupalProjectsServiceTest extends KernelTestBase {
+class DrupalProjectsTest extends KernelTestBase {
 
   /**
    * {@inheritdoc}
@@ -17,7 +19,7 @@ class DrupalProjectsServiceTest extends KernelTestBase {
   /**
    * The drupal projects service.
    *
-   * @var \Drupal\druki\Service\DrupalProjects|object
+   * @var \Drupal\druki\Service\DrupalProjects
    */
   protected $drupalProjects;
 
@@ -26,16 +28,16 @@ class DrupalProjectsServiceTest extends KernelTestBase {
    */
   public function setUp() {
     parent::setUp();
-
-    define('DRUPAL_TEST_IN_CHILD_SITE', TRUE);
     $this->drupalProjects = $this->container->get('druki.drupal_projects');
   }
 
   /**
    * Test getting project last stable release.
+   *
+   * @covers ::getCoreLastStableVersion
    */
   public function testGetProjectLastStableRelease() {
-    $actual = $this->drupalProjects->getCoreLastStableVersion('drupal');
+    $actual = $this->drupalProjects->getCoreLastStableVersion();
   }
 
 }

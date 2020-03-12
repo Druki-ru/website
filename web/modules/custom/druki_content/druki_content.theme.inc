@@ -7,7 +7,7 @@
 
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
-use Drupal\druki\Utility\Text;
+use Drupal\druki\Utility\Anchor;
 use Drupal\paragraphs\ParagraphInterface;
 
 /**
@@ -115,7 +115,7 @@ function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $l
   return [
     'id' => $internal_id,
     'text' => $title,
-    'anchor' => Text::anchor($title, 'druki_content_toc', Text::ANCHOR_DRUPLCATE_REUSE),
+    'anchor' => Anchor::generate($title, 'druki_content_toc', Anchor::REUSE),
     'level' => $heading_level_int,
     'parent_id' => $parent_id,
   ];

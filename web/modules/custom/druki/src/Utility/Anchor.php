@@ -6,24 +6,22 @@ use Drupal\Component\Transliteration\PhpTransliteration;
 
 /**
  * Class Text with simple string utility.
- *
- * @package Drupal\druki\Utility
  */
-class Text {
+class Anchor {
 
   /**
    * Indicated incremental anchors.
    *
    * @var int
    */
-  const ANCHOR_DUPLICATE_COUNTER = 1;
+  public const COUNTER = 1;
 
   /**
    * Indicates reusable anchors.
    *
    * @var int
    */
-  const ANCHOR_DRUPLCATE_REUSE = 2;
+  public const REUSE = 2;
 
   /**
    * Generates anchor for string.
@@ -40,13 +38,13 @@ class Text {
    * @param int $duplicate_mode
    *   The mode used when anchor for provided text and id is already exists.
    *   Available values:
-   *   - ANCHOR_DUPLICATE_COUNTER: Each new anchor will have suffix "-N".
-   *   - ANCHOR_DRUPLCATE_REUSE: Will return already generated anchor.
+   *   - COUNTER: Each new anchor will have suffix "-N".
+   *   - REUSE: Will return already generated anchor.
    *
    * @return string
    *   The anchor string.
    */
-  public static function anchor(string $text, string $id = 'default', int $duplicate_mode = self::ANCHOR_DUPLICATE_COUNTER): string {
+  public static function generate(string $text, string $id = 'default', int $duplicate_mode = self::COUNTER): string {
     $anchor_generated = FALSE;
     $iteration = 0;
 
@@ -62,21 +60,19 @@ class Text {
     // Replace multiple dashes with single. F.e. "Title with - dash".
     $anchor = preg_replace('/-{2,}/', '-', $anchor);
 
+    static $anchor_static = [];
     while (!$anchor_generated) {
-      $anchor_static = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $id . ':' . $anchor . ':' . $iteration);
-
-      // If anchor not stored in static cache, we generate new one.
-      if (!isset($anchor_static)) {
-        if ($iteration > 0 && $duplicate_mode == self::ANCHOR_DUPLICATE_COUNTER) {
+      $key = "{$duplicate_mode}:{$id}:{$anchor}:{$iteration}";
+      if (!isset($anchor_static[$key])) {
+        if ($iteration > 0 && $duplicate_mode == self::COUNTER) {
           $anchor .= '-' . $iteration;
         }
 
-        $anchor_static = $anchor;
+        $anchor_static[$key] = $anchor;
         $anchor_generated = TRUE;
       }
-      else {
-        $iteration++;
-      }
+
+      $iteration++;
     }
 
     return $anchor;
