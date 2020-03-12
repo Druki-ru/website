@@ -1,21 +1,22 @@
 :root {
-  --prismjs-background: var(--code-background);
-  --prismjs-color: var(--text-color);
+  --prismjs-background: var(--color-black-02);
+  --prismjs-color: var(--color-black);
   --prismjs-keyword: hsl(240, 100%, 25%);
   --prismjs-punctuatuion: var(--prismjs-color);
-  --prismjs-tag: hsl(240, 100%, 50%);
-  --prismjs-string: hsl(120, 100%, 25%);
-  --prismjs-comment: hsl(0, 0%, 50%);
-  --pirsmjs-class-name: hsl(0, 0%, 0%);
-  --prismjs-variable: hsl(0, 100%, 20%);
+  --prismjs-tag: #000080;
+  --prismjs-string: #008000;
+  --prismjs-comment: #808080;
+  --pirsmjs-class-name: var(--color-black);
+  --prismjs-variable: #660000;
   --prismjs-important: hsl(240, 100%, 25%);
   --prismjs-function: hsl(0, 0%, 0%);
-  --prismjs-this: hsl(0, 100%, 20%);
+  --prismjs-this: var(--prismjs-variable);
   --prismjs-constant: hsl(289, 79%, 27%);
   --prismjs-property: var(--prismjs-constant);
 }
 
 [data-theme="dark"] {
+  --prismjs-background: var(--color-white-02);
   --prismjs-color: hsl(211, 20%, 72%);
   --prismjs-important: hsl(27, 61%, 50%);
   --prismjs-keyword: var(--prismjs-important);
@@ -36,7 +37,7 @@ code[class*="language-"],
 pre[class*="language-"] {
   font-family: var(--font-monospace);
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.4;
   text-align: left;
   white-space: pre;
   word-spacing: normal;

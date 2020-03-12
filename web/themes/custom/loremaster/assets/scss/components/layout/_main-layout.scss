@@ -12,7 +12,7 @@
   max-width: var(--grid-container-max-width);
   margin: 0 auto;
   background-color: var(--main-layout-background);
-  box-shadow: 0 4px 45px rgba(0, 0, 0, 0.05), 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 var(--spacing-sm) 0 var(--color-black-10);
 }
 
 .main-layout--sidebar-right .main-layout__content {

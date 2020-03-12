@@ -2,7 +2,7 @@
   --druki-content-toc-link-color: var(--color-gray-90);
   --druki-content-toc-link-hover-color: var(--link-color);
   --druki-content-toc-counter-color: var(--link-color);
-  --druki-content-toc-submenu-line-color: var(--color-blue-20);
+  --druki-content-toc-submenu-line-color: var(--color-primary-20);
 }
 
 [data-theme="dark"] {
@@ -40,16 +40,16 @@
 
 .druki-content-toc__submenu {
   position: relative;
+}
 
-  &::before {
-    position: absolute;
-    left: -1rem;
-    display: block;
-    width: 2px;
-    height: 100%;
-    content: '';
-    background-color: var(--druki-content-toc-submenu-line-color);
-  }
+.druki-content-toc__submenu::before {
+  position: absolute;
+  left: -1rem;
+  display: block;
+  width: 2px;
+  height: 100%;
+  content: '';
+  background-color: var(--druki-content-toc-submenu-line-color);
 }
 
 .druki-content-toc ul {

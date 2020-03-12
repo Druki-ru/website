@@ -24,6 +24,10 @@
   border: none;
 }
 
+.druki-content-content a:visited {
+  color: var(--link-color-visited);
+}
+
 .druki-content-content ol li,
 .druki-content-content ul li {
   margin: var(--spacing-xs) 0;
