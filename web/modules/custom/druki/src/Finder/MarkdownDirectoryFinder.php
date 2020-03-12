@@ -2,7 +2,6 @@
 
 namespace Drupal\druki\Finder;
 
-use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -41,18 +40,15 @@ final class MarkdownDirectoryFinder {
    * Scans directories for Markdown files.
    *
    * @return \Symfony\Component\Finder\SplFileInfo[]
-   *   An array with founded files keyed by pathname.
+   *   An array with founded files.
+   *
+   * @throws \Symfony\Component\Finder\Exception\DirectoryNotFoundException
    */
   public function findAll(): array {
     $all = [];
 
-    foreach ($this->directories as $directory) {
-      try {
-        $this->finder->in($directory);
-      }
-      catch (DirectoryNotFoundException $e) {
-        continue;
-      }
+    $this->finder->in($this->directories);
+    if ($this->finder->hasResults()) {
       foreach ($this->finder as $file_info) {
         $all[] = $file_info;
       }

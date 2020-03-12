@@ -31,12 +31,12 @@ class AnchorTest extends UnitTestCase {
    */
   public function anchorProvider() {
     return [
-      ['test', 'default', Anchor::REUSE, 'test'],
-      ['test', 'default', Anchor::REUSE, 'test'],
-      ['test2', 'default', Anchor::REUSE, 'test2'],
-      ['test', 'counter', Anchor::COUNTER, 'test'],
-      ['test', 'counter', Anchor::COUNTER, 'test-1'],
-      ['test2', 'counter', Anchor::COUNTER, 'test2'],
+      'reusable for "test"' => ['test', 'default', Anchor::REUSE, 'test'],
+      'reusable for "test" repeat' => ['test', 'default', Anchor::REUSE, 'test'],
+      'reusable for "test2"' => ['test2', 'default', Anchor::REUSE, 'test2'],
+      'counter for "test"' => ['test', 'counter', Anchor::COUNTER, 'test'],
+      'counter for "test" repeat' => ['test', 'counter', Anchor::COUNTER, 'test-1'],
+      'counter for "test2"' => ['test2', 'counter', Anchor::COUNTER, 'test2'],
     ];
   }
 

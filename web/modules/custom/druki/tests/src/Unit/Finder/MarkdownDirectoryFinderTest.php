@@ -19,7 +19,18 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
    * @covers ::findAll
    * @dataProvider directoriesProvider
    */
-  public function testFinder(array $directories, array $expected) {
+  public function testFinder(array $directories, int $expected) {
+    $this->setUpVfsStream();
+    $discovery = new MarkdownDirectoryFinder($directories);
+    $data = $discovery->findAll();
+
+    $this->assertCount($expected, $data);
+  }
+
+  /**
+   * Set up fake filesystem.
+   */
+  protected function setUpVfsStream() {
     vfsStream::setup('content', NULL, [
       'docs' => [
         'ru' => [
@@ -38,11 +49,17 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
       ],
       'README.md' => "Readme file.",
     ]);
+  }
 
-    $discovery = new MarkdownDirectoryFinder($directories);
-    $data = $discovery->findAll();
-
-    $this->assertSame($expected, $data);
+  /**
+   * Tests directories that doesn't exists.
+   *
+   * @expectedException \Symfony\Component\Finder\Exception\DirectoryNotFoundException
+   */
+  public function testDirectoryNotFound() {
+    $this->setUpVfsStream();
+    $discovery = new MarkdownDirectoryFinder([vfsStream::url('content/docs/fr'), vfsStream::url('content/docs/es')]);
+    $discovery->findAll();
   }
 
   /**
@@ -51,30 +68,17 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
   public function directoriesProvider() {
     return [
       // The subdirectories.
-      'test_1' => [
+      'multiple with subdirectories' => [
         [
           vfsStream::url('content/docs/ru'),
           vfsStream::url('content/docs/en'),
         ],
-        [
-          'vfs://content/docs/ru/standards/php.md' => 'php.md',
-          'vfs://content/docs/ru/drupal.md' => 'drupal.md',
-          'vfs://content/docs/en/standards/php.md' => 'php.md',
-          'vfs://content/docs/en/drupal.md' => 'drupal.md',
-        ],
+        4,
       ],
       // An empty directory.
-      'test_2' => [
+      'empty directory' => [
         [vfsStream::url('content/docs/de')],
-        [],
-      ],
-      // Directories that do not exist.
-      'test_3' => [
-        [
-          vfsStream::url('content/docs/fr'),
-          vfsStream::url('content/docs/es'),
-        ],
-        [],
+        0,
       ],
     ];
   }
