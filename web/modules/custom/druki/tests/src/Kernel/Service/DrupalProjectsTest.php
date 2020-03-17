@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\druki\Kernel\Service;
 
+use Drupal\Core\DependencyInjection\ContainerBuilder;
+use Drupal\Core\DependencyInjection\ServiceModifierInterface;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
@@ -9,7 +11,7 @@ use Drupal\KernelTests\KernelTestBase;
  *
  * @coversDefaultClass \Drupal\druki\Service\DrupalProjects
  */
-class DrupalProjectsTest extends KernelTestBase {
+class DrupalProjectsTest extends KernelTestBase implements ServiceModifierInterface {
 
   /**
    * {@inheritdoc}
@@ -28,7 +30,7 @@ class DrupalProjectsTest extends KernelTestBase {
    */
   public function setUp() {
     parent::setUp();
-    define('DRUPAL_TEST_IN_CHILD_SITE', TRUE);
+
     $this->drupalProjects = $this->container->get('druki.drupal_projects');
   }
 
@@ -39,6 +41,29 @@ class DrupalProjectsTest extends KernelTestBase {
    */
   public function testGetProjectLastStableRelease() {
     $actual = $this->drupalProjects->getCoreLastStableVersion();
+    $this->assertRegExp('/[0-9]+.[0-9]+.[0-9]+/', $actual['version']);
+    // The stable release is always published.
+    $this->assertEqual($actual['status'], 'published');
+  }
+
+  /**
+   * Test getting project last minor version.
+   *
+   * @covers ::getCoreLastMinorVersion
+   */
+  public function testGetCoreLastMinorVersion() {
+    $actual = $this->drupalProjects->getCoreLastMinorVersion();
+    $this->assertRegExp('/[0-9]+.[0-9]+.[0-9]+/', $actual['version']);
+    // The last minor version is always with patch level 0.
+    $this->assertEqual($actual['version_patch'], 0);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function alter(ContainerBuilder $container) {
+    // @see https://www.drupal.org/project/drupal/issues/2571475
+    $container->removeDefinition('test.http_client.middleware');
   }
 
 }
