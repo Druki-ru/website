@@ -15,26 +15,30 @@
  * @see template_preprocess_druki_card()
  */
 #}
+{% set bem_classes = [bem_block] %}
+{% for bem_modifier in bem_modifiers %}
+  {% set bem_classes = bem_classes|merge([bem_block ~ '--' ~ bem_modifier]) %}
+{% endfor %}
 <div{{ attributes.addClass(bem_classes) }}>
   {% if primary_url %}
-  <a href="{{ primary_url }}" class="{{ bem_block }}__primary-action {{ bem_block }}__primary-action--link">
-    {% else %}
-    <div class="{{ bem_block }}__primary-action">
-      {% endif %}
-      <div class="{{ bem_block }}__primary">
-        <div class="{{ bem_block }}__title">{{ title }}</div>
-        {% if subhead %}
-          <div class="{{ bem_block }}__subtitle">{{ subhead }}</div>
-        {% endif %}
-      </div>
-      {% if supporting_text %}
-        <div class="{{ bem_block }}__secondary">
-          {{ supporting_text }}
-        </div>
-      {% endif %}
-      {% if primary_url %}
-  </a>
+    <a href="{{ primary_url }}" class="{{ bem_block }}__primary-action {{ bem_block }}__primary-action--link">
   {% else %}
-</div>
-{% endif %}
+    <div class="{{ bem_block }}__primary-action">
+  {% endif %}
+    <div class="{{ bem_block }}__primary">
+      <div class="{{ bem_block }}__title">{{- title -}}</div>
+      {% if subhead %}
+        <div class="{{ bem_block }}__subtitle">{{- subhead -}}</div>
+      {% endif %}
+    </div>
+    {% if supporting_text %}
+      <div class="{{ bem_block }}__secondary">
+        {{- supporting_text -}}
+      </div>
+    {% endif %}
+  {% if primary_url %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
 </div>
