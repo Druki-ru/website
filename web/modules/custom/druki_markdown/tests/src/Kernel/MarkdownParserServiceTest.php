@@ -17,7 +17,7 @@ class MarkdownParserServiceTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['druki_markdown', 'markdown', 'user', 'system', 'filter'];
+  public static $modules = ['druki_markdown'];
 
   /**
    * The markdown parser service.
@@ -31,13 +31,6 @@ class MarkdownParserServiceTest extends KernelTestBase {
    */
   public function setUp() {
     parent::setUp();
-
-    $this->installEntitySchema('user');
-    $this->installSchema('system', ['sequences']);
-    $this->installConfig(['druki_markdown']);
-    // Create administrative user with UID 1. This ID hardcoded in
-    // \Drupal\druki_markdown\Parser\MarkdownParser
-    $this->createUser([], 'admin', TRUE);
 
     $this->markdownParser = $this->container->get('druki_markdown.parser');
   }
@@ -124,7 +117,6 @@ Markdown;
       'inline code' => ['`Inline code` test.', "/<p><code>Inline code<\/code> test.<\/p>[\r\n]/"],
       'code block' => [$code_block, "/<pre><code>echo 'Hello world';[\r\n]<\/code><\/pre>[\r\n]/"],
       // Custom markdown syntax and alterations.
-      // @todo fix them.
       'front matter' => [$front_matter, "/<div data-druki-element=\"front-matter\">{\"id\":\"test\",\"core\":8,\"metatags\":{\"title\":\"Overridden metatag title.\"}}<\/div>[\r\n]/"],
       'note block' => [$note_block, "/<div data-druki-note=\"note\"><p>The note text.<\/p><\/div>[\r\n]/"],
     ];

@@ -2,13 +2,14 @@
 
 namespace Drupal\druki_markdown\Parser;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\markdown\Markdown;
+use Drupal\druki_markdown\CommonMark\Extension\DrukiParserExtensions;
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment;
 
 /**
- * Parser for Markdown.
+ * Provides default Markdown parser.
  *
- * @package Drupal\druki_parser\Service
+ * @todo consider is it need to be a service since it no more uses DI.
  */
 class MarkdownParser implements MarkdownParserInterface {
 
@@ -20,25 +21,18 @@ class MarkdownParser implements MarkdownParserInterface {
   protected $markdownParser;
 
   /**
-   * DrukiParser constructor.
-   *
-   * @param \Drupal\markdown\Markdown $markdown
-   *   The markdown service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * Constructs a new MarkdownParser object.
    */
-  public function __construct(Markdown $markdown, EntityTypeManagerInterface $entity_type_manager) {
-    // @todo test without user loading and pass as NULL.
-    $user_storage = $entity_type_manager->getStorage('user');
-    $user = $user_storage->load(1);
-    // The markdown looking for filters available for provided user. If we call
-    // it via Drush, we will be anonymous user, and if filter is not accessible
-    // to it, markdown will be converted without extensions. So we force in
-    // code to handle it via admin user.
-    $this->markdownParser = $markdown->getParser('thephpleague/commonmark', NULL, $user);
+  public function __construct() {
+    // The CommonMark used directly instead of 'markdown' service, because
+    // the Markdown module and it's service require to have special text
+    // filter and user permissions to use extensions. In our case this is
+    // overhead and not needed, since we use parsed HTML in content and filter
+    // become usless. But all other staff defined according to Markdown module
+    // for correctly working with filter.
+    $environment = Environment::createCommonMarkEnvironment();
+    $environment->addExtension(new DrukiParserExtensions());
+    $this->markdownParser = new CommonMarkConverter([], $environment);
   }
 
   /**
