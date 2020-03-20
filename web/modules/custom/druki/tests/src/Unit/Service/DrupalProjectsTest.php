@@ -5,6 +5,7 @@ namespace Drupal\Tests\druki\Unit\Service;
 use Drupal\druki\Service\DrupalProjects;
 use Drupal\Tests\UnitTestCase;
 use Drupal\update\UpdateFetcherInterface;
+use Prophecy\Prophecy\MethodProphecy;
 
 /**
  * Test druki.drupal_projects service.
@@ -25,12 +26,22 @@ class DrupalProjectsTest extends UnitTestCase {
    */
   public function setUp() {
     parent::setUp();
+    $this->drupalProjects = new DrupalProjects($this->buildUpdateFetcher());
+  }
 
-    $update_fetcher = $this->createMock(UpdateFetcherInterface::class);
-    $update_fetcher
-      ->method('fetchProjectData')
-      ->willReturn(file_get_contents(__DIR__ . '/../../../fixtures/drupal-release-history.xml'));
-    $this->drupalProjects = new DrupalProjects($update_fetcher);
+  /**
+   * Builds mock for UpdateFetcherInterface.
+   *
+   * @return \Drupal\update\UpdateFetcherInterface
+   */
+  protected function buildUpdateFetcher(): UpdateFetcherInterface {
+    $prophecy = $this->prophesize(UpdateFetcherInterface::class);
+
+    $fetch_project_data = new MethodProphecy($prophecy, 'fetchProjectData', [['name' => 'drupal']]);
+    $fetch_project_data->willReturn(file_get_contents(__DIR__ . '/../../../fixtures/drupal-release-history.xml'));
+    $prophecy->addMethodProphecy($fetch_project_data);
+
+    return $prophecy->reveal();
   }
 
   /**
