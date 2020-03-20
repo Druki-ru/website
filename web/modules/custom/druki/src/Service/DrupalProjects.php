@@ -61,15 +61,7 @@ class DrupalProjects {
    *   The request result.
    */
   protected function fetchProjectData(string $project_name): string {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $project_name);
-
-    if (isset($result)) {
-      return $result;
-    }
-
-    $result = $this->updateFetcher->fetchProjectData(['name' => $project_name]);
-
-    return $result;
+    return $this->updateFetcher->fetchProjectData(['name' => $project_name]);
   }
 
   /**

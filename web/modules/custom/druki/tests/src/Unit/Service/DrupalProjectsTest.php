@@ -1,22 +1,17 @@
 <?php
 
-namespace Drupal\Tests\druki\Kernel\Service;
+namespace Drupal\Tests\druki\Unit\Service;
 
-use Drupal\Core\DependencyInjection\ContainerBuilder;
-use Drupal\Core\DependencyInjection\ServiceModifierInterface;
-use Drupal\KernelTests\KernelTestBase;
+use Drupal\druki\Service\DrupalProjects;
+use Drupal\Tests\UnitTestCase;
+use Drupal\update\UpdateFetcherInterface;
 
 /**
  * Test druki.drupal_projects service.
  *
  * @coversDefaultClass \Drupal\druki\Service\DrupalProjects
  */
-class DrupalProjectsTest extends KernelTestBase implements ServiceModifierInterface {
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = ['druki', 'system', 'update'];
+class DrupalProjectsTest extends UnitTestCase {
 
   /**
    * The drupal projects service.
@@ -31,7 +26,11 @@ class DrupalProjectsTest extends KernelTestBase implements ServiceModifierInterf
   public function setUp() {
     parent::setUp();
 
-    $this->drupalProjects = $this->container->get('druki.drupal_projects');
+    $update_fetcher = $this->createMock(UpdateFetcherInterface::class);
+    $update_fetcher
+      ->method('fetchProjectData')
+      ->willReturn(file_get_contents(__DIR__ . '/../../../fixtures/drupal-release-history.xml'));
+    $this->drupalProjects = new DrupalProjects($update_fetcher);
   }
 
   /**
@@ -41,9 +40,9 @@ class DrupalProjectsTest extends KernelTestBase implements ServiceModifierInterf
    */
   public function testGetProjectLastStableRelease() {
     $actual = $this->drupalProjects->getCoreLastStableVersion();
-    $this->assertRegExp('/[0-9]+.[0-9]+.[0-9]+/', $actual['version']);
+    $this->assertSame('8.8.4', $actual['version']);
     // The stable release is always published.
-    $this->assertEqual($actual['status'], 'published');
+    $this->assertSame($actual['status'], 'published');
   }
 
   /**
@@ -54,15 +53,7 @@ class DrupalProjectsTest extends KernelTestBase implements ServiceModifierInterf
   public function testGetCoreLastMinorVersion() {
     $actual = $this->drupalProjects->getCoreLastMinorVersion();
     // The last minor version is always with patch level 0.
-    $this->assertRegExp('/[0-9]+.[0-9]+.0/', $actual['version']);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function alter(ContainerBuilder $container) {
-    // @see https://www.drupal.org/project/drupal/issues/2571475
-    $container->removeDefinition('test.http_client.middleware');
+    $this->assertSame('8.8.0', $actual['version']);
   }
 
 }

@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title>Drupal core</title>
+  <short_name>drupal</short_name>
+  <dc:creator>Drupal</dc:creator>
+  <type>project_core</type>
+  <supported_branches>8.7.,8.8.,8.9.,9.0.</supported_branches>
+  <project_status>published</project_status>
+  <link>https://www.drupal.org/project/drupal</link>
+  <terms>
+    <term>
+      <name>Projects</name>
+      <value>Drupal core</value>
+    </term>
+    <term>
+      <name>Maintenance status</name>
+      <value>Actively maintained</value>
+    </term>
+    <term>
+      <name>Development status</name>
+      <value>Under active development</value>
+    </term>
+  </terms>
+  <releases>
+    <release>
+      <name>drupal 9.0.0-alpha2</name>
+      <version>9.0.0-alpha2</version>
+      <tag>9.0.0-alpha2</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/9.0.0-alpha2</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-9.0.0-alpha2.tar.gz</download_link>
+      <date>1583349043</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-9.0.0-alpha2.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>1b7c43687239ba61025710feaebd7e1b</md5>
+          <size>16680498</size>
+          <filedate>1583349043</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-9.0.0-alpha2.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>46e8edad93decfe308eecf7b6d0c29d7</md5>
+          <size>28147294</size>
+          <filedate>1583349043</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+      </terms>
+      <security>Alpha releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 9.0.0-alpha1</name>
+      <version>9.0.0-alpha1</version>
+      <tag>9.0.0-alpha1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/9.0.0-alpha1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-9.0.0-alpha1.tar.gz</download_link>
+      <date>1581447927</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-9.0.0-alpha1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>d6966108add1d681774406209981fb77</md5>
+          <size>16697890</size>
+          <filedate>1581447927</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-9.0.0-alpha1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>6384cfb849b0f04d87523a1a9f90e204</md5>
+          <size>28028041</size>
+          <filedate>1581447927</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+      </terms>
+      <security>Alpha releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.8.4</name>
+      <version>8.8.4</version>
+      <tag>8.8.4</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.4</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.4.tar.gz</download_link>
+      <date>1584560524</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.4.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>3d08163b296ed947c4337992d439094a</md5>
+          <size>19488274</size>
+          <filedate>1584560524</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.4.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>adf81e4be166c58d6ca7c66a38fac6f6</md5>
+          <size>30988263</size>
+          <filedate>1584560524</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Security update</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.8.3</name>
+      <version>8.8.3</version>
+      <tag>8.8.3</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.3</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.3.tar.gz</download_link>
+      <date>1583347094</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.3.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>f524df904f9d4ba5586eed8203e1c58c</md5>
+          <size>19473677</size>
+          <filedate>1583347094</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.3.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>ac8bc2205ceb138b0f2491e5b0f95a21</md5>
+          <size>30971681</size>
+          <filedate>1583347094</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.8.2</name>
+      <version>8.8.2</version>
+      <tag>8.8.2</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.2</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.2.tar.gz</download_link>
+      <date>1580598849</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.2.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>ad3ba707ce67e14590a55f6b313d3bec</md5>
+          <size>19438764</size>
+          <filedate>1580598849</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.2.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>8e175d93820b56ed6ea91f8346d895a3</md5>
+          <size>30917307</size>
+          <filedate>1580598849</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.8.1</name>
+      <version>8.8.1</version>
+      <tag>8.8.1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.1.tar.gz</download_link>
+      <date>1576695785</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>0e0af2652e6ad4da27c0f7bf35c5e1e1</md5>
+          <size>19458349</size>
+          <filedate>1576695785</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>82a7497cd6607c2d2c26e542a8b1e994</md5>
+          <size>30956037</size>
+          <filedate>1576695785</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Security update</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.8.0</name>
+      <version>8.8.0</version>
+      <tag>8.8.0</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.0</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.0.tar.gz</download_link>
+      <date>1575450481</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>e51156b53a154109c0a048eb8793b8f1</md5>
+          <size>19456440</size>
+          <filedate>1575450481</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>bb8f72458035f4f9bda8cdd1a1438c21</md5>
+          <size>30953897</size>
+          <filedate>1575450481</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.8.0-rc1</name>
+      <version>8.8.0-rc1</version>
+      <tag>8.8.0-rc1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.0-rc1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.0-rc1.tar.gz</download_link>
+      <date>1574462580</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0-rc1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>97e93c0f2f80a18a8cfec35a8fd81780</md5>
+          <size>18736917</size>
+          <filedate>1574462580</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0-rc1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>74c5cad0a2dbdc394808e03f1143af57</md5>
+          <size>30383005</size>
+          <filedate>1574462580</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>RC releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.8.0-beta1</name>
+      <version>8.8.0-beta1</version>
+      <tag>8.8.0-beta1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.0-beta1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.0-beta1.tar.gz</download_link>
+      <date>1573256280</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0-beta1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>e3e1df68078d59d96f0b0491ed2c5b6a</md5>
+          <size>18741669</size>
+          <filedate>1573256280</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0-beta1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>9039946dfc6435872813f7a2d58ecae6</md5>
+          <size>30450433</size>
+          <filedate>1573256280</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>Beta releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.8.0-alpha1</name>
+      <version>8.8.0-alpha1</version>
+      <tag>8.8.0-alpha1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.8.0-alpha1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.8.0-alpha1.tar.gz</download_link>
+      <date>1571355784</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0-alpha1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>fd25dcfbacde6570615e49d941ca749e</md5>
+          <size>18598568</size>
+          <filedate>1571355784</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.8.0-alpha1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>ba4c3886bc6276034a4a4532d9d839a2</md5>
+          <size>30180161</size>
+          <filedate>1571355784</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>Alpha releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.7.12</name>
+      <version>8.7.12</version>
+      <tag>8.7.12</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.12</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.12.tar.gz</download_link>
+      <date>1584552250</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.12.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>3c267482febea33e28444075a2f23870</md5>
+          <size>17917274</size>
+          <filedate>1584552250</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.12.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>3366f975761f17ef65233da90574e71f</md5>
+          <size>28647187</size>
+          <filedate>1584552250</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Security update</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.11</name>
+      <version>8.7.11</version>
+      <tag>8.7.11</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.11</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.11.tar.gz</download_link>
+      <date>1576695785</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.11.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>bcf01576c060dfb7de0ec1f7125f7bbe</md5>
+          <size>17899106</size>
+          <filedate>1576695785</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.11.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>776e1e47c53d2bda7679f74fb2dc2ca3</md5>
+          <size>28621489</size>
+          <filedate>1576695785</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Security update</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.10</name>
+      <version>8.7.10</version>
+      <tag>8.7.10</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.10</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.10.tar.gz</download_link>
+      <date>1573687985</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.10.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>83a01a3f8bcb2a8db5e91ad1dfdde24f</md5>
+          <size>17894144</size>
+          <filedate>1573687985</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.10.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>55b7391c66b1a286497c2cc24243b152</md5>
+          <size>28619523</size>
+          <filedate>1573687985</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.9</name>
+      <version>8.7.9</version>
+      <tag>8.7.9</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.9</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.9.tar.gz</download_link>
+      <date>1573063387</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.9.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>fce471e505f03164ec1cfafffc1d85ad</md5>
+          <size>17888541</size>
+          <filedate>1573063387</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.9.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>73c067e49355930376bb1faa4d9ad4f9</md5>
+          <size>28561145</size>
+          <filedate>1573063387</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.8</name>
+      <version>8.7.8</version>
+      <tag>8.7.8</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.8</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.8.tar.gz</download_link>
+      <date>1570044484</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.8.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>f281eb14d8aabf0c3e78dd519ca4b640</md5>
+          <size>17882836</size>
+          <filedate>1570044484</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.8.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>ccc8bf01c2380fdbc494b49352b7df3f</md5>
+          <size>28553625</size>
+          <filedate>1570044484</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.7</name>
+      <version>8.7.7</version>
+      <tag>8.7.7</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.7</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.7.tar.gz</download_link>
+      <date>1567593185</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.7.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>eda95eb4c6567049c661818ffe800d11</md5>
+          <size>17873760</size>
+          <filedate>1567593185</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.7.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>918d6c95470d39eb29ec32d15129c07b</md5>
+          <size>28538028</size>
+          <filedate>1567593185</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.6</name>
+      <version>8.7.6</version>
+      <tag>8.7.6</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.6</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.6.tar.gz</download_link>
+      <date>1565206385</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.6.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>484530915cbf6d96cb03379e3dda018e</md5>
+          <size>17866782</size>
+          <filedate>1565206385</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.6.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>269bef1dc2845f1d4a14e806984ad36a</md5>
+          <size>28522089</size>
+          <filedate>1565206385</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.5</name>
+      <version>8.7.5</version>
+      <tag>8.7.5</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.5</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.5.tar.gz</download_link>
+      <date>1563380885</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.5.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>39cc326d9db1b4acce9b8716193189fd</md5>
+          <size>17843250</size>
+          <filedate>1563380885</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.5.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>6ce957e2ff480db3e2f3eb84c01078e0</md5>
+          <size>28493571</size>
+          <filedate>1563380885</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Security update</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.4</name>
+      <version>8.7.4</version>
+      <tag>8.7.4</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.4</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.4.tar.gz</download_link>
+      <date>1562225587</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.4.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>5bd5db96c8a4d017e940a43285f5166b</md5>
+          <size>17843961</size>
+          <filedate>1562225587</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.4.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>9190654d442b63b81e594a27fcec41d1</md5>
+          <size>28493348</size>
+          <filedate>1562225587</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.3</name>
+      <version>8.7.3</version>
+      <tag>8.7.3</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.3</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.3.tar.gz</download_link>
+      <date>1559762581</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.3.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>bba896a1ed2fbe4a1744d82c036fcfc4</md5>
+          <size>17825116</size>
+          <filedate>1559762581</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.3.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>f9bbafdf32c7e0fbfbbdb27b2cd65953</md5>
+          <size>28468291</size>
+          <filedate>1559762581</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.2</name>
+      <version>8.7.2</version>
+      <tag>8.7.2</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.2</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.2.tar.gz</download_link>
+      <date>1558597086</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.2.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>f637a19f7d087e9f68e39470fd151a1d</md5>
+          <size>17824323</size>
+          <filedate>1558597086</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.2.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>4eb15b273e5ed5def9a761165f55e542</md5>
+          <size>28463020</size>
+          <filedate>1558597086</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.1</name>
+      <version>8.7.1</version>
+      <tag>8.7.1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.1.tar.gz</download_link>
+      <date>1557335588</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>2cf2a1c93ea785c6ff91d29aebef2697</md5>
+          <size>17811529</size>
+          <filedate>1557335588</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>d9efdccdfc046e7147c099af3b1492dd</md5>
+          <size>28443392</size>
+          <filedate>1557335588</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Security update</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.0</name>
+      <version>8.7.0</version>
+      <tag>8.7.0</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.0</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.0.tar.gz</download_link>
+      <date>1556737085</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>f6135e49de6bc5b1f259ef3e76580dd0</md5>
+          <size>17810235</size>
+          <filedate>1556737085</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>618a81ede844d8b045d3037ad3baaf46</md5>
+          <size>28443956</size>
+          <filedate>1556737085</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security covered="1">Covered by Drupal's security advisory policy</security>
+    </release>
+    <release>
+      <name>drupal 8.7.0-rc1</name>
+      <version>8.7.0-rc1</version>
+      <tag>8.7.0-rc1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.0-rc1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.0-rc1.tar.gz</download_link>
+      <date>1555603385</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-rc1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>b7477fa073172b87aba05c4c719110d1</md5>
+          <size>17813252</size>
+          <filedate>1555603385</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-rc1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>6529657baa17dbffd1dfc2c84e45e571</md5>
+          <size>28596275</size>
+          <filedate>1555603385</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Security update</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>RC releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.7.0-beta2</name>
+      <version>8.7.0-beta2</version>
+      <tag>8.7.0-beta2</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.0-beta2</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.0-beta2.tar.gz</download_link>
+      <date>1554684784</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-beta2.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>5db26859ef816c440e2b1cf80bf65f31</md5>
+          <size>17824386</size>
+          <filedate>1554684784</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-beta2.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>d726004c728a06b86a157cb7f780b861</md5>
+          <size>28665680</size>
+          <filedate>1554684784</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>Beta releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.7.0-beta1</name>
+      <version>8.7.0-beta1</version>
+      <tag>8.7.0-beta1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.0-beta1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.0-beta1.tar.gz</download_link>
+      <date>1553881681</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-beta1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>fbcc7fe39bea4350ee36b3c3a3ec6e85</md5>
+          <size>17820849</size>
+          <filedate>1553881681</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-beta1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>be88c2d9673be526619ea182b13eb737</md5>
+          <size>28656430</size>
+          <filedate>1553881681</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>Beta releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.7.0-alpha2</name>
+      <version>8.7.0-alpha2</version>
+      <tag>8.7.0-alpha2</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.0-alpha2</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.0-alpha2.tar.gz</download_link>
+      <date>1553106180</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-alpha2.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>f465c5341a8b885aa18e7ddb7b02be37</md5>
+          <size>17525832</size>
+          <filedate>1553106180</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-alpha2.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>2a9cef562a34b46460452d4799d84d6c</md5>
+          <size>28186408</size>
+          <filedate>1553106180</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>Alpha releases are not covered by Drupal security advisories.</security>
+    </release>
+    <release>
+      <name>drupal 8.7.0-alpha1</name>
+      <version>8.7.0-alpha1</version>
+      <tag>8.7.0-alpha1</tag>
+      <status>published</status>
+      <release_link>https://www.drupal.org/project/drupal/releases/8.7.0-alpha1</release_link>
+      <download_link>https://ftp.drupal.org/files/projects/drupal-8.7.0-alpha1.tar.gz</download_link>
+      <date>1552602484</date>
+      <files>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-alpha1.tar.gz</url>
+          <archive_type>tar.gz</archive_type>
+          <md5>9b1e011a63b60255f5029331c0eb0d19</md5>
+          <size>17516533</size>
+          <filedate>1552602484</filedate>
+        </file>
+        <file>
+          <url>https://ftp.drupal.org/files/projects/drupal-8.7.0-alpha1.zip</url>
+          <archive_type>zip</archive_type>
+          <md5>3bfa8944b0f51f69ca085667131cd4d1</md5>
+          <size>28162029</size>
+          <filedate>1552602484</filedate>
+        </file>
+      </files>
+      <terms>
+        <term>
+          <name>Release type</name>
+          <value>Bug fixes</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>New features</value>
+        </term>
+        <term>
+          <name>Release type</name>
+          <value>Insecure</value>
+        </term>
+      </terms>
+      <security>Alpha releases are not covered by Drupal security advisories.</security>
+    </release>
+  </releases>
+</project>
