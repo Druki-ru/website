@@ -39,9 +39,10 @@ class DrupalProjects {
     $data = $this->parseXml($releases);
 
     $last_stable_version = $this->getCoreLastStableVersion();
+    $version_parts = explode('.', $last_stable_version['version']);
     $minor_version_pieces = [
-      $last_stable_version['version_major'],
-      $last_stable_version['version_minor'],
+      $version_parts[0],
+      $version_parts[1],
       0,
     ];
 
@@ -80,6 +81,8 @@ class DrupalProjects {
    * @return array
    *   Array of parsed data about releases for a given project, or NULL if there
    *   was an error parsing the string.
+   *
+   * @see https://updates.drupal.org/release-history/drupal/current
    */
   protected function parseXml($raw_xml) {
     try {
@@ -116,6 +119,11 @@ class DrupalProjects {
             $data['releases'][$version]['terms'][(string) $term->name][] = (string) $term->value;
           }
         }
+
+        $data['releases'][$version]['security_covered'] = FALSE;
+        if (isset($release->security->attributes()->covered)) {
+          $data['releases'][$version]['security_covered'] = TRUE;
+        }
       }
     }
 
@@ -134,9 +142,9 @@ class DrupalProjects {
     $data = $this->parseXml($releases);
 
     foreach ($data['releases'] as $release) {
-      // Beta, alpha, rc and other not stable version will have additional value
-      // under key "version_extra".
-      if (!isset($release['version_extra'])) {
+      // If release is security covered, this is stable one. The latest is
+      // always on top, so the first found is the last stable release.
+      if ($release['security_covered']) {
         return $release;
       }
     }

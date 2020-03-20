@@ -53,9 +53,8 @@ class DrupalProjectsTest extends KernelTestBase implements ServiceModifierInterf
    */
   public function testGetCoreLastMinorVersion() {
     $actual = $this->drupalProjects->getCoreLastMinorVersion();
-    $this->assertRegExp('/[0-9]+.[0-9]+.[0-9]+/', $actual['version']);
     // The last minor version is always with patch level 0.
-    $this->assertEqual($actual['version_patch'], 0);
+    $this->assertRegExp('/[0-9]+.[0-9]+.0/', $actual['version']);
   }
 
   /**
