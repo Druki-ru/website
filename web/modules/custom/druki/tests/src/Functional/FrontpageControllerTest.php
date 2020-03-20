@@ -14,7 +14,15 @@ final class FrontpageControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['druki'];
+  public static $modules = ['druki', 'system'];
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setUp() {
+    parent::setUp();
+    user_role_grant_permissions('anonymous', ['access content']);
+  }
 
   /**
    * Test page response.
