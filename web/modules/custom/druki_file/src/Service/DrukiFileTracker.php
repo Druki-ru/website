@@ -65,7 +65,7 @@ class DrukiFileTracker {
     $this->fileStorage = $entity_type_manager->getStorage('file');
     $this->logger = $logger;
     $this->fileUsage = $file_usage;
-    $this->mediaStorage = $entity_type_manager->getStorage('med');
+    $this->mediaStorage = $entity_type_manager->getStorage('media');
   }
 
   /**
