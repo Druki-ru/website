@@ -162,9 +162,9 @@ body {
   --text-xl: 28px;
   --text-xxl: 32px;
   --text-color: hsl(0, 0%, 20%);
-  --font-primary: 'Roboto', sans-serif;
-  --font-secondary: 'Montserrat', sans-serif;
-  --font-monospace: 'Fira Code', monospace;
+  --font-primary: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-secondary: var(--font-primary);
+  --font-monospace: "JetBrains Mono", "Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-family: var(--font-primary);
   --body-line-height: 1.5;
   --mark-background: hsl(60, 100%, 50%);
