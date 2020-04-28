@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb981e0bb642bd4c4715aa90bf01e3e4",
+    "content-hash": "11bd4d8526cbcc7889c11e5337ed674c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2835,7 +2835,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/markdown.git",
-                "reference": "30a7194cbd8b12cf38c5516aa440e608f87ff7c4"
+                "reference": "7c102e32"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -2885,7 +2885,7 @@
                 "source": "https://git.drupalcode.org/project/markdown",
                 "issues": "https://www.drupal.org/project/markdown"
             },
-            "time": "2020-04-27T13:12:26+00:00"
+            "time": "2019-10-12T23:21:15+00:00"
         },
         {
             "name": "drupal/metatag",

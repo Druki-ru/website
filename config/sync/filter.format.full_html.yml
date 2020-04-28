@@ -5,7 +5,6 @@ dependencies:
   module:
     - druki_content
     - editor
-    - markdown
     - media
 _core:
   default_config_hash: hewPmBgni9jlDK_IjLxUx1HsTbinK-hdl0lOwjbteIY
@@ -37,13 +36,6 @@ filters:
     status: true
     weight: -10
     settings: {  }
-  markdown:
-    id: markdown
-    provider: markdown
-    status: false
-    weight: -15
-    settings:
-      parser: thephpleague/commonmark
   media_embed:
     id: media_embed
     provider: media
