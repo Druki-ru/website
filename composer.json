@@ -56,7 +56,7 @@
         "drupal/google_tag": "^1.1",
         "drupal/google_webfonts_helper": "1.0-alpha4",
         "drupal/imagemagick": "^2.5",
-        "drupal/markdown": "2.x-dev#7c102e32",
+        "drupal/markdown": "2.x-dev#1b8d7545",
         "drupal/metatag": "^1.8",
         "drupal/minifyjs": "1.x-dev",
         "drupal/pathauto": "^1.3",
