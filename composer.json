@@ -69,6 +69,7 @@
         "drupal/warmer": "^1.1",
         "drupal/webp": "1.x-dev",
         "drush/drush": "^10.0",
+        "league/commonmark": "^1.0.0",
         "npm-asset/lazysizes": "^5.1",
         "npm-asset/photoswipe": "^4.1",
         "oomphinc/composer-installers-extender": "^1.1"
