@@ -18,16 +18,6 @@ style.utilities:
   css:
     state:
       assets/css/utilities.css: {}
-#  dependencies:
-#    - google_webfonts_helper/roboto
-#    - google_webfonts_helper/montserrat
-#    - google_webfonts_helper/fira_code
-#    - loremaster/google.fonts
-
-google.fonts:
-  css:
-    theme:
-      //fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto:400,400i,500,700|Fira+Code:400,700&subset=cyrillic&display=swap: { type: external, minified: true }
 
 code-highlight:
   js:
