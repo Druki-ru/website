@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1d8ef133d31299ef49d18a185f694ce",
+    "content-hash": "78fb97691699d48e433fba332ebe9dc5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2683,60 +2683,6 @@
             "homepage": "https://www.drupal.org/project/google_tag",
             "support": {
                 "source": "https://git.drupalcode.org/project/google_tag"
-            }
-        },
-        {
-            "name": "drupal/google_webfonts_helper",
-            "version": "1.0.0-alpha4",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/google_webfonts_helper.git",
-                "reference": "8.x-1.0-alpha4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/google_webfonts_helper-8.x-1.0-alpha4.zip",
-                "reference": "8.x-1.0-alpha4",
-                "shasum": "0ad7126b1bd8b80ab6526b284e95ffdb152f7c99"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "php": ">=7.2",
-                "symfony/finder": "^3.0|^4.0|^5.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha4",
-                    "datestamp": "1577368383",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Niklan (Nikita Malyshev)",
-                    "homepage": "https://niklan.net",
-                    "email": "hello@niklan.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A hassle-free way to self-host Google Fonts.",
-            "homepage": "https://www.drupal.org/project/google_webfonts_helper",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "https://git.drupalcode.org/project/google_webfonts_helper"
             }
         },
         {
