@@ -101,7 +101,7 @@ img {
 :root {
   --link-color: var(--color-primary);
   --link-color-hover: var(--color-primary-strong);
-  --link-color-visited: purple; }
+  --link-color-visited: rgb(86, 142, 255); }
 
 [data-theme="dark"] {
   --link-color: var(--color-accent);
