@@ -13,28 +13,41 @@
    */
   Drupal.behaviors.loremasterCodeHighlight = {
     attach: function (context, settings) {
-      if (!'IntersectionObserver' in window) {
+      if (!window.IntersectionObserver) {
         return;
       }
 
-      const codeBlocks = [].slice.call(document.querySelectorAll('pre code'));
-
-      let codeBlockObserver = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            let codeBlock = entry.target;
-            Prism.highlightElement(codeBlock);
-            codeBlockObserver.unobserve(codeBlock);
-          }
-        });
-      });
-
-      codeBlocks.forEach(function (codeBlock) {
-        if (codeBlock.processed) {
-          return;
+      let trigger;
+      if (window.requestIdleCallback) {
+        trigger = (callback) => {
+          requestIdleCallback(callback)
         }
-        codeBlock.processed = true;
-        codeBlockObserver.observe(codeBlock);
+      }
+      else {
+        // Fallback for browsers doesn't support IDLE callbacks.
+        trigger = (callback) => {
+          callback()
+        }
+      }
+
+      trigger(() => {
+        const intersectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              let codeBlock = entry.target;
+              Prism.highlightElement(codeBlock);
+              intersectionObserver.unobserve(codeBlock);
+            }
+          });
+        });
+
+        [].slice.call(document.querySelectorAll('pre code')).forEach(function (codeBlock) {
+          if (codeBlock.processed) {
+            return;
+          }
+          codeBlock.processed = true;
+          intersectionObserver.observe(codeBlock);
+        });
       });
     }
   };
