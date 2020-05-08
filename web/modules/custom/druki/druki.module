@@ -124,3 +124,12 @@ function druki_imagemagick_arguments_alter(ImagemagickExecArguments $arguments, 
   // Clean image for all unused data. I.e. EXIF.
   $arguments->add('-strip');
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for 'html.html.twig'.
+ */
+function druki_preprocess_html(array &$variables): void {
+  $variables['#attached']['library'][] = 'druki/instant-page';
+  // Make instant.page library prefetch link in viewport instead of touch.
+  $variables['attributes']['data-instant-intensity'] = 'viewport';
+}

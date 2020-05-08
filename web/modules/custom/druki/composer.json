@@ -8,6 +8,7 @@
     "require": {
         "ext-simplexml": "*",
         "ext-xmlreader": "*",
-        "symfony/finder": "~4.0"
+        "symfony/finder": "~4.0",
+        "npm-asset/instant.page": "^3.0"
     }
 }

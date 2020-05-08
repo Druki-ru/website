@@ -17,3 +17,11 @@ header-branding-navigation:
     assets/js/druki-header-branding-navigation.js: {}
   dependencies:
     - core/drupal
+
+instant-page:
+  version: VERSION
+  js:
+    /libraries/instant.page/instantpage.js: {}
+    assets/js/instant-page.js: {}
+  dependencies:
+    - core/drupal

@@ -1600,11 +1600,12 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/druki",
-                "reference": "1d3aef64e9788da04fc195266d4bc9d6842a8e21"
+                "reference": "75899421b94de6ee87282924de2b7fcc03d89370"
             },
             "require": {
                 "ext-simplexml": "*",
                 "ext-xmlreader": "*",
+                "npm-asset/instant.page": "^3.0",
                 "symfony/finder": "~4.0"
             },
             "type": "drupal-custom-module",
@@ -4536,6 +4537,18 @@
                 "php"
             ],
             "time": "2020-04-10T16:34:50+00:00"
+        },
+        {
+            "name": "npm-asset/instant.page",
+            "version": "3.0.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/instant.page/-/instant.page-3.0.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "npm-asset/lazysizes",
