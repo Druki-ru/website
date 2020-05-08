@@ -13,12 +13,27 @@
    */
   Drupal.behaviors.drukiContentMobileToc = {
     attach: function (context, settings) {
-      const element = context.querySelector('.druki-mobile-toc');
-
-      if (element && !element.processed) {
-        element.processed = true;
-        this.attachEvents(element, context);
+      let trigger;
+      if (window.requestIdleCallback) {
+        trigger = (callback) => {
+          requestIdleCallback(callback)
+        }
       }
+      else {
+        // Fallback for browsers doesn't support IDLE callbacks.
+        trigger = (callback) => {
+          callback()
+        }
+      }
+
+      trigger(() => {
+        const element = context.querySelector('.druki-mobile-toc');
+
+        if (element && !element.processed) {
+          element.processed = true;
+          this.attachEvents(element, context);
+        }
+      });
     },
 
     attachEvents: function (mobileToc) {

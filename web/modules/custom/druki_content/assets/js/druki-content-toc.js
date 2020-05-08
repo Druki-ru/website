@@ -7,12 +7,27 @@
 
   Drupal.behaviors.drukiContentTOC = {
     attach: function (context, settings) {
-      let toc = context.querySelector('.druki-content-toc');
-
-      if (toc && !toc.processed) {
-        toc.processed = true;
-        this.processTOC(context, toc);
+      let trigger;
+      if (window.requestIdleCallback) {
+        trigger = (callback) => {
+          requestIdleCallback(callback)
+        }
       }
+      else {
+        // Fallback for browsers doesn't support IDLE callbacks.
+        trigger = (callback) => {
+          callback()
+        }
+      }
+
+      trigger(() => {
+        let toc = context.querySelector('.druki-content-toc');
+
+        if (toc && !toc.processed) {
+          toc.processed = true;
+          this.processTOC(context, toc);
+        }
+      });
     },
 
     /**

@@ -7,25 +7,40 @@
 
   Drupal.behaviors.drukiMediaRemoteVideoOptimized = {
     attach: function (context, settings) {
-      let elements = context.querySelectorAll('.druki-media-remote-video-optimized');
-
-      Object.keys(elements).forEach(key => {
-        let element = elements[key];
-        element.processed = typeof element.processed === 'undefined' ? false : element.processed;
-
-        if (!element.processed) {
-          // Mark as processed. Replace for jquery.once.
-          element.processed = true;
-
-          let provider = element.getAttribute('data-video-provider');
-          let previewElement = element.querySelector('.druki-media-remote-video-optimized__preview');
-          let playElement = element.querySelector('.druki-media-remote-video-optimized__play');
-          let loadingElement = element.querySelector('.druki-media-remote-video-optimized__loading');
-
-          if (provider === 'YouTube') {
-            this.handleYouTube(element, previewElement, playElement, loadingElement);
-          }
+      let trigger;
+      if (window.requestIdleCallback) {
+        trigger = (callback) => {
+          requestIdleCallback(callback)
         }
+      }
+      else {
+        // Fallback for browsers doesn't support IDLE callbacks.
+        trigger = (callback) => {
+          callback()
+        }
+      }
+
+      trigger(() => {
+        let elements = context.querySelectorAll('.druki-media-remote-video-optimized');
+
+        Object.keys(elements).forEach(key => {
+          let element = elements[key];
+          element.processed = typeof element.processed === 'undefined' ? false : element.processed;
+
+          if (!element.processed) {
+            // Mark as processed. Replace for jquery.once.
+            element.processed = true;
+
+            let provider = element.getAttribute('data-video-provider');
+            let previewElement = element.querySelector('.druki-media-remote-video-optimized__preview');
+            let playElement = element.querySelector('.druki-media-remote-video-optimized__play');
+            let loadingElement = element.querySelector('.druki-media-remote-video-optimized__loading');
+
+            if (provider === 'YouTube') {
+              this.handleYouTube(element, previewElement, playElement, loadingElement);
+            }
+          }
+        });
       });
     },
 
