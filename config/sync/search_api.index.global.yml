@@ -92,8 +92,12 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  druki_content_difficulty: {  }
+  add_url: {  }
+  aggregated_field:
+    weights:
+      add_properties: 20
   druki_content_core: {  }
+  druki_content_difficulty: {  }
   html_filter:
     all_fields: true
     fields:
@@ -117,9 +121,28 @@ processor_settings:
     weights:
       preprocess_index: -48
       preprocess_query: -49
-  add_url: {  }
-  tokenizer:
+  ignorecase:
     all_fields: true
+    fields:
+      - category
+      - core
+      - difficulty
+      - external_id
+      - labels
+      - rendered_item
+      - search_keywords
+      - title
+      - url
+    weights:
+      preprocess_index: -50
+      preprocess_query: -47
+  language_with_fallback: {  }
+  rendered_item:
+    weights:
+      add_properties: 0
+      pre_index_save: -10
+  snowball_stemmer:
+    all_fields: 1
     fields:
       - category
       - external_id
@@ -127,12 +150,12 @@ processor_settings:
       - rendered_item
       - search_keywords
       - title
-    spaces: ''
-    overlap_cjk: 1
-    minimum_word_size: '3'
+    exceptions:
+      texan: texa
+      mexican: mexic
     weights:
-      preprocess_index: -46
-      preprocess_query: -45
+      preprocess_index: -45
+      preprocess_query: -44
   stopwords:
     all_fields: true
     fields:
@@ -381,14 +404,21 @@ processor_settings:
     weights:
       preprocess_index: -49
       preprocess_query: -48
-  rendered_item:
+  tokenizer:
+    all_fields: true
+    fields:
+      - category
+      - external_id
+      - labels
+      - rendered_item
+      - search_keywords
+      - title
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
     weights:
-      add_properties: 0
-      pre_index_save: -10
-  aggregated_field:
-    weights:
-      add_properties: 20
-  language_with_fallback: {  }
+      preprocess_index: -46
+      preprocess_query: -45
   transliteration:
     all_fields: true
     fields:
@@ -404,36 +434,6 @@ processor_settings:
     weights:
       preprocess_index: -47
       preprocess_query: -46
-  ignorecase:
-    all_fields: true
-    fields:
-      - category
-      - core
-      - difficulty
-      - external_id
-      - labels
-      - rendered_item
-      - search_keywords
-      - title
-      - url
-    weights:
-      preprocess_index: -50
-      preprocess_query: -47
-  snowball_stemmer:
-    all_fields: 1
-    fields:
-      - category
-      - external_id
-      - labels
-      - rendered_item
-      - search_keywords
-      - title
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: -45
-      preprocess_query: -44
 tracker_settings:
   default:
     indexing_order: fifo

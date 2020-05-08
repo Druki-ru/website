@@ -8,6 +8,9 @@ use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Class CategoryNavigation for building category navigation links.
+ *
+ * @todo Consider to refactor it. Make an Interface and lock implementation for
+ *   druki_content entity only.
  */
 class CategoryNavigation {
 
@@ -156,11 +159,16 @@ class CategoryNavigation {
       $field_name = $this->findDrukiCategoryFieldName($entity);
       $entity_storage = $this->entityTypeManager->getStorage($entity->getEntityTypeId());
 
-      $result = $entity_storage
+      $query = $entity_storage
         ->getQuery()
         ->condition($field_name . '.area', $category_area)
-        ->sort($field_name . '.order', 'ASC')
-        ->execute();
+        ->sort($field_name . '.order', 'ASC');
+
+      if ($entity->hasField('core') && !$entity->get('core')->isEmpty()) {
+        $query->condition('core', $entity->get('core')->value);
+      }
+
+      $result = $query->execute();
 
       if (!empty($result)) {
         $entities = $entity_storage->loadMultiple($result);
