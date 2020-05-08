@@ -78,8 +78,6 @@
       // Build regexp.
       const regexp = '^(?:' + blackList.join('|') + ')$';
 
-      console.log(linkElement.pathname, linkElement.pathname.match(regexp), regexp);
-
       if (linkElement.pathname.match(regexp)) {
         linkElement.dataset.noInstant = true;
       }
