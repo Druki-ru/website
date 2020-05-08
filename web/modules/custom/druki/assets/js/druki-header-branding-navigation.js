@@ -6,7 +6,22 @@
 
   Drupal.behaviors.drukiHeaderBrandingNavigation = {
     attach: function (context, settings) {
-      this.attachNavigation(context, settings);
+      let trigger;
+      if (window.requestIdleCallback) {
+        trigger = (callback) => {
+          requestIdleCallback(callback)
+        }
+      }
+      else {
+        // Fallback for browsers doesn't support IDLE callbacks.
+        trigger = (callback) => {
+          callback()
+        }
+      }
+
+      trigger(() => {
+        this.attachNavigation(context, settings);
+      });
     },
 
     attachNavigation: function (context, settings) {
