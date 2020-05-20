@@ -1,0 +1,28 @@
+uuid: 0c6e64a1-a311-49df-8070-6d2c5eff3a47
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - druki_content
+  theme:
+    - loremaster
+id: content_other_variations
+theme: loremaster
+region: content
+weight: -4
+provider: null
+plugin: druki_content_variations
+settings:
+  id: druki_content_variations
+  label: 'Other variations of this content'
+  provider: druki_content
+  label_display: '0'
+  context_mapping:
+    druki_content: '@druki_content.druki_content_route_context:druki_content'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

@@ -79,3 +79,9 @@ services:
     arguments: ['@config.factory', '@druki_file.tracker', '@entity_field.manager', '@token', '@file_system']
     tags:
       - { name: druki_parsed_content_loader }
+
+  druki_content.druki_content_route_context:
+    class: Drupal\druki_content\ContextProvider\DrukiContentRouteContext
+    arguments: ['@current_route_match']
+    tags:
+      - { name: context_provider }

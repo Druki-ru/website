@@ -130,3 +130,9 @@ msgstr "Собрать из директории"
 
 msgid "The URI with source content."
 msgstr "URI до директории с исходным содержимым."
+
+msgid "You're reading the content for <strong>Drupal @core</strong>."
+msgstr "Вы читаете материал для <strong>Drupal @core</strong>."
+
+msgid "The content is also available for other versions: @links."
+msgstr "Материал также доступен для следующих версий: @links."
