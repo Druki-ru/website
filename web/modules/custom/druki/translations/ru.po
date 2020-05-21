@@ -56,5 +56,6 @@ msgstr "Официальное руководство пользователя"
 msgid "Settings for displaying the official user guide."
 msgstr "Настройки отображения официального руководства пользователя."
 
+msgctxt "edit content"
 msgid "Edit"
 msgstr "Редактировать"

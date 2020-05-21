@@ -1,15 +1,56 @@
 :root {
-  --druki-content-variations-background-color: var(--color-yellow-10);
-  --druki-content-variations-border-color: var(--color-yellow-20);
+  --druki-content-variations-active-background-color: var(--color-black-05);
+  --druki-content-variations-border-color: var(--color-black-10);
+  --druki-content-variations-label-icon: svg-load('drupal.svg', fill=#333);
 }
 
 [data-theme="dark"] {
-  --druki-content-variations-background-color: var(--color-white-05);
+  --druki-content-variations-active-background-color: var(--color-white-05);
   --druki-content-variations-border-color: var(--color-white-10);
+  --druki-content-variations-label-icon: svg-load('drupal.svg', fill=#fff);
 }
 
 .druki-content-variations {
-  background-color: var(--druki-content-variations-background-color);
+  align-items: center;
   border: 1px solid var(--druki-content-variations-border-color);
-  padding: var(--spacing-sm);
+  border-radius: 3px;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+.druki-content-variations__label {
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  padding: var(--spacing-unit) var(--spacing-sm);
+}
+
+.druki-content-variations__label::before {
+  background-image: var(--druki-content-variations-label-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: '';
+  display: inline-block;
+  height: 16px;
+  margin-right: var(--spacing-unit);
+  width: 16px;
+}
+
+.druki-content-variations__variations {
+  align-items: center;
+  display: flex;
+  margin-left: auto;
+}
+
+.druki-content-variations__variation {
+  border-left: 1px solid var(--druki-content-variations-border-color);
+  display: block;
+  padding: var(--spacing-unit) var(--spacing-sm);
+}
+
+.druki-content-variations__variation--active {
+  background-color: var(--druki-content-variations-active-background-color);
+  font-weight: bold;
 }

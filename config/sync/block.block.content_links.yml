@@ -12,7 +12,7 @@ dependencies:
 id: content_links
 theme: loremaster
 region: sidebar_right
-weight: -4
+weight: -5
 provider: null
 plugin: druki_content_links
 settings:

@@ -7,9 +7,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -123,16 +121,24 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
     $druki_content = $this->getDrukiContentFromContext();
     $variations = $this->loadAllVariations($druki_content);
     $current_version = $druki_content->getCore();
-    // Filter out all variations expect active.
-    $other_variations = array_filter($variations, function (DrukiContentInterface $druki_content) use ($cacheable_metadata, $current_version) {
+    $other_variations = array_map(function (DrukiContentInterface $druki_content) use ($cacheable_metadata, $current_version) {
       $cacheable_metadata->addCacheableDependency($druki_content);
-      return $druki_content->getCore() != $current_version;
-    });
-
-    $other_links = array_map(function (DrukiContentInterface $druki_content) {
-      $text = new TranslatableMarkup('Drupal @core', ['@core' => $druki_content->getCore()]);
-      return $druki_content->toLink($text)->toString();
-    }, $other_variations);
+      if ($druki_content->getCore() != $current_version) {
+        $element = $druki_content->toLink($druki_content->getCore())->toRenderable();
+      }
+      else {
+        $element = [
+          '#type' => 'html_tag',
+          '#tag' => 'div',
+          '#value' => $druki_content->getCore(),
+          '#attributes' => [
+            'class' => ['druki-content-variations__variation--active'],
+          ],
+        ];
+      }
+      $element['#attributes']['class'][] = 'druki-content-variations__variation';
+      return $element;
+    }, $variations);
 
     $build['content'] = [
       '#type' => 'container',
@@ -142,25 +148,18 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
       'current_version' => [
         '#type' => 'container',
         '#attributes' => [
-          'class' => ['druki-content-variations__current'],
+          'class' => ['druki-content-variations__label'],
         ],
         'content' => [
-          '#markup' => new TranslatableMarkup("You're reading the content for <strong>Drupal @core</strong>.", [
-              '@core' => $druki_content->getCore(),
-            ]
-          ),
+          '#markup' => 'Drupal',
         ],
       ],
       'other_versions' => [
         '#type' => 'container',
         '#attributes' => [
-          'class' => ['druki-content-variations__other'],
+          'class' => ['druki-content-variations__variations'],
         ],
-        'content' => [
-          '#markup' => new TranslatableMarkup('The content is also available for other versions: @links.', [
-            '@links' => Markup::create(implode(', ', $other_links)),
-          ]),
-        ],
+        'content' => $other_variations,
       ],
     ];
     return $build;
@@ -179,6 +178,7 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
     $content_ids = $this->drukiContentStorage->getQuery()
       ->condition('external_id', $druki_content->getExternalId())
       ->exists('core')
+      ->sort('core', 'ASC')
       ->execute();
     return $this->drukiContentStorage->loadMultiple($content_ids);
   }

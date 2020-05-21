@@ -12,7 +12,7 @@ dependencies:
 id: content_toc
 theme: loremaster
 region: sidebar_right
-weight: -2
+weight: -3
 provider: null
 plugin: druki_content_toc
 settings:

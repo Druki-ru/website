@@ -66,7 +66,7 @@ class DrukiContentLinks extends RenderElement {
 
     $element['wrapper']['edit'] = [
       '#type' => 'link',
-      '#title' => new TranslatableMarkup('Edit'),
+      '#title' => new TranslatableMarkup('Edit', [], ['context' => 'edit content']),
       '#url' => $entity->toUrl('edit-remote'),
       '#attributes' => [
         'target' => '_blank',
