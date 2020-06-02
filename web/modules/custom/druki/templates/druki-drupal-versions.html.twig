@@ -13,7 +13,7 @@
 <div{{ attributes.addClass(bem_classes) }}>
   {% if last_stable_release|length %}
     <div class="{{ bem_block }}__update">
-      <a href="/wiki/8/releases/{{ last_stable_release.version }}" class="{{ bem_block }}__name">
+      <a href="/wiki/9/releases/{{ last_stable_release.version }}" class="{{ bem_block }}__name">
         {{ last_stable_release.version -}}
 
         {% if 'Security update' in last_stable_release.terms['Release type'] %}
@@ -29,7 +29,7 @@
 
   {% if last_minor_release|length %}
     <div class="{{ bem_block }}__update">
-      <a href="/wiki/8/releases/{{ last_minor_release.version }}" class="{{ bem_block }}__name">
+      <a href="/wiki/9/releases/{{ last_minor_release.version }}" class="{{ bem_block }}__name">
         {{ last_minor_release.version -}}
       </a>
       <div class="{{ bem_block }}__label">Актуальный релиз</div>
@@ -40,16 +40,12 @@
   {% endif %}
 
   <div class="{{ bem_block }}__update">
-    <a href="/wiki/9/releases/9.0.0" class="{{ bem_block }}__name">9.0.0</a>
-    <a href="/wiki/8/releases/8.9.0" class="{{ bem_block }}__name">8.9.0</a>
+    <a href="/wiki/9/releases/9.1.0" class="{{ bem_block }}__name">9.1.0</a>
     <div class="{{ bem_block }}__label">Будущий релиз</div>
-    <div class="{{ bem_block }}__date">
-      От 03.06.2020
-    </div>
+    <div class="{{ bem_block }}__date">Вторая половина 2020</div>
   </div>
 
   <a href="/wiki/8/releases" class="{{ bem_block }}__more">
-    {#    <div class="{{ bem_block }}__more-icon"></div>#}
     <div class="{{ bem_block }}__more-title">Все релизы Drupal 8</div>
     <div class="{{ bem_block }}__more-subtitle">Даты прошедших и будущих релизов, списки изменений.</div>
   </a>
