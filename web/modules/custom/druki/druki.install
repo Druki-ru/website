@@ -16,3 +16,14 @@ function druki_uninstall() {
       'last_stable_release',
     ]);
 }
+
+/**
+ * Implements hook_update_N().
+ */
+function druki_update_8801(array &$sandbox) {
+  $drupal_releases = \Drupal::state()->get('druki.drupal_releases');
+  // Reset last request to force get fresh info about Drupal 9 which release was
+  // delayed.
+  $drupal_releases['expires'] = 0;
+  \Drupal::state()->set('druki.drupal_releases', $drupal_releases);
+}
