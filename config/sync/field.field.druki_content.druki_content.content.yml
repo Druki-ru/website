@@ -25,16 +25,16 @@ settings:
     negate: 0
     target_bundles: null
     target_bundles_drag_drop:
+      druki_code:
+        weight: 3
+        enabled: false
       druki_heading:
         weight: 0
-        enabled: false
-      druki_text:
-        weight: 1
         enabled: false
       druki_image:
         weight: 2
         enabled: false
-      druki_code:
-        weight: 3
+      druki_text:
+        weight: 1
         enabled: false
 field_type: entity_reference_revisions

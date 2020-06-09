@@ -1,0 +1,248 @@
+diff --git a/README.md b/README.md
+index 8510c06..6d5a5de 100644
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ Creates a WebP copy of image style derivatives to decrease loading times.
+
+ ## Description
+-Whenever an image style derivative is created this module will also create
++Whenever an image style derivative is created this module will also create
+ a WebP copy of the derivative to be served to supporting browsers.
+
+ ## Requirements
+@@ -19,7 +19,7 @@ This module requires one of the the following PHP extension:
+  4. Go to your content type, display, and choose responsive image (ie: admin/structure/types/manage/article/display)
+  5. Optional clear caches, your html now should display something like this:
+
+-```
++```
+ <picture>
+ <source srcset="/sites/default/files/styles/max_325x325/public/2019-07/IMG_1949-orig_19.webp?itok=yZGyfm_Z 244w, /sites/default/files/styles/large/public/2019-07/IMG_1949-orig_19.JPG?itok=Q4k4z1-p 360w, /sites/default/files/styles/max_650x650/public/2019-07/IMG_1949-orig_19.JPG?itok=hUF_TXH1 488w, /sites/default/files/styles/max_1300x1300/public/2019-07/IMG_1949-orig_19.JPG?itok=_WBWx1bc 975w, /sites/default/files/styles/max_2600x2600/public/2019-07/IMG_1949-orig_19.JPG?itok=RhJu7FQA 1950w" type="image/webp" sizes="(min-width: 1290px) 1290px, 100vw">
+ <source srcset="/sites/default/files/styles/max_325x325/public/2019-07/IMG_1949-orig_19.JPG?itok=yZGyfm_Z 244w, /sites/default/files/styles/large/public/2019-07/IMG_1949-orig_19.JPG?itok=Q4k4z1-p 360w, /sites/default/files/styles/max_650x650/public/2019-07/IMG_1949-orig_19.JPG?itok=hUF_TXH1 488w, /sites/default/files/styles/max_1300x1300/public/2019-07/IMG_1949-orig_19.JPG?itok=_WBWx1bc 975w, /sites/default/files/styles/max_2600x2600/public/2019-07/IMG_1949-orig_19.JPG?itok=RhJu7FQA 1950w" type="image/jpeg" sizes="(min-width: 1290px) 1290px, 100vw">
+@@ -41,4 +41,4 @@ More detailed instructions here: admin/structure/types/manage/article/display
+
+ ## Maintainers
+ * Bart Vanhoutte (Bart Vanhoutte) - https://www.drupal.org/user/1133754
+-* Alex Moreno - https://www.alexmoreno.net - https://www.drupal.org/u/alexmoreno
+\ No newline at end of file
++* Alex Moreno - https://www.alexmoreno.net - https://www.drupal.org/u/alexmoreno
+diff --git a/src/Controller/ImageStyleDownloadController.php b/src/Controller/ImageStyleDownloadController.php
+index 79d9b81..0562df2 100644
+--- a/src/Controller/ImageStyleDownloadController.php
++++ b/src/Controller/ImageStyleDownloadController.php
+@@ -3,10 +3,10 @@
+ namespace Drupal\webp\Controller;
+
+ use Drupal\Component\Utility\Crypt;
+-use Drupal\Core\File\FileSystem;
+ use Drupal\Core\Image\Image;
+ use Drupal\Core\Image\ImageFactory;
+ use Drupal\Core\Lock\LockBackendInterface;
++use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
+ use Drupal\image\ImageStyleInterface;
+ use Drupal\system\FileDownloadController;
+ use Drupal\webp\Webp;
+@@ -50,13 +50,6 @@ class ImageStyleDownloadController extends FileDownloadController {
+    */
+   protected $webp;
+
+-  /**
+-   * The file system service.
+-   *
+-   * @var \Drupal\Core\File\FileSystem
+-   */
+-  protected $fileSystem;
+-
+   /**
+    * Constructs a ImageStyleDownloadController object.
+    *
+@@ -66,15 +59,15 @@ class ImageStyleDownloadController extends FileDownloadController {
+    *   The image factory.
+    * @param \Drupal\webp\Webp $webp
+    *   WebP driver.
+-   * @param \Drupal\Core\File\FileSystem $file_system
+-   *   The file system service.
++   * @param \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface|null $stream_wrapper_manager
++   *   The stream wrapper manager.
+    */
+-  public function __construct(LockBackendInterface $lock, ImageFactory $image_factory, Webp $webp, FileSystem $file_system) {
++  public function __construct(LockBackendInterface $lock, ImageFactory $image_factory, Webp $webp, StreamWrapperManagerInterface $stream_wrapper_manager = NULL) {
++    parent::__construct($stream_wrapper_manager);
+     $this->lock = $lock;
+     $this->imageFactory = $image_factory;
+     $this->logger = $this->getLogger('image');
+     $this->webp = $webp;
+-    $this->fileSystem = $file_system;
+   }
+
+   /**
+@@ -85,7 +78,7 @@ class ImageStyleDownloadController extends FileDownloadController {
+       $container->get('lock'),
+       $container->get('image.factory'),
+       $container->get('webp.webp'),
+-      $container->get('file_system')
++      $container->get('stream_wrapper_manager')
+     );
+   }
+
+@@ -157,7 +150,7 @@ class ImageStyleDownloadController extends FileDownloadController {
+     // The $target variable for a derivative of a style has
+     // styles/<style_name>/... as structure, so we check if the $target variable
+     // starts with styles/.
+-    $valid = !empty($image_style) && $this->fileSystem->validScheme($scheme);
++    $valid = !empty($image_style) && $this->streamWrapperManager->isValidScheme($scheme);
+     if (!$this->config('image.settings')->get('allow_insecure_derivatives') || strpos(ltrim($target, '\/'), 'styles/') === 0) {
+       $valid &= $request->query->get(IMAGE_DERIVATIVE_TOKEN) === $image_style->getPathToken($image_uri);
+     }
+diff --git a/src/Form/SettingsForm.php b/src/Form/SettingsForm.php
+index f74f4e6..e6bab0b 100644
+--- a/src/Form/SettingsForm.php
++++ b/src/Form/SettingsForm.php
+@@ -35,8 +35,8 @@ class SettingsForm extends ConfigFormBase {
+       '#type' => 'number',
+       '#title' => $this->t('Image quality'),
+       '#description' => $this->t('Specify the image quality. This setting
+-       will be in effect for all new image style derivatives. In order to apply
+-       this setting to existing image style derivatives, flush image styles
++       will be in effect for all new image style derivatives. In order to apply
++       this setting to existing image style derivatives, flush image styles
+        through the interface, or by using Drush or Drupal Console.'),
+       '#default_value' => $config->get('quality'),
+       '#min' => 1,
+@@ -59,7 +59,7 @@ class SettingsForm extends ConfigFormBase {
+     parent::submitForm($form, $form_state);
+
+     $this->config('webp.settings')
+-      ->set('quality', (int)$form_state->getValue('quality'))
++      ->set('quality', (int) $form_state->getValue('quality'))
+       ->save();
+   }
+
+diff --git a/src/Webp.php b/src/Webp.php
+index fbc595c..a8fae2a 100644
+--- a/src/Webp.php
++++ b/src/Webp.php
+@@ -113,9 +113,9 @@ class Webp {
+           '@extension' => $pathInfo['extension'],
+         ]);
+
+-        imageSaveAlpha($sourceImage, true);
+-        imageAlphaBlending($sourceImage, true);
+-        imageSaveAlpha($sourceImage, true);
++        imagesavealpha($sourceImage, TRUE);
++        imagealphablending($sourceImage, TRUE);
++        imagesavealpha($sourceImage, TRUE);
+         if (@imagewebp($sourceImage, $destination, $quality)) {
+           // In some cases, libgd generates broken images. See
+           // https://stackoverflow.com/questions/30078090/imagewebp-php-creates-corrupted-webp-files
+@@ -150,9 +150,9 @@ class Webp {
+   public function deleteImageStyleDerivatives() {
+     // Remove the styles directory and generated images.
+     try {
+-      $this->fileSystem->deleteRecursive(file_default_scheme() . '://styles');
++      $this->fileSystem->deleteRecursive(\Drupal::config('system.file')->get('default_scheme') . '://styles');
+     }
+-    catch (FileException $e){
++    catch (FileException $e) {
+       $this->logger->error($e->getMessage());
+       $error = $this->t('Could not delete image style directory while uninstalling WebP. You have to delete it manually.');
+       $this->logger->error($error);
+diff --git a/tests/src/WebpTest.php b/tests/src/WebpTest.php
+deleted file mode 100644
+index c122021..0000000
+--- a/tests/src/WebpTest.php
++++ /dev/null
+@@ -1,56 +0,0 @@
+-<?php
+-
+-namespace Drupal\Tests\phpunit_example\Unit;
+-
+-use Drupal\Tests\UnitTestCase;
+-
+-/**
+- * Simple test to ensure that asserts pass.
+- *
+- * @group phpunit_example
+- */
+-class WebpTest extends UnitTestCase {
+-
+-  protected $webp;
+-
+-  /**
+-   * Before a test method is run, setUp() is invoked.
+-   *
+-   * Create new unit object.
+-   */
+-  public function setUp() {
+-    // Mock the class to avoid the constructor.
+-    $this->webp = $this->getMockBuilder('\Drupal\webp\Webp')
+-      ->disableOriginalConstructor()
+-      ->setMethods(NULL)
+-      ->getMock();
+-  }
+-
+-  /**
+-   * @covers Drupal\webp\Webp::getWebpSrcset
+-   */
+-  public function testgetWebpSrcset() {
+-    $this->assertEquals("testimage.webp", $this->webp->getWebpSrcset("testimage.jpg"));
+-    $this->assertEquals("testimage2.webp", $this->webp->getWebpSrcset("testimage2.png"));
+-    $this->assertEquals("testimage2.webp", $this->webp->getWebpSrcset("testimage2.jpeg"));
+-    $this->assertEquals("testimage2.webp", $this->webp->getWebpSrcset("testimage2.jpg"));
+-    $this->assertEquals("testimage2.ext.webp", $this->webp->getWebpSrcset("testimage2.ext.jpg"));
+-    $this->assertEquals("testimage2.ext.ext.webp", $this->webp->getWebpSrcset("testimage2.ext.ext.jpg"));
+-
+-    // Test that double extensions are handled properly.
+-    $this->assertEquals("testimage2.png.webp", $this->webp->getWebpSrcset("testimage2.png.jpg"));
+-    $this->assertEquals("testimage2.jpeg.png.webp", $this->webp->getWebpSrcset("testimage2.jpeg.png.jpg"));
+-
+-    // Test source sets with width descriptor/pixel density and multiple images.
+-    $this->assertEquals("some/path/image.webp?itok=vOpRgtYZ 1x", $this->webp->getWebpSrcset("some/path/image.JPG?itok=vOpRgtYZ 1x"));
+-    $this->assertEquals("some/path/image.webp?itok=vOpRgtYZ 1x, some/path/image.webp?itok=vOpRgtYZ 2x", $this->webp->getWebpSrcset("some/path/image.JPG?itok=vOpRgtYZ 1x, some/path/image.JPG?itok=vOpRgtYZ 2x"));
+-
+-    // Test source sets with multiple images but without width descriptor/pixel density.
+-    $this->assertEquals("some/path/image.webp?itok=vOpRgtYZ, some/path/image.webp?itok=vOpRgtYZ", $this->webp->getWebpSrcset("some/path/image.JPG?itok=vOpRgtYZ, some/path/image.JPG?itok=vOpRgtYZ"));
+-
+-    // And multiple source sets with multiple images.
+-    $this->assertEquals("some/path/image.png.webp?itok=vOpRgtYZ 1x, some/path/image.jpg.ext.webp?itok=vOpRgtYZ 2x", $this->webp->getWebpSrcset("some/path/image.png.JPG?itok=vOpRgtYZ 1x, some/path/image.jpg.ext.JPG?itok=vOpRgtYZ 2x"));
+-    $this->assertEquals("some/path/image.png.webp?itok=vOpRgtYZ, some/path/image.jpg.ext.webp?itok=vOpRgtYZ", $this->webp->getWebpSrcset("some/path/image.png.JPG?itok=vOpRgtYZ, some/path/image.jpg.ext.JPG?itok=vOpRgtYZ"));
+-  }
+-
+-}
+diff --git a/webp.info.yml b/webp.info.yml
+index 17f4fa7..9c0366c 100644
+--- a/webp.info.yml
++++ b/webp.info.yml
+@@ -2,7 +2,10 @@ name: WebP
+ type: module
+ description: Generates WebP copies of image style derivatives.
+ core: 8.x
++core_version_requirement: ^8 || ^9
++
+ package: Other
+ configure: webp.settings_form
+ dependencies:
+   - drupal:image
+diff --git a/webp.install b/webp.install
+index 885e537..ff797a4 100644
+--- a/webp.install
++++ b/webp.install
+@@ -16,7 +16,7 @@ function webp_requirements($phase) {
+   // installation or show an error on the status page.
+   $gd_info = gd_info();
+   // Let's convert to capital case, so we ensure we always cover both.
+-  $supported_formats = array();
++  $supported_formats = [];
+   if (extension_loaded('imagick')) {
+     $supported_formats = array_map('strtoupper', Imagick::queryFormats());
+   }
+diff --git a/webp.links.menu.yml b/webp.links.menu.yml
+index 8bda120..6c8af01 100644
+--- a/webp.links.menu.yml
++++ b/webp.links.menu.yml
+@@ -4,4 +4,3 @@ webp.settings_form:
+   description: 'Configure WebP module.'
+   parent: system.admin_config_media
+   weight: 99
+-

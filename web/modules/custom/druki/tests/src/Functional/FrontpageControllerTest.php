@@ -14,12 +14,17 @@ final class FrontpageControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stable9';
+
+  /**
+   * {@inheritdoc}
+   */
   public static $modules = ['druki', 'system'];
 
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
     user_role_grant_permissions('anonymous', ['access content']);
   }

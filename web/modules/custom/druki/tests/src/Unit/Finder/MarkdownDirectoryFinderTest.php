@@ -53,10 +53,9 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
 
   /**
    * Tests directories that doesn't exists.
-   *
-   * @expectedException \Symfony\Component\Finder\Exception\DirectoryNotFoundException
    */
   public function testDirectoryNotFound() {
+    $this->expectException('\Symfony\Component\Finder\Exception\DirectoryNotFoundException');
     $this->setUpVfsStream();
     $discovery = new MarkdownDirectoryFinder([vfsStream::url('content/docs/fr'), vfsStream::url('content/docs/es')]);
     $discovery->findAll();

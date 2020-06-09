@@ -20,10 +20,10 @@ index 073f5b1..5e778da 100644
        'variables' => [],
      ],
 diff --git a/photoswipe.theme.inc b/photoswipe.theme.inc
-index fe1e8fc..813ff3e 100644
+index 0913500..6c1a83e 100644
 --- a/photoswipe.theme.inc
 +++ b/photoswipe.theme.inc
-@@ -5,9 +5,10 @@
+@@ -5,6 +5,8 @@
   * Photoswipe theme preprocess functions.
   */
  
@@ -31,14 +31,12 @@ index fe1e8fc..813ff3e 100644
 +use Drupal\Core\Cache\CacheableMetadata;
  use Drupal\Core\Language\Language;
  use Drupal\image\Entity\ImageStyle;
--use Drupal\media\MediaInterface;
- 
- /**
-  * Prepares variables for a Photoswipe image field formatter.
-@@ -148,3 +149,155 @@ function template_preprocess_photoswipe_image_formatter(array &$variables) {
+ use Drupal\media\MediaInterface;
+@@ -149,3 +151,156 @@ function template_preprocess_photoswipe_image_formatter(array &$variables) {
      $variables['attributes']['class'][] = 'hidden';
    }
  }
++
 +/**
 + * Prepares variables for a Photoswipe responsive image field formatter.
 + *
@@ -192,10 +190,10 @@ index fe1e8fc..813ff3e 100644
 +  $variables['attributes']['data-overlay-title'] = $caption;
 +}
 diff --git a/src/Plugin/Field/FieldFormatter/PhotoswipeFieldFormatter.php b/src/Plugin/Field/FieldFormatter/PhotoswipeFieldFormatter.php
-index 30de526..c9eb800 100644
+index 5d1bd33..2157cd3 100644
 --- a/src/Plugin/Field/FieldFormatter/PhotoswipeFieldFormatter.php
 +++ b/src/Plugin/Field/FieldFormatter/PhotoswipeFieldFormatter.php
-@@ -152,7 +152,7 @@ class PhotoswipeFieldFormatter extends FormatterBase {
+@@ -257,7 +257,7 @@ class PhotoswipeFieldFormatter extends FormatterBase {
     * @return array
     *   The modified settings form structure of this formatter.
     */

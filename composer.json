@@ -19,6 +19,47 @@
     },
     "repositories": [
         {
+            "type": "package",
+            "package": {
+                "name": "drupal/glisseo",
+                "description": "The workaround for Drupal 9 update using locked alpha releases.",
+                "homepage": "https://www.drupal.org/project/glisseo",
+                "version": "1.0",
+                "license": "GPL-2.0+",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/glisseo.git",
+                    "reference": "61a1c98aebd92997943130d901d6c5af2a4eb160"
+                },
+                "type": "drupal-theme",
+                "minimum-stability": "dev",
+                "require": {
+                    "drupal/core": "^8.8 || ^9"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupal/markdown",
+                "description": "The workaround for Drupal 9 update.",
+                "homepage": "https://www.drupal.org/project/markdown",
+                "version": "2.0",
+                "license": "GPL-2.0+",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/markdown.git",
+                    "reference": "1b8d7545a7f6dad0b18cc248e20100a83bf689b6"
+                },
+                "type": "drupal-module",
+                "minimum-stability": "dev",
+                "require": {
+                    "drupal/core": "^8.8 || ^9",
+                    "league/commonmark": "^1.0.0"
+                }
+            }
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
@@ -47,14 +88,15 @@
         "druki/druki_page": "8.x-dev",
         "druki/druki_paragraph": "8.x-dev",
         "druki/druki_search": "8.x-dev",
-        "drupal/block_visibility_groups": "^1.3",
+        "drupal/block_visibility_groups": "1.x-dev",
         "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
         "drupal/extra_field": "^1.0",
+        "drupal/glisseo": "1.0@dev",
         "drupal/google_tag": "^1.1",
         "drupal/imagemagick": "^3.0",
-        "drupal/markdown": "2.x-dev#1b8d7545",
+        "drupal/markdown": "2.0",
         "drupal/metatag": "^1.8",
         "drupal/pathauto": "^1.3",
         "drupal/photoswipe": "^3.0",
@@ -86,12 +128,23 @@
     },
     "extra": {
         "patches": {
-            "drupal/photoswipe": {
-                "Responsive image support. https://dgo.to/2980534": "./patches/drupal-photoswipe-2980534-18.patch"
-            },
             "drupal/core": {
-                "Implement Server Timing performance metrics. https://dgo.to/3104566": "./patches/drupal-core-3104566-37.patch",
                 "MapItem definition (dgo.to/2887105)": "./patches/drupal-core-2887105-12.patch"
+            },
+            "drupal/block_visibility_groups" : {
+                "Drupal 9 support": "./patches/block_visibility_groups-3131294-7.patch"
+            },
+            "drupal/webp": {
+                "Drupal 9 support": "./patches/webp-3144282-8.patch"
+            },
+            "drupal/glisseo": {
+                "Drupal 9 support": "./patches/glisseo-d9.patch"
+            },
+            "drupal/markdown": {
+                "Drupal 9 support": "./patches/markdown-d9.patch"
+            },
+            "drupal/photoswipe": {
+                "Responsive image support. https://dgo.to/2980534": "./patches/drupal-photoswipe-2980534-21.patch"
             }
         },
         "drupal-scaffold": {

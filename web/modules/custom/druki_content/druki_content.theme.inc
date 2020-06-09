@@ -157,8 +157,8 @@ function template_preprocess_druki_content_category_navigation(array &$variables
   /** @var \Drupal\Core\Path\PathMatcherInterface $path_matcher */
   $path_matcher = \Drupal::service('path.matcher');
   $current_path = \Drupal::service('path.current')->getPath();
-  /** @var \Drupal\Core\Path\AliasManagerInterface $path_alias_manager */
-  $path_alias_manager = \Drupal::service('path.alias_manager');
+  /** @var \Drupal\path_alias\AliasManagerInterface $path_alias_manager */
+  $path_alias_manager = \Drupal::service('path_alias.manager');
 
   foreach ($variables['links'] as &$link) {
     $link['attributes'] = new Attribute();

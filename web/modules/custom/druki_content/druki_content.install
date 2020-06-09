@@ -281,3 +281,24 @@ function druki_content_update_8807(array &$sandbox) {
   \Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('source_hash', 'druki_content', 'druki_content', $field_storage_definition);
 }
+
+/**
+ * Fix all missing entity updates.
+ */
+function druki_content_update_9001(array &$sandbox) {
+  // Without this changes system_post_update_entity_revision_metadata_bc_cleanup()
+  // will not apply.
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  // Fix handlers.
+  $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Entity\Handler\DrukiContentStorage');
+  $druki_content_definition->setHandlerClass('list_builder', 'Drupal\druki_content\Entity\Handler\DrukiContentListBuilder');
+  $druki_content_definition->setHandlerClass('access', 'Drupal\druki_content\Entity\Handler\DrukiContentAccessControlHandler');
+  $druki_content_definition->setHandlerClass('redirect_controller', 'Drupal\druki_content\Entity\Handler\DrukiContentRedirectController');
+  // Fix links.
+  $druki_content_definition->setLinkTemplate('edit-remote', '/druki_content/{druki_content}/edit-remote');
+  $druki_content_definition->setLinkTemplate('history-remote', '/druki_content/{druki_content}/history-remote');
+
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}

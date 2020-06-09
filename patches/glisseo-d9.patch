@@ -1,11 +1,25 @@
+diff --git a/STARTER/STARTER.info.yml b/STARTER/STARTER.info.yml
+index 406bb41..c958513 100644
+--- a/STARTER/STARTER.info.yml
++++ b/STARTER/STARTER.info.yml
+@@ -5,7 +5,7 @@ type: theme
+ base theme: glisseo
+ description: 'Glisseo is a base theme for fast and easy start to theme your project.'
+ package: Glisseo
+-core: 8.x
++core_version_requirement: ^8 || ^9
+
+ # Remove this line after you copy starter theme.
+ hidden: true
 diff --git a/glisseo.info.yml b/glisseo.info.yml
-index 9b01937..9f6c91a 100644
+index 9b01937..0d01cfa 100644
 --- a/glisseo.info.yml
 +++ b/glisseo.info.yml
-@@ -4,5 +4,5 @@ name: Glisseo (base theme)
+@@ -4,5 +4,6 @@ name: Glisseo (base theme)
  type: theme
  description: 'Glisseo is a base theme for fast and easy start to theme your project.'
  package: Glisseo
 -core: 8.x
 +core_version_requirement: ^8 || ^9
++base theme: stable
  hidden: true

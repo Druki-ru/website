@@ -6,6 +6,9 @@ why:
 langcode: ru
 event:
   status: 1
-  image: '10'
-  style: frontpage_drupal_event
+  image: '26'
+  style: frontpage_community
   url: /wiki/events/drupalcon-list
+community:
+  image: '29'
+  style: frontpage_community
