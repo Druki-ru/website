@@ -1,0 +1,11 @@
+diff --git a/glisseo.info.yml b/glisseo.info.yml
+index 9b01937..9f6c91a 100644
+--- a/glisseo.info.yml
++++ b/glisseo.info.yml
+@@ -4,5 +4,5 @@ name: Glisseo (base theme)
+ type: theme
+ description: 'Glisseo is a base theme for fast and easy start to theme your project.'
+ package: Glisseo
+-core: 8.x
++core_version_requirement: ^8 || ^9
+ hidden: true

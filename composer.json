@@ -52,7 +52,7 @@
         "drupal/core-composer-scaffold": "^8.7",
         "drupal/core-recommended": "^8.7",
         "drupal/extra_field": "^1.0",
-        "drupal/glisseo": "1.x-dev#61a1c98",
+        "drupal/glisseo": "1.0-alpha15",
         "drupal/google_tag": "^1.1",
         "drupal/imagemagick": "^2.5",
         "drupal/markdown": "2.x-dev#1b8d7545",
@@ -92,12 +92,13 @@
             "drupal/photoswipe": {
                 "Responsive image support. https://dgo.to/2980534": "./patches/drupal-photoswipe-2980534-18.patch"
             },
-            "drupal/minifyjs": {
-                "Fix drush command": "./patches/drupal-minifyjs-3102189-1.patch"
-            },
             "drupal/core": {
                 "Implement Server Timing performance metrics. https://dgo.to/3104566": "./patches/drupal-core-3104566-37.patch",
                 "MapItem definition (dgo.to/2887105)": "./patches/drupal-core-2887105-12.patch"
+            },
+            "drupal/glisseo": {
+                "Theme updates from alpha15 to 61a1c98": "./patches/glisseo-alpha15-61a1c98.patch",
+                "Drupal 9 support": "./patches/glisseo-d9.patch"
             }
         },
         "drupal-scaffold": {
