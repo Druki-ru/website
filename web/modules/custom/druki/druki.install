@@ -5,6 +5,8 @@
  * Main file for installation and uninstall process.
  */
 
+use Drupal\Core\Site\Settings;
+
 /**
  * Implements hook_uninstall().
  */
@@ -26,4 +28,60 @@ function druki_update_8801(array &$sandbox) {
   // delayed.
   $drupal_releases['expires'] = 0;
   \Drupal::state()->set('druki.drupal_releases', $drupal_releases);
+}
+
+/**
+ * Remove ton of minifyjs orphaned files.
+ */
+function druki_update_8901(array &$sandbox) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  /** @var \Drupal\file\FileStorageInterface $term_storage */
+  $file_storage = $entity_type_manager->getStorage('file');
+  /** @var \Drupal\file\FileUsage\FileUsageInterface $file_usage */
+  $file_usage = \Drupal::service('file.usage');
+
+  if (!isset($sandbox['total'])) {
+    $files = $file_storage
+      ->getQuery()
+      ->execute();
+
+    $sandbox['files'] = $files;
+    $sandbox['total'] = count($files);
+    $sandbox['processed'] = 0;
+    $sandbox['limit'] = Settings::get('entity_update_batch_size', 50);
+  }
+
+  if (empty($sandbox['total'])) {
+    $sandbox['#finished'] = 1;
+    return t('No files to be processed.');
+  }
+
+  if (!empty($sandbox['files'])) {
+    // Processing a lot of entities in batch will overkill memory cache and
+    // most likely end up with 'trying to allocate memory' error. If server have
+    // enough memory, this cache will progressively slow down performance.
+    \Drupal::service('entity.memory_cache')->deleteAll();
+
+    $file_ids = array_splice($sandbox['files'], 0, $sandbox['limit']);
+    $files = $file_storage->loadMultiple($file_ids);
+    /** @var \Drupal\file\FileInterface $file */
+    foreach ($files as $file) {
+      $usage = $file_usage->listUsage($file);
+      $modules = array_keys($usage);
+      if (in_array('minifyjs', $modules)) {
+        $file_usage->delete($file, 'minifyjs');
+        // If file used more than single module (which is not likely), we only
+        // remove usage. Otherwise we delete file.
+        if (count($modules) == 1) {
+          $file->delete();
+        }
+      }
+
+      $sandbox['processed']++;
+    }
+  }
+
+  $sandbox['#finished'] = empty($sandbox['files']) ? 1 : 0;
+
+  return t('@count files processed.', ['@count' => $sandbox['processed']]);
 }
