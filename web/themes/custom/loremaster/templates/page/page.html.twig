@@ -1,11 +1,22 @@
-{{ page.header }}
+{# Main lauout classes. #}
+{% set main_layout_attributes = create_attribute() %}
+{% set main_layout_block = 'main-layout' %}
+{%
+  set main_layout_modifiers = [
+    page.sidebar_right ? 'sidebar-right',
+    not page.sidebar_right ? 'no-sidebars',
+    page.sidebar_right ? 'one-sidebar',
+  ]
+%}
+{% set main_layout_classes = [bem(main_layout_block, main_layout_modifiers)] %}
 
-<main{{ main_layout_attributes }}>
-  {{ page.content_header }}
-  <div class="main-layout__content">
-    {{ page.content }}
-    {{ page.sidebar_right }}
-  </div>
+{{ page.header }}
+{{ page.navigation }}
+
+<main{{ main_layout_attributes.addClass(main_layout_classes) }}>
+  {{ page.sidebar_first }}
+  {{ page.content }}
+  {{ page.sidebar_second }}
 </main>
 
-{% include '@loremaster/page/include.footer.html.twig' %}
+{{ page.footer }}

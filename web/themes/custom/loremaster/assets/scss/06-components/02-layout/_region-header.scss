@@ -1,0 +1,19 @@
+:root {
+  --region-header-height: 50px;
+}
+
+.region--header {
+  background-color: #222330;
+}
+
+.region--header :focus {
+  --focus-box-shadow: 0 0 0 2px #222330, 0 0 0 5px var(--color-green);
+}
+
+.region--header .region__container {
+  display: grid;
+  align-items: center;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: 26px 1fr 300px 100px;
+  height: var(--region-header-height);
+}

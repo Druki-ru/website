@@ -15,7 +15,6 @@ class FrontpageController extends ControllerBase {
   public function build() {
 
     $build['content'] = [
-      '#type' => 'item',
       '#markup' => $this->t('It works!'),
     ];
 
