@@ -5,7 +5,6 @@ dependencies:
     - druki_content
     - search_api
     - druki_search
-    - snowball_stemmer
   config:
     - field.storage.druki_content.labels
     - field.storage.druki_content.search_keywords
@@ -132,22 +131,6 @@ processor_settings:
     weights:
       add_properties: 0
       pre_index_save: -10
-  snowball_stemmer:
-    all_fields: 0
-    fields:
-      - category
-      - external_id
-      - filename
-      - labels
-      - rendered_item
-      - search_keywords
-      - title
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
   stopwords:
     all_fields: false
     fields:

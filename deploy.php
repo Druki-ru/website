@@ -51,12 +51,6 @@ task('deploy:rebuild-cache', function () {
   run('drush cache:rebuild -y');
 });
 
-task('deploy:minifyjs', function () {
-  cd('{{deploy_path}}/current');
-  run('drush scan-js');
-  run('drush minify-js');
-});
-
 task('deploy:cache-warming', function () {
   cd('{{deploy_path}}/current');
   writeln(run('drush warmer:enqueue sitemap --run-queue'));
@@ -75,7 +69,6 @@ task('deploy', [
   'deploy:config-split-export',
   'deploy:config-import',
   'deploy:config-split-import',
-  'deploy:minifyjs',
   'deploy:rebuild-cache',
   'deploy:update-locale',
   'deploy:unlock',

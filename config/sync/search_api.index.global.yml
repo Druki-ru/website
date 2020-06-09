@@ -11,7 +11,6 @@ dependencies:
     - druki_content
     - search_api
     - druki_search
-    - snowball_stemmer
 _core:
   default_config_hash: znEv_GoqzJ8bJd0azpMIu7pgamAYgxhgglY7QX_smLU
 id: global
@@ -141,21 +140,6 @@ processor_settings:
     weights:
       add_properties: 0
       pre_index_save: -10
-  snowball_stemmer:
-    all_fields: 1
-    fields:
-      - category
-      - external_id
-      - labels
-      - rendered_item
-      - search_keywords
-      - title
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: -45
-      preprocess_query: -44
   stopwords:
     all_fields: true
     fields:
