@@ -3,6 +3,7 @@
 namespace Drupal\druki_search\SearchPage;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
@@ -38,16 +39,26 @@ class PageController implements ContainerInjectionInterface {
   protected $request;
 
   /**
+   * The pager manager.
+   *
+   * @var \Drupal\Core\Pager\PagerManagerInterface
+   */
+  protected $pagerManager;
+
+  /**
    * Constructs a new PageController object.
    *
    * @param \Drupal\druki_search\SearchPage\QueryHelper $query_helper
    *   The query helper.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The current request.
+   * @param \Drupal\Core\Pager\PagerManagerInterface $pager_manager
+   *   The pager manager.
    */
-  public function __construct(QueryHelper $query_helper, Request $request) {
+  public function __construct(QueryHelper $query_helper, Request $request, PagerManagerInterface $pager_manager) {
     $this->queryHelper = $query_helper;
     $this->request = $request;
+    $this->pagerManager = $pager_manager;
   }
 
   /**
@@ -56,7 +67,8 @@ class PageController implements ContainerInjectionInterface {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('druki_search.page.query_helper'),
-      $container->get('request_stack')->getCurrentRequest()
+      $container->get('request_stack')->getCurrentRequest(),
+      $container->get('pager.manager')
     );
   }
 
@@ -170,11 +182,11 @@ class PageController implements ContainerInjectionInterface {
    */
   protected function doSearch(string $keys): array {
     $total_results = $this->getTotalResultItems($keys);
-    $current_page = pager_default_initialize($total_results, $this->limit);
+    $this->pagerManager->createPager($total_results, $this->limit);
 
     return $this->queryHelper
       ->getQuery(QueryHelper::FILTERED)
-      ->range($current_page * $this->limit, $this->limit)
+      ->range($this->pagerManager->getPager()->getCurrentPage() * $this->limit, $this->limit)
       ->keys($keys)
       ->execute()
       ->getResultItems();
