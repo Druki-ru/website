@@ -1,0 +1,3 @@
+[submodule "web/themes/custom/glisseo"]
+	path = web/themes/custom/glisseo
+	url = https://git.drupalcode.org/project/glisseo.git
