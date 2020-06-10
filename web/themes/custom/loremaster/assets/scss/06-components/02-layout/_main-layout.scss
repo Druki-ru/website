@@ -1,7 +1,5 @@
-.main-layout {
+.main-layout--one-sidebar {
   display: grid;
-  width: 100%;
-  max-width: var(--grid-container-max-width);
-  margin: var(--spacing-md) auto;
-  grid-gap: var(--grid-gap);
+  grid-gap: var(--spacing-xl);
+  grid-template-columns: 1fr 280px;
 }

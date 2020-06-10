@@ -59,3 +59,15 @@ msgstr "Настройки отображения официального ру�
 msgctxt "edit content"
 msgid "Edit"
 msgstr "Редактировать"
+
+msgid "Drupal is a registered trademark of <a href=\"@url\">@name</a>."
+msgstr "Drupal — зарегистрированная торговая марка <a href=\"@url\">@name</a>."
+
+msgid "<a href=\"@source_url\">The source code</a> of the site is provided under the <a href=\"@license_url\">@license_name</a>."
+msgstr "<a href=\"@source_url\">Исходный код</a> сайта предоставляется по лицензии <a href=\"@license_url\">@license_name</a>."
+
+msgid "<a href=\"@source_url\">The content</a> of the site is provided under the <a href=\"@license_url\">@license_name</a>."
+msgstr "<a href=\"@source_url\">Содержимое</a> сайта предоставляется по лицензии <a href=\"@license_url\">@license_name</a>."
+
+msgid "Developed by <a href=\"@url\">@name</a> with love on Drupal."
+msgstr "Разработано <a href=\"@url\">@name</a> с любовью на Drupal."

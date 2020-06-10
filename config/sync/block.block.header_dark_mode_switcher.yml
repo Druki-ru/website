@@ -10,7 +10,7 @@ dependencies:
 id: header_dark_mode_switcher
 theme: loremaster
 region: header
-weight: -3
+weight: -4
 provider: null
 plugin: druki_header_dark_mode_switcher
 settings:

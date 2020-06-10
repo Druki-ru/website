@@ -1,0 +1,9 @@
+{% extends 'region.html.twig' %}
+
+{% block region %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class="layout-container {{ bem('container', [], block) }}">
+      {{ block('content') }}
+    </div>
+  </div>
+{% endblock %}

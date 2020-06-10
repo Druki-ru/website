@@ -1,0 +1,22 @@
+.footer {
+  font-size: var(--font-size-sm);
+  color: var(--color-old-silver);
+  margin: var(--spacing-xl) 0;
+}
+
+.footer__container {
+  display: grid;
+  grid-gap: var(--spacing-xl);
+  grid-template-columns: auto auto 1fr;
+}
+
+.footer__some-love {
+  margin-bottom: var(--spacing-md);
+}
+
+.footer .block__title {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-xs);
+}

@@ -17,13 +17,14 @@
   --font-size-xxs: 0.702rem; /* ~11px */
 
   --font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-monospace: "JetBrains Mono", "Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --text-color: #222330;
 
   --mark-background: hsl(60, 100%, 50%);
-  --code-background: var(--page-background);
+  --code-background: #f2f3f7;
 
-  --p-margin-bottom: var(--spacing-sm);
+  --p-margin-bottom: var(--spacing-md);
 }
 
 body {
@@ -56,9 +57,9 @@ mark {
 code {
   font-family: var(--font-monospace);
   font-size: 90%;
-  padding: 4px 6px;
+  padding: 0.125rem var(--spacing-xs);
   word-break: break-all;
-  border-radius: 4px;
+  border-radius: var(--radius-lg);
   background-color: var(--code-background);
 }
 

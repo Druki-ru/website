@@ -1,0 +1,30 @@
+uuid: 484932e8-b6e3-4990-9dd5-37d1f2f7e0e3
+langcode: ru
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_visibility_groups
+    - system
+  theme:
+    - loremaster
+id: main_menu
+theme: loremaster
+region: header
+weight: -6
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Основная навигация'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''

@@ -21,7 +21,7 @@ class HeaderDarkModeSwitcher extends BlockBase {
   public function build() {
     $build['content'] = [
       '#type' => 'inline_template',
-      '#template' => '<div class="header-dark-mode-switcher js-dark-mode-switcher"></div>',
+      '#template' => '<button class="header-dark-mode-switcher js-dark-mode-switcher"></button>',
     ];
 
     return $build;

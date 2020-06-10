@@ -1,0 +1,18 @@
+.druki-content-full h2,
+.druki-content-full h3,
+.druki-content-full h4,
+.druki-content-full h5,
+.druki-content-full h6 {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.druki-content-full ol li,
+.druki-content-full ul li,
+.druki-content-full ol ol,
+.druki-content-full ol ul,
+.druki-content-full ul ul,
+.druki-content-full ul ol {
+  margin-top: var(--spacing-xxs);
+  margin-bottom: var(--spacing-xxs);
+}

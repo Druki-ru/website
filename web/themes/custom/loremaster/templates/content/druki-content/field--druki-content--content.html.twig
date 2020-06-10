@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present field.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - classes: An array of classes for main wrapper.
+ * - entity_type: The name of entity type, which field belongs to.
+ * - bundle: The entity bundle name for the field.
+ * - view_mode: The view mode used to render field.
+ *
+ * @see glisseo_preprocess_field()
+ */
+#}
+{%
+  set entity_block = bem_block([
+  entity_type,
+  bundle != entity_type ? bundle,
+  field_name,
+])
+%}
+{%
+  set entity_modifiers = [
+  view_mode,
+]
+%}
+{%
+  set classes = [
+    bem(entity_block, entity_modifiers),
+  ]
+%}
+{%
+  set title_classes = [
+    bem('label', [], entity_block)
+  ]
+%}
+{% set content_element = multiple ? 'items' : 'value' %}
+{%
+  set content_classes = [
+    bem(content_element, [], entity_block),
+  ]
+%}
+{%
+  set item_classes = [
+    bem('item', [], entity_block),
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% for item in items %}
+    {{- item.content -}}
+  {% endfor %}
+</div>

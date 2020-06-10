@@ -5,6 +5,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const postcssCustomMedia = require('postcss-custom-media');
+const postcssInlineSvg = require('postcss-inline-svg');
+const cssnano = require('cssnano');
 
 gulp.task('sass', function() {
   return gulp.src([
@@ -16,10 +18,16 @@ gulp.task('sass', function() {
   ])
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass({includePaths: ['node_modules']}).on('error', sass.logError))
+    .pipe(sass({includePaths: ['../../../../node_modules']}).on('error', sass.logError))
     .pipe(postcss([
+      postcssInlineSvg({
+        paths: ['assets/images/icons']
+      }),
       postcssCustomMedia(),
       autoprefixer(),
+      cssnano({
+        preset: 'default'
+      }),
     ]))
     .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('assets/css/'));

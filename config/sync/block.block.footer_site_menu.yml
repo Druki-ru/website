@@ -1,0 +1,30 @@
+uuid: dbe7c6c0-0c62-4b4b-ae1f-d3c9e3bca3e9
+langcode: ru
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - block_visibility_groups
+    - system
+  theme:
+    - loremaster
+id: footer_site_menu
+theme: loremaster
+region: footer_menu_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: Druki
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''

@@ -1,6 +1,6 @@
 uuid: 9fe239d8-7bdc-4022-a9aa-cb82c1ff3128
 langcode: ru
-status: true
+status: false
 dependencies:
   config:
     - block_visibility_groups.block_visibility_group.druki_content_page

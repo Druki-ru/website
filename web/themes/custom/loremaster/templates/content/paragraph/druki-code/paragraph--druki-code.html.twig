@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme implementation to present paragraph with code..
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ *
+ * @see loremaster_preprocess_paragraph__druki_code()
+ */
+#}
+{% extends 'paragraph.html.twig' %}
+
+{% block paragraph %}
+  {{ block('content') }}
+{% endblock paragraph %}

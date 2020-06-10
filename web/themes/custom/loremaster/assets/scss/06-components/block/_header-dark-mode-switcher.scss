@@ -1,0 +1,17 @@
+.header-dark-mode-switcher {
+  width: 2rem;
+  height: 2rem;
+  background-image: svg-load('theme-light-dark.svg', fill=#FFF);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-radius: var(--radius-xxs);
+  background-color: transparent;
+  border: none;
+  align-self: center;
+  display: flex;
+}
+
+.header-dark-mode-switcher:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

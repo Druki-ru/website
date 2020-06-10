@@ -19,6 +19,8 @@ regions:
   content_header: Content header
   content: Content
   sidebar_right: 'Sidebar Right'
+  footer_menu_first: 'Footer menu first'
+  footer_menu_second: 'Footer menu second'
 
 # Disable system libraries.
 libraries-override:

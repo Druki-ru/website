@@ -17,15 +17,17 @@
 
   @media (--sm) {
     display: inline;
+    overflow: visible;
   }
 }
 
 .breadcrumb__item-link {
-  --link-color: var(--color-border);
+  --link-color: var(--text-color);
+  font-weight: bold;
 }
 
 .breadcrumb__item-link--current {
-  --link-color: var(--color-blue);
+  --link-color: var(--text-color);
 }
 
 .breadcrumb__item-link--text {
