@@ -8,7 +8,7 @@ const postcssCustomMedia = require('postcss-custom-media');
 const postcssInlineSvg = require('postcss-inline-svg');
 const cssnano = require('cssnano');
 
-gulp.task('sass', function() {
+gulp.task('build:css', function() {
   return gulp.src([
     'assets/scss/03-generic/generic.scss',
     'assets/scss/04-elements/elements.scss',
@@ -33,8 +33,6 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('assets/css/'));
 });
 
-gulp.task('sass:watch', function() {
-  gulp.watch('assets/scss/**', gulp.parallel('sass'));
+gulp.task('watch:css', function() {
+  gulp.watch('assets/scss/**', gulp.parallel('build:css'));
 });
-
-gulp.task('default', gulp.series('sass', 'sass:watch'));

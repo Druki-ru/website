@@ -20,5 +20,5 @@
   ]
 %}
 <{{ heading_level }}{{ attributes.addClass(classes).setAttribute('id', anchor) }}>
-  {{- title -}}<a href="#{{ anchor }}" class="anchor {{ bem('anchor', [], block) }}">¶</a>
+  {{- title -}}<a href="#{{ anchor }}" class="anchor {{ bem(block, 'anchor') }}">¶</a>
 </{{ heading_level }}>

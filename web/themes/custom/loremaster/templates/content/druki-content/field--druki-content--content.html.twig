@@ -27,23 +27,23 @@
 %}
 {%
   set classes = [
-    bem(entity_block, entity_modifiers),
+    bem(entity_block, null, entity_modifiers),
   ]
 %}
 {%
   set title_classes = [
-    bem('label', [], entity_block)
+    bem(entity_block, 'label'),
   ]
 %}
 {% set content_element = multiple ? 'items' : 'value' %}
 {%
   set content_classes = [
-    bem(content_element, [], entity_block),
+    bem(entity_block, content_element),
   ]
 %}
 {%
   set item_classes = [
-    bem('item', [], entity_block),
+    bem(entity_block, 'item'),
   ]
 %}
 <div{{ attributes.addClass(classes) }}>

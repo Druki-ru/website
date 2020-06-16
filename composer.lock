@@ -2275,7 +2275,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/glisseo.git",
-                "reference": "d668ba704db02e669d9993fff4f2bc80e6205e54"
+                "reference": "d55107c59c6b095e901a67af8a430074c0a7c8c1"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9",
@@ -2287,8 +2287,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha15+42-dev",
-                    "datestamp": "1591621950",
+                    "version": "8.x-1.0-alpha15+45-dev",
+                    "datestamp": "1592305935",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2311,7 +2311,7 @@
                 "source": "https://git.drupalcode.org/project/glisseo",
                 "issues": "https://www.drupal.org/project/issues/glisseo"
             },
-            "time": "2020-06-08T13:18:56+00:00"
+            "time": "2020-06-16T11:31:23+00:00"
         },
         {
             "name": "drupal/google_tag",

@@ -1,0 +1,10 @@
+:root {
+  --icon-theme-light-dark--white: svg-load('theme-light-dark.svg', fill=#FFF);
+  --icon-magnify--white: svg-load('magnify.svg', fill=#FFF);
+  --icon-drupal--white: svg-load('drupal.svg', fill=#fff);
+  --icon-drupal--dark: svg-load('drupal.svg', fill=#333);
+  --icon-lightbulb-on-outline--tip: svg-load('lightbulb-on-outline.svg', fill=#f57f17);
+  --icon-pencil-outline--note: svg-load('pencil-outline.svg', fill=#01579b);
+  --icon-alert-rhombus-outline--warning: svg-load('alert-rhombus-outline.svg', fill=#e65100);
+  --icon-alert-decagram-outline--important: svg-load('alert-decagram-outline.svg', fill=#bf360c);
+}

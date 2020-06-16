@@ -1,13 +1,13 @@
 :root {
   --druki-content-variations-active-background-color: rgba(0, 0, 0, 0.05);
   --druki-content-variations-border-color: var(--color-gray-blue);
-  --druki-content-variations-label-icon: svg-load('drupal.svg', fill=#333);
+  --druki-content-variations-label-icon: var(--icon-drupal--dark);
 }
 
 [data-theme="dark"] {
   --druki-content-variations-active-background-color: var(--color-light-gray);
   --druki-content-variations-border-color: var(--color-light-gray);
-  --druki-content-variations-label-icon: svg-load('drupal.svg', fill=#fff);
+  --druki-content-variations-label-icon: var(--icon-drupal--white);
 }
 
 .druki-content-variations {

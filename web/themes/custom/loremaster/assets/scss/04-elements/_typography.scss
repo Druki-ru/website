@@ -24,7 +24,7 @@
   --mark-background: hsl(60, 100%, 50%);
   --code-background: #f2f3f7;
 
-  --p-margin-bottom: var(--spacing-md);
+  --p-margin--y: var(--spacing-md);
 }
 
 body {
@@ -35,8 +35,8 @@ body {
 }
 
 p {
-  margin-top: unset;
-  margin-bottom: var(--p-margin-bottom);
+  margin-top: var(--p-margin--y);
+  margin-bottom: var(--p-margin--y);
 }
 
 small {

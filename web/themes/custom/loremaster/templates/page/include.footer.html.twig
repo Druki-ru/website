@@ -5,17 +5,17 @@
 #}
 {% set block = 'footer' %}
 <footer class="{{ bem(block) }}">
-  <div class="layout-container {{ bem('container', [], block) }}">
+  <div class="layout-container {{ bem(block, 'container') }}">
     {{ page.footer_menu_first }}
     {{ page.footer_menu_second }}
-    <div class="{{ bem('legal', [], block) }}">
-      <div class="{{ bem('some-love', [], block) }}">
+    <div class="{{ bem(block, 'legal') }}">
+      <div class="{{ bem(block, 'some-love') }}">
         {% set url = 'https://niklan.net' %}
         {% set name = 'Niklan' %}
         {% trans %}Developed by <a href="{{ url }}">{{ name }}</a> with love on Drupal.{% endtrans %}
       </div>
 
-      <div class="{{ bem('copyright', [], block) }}">
+      <div class="{{ bem(block, 'copyright') }}">
         {% set url = 'https://dri.es/' %}
         {% set name = 'Dries Buytaert' %}
         {% trans %}Drupal is a registered trademark of <a href="{{ url }}">{{ name }}</a>.{% endtrans %}
