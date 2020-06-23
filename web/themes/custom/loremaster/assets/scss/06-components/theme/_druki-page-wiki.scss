@@ -1,0 +1,9 @@
+.druki-page-wiki__row {
+  margin-bottom: var(--spacing-xl);
+}
+
+.druki-page-wiki__cards {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: repeat(3, 1fr);
+}

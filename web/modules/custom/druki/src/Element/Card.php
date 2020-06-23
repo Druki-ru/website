@@ -3,6 +3,7 @@
 namespace Drupal\druki\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 
 /**
@@ -26,11 +27,26 @@ class Card extends RenderElement {
   public static function preRender(array $element) {
     if ($element['#primary_url'] && !$element['#primary_url'] instanceof Url) {
       if ((strpos($element['#primary_url'], '/') !== 0) && (strpos($element['#primary_url'], '#') !== 0) && (strpos($element['#primary_url'], '?') !== 0)) {
-        $element['#primary_url'] = Url::fromUri($element['#primary_url']);
+        $primary_url = Url::fromUri($element['#primary_url']);
       }
       else {
-        $element['#primary_url'] = Url::fromUserInput($element['#primary_url']);
+        $primary_url = Url::fromUserInput($element['#primary_url']);
       }
+    }
+    elseif ($element['#primary_url'] && $element['#primary_url'] instanceof Url) {
+      $primary_url = $element['#primary_url'];
+    }
+
+    if ($primary_url) {
+      $primary_url->setOption('attributes', [
+        'class' => 'button button--primary button--small',
+      ]);
+
+      $element['#actions'][] = [
+        '#type' => 'link',
+        '#title' => new TranslatableMarkup('Read more'),
+        '#url' => $primary_url,
+      ];
     }
 
     return $element;
@@ -45,9 +61,9 @@ class Card extends RenderElement {
       '#theme' => 'druki_card',
       '#title' => NULL,
       '#subhead' => NULL,
-      '#supporting_text' => NULL,
-      '#style' => 'elevated',
+      '#description' => NULL,
       '#primary_url' => NULL,
+      '#actions' => [],
       '#pre_render' => [
         [$class, 'preRender'],
       ],

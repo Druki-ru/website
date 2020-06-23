@@ -26,17 +26,6 @@ function template_preprocess_druki_drupal_versions(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for 'druki-card.html.twig'.
- */
-function template_preprocess_druki_card(array &$variables): void {
-  $variables['bem_block'] = 'druki-card';
-
-  if (isset($variables['style'])) {
-    $variables['bem_modifiers'][] = $variables['style'];
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK() for 'druki-header-branding-navigation.html.twig'.
  */
 function template_preprocess_druki_header_branding_navigation(array &$variables): void {

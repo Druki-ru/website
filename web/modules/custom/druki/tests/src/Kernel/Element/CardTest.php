@@ -75,7 +75,7 @@ final class CardTest extends KernelTestBase {
       'supporting text' => [
         [
           '#type' => 'druki_card',
-          '#supporting_text' => 'The supporting text.',
+          '#description' => 'The supporting text.',
         ],
         [
           '<div class="druki-card__secondary">The supporting text.</div>',

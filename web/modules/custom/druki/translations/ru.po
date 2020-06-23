@@ -71,3 +71,6 @@ msgstr "<a href=\"@source_url\">Содержимое</a> сайта предос
 
 msgid "Developed by <a href=\"@url\">@name</a> with love on Drupal."
 msgstr "Разработано <a href=\"@url\">@name</a> с любовью на Drupal."
+
+msgid "Read more"
+msgstr "Подробнее"

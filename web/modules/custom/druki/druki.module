@@ -90,9 +90,8 @@ function druki_theme($existing, $type, $theme, $path) {
       'variables' => [
         'title' => NULL,
         'subhead' => NULL,
-        'supporting_text' => NULL,
-        'buttons' => [],
-        'style' => NULL,
+        'description' => NULL,
+        'actions' => [],
         'primary_url' => NULL,
       ],
       'file' => 'druki.theme.inc',
