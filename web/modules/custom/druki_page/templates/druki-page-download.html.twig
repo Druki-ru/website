@@ -7,14 +7,13 @@
 {% set bem_block = 'druki-page-download' %}
 <div{{ attributes.addClass(bem_block) }}>
   <header class="{{ bem_block }}__head">
-    <h1 class="{{ bem_block }}__title">Загрузить Drupal</h1>
     <h2 class="{{ bem_block }}__subtitle">
       Всего одна команда отделяет вас от Drupal 🚀
     </h2>
 
     <div class="{{ bem_block }}__command-pane">
     <span class="{{ bem_block }}__command">
-      composer -n create-project drupal/recommended-project:^9.0@dev <strong>my_new_site</strong>
+      composer -n create-project drupal/recommended-project <strong>my_new_site</strong>
     </span>
     </div>
 

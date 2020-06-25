@@ -1,7 +1,7 @@
 .paragraph-druki-code {
-  border: 1px solid var(--color-light-gray);
+  border: 0.0625rem solid var(--color-light-gray);
   padding: var(--spacing-md);
-  margin-bottom: var(--p-margin-bottom);
+  margin: var(--p-margin--y) 0;
 }
 
 .paragraph-druki-code pre {

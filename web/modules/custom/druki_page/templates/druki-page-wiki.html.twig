@@ -8,13 +8,6 @@
 #}
 {% set bem_block = 'druki-page-wiki' %}
 <div{{ attributes.addClass(bem_block) }}>
-  <header class="{{ bem_block }}__header">
-    <h1 class="{{ bem_block }}__title">Drupal энциклопедия</h1>
-    <h2 class="{{ bem_block }}__subtitle">
-      One page to rule them all
-    </h2>
-  </header>
-
   <div class="{{ bem_block }}__row">
     <h2 class="{{ bem_block }}__row-title">
       Познакомьтесь с Drupal
@@ -304,78 +297,78 @@
         } }}
       </div>
     </div>
+  </div>
 
-    <div class="{{ bem_block }}__row">
-      <div class="{{ bem_block }}__other-items">
-        <div class="{{ bem_block }}__other-item">
-          <h4 class="{{ bem_block }}__other-item-title">Полезная информация</h4>
+  <div class="{{ bem_block }}__row">
+    <div class="{{ bem_block }}__other-items">
+      <div class="{{ bem_block }}__other-item">
+        <h4 class="{{ bem_block }}__other-item-title">Полезная информация</h4>
 
-          <ul class="{{ bem_block }}__other-item-items">
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/standards">Стандарты кодирования Drupal</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/9/releases">Список изменений Drupal 9</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/8/releases">Список изменений Drupal 8</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/security">Объявления безопасности</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/9">Drupal 9</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="{{ bem_block }}__other-item-items">
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/standards">Стандарты кодирования Drupal</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/9/releases">Список изменений Drupal 9</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/8/releases">Список изменений Drupal 8</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/security">Объявления безопасности</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/9">Drupal 9</a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="{{ bem_block }}__other-item">
-          <h4 class="{{ bem_block }}__other-item-title">CLI утилиты</h4>
+      <div class="{{ bem_block }}__other-item">
+        <h4 class="{{ bem_block }}__other-item-title">CLI утилиты</h4>
 
-          <ul class="{{ bem_block }}__other-item-items">
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/composer">Composer</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/drush">Drush</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="{{ bem_block }}__other-item-items">
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/composer">Composer</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drush">Drush</a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="{{ bem_block }}__other-item">
-          <h4 class="{{ bem_block }}__other-item-title">Дистрибутивы Drupal</h4>
+      <div class="{{ bem_block }}__other-item">
+        <h4 class="{{ bem_block }}__other-item-title">Дистрибутивы Drupal</h4>
 
-          <ul class="{{ bem_block }}__other-item-items">
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/9/distributions/standard">Стандартный</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/9/distributions/minimal">Минимальный</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/9/distributions/demo-umami">Демонстрационный: Кулинарный журнал Umami</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="{{ bem_block }}__other-item-items">
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/9/distributions/standard">Стандартный</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/9/distributions/minimal">Минимальный</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/9/distributions/demo-umami">Демонстрационный: Кулинарный журнал Umami</a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="{{ bem_block }}__other-item">
-          <h4 class="{{ bem_block }}__other-item-title">Composer пакеты</h4>
+      <div class="{{ bem_block }}__other-item">
+        <h4 class="{{ bem_block }}__other-item-title">Composer пакеты</h4>
 
-          <ul class="{{ bem_block }}__other-item-items">
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/drupal-recommended-project">drupal/recommended-project</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/drupal-legacy-project">drupal/legacy-project</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/drupal-core-recommended">drupal/core-recommended</a>
-            </li>
-            <li class="{{ bem_block }}__other-item-item">
-              <a href="/wiki/drupal-core-composer-scaffold">drupal/core-composer-scaffold</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="{{ bem_block }}__other-item-items">
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-recommended-project">drupal/recommended-project</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-legacy-project">drupal/legacy-project</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-core-recommended">drupal/core-recommended</a>
+          </li>
+          <li class="{{ bem_block }}__other-item-item">
+            <a href="/wiki/drupal-core-composer-scaffold">drupal/core-composer-scaffold</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
