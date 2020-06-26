@@ -74,3 +74,45 @@ msgstr "Разработано <a href=\"@url\">@name</a> с любовью на
 
 msgid "Read more"
 msgstr "Подробнее"
+
+msgid "A structured, free, and open source information about Drupal."
+msgstr "Структурированный, свободный и открытый источник информации о Drupal."
+
+msgid "Drupal Encyclopedia"
+msgstr "Drupal Энциклопедия"
+
+msgid "Site search"
+msgstr "Поиск по сайту"
+
+msgid "What do you want to know today?"
+msgstr "Что вы хотите узнать сегодня?"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Go to encyclopedia"
+msgstr "Перейти в энциклопедию"
+
+msgid "What Drupal is?"
+msgstr "Что такое Drupal?"
+
+msgid "Drupal is the leading OpenSource platform that knows that your web content should cover more than just websites."
+msgstr "Drupal — это лидирующая OpenSource платформа, которая знает, что ваш веб-контент должен охватывать не только веб-сайты."
+
+msgid "Drupal is built in such a way that you can deliver the right content to the right person, at the right time - on any device."
+msgstr "Drupal построен таким образом, что вы можете доставлять необходимый контент, нужному человеку, в нужное время - на любом устройстве."
+
+msgid "Actual minor release"
+msgstr "Актуальный минорный релиз"
+
+msgid "from"
+msgstr "от"
+
+msgid "Actual patch release"
+msgstr "Актуальный патч релиз"
+
+msgid "Next minor release"
+msgstr "Следующий минорный релиз"
+
+msgid "Full list of releases"
+msgstr "Полный список релизов"

@@ -10,43 +10,33 @@
  * @see template_preprocess_druki_drupal_versions()
  */
 #}
-<div{{ attributes.addClass(bem_classes) }}>
-  {% if last_stable_release|length %}
-    <div class="{{ bem_block }}__update">
-      <a href="/wiki/9/releases/{{ last_stable_release.version }}" class="{{ bem_block }}__name">
-        {{ last_stable_release.version -}}
-
-        {% if 'Security update' in last_stable_release.terms['Release type'] %}
-          <span class="{{ bem_block }}__security" title="Обновление безопасности"></span>
-        {% endif %}
-      </a>
-      <div class="{{ bem_block }}__label">Актуальный патч</div>
-      <div class="{{ bem_block }}__date">
-        От {{ last_stable_release.date|date('d.m.Y') }}
-      </div>
+{% set block = 'drupal-versions' %}
+{%
+  set classes = [
+    bem(block),
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <div class="{{ bem(block, 'version') }}">
+    <div class="{{ bem(block, 'label') }}">{{ 'Actual minor release'|t }}</div>
+    <div class="{{ bem(block, 'info') }}">
+      <a href="/wiki/9/releases/{{ last_minor_release.version }}">{{ last_minor_release.version }}</a> {{ 'from'|t }} {{ last_minor_release.date|date('d.m.Y') }}
     </div>
-  {% endif %}
-
-  {% if last_minor_release|length %}
-    <div class="{{ bem_block }}__update">
-      <a href="/wiki/9/releases/{{ last_minor_release.version }}" class="{{ bem_block }}__name">
-        {{ last_minor_release.version -}}
-      </a>
-      <div class="{{ bem_block }}__label">Актуальный релиз</div>
-      <div class="{{ bem_block }}__date">
-        От {{ last_minor_release.date|date('d.m.Y') }}
-      </div>
-    </div>
-  {% endif %}
-
-  <div class="{{ bem_block }}__update">
-    <a href="/wiki/9/releases/9.1.0" class="{{ bem_block }}__name">9.1.0</a>
-    <div class="{{ bem_block }}__label">Будущий релиз</div>
-    <div class="{{ bem_block }}__date">Вторая половина 2020</div>
   </div>
 
-  <a href="/wiki/9/releases" class="{{ bem_block }}__more">
-    <div class="{{ bem_block }}__more-title">Все релизы Drupal 9</div>
-    <div class="{{ bem_block }}__more-subtitle">Даты прошедших и будущих релизов, списки изменений.</div>
-  </a>
+  <div class="{{ bem(block, 'version') }}">
+    <div class="{{ bem(block, 'label') }}">{{ 'Actual patch release'|t }}</div>
+    <div class="{{ bem(block, 'info') }}">
+      <a href="/wiki/9/releases/{{ last_stable_release.version }}">{{ last_stable_release.version }}</a> {{ 'from'|t }} {{ last_stable_release.date|date('d.m.Y') }}
+    </div>
+  </div>
+
+  <div class="{{ bem(block, 'version') }}">
+    <div class="{{ bem(block, 'label') }}">{{ 'Next minor release'|t }}</div>
+    <div class="{{ bem(block, 'info') }}">
+      <a href="/wiki/9/releases/9.1.0">9.1.0</a>
+    </div>
+  </div>
+
+  <a href="/wiki/9/releases" class="{{ bem(block, 'all') }} button button--secondary button--small">{{ 'Full list of releases'|t }}</a>
 </div>

@@ -1,0 +1,45 @@
+{% set block = 'frontpage-hero' %}
+{%
+  set classes = [
+    bem(block),
+  ]
+%}
+{% set attributes = create_attribute() %}
+<section{{ attributes.addClass(classes) }}>
+  <div class="layout-container {{ bem(block, 'container') }}">
+    <div class="{{ bem(block, 'welcome') }}">
+      <h1 class="page-title {{ bem(block, 'title') }}">{{ 'Drupal Encyclopedia'|t }}</h1>
+      <p class="{{ bem(block, 'description') }}">
+        {% trans %}
+          A structured, free, and open source information about Drupal.
+        {% endtrans %}
+      </p>
+
+      {% set search_block = 'frontpage-search' %}
+      <form class="{{ bem(search_block) }}" action="/search">
+        <input type="text" class="form-element {{ bem(search_block, 'input') }}" placeholder="{{ 'What do you want to know today?'|t }}" name="text" autocomplete="off" aria-label="{{ 'Site search'|t }}" autofocus>
+        <button class="{{ bem(search_block, 'submit') }}" aria-label="{{ 'Search' }}"></button>
+      </form>
+
+      <div class="{{ bem(block, 'actions') }}">
+        <a href="/wiki" class="{{ bem(block, 'button') }} button button--primary">{{ 'Go to encyclopedia'|t }}</a>
+        <a href="/wiki/drupal" class="{{ bem(block, 'button') }} button button--secondary">{{ 'What Drupal is?'|t }}</a>
+      </div>
+    </div>
+    <div class="{{ bem(block, 'drupal') }}">
+      <p>
+        {% trans %}
+          Drupal is the leading OpenSource platform that knows that your web content should cover more than just websites.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          Drupal is built in such a way that you can deliver the right content to the right person, at the right time - on any device.
+        {% endtrans %}
+      </p>
+    </div>
+    <div class="{{ bem(block, 'versions') }}">
+      {{ {'#theme': 'druki_drupal_versions'} }}
+    </div>
+  </div>
+</section>

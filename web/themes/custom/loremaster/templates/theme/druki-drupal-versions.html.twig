@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present drupal versions.
+ *
+ * Available variables:
+ * - last_stable_release: An array with last stable release info.
+ * - last_minor_release: An array with last minor release info.
+ *
+ * @see template_preprocess_druki_drupal_versions()
+ */
+#}
+{% if last_stable_release|length %}
+  {{ last_stable_release.version }}
+  {% if 'Security update' in last_stable_release.terms['Release type'] %}
+    <span class="{{ bem_block }}__security" title="Обновление безопасности"></span>
+  {% endif %}
+  {{ last_stable_release.date|date('d.m.Y') }}
+{% endif %}
+
+{% if last_minor_release|length %}
+  {{ last_minor_release.version }}
+  {{ last_minor_release.date|date('d.m.Y') }}
+{% endif %}
