@@ -50,6 +50,10 @@
         {
             "type": "path",
             "url": "web/modules/custom/*"
+        },
+        {
+            "type": "path",
+            "url": "web/themes/custom/*"
         }
     ],
     "require": {
@@ -68,6 +72,7 @@
         "druki/druki_page": "8.x-dev",
         "druki/druki_paragraph": "8.x-dev",
         "druki/druki_search": "8.x-dev",
+        "druki/loremaster": "dev-new-theme-2020",
         "drupal/block_visibility_groups": "1.x-dev",
         "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^9.0",

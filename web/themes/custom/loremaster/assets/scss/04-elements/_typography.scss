@@ -27,6 +27,10 @@
   --p-margin--y: var(--spacing-md);
 }
 
+[data-theme="dark"] {
+  --text-color: var(--color-dark-gray);
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);

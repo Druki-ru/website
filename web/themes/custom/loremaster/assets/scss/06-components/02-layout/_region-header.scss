@@ -1,9 +1,14 @@
 :root {
   --region-header-height: 50px;
+  --region-header-background-color: #222330;
+}
+
+[data-theme="dark"] {
+  --region-header-background-color: #292929;
 }
 
 .region-header {
-  background-color: #222330;
+  background-color: var(--region-header-background-color);
 }
 
 .region-header :focus {

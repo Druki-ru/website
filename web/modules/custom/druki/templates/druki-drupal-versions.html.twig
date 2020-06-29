@@ -10,33 +10,15 @@
  * @see template_preprocess_druki_drupal_versions()
  */
 #}
-{% set block = 'drupal-versions' %}
-{%
-  set classes = [
-    bem(block),
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
-  <div class="{{ bem(block, 'version') }}">
-    <div class="{{ bem(block, 'label') }}">{{ 'Actual minor release'|t }}</div>
-    <div class="{{ bem(block, 'info') }}">
-      <a href="/wiki/9/releases/{{ last_minor_release.version }}">{{ last_minor_release.version }}</a> {{ 'from'|t }} {{ last_minor_release.date|date('d.m.Y') }}
-    </div>
-  </div>
+{% if last_stable_release|length %}
+  {{ last_stable_release.version }}
+  {% if 'Security update' in last_stable_release.terms['Release type'] %}
+    <span class="{{ bem_block }}__security" title="Обновление безопасности"></span>
+  {% endif %}
+  {{ last_stable_release.date|date('d.m.Y') }}
+{% endif %}
 
-  <div class="{{ bem(block, 'version') }}">
-    <div class="{{ bem(block, 'label') }}">{{ 'Actual patch release'|t }}</div>
-    <div class="{{ bem(block, 'info') }}">
-      <a href="/wiki/9/releases/{{ last_stable_release.version }}">{{ last_stable_release.version }}</a> {{ 'from'|t }} {{ last_stable_release.date|date('d.m.Y') }}
-    </div>
-  </div>
-
-  <div class="{{ bem(block, 'version') }}">
-    <div class="{{ bem(block, 'label') }}">{{ 'Next minor release'|t }}</div>
-    <div class="{{ bem(block, 'info') }}">
-      <a href="/wiki/9/releases/9.1.0">9.1.0</a>
-    </div>
-  </div>
-
-  <a href="/wiki/9/releases" class="{{ bem(block, 'all') }} button button--secondary button--small">{{ 'Full list of releases'|t }}</a>
-</div>
+{% if last_minor_release|length %}
+  {{ last_minor_release.version }}
+  {{ last_minor_release.date|date('d.m.Y') }}
+{% endif %}

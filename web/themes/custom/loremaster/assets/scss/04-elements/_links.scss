@@ -7,6 +7,10 @@
   --link-color--hover: var(--color-blue--hover);
 }
 
+[data-theme="dark"] {
+  --link-color: var(--color-blue--dark);
+}
+
 a {
   color: var(--link-color);
   text-decoration: none;

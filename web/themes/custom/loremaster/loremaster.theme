@@ -42,3 +42,10 @@ function loremaster_preprocess_paragraph__druki_note(array &$variables): void {
   $variables['note_type'] = $druki_note_type->value;
   $variables['note_type_label'] = $types[$druki_note_type->value];
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function loremaster_preprocess_block__druki_header_dark_mode_switcher(&$variables) {
+  $variables['#attached']['library'][] = 'loremaster/dark-mode';
+}

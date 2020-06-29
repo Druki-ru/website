@@ -1,0 +1,42 @@
+.frontpage-download {
+  display: grid;
+  border-radius: var(--radius-sm);
+  background-color: #f3f4f9;
+  grid-gap: var(--spacing-lg);
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  margin: var(--spacing-xl) 0;
+}
+
+.frontpage-download__content {
+  padding: var(--spacing-xl);
+}
+
+.frontpage-download__player-wrapper {
+  position: relative;
+  display: flex;
+  align-content: flex-end;
+  margin-top: var(--spacing-xl);
+  border-top: 2rem solid #121314;
+  border-left: 0.5rem solid #121314;
+  border-radius: var(--radius-sm) 0 0 0;
+  background-color: #121314;
+  box-shadow: var(--shadow-xs), var(--shadow-md);
+}
+
+.frontpage-download__player-wrapper::before {
+  position: absolute;
+  top: -1.25rem;
+  left: 10px;
+  display: block;
+  width: 7px;
+  height: 7px;
+  content: "";
+  border-radius: 50%;
+  background-color: #fc2230;
+  box-shadow: 0 0 0 2px #fc2230, 1.5rem 0 0 2px #fd9332, 3rem 0 0 2px #7cc74c;
+}
+
+.frontpage-download__player-wrapper .control-bar {
+  display: none;
+}

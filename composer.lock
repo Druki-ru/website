@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ae92c6f190f16692bd1013636bf6a50",
+    "content-hash": "5a6f58d0996dcf9ce18b9d0a79b6edfd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1442,6 +1442,23 @@
             },
             "type": "drupal-custom-module",
             "description": "Helpers and improvements for search.",
+            "keywords": [
+                "Drupal"
+            ]
+        },
+        {
+            "name": "druki/loremaster",
+            "version": "dev-new-theme-2020",
+            "dist": {
+                "type": "path",
+                "url": "web/themes/custom/loremaster",
+                "reference": "6ab5b304bfe25415c6855798fe42b65dbf447580"
+            },
+            "require": {
+                "npm-asset/asciinema-player": "^2.6.0"
+            },
+            "type": "drupal-custom-theme",
+            "description": "The theme for encyclopedia.",
             "keywords": [
                 "Drupal"
             ]
@@ -4368,6 +4385,18 @@
                 "php"
             ],
             "time": "2020-06-03T07:24:19+00:00"
+        },
+        {
+            "name": "npm-asset/asciinema-player",
+            "version": "2.6.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/asciinema-player/-/asciinema-player-2.6.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "Apache-2.0"
+            ]
         },
         {
             "name": "npm-asset/instant.page",
@@ -10630,6 +10659,7 @@
         "druki/druki_page": 20,
         "druki/druki_paragraph": 20,
         "druki/druki_search": 20,
+        "druki/loremaster": 20,
         "drupal/block_visibility_groups": 20,
         "drupal/glisseo": 20,
         "drupal/webp": 20

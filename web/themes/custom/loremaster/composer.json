@@ -1,0 +1,11 @@
+{
+    "name": "druki/loremaster",
+    "type": "drupal-custom-theme",
+    "description": "The theme for encyclopedia.",
+    "keywords": [
+        "Drupal"
+    ],
+    "require": {
+        "npm-asset/asciinema-player": "^2.6.0"
+    }
+}

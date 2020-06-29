@@ -2,6 +2,10 @@
 
 }
 
+.druki-page-download__head {
+  margin-bottom: var(--spacing-xl);
+}
+
 .druki-page-download__cards {
   display: grid;
   grid-gap: var(--grid-gap);

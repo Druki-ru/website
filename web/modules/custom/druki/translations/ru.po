@@ -116,3 +116,18 @@ msgstr "Следующий минорный релиз"
 
 msgid "Full list of releases"
 msgstr "Полный список релизов"
+
+msgid "The best way to try Drupal is to download it."
+msgstr "Лучший способ попробовать Drupal — загрузить его."
+
+msgid "Choose Drupal"
+msgstr "Выбирайте Drupal"
+
+msgid "If you are just getting started with web development, Drupal will provide you with invaluable experience in various areas and technologies. You will always have something to learn and develop your professional skills."
+msgstr "Если вы только начинаете своё знакомство с веб-разработкой, Drupal предоставит вам бесценный опыт в различных направлениях и технологиях. Вам всегда будет чему научиться и развить свои профессиональные навыки."
+
+msgid "For an experienced developer - Drupal will open new horizons, tools, approaches and implementations. Drupal means strict code standards, tens of thousands of tests, incredible flexibility and scalability for any needs."
+msgstr "Для опытного разработчика — Drupal откроет новые горизонты, инструменты, подходы и реализации. Drupal — это строгие стандарты кода, десятки тысяч тестов, невероятная гибкость и масштабируемость под любые нужды."
+
+msgid "We all have different needs - Drupal allows us to create a unique space in the world of template solutions."
+msgstr "У всех нас разные потребности — Drupal позволяет создать уникальное пространство в мире шаблонных решений."
