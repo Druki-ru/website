@@ -11,15 +11,6 @@
     "watch:theme": "THEME_PATH=web/themes/custom/loremaster; gulp watch:css --gulpfile=$THEME_PATH/gulpfile.js;"
   },
   "devDependencies": {
-    "autoprefixer": "^9.4.3",
-    "cssnano": "^4.1.10",
-    "gulp": "^4.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sass-glob": "^1.1.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "normalize.css": "^8.0.1",
-    "postcss-custom-media": "^7.0.8",
-    "postcss-inline-svg": "^4.1.0"
+    "loremaster": "file:./web/themes/custom/loremaster"
   }
 }

@@ -1,14 +1,14 @@
 :root {
-  --region-content-header-background-color: #f3f4f9;
+  --region-content-header-background-color: var(--color-persian-blue--light-1);
 }
 
 [data-theme="dark"] {
-  --region-content-header-background-color: #202020;
+  --region-content-header-background-color: var(--color-black--light-12);
 }
 
 .region-content-header {
   background-color: var(--region-content-header-background-color);
-  --focus-box-shadow: 0 0 0 2px #f3f4f9, 0 0 0 5px var(--color-green);
+  --focus-box-shadow: 0 0 0 2px #f3f4f9, 0 0 0 5px var(--color-teal);
 }
 
 .region-content-header__container {

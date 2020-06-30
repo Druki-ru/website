@@ -3,11 +3,11 @@
 // =============================================================================
 
 :root {
-  --page-background: hsl(0, 0%, 100%);
+  --page-background: var(--color-white);
 }
 
 [data-theme="dark"] {
-  --page-background: #141414;
+  --page-background: var(--color-black--light-7);
 }
 
 body {

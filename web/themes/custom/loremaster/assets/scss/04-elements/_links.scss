@@ -3,12 +3,13 @@
 // =============================================================================
 
 :root {
-  --link-color: var(--color-blue);
-  --link-color--hover: var(--color-blue--hover);
+  --link-color: var(--color-persian-blue);
+  --link-color--hover: var(--color-blue--dark);
 }
 
 [data-theme="dark"] {
-  --link-color: var(--color-blue--dark);
+  --link-color: var(--color-blue--light-1);
+  --link-color--hover: var(--color-blue--light-24);
 }
 
 a {

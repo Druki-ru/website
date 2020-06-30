@@ -1,7 +1,15 @@
+:root {
+  --frontpage-download-background-color: var(--color-persian-blue--light-1);
+}
+
+[data-theme="dark"] {
+  --frontpage-download-background-color: var(--color-black--light-12);
+}
+
 .frontpage-download {
   display: grid;
   border-radius: var(--radius-sm);
-  background-color: #f3f4f9;
+  background-color: var(--frontpage-download-background-color);
   grid-gap: var(--spacing-lg);
   grid-template-columns: 1fr 1fr;
   overflow: hidden;

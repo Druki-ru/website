@@ -1,3 +1,11 @@
+:root {
+  --frontpage-search-submit-icon: var(--icon-magnify);
+}
+
+[data-theme="dark"] {
+  --frontpage-search-submit-icon: var(--icon-magnify--white);
+}
+
 .frontpage-hero {
   margin: var(--spacing-xl) 0;
 }
@@ -42,7 +50,7 @@
   border: unset;
   border-radius: var(--radius-xs);
   background-color: transparent;
-  background-image: var(--icon-magnify);
+  background-image: var(--frontpage-search-submit-icon);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1.5rem;

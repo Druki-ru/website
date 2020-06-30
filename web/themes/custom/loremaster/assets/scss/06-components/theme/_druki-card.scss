@@ -1,15 +1,13 @@
 :root {
-  --druki-card-background-color: white;
+  --druki-card-background-color: var(--color-persian-blue--light-1);
 }
 
 [data-theme="dark"] {
-  --druki-card-background-color: #202020;
+  --druki-card-background-color: var(--color-black--light-12);
 }
 
 .druki-card {
-  border: 1px solid var(--color-light-gray);
   border-radius: var(--radius-xxs);
-  box-shadow: var(--shadow-sm);
   background-color: var(--druki-card-background-color);
 }
 

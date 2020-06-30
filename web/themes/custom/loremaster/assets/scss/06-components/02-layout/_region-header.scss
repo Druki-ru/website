@@ -1,10 +1,10 @@
 :root {
   --region-header-height: 50px;
-  --region-header-background-color: #222330;
+  --region-header-background-color: var(--color-jet);
 }
 
 [data-theme="dark"] {
-  --region-header-background-color: #292929;
+  --region-header-background-color: var(--color-black--light-16);
 }
 
 .region-header {
@@ -12,7 +12,7 @@
 }
 
 .region-header :focus {
-  --focus-box-shadow: 0 0 0 2px #222330, 0 0 0 5px var(--color-green);
+  --focus-box-shadow: 0 0 0 2px #222330, 0 0 0 5px var(--color-teal);
 }
 
 .region-header__container {

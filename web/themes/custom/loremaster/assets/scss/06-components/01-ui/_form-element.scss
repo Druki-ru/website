@@ -16,6 +16,11 @@
   --form-control-box-shadow: unset;
 }
 
+[data-theme="dark"] {
+  --form-control-background: var(--color-black--light-4);
+  --form-control-border--color: var(--color-black--light-16);
+}
+
 .form-element {
   font-size: var(--form-control-font-size);
   line-height: var(--form-control-line-height);
@@ -36,9 +41,17 @@
   --form-control-border--color: #222330;
 }
 
+[data-theme="dark"] .form-element:active {
+  --form-control-border--color: var(--color-black--light-24);
+}
+
 .form-element:hover {
   --form-control-border--color: #222330;
   --form-control-box-shadow: inset 0 0 0 1px var(--form-control-border--color);
+}
+
+[data-theme="dark"] .form-element:hover {
+  --form-control-border--color: var(--color-black--light-24);
 }
 
 .form-element:focus {

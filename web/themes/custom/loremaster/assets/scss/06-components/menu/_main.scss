@@ -1,3 +1,11 @@
+:root {
+  --main-navigation-link-decoration-color: var(--color-persian-blue);
+}
+
+[data-theme="dark"] {
+  --main-navigation-link-decoration-color: var(--color-blue--light-1);
+}
+
 .main-navigation {
   display: flex;
   --link-color: var(--color-white);
@@ -32,5 +40,5 @@
 
 .main-navigation__link:hover::before,
 .main-navigation__link.is-active::before {
-  background-color: var(--color-blue);
+  background-color: var(--main-navigation-link-decoration-color);
 }

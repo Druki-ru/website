@@ -1,7 +1,7 @@
 {
-  "name": "glisseo",
+  "name": "loremaster",
   "version": "1.0.0",
-  "description": "Glisseo is a base theme for Drupal 8 with starterkit theme.",
+  "description": "The theme for Drupal Encyclopedia.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Niklan/Glisseo.git"
@@ -18,20 +18,20 @@
     "url": "https://github.com/Niklan/Glisseo/issues"
   },
   "homepage": "https://github.com/Niklan/Glisseo#readme",
-  "dependencies": {
-
-  },
   "scripts": {
     "build:theme": "gulp build:css",
     "watch:theme": "gulp watch:css"
   },
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "^9.4.3",
     "gulp": "^4.0.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sass-glob": "^1.1.0",
     "gulp-sourcemaps": "^2.6.4",
-    "postcss-custom-media": "^7.0.8"
+    "postcss-inline": "^1.2.0",
+    "postcss-custom-media": "^7.0.8",
+    "postcss-inline-svg": "^4.1.0",
+    "cssnano": "^4.1.10"
   }
 }
