@@ -21,15 +21,6 @@
   }
 }
 
-.breadcrumb__item-link {
-  --link-color: var(--text-color);
-  font-weight: bold;
-}
-
-.breadcrumb__item-link--current {
-  --link-color: var(--text-color);
-}
-
 .breadcrumb__item-link--text {
   color: var(--text-color);
 }

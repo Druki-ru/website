@@ -3,22 +3,17 @@
  */
 :root {
   --form-control-background: var(--color-white);
-  --form-control-background--disabled: #EBEBED;
+  --form-control-background--disabled: var(--color-disabled);
   --form-control-color: var(--text-color);
   --form-control-font-size: var(--font-size-base);
   --form-control-line-height: var(--line-height);
   --form-control-padding--y: var(--spacing-sm);
   --form-control-padding--x: var(--spacing-lg);
   --form-control-border-radius: var(--radius-xxs);
-  --form-control-border--color: var(--color-gray-blue);
+  --form-control-border--color: var(--color-border);
   --form-control-border--width: 1px;
   --form-control-border--style: solid;
   --form-control-box-shadow: unset;
-}
-
-[data-theme="dark"] {
-  --form-control-background: var(--color-black--light-4);
-  --form-control-border--color: var(--color-black--light-16);
 }
 
 .form-element {
@@ -38,20 +33,12 @@
 }
 
 .form-element:active {
-  --form-control-border--color: #222330;
-}
-
-[data-theme="dark"] .form-element:active {
-  --form-control-border--color: var(--color-black--light-24);
+  --form-control-border--color: var(--color-raisin-black);
 }
 
 .form-element:hover {
-  --form-control-border--color: #222330;
+  --form-control-border--color: var(--color-raisin-black);
   --form-control-box-shadow: inset 0 0 0 1px var(--form-control-border--color);
-}
-
-[data-theme="dark"] .form-element:hover {
-  --form-control-border--color: var(--color-black--light-24);
 }
 
 .form-element:focus {
@@ -60,7 +47,7 @@
 
 .form-element:disabled {
   --form-control-background: var(--form-control-background--disabled);
-  --form-control-border--color: #D4D4D8;
+  --form-control-border--color: var(--color-light-gray);
   --form-control-box-shadow: unset;
   cursor: not-allowed;
 }

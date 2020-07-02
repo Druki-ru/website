@@ -1,7 +1,5 @@
 :root {
-  // Base colors.
-  --color-white: #ffffff;
-  --color-white--dark-4: #f4f4f4;
+  // Color palette.
   --color-black: #121212;
   --color-black--light-4: #1b1b1b;
   --color-black--light-7: #212121;
@@ -9,25 +7,32 @@
   --color-black--light-14: #323232;
   --color-black--light-16: #373737;
   --color-black--light-24: #4a4a4a;
-  --color-dark-gray: #e5e5e5;
-  --color-light-gray: #D8D9E0;
-  --color-gray-blue: #8E929C;
-  --color-old-silver: #82828C;
-  --color-persian-blue: #003DCC;
-  --color-persian-blue--light-1: #F6F8FD;
-  --color-persian-blue--light-2: #E9F0FF;
-  --color-blue--light-1: #0044E2; //remove
-  --color-blue--light-24: #7b93c8; // remove
-  --color-blue--dark: #0033a2; // remove
-  --color-red: #D72222;
-  --color-red--light: #ecb8ac;
-  --color-teal: #00b67d;
-  --color-yellow: #FFD23F;
-
+  --color-white: #ffffff;
+  --color-platinum: #EBEBED;
+  --color-light-gray: #D4D4D8;
+  --color-gainsboro: #D8D9E0;
+  --color-silver-metallic: #ADAEB3;
+  --color-manatee: #8E929C;
+  --color-dark-silver: #545560;
+  --color-roman-silver: #82828C;
+  --color-raisin-black: #222330;
+  --color-persian-blue: #003CC5;
+  --color-persian-blue--dark-1: #0036B1;
+  --color-persian-blue--light-1: #0042DD;
+  --color-persian-blue--light-2: #E9EFFF;
+  --color-persian-blue--light-3: #F6F8FD;
+  --color-maximum-red: #D72222;
+  --color-maximum-red--dark-1: #C91F1F;
+  --color-maximum-red--light-1: #DE2E2E;
+  --color-maximum-red--light-2: #FCEFEF;
+  --color-tart-orange: #FE4A49;
+  --color-orange-yellow-crayola: #FED766;
+  --color-capri: #00BBF9;
+  --color-jade: #26A769;
+  --color-sunglow: #ffd23f;
   --color-jet: #353535;
-  --color-jet--tint-12: #F1F1F1;
 
   // Utility colors.
-  --color-border: var(--color-gray-blue);
-  --color-disabled: #727780;
+  --color-border: var(--color-manatee);
+  --color-disabled: var(--color-platinum);
 }

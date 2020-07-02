@@ -1,0 +1,63 @@
+:root {
+  --counter-list-link-color: var(--color-raisin-black);
+  --counter-list-link-color--hover: var(--link-color);
+  --counter-list-link-color--active: var(--link-color);
+  --counter-list-link-counter-color: var(--link-color);
+}
+
+.counter-list {
+  margin: unset;
+  padding: unset;
+  counter-reset: item;
+}
+
+.counter-list__item {
+  display: block;
+  vertical-align: top;
+}
+
+.counter-list__link {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  --link-color: var(--counter-list-link-color);
+}
+
+.counter-list__link:hover {
+  text-decoration: none;
+  color: var(--counter-list-link-color--hover);
+}
+
+.counter-list__link--active {
+  color: var(--counter-list-link-color--active);
+  font-weight: bold;
+}
+
+.counter-list__submenu {
+  position: relative;
+}
+
+.counter-list__submenu::before {
+  position: absolute;
+  left: -1rem;
+  display: block;
+  width: 2px;
+  height: 100%;
+  content: '';
+  background-color: var(--text-color);
+}
+
+.counter-list ul {
+  margin: 0 0 0 var(--spacing-sm);
+  padding-left: unset;
+}
+
+.counter-list li a::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+  vertical-align: top;
+  color: var(--counter-list-link-counter-color);
+  font-weight: normal;
+}
+
