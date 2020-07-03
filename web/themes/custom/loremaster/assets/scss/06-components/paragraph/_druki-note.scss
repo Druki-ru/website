@@ -5,7 +5,6 @@
 }
 
 .druki-note {
-  font-size: var(--font-size-sm);
   position: relative;
   padding-left: calc(var(--druki-note-icon-size) + var(--spacing-md));
 }
@@ -33,6 +32,7 @@
 .druki-note__label {
   font-size: var(--font-size-sm);
   font-weight: bold;
+  line-height: 1;
   user-select: none;
   text-transform: uppercase;
 }

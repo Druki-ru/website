@@ -9,14 +9,14 @@
   color: var(--color-white);
   border: unset;
   border-radius: var(--radius-xxs);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-black--light-24);
   font-size: var(--font-size-xs);
   height: 2rem;
   width: 100%;
 }
 
 .druki-header-search__input:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  opacity: 0.9;
 }
 
 .druki-header-search__submit {

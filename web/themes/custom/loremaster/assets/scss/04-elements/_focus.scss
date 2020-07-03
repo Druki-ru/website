@@ -10,7 +10,7 @@
 }
 
 [data-theme="dark"] {
-  --focus-box-shadow: 0 0 0 2px var(--color-black), 0 0 0 5px var(--color-jade);
+  --focus-box-shadow: 0 0 0 2px var(--color-black--light-7), 0 0 0 5px var(--color-jade);
 }
 
 :focus {

@@ -25,10 +25,10 @@
   display: flex;
   align-content: flex-end;
   margin-top: var(--spacing-xl);
-  border-top: 2rem solid #121314;
-  border-left: 0.5rem solid #121314;
+  border-top: 2rem solid var(--color-jet);
+  border-left: 0.5rem solid var(--color-jet);
   border-radius: var(--radius-sm) 0 0 0;
-  background-color: #121314;
+  background-color: var(--color-jet);
   box-shadow: var(--shadow-xs), var(--shadow-md);
 }
 
@@ -41,8 +41,8 @@
   height: 7px;
   content: "";
   border-radius: 50%;
-  background-color: #fc2230;
-  box-shadow: 0 0 0 2px #fc2230, 1.5rem 0 0 2px #fd9332, 3rem 0 0 2px #7cc74c;
+  background-color: var(--color-maximum-red);
+  box-shadow: 0 0 0 2px var(--color-tart-orange), 1.5rem 0 0 2px var(--color-sunglow), 3rem 0 0 2px var(--color-jade);
 }
 
 .frontpage-download__player-wrapper .control-bar {

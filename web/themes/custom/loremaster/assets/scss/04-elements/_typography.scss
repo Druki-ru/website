@@ -19,16 +19,17 @@
   --font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   --font-monospace: "JetBrains Mono", "Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  --text-color: #222330;
+  --text-color: var(--color-raisin-black);
 
-  --mark-background: hsl(60, 100%, 50%);
-  --code-background: #f2f3f7;
+  --mark-background: var(--color-sunglow);
+  --code-background: var(--color-persian-blue--light-3);
 
   --p-margin--y: var(--spacing-md);
 }
 
 [data-theme="dark"] {
-  --text-color: var(--color-dark-gray);
+  --text-color: var(--color-white--dark-1);
+  --code-background: var(--color-black--light-14);
 }
 
 body {

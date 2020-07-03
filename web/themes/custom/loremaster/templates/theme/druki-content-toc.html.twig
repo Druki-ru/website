@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present content TOC.
+ *
+ * Available variables:
+ * - links: The array with link for TOC.
+ *
+ * @see template_preprocess_druki_content_toc().
+ */
+#}
+{% set block = 'toc' %}
+{%
+  set classes = [
+    bem(block),
+  ]
+%}
+{% import _self as toc %}
+<div{{ attributes.addClass(classes) }}>
+  {{ toc.links(links, 0, block) }}
+</div>
+
+{% macro links(links, toc_level, block_base) %}
+  {% import _self as toc %}
+  {% set attributes = create_attribute() %}
+  {% set counter_list_block = 'counter-list' %}
+  {%
+    set classes = [
+      bem(counter_list_block),
+      bem(block_base, toc_level == 0 ? 'menu' : 'submenu'),
+    ]
+  %}
+  <ul{{ attributes.addClass(classes) }}>
+    {% for item in links %}
+      {% set item_attributes = create_attribute() %}
+      {%
+        set item_classes = [
+          bem(counter_list_block, 'item'),
+          bem(block_base, 'item'),
+        ]
+      %}
+      <li{{ item_attributes.addClass(item_classes) }}>
+        {% set link_attributes = create_attribute() %}
+        {%
+          set link_classes = [
+            bem(counter_list_block, 'link'),
+            bem(block_base, 'link'),
+          ]
+        %}
+        <a href="#{{ item.anchor }}" {{ link_attributes.addClass(link_classes) }}>{{ item.text }}</a>
+        {% if item.children %}
+          {{ toc.links(item.children, item.level + 1, block_base) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}

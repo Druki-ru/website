@@ -12,7 +12,7 @@
 }
 
 .region-header :focus {
-  --focus-box-shadow: 0 0 0 2px #222330, 0 0 0 5px var(--color-teal);
+  --focus-box-shadow: 0 0 0 2px var(--region-header-background-color), 0 0 0 5px var(--color-teal);
 }
 
 .region-header__container {

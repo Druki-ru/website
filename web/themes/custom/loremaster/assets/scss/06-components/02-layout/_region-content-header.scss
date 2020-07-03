@@ -8,7 +8,7 @@
 
 .region-content-header {
   background-color: var(--region-content-header-background-color);
-  --focus-box-shadow: 0 0 0 2px #f3f4f9, 0 0 0 5px var(--color-teal);
+  --focus-box-shadow: 0 0 0 2px var(--region-content-header-background-color), 0 0 0 5px var(--color-teal);
 }
 
 .region-content-header__container {

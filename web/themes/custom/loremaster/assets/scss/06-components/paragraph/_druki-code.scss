@@ -1,7 +1,16 @@
+:root {
+  --druki-code-border-color: var(--color-light-gray);
+}
+
+[data-theme="dark"] {
+  --druki-code-border-color: var(--color-black--light-24);
+}
+
 .paragraph-druki-code {
-  border: 0.0625rem solid var(--color-light-gray);
+  border: 0.0625rem solid var(--druki-code-border-color);
   padding: var(--spacing-md);
   margin: var(--p-margin--y) 0;
+  background-color: var(--color-black--light-4);
 }
 
 .paragraph-druki-code pre {

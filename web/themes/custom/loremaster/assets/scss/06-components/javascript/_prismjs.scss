@@ -13,6 +13,8 @@
   --prismjs-this: var(--prismjs-variable);
   --prismjs-constant: hsl(289, 79%, 27%);
   --prismjs-property: var(--prismjs-constant);
+  --prismjs-entity-color: #657b83;
+  --prismjs-entity-background-color: #eee8d5;
 }
 
 [data-theme="dark"] {
@@ -109,8 +111,8 @@ pre[class*="language-"] {
 }
 
 .token.entity {
-  color: #657b83;
-  background: #eee8d5;
+  color: var(--prismjs-entity-color);
+  background: var(--prismjs-entity-background-color);
 }
 
 .token.atrule,

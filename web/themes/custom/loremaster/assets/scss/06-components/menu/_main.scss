@@ -3,7 +3,7 @@
 }
 
 [data-theme="dark"] {
-  --main-navigation-link-decoration-color: var(--color-blue--light-1);
+  --main-navigation-link-decoration-color: var(--color-jade);
 }
 
 .main-navigation {
@@ -35,7 +35,7 @@
 }
 
 .main-navigation__link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-black--light-24);
 }
 
 .main-navigation__link:hover::before,

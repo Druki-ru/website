@@ -1,5 +1,11 @@
-.druki-page-download {
+:root {
+  --druki-page-download-command-background-color: transparent;
+  --druki-page-download-command-border-color: var(--color-border);
+}
 
+[data-theme="dark"] {
+  --druki-page-download-command-background-color: var(--color-black--light-16);
+  --druki-page-download-command-border-color: var(--color-black--light-24);
 }
 
 .druki-page-download__head {
@@ -14,9 +20,10 @@
 
 .druki-page-download__command-pane {
   padding: var(--spacing-md);
-  border: 1px solid var(--color-light-gray);
+  border: 1px solid var(--druki-page-download-command-border-color);
   margin: var(--spacing-lg) auto;
   display: table;
+  background-color: var(--druki-page-download-command-background-color);
 }
 
 .druki-page-download__subtitle {
