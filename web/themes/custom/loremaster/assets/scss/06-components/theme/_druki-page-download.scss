@@ -15,7 +15,15 @@
 .druki-page-download__cards {
   display: grid;
   grid-gap: var(--grid-gap);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .druki-page-download__command-pane {
