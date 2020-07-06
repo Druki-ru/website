@@ -1,0 +1,23 @@
+// =============================================================================
+// Links.
+// =============================================================================
+
+:root {
+  --link-color: var(--color-persian-blue);
+  --link-color--hover: var(--color-blue--dark);
+}
+
+[data-theme="dark"] {
+  --link-color: var(--color-light-cornflower-blue);
+  --link-color--hover: var(--color-light-cornflower-blue--dark-1);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  --link-color: var(--link-color--hover);
+  text-decoration: underline;
+}

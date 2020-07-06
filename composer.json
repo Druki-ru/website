@@ -21,26 +21,6 @@
         {
             "type": "package",
             "package": {
-                "name": "drupal/glisseo",
-                "description": "The workaround for Drupal 9 update using locked alpha releases.",
-                "homepage": "https://www.drupal.org/project/glisseo",
-                "version": "1.0",
-                "license": "GPL-2.0+",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/project/glisseo.git",
-                    "reference": "61a1c98aebd92997943130d901d6c5af2a4eb160"
-                },
-                "type": "drupal-theme",
-                "minimum-stability": "dev",
-                "require": {
-                    "drupal/core": "^8.8 || ^9"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
                 "name": "drupal/markdown",
                 "description": "The workaround for Drupal 9 update.",
                 "homepage": "https://www.drupal.org/project/markdown",
@@ -70,6 +50,10 @@
         {
             "type": "path",
             "url": "web/modules/custom/*"
+        },
+        {
+            "type": "path",
+            "url": "web/themes/custom/*"
         }
     ],
     "require": {
@@ -88,12 +72,13 @@
         "druki/druki_page": "8.x-dev",
         "druki/druki_paragraph": "8.x-dev",
         "druki/druki_search": "8.x-dev",
+        "druki/loremaster": "dev-new-theme-2020",
         "drupal/block_visibility_groups": "1.x-dev",
         "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
         "drupal/extra_field": "^1.0",
-        "drupal/glisseo": "1.0@dev",
+        "drupal/glisseo": "1.x-dev",
         "drupal/google_tag": "^1.1",
         "drupal/imagemagick": "^3.0",
         "drupal/markdown": "2.0",
@@ -108,7 +93,6 @@
         "drupal/webp": "1.x-dev",
         "drush/drush": "^10.0",
         "league/commonmark": "^1.0.0",
-        "npm-asset/lazysizes": "^5.1",
         "npm-asset/photoswipe": "^4.1",
         "oomphinc/composer-installers-extender": "^1.1"
     },
@@ -136,9 +120,6 @@
             },
             "drupal/webp": {
                 "Drupal 9 support": "./patches/webp-3144282-8.patch"
-            },
-            "drupal/glisseo": {
-                "Drupal 9 support": "./patches/glisseo-d9.patch"
             },
             "drupal/markdown": {
                 "Drupal 9 support": "./patches/markdown-d9.patch"

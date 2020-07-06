@@ -11,6 +11,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configure Druki settings for this site.
+ *
+ * @todo remove unsued settings or whole form.
  */
 class FrontpageSettingsForm extends ConfigFormBase {
 

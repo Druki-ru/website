@@ -1,16 +1,45 @@
-{% set bem_block = 'frontpage-hero' %}
-<div class="{{ bem_block }}">
-  {{promo_image}}
-  <div class="{{ bem_block }}__content">
-    <h1 class="{{ bem_block }}__title">Drupal энциклопедия</h1>
-    <div class="{{ bem_block }}__description">Структурированный, свободный и открытый источник информации о Drupal.</div>
-    <form action="/search" class="{{ bem_block }}__form">
-      <input type="text" class="{{ bem_block }}__search" placeholder="Что вы хотите узнать сегодня?" name="text" autocomplete="off" aria-label="Поиск по сайту">
-      <button class="{{ bem_block }}__submit" aria-label="Искать"></button>
-    </form>
-    <div class="{{ bem_block }}__actions">
-      <a href="/wiki" class="button {{ bem_block }}__action {{ bem_block }}__action--wiki">Перейти в энциклопедию</a>
-      <a href="/download" class="button {{ bem_block }}__action {{ bem_block }}__action--download">{{ 'Download Drupal'|t }}</a>
+{% set block = 'frontpage-hero' %}
+{%
+  set classes = [
+    bem(block),
+  ]
+%}
+{% set attributes = create_attribute() %}
+<section{{ attributes.addClass(classes) }}>
+  <div class="layout-container {{ bem(block, 'container') }}">
+    <div class="{{ bem(block, 'welcome') }}">
+      <h1 class="page-title {{ bem(block, 'title') }}">{{ 'Drupal Encyclopedia'|t }}</h1>
+      <p class="{{ bem(block, 'description') }}">
+        {% trans %}
+          A structured, free, and open source information about Drupal.
+        {% endtrans %}
+      </p>
+
+      {% set search_block = 'frontpage-search' %}
+      <form class="{{ bem(search_block) }}" action="/search">
+        <input type="text" class="form-element {{ bem(search_block, 'input') }}" placeholder="{{ 'What do you want to know today?'|t }}" name="text" autocomplete="off" aria-label="{{ 'Site search'|t }}" autofocus>
+        <button class="{{ bem(search_block, 'submit') }}" aria-label="{{ 'Search' }}"></button>
+      </form>
+
+      <div class="{{ bem(block, 'actions') }}">
+        <a href="/wiki" class="{{ bem(block, 'button') }} button button--primary">{{ 'Go to encyclopedia'|t }}</a>
+        <a href="/wiki/drupal" class="{{ bem(block, 'button') }} button button--secondary">{{ 'What Drupal is?'|t }}</a>
+      </div>
+    </div>
+    <div class="{{ bem(block, 'drupal') }}">
+      <p>
+        {% trans %}
+          Drupal is the leading OpenSource platform that knows that your web content should cover more than just websites.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          Drupal is built in such a way that you can deliver the right content to the right person, at the right time - on any device.
+        {% endtrans %}
+      </p>
+    </div>
+    <div class="{{ bem(block, 'versions') }}">
+      {{ {'#theme': 'druki_drupal_versions'} }}
     </div>
   </div>
-</div>
+</section>

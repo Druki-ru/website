@@ -1,0 +1,9 @@
+.main-layout--one-sidebar {
+  display: grid;
+  grid-gap: var(--spacing-xl);
+  grid-template-columns: 1fr;
+
+  @media (--lg) {
+    grid-template-columns: 1fr 280px;
+  }
+}

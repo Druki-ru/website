@@ -1,0 +1,11 @@
+{% extends 'region.html.twig' %}
+
+{% block region %}
+  <div{{ attributes.addClass(classes).addClass('js-mobile-sidebar') }}>
+    <div class="{{ bem(block, 'overlay') }} js-mobile-sidebar-overlay"></div>
+    <button class="{{ bem(block, 'close-button') }} js-mobile-sidebar-close"></button>
+    <div class="{{ bem(block, 'pane') }}">
+      {{ block('content') }}
+    </div>
+  </div>
+{% endblock %}

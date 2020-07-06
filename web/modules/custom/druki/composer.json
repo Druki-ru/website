@@ -9,6 +9,7 @@
         "ext-simplexml": "*",
         "ext-xmlreader": "*",
         "symfony/finder": "~4.0",
-        "npm-asset/instant.page": "^3.0"
+        "npm-asset/instant.page": "^3.0",
+        "npm-asset/lazysizes": "^5.1"
     }
 }

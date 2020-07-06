@@ -90,15 +90,10 @@ function druki_theme($existing, $type, $theme, $path) {
       'variables' => [
         'title' => NULL,
         'subhead' => NULL,
-        'supporting_text' => NULL,
-        'buttons' => [],
-        'style' => NULL,
+        'description' => NULL,
+        'actions' => [],
         'primary_url' => NULL,
       ],
-      'file' => 'druki.theme.inc',
-    ],
-    'druki_header_branding_navigation' => [
-      'variables' => [],
       'file' => 'druki.theme.inc',
     ],
     'druki_header_search' => [
@@ -132,4 +127,50 @@ function druki_preprocess_html(array &$variables): void {
   $variables['#attached']['library'][] = 'druki/instant-page';
   // Make instant.page library prefetch link in viewport instead of touch.
   $variables['attributes']['data-instant-intensity'] = 'viewport';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for 'responsive-image.html.twig'.
+ *
+ * Integrate lazysizes.js library for lazy loading.
+ */
+function druki_preprocess_responsive_image(array &$variables) {
+  if (isset($variables['attributes']['lazy']) && $variables['attributes']['lazy'] == 'off') {
+    unset($variables['attributes']['lazy']);
+    return;
+  }
+
+  /** @var \Drupal\Core\Template\Attribute $source */
+  foreach ($variables['sources'] as $source) {
+    $srcset = $source->offsetGet('srcset');
+    $source->removeAttribute('srcset');
+    $source->setAttribute('data-srcset', $srcset);
+  }
+
+  $variables['img_element']['#attributes']['class'][] = 'lazyload';
+
+  $variables['#attached']['library'][] = 'druki/lazysizes';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for 'image.html.twig'.
+ *
+ * Integrate lazysizes.js library for lazy loading.
+ */
+function druki_preprocess_image(array &$variables) {
+  if (isset($variables['attributes']['lazy']) && $variables['attributes']['lazy'] == 'off') {
+    unset($variables['attributes']['lazy']);
+    return;
+  }
+
+  // @see https://github.com/aFarkas/lazysizes#modern-transparent-srcset-pattern
+  if (isset($variables['attributes']['srcset'])) {
+    $variables['attributes']['data-srcset'] = $variables['attributes']['srcset'];
+  }
+  else {
+    $variables['attributes']['data-srcset'] = $variables['attributes']['src'];
+  }
+  $variables['attributes']['srcset'] = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+  $variables['attributes']['class'][] = 'lazyload';
+  $variables['#attached']['library'][] = 'druki/lazysizes';
 }

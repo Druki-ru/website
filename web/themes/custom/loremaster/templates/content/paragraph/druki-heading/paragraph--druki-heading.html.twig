@@ -1,3 +1,24 @@
-<{{ heading_level }}{{ attributes.addClass(bem_classes).setAttribute('id', anchor) }}>
-  {{- title -}}<a href="#{{ anchor }}" class="{{ bem_block }}__anchor anchor">¶</a>
+
+{#
+/**
+ * @file
+ * Theme implementation to present paragraph heading.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - heading_level: The HTML heading level type (h2, h3, etc…).
+ * - title: The heading value.
+ * - anchor: The anchor name for TOC.
+ *
+ * @see loremaster_preprocess_paragraph__heading()
+ */
+#}
+{% set block = 'druki-heading' %}
+{%
+  set classes = [
+    bem(block),
+  ]
+%}
+<{{ heading_level }}{{ attributes.addClass(classes).setAttribute('id', anchor) }}>
+  {{- title -}}<a href="#{{ anchor }}" class="anchor {{ bem(block, 'anchor') }}">¶</a>
 </{{ heading_level }}>

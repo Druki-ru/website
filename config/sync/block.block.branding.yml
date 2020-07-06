@@ -1,0 +1,28 @@
+uuid: 59200eb8-00af-4114-8d95-f8551a348809
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - system
+  theme:
+    - loremaster
+id: branding
+theme: loremaster
+region: header
+weight: -7
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Брендинг сайта'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''

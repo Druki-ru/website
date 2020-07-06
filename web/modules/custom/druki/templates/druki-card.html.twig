@@ -7,38 +7,40 @@
  * - attributes: HTML attributes for containing element.
  * - title: The title
  * - subhead: The subtitle.
- * - supporting_text: Additional text or description.
- * - buttons: An array with links.
- * - style: The card style.
- * - primary_url: The Url for primary action.
+ * - description: Additional text or description.
+ * - actions: An array with links.
  *
  * @see template_preprocess_druki_card()
  */
 #}
-{% set bem_classes = [bem_block] %}
-{% for bem_modifier in bem_modifiers %}
-  {% set bem_classes = bem_classes|merge([bem_block ~ '--' ~ bem_modifier]) %}
-{% endfor %}
-<div{{ attributes.addClass(bem_classes) }}>
-  {% if primary_url %}
-    <a href="{{ primary_url }}" class="{{ bem_block }}__primary-action {{ bem_block }}__primary-action--link">
-  {% else %}
-    <div class="{{ bem_block }}__primary-action">
-  {% endif %}
-    <div class="{{ bem_block }}__primary">
-      <div class="{{ bem_block }}__title">{{- title -}}</div>
-      {% if subhead %}
-        <div class="{{ bem_block }}__subtitle">{{- subhead -}}</div>
-      {% endif %}
-    </div>
-    {% if supporting_text %}
-      <div class="{{ bem_block }}__secondary">
-        {{- supporting_text -}}
+{% set block = 'druki-card' %}
+{%
+  set modifiers = [
+    subhead ? 'with-subhead'
+  ]
+%}
+{% set classes = bem(block, null, modifiers) %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="{{ bem(block, 'content') }}">
+    {% if title %}
+      <div class="{{ bem(block, 'title') }}">
+        {{ title }}
       </div>
     {% endif %}
-  {% if primary_url %}
-    </a>
-  {% else %}
-    </div>
-  {% endif %}
+    {% if subhead %}
+      <div class="{{ bem(block, 'subhead') }}">
+        {{ subhead }}
+      </div>
+    {% endif %}
+    {% if description %}
+      <div class="{{ bem(block, 'description') }}">
+        {{ description }}
+      </div>
+    {% endif %}
+    {% if actions|length %}
+      <div class="{{ bem(block, 'actions') }}">
+        {{ actions }}
+      </div>
+    {% endif %}
+  </div>
 </div>

@@ -1,0 +1,15 @@
+// =============================================================================
+// Page.
+// =============================================================================
+
+:root {
+  --page-background: var(--color-white);
+}
+
+[data-theme="dark"] {
+  --page-background: var(--color-black--light-7);
+}
+
+body {
+  background: var(--page-background);
+}

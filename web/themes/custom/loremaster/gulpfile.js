@@ -6,14 +6,15 @@ const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const postcssCustomMedia = require('postcss-custom-media');
 const postcssInlineSvg = require('postcss-inline-svg');
+const cssnano = require('cssnano');
 
-gulp.task('sass', function() {
+gulp.task('build:css', function() {
   return gulp.src([
-    'assets/scss/generic/generic.scss',
-    'assets/scss/elements/elements.scss',
-    'assets/scss/objects/objects.scss',
-    'assets/scss/components/components.scss',
-    'assets/scss/utilities/utilities.scss',
+    'assets/scss/03-generic/generic.scss',
+    'assets/scss/04-elements/elements.scss',
+    'assets/scss/05-objects/objects.scss',
+    'assets/scss/06-components/components.scss',
+    'assets/scss/07-utilities/utilities.scss',
   ])
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
@@ -24,13 +25,14 @@ gulp.task('sass', function() {
       }),
       postcssCustomMedia(),
       autoprefixer(),
+      cssnano({
+        preset: 'default'
+      }),
     ]))
     .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('assets/css/'));
 });
 
-gulp.task('sass:watch', function() {
-  gulp.watch('assets/scss/**', gulp.parallel('sass'));
+gulp.task('watch:css', function() {
+  gulp.watch('assets/scss/**', gulp.parallel('build:css'));
 });
-
-gulp.task('default', gulp.series('sass', 'sass:watch'));

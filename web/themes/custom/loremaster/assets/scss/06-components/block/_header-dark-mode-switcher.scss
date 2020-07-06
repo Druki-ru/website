@@ -1,0 +1,17 @@
+.header-dark-mode-switcher {
+  width: 2rem;
+  height: 2rem;
+  background-image: var(--icon-theme-light-dark--white);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-radius: var(--radius-xxs);
+  background-color: transparent;
+  border: none;
+  align-self: center;
+  display: flex;
+}
+
+.header-dark-mode-switcher:hover {
+  background-color: var(--color-black--light-24);
+}

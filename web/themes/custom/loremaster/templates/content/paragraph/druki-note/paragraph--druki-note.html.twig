@@ -1,4 +1,30 @@
-<div{{ attributes.addClass(bem_classes) }}>
-  <div class="{{ bem_block }}__label">{{ note_type_label }}</div>
-  {{ content }}
+{#
+/**
+ * @file
+ * Default theme implementation to present note paragraph.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - note_type: The machine name of note type.
+ * _ note_type_label: The human-readable not type name.
+ *
+ * @see loremaster_preprocess_paragraph__druki_note()
+ */
+#}
+{% set block = 'druki-note' %}
+{%
+  set modifiers = [
+    note_type,
+  ]
+%}
+{%
+  set classes = [
+    bem(block, null, modifiers),
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <div class="{{ bem(block, 'label') }}">{{ note_type_label }}</div>
+  <div class="{{ bem(block, 'content') }}">
+    {{ content }}
+  </div>
 </div>

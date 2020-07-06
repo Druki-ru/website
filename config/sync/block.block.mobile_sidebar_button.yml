@@ -1,0 +1,25 @@
+uuid: f94f1a85-03a2-483b-815f-5333f72a613e
+langcode: ru
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - druki
+  theme:
+    - loremaster
+id: mobile_sidebar_button
+theme: loremaster
+region: mobile_toolbar
+weight: -9
+provider: null
+plugin: druki_mobile_sidebar_button
+settings:
+  id: druki_mobile_sidebar_button
+  label: 'Mobile sidebar button'
+  provider: druki
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''

@@ -1,0 +1,30 @@
+uuid: d1c8024b-eb76-414b-bde0-7b7bd4045c73
+langcode: ru
+status: true
+dependencies:
+  config:
+    - system.menu.footer-community
+  module:
+    - block_visibility_groups
+    - system
+  theme:
+    - loremaster
+id: footer_community_menu
+theme: loremaster
+region: footer_menu_second
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-community'
+settings:
+  id: 'system_menu_block:footer-community'
+  label: Сообщество
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''

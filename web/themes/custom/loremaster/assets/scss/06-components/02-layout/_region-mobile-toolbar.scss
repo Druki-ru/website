@@ -1,0 +1,18 @@
+.region-mobile-toolbar {
+  background-color: var(--region-header-background-color);
+  height: var(--region-header-height);
+  display: flex;
+  align-items: center;
+
+  @media (--lg) {
+    display: none;
+  }
+}
+
+.region-mobile-toolbar .block--mobile-dark-mode-switcher {
+  margin-left: auto;
+}
+
+.region-mobile-toolbar .block--mobile-sidebar-button {
+  margin-right: var(--spacing-sm);
+}

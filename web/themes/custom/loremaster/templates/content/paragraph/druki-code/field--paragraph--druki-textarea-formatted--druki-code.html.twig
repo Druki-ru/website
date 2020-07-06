@@ -1,3 +1,14 @@
+{#
+/**
+ * @file
+ * Theme implementation to present content of code paragraph.
+ *
+ * Remove all wrappers from field content.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ */
+#}
 {% for item in items %}
   {% block item %}
     {{- item.content -}}

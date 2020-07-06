@@ -1,7 +1,31 @@
-{{ page.header }}
+{# Main lauout classes. #}
+{% set main_layout_attributes = create_attribute() %}
+{% set main_layout_block = 'main-layout' %}
+{%
+  set main_layout_modifiers = [
+  page.sidebar_right ? 'sidebar-right',
+  not page.sidebar_right ? 'no-sidebars',
+  page.sidebar_right ? 'one-sidebar',
+]
+%}
+{%
+  set main_layout_classes = [
+  bem(main_layout_block, null, main_layout_modifiers),
+]
+%}
+{% set footer %}
+  {% include '@loremaster/page/include.footer.html.twig' %}
+{% endset %}
 
-<main{{ main_layout_attributes }}>
+<header class="header">
+  {{ page.header }}
+  {{ page.mobile_toolbar }}
+</header>
+{{ page.content_header }}
+
+<main{{ main_layout_attributes.addClass(main_layout_classes) }}>
   {% include '@loremaster/page/include.frontpage.html.twig' %}
 </main>
 
-{% include '@loremaster/page/include.footer.html.twig' %}
+{{ footer }}
+{{ page.mobile_sidebar }}

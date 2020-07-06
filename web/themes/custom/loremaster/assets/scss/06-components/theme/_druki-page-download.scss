@@ -1,0 +1,37 @@
+:root {
+  --druki-page-download-command-background-color: var(--color-persian-blue--light-3);
+  --druki-page-download-command-border-color: var(--color-border);
+}
+
+[data-theme="dark"] {
+  --druki-page-download-command-background-color: var(--color-black--light-16);
+  --druki-page-download-command-border-color: var(--color-black--light-24);
+}
+
+.druki-page-download__head {
+  margin-bottom: var(--spacing-xl);
+}
+
+.druki-page-download__cards {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.druki-page-download__command-pane {
+  padding: var(--spacing-md);
+  border: 1px solid var(--druki-page-download-command-border-color);
+  margin: var(--spacing-lg) auto;
+  display: table;
+  background-color: var(--druki-page-download-command-background-color);
+}
+
+.druki-page-download__subtitle {
+  text-align: center;
+}
+
+.druki-page-download__command-note {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-old-silver);
+}

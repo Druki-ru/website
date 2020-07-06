@@ -1,0 +1,22 @@
+// =============================================================================
+// Blockquotes.
+// =============================================================================
+
+:root {
+  --blockquote-font-size: var(--font-size-sm);
+  --blockquote-border-size: 4px;
+  --blockquote-paddings: var(--spacing-xxs) var(--spacing-lg);
+  --blockquote-background: var(--color-persian-blue--light-3);
+  --blockquote-border-color: var(--color-border);
+}
+
+[data-theme="dark"] {
+  --blockquote-background: var(--color-black--light-12);
+}
+
+blockquote {
+  font-size: var(--blockquote-font-size);
+  padding: var(--blockquote-paddings);
+  border-left: var(--blockquote-border-size) solid var(--blockquote-border-color);
+  background: var(--blockquote-background);
+}

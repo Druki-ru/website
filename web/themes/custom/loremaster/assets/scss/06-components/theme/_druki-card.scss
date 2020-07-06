@@ -1,0 +1,46 @@
+:root {
+  --druki-card-background-color: var(--color-persian-blue--light-3);
+}
+
+[data-theme="dark"] {
+  --druki-card-background-color: var(--color-black--light-12);
+}
+
+.druki-card {
+  border-radius: var(--radius-xxs);
+  background-color: var(--druki-card-background-color);
+}
+
+.druki-card__content {
+  padding: var(--spacing-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.druki-card__title {
+  font-weight: bold;
+  font-size: var(--font-size-h6);
+  margin-bottom: var(--spacing-md);
+}
+
+.druki-card--with-subhead .druki-card__title {
+  margin-bottom: unset;
+}
+
+.druki-card__subhead {
+  font-size: var(--font-size-sm);
+  color: var(--color-old-silver);
+  margin-bottom: var(--spacing-md);
+}
+
+.druki-card__description {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.druki-card__actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}

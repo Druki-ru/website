@@ -1,0 +1,10 @@
+.druki-heading {
+  scroll-margin-top: var(--spacing-xl);
+  --link-color: var(--color-old-silver);
+}
+
+.druki-heading__anchor {
+  font-size: 80%;
+  display: inline-block;
+  margin-left: var(--spacing-xs);
+}

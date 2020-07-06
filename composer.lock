@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbdc53abe8e69fd2cd5ffcc8b8f2f8f6",
+    "content-hash": "5a6f58d0996dcf9ce18b9d0a79b6edfd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1447,6 +1447,23 @@
             ]
         },
         {
+            "name": "druki/loremaster",
+            "version": "dev-new-theme-2020",
+            "dist": {
+                "type": "path",
+                "url": "web/themes/custom/loremaster",
+                "reference": "6ab5b304bfe25415c6855798fe42b65dbf447580"
+            },
+            "require": {
+                "npm-asset/asciinema-player": "^2.6.0"
+            },
+            "type": "drupal-custom-theme",
+            "description": "The theme for encyclopedia.",
+            "keywords": [
+                "Drupal"
+            ]
+        },
+        {
             "name": "drupal/block_visibility_groups",
             "version": "dev-1.x",
             "source": {
@@ -2271,26 +2288,47 @@
         },
         {
             "name": "drupal/glisseo",
-            "version": "1.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/glisseo.git",
-                "reference": "61a1c98aebd92997943130d901d6c5af2a4eb160"
+                "reference": "d55107c59c6b095e901a67af8a430074c0a7c8c1"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^8.8 || ^9",
+                "drupal/twig_tweak": "^3.0.0@dev"
             },
             "type": "drupal-theme",
             "extra": {
-                "patches_applied": {
-                    "Drupal 9 support": "./patches/glisseo-d9.patch"
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha15+45-dev",
+                    "datestamp": "1592305935",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
                 }
             },
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
-            "description": "The workaround for Drupal 9 update using locked alpha releases..",
-            "homepage": "https://www.drupal.org/project/glisseo"
+            "authors": [
+                {
+                    "name": "Nikita Malyshev (niklan)",
+                    "homepage": "https://niklan.net"
+                }
+            ],
+            "description": "Base theme with simple starter theme.",
+            "homepage": "https://www.drupal.org/project/glisseo",
+            "support": {
+                "source": "https://git.drupalcode.org/project/glisseo",
+                "issues": "https://www.drupal.org/project/issues/glisseo"
+            },
+            "time": "2020-06-16T11:31:23+00:00"
         },
         {
             "name": "drupal/google_tag",
@@ -4347,6 +4385,18 @@
                 "php"
             ],
             "time": "2020-06-03T07:24:19+00:00"
+        },
+        {
+            "name": "npm-asset/asciinema-player",
+            "version": "2.6.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/asciinema-player/-/asciinema-player-2.6.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "Apache-2.0"
+            ]
         },
         {
             "name": "npm-asset/instant.page",
@@ -10609,6 +10659,7 @@
         "druki/druki_page": 20,
         "druki/druki_paragraph": 20,
         "druki/druki_search": 20,
+        "druki/loremaster": 20,
         "drupal/block_visibility_groups": 20,
         "drupal/glisseo": 20,
         "drupal/webp": 20

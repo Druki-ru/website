@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present category navigation.
+ *
+ * This templates is used on entity pages with druki_category field. It shows
+ * links to other entities of the same type with the same druki_category.area
+ * value.
+ *
+ * Available variables:
+ * - links: The array contains links to categories.
+ *   - attributes: The attributes for specific link.
+ *   - is_active: The boolean indicatior, if theme hook is being rendered on
+ *     the same page as this link.
+ *   - url: The URL for category page.
+ *   - text: The category name.
+ *
+ * @see template_preprocess_druki_category_navigation()
+ */
+#}
+{% set block = 'category-navigation' %}
+{%
+  set classes = [
+    bem(block),
+  ]
+%}
+{% set counter_list_block = 'counter-list' %}
+<div{{ attributes.addClass(classes) }}>
+  {% if links %}
+    <ul class="{{ bem(counter_list_block)}} {{ bem(block, 'menu') }}">
+      {% for link in links %}
+        <li class="{{ bem(counter_list_block, 'item') }} {{ bem('block', 'menu-item') }}">
+          {%
+            set link_classes = [
+              bem(counter_list_block, 'link', [link.is_active ? 'active']),
+              bem(block, 'menu-item-link', [link.is_active ? 'active']),
+            ]
+          %}
+          <a href="{{ link.url }}"{{ link.attributes.addClass(link_classes) }}>
+            {{ link.text }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

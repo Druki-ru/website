@@ -1,16 +1,35 @@
-{% set bem_block = 'footer' %}
-<footer class="{{ bem_block }}">
-  <div class="{{ bem_block }}__container">
-    <div class="{{ bem_block }}__copyright">
-      {{ 'now'|date('Y') }} &COPY; <strong>Druki</strong>.
-      Drupal — зарегистрированная торговая марка <a href="https://dri.es/">Dries Buytaert</a>.<br/>
-      Исходный код сайта представлен по лицензии <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.ru.html">GNU GPL v2</a>.<br/>
-      Содержимое сайта предоставлено по лицензии <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution CC-BY-SA 4.0</a>.
-    </div>
+{#
+/**
+ * Represents footer content.
+ */
+#}
+{% set block = 'footer' %}
+<footer class="{{ bem(block) }}">
+  <div class="layout-container {{ bem(block, 'container') }}">
+    {{ page.footer_menu_first }}
+    {{ page.footer_menu_second }}
+    <div class="{{ bem(block, 'legal') }}">
+      <div class="{{ bem(block, 'some-love') }}">
+        {% set url = 'https://niklan.net' %}
+        {% set name = 'Niklan' %}
+        {% trans %}Developed by <a href="{{ url }}">{{ name }}</a> with love on Drupal.{% endtrans %}
+      </div>
 
-    <div class="{{ bem_block }}__some-love">
-      Разработано <a href="https://niklan.net/" class="{{ bem_block }}__developer">Niklan</a> с <span class="{{ bem_block }}__heart"></span> на <span class="{{ bem_block }}__drupal">Drupal</span>.
-      Исходный код доступен на <a href="https://gitlab.com/druki/website" rel="noopener nofollow" class="{{ bem_block }}__gitlab">GitLab</a>.
+      <div class="{{ bem(block, 'copyright') }}">
+        {% set url = 'https://dri.es/' %}
+        {% set name = 'Dries Buytaert' %}
+        {% trans %}Drupal is a registered trademark of <a href="{{ url }}">{{ name }}</a>.{% endtrans %}
+        <br/>
+        {% set source_url = 'https://gitlab.com/druki/website' %}
+        {% set license_url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.ru.html' %}
+        {% set license_name = 'GNU GPL v2 license' %}
+        {% trans %}<a href="{{ source_url }}">The source code</a> of the site is provided under the <a href="{{ license_url }}">{{ license_name }}</a>.{% endtrans %}
+        <br/>
+        {% set source_url = 'https://gitlab.com/druki/content' %}
+        {% set license_url = 'https://creativecommons.org/licenses/by-sa/4.0/legalcode' %}
+        {% set license_name = 'Creative Commons Attribution CC-BY-SA 4.0 license' %}
+        {% trans %}<a href="{{ source_url }}">The content</a> of the site is provided under the <a href="{{ license_url }}">{{ license_name }}</a>.{% endtrans %}
+      </div>
     </div>
   </div>
 </footer>

@@ -18,17 +18,16 @@
  * @see template_preprocess_druki_category_navigation()
  */
 #}
-{% set bem_block = 'druki-category-navigation' %}
-<div{{ attributes.addClass(bem_block) }}>
+<div{{ attributes.addClass('druki-content-category-navigation') }}>
   {% if links %}
-    <ul class="{{ bem_block }}__menu">
+    <ul class="druki-content-category-navigation__menu">
       {% for link in links %}
-        <li class="{{ bem_block }}__menu-item">
-          {% set class = [
-            bem_block ~ '__menu-item-link',
-            link.is_active ? bem_block ~ '__menu-item-link--active',
+        <li class="druki-content-category-navigation__menu-item">
+          {% set classes = [
+            'druki-content-category-navigation__menu-item-link',
+            link.is_active ? 'druki-content-category-navigation__menu-item-link--active',
           ] %}
-          <a href="{{ link.url }}"{{ link.attributes.addClass(class) }}>
+          <a href="{{ link.url }}"{{ link.attributes.addClass(classes) }}>
             {{ link.text }}
           </a>
         </li>
