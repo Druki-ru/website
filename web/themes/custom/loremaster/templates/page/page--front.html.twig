@@ -17,7 +17,10 @@
   {% include '@loremaster/page/include.footer.html.twig' %}
 {% endset %}
 
-{{ page.header }}
+<header class="header">
+  {{ page.header }}
+  {{ page.mobile_toolbar }}
+</header>
 {{ page.content_header }}
 
 <main{{ main_layout_attributes.addClass(main_layout_classes) }}>
@@ -25,3 +28,4 @@
 </main>
 
 {{ footer }}
+{{ page.mobile_sidebar }}

@@ -11,10 +11,10 @@ throttle:
   dependencies:
     - core/drupal
 
-header-branding-navigation:
+mobile-sidebar:
   version: VERSION
   js:
-    assets/js/druki-header-branding-navigation.js: {}
+    assets/js/mobile-sidebar.js: {}
   dependencies:
     - core/drupal
 
@@ -25,3 +25,23 @@ instant-page:
     assets/js/instant-page.js: {}
   dependencies:
     - core/drupal
+
+dark-mode:
+  js:
+    # The earlier library will execute, the less "screen flash" will be.
+    # Drupal global variable init occurs at -17 weight, so we place it after it.
+    assets/js/dark-mode.js: { weight: -16 }
+  dependencies:
+    - core/drupal
+
+lazysizes:
+  remote: https://github.com/aFarkas/lazysizes
+  version: 5.1
+  license:
+    name: MIT
+    gpl-compatible: true
+  js:
+    # The library must be loaded as fast as possible to load images earlier.
+    # Also this library affect main-thread work, so the fast it finish, the
+    # better overall.
+    /libraries/lazysizes/lazysizes.min.js: { minfied: true, weight: -1000 }

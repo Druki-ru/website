@@ -1,21 +1,21 @@
-uuid: 645728fe-aca3-422b-a025-acd73a543edf
+uuid: f94f1a85-03a2-483b-815f-5333f72a613e
 langcode: ru
-status: false
+status: true
 dependencies:
   module:
     - block_visibility_groups
     - druki
   theme:
     - loremaster
-id: header_branding_navigation
+id: mobile_sidebar_button
 theme: loremaster
-region: header
-weight: -3
+region: mobile_toolbar
+weight: -9
 provider: null
-plugin: druki_header_branding_navigation
+plugin: druki_mobile_sidebar_button
 settings:
-  id: druki_header_branding_navigation
-  label: 'Header branding navigation'
+  id: druki_mobile_sidebar_button
+  label: 'Mobile sidebar button'
   provider: druki
   label_display: '0'
 visibility:
@@ -23,4 +23,3 @@ visibility:
     id: condition_group
     negate: false
     block_visibility_group: ''
-    context_mapping: {  }

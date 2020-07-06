@@ -7,7 +7,8 @@
   --color-black--light-14: #323232;
   --color-black--light-16: #373737;
   --color-black--light-24: #4a4a4a;
-  --color-black--opacity-01: rgba(0, 0, 0, 0.1);
+  --color-black--opacity-10: rgba(0, 0, 0, 0.1);
+  --color-black--opacity-50: rgba(0, 0, 0, 0.5);
   --color-white: #FFFFFF;
   --color-white--dark-1: #FCFCFC;
   --color-platinum: #EBEBED;
@@ -39,4 +40,8 @@
   // Utility colors.
   --color-border: var(--color-manatee);
   --color-disabled: var(--color-platinum);
+}
+
+[data-theme="dark"] {
+  --color-border: var(--color-black--light-24);
 }

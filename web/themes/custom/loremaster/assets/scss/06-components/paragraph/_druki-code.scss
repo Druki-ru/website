@@ -1,18 +1,25 @@
 :root {
   --druki-code-border-color: var(--color-light-gray);
+  --druki-code-background-color: var(--color-persian-blue--light-3);
 }
 
 [data-theme="dark"] {
   --druki-code-border-color: var(--color-black--light-24);
+  --druki-code-background-color: var(--color-black--light-4);
 }
 
 .paragraph-druki-code {
   border: 0.0625rem solid var(--druki-code-border-color);
-  padding: var(--spacing-md);
   margin: var(--p-margin--y) 0;
-  background-color: var(--color-black--light-4);
+  background-color: var(--druki-code-background-color);
 }
 
 .paragraph-druki-code pre {
   margin: unset;
+}
+
+.paragraph-druki-code pre code {
+  padding: var(--spacing-md);
+  overflow-x: auto;
+  display: block;
 }

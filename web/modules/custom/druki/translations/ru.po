@@ -131,3 +131,6 @@ msgstr "Для опытного разработчика — Drupal открое
 
 msgid "We all have different needs - Drupal allows us to create a unique space in the world of template solutions."
 msgstr "У всех нас разные потребности — Drupal позволяет создать уникальное пространство в мире шаблонных решений."
+
+msgid "encyclopedia"
+msgstr "энциклопедия"

@@ -1,3 +1,5 @@
 .block--druki-content-toc-mobile {
-  display: none;
+  @media (--lg) {
+    display: none;
+  }
 }

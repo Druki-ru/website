@@ -9,6 +9,11 @@
 
 .region-header {
   background-color: var(--region-header-background-color);
+  display: none;
+
+  @media (--lg) {
+    display: block;
+  }
 }
 
 .region-header :focus {

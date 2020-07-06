@@ -1,5 +1,5 @@
-.druki-search-result {
-
+:root {
+  --druki-search-result-url-color: var(--color-jade);
 }
 
 .druki-search-result__link {
@@ -17,7 +17,7 @@
 
 .druki-search-result__url {
   font-size: var(--font-size-sm);
-  color: green;
+  color: var(--druki-search-result-url-color);
   margin-top: var(--spacing-xxs);
 }
 

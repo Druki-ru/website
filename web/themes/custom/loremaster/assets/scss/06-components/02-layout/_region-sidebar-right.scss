@@ -1,5 +1,7 @@
 .region-sidebar-right {
-  margin: var(--spacing-xl) 0;
+  @media (--lg) {
+    margin: var(--spacing-xl) 0;
+  }
 }
 
 .region-sidebar-right .block:not(:last-child) {

@@ -3,6 +3,8 @@
 namespace Drupal\druki\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Provides a header dark mode switcher block.
@@ -13,15 +15,63 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("Druki")
  * )
  */
-class HeaderDarkModeSwitcher extends BlockBase {
+final class HeaderDarkModeSwitcher extends BlockBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function defaultConfiguration() {
+    return parent::defaultConfiguration() + [
+      'class' => 'header-dark-mode-switcher',
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockForm($form, FormStateInterface $form_state) {
+    $form = parent::blockForm($form, $form_state);
+
+    $form['class'] = [
+      '#type' => 'textfield',
+      '#title' => new TranslatableMarkup('CSS class'),
+      '#required' => TRUE,
+      '#default_value' => $this->configuration['class'],
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    parent::blockSubmit($form, $form_state);
+
+    $this->configuration['class'] = $form_state->getValue('class');
+  }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
+    $class = $this->configuration['class'];
+
     $build['content'] = [
-      '#type' => 'inline_template',
-      '#template' => '<button class="header-dark-mode-switcher js-dark-mode-switcher"></button>',
+      '#type' => 'html_tag',
+      '#tag' => 'button',
+      '#attributes' => [
+        'class' => [
+          'js-dark-mode-switcher',
+          $class,
+        ],
+        'aria-label' => new TranslatableMarkup('Switch between dark and light styles'),
+      ],
+      '#attached' => [
+        'library' => [
+          'druki/dark-mode',
+        ],
+      ],
     ];
 
     return $build;

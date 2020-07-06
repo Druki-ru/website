@@ -15,7 +15,8 @@ libraries:
 
 regions:
   header: Header
-  navigation: Navigation
+  mobile_toolbar: Mobile Toolbar
+  mobile_sidebar: Mobile Sidebar
   content_header: Content header
   content: Content
   sidebar_right: 'Sidebar Right'

@@ -11,13 +11,21 @@
   border-radius: var(--radius-sm);
   background-color: var(--frontpage-download-background-color);
   grid-gap: var(--spacing-lg);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   overflow: hidden;
   margin: var(--spacing-xl) 0;
+
+  @media (--md) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .frontpage-download__content {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
+
+  @media (--md) {
+    padding: var(--spacing-xl);
+  }
 }
 
 .frontpage-download__player-wrapper {

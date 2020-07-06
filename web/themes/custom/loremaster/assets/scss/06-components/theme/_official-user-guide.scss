@@ -3,8 +3,26 @@
   border-radius: var(--radius-md);
   display: grid;
   grid-gap: var(--spacing-xl);
-  grid-template-columns: 500px 1fr;
-  padding: var(--spacing-xl);
+  grid-template-columns: 1fr;
+  padding: var(--spacing-lg);
+
+  @media (--sm) {
+    grid-template-columns: 160px 1fr;
+
+  }
+
+  @media (--md) {
+    grid-template-columns: 288px 1fr;
+  }
+
+  @media (--lg) {
+    padding: var(--spacing-xl);
+    grid-template-columns: 374px 1fr;
+  }
+
+  @media (--xl) {
+    grid-template-columns: 500px 1fr;
+  }
 }
 
 .official-user-guide__link {

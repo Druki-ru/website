@@ -71,4 +71,5 @@ code {
 pre code {
   // Fixes unwanted padding for first and last line of code.
   padding: unset;
+  overflow: hidden;
 }

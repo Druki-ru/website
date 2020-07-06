@@ -1,5 +1,9 @@
 :root {
-  --layout-container-side-gap: var(--spacing-lg);
+  --layout-container-side-gap: var(--spacing-sm);
+
+  @media (--md) {
+    --layout-container-side-gap: var(--spacing-lg);
+  }
 }
 
 .layout-container {

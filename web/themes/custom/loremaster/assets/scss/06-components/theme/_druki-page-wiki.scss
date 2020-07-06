@@ -9,7 +9,15 @@
 .druki-page-wiki__cards {
   display: grid;
   grid-gap: var(--grid-gap);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .druki-page-wiki__faq {
@@ -26,5 +34,17 @@
 .druki-page-wiki__other-items {
   display: grid;
   grid-gap: var(--grid-gap);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (--xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

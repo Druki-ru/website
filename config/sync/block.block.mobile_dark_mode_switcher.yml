@@ -1,4 +1,4 @@
-uuid: f358c02e-d600-484c-8b3e-28ed1e6327e1
+uuid: 19adfd01-a8ef-477c-816e-e5f120a9dccb
 langcode: ru
 status: true
 dependencies:
@@ -7,21 +7,20 @@ dependencies:
     - druki
   theme:
     - loremaster
-id: header_dark_mode_switcher
+id: mobile_dark_mode_switcher
 theme: loremaster
-region: header
-weight: -4
+region: mobile_toolbar
+weight: -7
 provider: null
 plugin: druki_header_dark_mode_switcher
 settings:
   id: druki_header_dark_mode_switcher
-  label: 'Header dark mode switcher'
+  label: 'Mobile dark mode switcher'
   provider: druki
   label_display: '0'
-  class: header-dark-mode-switcher
+  class: mobile-dark-mode-switcher
 visibility:
   condition_group:
     id: condition_group
     negate: false
     block_visibility_group: ''
-    context_mapping: {  }

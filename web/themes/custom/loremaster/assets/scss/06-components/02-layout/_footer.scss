@@ -7,7 +7,26 @@
 .footer__container {
   display: grid;
   grid-gap: var(--spacing-xl);
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: 1fr;
+
+  @media (--sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (--lg) {
+    grid-template-columns: auto auto 1fr;
+  }
+}
+
+.footer__legal {
+  @media (--sm) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  @media (--lg) {
+    grid-column: auto;
+  }
 }
 
 .footer__some-love {

@@ -24,21 +24,6 @@ function template_preprocess_druki_drupal_versions(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for 'druki-header-branding-navigation.html.twig'.
- */
-function template_preprocess_druki_header_branding_navigation(array &$variables): void {
-  $variables['site_logo'] = [
-    '#theme' => 'image',
-    '#uri' => theme_get_setting('logo.url'),
-    '#alt' => new TranslatableMarkup('Home'),
-    '#attributes' => [
-      'class' => ['druki-header-branding-navigation__logo'],
-      'lazy' => 'off',
-    ],
-  ];
-}
-
-/**
  * Implements hook_preprocess_HOOK() for 'druki-mobile-header.html.twig'.
  */
 function template_preprocess_druki_mobile_header(array &$variables): void {
