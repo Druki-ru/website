@@ -5,7 +5,6 @@ dependencies:
   config:
     - system.menu.footer-community
   module:
-    - block_visibility_groups
     - system
   theme:
     - loremaster
@@ -23,8 +22,4 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-visibility:
-  condition_group:
-    id: condition_group
-    negate: false
-    block_visibility_group: ''
+visibility: {  }

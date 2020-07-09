@@ -2,7 +2,6 @@
 
 namespace Drupal\druki_content\Plugin\Block;
 
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
@@ -11,10 +10,17 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  * @Block(
  *   id = "druki_content_toc_moble",
  *   admin_label = @Translation("Druki content TOC (mobile)"),
- *   category = @Translation("Druki content")
+ *   category = @Translation("Druki content"),
+ *   context_definitions = {
+ *     "druki_content" = @ContextDefinition(
+ *       "entity:druki_content",
+ *       label = @Translation("Druki Content"),
+ *       required = TRUE,
+ *     )
+ *   }
  * )
  */
-class MobileDrukiContentTocBlock extends DrukiContentTocBlock implements ContainerFactoryPluginInterface {
+final class MobileDrukiContentTocBlock extends DrukiContentTocBlock {
 
   /**
    * {@inheritdoc}

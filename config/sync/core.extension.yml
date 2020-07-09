@@ -1,6 +1,5 @@
 module:
   block: 0
-  block_visibility_groups: 0
   breakpoint: 0
   config: 0
   config_filter: 0

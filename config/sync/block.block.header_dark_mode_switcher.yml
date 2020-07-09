@@ -3,7 +3,6 @@ langcode: ru
 status: true
 dependencies:
   module:
-    - block_visibility_groups
     - druki
   theme:
     - loremaster
@@ -19,9 +18,4 @@ settings:
   provider: druki
   label_display: '0'
   class: header-dark-mode-switcher
-visibility:
-  condition_group:
-    id: condition_group
-    negate: false
-    block_visibility_group: ''
-    context_mapping: {  }
+visibility: {  }

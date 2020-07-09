@@ -3,7 +3,6 @@ langcode: ru
 status: true
 dependencies:
   module:
-    - block_visibility_groups
     - system
   theme:
     - loremaster
@@ -21,8 +20,4 @@ settings:
   use_site_logo: true
   use_site_name: true
   use_site_slogan: false
-visibility:
-  condition_group:
-    id: condition_group
-    negate: false
-    block_visibility_group: ''
+visibility: {  }

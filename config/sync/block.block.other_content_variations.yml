@@ -3,7 +3,6 @@ langcode: ru
 status: true
 dependencies:
   module:
-    - block_visibility_groups
     - druki_content
   theme:
     - loremaster
@@ -20,9 +19,4 @@ settings:
   label_display: '0'
   context_mapping:
     druki_content: '@druki_content.druki_content_route_context:druki_content'
-visibility:
-  condition_group:
-    id: condition_group
-    negate: false
-    block_visibility_group: ''
-    context_mapping: {  }
+visibility: {  }

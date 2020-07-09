@@ -4,9 +4,7 @@ namespace Drupal\druki_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a druki content toc block.
@@ -14,37 +12,27 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "druki_content_toc",
  *   admin_label = @Translation("Druki content TOC"),
- *   category = @Translation("Druki content")
+ *   category = @Translation("Druki content"),
+ *   context_definitions = {
+ *     "druki_content" = @ContextDefinition(
+ *       "entity:druki_content",
+ *       label = @Translation("Druki Content"),
+ *       required = TRUE,
+ *     )
+ *   }
  * )
  */
-class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginInterface {
+class DrukiContentTocBlock extends BlockBase {
 
   /**
-   * The route match.
-   *
-   * @var \Symfony\Component\HttpFoundation\Request
+   * {@inheritdoc}
    */
-  protected $routeMatch;
-
-  /**
-   * Creates an instance of the plugin.
-   *
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-   *   The container to pull out services used in the plugin.
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin ID for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   *
-   * @return static
-   *   Returns an instance of this plugin.
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): object {
-    $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->routeMatch = $container->get('current_route_match');
-    return $instance;
+  public function defaultConfiguration(): array {
+    return [
+        'context_mapping' => [
+          'druki_content' => '@druki_content.druki_content_route_context:druki_content',
+        ],
+      ] + parent::defaultConfiguration();
   }
 
   /**
@@ -53,7 +41,7 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
   public function build(): array {
     $build = [];
 
-    if ($druki_content = $this->getDrukiContentFromPage()) {
+    if ($druki_content = $this->getDrukiContentFromContext()) {
       $headings = $druki_content->get('content')->filter(function ($item) {
         return $item->entity->bundle() == 'druki_heading';
       });
@@ -70,19 +58,13 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
   }
 
   /**
-   * Gets druki content from page.
+   * Gets content from context.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
-   *   The entity if fount, NULL otherwise.
+   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   *   The content entity.
    */
-  protected function getDrukiContentFromPage(): ?DrukiContentInterface {
-    foreach ($this->routeMatch->getParameters() as $parameter) {
-      if ($parameter instanceof DrukiContentInterface) {
-        return $parameter;
-      }
-    }
-
-    return NULL;
+  protected function getDrukiContentFromContext(): DrukiContentInterface {
+    return $this->getContextValue('druki_content');
   }
 
   /**
@@ -91,7 +73,7 @@ class DrukiContentTocBlock extends BlockBase implements ContainerFactoryPluginIn
   public function getCacheTags(): array {
     $cache_tags = [];
 
-    if ($druki_content = $this->getDrukiContentFromPage()) {
+    if ($druki_content = $this->getDrukiContentFromContext()) {
       $cache_tags = Cache::mergeTags($cache_tags, $druki_content->getCacheTags());
     }
 

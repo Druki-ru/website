@@ -2,10 +2,7 @@ uuid: 296704a0-be84-4b46-a789-a4a820649cda
 langcode: ru
 status: true
 dependencies:
-  config:
-    - block_visibility_groups.block_visibility_group.druki_content_page
   module:
-    - block_visibility_groups
     - druki_content
   theme:
     - loremaster
@@ -20,9 +17,6 @@ settings:
   label: 'Druki content TOC (mobile)'
   provider: druki_content
   label_display: '0'
-visibility:
-  condition_group:
-    id: condition_group
-    negate: false
-    block_visibility_group: druki_content_page
-    context_mapping: {  }
+  context_mapping:
+    druki_content: '@druki_content.druki_content_route_context:druki_content'
+visibility: {  }

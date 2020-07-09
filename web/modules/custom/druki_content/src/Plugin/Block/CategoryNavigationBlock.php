@@ -6,7 +6,6 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\druki_content\Category\CategoryNavigation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -15,7 +14,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "druki_category_navigation",
  *   admin_label = @Translation("Category navigation"),
- *   category = @Translation("Druki Category")
+ *   category = @Translation("Druki Category"),
+ *   context_definitions = {
+ *     "druki_content" = @ContextDefinition(
+ *       "entity:druki_content",
+ *       label = @Translation("Druki Content"),
+ *       required = TRUE,
+ *     )
+ *   }
  * )
  */
 class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPluginInterface {
@@ -28,41 +34,24 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
   protected $categoryNavigation;
 
   /**
-   * Constructs a new CategoryNavigationBlock instance.
-   *
-   * @param array $configuration
-   *   The plugin configuration, i.e. an array with configuration values keyed
-   *   by configuration option name. The special key 'context' may be used to
-   *   initialize the defined contexts by setting it to an array of context
-   *   values keyed by context names.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\druki_content\Category\CategoryNavigation $category_navigation
-   *   The category navigation.
+   * {@inheritdoc}
    */
-  public function __construct(
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
-    CategoryNavigation $category_navigation
-  ) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): object {
+    $instance = new static($configuration, $plugin_id, $plugin_definition);
+    $instance->categoryNavigation = $container->get('druki_content.category.navigation');
 
-    $this->categoryNavigation = $category_navigation;
+    return $instance;
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): object {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('druki_content.category.navigation')
-    );
+  public function defaultConfiguration(): array {
+    return [
+        'context_mapping' => [
+          'druki_content' => '@druki_content.druki_content_route_context:druki_content',
+        ],
+      ] + parent::defaultConfiguration();
   }
 
   /**
