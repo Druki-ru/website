@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present druki content help and feedback.
+ *
+ * Available variables:
+ * - edit_url: The URL to remote edit document.
+ * - improve_url: The URL to create issue with all system information.
+ * - improve_mailto: The URI to create issue via email.
+ */
+#}
+{% set search_url = '/search' %}
+{% set community_resources_url = '/wiki/community/resources' %}
+<div class="help-and-feedback">
+  <h3 class="help-and-feedback__title">{% trans %}Help & Feedback{% endtrans %}</h3>
+
+  <div class="help-and-feedback__content">
+    <div class="help-and-feedback__item">
+      <div class="help-and-feedback__item-description">
+        {% trans %}If you <strong>spot an error or a need for improvement</strong> and would like to <strong>fix it yourself</strong> in a merge request{% endtrans %}
+      </div>
+      <div class="help-and-feedback__item-actions">
+        <a href="{{ edit_url }}" class="button button--secondary button--small help-and-feedback__link">{% trans %}Edit this page{% endtrans %}</a>
+      </div>
+    </div>
+
+    <div class="help-and-feedback__item">
+      <div class="help-and-feedback__item-description">
+        {% trans %}If you would like to <strong>suggest an improvement to this doc</strong>{% endtrans %}
+      </div>
+      <div class="help-and-feedback__item-actions">
+        <a href="{{ improve_url }}" class="button button--secondary button--small help-and-feedback__link">{% trans %}Create an issue{% endtrans %}</a>
+        <a href="{{ improve_mailto }}" class="button button--secondary button--small help-and-feedback__link">{% trans %}Send email{% endtrans %}</a>
+      </div>
+    </div>
+
+    <div class="help-and-feedback__get-help">
+      <p><strong>{% trans %}Get Help{% endtrans %}</strong></p>
+      <p>{% trans %}If you didn't find what you were looking for, <a href="{{ search_url }}">search the docs</a>.{% endtrans %}</p>
+      <p>{% trans %}If you want help with something specific, <a href="{{ community_resources_url }}">contact the community</a>.{% endtrans %}</p>
+    </div>
+  </div>
+</div>

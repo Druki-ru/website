@@ -32,6 +32,13 @@ function druki_content_theme(): array {
       ],
       'file' => 'druki_content.theme.inc',
     ],
+    'druki_content_help_and_feedback' => [
+      'variables' => [
+        'edit_url' => NULL,
+        'improve_url' => NULL,
+        'improve_mailto' => NULL,
+      ],
+    ],
   ];
 }
 

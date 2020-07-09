@@ -134,3 +134,36 @@ msgstr "У всех нас разные потребности — Drupal поз
 
 msgid "encyclopedia"
 msgstr "энциклопедия"
+
+msgid "Help & Feedback"
+msgstr "Помощь и обратная связь"
+
+msgid "Edit this page"
+msgstr "Редактировать эту страницу"
+
+msgid "If you <strong>spot an error or a need for improvement</strong> and would like to <strong>fix it yourself</strong> in a merge request"
+msgstr "Если вы <strong>обнаружили ошибку или хотите внести улучшения</strong>, и желаете <strong>внести изменения самостоятельно</strong> при помощи merge request"
+
+msgid "If you would like to <strong>suggest an improvement to this doc</strong>"
+msgstr "Если вы желаете <strong>предложить улучшение для этого документа</strong>"
+
+msgid "Doc feedback"
+msgstr "Обратная связь по документации"
+
+msgid "Create an issue"
+msgstr "Создать обращение"
+
+msgid "Describe what is wrong."
+msgstr "Опишите, что не так."
+
+msgid "Get Help"
+msgstr "Обратиться за помощью"
+
+msgid "Send email"
+msgstr "Отправить email"
+
+msgid "If you didn't find what you were looking for, <a href=\"@search_url\">search the docs</a>."
+msgstr "Если вы не нашли то что искали, <a href=\"@search_url\">воспользуйтесь поиском</a>."
+
+msgid "If you want help with something specific, <a href=\"@community_resources_url\">contact the community</a>."
+msgstr "Если вам нужна помощь с чем-то конкретным, <a href=\"@community_resources_url\">обратитесь к сообществу</a>."
