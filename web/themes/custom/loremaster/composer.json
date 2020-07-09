@@ -2,6 +2,7 @@
     "name": "druki/loremaster",
     "type": "drupal-custom-theme",
     "description": "The theme for encyclopedia.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ],

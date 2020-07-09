@@ -2,6 +2,7 @@
     "name": "druki/druki_page",
     "type": "drupal-custom-module",
     "description": "The custom pages for website not related to any entity type.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ]

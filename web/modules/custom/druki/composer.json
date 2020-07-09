@@ -2,6 +2,7 @@
     "name": "druki/druki",
     "type": "drupal-custom-module",
     "description": "The main module for common code.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ],
@@ -9,7 +10,7 @@
         "ext-simplexml": "*",
         "ext-xmlreader": "*",
         "symfony/finder": "~4.0",
-        "npm-asset/instant.page": "^3.0",
-        "npm-asset/lazysizes": "^5.1"
+        "npm-asset/lazysizes": "^5.2",
+        "npm-asset/instant.page": "^3.0"
     }
 }

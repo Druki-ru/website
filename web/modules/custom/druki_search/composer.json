@@ -2,6 +2,7 @@
     "name": "druki/druki_search",
     "type": "drupal-custom-module",
     "description": "Helpers and improvements for search.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ]

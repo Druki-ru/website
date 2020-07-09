@@ -2,6 +2,7 @@
     "name": "druki/druki_git",
     "type": "drupal-custom-module",
     "description": "The git integration.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ],

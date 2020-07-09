@@ -61,18 +61,17 @@
         "ext-dom": "*",
         "ext-json": "*",
         "ext-simplexml": "*",
-        "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
-        "druki/druki": "8.x-dev",
-        "druki/druki_content": "8.x-dev",
-        "druki/druki_file": "8.x-dev",
-        "druki/druki_git": "8.x-dev",
-        "druki/druki_markdown": "8.x-dev",
-        "druki/druki_media": "8.x-dev",
-        "druki/druki_page": "8.x-dev",
-        "druki/druki_paragraph": "8.x-dev",
-        "druki/druki_search": "8.x-dev",
-        "druki/loremaster": "dev-new-theme-2020",
+        "druki/druki": "^1.0",
+        "druki/druki_content": "^1.0",
+        "druki/druki_file": "^1.0",
+        "druki/druki_git": "^1.0",
+        "druki/druki_markdown": "^1.0",
+        "druki/druki_media": "^1.0",
+        "druki/druki_page": "^1.0",
+        "druki/druki_paragraph": "^1.0",
+        "druki/druki_search": "^1.0",
+        "druki/loremaster": "^1.0",
         "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
@@ -89,9 +88,8 @@
         "drupal/simple_sitemap": "^3.1",
         "drupal/twig_tweak": "^3.0",
         "drupal/warmer": "^1.1",
-        "drupal/webp": "1.x-dev",
+        "drupal/webp": "^1.0",
         "drush/drush": "^10.0",
-        "league/commonmark": "^1.0.0",
         "npm-asset/photoswipe": "^4.1",
         "oomphinc/composer-installers-extender": "^1.1"
     },
@@ -111,12 +109,6 @@
     },
     "extra": {
         "patches": {
-            "drupal/core": {
-                "MapItem definition (dgo.to/2887105)": "./patches/drupal-core-2887105-12.patch"
-            },
-            "drupal/webp": {
-                "Drupal 9 support": "./patches/webp-3144282-8.patch"
-            },
             "drupal/markdown": {
                 "Drupal 9 support": "./patches/markdown-d9.patch"
             },

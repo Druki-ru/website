@@ -2,6 +2,7 @@
     "name": "druki/druki_paragraph",
     "type": "drupal-custom-module",
     "description": "The custom code for paragraph entity type.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ],

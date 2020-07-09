@@ -2,6 +2,7 @@
     "name": "druki/druki_media",
     "type": "drupal-custom-module",
     "description": "The media entity custom code.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ]

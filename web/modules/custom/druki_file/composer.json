@@ -2,6 +2,7 @@
     "name": "druki/druki_file",
     "type": "drupal-custom-module",
     "description": "The File entity integration.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ]

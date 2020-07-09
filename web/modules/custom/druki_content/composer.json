@@ -2,6 +2,7 @@
     "name": "druki/druki_content",
     "type": "drupal-custom-module",
     "description": "Provides a druki content entity.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ],

@@ -2,10 +2,12 @@
     "name": "druki/druki_markdown",
     "type": "drupal-custom-module",
     "description": "The custom code for markdown syntax.",
+    "version": "1.0.0",
     "keywords": [
         "Drupal"
     ],
     "require": {
-        "ext-json": "*"
+        "ext-json": "*",
+        "league/commonmark": "^1.0.0"
     }
 }
