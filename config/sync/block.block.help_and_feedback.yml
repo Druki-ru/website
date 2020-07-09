@@ -1,0 +1,22 @@
+uuid: ef7eea26-0461-4f4b-9610-7b14cacd3849
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+  theme:
+    - loremaster
+id: help_and_feedback
+theme: loremaster
+region: content
+weight: 0
+provider: null
+plugin: druki_content_help_and_feedback
+settings:
+  id: druki_content_help_and_feedback
+  label: 'Help and Feedback'
+  provider: druki_content
+  label_display: '0'
+  context_mapping:
+    druki_content: '@druki_content.druki_content_route_context:druki_content'
+visibility: {  }
