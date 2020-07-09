@@ -73,7 +73,6 @@
         "druki/druki_paragraph": "8.x-dev",
         "druki/druki_search": "8.x-dev",
         "druki/loremaster": "dev-new-theme-2020",
-        "drupal/block_visibility_groups": "1.x-dev",
         "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
@@ -114,9 +113,6 @@
         "patches": {
             "drupal/core": {
                 "MapItem definition (dgo.to/2887105)": "./patches/drupal-core-2887105-12.patch"
-            },
-            "drupal/block_visibility_groups" : {
-                "Drupal 9 support": "./patches/block_visibility_groups-3131294-7.patch"
             },
             "drupal/webp": {
                 "Drupal 9 support": "./patches/webp-3144282-8.patch"
