@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d2eb4b195ffec79481b309a240c258b",
+    "content-hash": "8961efdf299ef5d30cb135a5ab01b7e2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1377,10 +1377,11 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/druki_markdown",
-                "reference": "09c2e50f4b76bd441c9a27f07e01d2b9b82002fa"
+                "reference": "371f332f4db44ad1b6a4a1bf1c1099c70e1fcf0e"
             },
             "require": {
-                "ext-json": "*"
+                "ext-json": "*",
+                "league/commonmark": "^1.0.0"
             },
             "type": "drupal-custom-module",
             "description": "The custom code for markdown syntax.",
@@ -1486,9 +1487,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.5",
                     "datestamp": "1572542288",
@@ -1997,9 +1995,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-3.4",
                     "datestamp": "1585763383",
@@ -2093,9 +2088,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.8",
                     "datestamp": "1583961846",
@@ -2344,8 +2336,7 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": []
+                }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
@@ -2404,30 +2395,6 @@
             }
         },
         {
-            "name": "drupal/markdown",
-            "version": "2.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/markdown.git",
-                "reference": "1b8d7545a7f6dad0b18cc248e20100a83bf689b6"
-            },
-            "require": {
-                "drupal/core": "^8.8 || ^9",
-                "league/commonmark": "^1.0.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "patches_applied": {
-                    "Drupal 9 support": "./patches/markdown-d9.patch"
-                }
-            },
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "The workaround for Drupal 9 update.",
-            "homepage": "https://www.drupal.org/project/markdown"
-        },
-        {
             "name": "drupal/metatag",
             "version": "1.13.0",
             "source": {
@@ -2455,7 +2422,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-1.13",
-                    "datestamp": "1587478404",
+                    "datestamp": "1587550202",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2527,7 +2494,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-1.12",
-                    "datestamp": "1590066861",
+                    "datestamp": "1590140081",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2959,13 +2926,13 @@
                 "shasum": "c7e3a3757282e4c94e3c1fff08d01e22155cb853"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9"
+                "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
                     "version": "8.x-1.7",
-                    "datestamp": "1587893588",
+                    "datestamp": "1589314266",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3150,8 +3117,7 @@
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
                     }
-                },
-                "patches_applied": []
+                }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
