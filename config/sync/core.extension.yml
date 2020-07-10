@@ -32,7 +32,6 @@ module:
   language: 0
   link: 0
   locale: 0
-  markdown: 0
   media: 0
   media_library: 0
   menu_ui: 0
