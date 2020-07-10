@@ -12,11 +12,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   admin_label = @Translation("Druki content TOC (mobile)"),
  *   category = @Translation("Druki content"),
  *   context_definitions = {
- *     "druki_content" = @ContextDefinition(
- *       "entity:druki_content",
- *       label = @Translation("Druki Content"),
- *       required = TRUE,
- *     )
+ *     "druki_content" = @ContextDefinition("entity:druki_content", label = @Translation("Druki Content"), required = TRUE)
  *   }
  * )
  */

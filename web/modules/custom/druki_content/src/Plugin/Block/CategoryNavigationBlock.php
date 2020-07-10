@@ -16,15 +16,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   admin_label = @Translation("Category navigation"),
  *   category = @Translation("Druki Category"),
  *   context_definitions = {
- *     "druki_content" = @ContextDefinition(
- *       "entity:druki_content",
- *       label = @Translation("Druki Content"),
- *       required = TRUE,
- *     )
+ *     "druki_content" = @ContextDefinition("entity:druki_content", label = @Translation("Druki Content"), required = TRUE),
  *   }
  * )
  */
-class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPluginInterface {
+final class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * The category navigation.
@@ -48,10 +44,10 @@ class CategoryNavigationBlock extends BlockBase implements ContainerFactoryPlugi
    */
   public function defaultConfiguration(): array {
     return [
-        'context_mapping' => [
-          'druki_content' => '@druki_content.druki_content_route_context:druki_content',
-        ],
-      ] + parent::defaultConfiguration();
+      'context_mapping' => [
+        'druki_content' => '@druki_content.druki_content_route_context:druki_content',
+      ],
+    ];
   }
 
   /**

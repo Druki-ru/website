@@ -14,11 +14,7 @@ use Drupal\druki_content\Entity\DrukiContentInterface;
  *   admin_label = @Translation("Druki content TOC"),
  *   category = @Translation("Druki content"),
  *   context_definitions = {
- *     "druki_content" = @ContextDefinition(
- *       "entity:druki_content",
- *       label = @Translation("Druki Content"),
- *       required = TRUE,
- *     )
+ *     "druki_content" = @ContextDefinition("entity:druki_content", label = @Translation("Druki Content"), required = TRUE),
  *   }
  * )
  */
@@ -29,10 +25,10 @@ class DrukiContentTocBlock extends BlockBase {
    */
   public function defaultConfiguration(): array {
     return [
-        'context_mapping' => [
-          'druki_content' => '@druki_content.druki_content_route_context:druki_content',
-        ],
-      ] + parent::defaultConfiguration();
+      'context_mapping' => [
+        'druki_content' => '@druki_content.druki_content_route_context:druki_content',
+      ],
+    ];
   }
 
   /**

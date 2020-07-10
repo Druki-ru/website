@@ -21,7 +21,7 @@ final class HeaderDarkModeSwitcher extends BlockBase {
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return parent::defaultConfiguration() + [
+    return [
       'class' => 'header-dark-mode-switcher',
     ];
   }
@@ -47,7 +47,6 @@ final class HeaderDarkModeSwitcher extends BlockBase {
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
     parent::blockSubmit($form, $form_state);
-
     $this->configuration['class'] = $form_state->getValue('class');
   }
 

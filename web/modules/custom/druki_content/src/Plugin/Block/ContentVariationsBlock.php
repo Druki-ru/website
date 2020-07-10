@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   admin_label = @Translation("Other content variations"),
  *   category = @Translation("Custom"),
  *   context_definitions = {
- *     "druki_content" = @ContextDefinition("entity:druki_content", label = @Translation("Druki Content"), required = TRUE)
+ *     "druki_content" = @ContextDefinition("entity:druki_content", label = @Translation("Druki Content"), required = TRUE),
  *   }
  * )
  */
@@ -49,7 +49,7 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
       'context_mapping' => [
         'druki_content' => '@druki_content.druki_content_route_context:druki_content',
       ],
-    ] + parent::defaultConfiguration();
+    ];
   }
 
   /**
