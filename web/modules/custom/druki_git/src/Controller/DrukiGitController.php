@@ -2,25 +2,17 @@
 
 namespace Drupal\druki_git\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Logger\LoggerChannelInterface;
-use Drupal\druki_git\Service\GitInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Zend\Diactoros\Response\JsonResponse;
 
 /**
  * Returns responses for Druki — git routes.
+ *
+ * @todo Add tests.
  */
-class DrukiGitController extends ControllerBase implements ContainerInjectionInterface {
-
-  /**
-   * The request.
-   *
-   * @var \Symfony\Component\HttpFoundation\Request
-   */
-  protected $request;
+final class DrukiGitController implements ContainerInjectionInterface {
 
   /**
    * The logger.
@@ -37,37 +29,21 @@ class DrukiGitController extends ControllerBase implements ContainerInjectionInt
   protected $git;
 
   /**
-   * Constructs a new DrukiGitController object.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request.
-   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
-   *   The logger.
-   * @param \Drupal\druki_git\Service\GitInterface $git
-   *   The GIT service.
-   */
-  public function __construct(Request $request, LoggerChannelInterface $logger, GitInterface $git) {
-    $this->request = $request;
-    $this->logger = $logger;
-    $this->git = $git;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): object {
-    return new static(
-      $container->get('request_stack')->getCurrentRequest(),
-      $container->get('logger.channel.druki_git'),
-      $container->get('druki_git')
-    );
+    $instance = new static();
+    $instance->logger = $container->get('logger.channel.druki_git');
+    $instance->git = $container->get('druki_git');
+
+    return $instance;
   }
 
   /**
    * Reacts on webhook route call.
    */
-  public function webhook(): JsonResponse {
-    $webhook_info = json_decode($this->request->getContent());
+  public function webhook(Request $request): JsonResponse {
+    $webhook_info = json_decode($request->getContent());
 
     if ($webhook_info->object_kind == 'push') {
       if ($this->git->pull()) {

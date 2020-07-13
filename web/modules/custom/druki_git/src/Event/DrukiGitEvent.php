@@ -8,7 +8,8 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * Event occurs for git commands.
  *
- * @package Drupal\druki_git\Event
+ * @phpstan-ignore-next-line
+ *   The Drupal doesn't allow to use new object for now.
  */
 class DrukiGitEvent extends Event {
 

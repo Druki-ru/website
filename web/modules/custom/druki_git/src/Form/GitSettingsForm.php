@@ -3,23 +3,18 @@
 namespace Drupal\druki_git\Form;
 
 use Drupal\Component\Utility\Crypt;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Messenger\MessengerTrait;
-use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_git\Exception\GitCommandFailedException;
-use Drupal\druki_git\Service\GitInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Configure Druki — git settings for this site.
  */
-class GitSettingsForm extends ConfigFormBase {
+final class GitSettingsForm extends ConfigFormBase {
 
   use StringTranslationTrait;
   use MessengerTrait;
@@ -39,11 +34,11 @@ class GitSettingsForm extends ConfigFormBase {
   protected $state;
 
   /**
-   * The current request.
+   * The current request stack.
    *
-   * @var \Symfony\Component\BrowserKit\Request
+   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
-  protected $request;
+  protected $requestStack;
 
   /**
    * The logger.
@@ -55,33 +50,14 @@ class GitSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(
-    ConfigFactoryInterface $config_factory,
-    GitInterface $git,
-    StateInterface $state,
-    Request $request,
-    LoggerChannelInterface $logger
-  ) {
-
-    parent::__construct($config_factory);
-
-    $this->git = $git;
-    $this->state = $state;
-    $this->request = $request;
-    $this->logger = $logger;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public static function create(ContainerInterface $container): object {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('druki_git'),
-      $container->get('state'),
-      $container->get('request_stack')->getCurrentRequest(),
-      $container->get('logger.channel.druki_git')
-    );
+    $instance = parent::create($container);
+    $instance->git = $container->get('druki_git');
+    $instance->state = $container->get('state');
+    $instance->requestStack = $container->get('request_stack');
+    $instance->logger = $container->get('logger.channel.druki_git');
+
+    return $instance;
   }
 
   /**
@@ -126,7 +102,7 @@ class GitSettingsForm extends ConfigFormBase {
     ];
 
     $webhook_key = $this->state->get('druki_git.webhook_key');
-    $webhook_url = $this->request->getSchemeAndHttpHost() . '/api/webhook/' . $webhook_key;
+    $webhook_url = $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost() . '/api/webhook/' . $webhook_key;
 
     $webhook_description = '<p>' . $this->t('The Webhook URL which can be used to trigger pull events and all consecutive operations.') . '</p>';
     $webhook_description .= '<p>' . new TranslatableMarkup('The Webhook URL: <a href=":url">:url</a>', [
