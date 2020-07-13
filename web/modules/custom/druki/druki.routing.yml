@@ -7,14 +7,6 @@ druki.admin:
   requirements:
     _permission: 'access administration pages'
 
-druki.frontpage_settings:
-  path: '/admin/druki/frontpage'
-  defaults:
-    _title: 'Frontpage settings'
-    _form: 'Drupal\druki\Form\FrontpageSettingsForm'
-  requirements:
-    _permission: 'administer site configuration'
-
 druki.official_user_guide_settings:
   path: '/admin/druki/official-user-guide'
   defaults:

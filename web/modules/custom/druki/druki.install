@@ -35,7 +35,7 @@ function druki_update_8801(array &$sandbox) {
  */
 function druki_update_8901(array &$sandbox) {
   $entity_type_manager = \Drupal::entityTypeManager();
-  /** @var \Drupal\file\FileStorageInterface $term_storage */
+  /** @var \Drupal\file\FileStorageInterface $file_storage */
   $file_storage = $entity_type_manager->getStorage('file');
   /** @var \Drupal\file\FileUsage\FileUsageInterface $file_usage */
   $file_usage = \Drupal::service('file.usage');

@@ -70,13 +70,13 @@ class DrupalProjects {
    * @param string $raw_xml
    *   A raw XML string of available release data for a given project.
    *
-   * @return array
+   * @return array|null
    *   Array of parsed data about releases for a given project, or NULL if there
    *   was an error parsing the string.
    *
    * @see https://updates.drupal.org/release-history/drupal/current
    */
-  protected function parseXml($raw_xml) {
+  protected function parseXml($raw_xml): ?array {
     try {
       $xml = new SimpleXMLElement($raw_xml);
     }

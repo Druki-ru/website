@@ -1,36 +1,3 @@
-druki.frontpage_settings:
-  type: config_object
-  label: 'Frontpage settings'
-  mapping:
-    promo:
-      type: mapping
-      label: 'Promo area'
-      mapping:
-        image:
-          type: string
-          label: 'Media ID'
-        style:
-          type: string
-          label: 'Image style'
-    why:
-      type: mapping
-      label: 'Why Drupal area'
-      mapping:
-        video:
-          type: string
-          label: 'Media ID'
-    community:
-      type: mapping
-      label: 'Community area'
-      mapping:
-        image:
-          type: string
-          label: 'Media ID'
-        style:
-          type: string
-          label: 'Image style'
-
-
 druki.official_user_guide_settings:
   type: config_object
   label: 'Official user guide settings'

@@ -10,12 +10,6 @@ druki.admin_general:
   route_name: druki.admin
   weight: -10
 
-druki.frontpage_settings:
-  title: Frontpage
-  description: Settings for frontpage.
-  route_name: druki.frontpage_settings
-  parent: druki.admin_general
-
 druki.official_user_guide_settings:
   title: Official user guide
   description: Settings for displaying the official user guide.
