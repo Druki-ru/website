@@ -2,11 +2,11 @@
 
 namespace Drupal\druki_file\Service;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\file\FileInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
-use Drupal\media\MediaInterface;
 
 /**
  * Class DrukiFileTracker
@@ -18,7 +18,7 @@ class DrukiFileTracker {
   /**
    * The file storage.
    *
-   * @var \Drupal\file\FileStorageInterface
+   * @var \Drupal\file\FileStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
   protected $fileStorage;
 
@@ -74,10 +74,10 @@ class DrukiFileTracker {
    * @param string $uri
    *   The URI to file, need to be checked.
    *
-   * @return \Drupal\file\FileInterface|null
+   * @return \Drupal\Core\Entity\EntityInterface|null
    *   The file entity, which store the same file, NULL if not found.
    */
-  public function checkDuplicate(string $uri): ?FileInterface {
+  public function checkDuplicate(string $uri): ?EntityInterface {
     $file_hash = $this->getFileHash($uri);
 
     $result = $this
@@ -179,10 +179,10 @@ class DrukiFileTracker {
    * @param \Drupal\file\FileInterface $file
    *   The file entity.
    *
-   * @return \Drupal\media\MediaInterface|null
+   * @return \Drupal\Core\Entity\EntityInterface|null
    *   The media entity, if found, NULL otherwise.
    */
-  public function getMediaForFile(FileInterface $file): ?MediaInterface {
+  public function getMediaForFile(FileInterface $file): ?EntityInterface {
     $usage = $this->fileUsage->listUsage($file);
     // Since there is possible to have multiple usage of the same file in
     // different media entities through code and other modules, we just pick the
