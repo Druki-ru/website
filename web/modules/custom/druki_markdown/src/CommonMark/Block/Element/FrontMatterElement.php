@@ -96,7 +96,9 @@ class FrontMatterElement extends AbstractStringContainerBlock {
       }
     }
 
-    $context->getTip()->addLine($cursor->getRemainder());
+    /** @var \League\CommonMark\Block\Element\AbstractStringContainerBlock $string_block */
+    $string_block = $context->getTip();
+    $string_block->addLine($cursor->getRemainder());
   }
 
   /**

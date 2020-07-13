@@ -14,7 +14,7 @@ class MarkdownParser implements MarkdownParserInterface {
   /**
    * The markdown parser.
    *
-   * @var \Drupal\markdown\Plugin\Markdown\MarkdownParserInterface
+   * @var \League\CommonMark\CommonMarkConverter
    */
   protected $markdownParser;
 
