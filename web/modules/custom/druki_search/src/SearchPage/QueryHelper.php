@@ -76,6 +76,7 @@ class QueryHelper {
    */
   public function getQuery($search_id = self::FULL) {
     $index = $this->indexStorage->load('global');
+    /** @var \Drupal\search_api\Query\Query $query */
     $query = $this->queryHelper->createQuery($index);
     $query->setParseModeManager($this->parseModeManager);
     $parse_mode = $this->parseModeManager->createInstance('terms');

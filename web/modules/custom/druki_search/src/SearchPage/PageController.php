@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @todo refactor it.
  */
-class PageController implements ContainerInjectionInterface {
+final class PageController implements ContainerInjectionInterface {
 
   /**
    * The query helper.
