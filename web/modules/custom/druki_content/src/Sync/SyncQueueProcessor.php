@@ -5,6 +5,7 @@ namespace Drupal\druki_content\Sync;
 use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Entity\Handler\DrukiContentStorage;
 use Drupal\druki_content\SourceContent\ParsedSourceContentLoader;
 use Drupal\druki_content\SourceContent\SourceContent;
 use Drupal\druki_content\SourceContent\SourceContentList;
@@ -68,7 +69,9 @@ final class SyncQueueProcessor {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, SourceContentParser $source_content_parser, ParsedSourceContentLoader $parsed_content_loader, StateInterface $state, MemoryCacheInterface $cache) {
-    $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');
+    $druki_content_storage = $entity_type_manager->getStorage('druki_content');
+    assert($druki_content_storage instanceof DrukiContentStorage);
+    $this->drukiContentStorage = $druki_content_storage;
     $this->sourceContentParser = $source_content_parser;
     $this->parsedSourceContentLoader = $parsed_content_loader;
     $this->state = $state;

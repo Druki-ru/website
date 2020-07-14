@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides storage handler for "druki_content" entity.
  */
-class DrukiContentStorage extends SqlContentEntityStorage {
+final class DrukiContentStorage extends SqlContentEntityStorage {
 
   /**
    * The git settings configuration.
