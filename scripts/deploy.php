@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Provides script for website deployment using CI.
+ */
+
 namespace Deployer;
 
 require 'recipe/common.php';
