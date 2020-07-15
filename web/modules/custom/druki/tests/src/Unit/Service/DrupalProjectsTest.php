@@ -33,6 +33,7 @@ class DrupalProjectsTest extends UnitTestCase {
    * Builds mock for UpdateFetcherInterface.
    *
    * @return \Drupal\update\UpdateFetcherInterface
+   *   The update fethcer.
    */
   protected function buildUpdateFetcher(): UpdateFetcherInterface {
     $prophecy = $this->prophesize(UpdateFetcherInterface::class);

@@ -8,9 +8,7 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 
 /**
- * Class NoteRenderer
- *
- * @package Drupal\druki_markdown\CommonMark\Renderer
+ * Provides note element renderer.
  */
 class NoteRenderer implements BlockRendererInterface {
 

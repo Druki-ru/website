@@ -70,13 +70,18 @@ class FrontMatterElement extends AbstractStringContainerBlock {
   }
 
   /**
+   * Checks is element close markup is found.
+   *
    * @return bool
+   *   TRUE is found, FALSE otherwise.
    */
   public function isCloserFound(): bool {
     return $this->isCloserFound;
   }
 
   /**
+   * Sets value is closer found or not.
+   *
    * @param bool $status
    *   The status is closer found or not.
    */

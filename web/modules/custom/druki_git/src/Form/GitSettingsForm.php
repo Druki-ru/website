@@ -106,8 +106,8 @@ final class GitSettingsForm extends ConfigFormBase {
 
     $webhook_description = '<p>' . $this->t('The Webhook URL which can be used to trigger pull events and all consecutive operations.') . '</p>';
     $webhook_description .= '<p>' . new TranslatableMarkup('The Webhook URL: <a href=":url">:url</a>', [
-        ':url' => $webhook_url,
-      ]);
+      ':url' => $webhook_url,
+    ]);
     $form['webhook']['description'] = [
       '#markup' => $webhook_description,
     ];

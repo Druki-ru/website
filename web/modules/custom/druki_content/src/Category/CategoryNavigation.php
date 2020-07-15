@@ -146,7 +146,7 @@ class CategoryNavigation {
    *   The category area name.
    *
    * @return array
-   *    The array with links, NULL if not found anything.
+   *   The array with links, NULL if not found anything.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException

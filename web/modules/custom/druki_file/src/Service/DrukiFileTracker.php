@@ -9,11 +9,9 @@ use Drupal\file\FileInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
 
 /**
- * Class DrukiFileTracker
- *
- * @package Drupal\druki_file\Service
+ * Provides druki file tracker.
  */
-class DrukiFileTracker {
+final class DrukiFileTracker {
 
   /**
    * The file storage.
@@ -142,7 +140,7 @@ class DrukiFileTracker {
   protected function clearTrackingInformation(): void {
     $files = $this->fileStorage->loadMultiple();
 
-    /** @var FileInterface $file */
+    /** @var \Drupal\file\FileInterface $file */
     foreach ($files as $file) {
       $file->set('druki_file_hash', NULL);
       $file->save();

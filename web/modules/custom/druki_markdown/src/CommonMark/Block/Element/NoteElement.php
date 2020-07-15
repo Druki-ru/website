@@ -6,9 +6,7 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Cursor;
 
 /**
- * Class NoteElement
- *
- * @package Drupal\druki_markdown\Plugin\Markdown\Extension
+ * Provide note element for markdown.
  */
 class NoteElement extends AbstractBlock {
 

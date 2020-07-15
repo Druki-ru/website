@@ -8,9 +8,7 @@ use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 
 /**
- * Class NoteParser
- *
- * @package Drupal\druki_markdown\CommonMark\Block\Parser
+ * Provides note element parser.
  */
 class NoteParser implements BlockParserInterface {
 

@@ -34,6 +34,7 @@ class DrukiGitEvent extends Event {
    * Gets current instance of Git service.
    *
    * @return \Drupal\druki_git\Service\GitInterface
+   *   The git service.
    */
   public function git(): GitInterface {
     return $this->git;

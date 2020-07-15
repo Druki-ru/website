@@ -62,7 +62,7 @@ final class PageController implements ContainerInjectionInterface {
   }
 
   /**
-   * {@inehritdoc}
+   * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(

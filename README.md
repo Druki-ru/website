@@ -30,3 +30,7 @@ Add this line `$config['config_split.config_split.dev']['status'] = TRUE;` to **
 ```php
 phpstan analyse web/modules/custom
 ```
+
+```php
+phpcs --standard=Drupal,DrupalPractice web/modules/custom
+```

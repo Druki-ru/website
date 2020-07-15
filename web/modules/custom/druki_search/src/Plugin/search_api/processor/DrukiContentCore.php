@@ -2,7 +2,6 @@
 
 namespace Drupal\druki_search\Plugin\search_api\processor;
 
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\IndexInterface;
@@ -11,6 +10,8 @@ use Drupal\search_api\Processor\ProcessorPluginBase;
 use Drupal\search_api\Processor\ProcessorProperty;
 
 /**
+ * Provides Search API property containing 'core' value.
+ *
  * @SearchApiProcessor(
  *   id = "druki_content_core",
  *   label = @Translation("Druki content core"),
@@ -60,7 +61,7 @@ class DrukiContentCore extends ProcessorPluginBase {
    * {@inheritdoc}
    */
   public function addFieldValues(ItemInterface $item): void {
-    /** @var EntityInterface $entity */
+    /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $item->getOriginalObject()->getValue();
 
     if ($entity instanceof DrukiContentInterface && $entity->hasField('core')) {
