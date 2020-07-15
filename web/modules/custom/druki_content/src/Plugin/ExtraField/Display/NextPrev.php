@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPluginInterface {
+final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPluginInterface {
 
   /**
    * The druki content storage.

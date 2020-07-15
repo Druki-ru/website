@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Druki content page"),
  * )
  */
-class DrukiContent extends ConditionPluginBase implements ContainerFactoryPluginInterface {
+final class DrukiContent extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * The current route match.

@@ -68,7 +68,6 @@ function druki_content_update_8601(&$sandbox) {
 
   $forced_path_field = $definition_update_manager
     ->getFieldStorageDefinition('forced_path', 'druki_content');
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if ($forced_path_field) {
     // Uninstall "forced_path" base field.
     $definition_update_manager->uninstallFieldStorageDefinition($forced_path_field);
@@ -89,7 +88,6 @@ function druki_content_update_8601(&$sandbox) {
 
   $category_field = $definition_update_manager
     ->getFieldStorageDefinition('category', 'druki_content');
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if ($category_field) {
     // Uninstall "category" base field.
     $definition_update_manager->uninstallFieldStorageDefinition($category_field);
@@ -118,7 +116,6 @@ function druki_content_update_8601(&$sandbox) {
   $database = \Drupal::database();
 
   // Restore "forced_path" values.
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if ($forced_path_field) {
     $forced_path_deleted_data_table = $table_mapping->getDedicatedDataTableName($forced_path_field, TRUE);
     $results = $database->select($forced_path_deleted_data_table, 'dd')
@@ -137,7 +134,6 @@ function druki_content_update_8601(&$sandbox) {
   }
 
   // Restore "category" values.
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if ($category_field) {
     $category_field_deleted_data_table = $table_mapping->getDedicatedDataTableName($category_field, TRUE);
     $results = $database->select($category_field_deleted_data_table, 'dd')
@@ -176,7 +172,6 @@ function druki_content_update_8602(&$sandbox) {
 
   $metatags_field = $definition_update_manager
     ->getFieldStorageDefinition('metatags', 'druki_content');
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if (!$metatags_field) {
     // Install storage.
     $entity_type_manager
@@ -223,7 +218,6 @@ function druki_content_update_8802(array &$sandbox) {
  */
 function druki_content_update_8803(array &$sandbox) {
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if ($filename_definition = $definition_update_manager->getFieldStorageDefinition('filename', 'druki_content')) {
     $definition_update_manager->uninstallFieldStorageDefinition($filename_definition);
   }
@@ -255,7 +249,6 @@ function druki_content_update_8804(array &$sandbox) {
  */
 function druki_content_update_8805(array &$sandbox) {
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if ($last_commit_id_definition = $definition_update_manager->getFieldStorageDefinition('last_commit_id', 'druki_content')) {
     $definition_update_manager->uninstallFieldStorageDefinition($last_commit_id_definition);
   }
@@ -268,7 +261,6 @@ function druki_content_update_8805(array &$sandbox) {
  */
 function druki_content_update_8806(array &$sandbox) {
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
-  // @phpstan-ignore-next-line until resolved https://www.drupal.org/project/drupal/issues/3159074
   if ($contribution_statistics_definition = $definition_update_manager->getFieldStorageDefinition('contribution_statistics', 'druki_content')) {
     $definition_update_manager->uninstallFieldStorageDefinition($contribution_statistics_definition);
   }

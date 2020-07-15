@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides a confirmation form before clearing out the examples.
  */
-class DrukiContentDeleteAllForm extends ConfirmFormBase {
+final class DrukiContentDeleteAllForm extends ConfirmFormBase {
 
   /**
    * The druki content storage.

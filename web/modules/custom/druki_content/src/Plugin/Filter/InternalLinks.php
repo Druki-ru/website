@@ -7,6 +7,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\Handler\DrukiContentStorage;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -21,7 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   weight = -10
  * )
  */
-class InternalLinks extends FilterBase implements ContainerFactoryPluginInterface {
+final class InternalLinks extends FilterBase implements ContainerFactoryPluginInterface {
 
   /**
    * An array with cache tags for lazy re-render.
@@ -70,7 +71,9 @@ class InternalLinks extends FilterBase implements ContainerFactoryPluginInterfac
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): InternalLinks {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->contentStorage = $container->get('entity_type.manager')->getStorage('druki_content');
+    $druki_content_storage = $container->get('entity_type.manager')->getStorage('druki_content');
+    assert($druki_content_storage instanceof DrukiContentStorage);
+    $instance->contentStorage = $druki_content_storage;
     $instance->gitSettings = $container->get('config.factory')->get('druki_git.git_settings');
     $instance->gitRepositoryPath = $instance->gitSettings->get('repository_path');
     $instance->fileSystem = $container->get('file_system');

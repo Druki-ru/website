@@ -101,6 +101,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
     $src = $data->getSrc();
     $alt = $data->getAlt();
     $host = parse_url($src);
+    $media = NULL;
 
     // If scheme is exists, then we treat this file as remote.
     if (isset($host['scheme'])) {

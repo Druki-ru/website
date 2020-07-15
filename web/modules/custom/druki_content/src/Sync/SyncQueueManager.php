@@ -69,6 +69,8 @@ final class SyncQueueManager {
    *   The state storage.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The system time.
+   * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker
+   *   The queue manager.
    */
   public function __construct(SourceContentFinder $content_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
     $this->contentFinder = $content_finder;

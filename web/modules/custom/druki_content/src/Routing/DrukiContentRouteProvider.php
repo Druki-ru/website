@@ -40,7 +40,7 @@ class DrukiContentRouteProvider extends AdminHtmlRouteProvider {
    * @return \Symfony\Component\Routing\Route|null
    *   The generated route, if available.
    */
-  protected function getEditRemoteRoute(EntityTypeInterface $entity_type) {
+  protected function getEditRemoteRoute(EntityTypeInterface $entity_type): ?Route {
     if ($entity_type->hasLinkTemplate('edit-remote') && $this->hasRedirectControllerClass($entity_type)) {
       $entity_type_id = $entity_type->id();
       $controller_class = $entity_type->getHandlerClass('redirect_controller');
@@ -59,6 +59,8 @@ class DrukiContentRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+
+    return NULL;
   }
 
   /**
@@ -83,7 +85,7 @@ class DrukiContentRouteProvider extends AdminHtmlRouteProvider {
    * @return \Symfony\Component\Routing\Route|null
    *   The generated route, if available.
    */
-  protected function getHistoryRemoteRoute(EntityTypeInterface $entity_type) {
+  protected function getHistoryRemoteRoute(EntityTypeInterface $entity_type): ?Route {
     if ($entity_type->hasLinkTemplate('history-remote') && $this->hasRedirectControllerClass($entity_type)) {
       $entity_type_id = $entity_type->id();
       $controller_class = $entity_type->getHandlerClass('redirect_controller');
@@ -102,6 +104,8 @@ class DrukiContentRouteProvider extends AdminHtmlRouteProvider {
 
       return $route;
     }
+
+    return NULL;
   }
 
 }

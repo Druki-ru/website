@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   title = @Translation("Druki content sync."),
  * )
  */
-class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+final class DrukiContentSync extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   /**
    * The queue processor.

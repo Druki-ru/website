@@ -5,8 +5,10 @@ namespace Drupal\druki_content\SourceContent;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\Handler\DrukiContentStorage;
 use Drupal\druki_content\ParsedContent\Content\ContentList;
 use Drupal\druki_content\ParsedContent\ParsedContentLoader;
+use Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList;
 
 /**
  * Provides class to load parsed content into "druki_content" entity.
@@ -59,7 +61,9 @@ final class ParsedSourceContentLoader {
    */
   public function __construct(ParsedContentLoader $parsed_content_loader, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
     $this->parsedContentLoader = $parsed_content_loader;
-    $this->drukiContentStorage = $entity_type_manager->getStorage('druki_content');
+    $druki_content_storage = $entity_type_manager->getStorage('druki_content');
+    assert($druki_content_storage instanceof DrukiContentStorage);
+    $this->drukiContentStorage = $druki_content_storage;
     $this->paragraphStorage = $entity_type_manager->getStorage('paragraph');
     $this->time = $time;
   }
@@ -125,6 +129,8 @@ final class ParsedSourceContentLoader {
       ]);
     }
 
+    assert($entity instanceof DrukiContentInterface);
+
     return $entity;
   }
 
@@ -156,11 +162,14 @@ final class ParsedSourceContentLoader {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function deleteParagraphs(DrukiContentInterface $druki_content): void {
-    if ($druki_content->get('content')->isEmpty()) {
+    $content = $druki_content->get('content');
+    assert($content instanceof EntityReferenceRevisionsFieldItemList);
+
+    if ($content->isEmpty()) {
       return;
     }
 
-    $paragraphs = $druki_content->get('content')->referencedEntities();
+    $paragraphs = $content->referencedEntities();
     $this->paragraphStorage->delete($paragraphs);
 
     $druki_content->set('content', NULL);

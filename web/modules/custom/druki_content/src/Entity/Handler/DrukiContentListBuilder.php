@@ -2,19 +2,15 @@
 
 namespace Drupal\druki_content\Entity\Handler;
 
-use Drupal;
-use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Routing\RedirectDestinationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a list controller for the druki content entity type.
  */
-class DrukiContentListBuilder extends EntityListBuilder {
+final class DrukiContentListBuilder extends EntityListBuilder {
 
   /**
    * The date formatter service.
@@ -31,33 +27,21 @@ class DrukiContentListBuilder extends EntityListBuilder {
   protected $redirectDestination;
 
   /**
-   * Constructs a new DrukiContentListBuilder object.
+   * The database connection.
    *
-   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
-   *   The entity type definition.
-   * @param \Drupal\Core\Entity\EntityStorageInterface $storage
-   *   The entity storage class.
-   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   The date formatter service.
-   * @param \Drupal\Core\Routing\RedirectDestinationInterface $redirect_destination
-   *   The redirect destination service.
+   * @var \Drupal\Core\Database\Connection
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, DateFormatterInterface $date_formatter, RedirectDestinationInterface $redirect_destination) {
-    parent::__construct($entity_type, $storage);
-    $this->dateFormatter = $date_formatter;
-    $this->redirectDestination = $redirect_destination;
-  }
+  protected $database;
 
   /**
    * {@inheritdoc}
    */
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type): object {
-    return new static(
-      $entity_type,
-      $container->get('entity_type.manager')->getStorage($entity_type->id()),
-      $container->get('date.formatter'),
-      $container->get('redirect.destination')
-    );
+    $instance = parent::createInstance($container, $entity_type);
+    $instance->dateFormatter = $container->get('date.formatter');
+    $instance->redirectDestination = $container->get('redirect.destination');
+    $instance->database = $container->get('database');
+    return $instance;
   }
 
   /**
@@ -66,7 +50,8 @@ class DrukiContentListBuilder extends EntityListBuilder {
   public function render(): array {
     $build['table'] = parent::render();
 
-    $total = Drupal::database()
+    $total = $this
+      ->database
       ->query('SELECT COUNT(*) FROM {druki_content}')
       ->fetchField();
 

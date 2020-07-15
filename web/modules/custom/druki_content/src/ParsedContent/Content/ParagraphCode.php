@@ -41,6 +41,7 @@ final class ParagraphCode extends ParagraphContentBase {
    * Validates and sets content value.
    *
    * @param string $content
+   *   The paragraph content.
    */
   private function setContent(string $content): void {
     if (!mb_strlen($content)) {

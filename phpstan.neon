@@ -1,0 +1,10 @@
+parameters:
+  excludes_analyse:
+    - *Test.php
+    - *TestBase.php
+  level: 1
+  drupal:
+    entityTypeStorageMapping:
+      druki_content: Drupal\druki_content\Entity\Handler\DrukiContentStorage
+includes:
+  - vendor/mglaman/phpstan-drupal/extension.neon

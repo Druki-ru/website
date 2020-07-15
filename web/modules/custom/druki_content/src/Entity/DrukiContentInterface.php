@@ -127,7 +127,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * Sets source hash.
    *
    * @param string $hash
-   *   The hash/
+   *   The hash.
    *
    * @return $this
    */

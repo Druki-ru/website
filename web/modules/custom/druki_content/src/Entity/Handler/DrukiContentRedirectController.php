@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Class to redirect from entity to remote resources.
  */
-class DrukiContentRedirectController extends ControllerBase {
+final class DrukiContentRedirectController extends ControllerBase {
 
   /**
    * The config factory.

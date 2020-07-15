@@ -24,3 +24,9 @@ Add this line `$config['config_split.config_split.dev']['status'] = TRUE;` to **
 
 1. Make a cup of coffee ☕️ and wait until the installation is finished.
 1. Enjoy your copy.
+
+## Code static analyses
+
+```php
+phpstan analyse web/modules/custom
+```

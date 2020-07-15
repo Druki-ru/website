@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Configuration form for a druki content entity type.
  */
-class DrukiContentSyncForm extends FormBase {
+final class DrukiContentSyncForm extends FormBase {
 
   /**
    * The state.
