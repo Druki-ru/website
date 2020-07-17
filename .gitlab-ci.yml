@@ -8,5 +8,4 @@ deploy:
     - schedules
     - web
   script:
-    - cd scripts
     - dep deploy
