@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="Druki">
+  <description>Drupal Encyclopedia</description>
+  <arg name="colors"/>
+  <file>./web/modules/custom</file>
+  <rule ref="vendor/drupal/coder/coder_sniffer/Drupal"/>
+  <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
+  <!-- Exclude fixtures. -->
+  <exclude-pattern>*/fixtures/*</exclude-pattern>
+</ruleset>

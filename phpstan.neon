@@ -1,4 +1,6 @@
 parameters:
+  paths:
+    - ./web/modules/custom
   excludes_analyse:
     - *Test.php
     - *TestBase.php
