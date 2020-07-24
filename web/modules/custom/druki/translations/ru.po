@@ -167,3 +167,6 @@ msgstr "Если вы не нашли то что искали, <a href=\"@searc
 
 msgid "If you want help with something specific, <a href=\"@community_resources_url\">contact the community</a>."
 msgstr "Если вам нужна помощь с чем-то конкретным, <a href=\"@community_resources_url\">обратитесь к сообществу</a>."
+
+msgid "Anchor link"
+msgstr "Ссылка-якорь"

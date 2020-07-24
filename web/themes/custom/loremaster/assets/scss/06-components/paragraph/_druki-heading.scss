@@ -7,4 +7,9 @@
   font-size: 80%;
   display: inline-block;
   margin-left: var(--spacing-xs);
+  visibility: hidden;
+}
+
+.druki-heading:hover .druki-heading__anchor {
+  visibility: visible;
 }
