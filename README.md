@@ -36,5 +36,5 @@ phpstan analyse
 ```
 
 ```php
-phpcs --standard=Drupal,DrupalPractice web/modules/custom
+phpcs
 ```
