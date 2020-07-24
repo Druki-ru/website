@@ -59,7 +59,6 @@ class Card extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
-    $class = get_class($this);
     return [
       '#theme' => 'druki_card',
       '#title' => NULL,
@@ -68,7 +67,7 @@ class Card extends RenderElement {
       '#primary_url' => NULL,
       '#actions' => [],
       '#pre_render' => [
-        [$class, 'preRender'],
+        [static::class, 'preRender'],
       ],
     ];
   }

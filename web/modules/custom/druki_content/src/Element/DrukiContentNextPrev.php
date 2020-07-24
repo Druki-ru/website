@@ -104,7 +104,7 @@ class DrukiContentNextPrev extends RenderElement {
   public function getInfo() {
     return [
       '#pre_render' => [
-        [get_class($this), 'preRenderElement'],
+        [static::class, 'preRenderElement'],
       ],
       '#prev_link' => NULL,
       '#next_link' => NULL,

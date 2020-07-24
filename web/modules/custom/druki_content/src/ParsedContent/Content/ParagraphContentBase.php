@@ -27,7 +27,7 @@ abstract class ParagraphContentBase implements ParagraphContentInterface {
   public function getParagraphType(): string {
     if (!$this->paragraphType) {
       $message = new FormattableMarkup('The paragraph content value objects must contain paragraph type. Consider to set this value in "$paragraphType" property for @class.', [
-        '@class' => get_class($this),
+        '@class' => static::class,
       ]);
       throw new UnexpectedValueException($message);
     }
