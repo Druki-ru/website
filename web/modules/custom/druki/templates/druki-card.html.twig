@@ -13,33 +13,32 @@
  * @see template_preprocess_druki_card()
  */
 #}
-{% set block = 'druki-card' %}
 {%
-  set modifiers = [
-    subhead ? 'with-subhead'
+  set classes = [
+    'druki-card',
+    subhead ? 'druki-card--with-subhead',
   ]
 %}
-{% set classes = bem(block, null, modifiers) %}
 <div{{ attributes.addClass(classes) }}>
-  <div class="{{ bem(block, 'content') }}">
+  <div class="druki-card__content">
     {% if title %}
-      <div class="{{ bem(block, 'title') }}">
-        {{ title }}
+      <div class="druki-card__title">
+        {{- title -}}
       </div>
     {% endif %}
     {% if subhead %}
-      <div class="{{ bem(block, 'subhead') }}">
-        {{ subhead }}
+      <div class="druki-card__subhead">
+        {{- subhead -}}
       </div>
     {% endif %}
     {% if description %}
-      <div class="{{ bem(block, 'description') }}">
-        {{ description }}
+      <div class="druki-card__description">
+        {{- description -}}
       </div>
     {% endif %}
     {% if actions|length %}
-      <div class="{{ bem(block, 'actions') }}">
-        {{ actions }}
+      <div class="druki-card__actions">
+        {{- actions -}}
       </div>
     {% endif %}
   </div>

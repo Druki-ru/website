@@ -46,9 +46,8 @@ final class CardTest extends KernelTestBase {
           '#type' => 'druki_card',
         ],
         [
-          '<div class="druki-card druki-card--elevated">',
-          '<div class="druki-card__title"></div>',
-          '<div class="druki-card__primary-action">',
+          '<div class="druki-card">',
+          '<div class="druki-card__content">',
         ],
         [],
       ],
@@ -68,31 +67,20 @@ final class CardTest extends KernelTestBase {
           '#subhead' => 'Subhead',
         ],
         [
-          '<div class="druki-card__subtitle">Subhead</div>',
+          '<div class="druki-card druki-card--with-subhead">',
+          '<div class="druki-card__subhead">Subhead</div>',
         ],
         [],
       ],
-      'supporting text' => [
+      'description' => [
         [
           '#type' => 'druki_card',
-          '#description' => 'The supporting text.',
+          '#description' => 'The description.',
         ],
         [
-          '<div class="druki-card__secondary">The supporting text.</div>',
+          '<div class="druki-card__description">The description.</div>',
         ],
         [],
-      ],
-      'style' => [
-        [
-          '#type' => 'druki_card',
-          '#style' => 'outline',
-        ],
-        [
-          '<div class="druki-card druki-card--outline">',
-        ],
-        [
-          '<div class="druki-card druki-card--elevated">',
-        ],
       ],
       'primary url' => [
         [
@@ -100,12 +88,26 @@ final class CardTest extends KernelTestBase {
           '#primary_url' => 'https://google.com/',
         ],
         [
-          '<a href="https://google.com/" class="druki-card__primary-action druki-card__primary-action--link">',
+          '<a href="https://google.com/" class="button button--primary button--small">',
         ],
-        [
-          '<div class="druki-card__primary-action">',
-        ],
+        [],
       ],
+      // @todo Fix this:
+      // PHP Fatal error: Uncaught Drupal\Core\DependencyInjection\ContainerNotInitializedException: \Drupal::$container is not initialized yet. \Drupal::setContainer() must be called with a real container.
+//      'actions' => [
+//        [
+//          '#type' => 'druki_card',
+//          '#actions' => [
+//            '#type' => 'Link',
+//            '#title' => 'Google',
+//            '#url' => Url::fromUri('https://google.com'),
+//          ],
+//        ],
+//        [
+//          'test'
+//        ],
+//        [],
+//      ],
     ];
   }
 
