@@ -100,10 +100,10 @@ interface DrukiContentInterface extends ContentEntityInterface {
   /**
    * Gets last sync timestamp where content was found.
    *
-   * @return int
-   *   The last sync timestamp.
+   * @return int|null
+   *   The last sync timestamp. NULL if not synced before.
    */
-  public function getSyncTimestamp(): int;
+  public function getSyncTimestamp(): ?int;
 
   /**
    * Sets last synchronization timestamp for this content.

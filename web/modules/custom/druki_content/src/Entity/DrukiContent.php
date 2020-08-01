@@ -226,7 +226,7 @@ class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
   /**
    * {@inheritdoc}
    */
-  public function getSyncTimestamp(): int {
+  public function getSyncTimestamp(): ?int {
     return $this->get('sync_timestamp')->value;
   }
 
