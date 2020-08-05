@@ -22,7 +22,7 @@ set('writable_dirs', [
   'web/sites/{{drupal_site}}/files',
 ]);
 
-host('druki.ru')
+localhost()
   ->set('deploy_path', '~/web/druki.ru/private/deploy');
 
 task('deploy:updatedb', function () {

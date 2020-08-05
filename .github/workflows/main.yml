@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  workflow_dispatch:
+# For testing purposes on-push disabled.
+#  push:
+#    branches: [ 9.x ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create SSH key
+        shell: bash
+        env:
+          SSH_KEY: ${{ secrets.ci_deploy_key }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      - name: Deploy
+        shell: bash
+        env:
+          USERNAME: ${{ secrets.ci_production_username }}
+          HOST: ${{ secrets.ci_production_host }}
+          DEPLOY_PATH: ${{ secrets.ci_deploy_path }}
+        run: |
+          ssh $USERNAME@$HOST -o StrictHostKeyChecking=no "cd $DEPLOY_PATH/scripts dep deploy"
