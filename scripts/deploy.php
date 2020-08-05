@@ -9,7 +9,7 @@ namespace Deployer;
 
 require 'recipe/common.php';
 
-set('repository', 'git@gitlab.com:druki/website.git');
+set('repository', 'git@github.com:Niklan/druki-website.git');
 set('drupal_site', 'default');
 set('shared_dirs', [
   'web/sites/{{drupal_site}}/files',
