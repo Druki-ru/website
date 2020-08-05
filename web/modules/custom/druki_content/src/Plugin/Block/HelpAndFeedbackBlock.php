@@ -77,18 +77,11 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
     return [
       '#theme' => 'druki_content_help_and_feedback',
       '#edit_url' => $this->getEntityFromContext()->toUrl('edit-remote'),
-      '#improve_url' => Url::fromUri($this->repositoryUrl . '/-/issues/new', [
+      '#improve_url' => Url::fromUri($this->repositoryUrl . '/issues/new', [
         'query' => [
-          'issue' => [
-            'title' => $improve_title,
-            'description' => $this->buildImproveBody(),
-          ],
-        ],
-      ]),
-      '#improve_mailto' => Url::fromUri('mailto:incoming+druki-content-10138131-issue-@incoming.gitlab.com', [
-        'query' => [
-          'subject' => $improve_title,
+          'title' => $improve_title,
           'body' => $this->buildImproveBody(),
+          'labels' => 'enhancement',
         ],
       ]),
     ];
@@ -111,11 +104,6 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
       '- **Core (if set):** ' . $this->getEntityFromContext()->getCore(),
       '- **Relative pathname:** ' . $this->getEntityFromContext()->getRelativePathname(),
       '- **Sync timestamp:** ' . $this->getEntityFromContext()->getSyncTimestamp(),
-      '- **Hash:** ' . $this->getEntityFromContext()->getSourceHash(),
-      '',
-      '/label ~"type::🕶 enhancement"',
-      '/label ~"workflow::🗂 backlog"',
-      '/label ~"type::🤔 question"',
     ];
 
     return implode(PHP_EOL, $pieces);
