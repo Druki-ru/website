@@ -26,4 +26,4 @@ jobs:
           HOST: ${{ secrets.ci_production_host }}
           DEPLOY_PATH: ${{ secrets.ci_deploy_path }}
         run: |
-          ssh $USERNAME@$HOST -o StrictHostKeyChecking=no "cd $DEPLOY_PATH/scripts dep deploy"
+          ssh $USERNAME@$HOST -o StrictHostKeyChecking=no "cd $DEPLOY_PATH/scripts && dep deploy"
