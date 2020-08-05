@@ -129,7 +129,7 @@ final class GitSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Repository URL'),
       '#description' => $this->t('The remote repository URL.'),
       '#attributes' => [
-        'placeholder' => 'https://gitlab.com/druki/content',
+        'placeholder' => 'https://github.com/Niklan/druki-content',
       ],
       '#default_value' => $this
         ->config('druki_git.git_settings')

@@ -13,8 +13,8 @@
         }
     ],
     "support": {
-        "source": "https://gitlab.com/druki/website",
-        "issues": "https://gitlab.com/druki/website/issues",
+        "source": "https://github.com/Niklan/druki-website",
+        "issues": "https://github.com/Niklan/druki-website/issues",
         "chat": "https://discord.gg/sc2V8km"
     },
     "repositories": [

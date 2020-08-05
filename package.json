@@ -2,7 +2,7 @@
   "name": "druki",
   "version": "1.0.0",
   "description": "The nodejs dependencies for project.",
-  "repository": "git@gitlab.com:druki/website.git",
+  "repository": "git@github.com:Niklan/druki-website.git",
   "author": "Niklan <niklanrus@gmail.com>",
   "license": "GPL v2",
   "private": true,
