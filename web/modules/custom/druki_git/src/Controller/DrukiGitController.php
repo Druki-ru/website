@@ -45,7 +45,7 @@ final class DrukiGitController implements ContainerInjectionInterface {
   public function webhook(Request $request): JsonResponse {
     $webhook_info = json_decode($request->getContent());
 
-    if ($webhook_info->object_kind == 'push') {
+    if (isset($webhook_info->pusher)) {
       if ($this->git->pull()) {
         $this->logger->info('Webhook is triggered, and content is successfully pulled.');
       }
