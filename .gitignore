@@ -33,7 +33,7 @@ web/sites/simpletest
 node_modules
 yarn-error.log
 
-# Ignore split configurations
+# Ignore split configurations.
 config/split
 
 # Appended by core.
@@ -50,3 +50,7 @@ index.php
 robots.txt
 update.php
 web.config
+
+# Ignore scaffold files provided by drupal:scaffold.
+.gitattributes
+.editorconfig
