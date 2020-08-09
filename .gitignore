@@ -54,3 +54,6 @@ web.config
 # Ignore scaffold files provided by drupal:scaffold.
 .gitattributes
 .editorconfig
+example.sites.php
+example.settings.local.php
+
