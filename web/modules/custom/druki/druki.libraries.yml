@@ -33,15 +33,3 @@ dark-mode:
     assets/js/dark-mode.js: { weight: -16 }
   dependencies:
     - core/drupal
-
-lazysizes:
-  remote: https://github.com/aFarkas/lazysizes
-  version: 5.1
-  license:
-    name: MIT
-    gpl-compatible: true
-  js:
-    # The library must be loaded as fast as possible to load images earlier.
-    # Also this library affect main-thread work, so the fast it finish, the
-    # better overall.
-    /libraries/lazysizes/lazysizes.min.js: { minfied: true, weight: -1000 }

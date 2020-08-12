@@ -1299,17 +1299,16 @@
         },
         {
             "name": "druki/druki",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/druki",
-                "reference": "8073fd6a4b13eabcf5e3f973cfa522ced33c28a3"
+                "reference": "31d13b56750178e321caf33a5af0903e20e28bd8"
             },
             "require": {
                 "ext-simplexml": "*",
                 "ext-xmlreader": "*",
                 "npm-asset/instant.page": "^3.0",
-                "npm-asset/lazysizes": "^5.2",
                 "symfony/finder": "~4.0"
             },
             "type": "drupal-custom-module",
@@ -4303,18 +4302,6 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/instant.page/-/instant.page-3.0.0.tgz"
-            },
-            "type": "npm-asset",
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "npm-asset/lazysizes",
-            "version": "5.2.2",
-            "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/lazysizes/-/lazysizes-5.2.2.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -8765,6 +8752,18 @@
                 "validation"
             ],
             "time": "2020-05-27T09:58:51+00:00"
+        },
+        {
+            "name": "npm-asset/lazysizes",
+            "version": "5.2.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/lazysizes/-/lazysizes-5.2.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "phar-io/manifest",
