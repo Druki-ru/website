@@ -3,7 +3,11 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches: [ 9.x ]
+    branches:
+      - 9.x
+  pull_request:
+    branches:
+      - 9.x
 
 jobs:
   deploy:
@@ -14,15 +18,22 @@ jobs:
         shell: bash
         env:
           SSH_KEY: ${{ secrets.ci_deploy_key }}
+          SSH_USER: ${{ secrets.ci_production_username }}
+          SSH_HOST: ${{ secrets.ci_production_host }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          cat >>~/.ssh/config <<END
+          Host production
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/id_rsa
+            StrictHostKeyChecking no
+          END
       - name: Deploy
         shell: bash
         env:
-          USERNAME: ${{ secrets.ci_production_username }}
-          HOST: ${{ secrets.ci_production_host }}
           DEPLOY_PATH: ${{ secrets.ci_deploy_path }}
         run: |
-          ssh $USERNAME@$HOST -o StrictHostKeyChecking=no "cd $DEPLOY_PATH/scripts && dep deploy"
+          ssh production "cd $DEPLOY_PATH/scripts && dep deploy"
