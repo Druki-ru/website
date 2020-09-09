@@ -24,15 +24,11 @@ final class CardTest extends KernelTestBase {
    *
    * @dataProvider cardElementProvider
    */
-  public function testCardElementMarkup(array $element, array $expected_raws, array $expected_no_raws) {
+  public function testCardElementMarkup(array $element, array $expected_raws) {
     $this->render($element);
 
     foreach ($expected_raws as $expected_raw) {
       $this->assertRaw($expected_raw);
-    }
-
-    foreach ($expected_no_raws as $expected_no_raw) {
-      $this->assertNoRaw($expected_no_raw);
     }
   }
 
@@ -49,7 +45,6 @@ final class CardTest extends KernelTestBase {
           '<div class="druki-card">',
           '<div class="druki-card__content">',
         ],
-        [],
       ],
       'title' => [
         [
@@ -59,7 +54,6 @@ final class CardTest extends KernelTestBase {
         [
           '<div class="druki-card__title">Just title</div>',
         ],
-        [],
       ],
       'subhead' => [
         [
@@ -70,7 +64,6 @@ final class CardTest extends KernelTestBase {
           '<div class="druki-card druki-card--with-subhead">',
           '<div class="druki-card__subhead">Subhead</div>',
         ],
-        [],
       ],
       'description' => [
         [
@@ -80,7 +73,6 @@ final class CardTest extends KernelTestBase {
         [
           '<div class="druki-card__description">The description.</div>',
         ],
-        [],
       ],
       'primary url' => [
         [
@@ -90,7 +82,6 @@ final class CardTest extends KernelTestBase {
         [
           '<a href="https://google.com/" class="button button--primary button--small">',
         ],
-        [],
       ],
       // @todo Fix this:
       // PHP Fatal error: Uncaught Drupal\Core\DependencyInjection\ContainerNotInitializedException: \Drupal::$container is not initialized yet. \Drupal::setContainer() must be called with a real container.
@@ -106,7 +97,6 @@ final class CardTest extends KernelTestBase {
 //        [
 //          'test'
 //        ],
-//        [],
 //      ],
     ];
   }
