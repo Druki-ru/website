@@ -3,9 +3,7 @@ name: Continuous Integration
 on:
   workflow_dispatch:
   push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
+    branches: [ 9.x ]
 
 jobs:
   deploy:
