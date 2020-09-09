@@ -85,6 +85,11 @@
     "config": {
         "sort-packages": true
     },
+    "scripts": {
+        "phpcs": "phpcs",
+        "phpstan": "phpstan analyse",
+        "phpunit": "phpunit"
+    },
     "extra": {
         "patches": {
             "drupal/photoswipe": {
