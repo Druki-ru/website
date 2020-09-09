@@ -1,0 +1,25 @@
+name: Quality Check
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - 9.x
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: PHP CS
+        run: phpcs
+
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: PHP Stan
+        run: phpstan analyse
