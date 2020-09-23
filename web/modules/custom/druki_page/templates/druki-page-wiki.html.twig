@@ -309,6 +309,25 @@
   </div>
 
   <div class="{{ bem_block }}__row">
+    <h3 class="{{ bem_block }}__row-title">
+      Сервисы с метками
+    </h3>
+
+    <div class="{{ bem_block }}__row-content">
+      <div class="{{ bem_block }}__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'breadcrumb_builder',
+          '#subhead': 'Строитель хлебных крошек',
+          '#description': 'Позволяет программно устанавливать хлебные крошки.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/breadcrumb-builder',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="{{ bem_block }}__row">
     <div class="{{ bem_block }}__other-items">
       <div class="{{ bem_block }}__other-item">
         <h4 class="{{ bem_block }}__other-item-title">Полезная информация</h4>
