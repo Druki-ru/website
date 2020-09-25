@@ -17,7 +17,6 @@ class DrukiContentRouteProvider extends AdminHtmlRouteProvider {
   public function getRoutes(EntityTypeInterface $entity_type) {
     /** @var \Symfony\Component\Routing\RouteCollection $collection */
     $collection = parent::getRoutes($entity_type);
-
     $entity_type_id = $entity_type->id();
 
     if ($remote_edit_route = $this->getEditRemoteRoute($entity_type)) {
@@ -27,6 +26,10 @@ class DrukiContentRouteProvider extends AdminHtmlRouteProvider {
     if ($remote_history_route = $this->getHistoryRemoteRoute($entity_type)) {
       $collection->add("entity.{$entity_type_id}.history_remote", $remote_history_route);
     }
+
+    // Removes possibility to add new content via admin UI. This entity type is
+    // designed to be created from remote sources.
+    $collection->remove("entity.{$entity_type_id}.add_form");
 
     return $collection;
   }
