@@ -303,3 +303,16 @@ function druki_content_update_9001(array &$sandbox) {
 
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
+
+/**
+ * Change Druki Content route provider handler namespace.
+ */
+function druki_content_update_9002(array &$sandbox) {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('route_provider', [
+    'html' => 'Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentHtmlRouteProvider',
+  ]);
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}

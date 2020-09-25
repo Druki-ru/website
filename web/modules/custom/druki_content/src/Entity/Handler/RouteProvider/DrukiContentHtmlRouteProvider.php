@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Routing;
+namespace Drupal\druki_content\Entity\Handler\RouteProvider;
 
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Routing\AdminHtmlRouteProvider;
@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Route;
 /**
  * Provides HTML routes for druki content pages.
  */
-class DrukiContentRouteProvider extends AdminHtmlRouteProvider {
+final class DrukiContentHtmlRouteProvider extends AdminHtmlRouteProvider {
 
   /**
    * {@inheritdoc}

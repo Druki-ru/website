@@ -27,7 +27,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\druki_content\Routing\DrukiContentRouteProvider",
+ *       "html" = "Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentHtmlRouteProvider",
  *     },
  *     "redirect_controller" = "Drupal\druki_content\Entity\Handler\DrukiContentRedirectController",
  *   },
