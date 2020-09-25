@@ -6,6 +6,7 @@ use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\druki_content\Entity\DrukiContentInterface;
@@ -66,6 +67,13 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
   protected $mediaStorage;
 
   /**
+   * The file storage.
+   *
+   * @var \Drupal\file\FileStorage
+   */
+  protected $fileStorage;
+
+  /**
    * Constructs a new ParagraphImageLoader object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -87,6 +95,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
   public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, DrukiFileTracker $file_tracker, EntityFieldManagerInterface $entity_field_manager, Token $token, FileSystemInterface $file_system) {
     parent::__construct($entity_type_manager);
     $this->mediaStorage = $entity_type_manager->getStorage('media');
+    $this->fileStorage = $entity_type_manager->getStorage('file');
     $this->configFactory = $config_factory;
     $this->fileTracker = $file_tracker;
     $this->entityFieldManager = $entity_field_manager;
@@ -145,9 +154,19 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
 
         // Ensure folder is exists and writable.
         if ($this->fileSystem->prepareDirectory($destination_uri, FileSystemInterface::CREATE_DIRECTORY)) {
-          $file = $this->fileSystem->saveData($contents, $destination_uri . '/' . $basename);
-          if ($file instanceof FileInterface) {
+          try {
+            $uri = $this->fileSystem->saveData($contents, $destination_uri . '/' . $basename);
+            $file = $this->fileStorage->create([
+              'uri' => $uri,
+              // This is doesn't matter for us.
+              'uid' => 1,
+              'status' => FILE_STATUS_PERMANENT,
+            ]);
+            $file->save();
             $media = $this->saveImageFileToMediaImage($file);
+          }
+          catch (FileException $e) {
+            // Do nothing if file cannot be created. It will attempted nex time.
           }
         }
       }
