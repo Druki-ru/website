@@ -5,9 +5,7 @@
  * Primary module hooks for Druki module.
  */
 
-use Drupal\image\Entity\ImageStyle;
 use Drupal\imagemagick\ImagemagickExecArguments;
-use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -90,27 +88,6 @@ function druki_preprocess_html(array &$variables): void {
 function druki_preprocess_responsive_image(array &$variables) {
   $variables['img_element']['#attributes']['loading'] = 'lazy';
   $variables['img_element']['#attributes']['decoding'] = 'async';
-
-  // The code below adds 'width' and 'height' for fallback image. This help
-  // with CLS problems.
-  // @see https://web.dev/cls/
-  /** @var \Drupal\responsive_image\ResponsiveImageStyleInterface $responsive_style */
-  $responsive_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
-  if (!$responsive_style) {
-    return;
-  }
-
-  /** @var \Drupal\Core\Image\ImageFactory $image_factory */
-  $image_factory = \Drupal::service('image.factory');
-  /** @var \Drupal\image\Entity\ImageStyle $fallback_style */
-  $fallback_style = ImageStyle::load($responsive_style->getFallbackImageStyle());
-  if (!$fallback_style) {
-    return;
-  }
-  $fallback_image = $fallback_style->buildUri($variables['uri']);
-  $image_factory->get($fallback_image);
-  $variables['img_element']['#attributes']['width'] = $image_factory->get($fallback_image)->getWidth();
-  $variables['img_element']['#attributes']['height'] = $image_factory->get($fallback_image)->getHeight();
 }
 
 /**
