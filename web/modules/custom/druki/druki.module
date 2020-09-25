@@ -84,8 +84,6 @@ function druki_preprocess_html(array &$variables): void {
 
 /**
  * Implements hook_preprocess_HOOK() for 'responsive-image.html.twig'.
- *
- * Integrate lazysizes.js library for lazy loading.
  */
 function druki_preprocess_responsive_image(array &$variables) {
   $variables['img_element']['#attributes']['loading'] = 'lazy';
@@ -94,8 +92,6 @@ function druki_preprocess_responsive_image(array &$variables) {
 
 /**
  * Implements hook_preprocess_HOOK() for 'image.html.twig'.
- *
- * Integrate lazysizes.js library for lazy loading.
  */
 function druki_preprocess_image(array &$variables) {
   $variables['attributes']['loading'] = 'lazy';
