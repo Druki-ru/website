@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki\Service;
+namespace Drupal\druki\Drupal;
 
 use Drupal\update\UpdateFetcherInterface;
 use Exception;

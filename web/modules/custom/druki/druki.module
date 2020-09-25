@@ -5,7 +5,6 @@
  * Primary module hooks for Druki module.
  */
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\imagemagick\ImagemagickExecArguments;
 
 /**
@@ -19,50 +18,7 @@ function druki_preprocess_toolbar(array &$variables): void {
  * Implements hook_cron().
  */
 function druki_cron(): void {
-  $request_time = \Drupal::time()->getRequestTime();
-  $drupal_releases = \Drupal::state()->get('druki.drupal_releases', [
-    'expires' => 0,
-    'last_stable_release' => NULL,
-    'last_minor_release' => NULL,
-  ]);
-
-  if ($request_time > $drupal_releases['expires']) {
-    // Trying to get new last stable release for Drupal project.
-    /** @var \Drupal\druki\Service\DrupalProjects $drupal_projects */
-    $drupal_projects = \Drupal::service('druki.drupal_projects');
-    $stable_version = $drupal_projects->getCoreLastStableVersion();
-    $minor_version = $drupal_projects->getCoreLastMinorVersion();
-
-    // If release can't be retrieved, we skip everything else and wait for next
-    // cron to try again.
-    if ($stable_version && $minor_version) {
-      $drupal_releases['last_stable_release'] = $stable_version;
-      $drupal_releases['last_minor_release'] = $minor_version;
-      // We check releases on wednesday evey hour, since it release window.
-      $request_datetime = DrupalDateTime::createFromTimestamp($request_time);
-      $next_wednesday = new DrupalDateTime('next wednesday');
-      $next_wednesday_interval = $request_datetime->diff($next_wednesday);
-      if ($next_wednesday_interval->d == 6) {
-        // It's wednesday my dudes.
-        $drupal_releases['expires'] = $request_time + (60 * 60 * 1);
-      }
-      elseif ($next_wednesday_interval->d == 0) {
-        // Wednesday is tomorrow. Delay it to the beginning of the day.
-        $drupal_releases['expires'] = $next_wednesday->getTimestamp();
-      }
-      else {
-        // On other days check once a day.
-        $drupal_releases['expires'] = $request_time + (60 * 60 * 24);
-      }
-
-      \Drupal::state()->set('druki.drupal_releases', $drupal_releases);
-
-      /** @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator */
-      $cache_tags_invalidator = \Drupal::service('cache_tags.invalidator');
-      // Invalidate all caches which uses last stable release value.
-      $cache_tags_invalidator->invalidateTags(['druki_last_stable_release']);
-    }
-  }
+  \Drupal::service('druki.cron.check_drupal_releases')->process();
 }
 
 /**
@@ -71,9 +27,6 @@ function druki_cron(): void {
 function druki_preprocess_page__front(array &$variables): void {
   $variables['drupal_versions'] = [
     '#theme' => 'druki_drupal_versions',
-    '#cache' => [
-      'tags' => ['druki_last_stable_release'],
-    ],
   ];
 }
 

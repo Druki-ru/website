@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki\Drupal\DrupalReleases;
 use Drupal\media\MediaInterface;
 use Drupal\responsive_image\ResponsiveImageStyleInterface;
 
@@ -13,14 +14,12 @@ use Drupal\responsive_image\ResponsiveImageStyleInterface;
  * Implements hook_preprocess_HOOK() for druki-drupal-versions.html.twig.
  */
 function template_preprocess_druki_drupal_versions(array &$variables): void {
-  $drupal_releases = \Drupal::state()->get('druki.drupal_releases', [
-    'expires' => 0,
-    'last_stable_release' => NULL,
-    'last_minor_release' => NULL,
-  ]);
-
+  $drupal_releases = \Drupal::service('druki.drupal_releases')->get();
   $variables['last_stable_release'] = $drupal_releases['last_stable_release'];
   $variables['last_minor_release'] = $drupal_releases['last_minor_release'];
+  $variables['#cache'] = [
+    'tags' => [DrupalReleases::CACHE_TAG],
+  ];
 }
 
 /**

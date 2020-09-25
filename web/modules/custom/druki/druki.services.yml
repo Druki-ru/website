@@ -1,9 +1,17 @@
 services:
   druki.drupal_projects:
-    class: Drupal\druki\Service\DrupalProjects
+    class: Drupal\druki\Drupal\DrupalProjects
     arguments: ['@update.fetcher']
 
   druki.path_based_breadcrumb_decorator:
     class: Drupal\druki\Service\PathBasedBreadcrumbDecorator
     decorates: system.breadcrumb.default
     arguments: ['@router.request_context', '@access_manager', '@router', '@path_processor_manager', '@config.factory',  '@title_resolver', '@current_user', '@path.current', '@path.matcher']
+
+  druki.drupal_releases:
+    class: Drupal\druki\Drupal\DrupalReleases
+    arguments: ['@state']
+
+  druki.cron.check_drupal_releases:
+    class: Drupal\druki\Cron\CheckDrupalReleasesCron
+    arguments: ['@datetime.time', '@cache_tags.invalidator', '@druki.drupal_releases', '@druki.drupal_projects']
