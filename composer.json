@@ -94,6 +94,9 @@
         "patches": {
             "drupal/photoswipe": {
                 "Responsive image support. https://dgo.to/2980534": "./patches/drupal-photoswipe-2980534-21.patch"
+            },
+            "drupal/webp": {
+                "Drupal 9 compatibility": "https://www.drupal.org/files/issues/2020-06-29/webp-3144282-21.patch"
             }
         },
         "drupal-scaffold": {
