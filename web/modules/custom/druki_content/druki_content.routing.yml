@@ -4,30 +4,4 @@ druki_content.admin:
     _controller: Drupal\system\Controller\SystemController::systemAdminMenuBlockPage
     _title: Druki content
   requirements:
-    _permission: 'administer druki settings'
-
-entity.druki_content.settings:
-  path: /admin/structure/druki-content
-  defaults:
-    _form: Drupal\druki_content\Form\DrukiContentSettingsForm
-    _title: Druki content
-  requirements:
     _permission: 'administer druki content'
-
-entity.druki_content.sync:
-  path: /admin/structure/druki-content/sync
-  defaults:
-    _form: Drupal\druki_content\Form\DrukiContentSyncForm
-    _title: Content sync
-  requirements:
-    _permission: 'administer druki content'
-
-# @todo try to use it as alias for system entity clear controller.
-# system.prepare_modules_entity_uninstall
-druki_content.delete_all:
-  path: /admin/druki/content/delete-all
-  defaults:
-    _title: Delete all druki content
-    _form: Drupal\druki_content\Form\DrukiContentDeleteAllForm
-  requirements:
-    _permission: 'delete druki_content'

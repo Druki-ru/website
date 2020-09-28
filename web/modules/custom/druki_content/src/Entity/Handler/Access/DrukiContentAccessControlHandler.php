@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Entity\Handler;
+namespace Drupal\druki_content\Entity\Handler\Access;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
@@ -11,7 +11,7 @@ use Drupal\Core\Session\AccountInterface;
 /**
  * Defines the access control handler for the druki_content entity type.
  */
-class DrukiContentAccessControlHandler extends EntityAccessControlHandler {
+final class DrukiContentAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritdoc}

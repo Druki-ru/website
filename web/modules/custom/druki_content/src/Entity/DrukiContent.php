@@ -16,20 +16,22 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki content"),
  *   handlers = {
- *     "storage" = "Drupal\druki_content\Entity\Handler\DrukiContentStorage",
+ *     "storage" = "Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\druki_content\Entity\Handler\DrukiContentListBuilder",
+ *     "list_builder" = "Drupal\druki_content\Entity\Handler\ListBuilder\DrukiContentListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *     "access" = "Drupal\druki_content\Entity\Handler\DrukiContentAccessControlHandler",
+ *     "access" = "Drupal\druki_content\Entity\Handler\Access\DrukiContentAccessControlHandler",
  *     "form" = {
- *       "add" = "Drupal\druki_content\Form\DrukiContentForm",
- *       "edit" = "Drupal\druki_content\Form\DrukiContentForm",
- *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
+ *       "edit" = "Drupal\druki_content\Entity\Handler\Form\DrukiContentForm",
+ *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
+ *       "delete-all" = "Drupal\druki_content\Entity\Handler\Form\DrukiContentDeleteAllForm",
+ *       "settings" = "Drupal\druki_content\Entity\Handler\Form\DrukiContentSettingsForm",
+ *       "sync" = "\Drupal\druki_content\Entity\Handler\Form\DrukiContentSyncForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentHtmlRouteProvider",
  *     },
- *     "redirect_controller" = "Drupal\druki_content\Entity\Handler\DrukiContentRedirectController",
+ *     "redirect_controller" = "Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentRedirectController",
  *   },
  *   base_table = "druki_content",
  *   data_table = "druki_content_field_data",
@@ -42,18 +44,20 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *     "uuid" = "uuid"
  *   },
  *   links = {
- *     "add-form" = "/admin/druki/content/add",
  *     "canonical" = "/druki_content/{druki_content}",
  *     "edit-form" = "/admin/druki/content/{druki_content}/edit",
  *     "delete-form" = "/admin/druki/content/{druki_content}/delete",
+ *     "delete-all-form" = "/admin/druki/content/delete-all",
  *     "collection" = "/admin/content/druki-content",
  *     "edit-remote" = "/druki_content/{druki_content}/edit-remote",
  *     "history-remote" = "/druki_content/{druki_content}/history-remote",
+ *     "settings" = "/admin/structure/druki-content",
+ *     "sync" = "/admin/structure/druki-content/sync"
  *   },
  *   field_ui_base_route = "entity.druki_content.settings"
  * )
  */
-class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
+final class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
 
   /**
    * {@inheritdoc}

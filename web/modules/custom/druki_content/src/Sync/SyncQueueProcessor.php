@@ -5,7 +5,7 @@ namespace Drupal\druki_content\Sync;
 use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\druki_content\Entity\Handler\DrukiContentStorage;
+use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
 use Drupal\druki_content\SourceContent\ParsedSourceContentLoader;
 use Drupal\druki_content\SourceContent\SourceContent;
 use Drupal\druki_content\SourceContent\SourceContentList;
@@ -19,7 +19,7 @@ final class SyncQueueProcessor {
   /**
    * The druki content storage.
    *
-   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
   protected $drukiContentStorage;
 

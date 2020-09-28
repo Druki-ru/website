@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Form;
+namespace Drupal\druki_content\Entity\Handler\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Form controller for the druki content entity edit forms.
  */
-class DrukiContentForm extends ContentEntityForm {
+final class DrukiContentForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}

@@ -28,7 +28,7 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
   /**
    * The druki content storage.
    *
-   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
   protected $drukiContentStorage;
 

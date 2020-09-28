@@ -5,7 +5,7 @@ namespace Drupal\druki_content\SourceContent;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Entity\Handler\DrukiContentStorage;
+use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
 use Drupal\druki_content\ParsedContent\Content\ContentList;
 use Drupal\druki_content\ParsedContent\ParsedContentLoader;
 use Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList;
@@ -21,7 +21,7 @@ final class ParsedSourceContentLoader {
   /**
    * The druki content storage.
    *
-   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
   protected $drukiContentStorage;
 

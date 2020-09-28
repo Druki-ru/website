@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Form;
+namespace Drupal\druki_content\Entity\Handler\Form;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
@@ -16,7 +16,7 @@ final class DrukiContentDeleteAllForm extends ConfirmFormBase {
   /**
    * The druki content storage.
    *
-   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
   protected $drukiContentStorage;
 

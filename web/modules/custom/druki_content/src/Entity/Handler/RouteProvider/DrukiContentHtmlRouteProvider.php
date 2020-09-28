@@ -31,7 +31,88 @@ final class DrukiContentHtmlRouteProvider extends AdminHtmlRouteProvider {
     // designed to be created from remote sources.
     $collection->remove("entity.{$entity_type_id}.add_form");
 
+    if ($delete_all_route = $this->getDeleteAllRoute($entity_type)) {
+      $collection->add("entity.{$entity_type_id}.delete_all", $delete_all_route);
+    }
+
+    if ($settings_route = $this->getSettingsRoute($entity_type)) {
+      $collection->add("entity.{$entity_type_id}.settings", $settings_route);
+    }
+
+    if ($sync_route = $this->getSyncRoute($entity_type)) {
+      $collection->add("entity.{$entity_type_id}.sync", $sync_route);
+    }
+
     return $collection;
+  }
+
+  /**
+   * Gets synchronization form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getSyncRoute(EntityTypeInterface $entity_type): ?Route {
+    if ($entity_type->hasLinkTemplate('sync') && $entity_type->hasHandlerClass('form', 'sync')) {
+      $entity_type_id = $entity_type->id();
+      $route = new Route($entity_type->getLinkTemplate('sync'));
+      $route
+        ->setDefault('_form', $entity_type->getFormClass('sync'))
+        ->setRequirement('_permission', "administer {$entity_type_id}");
+
+      return $route;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * Gets settings form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getSettingsRoute(EntityTypeInterface $entity_type): ?Route {
+    if ($entity_type->hasLinkTemplate('settings') && $entity_type->hasHandlerClass('form', 'settings')) {
+      $entity_type_id = $entity_type->id();
+      $route = new Route($entity_type->getLinkTemplate('settings'));
+      $route
+        ->setDefault('_form', $entity_type->getFormClass('settings'))
+        ->setRequirement('_permission', "administer {$entity_type_id}");
+
+      return $route;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * Gets delete all form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getDeleteAllRoute(EntityTypeInterface $entity_type): ?Route {
+    if ($entity_type->hasLinkTemplate('delete-all-form') && $entity_type->hasHandlerClass('form', 'delete-all')) {
+      $entity_type_id = $entity_type->id();
+      $route = new Route($entity_type->getLinkTemplate('delete-all-form'));
+      $route
+        ->setDefault('_form', $entity_type->getFormClass('delete-all'))
+        ->setRequirement('_permission', "delete {$entity_type_id}");
+
+      return $route;
+    }
+
+    return NULL;
   }
 
   /**
