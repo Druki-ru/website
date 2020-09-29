@@ -1,5 +1,2 @@
-druki_content.delete_all:
-  route_name: druki_content.delete_all
-  title: 'Delete all druki content'
-  appears_on:
-    - entity.druki_content.collection
+entity.druki_content.actions:
+  deriver: \Drupal\druki_content\Plugin\Deriver\DrukiContentActionDeriver

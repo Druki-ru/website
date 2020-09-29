@@ -7,7 +7,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Entity\Handler\DrukiContentStorage;
+use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -34,7 +34,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   /**
    * The druki content sotrage.
    *
-   * @var \Drupal\druki_content\Entity\Handler\DrukiContentStorage
+   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
   protected $contentStorage;
 

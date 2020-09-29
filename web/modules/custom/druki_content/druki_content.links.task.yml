@@ -1,3 +1,4 @@
+# @todo move this to deriver.
 entity.druki_content.settings:
   title: Settings
   route_name: entity.druki_content.settings

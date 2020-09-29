@@ -11,7 +11,7 @@ services:
       - { name: event_subscriber }
 
   druki_content.sync_queue_manager:
-    class: Drupal\druki_content\Sync\SyncQueueManager
+    class: Drupal\druki_content\Sync\Queue\SyncQueueManager
     arguments: ['@druki_content.source_content_finder', '@queue', '@state', '@datetime.time', '@plugin.manager.queue_worker']
 
   druki_content.category.navigation:
@@ -19,63 +19,63 @@ services:
     arguments: ['@current_route_match', '@entity_type.manager']
 
   druki_content.source_content_finder:
-    class: Drupal\druki_content\SourceContent\SourceContentFinder
+    class: Drupal\druki_content\Sync\SourceContent\SourceContentFinder
     arguments: ['@language_manager']
 
   druki_content.source_content_parser:
-    class: Drupal\druki_content\SourceContent\SourceContentParser
+    class: Drupal\druki_content\Sync\SourceContent\SourceContentParser
     arguments: ['@druki_markdown.parser']
 
   druki_content.sync_queue_processor:
-    class: Drupal\druki_content\Sync\SyncQueueProcessor
+    class: Drupal\druki_content\Sync\Queue\SyncQueueProcessor
     arguments: ['@entity_type.manager', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache']
 
   druki_content.parsed_source_content_loader:
-    class: Drupal\druki_content\SourceContent\ParsedSourceContentLoader
+    class: Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader
     arguments: ['@druki_content.parsed_content_loader', '@entity_type.manager', '@datetime.time']
 
   druki_content.parsed_content_loader:
-    class: Drupal\druki_content\ParsedContent\ParsedContentLoader
+    class: Drupal\druki_content\Sync\ParsedContent\ParsedContentLoader
     tags:
       - { name: service_collector, tag: druki_parsed_content_loader, call: addLoader }
 
   druki_content.parsed_content_loader.front_matter:
-    class: Drupal\druki_content\ParsedContent\FrontMatter\FrontMatterLoader
+    class: Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterLoader
     tags:
       - { name: druki_parsed_content_loader }
 
   druki_content.parsed_content_loader.paragraph_base:
     abstract: true
-    class: Drupal\druki_content\ParsedContent\Content\ParagraphLoaderBase
+    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphLoaderBase
     arguments: ['@entity_type.manager']
 
   druki_content.parsed_content_loader.paragraph_text:
     parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\ParsedContent\Content\ParagraphTextLoader
+    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphTextLoader
     tags:
       - { name: druki_parsed_content_loader }
 
   druki_content.parsed_content_loader.paragraph_heading:
     parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\ParsedContent\Content\ParagraphHeadingLoader
+    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphHeadingLoader
     tags:
       - { name: druki_parsed_content_loader }
 
   druki_content.parsed_content_loader.paragraph_code:
     parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\ParsedContent\Content\ParagraphCodeLoader
+    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphCodeLoader
     tags:
       - { name: druki_parsed_content_loader }
 
   druki_content.parsed_content_loader.paragraph_note:
     parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\ParsedContent\Content\ParagraphNoteLoader
+    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphNoteLoader
     tags:
       - { name: druki_parsed_content_loader }
 
   druki_content.parsed_content_loader.paragraph_image:
     parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\ParsedContent\Content\ParagraphImageLoader
+    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImageLoader
     arguments: ['@config.factory', '@druki_file.tracker', '@entity_field.manager', '@token', '@file_system']
     tags:
       - { name: druki_parsed_content_loader }

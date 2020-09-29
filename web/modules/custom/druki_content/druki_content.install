@@ -303,3 +303,53 @@ function druki_content_update_9001(array &$sandbox) {
 
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
+
+/**
+ * Change Druki Content route provider handler namespace.
+ */
+function druki_content_update_9002(array &$sandbox) {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('route_provider', [
+    'html' => 'Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentHtmlRouteProvider',
+  ]);
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Update Druki Content handler namespaces.
+ */
+function druki_content_update_9003(array &$sandbox) {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('access','Drupal\druki_content\Entity\Handler\Access\DrukiContentAccessControlHandler');
+  $druki_content_definition->setHandlerClass('list_builder','Drupal\druki_content\Entity\Handler\ListBuilder\DrukiContentListBuilder');
+  $druki_content_definition->setHandlerClass('redirect_controller','Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentRedirectController');
+  $druki_content_definition->setHandlerClass('storage','Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Update Druki Content form handlers.
+ */
+function druki_content_update_9004(array &$sandbox) {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  // Form handlers at this point is not set to entity schema properly.
+  $form_handlers = [
+    'edit' => 'Drupal\druki_content\Entity\Handler\Form\DrukiContentForm',
+    'delete' => 'Drupal\Core\Entity\ContentEntityDeleteForm',
+    'delete-all' => 'Drupal\druki_content\Entity\Handler\Form\DrukiContentDeleteAllForm',
+    'settings' => 'Drupal\druki_content\Entity\Handler\Form\DrukiContentSettingsForm',
+    'sync' => 'Drupal\druki_content\Entity\Handler\Form\DrukiContentSyncForm',
+  ];
+  $druki_content_definition->setHandlerClass('form', $form_handlers);
+  // Set new link templates.
+  $druki_content_definition->setLinkTemplate('delete-all-form', '/admin/druki/content/delete-all');
+  $druki_content_definition->setLinkTemplate('settings', '/admin/structure/druki-content');
+  $druki_content_definition->setLinkTemplate('sync', '/admin/structure/druki-content/sync');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
