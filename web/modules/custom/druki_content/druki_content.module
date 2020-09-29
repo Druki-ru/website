@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Block\BlockPluginInterface;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_theme().
@@ -39,14 +38,6 @@ function druki_content_theme(): array {
       ],
     ],
   ];
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function druki_content_form_block_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
-  // @see https://www.drupal.org/node/2284687
-  unset($form['visibility']['druki_content']);
 }
 
 /**
