@@ -4,7 +4,7 @@ namespace Drupal\druki_content\Plugin\QueueWorker;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
-use Drupal\druki_content\Sync\SyncQueueItem;
+use Drupal\druki_content\Sync\Queue\SyncQueueItem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -24,7 +24,7 @@ final class DrukiContentSync extends QueueWorkerBase implements ContainerFactory
   /**
    * The queue processor.
    *
-   * @var \Drupal\druki_content\Sync\SyncQueueProcessor
+   * @var \Drupal\druki_content\Sync\Queue\SyncQueueProcessor
    */
   protected $queueProcessor;
 

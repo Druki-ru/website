@@ -5,7 +5,7 @@ namespace Drupal\druki_content\Entity\Handler\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki_content\Sync\SyncQueueManager;
+use Drupal\druki_content\Sync\Queue\SyncQueueManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -30,7 +30,7 @@ final class DrukiContentSyncForm extends FormBase {
   /**
    * The queue manager.
    *
-   * @var \Drupal\druki_content\Sync\SyncQueueManager
+   * @var \Drupal\druki_content\Sync\Queue\SyncQueueManager
    */
   protected $queueManager;
 
