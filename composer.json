@@ -47,7 +47,6 @@
         "druki/druki_git": "^1.0",
         "druki/druki_markdown": "^1.0",
         "druki/druki_media": "^1.0",
-        "druki/druki_paragraph": "^1.0",
         "druki/druki_search": "^1.0",
         "druki/loremaster": "^1.0",
         "drupal/config_split": "^1.4",
