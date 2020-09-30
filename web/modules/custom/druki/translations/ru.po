@@ -141,8 +141,8 @@ msgstr "Помощь и обратная связь"
 msgid "Edit this page"
 msgstr "Редактировать эту страницу"
 
-msgid "If you <strong>spot an error or a need for improvement</strong> and would like to <strong>fix it yourself</strong> in a merge request"
-msgstr "Если вы <strong>обнаружили ошибку или хотите внести улучшения</strong>, и желаете <strong>внести изменения самостоятельно</strong> при помощи merge request"
+msgid "If you <strong>spot an error or a need for improvement</strong> and would like to <strong>fix it yourself</strong> in a Pull Request"
+msgstr "Если вы <strong>обнаружили ошибку или хотите внести улучшения</strong>, и желаете <strong>внести изменения самостоятельно</strong> при помощи Pull Request"
 
 msgid "If you would like to <strong>suggest an improvement to this doc</strong>"
 msgstr "Если вы желаете <strong>предложить улучшение для этого документа</strong>"
