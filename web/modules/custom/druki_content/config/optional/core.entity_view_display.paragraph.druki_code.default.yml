@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.druki_code.druki_textarea_formatted
+    - paragraphs.paragraphs_type.druki_code
+  module:
+    - text
+id: paragraph.druki_code.default
+targetEntityType: paragraph
+bundle: druki_code
+mode: default
+content:
+  druki_textarea_formatted:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

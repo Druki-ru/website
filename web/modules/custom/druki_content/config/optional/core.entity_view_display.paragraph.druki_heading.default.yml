@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.druki_heading.druki_heading_level
+    - field.field.paragraph.druki_heading.druki_textfield_formatted
+    - paragraphs.paragraphs_type.druki_heading
+  module:
+    - text
+id: paragraph.druki_heading.default
+targetEntityType: paragraph
+bundle: druki_heading
+mode: default
+content:
+  druki_textfield_formatted:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  druki_heading_level: true

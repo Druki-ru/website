@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.druki_note_type
+    - paragraphs.paragraphs_type.druki_note
+  module:
+    - options
+id: paragraph.druki_note.druki_note_type
+field_name: druki_note_type
+entity_type: paragraph
+bundle: druki_note
+label: 'Note type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
