@@ -22,3 +22,19 @@ druki.frontpage:
     _controller: '\Drupal\druki\Controller\FrontpageController::build'
   requirements:
     _permission: 'access content'
+
+druki.download:
+  path: '/download'
+  defaults:
+    _title: 'Download Drupal'
+    _controller: '\Drupal\druki\Controller\PagesController::downloadPage'
+  requirements:
+    _permission: 'access content'
+
+druki.wiki:
+  path: '/wiki'
+  defaults:
+    _title: 'Drupal Wiki'
+    _controller: '\Drupal\druki\Controller\PagesController::wikiPage'
+  requirements:
+    _permission: 'access content'

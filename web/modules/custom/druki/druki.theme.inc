@@ -70,3 +70,17 @@ function template_preprocess_druki_official_user_guide(array &$variables) {
     ];
   }
 }
+
+/**
+ * Prepares variables for druki wiki page templates.
+ *
+ * Default template: druki-wiki.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing default theme hook variables.
+ */
+function template_preprocess_druki_wiki(array &$variables) {
+  $variables['user_guide'] = [
+    '#theme' => 'druki_official_user_guide',
+  ];
+}

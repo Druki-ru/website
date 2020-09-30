@@ -34,10 +34,12 @@ function druki_preprocess_page__front(array &$variables): void {
  * Implements hook_theme().
  */
 function druki_theme($existing, $type, $theme, $path) {
+  $file = 'druki.theme.inc';
+
   return [
     'druki_drupal_versions' => [
       'variables' => [],
-      'file' => 'druki.theme.inc',
+      'file' => $file,
     ],
     'druki_card' => [
       'variables' => [
@@ -47,7 +49,7 @@ function druki_theme($existing, $type, $theme, $path) {
         'actions' => [],
         'primary_url' => NULL,
       ],
-      'file' => 'druki.theme.inc',
+      'file' => $file,
     ],
     'druki_header_search' => [
       'variables' => [
@@ -56,7 +58,14 @@ function druki_theme($existing, $type, $theme, $path) {
     ],
     'druki_official_user_guide' => [
       'variables' => [],
-      'file' => 'druki.theme.inc',
+      'file' => $file,
+    ],
+    'druki_download' => [
+      'variables' => [],
+    ],
+    'druki_wiki' => [
+      'variables' => [],
+      'file' => $file,
     ],
   ];
 }

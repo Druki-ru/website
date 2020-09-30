@@ -170,3 +170,9 @@ msgstr "Если вам нужна помощь с чем-то конкретн�
 
 msgid "Anchor link"
 msgstr "Ссылка-якорь"
+
+msgid "Download Drupal"
+msgstr "Загрузить Drupal"
+
+msgid "Drupal Wiki"
+msgstr "Drupal энциклопедия"

@@ -1,0 +1,75 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present druki /download page.
+ */
+#}
+<div{{ attributes.addClass(bem_block) }}>
+  <header class="druki-page-download__head">
+    <h2 class="druki-page-download__subtitle">
+      Всего одна команда отделяет вас от Drupal 🚀
+    </h2>
+
+    <div class="druki-page-download__command-pane">
+    <span class="druki-page-download__command">
+      composer -n create-project drupal/recommended-project <strong>my_new_site</strong>
+    </span>
+    </div>
+
+    <div class="druki-page-download__command-note">
+      <p>Узнайте больше о <a href="/wiki/composer">Composer</a> и шаблонах проектов. Возникли сложности? Обратитесь к <a href="/wiki/9/download">руководству по загрузке</a> и <a href="/wiki/9/installation">руководству по
+          установке</a>.</p>
+    </div>
+  </header>
+
+  <div class="druki-page-download__cards">
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Демо-сайт на Drupal',
+      '#subhead': 'Попробуйте Drupal онлайн',
+      '#description': 'Самый быстрый способ познакомиться и попробовать Drupal.',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/simplytest',
+    } }}
+
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Следите за обновлениями',
+      '#description': 'Не упустите новые возможности Drupal, а также, предоставьте сайту
+          максимальную защиту.',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/9/releases',
+    } }}
+
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Бесплатный, с открытым исходным кодом',
+      '#description': 'Вы можете использовать Drupal, как для личных, так и для коммерчиских проектов. Никаких отчислений и подписок!',
+      '#style': 'outlined',
+    } }}
+
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Исходный код Drupal',
+      '#description': 'Разработка Drupal ведется открыто и доступна для всех.',
+      '#style': 'outlined',
+      '#primary_url': 'https://git.drupalcode.org/project/drupal',
+    } }}
+
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Присоединяйтесь к сообществу',
+      '#description': 'Мы всегда рады новым лицам в сообществе!',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/community',
+    } }}
+
+    {{ {
+      '#type': 'druki_card',
+      '#title': 'Скажите, Привет!',
+      '#description': 'Подключайтесь к чатам — здесь вам помогут и ответят на интересующие вопросы.',
+      '#style': 'outlined',
+      '#primary_url': '/wiki/community/resources',
+    } }}
+  </div>
+</div>

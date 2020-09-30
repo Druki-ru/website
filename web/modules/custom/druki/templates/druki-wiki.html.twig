@@ -1,0 +1,419 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present druki /wiki page.
+ *
+ * @todo refactor BEM classes to be more shorten.
+ */
+#}
+<div{{ attributes.addClass(bem_block) }}>
+  <div class="druki-page-wiki__row">
+    <h2 class="druki-page-wiki__row-title">
+      Познакомьтесь с Drupal
+    </h2>
+
+    <div class="druki-page-wiki__row-description">
+      <p>
+        Если вы не знакомы с Drupal, начните с общей информации. Узнайте, что
+        такое Drupal, какое его текущее состояние, какие принципы и ценности у
+        нашего сообщества, а также, познакомьтесь с нами.
+      </p>
+    </div>
+
+    <div class="druki-page-wiki__row-content">
+      <div class="druki-page-wiki__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Что такое Drupal?',
+          '#description': 'Узнайте, что такое Drupal и для чего он нужен.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/drupal',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Философия Drupal',
+          '#description': 'Принципы и ценности нашего сообщества.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/the-drupal-way',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Нормы поведения',
+          '#description': 'Набор идей, направленных на хорошее поведение в сообществе.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/code-of-conduct',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Сообщество',
+          '#description': 'Узнайте о нашем сообществе больше, и как с нами связаться.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/community',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Мероприятия',
+          '#description': 'DrupalCon, DrupalConf, DrupalCamp и прочие мероприятия.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/events',
+        } }}
+      </div>
+
+      <div class="druki-page-wiki__faq">
+        Не нашли ответов на свои вопросы? Ознакомьтесь с <a href="/wiki/faq">часто
+          задаваемыми вопросами</a>, возможно, мы уже ответили на ваш вопрос.
+      </div>
+    </div>
+  </div>
+
+  <div class="druki-page-wiki__row druki-page-wiki__row--user-guide">
+    {{ user_guide }}
+  </div>
+
+  <div class="druki-page-wiki__row">
+    <h2 class="druki-page-wiki__row-title">
+      Делаем первые шаги вместе
+    </h2>
+
+    <div class="druki-page-wiki__row-description">
+      <p>
+        Решились попробовать Drupal? Похвально! У вас определенно возникнут
+        трудности в процессе обучения. Ознакомьтесь с некоторыми базовыми
+        материалами, которые помогут вам преодолеть свои первые преграды. И не
+        забывайте про наше сообщество, мы всегда рады новым лицам и готовы
+        помочь вам в этом не простом пути.
+      </p>
+    </div>
+
+    <div class="druki-page-wiki__row-content">
+      <div class="druki-page-wiki__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Composer',
+          '#description': 'То, с чем лучше познакомиться раньше чем с Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/composer',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Загрузите Drupal',
+          '#description': 'Загрузка исходного кода Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/download',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Установите Drupal',
+          '#description': 'Настало время поздороваться с Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/installation',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Административный интерфейс',
+          '#description': 'Ваш командный центр управления Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/admin',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="druki-page-wiki__row">
+    <h2 class="druki-page-wiki__row-title">
+      Растите вместе с Drupal
+    </h2>
+
+    <div class="druki-page-wiki__row-description">
+      <p>
+        Установили Drupal? Круто! Вы уже проделали не малый путь, и определенно
+        узнали что-то новое, но после установки, скорее всего, назрели вопросы:
+        «С чего начать?», «Куда двигаться дальше?» — в этом разделе собран
+        основной арсенал Drupal. Вы не только начнете узнавать всё больше и
+        глубже, но и, мы надеемся, будете улучшать свои навыки.
+      </p>
+    </div>
+
+    <div class="druki-page-wiki__row-content">
+      <div class="druki-page-wiki__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Drupal API',
+          '#description': 'Обзор Drupal API.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/api',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="druki-page-wiki__row">
+    <h3 class="druki-page-wiki__row-title">
+      Drupal Component API
+    </h3>
+
+    <div class="druki-page-wiki__row-content">
+      <div class="druki-page-wiki__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Плагины',
+          '#subhead': 'Plugin API',
+          '#description': 'Расширяйте и используйте возможности других модулей.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/plugins',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Сервисы',
+          '#subhead': 'Services и Dependency Injection (DI)',
+          '#description': 'Создавайте объекты с Dependency Injection.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/services',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'События',
+          '#subhead': 'Events и EventSubscribers',
+          '#description': 'События позволяют подписываться на различные этапы обработки и реагировать как вам необходимо.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/events',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="druki-page-wiki__row">
+    <h3 class="druki-page-wiki__row-title">
+      Drupal Core API
+    </h3>
+
+    <div class="druki-page-wiki__row-content">
+      <div class="druki-page-wiki__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Модули',
+          '#description': 'Расширяйте, изменяйте и модифицируйте Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/modules',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Темы оформления',
+          '#description': 'Оформите свой сайт, как вам угодно.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/themes',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Дистрибутивы',
+          '#description': 'Установочные профили Drupal, которые позволяют создавать коробочные решения.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/distributions',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Маршрутизация',
+          '#subhead': 'Routes и Controllers',
+          '#description': 'Создавайте свои собственные страницы, с уникальным поведением.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/routing',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Хуки',
+          '#subhead': 'Hooks',
+          '#description': 'Внедряйтесь на различных этапах работы системы, влияйте на поведение и результат.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/hooks',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Библиотеки',
+          '#subhead': 'Libraries API',
+          '#description': 'Подключайте JavaScript и CSS на страницы правильно.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/libraries',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Формы',
+          '#subhead': 'Form API',
+          '#description': 'Создавайте формы, валидируйте, изменяйте, расширяйте.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/forms',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Очереди',
+          '#subhead': 'Queue API',
+          '#description': 'Отложенная обработка больших объемов данных.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/queues',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Пакетная обработка данных',
+          '#subhead': 'Batch API',
+          '#description': 'Обработка больших объемов данных с отображением прогресса.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/batches',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Сущности',
+          '#subhead': 'Entity API',
+          '#description': 'Хранилища данных в Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/entities',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="druki-page-wiki__row">
+    <h3 class="druki-page-wiki__row-title">
+      Системные файлы
+    </h3>
+
+    <div class="druki-page-wiki__row-content">
+      <div class="druki-page-wiki__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'settings.php',
+          '#subhead': 'settings.php и settings.local.php',
+          '#description': 'Обзор настроек окружения Drupal.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/settings-php',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="druki-page-wiki__row">
+    <h3 class="druki-page-wiki__row-title">
+      Сервисы с метками
+    </h3>
+
+    <div class="druki-page-wiki__row-content">
+      <div class="druki-page-wiki__cards">
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Строитель хлебных крошек',
+          '#subhead': 'breadcrumb_builder',
+          '#description': 'Позволяет программно устанавливать хлебные крошки.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/breadcrumb-builder',
+        } }}
+
+        {{ {
+          '#type': 'druki_card',
+          '#title': 'Inbound и Outbound обработчики',
+          '#subhead': 'path_processor_inbound, path_processor_outbound',
+          '#description': 'Позволяют программно контролировать ЧПУ любой сложности.',
+          '#style': 'outlined',
+          '#primary_url': '/wiki/9/inbound-outbound-path-processor',
+        } }}
+      </div>
+    </div>
+  </div>
+
+  <div class="druki-page-wiki__row">
+    <div class="druki-page-wiki__other-items">
+      <div class="druki-page-wiki__other-item">
+        <h4 class="druki-page-wiki__other-item-title">Полезная информация</h4>
+        <ul class="druki-page-wiki__other-item-items">
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/standards">Стандарты кодирования Drupal</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/release-naming-conventions">Соглашение об именовании релизов</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/9/releases">Список изменений Drupal 9</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/8/releases">Список изменений Drupal 8</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/security">Объявления безопасности</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/9">Drupal 9</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/semver">Семантическое версионирование</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/9/system-requirements">Системные требования</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="druki-page-wiki__other-item">
+        <h4 class="druki-page-wiki__other-item-title">CLI утилиты</h4>
+
+        <ul class="druki-page-wiki__other-item-items">
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/composer">Composer</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/drush">Drush</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="druki-page-wiki__other-item">
+        <h4 class="druki-page-wiki__other-item-title">Дистрибутивы Drupal</h4>
+
+        <ul class="druki-page-wiki__other-item-items">
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/9/distributions/standard">Стандартный</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/9/distributions/minimal">Минимальный</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/9/distributions/demo-umami">Демонстрационный: Кулинарный журнал Umami</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="druki-page-wiki__other-item">
+        <h4 class="druki-page-wiki__other-item-title">Composer пакеты</h4>
+
+        <ul class="druki-page-wiki__other-item-items">
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/drupal-recommended-project">drupal/recommended-project</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/drupal-legacy-project">drupal/legacy-project</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/drupal-core-recommended">drupal/core-recommended</a>
+          </li>
+          <li class="druki-page-wiki__other-item-item">
+            <a href="/wiki/drupal-core-composer-scaffold">drupal/core-composer-scaffold</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
