@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04166d736bc1dfe8b037725a655bd26f",
+    "content-hash": "8277ae397ffd1a7ddad8f18babf8ed72",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1398,20 +1398,6 @@
             },
             "type": "drupal-custom-module",
             "description": "The media entity custom code.",
-            "keywords": [
-                "Drupal"
-            ]
-        },
-        {
-            "name": "druki/druki_page",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "web/modules/custom/druki_page",
-                "reference": "dfa7231d27a8394fa3fafb80af7594f8cb6b2f21"
-            },
-            "type": "drupal-custom-module",
-            "description": "The custom pages for website not related to any entity type.",
             "keywords": [
                 "Drupal"
             ]
