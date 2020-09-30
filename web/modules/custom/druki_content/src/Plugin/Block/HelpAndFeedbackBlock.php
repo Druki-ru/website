@@ -81,7 +81,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
         'query' => [
           'title' => $improve_title,
           'body' => $this->buildImproveBody(),
-          'labels' => 'enhancement',
+          'labels' => 'improvement',
         ],
       ]),
     ];
