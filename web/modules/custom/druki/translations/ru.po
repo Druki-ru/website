@@ -147,8 +147,8 @@ msgstr "Если вы <strong>обнаружили ошибку или хоти�
 msgid "If you would like to <strong>suggest an improvement to this doc</strong>"
 msgstr "Если вы желаете <strong>предложить улучшение для этого документа</strong>"
 
-msgid "Doc feedback: @title"
-msgstr "Обратная связь по документации: @title"
+msgid "Feedback: @title"
+msgstr "Обратная связь: @title"
 
 msgid "Create an issue"
 msgstr "Создать обращение"

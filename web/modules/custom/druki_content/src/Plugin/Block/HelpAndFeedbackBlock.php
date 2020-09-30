@@ -70,7 +70,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build(): array {
-    $improve_title = new TranslatableMarkup('Doc feedback: @title', [
+    $improve_title = new TranslatableMarkup('Feedback: @title', [
       '@title' => $this->getEntityFromContext()->label(),
     ]);
 
