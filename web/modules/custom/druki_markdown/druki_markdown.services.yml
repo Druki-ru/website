@@ -1,3 +1,0 @@
-services:
-  druki_markdown.parser:
-    class: Drupal\druki_markdown\Parser\MarkdownParser

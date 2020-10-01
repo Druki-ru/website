@@ -1,9 +1,0 @@
-name: Druki Markdown
-type: module
-description: The custom code for markdown syntax.
-package: druki
-core: 8.x
-core_version_requirement: ^8 || ^9
-
-'interface translation project': druki_markdown
-'interface translation server pattern': modules/custom/%project/translations/%language.po
