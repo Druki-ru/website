@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3641b7fdafcc17d5d9181057f2b1c27f",
+    "content-hash": "8ab70f92317b77f3c609b177ad1d0a83",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1299,15 +1299,17 @@
         },
         {
             "name": "druki/druki",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/druki",
-                "reference": "31d13b56750178e321caf33a5af0903e20e28bd8"
+                "reference": "093887d188d315e73ea4619f52536797bfec3fe4"
             },
             "require": {
+                "ext-json": "*",
                 "ext-simplexml": "*",
                 "ext-xmlreader": "*",
+                "league/commonmark": "^1.0.0",
                 "npm-asset/instant.page": "^3.0",
                 "symfony/finder": "~4.0"
             },
@@ -1367,24 +1369,6 @@
             },
             "type": "drupal-custom-module",
             "description": "The git integration.",
-            "keywords": [
-                "Drupal"
-            ]
-        },
-        {
-            "name": "druki/druki_markdown",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "web/modules/custom/druki_markdown",
-                "reference": "371f332f4db44ad1b6a4a1bf1c1099c70e1fcf0e"
-            },
-            "require": {
-                "ext-json": "*",
-                "league/commonmark": "^1.0.0"
-            },
-            "type": "drupal-custom-module",
-            "description": "The custom code for markdown syntax.",
             "keywords": [
                 "Drupal"
             ]
