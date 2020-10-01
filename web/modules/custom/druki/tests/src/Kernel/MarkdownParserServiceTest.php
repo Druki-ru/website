@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki_markdown\Kernel;
+namespace Drupal\Tests\druki\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;
@@ -17,7 +17,7 @@ class MarkdownParserServiceTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['druki_markdown'];
+  public static $modules = ['update', 'system', 'druki'];
 
   /**
    * The markdown parser service.
@@ -31,8 +31,7 @@ class MarkdownParserServiceTest extends KernelTestBase {
    */
   public function setUp() {
     parent::setUp();
-
-    $this->markdownParser = $this->container->get('druki_markdown.parser');
+    $this->markdownParser = $this->container->get('druki.markdown_parser');
   }
 
   /**

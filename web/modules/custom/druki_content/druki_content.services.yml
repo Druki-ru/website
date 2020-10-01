@@ -24,7 +24,7 @@ services:
 
   druki_content.source_content_parser:
     class: Drupal\druki_content\Sync\SourceContent\SourceContentParser
-    arguments: ['@druki_markdown.parser']
+    arguments: ['@druki.markdown_parser']
 
   druki_content.sync_queue_processor:
     class: Drupal\druki_content\Sync\Queue\SyncQueueProcessor

@@ -15,3 +15,6 @@ services:
   druki.cron.check_drupal_releases:
     class: Drupal\druki\Cron\CheckDrupalReleasesCron
     arguments: ['@datetime.time', '@cache_tags.invalidator', '@druki.drupal_releases', '@druki.drupal_projects']
+
+  druki.markdown_parser:
+    class: Drupal\druki\Markdown\Parser\MarkdownParser

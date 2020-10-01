@@ -8,15 +8,14 @@ configure: entity.druki_content.settings
 
 dependencies:
   - druki:druki
+  - druki_git:druki_git
+  - druki_file:druki_file
   - paragraphs:paragraphs
   - drupal:text
   - drupal:options
   - drupal:media
   - drupal:media_library
   - drupal:responsive_image
-  - druki_git:druki_git
-  - druki_markdown:druki_markdown
-  - druki_file:druki_file
   - pathauto:pathauto
   - metatag:metatag
 
