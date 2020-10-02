@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3dc93179dd37a2990ab117330a1b8bca",
+    "content-hash": "bd8fc55dbb42c35d73e6a55d482c6b66",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1337,20 +1337,6 @@
             },
             "type": "drupal-custom-module",
             "description": "Provides a druki content entity.",
-            "keywords": [
-                "Drupal"
-            ]
-        },
-        {
-            "name": "druki/druki_file",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "web/modules/custom/druki_file",
-                "reference": "e72492941899b7a188214d05133551109c9f5762"
-            },
-            "type": "drupal-custom-module",
-            "description": "The File entity integration.",
             "keywords": [
                 "Drupal"
             ]

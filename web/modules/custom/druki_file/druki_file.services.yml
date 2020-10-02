@@ -1,9 +1,0 @@
-services:
-  logger.channel.druki_file:
-    class: Drupal\Core\Logger\LoggerChannel
-    factory: logger.factory:get
-    arguments: ['druki_file']
-
-  druki_file.tracker:
-    class: Drupal\druki_file\Service\DrukiFileTracker
-    arguments: ['@entity_type.manager', '@logger.channel.druki_file', '@file.usage']
