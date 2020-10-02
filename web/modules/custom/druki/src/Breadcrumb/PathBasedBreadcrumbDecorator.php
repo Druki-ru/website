@@ -1,9 +1,10 @@
 <?php
 
-namespace Drupal\druki\Service;
+namespace Drupal\druki\Breadcrumb;
 
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\system\PathBasedBreadcrumbBuilder;
 
 /**
@@ -22,7 +23,7 @@ class PathBasedBreadcrumbDecorator extends PathBasedBreadcrumbBuilder implements
         continue;
       }
 
-      $link->setText($this->t('Wiki'));
+      $link->setText(new TranslatableMarkup('Wiki'));
     }
 
     return $breadcrumb;

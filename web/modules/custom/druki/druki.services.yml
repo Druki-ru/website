@@ -9,7 +9,7 @@ services:
     arguments: ['@update.fetcher']
 
   druki.path_based_breadcrumb_decorator:
-    class: Drupal\druki\Service\PathBasedBreadcrumbDecorator
+    class: Drupal\druki\Breadcrumb\PathBasedBreadcrumbDecorator
     decorates: system.breadcrumb.default
     arguments: ['@router.request_context', '@access_manager', '@router', '@path_processor_manager', '@config.factory',  '@title_resolver', '@current_user', '@path.current', '@path.matcher']
 
