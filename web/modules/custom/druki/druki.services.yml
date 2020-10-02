@@ -1,4 +1,9 @@
 services:
+  logger.channel.druki:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: [ 'druki' ]
+
   druki.drupal_projects:
     class: Drupal\druki\Drupal\DrupalProjects
     arguments: ['@update.fetcher']
@@ -18,3 +23,7 @@ services:
 
   druki.markdown_parser:
     class: Drupal\druki\Markdown\Parser\MarkdownParser
+
+  druki.file_tracker:
+    class: Drupal\druki\File\FileTracker
+    arguments: ['@entity_type.manager', '@logger.channel.druki', '@file.usage']
