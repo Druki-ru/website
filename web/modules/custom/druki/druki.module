@@ -67,6 +67,16 @@ function druki_theme($existing, $type, $theme, $path) {
       'variables' => [],
       'file' => $file,
     ],
+    'druki_media_remote_video_optimized' => [
+      'variables' => [
+        'thumbnail_style_id' => NULL,
+        'thumbnail_uri' => NULL,
+        'thumbnail_alt' => NULL,
+        'video_provider' => NULL,
+        'video_id' => NULL,
+      ],
+      'file' => $file,
+    ],
   ];
 }
 

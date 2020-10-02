@@ -33,3 +33,9 @@ dark-mode:
     assets/js/dark-mode.js: { weight: -16 }
   dependencies:
     - core/drupal
+
+remote_video_optimized:
+  js:
+    assets/js/druki-media-remote-video-optimized.js: {}
+  dependencies:
+    - core/drupal
