@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_media\Element;
+namespace Drupal\druki\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
 
@@ -9,7 +9,7 @@ use Drupal\Core\Render\Element\RenderElement;
  *
  * @RenderElement("druki_media_remote_video_optimized")
  */
-class RemoteVideoOptimized extends RenderElement {
+final class RemoteVideoOptimized extends RenderElement {
 
   /**
    * {@inheritdoc}
@@ -18,7 +18,7 @@ class RemoteVideoOptimized extends RenderElement {
     return [
       '#theme' => 'druki_media_remote_video_optimized',
       '#attached' => [
-        'library' => ['druki_media/remote_video_optimized'],
+        'library' => ['druki/remote_video_optimized'],
       ],
     ];
   }

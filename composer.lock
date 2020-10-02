@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ab70f92317b77f3c609b177ad1d0a83",
+    "content-hash": "3dc93179dd37a2990ab117330a1b8bca",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1369,20 +1369,6 @@
             },
             "type": "drupal-custom-module",
             "description": "The git integration.",
-            "keywords": [
-                "Drupal"
-            ]
-        },
-        {
-            "name": "druki/druki_media",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "web/modules/custom/druki_media",
-                "reference": "2df5bfbe59831098123f0b9ef6ab9261de107d93"
-            },
-            "type": "drupal-custom-module",
-            "description": "The media entity custom code.",
             "keywords": [
                 "Drupal"
             ]
