@@ -8,7 +8,7 @@ use Drupal\Tests\user\Traits\UserCreationTrait;
 /**
  * Test markdown parser service.
  *
- * @coversDefaultClass \Drupal\druki_markdown\Parser\MarkdownParser
+ * @coversDefaultClass \Drupal\druki\Markdown\Parser\MarkdownParser
  */
 class MarkdownParserServiceTest extends KernelTestBase {
 
@@ -22,7 +22,7 @@ class MarkdownParserServiceTest extends KernelTestBase {
   /**
    * The markdown parser service.
    *
-   * @var \Drupal\druki_markdown\Parser\MarkdownParser|object
+   * @var \Drupal\druki\Markdown\Parser\MarkdownParser
    */
   protected $markdownParser;
 

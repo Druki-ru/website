@@ -2,8 +2,8 @@
 
 namespace Drupal\druki_content\Sync\SourceContent;
 
+use Drupal\druki\Markdown\Parser\MarkdownParserInterface;
 use Drupal\druki_content\Sync\Parser\HtmlContentParser;
-use Drupal\druki_markdown\Parser\MarkdownParserInterface;
 
 /**
  * Provides parser for source content.
@@ -16,7 +16,7 @@ final class SourceContentParser {
   /**
    * The Markdown parser.
    *
-   * @var \Drupal\druki_markdown\Parser\MarkdownParserInterface
+   * @var \Drupal\druki\Markdown\Parser\MarkdownParserInterface
    */
   protected $markdownParser;
 
@@ -30,7 +30,7 @@ final class SourceContentParser {
   /**
    * Constructs a new SourceContentParser object.
    *
-   * @param \Drupal\druki_markdown\Parser\MarkdownParserInterface $markdown_parser
+   * @param \Drupal\druki\Markdown\Parser\MarkdownParserInterface $markdown_parser
    *   The markdown parser.
    */
   public function __construct(MarkdownParserInterface $markdown_parser) {
