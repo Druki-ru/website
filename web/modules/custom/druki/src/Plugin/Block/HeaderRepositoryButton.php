@@ -23,7 +23,7 @@ final class HeaderRepositoryButton extends BlockBase {
   public function build() {
     $build['content'] = [
       '#type' => 'link',
-      '#url' => Url::fromUri('https://github.com/Druki-ru/website'),
+      '#url' => Url::fromUri('https://github.com/Druki-ru'),
       '#title' => NULL,
       '#attributes' => [
         'class' => [
