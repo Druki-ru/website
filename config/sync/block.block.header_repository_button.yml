@@ -1,0 +1,20 @@
+uuid: af132119-1147-4e2f-86dc-87f19aa76a18
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki
+  theme:
+    - loremaster
+id: header_repository_button
+theme: loremaster
+region: header
+weight: -7
+provider: null
+plugin: druki_header_repository_button
+settings:
+  id: druki_header_repository_button
+  label: 'Header repository button'
+  provider: druki
+  label_display: '0'
+visibility: {  }
