@@ -185,3 +185,6 @@ msgstr "Стиль уменьшенного изображения"
 
 msgid "Thumbnail style: @style"
 msgstr "Стиль уменьшенного изображения: @style"
+
+msgid "Project repository"
+msgstr "Репозиторий проекта"

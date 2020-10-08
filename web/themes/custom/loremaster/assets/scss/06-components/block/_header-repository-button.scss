@@ -1,0 +1,17 @@
+.header-repository-button {
+  width: 2rem;
+  height: 2rem;
+  background-image: var(--icon-github-white);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-radius: var(--radius-xxs);
+  background-color: transparent;
+  border: none;
+  align-self: center;
+  display: flex;
+}
+
+.header-repository-button:hover {
+  background-color: var(--color-black--light-24);
+}
