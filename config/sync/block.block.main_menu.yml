@@ -11,7 +11,7 @@ dependencies:
 id: main_menu
 theme: loremaster
 region: header
-weight: -6
+weight: -9
 provider: null
 plugin: 'system_menu_block:main'
 settings:

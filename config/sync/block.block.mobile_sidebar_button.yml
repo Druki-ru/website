@@ -9,7 +9,7 @@ dependencies:
 id: mobile_sidebar_button
 theme: loremaster
 region: mobile_toolbar
-weight: -9
+weight: -10
 provider: null
 plugin: druki_mobile_sidebar_button
 settings:

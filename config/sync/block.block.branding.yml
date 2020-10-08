@@ -9,7 +9,7 @@ dependencies:
 id: branding
 theme: loremaster
 region: header
-weight: -7
+weight: -10
 provider: null
 plugin: system_branding_block
 settings:
