@@ -5,17 +5,18 @@ on:
   push:
     branches: [ 9.x ]
 
+env:
+  SSH_KEY: ${{ secrets.ci_deploy_key }}
+  SSH_USER: ${{ secrets.ci_production_username }}
+  SSH_HOST: ${{ secrets.ci_production_host }}
+  DEPLOY_PATH: ${{ secrets.ci_deploy_path }}
+  DRUSH_URI: 'https://druki.ru'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Create SSH key
-        shell: bash
-        env:
-          SSH_KEY: ${{ secrets.ci_deploy_key }}
-          SSH_USER: ${{ secrets.ci_production_username }}
-          SSH_HOST: ${{ secrets.ci_production_host }}
+      - name: 'Create SSH key'
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_rsa
@@ -27,9 +28,37 @@ jobs:
             IdentityFile ~/.ssh/id_rsa
             StrictHostKeyChecking no
           END
-      - name: Deploy
+
+      - name: 'Pull changes'
         shell: bash
-        env:
-          DEPLOY_PATH: ${{ secrets.ci_deploy_path }}
         run: |
-          ssh production "cd $DEPLOY_PATH/scripts && dep deploy"
+          ssh production "cd $DEPLOY_PATH && git fetch && git checkout"
+          ssh production "cd $DEPLOY_PATH && git pull origin 9.x"
+
+      - name: 'Install Composer dependencies'
+        run: ssh production "cd $DEPLOY_PATH && composer install --no-dev -o -n"
+
+      - name: 'Apply database updates'
+        run: ssh production "cd $DEPLOY_PATH && drush updatedb -y"
+
+      - name: 'Configuration split export'
+        run: ssh production "cd $DEPLOY_PATH && drush config-split:export live -y"
+
+      - name: 'Synchronize configurations'
+        run: ssh production "cd $DEPLOY_PATH && drush config:import --diff -y"
+
+      - name: 'Configuration split import'
+        run: ssh production "cd $DEPLOY_PATH && drush config-split:import live -y"
+
+      - name: 'Localization update'
+        run: |
+          ssh production "cd $DEPLOY_PATH && drush locale:check -y"
+          ssh production "cd $DEPLOY_PATH && drush locale:update -y"
+
+      - name: 'Rebuild cache'
+        run: ssh production "cd $DEPLOY_PATH && drush cache:rebuild -y"
+
+      - name: 'Enqueue cache warming'
+        run: |
+          ssh production "cd $DEPLOY_PATH && drush queue:delete warmer --uri=$DRUSH_URI"
+          ssh production "cd $DEPLOY_PATH && drush warmer:enqueue sitemap --uri=$DRUSH_URI"
