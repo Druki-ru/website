@@ -39,7 +39,7 @@ jobs:
           restore-keys: php-${{ matrix.php-version }}
 
       - name: 'Install Composer dependencies'
-        run: composer install ${{ COMPOSER_FLAGS }}
+        run: composer install $COMPOSER_FLAGS
 
       - name: 'PHPStan Analyse'
         run: vendor/bin/phpstan analyse --configuration=phpstan.neon
