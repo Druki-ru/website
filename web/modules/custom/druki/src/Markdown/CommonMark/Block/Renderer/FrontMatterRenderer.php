@@ -18,7 +18,6 @@ final class FrontMatterRenderer implements BlockRendererInterface {
    */
   public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE): HtmlElement {
     $content = [];
-    // @phpstan-ignore-next-line
     $yaml_array = Yaml::decode($block->getStringContent());
 
     foreach ($yaml_array as $key => $value) {

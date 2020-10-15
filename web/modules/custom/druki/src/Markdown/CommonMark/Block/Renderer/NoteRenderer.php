@@ -17,7 +17,6 @@ final class NoteRenderer implements BlockRendererInterface {
    */
   public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE): HtmlElement {
     $childContent = $htmlRenderer->renderBlocks($block->children());
-    // @phpstan-ignore-next-line
     $note_type = $block->getType();
 
     return new HtmlElement('div', ['data-druki-note' => $note_type], $childContent);
