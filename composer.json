@@ -66,7 +66,6 @@
         "oomphinc/composer-installers-extender": "^1.1"
     },
     "require-dev": {
-        "deployer/deployer": "^6.7",
         "drupal/coder": "^8.3",
         "drupal/core-dev": "^9.0",
         "mglaman/drupal-check": "^1.1"
