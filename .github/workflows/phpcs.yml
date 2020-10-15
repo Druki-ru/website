@@ -1,4 +1,4 @@
-name: PHPStan
+name: PHPCS
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ env:
 
 jobs:
   tests:
-    name: 'PHPStan'
+    name: 'PHPCS'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,5 +42,5 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install $COMPOSER_FLAGS
 
-      - name: 'PHPStan Analyse'
-        run: vendor/bin/phpstan analyse --configuration=phpstan.neon
+      - name: 'PHPCS Analyse'
+        run: vendor/bin/phpcs
