@@ -138,6 +138,11 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
       $file_uri = $repository_path . '/' . $src;
     }
 
+    // If some problems occurs and we doesn't have valid uti.
+    if (!$file_uri) {
+      return;
+    }
+
     // If file is found locally.
     if (file_exists($file_uri)) {
       $paragraph = $this->getParagraphStorage()->create(['type' => $data->getParagraphType()]);
