@@ -5,6 +5,7 @@
  * Main file for installation and uninstall process.
  */
 
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Site\Settings;
 
 /**
@@ -84,4 +85,17 @@ function druki_update_8901(array &$sandbox) {
   $sandbox['#finished'] = empty($sandbox['files']) ? 1 : 0;
 
   return t('@count files processed.', ['@count' => $sandbox['processed']]);
+}
+
+/**
+ * Fix missing 'druki_file_hash' field.
+ */
+function druki_update_9001(array &$sandbox): void {
+  $druki_file_hash = BaseFieldDefinition::create('string')
+    ->setLabel(t('File hash'))
+    ->setDescription(t('The file md5 hash.'))
+    ->setSetting('max_length', 255);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('druki_file_hash', 'file', 'druki', $druki_file_hash);
 }
