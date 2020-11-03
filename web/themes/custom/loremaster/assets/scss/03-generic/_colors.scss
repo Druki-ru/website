@@ -20,11 +20,10 @@
   --color-dark-silver: #545560;
   --color-roman-silver: #82828C;
   --color-raisin-black: #222330;
-  --color-persian-blue: #003CC5;
-  --color-persian-blue--dark-1: #0036B1;
-  --color-persian-blue--light-1: #0042DD;
-  --color-persian-blue--light-2: #E9EFFF;
-  --color-persian-blue--light-3: #F6F8FD;
+  --color-celtic-blue: #0366D6;
+  --color-denim: #035FC9;
+  --color-blue-crayola: #0470EC;
+  --color-fresh-sky-blue: #EBF4FF;
   --color-light-cornflower-blue: #84A9C0;
   --color-light-cornflower-blue--dark-1: #6BBCEF;
   --color-maximum-red: #D72222;
@@ -39,7 +38,7 @@
   --color-jet: #353535;
 
   // Utility colors.
-  --color-border: var(--color-manatee);
+  --color-border: var(--color-silver-metallic);
   --color-border-secondary: var(--color-platinum);
   --color-disabled: var(--color-platinum);
 }

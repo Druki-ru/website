@@ -28,11 +28,11 @@
 }
 
 .tabs__link:hover {
-  background-color: var(--color-persian-blue--light-2);
+  background-color: var(--color-fresh-sky-blue);
 }
 
 .tabs__link--active {
-  color: var(--color-persian-blue);
+  color: var(--color-celtic-blue);
   position: relative;
   z-index: 1;
 }
@@ -44,7 +44,7 @@
   display: block;
   width: 100%;
   content: '';
-  border-bottom: 3px solid var(--color-persian-blue);
+  border-bottom: 3px solid var(--color-celtic-blue);
 }
 
 ul.tabs--secondary {

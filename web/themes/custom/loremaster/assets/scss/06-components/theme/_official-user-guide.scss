@@ -5,6 +5,7 @@
   grid-gap: var(--spacing-xl);
   grid-template-columns: 1fr;
   padding: var(--spacing-lg);
+  border: 1px solid var(--color-border);
 
   @media (--sm) {
     grid-template-columns: 160px 1fr;
@@ -39,7 +40,7 @@
   margin-right: var(--spacing-sm);
   width: 60px;
   height: 60px;
-  background-color: var(--color-persian-blue);
+  background-color: var(--color-celtic-blue);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40px;

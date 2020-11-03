@@ -92,10 +92,10 @@
  * Button coloration variations.
  */
 .button--primary {
-  --button-background-color: var(--color-persian-blue);
-  --button-background-color--active: var(--color-persian-blue--dark-1);
-  --button-background-color--hover: var(--color-persian-blue--dark-1);
-  --button-background-color--focus: var(--color-persian-blue--light-1);
+  --button-background-color: var(--color-celtic-blue);
+  --button-background-color--active: var(--color-denim);
+  --button-background-color--hover: var(--color-denim);
+  --button-background-color--focus: var(--color-blue-crayola);
   --button-color: var(--color-white);
   --button-color--disabled: var(--color-roman-silver);
   --button-color--hover: var(--color-white);
@@ -108,16 +108,16 @@
 
 .button--secondary {
   --button-background-color: transparent;
-  --button-background-color--active: var(--color-persian-blue--light-2);
+  --button-background-color--active: var(--color-fresh-sky-blue);
   --button-background-color--disabled: transparent;
   --button-background-color--focus: transparent;
-  --button-background-color--hover: var(--color-persian-blue--light-2);
-  --button-border--color: var(--color-persian-blue);
+  --button-background-color--hover: var(--color-fresh-sky-blue);
+  --button-border--color: var(--color-celtic-blue);
   --button-border--color-disabled: var(--color-disabled);
   --button-border--width: 2px;
-  --button-color: var(--color-persian-blue);
+  --button-color: var(--color-celtic-blue);
   --button-color--disabled: var(--color-roman-silver);
-  --button-color--hover: var(--color-persian-blue);
+  --button-color--hover: var(--color-celtic-blue);
   --button-padding: calc(var(--button-padding--y) - var(--button-border--width)) calc(var(--button-padding--x) - var(--button-border--width));
 }
 
