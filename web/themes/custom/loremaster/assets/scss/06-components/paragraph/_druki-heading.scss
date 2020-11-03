@@ -4,10 +4,17 @@
 }
 
 .druki-heading__anchor {
-  font-size: 80%;
-  display: inline-block;
-  margin-left: var(--spacing-xs);
-  visibility: hidden;
+  line-height: 1;
+  visibility: visible;
+  float: left;
+  width: 20px;
+  margin-left: -20px;
+  padding-right: var(--spacing-xs);
+  vertical-align: middle;
+
+  @media (--md) {
+    visibility: hidden;
+  }
 }
 
 .druki-heading:hover .druki-heading__anchor {

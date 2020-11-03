@@ -20,5 +20,6 @@
   ]
 %}
 <{{ heading_level }}{{ attributes.addClass(classes).setAttribute('id', anchor) }}>
-  {{- title -}}<a href="#{{ anchor }}" class="anchor {{ bem(block, 'anchor') }}" aria-label="{{ 'Anchor link' }}: {{ title|raw }}">¶</a>
+  <a href="#{{ anchor }}" class="anchor {{ bem(block, 'anchor') }}" aria-label="{{ 'Anchor link' }}: {{ title|raw }}">¶</a>
+  {{- title -}}
 </{{ heading_level }}>
