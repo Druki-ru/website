@@ -2,11 +2,22 @@
   --druki-note-icon: unset;
   --druki-note-icon-size: 3rem;
   --druki-note-color: transparent;
+  --druki-note-background-color: var(--color-cultured);
+}
+
+[data-theme="dark"] {
+  --druki-note-background-color: var(--color-black--light-4);
 }
 
 .druki-note {
+  font-size: var(--font-size-sm);
   position: relative;
-  padding-left: calc(var(--druki-note-icon-size) + var(--spacing-md));
+  padding: var(--spacing-md);
+  padding-left: calc(var(--druki-note-icon-size) + var(--spacing-md) + var(--spacing-md));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  background-color: var(--druki-note-background-color);
+  --p-margin--y: var(--spacing-sm);
 }
 
 .druki-note--tip {
@@ -39,8 +50,8 @@
 
 .druki-note__label::before {
   position: absolute;
-  top: 0.06rem;
-  left: 0;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
   display: block;
   width: var(--druki-note-icon-size);
   height: var(--druki-note-icon-size);
@@ -51,7 +62,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1.5rem;
-  box-shadow: var(--shadow-sm);
 }
 
 .druki-note__content p:last-child {
