@@ -1,5 +1,5 @@
 :root {
-  --druki-card-background-color: var(--color-persian-blue--light-3);
+  --druki-card-background-color: var(--color-cultured);
 }
 
 [data-theme="dark"] {
@@ -7,8 +7,9 @@
 }
 
 .druki-card {
-  border-radius: var(--radius-xxs);
+  border-radius: var(--radius-xs);
   background-color: var(--druki-card-background-color);
+  border: 1px solid var(--color-border);
 }
 
 .druki-card__content {
