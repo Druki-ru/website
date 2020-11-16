@@ -93,3 +93,4 @@ content:
 hidden:
   category: true
   forced_path: true
+  sync_timestamp: true

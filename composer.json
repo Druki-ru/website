@@ -63,7 +63,7 @@
         "drupal/warmer": "^1.1",
         "drush/drush": "^10.0",
         "npm-asset/photoswipe": "^4.1",
-        "oomphinc/composer-installers-extender": "^1.1"
+        "oomphinc/composer-installers-extender": "^2.0"
     },
     "require-dev": {
         "drupal/coder": "^8.3",
