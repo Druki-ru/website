@@ -2,9 +2,19 @@
 <ruleset name="Druki">
   <description>Drupal Encyclopedia</description>
   <arg name="colors"/>
+  <arg name="extensions" value="php,module,inc,install,theme"/>
   <file>./web/modules/custom</file>
-  <rule ref="vendor/drupal/coder/coder_sniffer/Drupal"/>
-  <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
+  <file>./web/themes/custom</file>
+  <!-- Exclude vendors. -->
+  <exclude-pattern>./web/themes/custom/*/node_modules</exclude-pattern>
   <!-- Exclude fixtures. -->
   <exclude-pattern>*/fixtures/*</exclude-pattern>
+  <exclude-pattern>*\.(css|js)</exclude-pattern>
+  <rule ref="vendor/drupal/coder/coder_sniffer/Drupal">
+    <!-- Exclude in favor of native typehints. -->
+    <exclude name="Drupal.Commenting.VariableComment.MissingVar"/>
+  </rule>
+  <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
+  <rule ref="vendor/chi-teck/drupal-coder-extension/DrupalExtended73"/>
 </ruleset>
+
