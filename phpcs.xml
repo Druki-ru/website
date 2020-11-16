@@ -17,4 +17,3 @@
   <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
   <rule ref="vendor/chi-teck/drupal-coder-extension/DrupalExtended73"/>
 </ruleset>
-
