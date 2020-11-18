@@ -88,7 +88,8 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   public function process($text, $langcode): FilterProcessResult {
     $result = new FilterProcessResult($text);
 
-    if (stristr($text, '<a') === FALSE) {
+    // Do not run processing if text doesn't contains this value.
+    if (stristr($text, 'data-druki-internal-link-filepath') === FALSE) {
       return $result;
     }
 
