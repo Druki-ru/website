@@ -26,7 +26,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Основной
+    display_title: Master
     position: 0
     display_options:
       access:
@@ -49,11 +49,11 @@ display:
         options:
           submit_button: 'Применить фильтры'
           reset_button: false
-          reset_button_label: Сбросить
-          exposed_sorts_label: 'Сортировать по'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
           expose_sort_order: false
-          sort_asc_label: 'По возрастанию'
-          sort_desc_label: 'По убыванию'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       pager:
         type: mini
         options:
@@ -63,12 +63,12 @@ display:
           total_pages: null
           expose:
             items_per_page: false
-            items_per_page_label: 'Элементов на страницу'
+            items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Все -'
+            items_per_page_options_all_label: '- All -'
             offset: false
-            offset_label: Пропустить
+            offset_label: Offset
           tags:
             previous: ‹‹
             next: ››
@@ -495,7 +495,7 @@ display:
   page:
     display_plugin: page
     id: page
-    display_title: Страница
+    display_title: Page
     position: 1
     display_options:
       display_extenders: {  }
