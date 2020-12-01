@@ -32,6 +32,11 @@
   --code-background: var(--color-black--light-14);
 }
 
+html {
+  // Initial for (R)EM.
+  font-size: 16px;
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
