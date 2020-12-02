@@ -5,6 +5,7 @@ dependencies:
   config:
     - image.style.frontpage_community_lg_2x
     - image.style.frontpage_community_lg_3x
+    - image.style.frontpage_community_xl
     - image.style.frontpage_drupal_video
     - image.style.frontpage_drupal_video_lg
     - image.style.frontpage_drupal_video_md
@@ -99,4 +100,4 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: frontpage_drupal_video_xs_3x
 breakpoint_group: loremaster
-fallback_image_style: frontpage_drupal_video
+fallback_image_style: frontpage_community_xl

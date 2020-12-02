@@ -99,4 +99,4 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: official_user_guide_magazine_xs_3x
 breakpoint_group: loremaster
-fallback_image_style: official_user_guide_magazine_xs
+fallback_image_style: official_user_guide_magazine_xl

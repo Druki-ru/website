@@ -99,4 +99,4 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: frontpage_community_xs_3x
 breakpoint_group: loremaster
-fallback_image_style: frontpage_community_xs
+fallback_image_style: frontpage_community_xl
