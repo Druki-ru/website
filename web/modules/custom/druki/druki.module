@@ -110,6 +110,9 @@ function druki_preprocess_html(array &$variables): void {
  * Implements hook_preprocess_HOOK() for 'responsive-image.html.twig'.
  */
 function druki_preprocess_responsive_image(array &$variables) {
+  // This hook is also set width and height required by default lazy loading
+  // implementation. But this one called after, so with and height is not set
+  // at the point when default lazy is added, so we force it.
   $variables['img_element']['#attributes']['loading'] = 'lazy';
   $variables['img_element']['#attributes']['decoding'] = 'async';
 
@@ -139,7 +142,6 @@ function druki_preprocess_responsive_image(array &$variables) {
  * Implements hook_preprocess_HOOK() for 'image.html.twig'.
  */
 function druki_preprocess_image(array &$variables) {
-  $variables['attributes']['loading'] = 'lazy';
   $variables['attributes']['decoding'] = 'async';
 }
 
