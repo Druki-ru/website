@@ -1,9 +1,3 @@
-.region-sidebar-right {
-  @media (--lg) {
-    margin: var(--spacing-xl) 0;
-  }
-}
-
 .region-sidebar-right .block:not(:last-child) {
   margin-bottom: var(--spacing-xl);
 }

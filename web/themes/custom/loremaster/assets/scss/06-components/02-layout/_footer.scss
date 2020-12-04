@@ -1,7 +1,8 @@
 .footer {
   font-size: var(--font-size-sm);
   color: var(--color-old-silver);
-  margin: var(--spacing-xl) 0;
+  margin-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
 }
 
 .footer__container {

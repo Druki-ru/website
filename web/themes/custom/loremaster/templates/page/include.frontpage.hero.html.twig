@@ -6,7 +6,7 @@
 %}
 {% set attributes = create_attribute() %}
 <section{{ attributes.addClass(classes) }}>
-  <div class="layout-container {{ bem(block, 'container') }}">
+  <div class="{{ bem(block, 'container') }}">
     <div class="{{ bem(block, 'welcome') }}">
       <h1 class="page-title {{ bem(block, 'title') }}">{{ 'Drupal Encyclopedia'|t }}</h1>
       <p class="{{ bem(block, 'description') }}">

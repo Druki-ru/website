@@ -1,3 +1,7 @@
+.main-layout {
+  margin: var(--spacing-xl) auto;
+}
+
 .main-layout--one-sidebar {
   display: grid;
   grid-gap: var(--spacing-xl);
