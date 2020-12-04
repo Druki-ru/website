@@ -15,7 +15,7 @@
   ]
 %}
 {% set footer %}
-  {% include '@loremaster/page/include.footer.html.twig' %}
+  {% include '@loremaster/includes/footer.twig' %}
 {% endset %}
 
 <section class="page-container">
@@ -27,7 +27,7 @@
 
   <main{{ main_layout_attributes.addClass(main_layout_classes) }}>
     {% if is_front %}
-      {% include '@loremaster/page/include.frontpage.html.twig' %}
+      {% include '@loremaster/includes/frontpage.twig' %}
     {% else %}
       {{ page.content }}
       {{ page.sidebar_right }}
