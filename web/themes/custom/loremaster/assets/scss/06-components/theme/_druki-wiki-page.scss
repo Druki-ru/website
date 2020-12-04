@@ -1,0 +1,40 @@
+.druki-wiki-page__section {
+  margin: var(--spacing-xl) 0;
+}
+
+.druki-wiki-page__section--welcome {
+  display: grid;
+  grid-gap: var(--spacing-md);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.druki-wiki-page__column-title {
+  margin-bottom: var(--spacing-md);
+}
+
+.druki-wiki-page__column-description {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.druki-wiki-page-link {
+  display: inline-block;
+}
+
+.druki-wiki-page-link:hover {
+  text-decoration: none;
+}
+
+.druki-wiki-page-link__title {
+  display: block;
+  font-weight: bold;
+}
+
+.druki-wiki-page-link__description {
+  color: var(--color-roman-silver);
+  font-size: var(--font-size-sm);
+}
+
+.druki-wiki-page__link:not(:last-child) {
+  margin-bottom: var(--spacing-sm);
+}
