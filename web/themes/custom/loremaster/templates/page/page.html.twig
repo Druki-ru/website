@@ -25,8 +25,12 @@
 {{ page.content_header }}
 
 <main{{ main_layout_attributes.addClass(main_layout_classes) }}>
-  {{ page.content }}
-  {{ page.sidebar_right }}
+  {% if is_front %}
+    {% include '@loremaster/page/include.frontpage.html.twig' %}
+  {% else %}
+    {{ page.content }}
+    {{ page.sidebar_right }}
+  {% endif %}
 </main>
 
 {{ footer }}
