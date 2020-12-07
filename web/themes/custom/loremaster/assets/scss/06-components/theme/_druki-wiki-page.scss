@@ -4,8 +4,46 @@
 
 .druki-wiki-page__section--welcome {
   display: grid;
-  grid-gap: var(--spacing-md);
-  grid-template-columns: repeat(3, 1fr);
+  grid-gap: var(--spacing-xl);
+
+  @media (--lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.druki-wiki-page__section--drupal-api {
+  display: grid;
+  grid-gap: var(--spacing-xl);
+
+  @media (--xl) {
+    grid-template-columns: repeat(2, 1fr) 2fr;
+  }
+}
+
+.druki-wiki-page__section--files-services-and-others {
+  display: grid;
+  grid-gap: var(--spacing-xl);
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.druki-wiki-page__section--additional {
+  display: grid;
+  grid-gap: var(--spacing-xl);
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .druki-wiki-page__column-title {
@@ -13,11 +51,12 @@
 }
 
 .druki-wiki-page__column-description {
-  margin-bottom: var(--spacing-md);
   font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .druki-wiki-page-link {
+  line-height: 1.2;
   display: inline-block;
 }
 
@@ -26,15 +65,47 @@
 }
 
 .druki-wiki-page-link__title {
-  display: block;
   font-weight: bold;
+  display: block;
 }
 
 .druki-wiki-page-link__description {
-  color: var(--color-roman-silver);
   font-size: var(--font-size-sm);
+  display: block;
+  margin-top: var(--spacing-xs);
+  color: var(--color-roman-silver);
 }
 
 .druki-wiki-page__link:not(:last-child) {
   margin-bottom: var(--spacing-sm);
+}
+
+.druki-wiki-page__links--drupal-api {
+  display: grid;
+  grid-gap: var(--spacing-md);
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.druki-wiki-page__links--drupal-api .druki-wiki-page__link {
+  margin: 0;
+}
+
+.druki-wiki-page__links--helpful {
+  display: grid;
+  grid-gap: var(--spacing-md);
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.druki-wiki-page__links--helpful .druki-wiki-page__link {
+  margin: 0;
 }

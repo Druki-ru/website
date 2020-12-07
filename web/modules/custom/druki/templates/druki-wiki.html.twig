@@ -44,8 +44,126 @@
     </div>
 
     <div class="druki-wiki-page__column">
-      <h2 class="druki-wiki-page__column-title">📖 Официальное руководство пользователя</h2>
+      <h2 class="druki-wiki-page__column-title">📖 Руководство пользователя</h2>
       {{ user_guide }}
+    </div>
+  </section>
+
+  <section class="druki-wiki-page__section druki-wiki-page__section--helpful">
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Полезная информация</h2>
+      <ul class="druki-wiki-page__links druki-wiki-page__links--helpful">
+        <li class="druki-wiki-page__link">{{ _self.link('Стандарты кодирования Drupal', '/wiki/standards', 'У нас принято документировать свой код.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Соглашение об именовании релизов', '/wiki/release-naming-conventions', 'Узнайте как именовать релизы для своих модулей и тем.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Список изменений Drupal 9', '/wiki/9/releases', 'Прошедшие и будущие релизы Drupal 9.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Список изменений Drupal 8', '/wiki/8/releases', 'Прошедшие и будущие релизы Drupal 8.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Объявления безопасности', '/wiki/security', 'Список объявлений о безопасности Drupal.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Системные требования Drupal', '/wiki/9/system-requirements', 'ПО необходимое для запуска Drupal.') }}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="druki-wiki-page__section druki-wiki-page__section--drupal-api">
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Растите вместе с Drupal</h2>
+      <div class="druki-wiki-page__column-description">
+        Установили Drupal? Круто! Вы уже проделали не малый путь, и определенно узнали что-то новое, но после установки, скорее всего, назрели вопросы: «С чего начать?», «Куда двигаться дальше?» — в этом разделе собран основной арсенал Drupal. Вы не только начнете узнавать всё больше и глубже, но и, мы надеемся, будете улучшать свои навыки.
+      </div>
+
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Drupal API', '/wiki/9/api', 'Обзор Drupal API.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Drupal Component API</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Plugin API', '/wiki/9/plugins', 'Расширяйте и используйте возможности других модулей.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Services и Dependency Injection (DI)', '/wiki/9/services', 'Создавайте объекты с Dependency Injection.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Events и EventSubscribers', '/wiki/9/events', 'События позволяют подписываться на различные этапы обработки и реагировать как вам необходимо.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Drupal Core API</h2>
+      <ul class="druki-wiki-page__links druki-wiki-page__links--drupal-api">
+        <li class="druki-wiki-page__link">{{ _self.link('Модули', '/wiki/9/modules', 'Расширяйте, изменяйте и модифицируйте Drupal.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Темы оформления', '/wiki/9/themes', 'Оформите свой сайт, как вам угодно.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Дистрибутивы', '/wiki/9/distributions', 'Установочные профили Drupal, которые позволяют создавать коробочные решения.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Маршрутизация', '/wiki/9/routing', 'Создавайте свои собственные страницы, с уникальным поведением.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Хуки', '/wiki/9/hooks', 'Внедряйтесь на различных этапах работы системы, влияйте на поведение и результат.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Библиотеки', '/wiki/9/libraries', 'Подключайте JavaScript и CSS на страницы правильно.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Формы', '/wiki/9/forms', 'Создавайте формы, валидируйте, изменяйте, расширяйте.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Очереди', '/wiki/9/queues', 'Отложенная обработка больших объемов данных.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Пакетная обработка данных', '/wiki/9/batches', 'Обработка больших объемов данных с отображением прогресса.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Сущности', '/wiki/9/entities', 'Хранилища данных в Drupal.') }}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="druki-wiki-page__section druki-wiki-page__section--files-services-and-others">
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Системные файлы</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('settings.php и settings.local.php', '/wiki/9/settings-php', 'Обзор настроек окружения Drupal.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Сервисы с метками</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Access Check', '/wiki/9/access-check', 'Позволяет контролировать доступ для различных маршрутов.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Authentication Provider', '/wiki/9/authentication-provider', 'Позволяют программно идентифицировать пользователя сайта.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Breadcrumb Builder', '/wiki/9/breadcrumb-builder', 'Позволяет программно устанавливать хлебные крошки.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Inbound и Outbound обработчики', '/wiki/9/inbound-outbound-path-processor', 'Позволяют программно контролировать ЧПУ любой сложности.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Theme Negotiator', '/wiki/9/theme-negotiator', 'Позволяют программно определять, какая тема оформления будет использовано для отрисовки страницы.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Прочие возможности</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Регулярные операции (cron)', '/wiki/9/cron', 'Выполнение регулярных операций.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Псевдо-поля (экстра-поля), Extra Fields', '/wiki/9/extra-fields', 'Добавление виртуальных полей к сущностям.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">CLI утилиты</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Composer', '/wiki/9/composer', 'Менеджер зависимостей.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Drush', '/wiki/9/drush', 'Утилита для управления Drupal из терминала.') }}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="druki-wiki-page__section druki-wiki-page__section--additional">
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Дистрибутивы Drupal</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Стандартный', '/wiki/9/distributions/standard', 'Установочный профиль предлагаемый по умолчанию.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Минимальный', '/wiki/9/distributions/minimal', 'Профиль для ручной настройки сайта.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Кулинарный журнал Umami', '/wiki/9/distributions/demo-umami', 'Демонстрационный профиль готового сайта-журнала о еде.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Composer пакеты</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('drupal/recommended-project', '/wiki/drupal-recommended-project', 'Рекомендуемый проект для загрузки Drupal.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('drupal/legacy-project', '/wiki/drupal-legacy-project', 'Проект для загрузки Drupal со старой структурой.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('drupal/core-recommended', '/wiki/drupal-core-recommended', 'Drupal ядро с фиксированными версиями для зависимостей.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('drupal/core-composer-scaffold', '/wiki/drupal-core-composer-scaffold', 'Плагин для управления скафолд файлами.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Полезно знать</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Семантическое версионирование', '/wiki/semver', 'Спецификация о присвоении версий для релизов.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Депрекация', '/wiki/deprecation', 'Процесс вывода старого кода из оборота.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Обратная совместимость', '/wiki/backward-compatibility', 'Сохранение обратной совместимости с предыдущими релизами.') }}</li>
+      </ul>
     </div>
   </section>
 </div>
