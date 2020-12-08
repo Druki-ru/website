@@ -69,7 +69,8 @@
     "require-dev": {
         "chi-teck/drupal-coder-extension": "^1.0",
         "drupal/core-dev": "^9.0",
-        "mglaman/drupal-check": "^1.1"
+        "mglaman/drupal-check": "^1.1",
+        "phpspec/prophecy-phpunit": "^2"
     },
     "conflict": {
         "drupal/drupal": "*"

@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="web/core/tests/bootstrap.php" colors="true"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         bootstrap="web/core/tests/bootstrap.php"
+         colors="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutChangesToGlobalState="true"
          failOnWarning="true"
          printerClass="\Drupal\Tests\Listeners\HtmlOutputPrinter"
-         cacheResult="false">
+         cacheResult="false"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory>./web/modules/custom</directory>
+    </include>
+    <exclude>
+      <directory>./web/modules/custom/*/src/Tests</directory>
+      <directory>./web/modules/custom/*/tests</directory>
+    </exclude>
+  </coverage>
   <php>
     <ini name="error_reporting" value="32767"/>
     <ini name="memory_limit" value="-1"/>
     <env name="SIMPLETEST_BASE_URL" value="http://nginx"/>
-    <env name="SIMPLETEST_DB" value="sqlite://localhost//dev/shm/d8.db"/>
+    <env name="SIMPLETEST_DB" value="sqlite://localhost//dev/shm/d9.db"/>
   </php>
   <testsuites>
     <testsuite name="Druki">
@@ -21,13 +33,4 @@
     <listener class="\Drupal\Tests\Listeners\DrupalListener"/>
     <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
   </listeners>
-  <filter>
-    <whitelist>
-      <directory>./web/modules/custom</directory>
-      <exclude>
-        <directory>./web/modules/custom/*/src/Tests</directory>
-        <directory>./web/modules/custom/*/tests</directory>
-      </exclude>
-    </whitelist>
-  </filter>
 </phpunit>
