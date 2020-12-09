@@ -52,6 +52,12 @@
   }
 }
 
+.help-and-feedback__item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .help-and-feedback__link {
   display: block;
   text-align: center;

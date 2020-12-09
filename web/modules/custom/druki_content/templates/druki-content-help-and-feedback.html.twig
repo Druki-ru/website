@@ -33,10 +33,15 @@
       </div>
     </div>
 
-    <div class="help-and-feedback__get-help">
-      <p><strong>{% trans %}Get Help{% endtrans %}</strong></p>
-      <p>{% trans %}If you didn't find what you were looking for, <a href="{{ search_url }}">search the docs</a>.{% endtrans %}</p>
-      <p>{% trans %}If you want help with something specific, <a href="{{ community_resources_url }}">contact the community</a>.{% endtrans %}</p>
+    <div class="help-and-feedback__item">
+      <div class="help-and-feedback__item-description">
+        <p><strong>{% trans %}Get Help{% endtrans %}</strong></p>
+        <p>{% trans %}If you didn't find what you were looking for, <a href="{{ search_url }}">search the docs</a>.{% endtrans %}</p>
+        <p>{% trans %}If you want help with something specific, <a href="{{ community_resources_url }}">contact the community</a>.{% endtrans %}</p>
+      </div>
+      <div class="help-and-feedback__item-actions">
+        <a href="{{ help_url }}" class="button button--secondary button--small help-and-feedback__link">{% trans %}Get help{% endtrans %}</a>
+      </div>
     </div>
   </div>
 </div>

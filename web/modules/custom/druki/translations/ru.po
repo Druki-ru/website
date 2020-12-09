@@ -188,3 +188,6 @@ msgstr "Стиль уменьшенного изображения: @style"
 
 msgid "Project repository"
 msgstr "Репозиторий проекта"
+
+msgid "Get help"
+msgstr "Получить помощь"

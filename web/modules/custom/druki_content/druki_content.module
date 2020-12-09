@@ -35,6 +35,7 @@ function druki_content_theme(): array {
       'variables' => [
         'edit_url' => NULL,
         'improve_url' => NULL,
+        'help_url' => NULL,
       ],
     ],
   ];

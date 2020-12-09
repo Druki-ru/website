@@ -84,6 +84,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
           'labels' => 'improvement',
         ],
       ]),
+      '#help_url' => Url::fromUri($this->repositoryUrl . '/discussions/new'),
     ];
   }
 
