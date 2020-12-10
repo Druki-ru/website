@@ -2,6 +2,7 @@
 
 namespace Drupal\druki\Breadcrumb;
 
+use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -15,7 +16,7 @@ class PathBasedBreadcrumbDecorator extends PathBasedBreadcrumbBuilder implements
   /**
    * {@inheritdoc}
    */
-  public function build(RouteMatchInterface $route_match) {
+  public function build(RouteMatchInterface $route_match): Breadcrumb {
     $breadcrumb = parent::build($route_match);
 
     foreach ($breadcrumb->getLinks() as $link) {
