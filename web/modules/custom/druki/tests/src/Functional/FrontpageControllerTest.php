@@ -19,7 +19,7 @@ final class FrontpageControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['druki', 'system'];
+  protected static $modules = ['druki', 'system'];
 
   /**
    * {@inheritdoc}
@@ -34,10 +34,10 @@ final class FrontpageControllerTest extends BrowserTestBase {
    *
    * @covers ::build
    */
-  public function testPage() {
+  public function testPage(): void {
     $this->drupalGet('/frontpage');
     // Since this page just for URI and actual markup added via theme we check
-    // it exists and response as expected, thats it.
+    // it exists and response as expected, that's it.
     $this->assertSession()->statusCodeEquals(200);
   }
 

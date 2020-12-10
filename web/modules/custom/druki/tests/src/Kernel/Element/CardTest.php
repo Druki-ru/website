@@ -17,14 +17,14 @@ final class CardTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['druki', 'system', 'update'];
+  protected static $modules = ['druki', 'system', 'update', 'file'];
 
   /**
    * Tests card render element markup.
    *
    * @dataProvider cardElementProvider
    */
-  public function testCardElementMarkup(array $element, array $expected_raws) {
+  public function testCardElementMarkup(array $element, array $expected_raws): void {
     $this->render($element);
 
     foreach ($expected_raws as $expected_raw) {
@@ -35,7 +35,7 @@ final class CardTest extends KernelTestBase {
   /**
    * Provides testing data.
    */
-  public function cardElementProvider() {
+  public function cardElementProvider(): array {
     return [
       'element without any params' => [
         [

@@ -19,7 +19,7 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
    * @covers ::findAll
    * @dataProvider directoriesProvider
    */
-  public function testFinder(array $directories, int $expected) {
+  public function testFinder(array $directories, int $expected): void {
     $this->setUpVfsStream();
     $discovery = new MarkdownDirectoryFinder($directories);
     $data = $discovery->findAll();
@@ -30,7 +30,7 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
   /**
    * Set up fake filesystem.
    */
-  protected function setUpVfsStream() {
+  protected function setUpVfsStream(): void {
     vfsStream::setup('content', NULL, [
       'docs' => [
         'ru' => [
@@ -54,7 +54,7 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
   /**
    * Tests directories that doesn't exists.
    */
-  public function testDirectoryNotFound() {
+  public function testDirectoryNotFound(): void {
     $this->expectException('\Symfony\Component\Finder\Exception\DirectoryNotFoundException');
     $this->setUpVfsStream();
     $discovery = new MarkdownDirectoryFinder([vfsStream::url('content/docs/fr'), vfsStream::url('content/docs/es')]);
@@ -64,7 +64,7 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
   /**
    * Provides sets of directories sets for testing.
    */
-  public function directoriesProvider() {
+  public function directoriesProvider(): array {
     return [
       // The subdirectories.
       'multiple with subdirectories' => [

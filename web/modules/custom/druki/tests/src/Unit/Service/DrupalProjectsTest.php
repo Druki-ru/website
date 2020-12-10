@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\druki\Unit\Service;
 
-use Drupal\druki\Service\DrupalProjects;
+use Drupal\druki\Drupal\DrupalProjects;
 use Drupal\Tests\UnitTestCase;
 use Drupal\update\UpdateFetcherInterface;
 use Prophecy\Prophecy\MethodProphecy;
@@ -10,21 +10,21 @@ use Prophecy\Prophecy\MethodProphecy;
 /**
  * Test druki.drupal_projects service.
  *
- * @coversDefaultClass \Drupal\druki\Service\DrupalProjects
+ * @coversDefaultClass \Drupal\druki\Drupal\DrupalProjects
  */
 class DrupalProjectsTest extends UnitTestCase {
 
   /**
    * The drupal projects service.
    *
-   * @var \Drupal\druki\Service\DrupalProjects
+   * @var \Drupal\druki\Drupal\DrupalProjects
    */
   protected $drupalProjects;
 
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
     $this->drupalProjects = new DrupalProjects($this->buildUpdateFetcher());
   }
@@ -33,7 +33,7 @@ class DrupalProjectsTest extends UnitTestCase {
    * Builds mock for UpdateFetcherInterface.
    *
    * @return \Drupal\update\UpdateFetcherInterface
-   *   The update fethcer.
+   *   The update fetcher.
    */
   protected function buildUpdateFetcher(): UpdateFetcherInterface {
     $prophecy = $this->prophesize(UpdateFetcherInterface::class);
@@ -50,7 +50,7 @@ class DrupalProjectsTest extends UnitTestCase {
    *
    * @covers ::getCoreLastStableVersion
    */
-  public function testGetProjectLastStableRelease() {
+  public function testGetProjectLastStableRelease(): void {
     $actual = $this->drupalProjects->getCoreLastStableVersion();
     $this->assertSame('8.8.4', $actual['version']);
     // The stable release is always published.
@@ -62,7 +62,7 @@ class DrupalProjectsTest extends UnitTestCase {
    *
    * @covers ::getCoreLastMinorVersion
    */
-  public function testGetCoreLastMinorVersion() {
+  public function testGetCoreLastMinorVersion(): void {
     $actual = $this->drupalProjects->getCoreLastMinorVersion();
     // The last minor version is always with patch level 0.
     $this->assertSame('8.8.0', $actual['version']);
