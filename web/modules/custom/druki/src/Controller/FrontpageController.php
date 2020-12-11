@@ -12,12 +12,10 @@ class FrontpageController extends ControllerBase {
   /**
    * Builds the response.
    */
-  public function build() {
-
+  public function build(): array {
     $build['content'] = [
       '#markup' => $this->t('It works!'),
     ];
-
     return $build;
   }
 

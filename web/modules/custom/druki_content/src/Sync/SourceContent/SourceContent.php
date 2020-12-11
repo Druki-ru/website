@@ -2,8 +2,6 @@
 
 namespace Drupal\druki_content\Sync\SourceContent;
 
-use SplFileInfo;
-
 /**
  * Provides value object stores single source content.
  */
@@ -26,7 +24,7 @@ final class SourceContent {
   /**
    * The source file information.
    *
-   * @var null|\SplFileInfo
+   * @var \SplFileInfo|null
    */
   protected $file = NULL;
 
@@ -69,9 +67,9 @@ final class SourceContent {
    * @return \SplFileInfo
    *   The file information object.
    */
-  protected function getFile(): SplFileInfo {
+  protected function getFile(): \SplFileInfo {
     if (!$this->file) {
-      $this->file = new SplFileInfo($this->realpath);
+      $this->file = new \SplFileInfo($this->realpath);
     }
 
     return $this->file;
@@ -84,7 +82,7 @@ final class SourceContent {
    *   The file content.
    */
   public function getContent(): string {
-    return file_get_contents($this->getRealpath());
+    return \file_get_contents($this->getRealpath());
   }
 
   /**
@@ -124,10 +122,10 @@ final class SourceContent {
    * {@inheritdoc}
    */
   public function __sleep() {
-    $vars = get_object_vars($this);
+    $vars = \get_object_vars($this);
     // SplFileInfo is not serializable and don't need to be serialized.
     unset($vars['file']);
-    return array_keys($vars);
+    return \array_keys($vars);
   }
 
 }

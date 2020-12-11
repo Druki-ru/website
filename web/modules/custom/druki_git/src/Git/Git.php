@@ -92,10 +92,10 @@ class Git {
       throw new GitCommandFailedException($process);
     }
 
-    $results = explode(PHP_EOL, rtrim($process->getOutput()));
+    $results = \explode(\PHP_EOL, \rtrim($process->getOutput()));
     $commits_info = [];
     foreach ($results as $item) {
-      preg_match_all("/(\d+)\s(.+)\s<([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)>/", $item, $matches);
+      \preg_match_all("/(\d+)\s(.+)\s<([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)>/", $item, $matches);
 
       $commits_info[] = [
         'count' => $matches[1][0],

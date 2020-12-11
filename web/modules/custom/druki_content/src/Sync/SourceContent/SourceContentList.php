@@ -2,13 +2,10 @@
 
 namespace Drupal\druki_content\Sync\SourceContent;
 
-use ArrayIterator;
-use IteratorAggregate;
-
 /**
  * Provides value object to store multiple source content.
  */
-final class SourceContentList implements IteratorAggregate {
+final class SourceContentList implements \IteratorAggregate {
 
   /**
    * The array with content sources.
@@ -27,7 +24,7 @@ final class SourceContentList implements IteratorAggregate {
    *   An array with SourceContentList contains no more than size of items.
    */
   public function chunk(int $size): array {
-    $chunks = array_chunk($this->items, $size);
+    $chunks = \array_chunk($this->items, $size);
     $result = [];
     foreach ($chunks as $chunk) {
       $list = new SourceContentList();
@@ -57,7 +54,7 @@ final class SourceContentList implements IteratorAggregate {
    * {@inheritdoc}
    */
   public function getIterator() {
-    return new ArrayIterator($this->items);
+    return new \ArrayIterator($this->items);
   }
 
   /**
@@ -67,7 +64,7 @@ final class SourceContentList implements IteratorAggregate {
    *   The number of items.
    */
   public function numberOfItems(): int {
-    return count($this->items);
+    return \count($this->items);
   }
 
 }

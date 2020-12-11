@@ -93,7 +93,7 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
     $form['image']['style'] = [
       '#type' => 'select',
       '#options' => $this->getResponsiveImageStyleOptions(),
-      '#default_value' => isset($image_settings['style']) ? $image_settings['style'] : NULL,
+      '#default_value' => isset($image_settings['style']) ?? $image_settings['style'],
       '#title' => new TranslatableMarkup('Image style'),
     ];
 
@@ -108,7 +108,7 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
    *   style id, and the value is label.
    */
   protected function getResponsiveImageStyleOptions(): array {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
+    $result = &drupal_static(self::class . ':' . __METHOD__);
 
     if (isset($result)) {
       return $result;

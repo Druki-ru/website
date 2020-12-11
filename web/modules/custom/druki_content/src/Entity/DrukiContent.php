@@ -74,8 +74,8 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
 
     $fields['title'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
-      ->setLabel(t('Title'))
-      ->setDescription(t('The title of the druki content entity.'))
+      ->setLabel(\t('Title'))
+      ->setDescription(\t('The title of the druki content entity.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 255)
       ->setDisplayOptions('form', [
@@ -92,8 +92,8 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
 
     $fields['relative_pathname'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
-      ->setLabel(t('Relative pathname'))
-      ->setDescription(t('The pathname of source file.'))
+      ->setLabel(\t('Relative pathname'))
+      ->setDescription(\t('The pathname of source file.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 255)
       ->setDisplayOptions('view', [
@@ -210,7 +210,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setCategory(string $area, int $order = 0, string $title = NULL): DrukiContentInterface {
+  public function setCategory(string $area, int $order = 0, ?string $title = NULL): DrukiContentInterface {
     $this->set('category', [
       'area' => $area,
       'order' => $order,

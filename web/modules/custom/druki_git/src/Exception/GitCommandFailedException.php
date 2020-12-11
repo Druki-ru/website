@@ -3,13 +3,12 @@
 namespace Drupal\druki_git\Exception;
 
 use Drupal\Component\Render\FormattableMarkup;
-use RuntimeException;
 use Symfony\Component\Process\Process;
 
 /**
  * Thrown when git command is failed or terminated.
  */
-class GitCommandFailedException extends RuntimeException {
+class GitCommandFailedException extends \RuntimeException {
 
   /**
    * The command process.

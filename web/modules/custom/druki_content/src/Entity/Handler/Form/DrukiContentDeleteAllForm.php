@@ -38,7 +38,7 @@ final class DrukiContentDeleteAllForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container): object {
     return new static(
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
     );
   }
 

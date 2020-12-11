@@ -104,7 +104,7 @@ class Git implements GitInterface {
    * {@inheritdoc}
    */
   public function getLastCommitId(): string {
-    return rtrim(GitUtils::getLastCommitId($this->getRepositoryRealpath()));
+    return \rtrim(GitUtils::getLastCommitId($this->getRepositoryRealpath()));
   }
 
   /**
@@ -119,7 +119,7 @@ class Git implements GitInterface {
    */
   public function getFileLastCommitId($relative_path): ?string {
     try {
-      return rtrim(GitUtils::getFileLastCommitId($relative_path, $this->getRepositoryRealpath()));
+      return \rtrim(GitUtils::getFileLastCommitId($relative_path, $this->getRepositoryRealpath()));
     }
     catch (GitCommandFailedException $e) {
       return NULL;

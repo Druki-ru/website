@@ -41,7 +41,7 @@ class DrukiContentDifficulty extends ProcessorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getPropertyDefinitions(DatasourceInterface $datasource = NULL): array {
+  public function getPropertyDefinitions(?DatasourceInterface $datasource = NULL): array {
     $properties = [];
 
     if (!$datasource) {
@@ -78,7 +78,7 @@ class DrukiContentDifficulty extends ProcessorPluginBase {
         ->filterForPropertyPath(
           $item->getFields(),
           NULL,
-          'druki_content_difficulty'
+          'druki_content_difficulty',
         );
 
       foreach ($fields as $field) {

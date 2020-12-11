@@ -2,8 +2,6 @@
 
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
-use InvalidArgumentException;
-
 /**
  * Class ParagraphText.
  *
@@ -43,9 +41,9 @@ final class ParagraphText extends ParagraphContentBase {
    * @param string $content
    *   The content value.
    */
-  private function setContent(string $content) {
-    if (!mb_strlen($content)) {
-      throw new InvalidArgumentException("The text content can't be empty.");
+  private function setContent(string $content): void {
+    if (!\mb_strlen($content)) {
+      throw new \InvalidArgumentException("The text content can't be empty.");
     }
 
     $this->content = $content;

@@ -57,7 +57,7 @@ final class SourceContentFinder {
     $docs_folder = 'docs';
 
     $active_languages = $this->languageManager->getLanguages();
-    $active_langcodes = array_keys($active_languages);
+    $active_langcodes = \array_keys($active_languages);
 
     // Find all source content grouped by langcode.
     foreach ($active_langcodes as $langcode) {

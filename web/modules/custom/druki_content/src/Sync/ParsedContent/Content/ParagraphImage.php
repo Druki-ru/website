@@ -40,7 +40,7 @@ final class ParagraphImage extends ParagraphContentBase {
    * @param string|null $alt
    *   The image alt.
    */
-  public function __construct(string $src, string $alt = NULL) {
+  public function __construct(string $src, ?string $alt = NULL) {
     $this->src = $src;
     $this->alt = $alt;
   }

@@ -3,7 +3,6 @@
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
 use Drupal\Component\Render\FormattableMarkup;
-use InvalidArgumentException;
 
 /**
  * Class ParagraphNote.
@@ -67,12 +66,12 @@ final class ParagraphNote extends ParagraphContentBase {
    *   The note type.
    */
   private function setType(string $type): void {
-    if (!in_array($type, $this->availableTypes)) {
+    if (!\in_array($type, $this->availableTypes)) {
       $message = new FormattableMarkup('The note type must be on of the following: @allowed_values. Got value: @value.', [
-        '@allowed_values' => implode(', ', $this->availableTypes),
+        '@allowed_values' => \implode(', ', $this->availableTypes),
         '@value' => $type,
       ]);
-      throw new InvalidArgumentException($message);
+      throw new \InvalidArgumentException($message);
     }
 
     $this->type = $type;
@@ -85,8 +84,8 @@ final class ParagraphNote extends ParagraphContentBase {
    *   The note content.
    */
   private function setContent(string $content): void {
-    if (!mb_strlen($content)) {
-      throw new InvalidArgumentException("The note content can't be empty.");
+    if (!\mb_strlen($content)) {
+      throw new \InvalidArgumentException("The note content can't be empty.");
     }
 
     $this->content = $content;

@@ -2,8 +2,6 @@
 
 namespace Drupal\druki_content\Sync\Parser;
 
-use DOMElement;
-use DOMNode;
 use Drupal\druki_content\Sync\ParsedContent\Content\ContentList;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphCode;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphHeading;
@@ -25,13 +23,13 @@ final class HtmlContentParser {
    *
    * @param string $html
    *   The HTML with content.
-   * @param null|string $filepath
+   * @param string|null $filepath
    *   The filepath of parsed file. Will be used for internal links processing.
    *
    * @return \Drupal\druki_content\Sync\ParsedContent\ParsedContent
    *   The structured value object with content.
    */
-  public function parse(string $html, $filepath = NULL): ParsedContent {
+  public function parse(string $html, ?string $filepath = NULL): ParsedContent {
     $crawler = new Crawler($html);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');
@@ -79,7 +77,7 @@ final class HtmlContentParser {
       if ($content->end() instanceof ParagraphText) {
         $previous_text = $content->pop();
         $previous_text_content = $previous_text->getContent();
-        $new_content = $previous_text_content . PHP_EOL . $dom_element->ownerDocument->saveHTML($dom_element);
+        $new_content = $previous_text_content . \PHP_EOL . $dom_element->ownerDocument->saveHTML($dom_element);
         $replace = new ParagraphText($new_content);
         $content->add($replace);
       }
@@ -105,12 +103,12 @@ final class HtmlContentParser {
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseFrontMatter(DOMElement $dom_element, FrontMatter $meta_information): bool {
+  protected function parseFrontMatter(\DOMElement $dom_element, FrontMatter $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $meta_block = $crawler->filter('div[data-druki-element="front-matter"]');
 
-    if (count($meta_block)) {
-      $meta_array = json_decode($meta_block->text(), TRUE);
+    if (\count($meta_block)) {
+      $meta_array = \json_decode($meta_block->text(), TRUE);
       foreach ($meta_array as $key => $value) {
         $meta_value = new FrontMatterValue($key, $value);
         $meta_information->add($meta_value);
@@ -130,7 +128,7 @@ final class HtmlContentParser {
    * @param string $filepath
    *   The filepath of file in which this link was found.
    */
-  protected function processInternalLink(DOMNode $dom_element, string $filepath) {
+  protected function processInternalLink(\DOMNode $dom_element, string $filepath): void {
     if (empty($dom_element->childNodes)) {
       return;
     }
@@ -142,7 +140,7 @@ final class HtmlContentParser {
         $href = $child_node->getAttribute('href');
 
         // Must end up with Markdown extension: .md, .MD.
-        if (!preg_match("/.*\.md$/mi", $href)) {
+        if (!\preg_match("/.*\.md$/mi", $href)) {
           continue;
         }
 
@@ -164,11 +162,11 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseNote(DOMElement $dom_element, ContentList $content): ?bool {
+  protected function parseNote(\DOMElement $dom_element, ContentList $content): ?bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $note_element = $crawler->filter('div[data-druki-note]');
 
-    if (count($note_element)) {
+    if (\count($note_element)) {
       $element = $note_element->getNode(0);
 
       $value = '';
@@ -197,11 +195,11 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseHeading(DOMElement $dom_element, ContentList $content): bool {
+  protected function parseHeading(\DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-    if (in_array($node_name, $heading_elements)) {
+    if (\in_array($node_name, $heading_elements)) {
       $heading = new ParagraphHeading($dom_element->nodeName, $dom_element->textContent);
       $content->add($heading);
 
@@ -222,11 +220,11 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseCode(DOMElement $dom_element, ContentList $content): bool {
+  protected function parseCode(\DOMElement $dom_element, ContentList $content): bool {
     $node_name = $dom_element->nodeName;
     $code_elements = ['pre'];
 
-    if (in_array($node_name, $code_elements)) {
+    if (\in_array($node_name, $code_elements)) {
       $code = new ParagraphCode($dom_element->ownerDocument->saveHTML($dom_element));
       $content->add($code);
 
@@ -247,11 +245,11 @@ final class HtmlContentParser {
    * @return bool
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseImage(DOMElement $dom_element, ContentList $content): bool {
+  protected function parseImage(\DOMElement $dom_element, ContentList $content): bool {
     $crawler = new Crawler($dom_element);
     $image = $crawler->filter('img')->first();
 
-    if (count($image)) {
+    if (\count($image)) {
       $image_element = new ParagraphImage($image->attr('src'), $image->attr('alt'));
       $content->add($image_element);
 

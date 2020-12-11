@@ -62,7 +62,7 @@ final class ParsedSourceContentLoader {
   public function __construct(ParsedContentLoader $parsed_content_loader, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
     $this->parsedContentLoader = $parsed_content_loader;
     $druki_content_storage = $entity_type_manager->getStorage('druki_content');
-    assert($druki_content_storage instanceof DrukiContentStorage);
+    \assert($druki_content_storage instanceof DrukiContentStorage);
     $this->drukiContentStorage = $druki_content_storage;
     $this->paragraphStorage = $entity_type_manager->getStorage('paragraph');
     $this->time = $time;
@@ -129,7 +129,7 @@ final class ParsedSourceContentLoader {
       ]);
     }
 
-    assert($entity instanceof DrukiContentInterface);
+    \assert($entity instanceof DrukiContentInterface);
 
     return $entity;
   }
@@ -163,7 +163,7 @@ final class ParsedSourceContentLoader {
    */
   protected function deleteParagraphs(DrukiContentInterface $druki_content): void {
     $content = $druki_content->get('content');
-    assert($content instanceof EntityReferenceRevisionsFieldItemList);
+    \assert($content instanceof EntityReferenceRevisionsFieldItemList);
 
     if ($content->isEmpty()) {
       return;

@@ -11,7 +11,7 @@ use Drupal\Core\Site\Settings;
 /**
  * Implements hook_uninstall().
  */
-function druki_uninstall() {
+function druki_uninstall(): void {
   \Drupal::state()
     ->get('druki.drupal_releases')
     ->deleteMultiple([
@@ -23,7 +23,7 @@ function druki_uninstall() {
 /**
  * Implements hook_update_N().
  */
-function druki_update_8801(array &$sandbox) {
+function druki_update_8801(array &$sandbox): void {
   $drupal_releases = \Drupal::state()->get('druki.drupal_releases');
   // Reset last request to force get fresh info about Drupal 9 which release was
   // delayed.
@@ -34,7 +34,7 @@ function druki_update_8801(array &$sandbox) {
 /**
  * Remove ton of minifyjs orphaned files.
  */
-function druki_update_8901(array &$sandbox) {
+function druki_update_8901(array &$sandbox): string {
   $entity_type_manager = \Drupal::entityTypeManager();
   /** @var \Drupal\file\FileStorageInterface $file_storage */
   $file_storage = $entity_type_manager->getStorage('file');

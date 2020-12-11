@@ -3,8 +3,6 @@
 namespace Drupal\druki\Drupal;
 
 use Drupal\update\UpdateFetcherInterface;
-use Exception;
-use SimpleXMLElement;
 
 /**
  * Fetches information about drupal projects.
@@ -39,14 +37,14 @@ class DrupalProjects {
     $data = $this->parseXml($releases);
 
     $last_stable_version = $this->getCoreLastStableVersion();
-    $version_parts = explode('.', $last_stable_version['version']);
+    $version_parts = \explode('.', $last_stable_version['version']);
     $minor_version_pieces = [
       $version_parts[0],
       $version_parts[1],
       0,
     ];
 
-    $minor_version = implode('.', $minor_version_pieces);
+    $minor_version = \implode('.', $minor_version_pieces);
 
     return empty($data['releases'][$minor_version]) ? [] : $data['releases'][$minor_version];
   }
@@ -76,11 +74,11 @@ class DrupalProjects {
    *
    * @see https://updates.drupal.org/release-history/drupal/current
    */
-  protected function parseXml($raw_xml): ?array {
+  protected function parseXml(string $raw_xml): ?array {
     try {
-      $xml = new SimpleXMLElement($raw_xml);
+      $xml = new \SimpleXMLElement($raw_xml);
     }
-    catch (Exception $e) {
+    catch (\Exception $e) {
       // SimpleXMLElement::__construct produces an E_WARNING error message for
       // each error found in the XML data and throws an exception if errors
       // were detected. Catch any exception and return failure (NULL).

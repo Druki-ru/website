@@ -109,18 +109,18 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
   public function process($data, DrukiContentInterface $content): void {
     $src = $data->getSrc();
     $alt = $data->getAlt();
-    $host = parse_url($src);
+    $host = \parse_url($src);
     $media = NULL;
 
     // If scheme is exists, then we treat this file as remote.
     if (isset($host['scheme'])) {
-      $filename = basename($src);
+      $filename = \basename($src);
       try {
         // Sometimes url can be broken, slow or not accessible at this time.
         // The cURL will throw exception, and we softly skip it.
         // @todo some kind of logging to inform about such kind of problem
         //   links.
-        $file_uri = system_retrieve_file($src, 'temporary://' . $filename);
+        $file_uri = \system_retrieve_file($src, 'temporary://' . $filename);
       }
       catch (\Exception $e) {
         return;
@@ -133,8 +133,8 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
         ->configFactory
         ->get('druki_git.git_settings')
         ->get('repository_path');
-      $repository_path = rtrim($repository_path, '/');
-      $src = ltrim($src, '/');
+      $repository_path = \rtrim($repository_path, '/');
+      $src = \ltrim($src, '/');
       $file_uri = $repository_path . '/' . $src;
     }
 
@@ -144,7 +144,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
     }
 
     // If file is found locally.
-    if (file_exists($file_uri)) {
+    if (\file_exists($file_uri)) {
       $paragraph = $this->getParagraphStorage()->create(['type' => $data->getParagraphType()]);
       $duplicate = $this->fileTracker->checkDuplicate($file_uri);
 
@@ -154,8 +154,8 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
       }
       else {
         $destination_uri = $this->getMediaImageFieldDestination();
-        $basename = basename($file_uri);
-        $contents = file_get_contents($file_uri);
+        $basename = \basename($file_uri);
+        $contents = \file_get_contents($file_uri);
 
         // Ensure folder is exists and writable.
         if ($this->fileSystem->prepareDirectory($destination_uri, FileSystemInterface::CREATE_DIRECTORY)) {
@@ -165,7 +165,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
               'uri' => $uri,
               // This is doesn't matter for us.
               'uid' => 1,
-              'status' => FILE_STATUS_PERMANENT,
+              'status' => \FILE_STATUS_PERMANENT,
             ]);
             $file->save();
             $media = $this->saveImageFileToMediaImage($file);
@@ -232,11 +232,11 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
    *   The URI folder for saving file.
    */
   protected function getMediaImageFieldDestination(): string {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
+    $result = &drupal_static(self::class . ':' . __METHOD__);
 
     if (!isset($result)) {
       $media_image = $this->entityFieldManager->getFieldDefinitions('media', 'image');
-      $file_directory = trim($media_image['field_media_image']->getSetting('file_directory'), '/');
+      $file_directory = \trim($media_image['field_media_image']->getSetting('file_directory'), '/');
       $uri_scheme = $media_image['field_media_image']->getSetting('uri_scheme');
       // Since this setting can, and will be contain tokens by default. We must
       // handle it too. Also, tokens can contain html, so we strip it.

@@ -68,7 +68,7 @@ final class PageController implements ContainerInjectionInterface {
     return new static(
       $container->get('druki_search.page.query_helper'),
       $container->get('request_stack')->getCurrentRequest(),
-      $container->get('pager.manager')
+      $container->get('pager.manager'),
     );
   }
 
@@ -80,9 +80,9 @@ final class PageController implements ContainerInjectionInterface {
    *
    * @throws \Drupal\search_api\SearchApiException
    */
-  public function build() {
+  public function build(): array {
     $keys = $this->request->get('text', NULL);
-    if (mb_strlen($keys) == 0) {
+    if (\mb_strlen($keys) == 0) {
       $keys = NULL;
       $results = [];
       $result_items = [];

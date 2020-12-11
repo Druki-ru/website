@@ -5,8 +5,6 @@
  * Primary module hooks for Druki - Search module.
  */
 
-use Drupal\druki_search\SearchPage\FilterForm;
-
 /**
  * Implements hook_theme().
  */

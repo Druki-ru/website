@@ -77,7 +77,7 @@ final class DrukiContentListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity): array {
-    /* @var $entity \Drupal\druki_content\Entity\DrukiContentInterface */
+    /** @var \Drupal\druki_content\Entity\DrukiContentInterface $entity */
     $row['internal_id'] = $entity->id();
     $row['external_id'] = $entity->getExternalId();
     $row['langcode'] = $entity->get('langcode')->value;

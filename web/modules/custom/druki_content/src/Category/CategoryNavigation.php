@@ -73,7 +73,7 @@ class CategoryNavigation {
    *   The category name, NULL if not found anything.
    */
   public function getCategoryAreaFromRoute(): ?string {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
+    $result = &drupal_static(self::class . ':' . __METHOD__);
 
     if (!isset($result)) {
       $entity = $this->getEntityWithCategoryFromRoute();
@@ -97,7 +97,7 @@ class CategoryNavigation {
    *   The entity with druki_category field, NULL if not found.
    */
   public function getEntityWithCategoryFromRoute(): ?ContentEntityInterface {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__);
+    $result = &drupal_static(self::class . ':' . __METHOD__);
 
     if (!isset($result)) {
       foreach ($this->routeMatch->getParameters() as $parameter) {
@@ -123,7 +123,7 @@ class CategoryNavigation {
    *   The field name, NULL if entity is not contain any druki_content fields.
    */
   protected function findDrukiCategoryFieldName(ContentEntityInterface $entity): ?string {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $entity->getEntityTypeId() . ':' . $entity->id());
+    $result = &drupal_static(self::class . ':' . __METHOD__ . ':' . $entity->getEntityTypeId() . ':' . $entity->id());
 
     if (!isset($result)) {
       foreach ($entity->getFieldDefinitions() as $field_definition) {
@@ -153,7 +153,7 @@ class CategoryNavigation {
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
   public function getLinksByCategoryArea(ContentEntityInterface $entity, string $category_area): ?array {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $category_area);
+    $result = &drupal_static(self::class . ':' . __METHOD__ . ':' . $category_area);
 
     if (!isset($result)) {
       $field_name = $this->findDrukiCategoryFieldName($entity);

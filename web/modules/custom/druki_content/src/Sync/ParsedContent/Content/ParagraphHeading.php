@@ -3,7 +3,6 @@
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
 use Drupal\Component\Render\FormattableMarkup;
-use InvalidArgumentException;
 
 /**
  * Class ParagraphHeading.
@@ -69,12 +68,12 @@ final class ParagraphHeading extends ParagraphContentBase {
    *   The heading level.
    */
   private function setLevel(string $level): void {
-    if (!in_array($level, $this->availableLevels)) {
+    if (!\in_array($level, $this->availableLevels)) {
       $message = new FormattableMarkup('The heading level must be one of the following: @allowed_values. Got value: @value.', [
-        '@allowed_values' => implode(', ', $this->availableLevels),
+        '@allowed_values' => \implode(', ', $this->availableLevels),
         '@value' => $level,
       ]);
-      throw new InvalidArgumentException($message);
+      throw new \InvalidArgumentException($message);
     }
 
     $this->level = $level;
@@ -87,8 +86,8 @@ final class ParagraphHeading extends ParagraphContentBase {
    *   The heading content.
    */
   private function setContent(string $content): void {
-    if (!mb_strlen($content)) {
-      throw new InvalidArgumentException("The heading content can't be empty.");
+    if (!\mb_strlen($content)) {
+      throw new \InvalidArgumentException("The heading content can't be empty.");
     }
 
     $this->content = $content;

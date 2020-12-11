@@ -43,7 +43,7 @@ final class DrukiGitController implements ContainerInjectionInterface {
    * Reacts on webhook route call.
    */
   public function webhook(Request $request): JsonResponse {
-    $webhook_info = json_decode($request->getContent());
+    $webhook_info = \json_decode($request->getContent());
 
     if (isset($webhook_info->pusher)) {
       if ($this->git->pull()) {

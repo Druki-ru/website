@@ -41,7 +41,7 @@ class DrukiContentCore extends ProcessorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getPropertyDefinitions(DatasourceInterface $datasource = NULL): array {
+  public function getPropertyDefinitions(?DatasourceInterface $datasource = NULL): array {
     $properties = [];
 
     if (!$datasource) {
@@ -78,7 +78,7 @@ class DrukiContentCore extends ProcessorPluginBase {
         ->filterForPropertyPath(
           $item->getFields(),
           NULL,
-          'druki_content_core'
+          'druki_content_core',
         );
 
       foreach ($fields as $field) {

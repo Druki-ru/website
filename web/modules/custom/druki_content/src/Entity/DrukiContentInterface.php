@@ -87,7 +87,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setCategory(string $area, int $order = 0, string $title = NULL): DrukiContentInterface;
+  public function setCategory(string $area, int $order = 0, ?string $title = NULL): DrukiContentInterface;
 
   /**
    * Gets category.

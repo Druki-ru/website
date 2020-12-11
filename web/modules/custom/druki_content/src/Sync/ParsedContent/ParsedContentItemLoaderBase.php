@@ -20,13 +20,13 @@ abstract class ParsedContentItemLoaderBase implements ParsedContentItemLoaderInt
    * {@inheritdoc}
    */
   public function supportsLoading($data): bool {
-    if (!is_object($data)) {
+    if (!\is_object($data)) {
       return FALSE;
     }
 
     $supported = (array) $this->supportedInterfaceOrClass;
 
-    return (bool) array_filter($supported, function ($name) use ($data) {
+    return (bool) \array_filter($supported, static function ($name) use ($data) {
       return $data instanceof $name;
     });
   }

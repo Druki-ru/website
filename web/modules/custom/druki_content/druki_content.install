@@ -41,7 +41,7 @@ function druki_content_requirements($phase): array {
 /**
  * Implements hook_uninstall()
  */
-function druki_content_uninstall() {
+function druki_content_uninstall(): void {
   // Remove state settings.
   \Drupal::state()->delete('druki_content.settings.force_update');
   \Drupal::state()->delete('druki_content.last_sync_timestamp');
@@ -207,7 +207,7 @@ function druki_content_update_8801(array &$sandbox) {
 /**
  * Update run by fault. =)
  */
-function druki_content_update_8802(array &$sandbox) {
+function druki_content_update_8802(array &$sandbox): void {
 
 }
 
@@ -216,7 +216,7 @@ function druki_content_update_8802(array &$sandbox) {
  *
  * @see https://gitlab.com/druki/website/issues/88
  */
-function druki_content_update_8803(array &$sandbox) {
+function druki_content_update_8803(array &$sandbox): void {
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   if ($filename_definition = $definition_update_manager->getFieldStorageDefinition('filename', 'druki_content')) {
     $definition_update_manager->uninstallFieldStorageDefinition($filename_definition);
@@ -228,7 +228,7 @@ function druki_content_update_8803(array &$sandbox) {
  *
  * @see https://gitlab.com/druki/website/issues/88
  */
-function druki_content_update_8804(array &$sandbox) {
+function druki_content_update_8804(array &$sandbox): void {
   $field_storage_definition = BaseFieldDefinition::create('timestamp')
     ->setLabel(new TranslatableMarkup('Last synchronization timestamp'))
     ->setDescription(new TranslatableMarkup('The time of last synchronization where this content was presented.'))
@@ -247,7 +247,7 @@ function druki_content_update_8804(array &$sandbox) {
  *
  * @see https://gitlab.com/druki/website/issues/88
  */
-function druki_content_update_8805(array &$sandbox) {
+function druki_content_update_8805(array &$sandbox): void {
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   if ($last_commit_id_definition = $definition_update_manager->getFieldStorageDefinition('last_commit_id', 'druki_content')) {
     $definition_update_manager->uninstallFieldStorageDefinition($last_commit_id_definition);
@@ -259,7 +259,7 @@ function druki_content_update_8805(array &$sandbox) {
  *
  * @see https://gitlab.com/druki/website/issues/88
  */
-function druki_content_update_8806(array &$sandbox) {
+function druki_content_update_8806(array &$sandbox): void {
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   if ($contribution_statistics_definition = $definition_update_manager->getFieldStorageDefinition('contribution_statistics', 'druki_content')) {
     $definition_update_manager->uninstallFieldStorageDefinition($contribution_statistics_definition);
@@ -271,7 +271,7 @@ function druki_content_update_8806(array &$sandbox) {
  *
  * @see https://gitlab.com/druki/website/issues/88
  */
-function druki_content_update_8807(array &$sandbox) {
+function druki_content_update_8807(array &$sandbox): void {
   $field_storage_definition = BaseFieldDefinition::create('string')
     ->setLabel(new TranslatableMarkup('Source content hash'))
     ->setDescription(new TranslatableMarkup('Store the last parsed content hash used for current content.'))
@@ -286,7 +286,7 @@ function druki_content_update_8807(array &$sandbox) {
 /**
  * Fix all missing entity updates.
  */
-function druki_content_update_9001(array &$sandbox) {
+function druki_content_update_9001(array &$sandbox): void {
   // Without this changes system_post_update_entity_revision_metadata_bc_cleanup()
   // will not apply.
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
@@ -307,7 +307,7 @@ function druki_content_update_9001(array &$sandbox) {
 /**
  * Change Druki Content route provider handler namespace.
  */
-function druki_content_update_9002(array &$sandbox) {
+function druki_content_update_9002(array &$sandbox): void {
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
@@ -320,21 +320,21 @@ function druki_content_update_9002(array &$sandbox) {
 /**
  * Update Druki Content handler namespaces.
  */
-function druki_content_update_9003(array &$sandbox) {
+function druki_content_update_9003(array &$sandbox): void {
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
-  $druki_content_definition->setHandlerClass('access','Drupal\druki_content\Entity\Handler\Access\DrukiContentAccessControlHandler');
-  $druki_content_definition->setHandlerClass('list_builder','Drupal\druki_content\Entity\Handler\ListBuilder\DrukiContentListBuilder');
-  $druki_content_definition->setHandlerClass('redirect_controller','Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentRedirectController');
-  $druki_content_definition->setHandlerClass('storage','Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage');
+  $druki_content_definition->setHandlerClass('access', 'Drupal\druki_content\Entity\Handler\Access\DrukiContentAccessControlHandler');
+  $druki_content_definition->setHandlerClass('list_builder', 'Drupal\druki_content\Entity\Handler\ListBuilder\DrukiContentListBuilder');
+  $druki_content_definition->setHandlerClass('redirect_controller', 'Drupal\druki_content\Entity\Handler\RouteProvider\DrukiContentRedirectController');
+  $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
 
 /**
  * Update Druki Content form handlers.
  */
-function druki_content_update_9004(array &$sandbox) {
+function druki_content_update_9004(array &$sandbox): void {
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');

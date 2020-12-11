@@ -70,7 +70,7 @@ final class SyncQueueProcessor {
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, SourceContentParser $source_content_parser, ParsedSourceContentLoader $parsed_content_loader, StateInterface $state, MemoryCacheInterface $cache) {
     $druki_content_storage = $entity_type_manager->getStorage('druki_content');
-    assert($druki_content_storage instanceof DrukiContentStorage);
+    \assert($druki_content_storage instanceof DrukiContentStorage);
     $this->drukiContentStorage = $druki_content_storage;
     $this->sourceContentParser = $source_content_parser;
     $this->parsedSourceContentLoader = $parsed_content_loader;

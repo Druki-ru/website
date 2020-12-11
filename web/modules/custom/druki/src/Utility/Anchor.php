@@ -11,15 +11,11 @@ class Anchor {
 
   /**
    * Indicated incremental anchors.
-   *
-   * @var int
    */
   public const COUNTER = 1;
 
   /**
    * Indicates reusable anchors.
-   *
-   * @var int
    */
   public const REUSE = 2;
 
@@ -51,14 +47,14 @@ class Anchor {
     // Main processing for anchors.
     $transliteration = new PhpTransliteration();
     $anchor = $transliteration->transliterate($text);
-    $anchor = strtolower($anchor);
-    $anchor = trim($anchor);
+    $anchor = \strtolower($anchor);
+    $anchor = \trim($anchor);
     // Replace all spaces with dash.
-    $anchor = preg_replace("/[\s_]/", '-', $anchor);
+    $anchor = \preg_replace("/[\s_]/", '-', $anchor);
     // Remove everything else. Only alphabet, numbers and dash is allowed.
-    $anchor = preg_replace("/[^0-9a-z-]/", '', $anchor);
+    $anchor = \preg_replace("/[^0-9a-z-]/", '', $anchor);
     // Replace multiple dashes with single. F.e. "Title with - dash".
-    $anchor = preg_replace('/-{2,}/', '-', $anchor);
+    $anchor = \preg_replace('/-{2,}/', '-', $anchor);
 
     static $anchor_static = [];
     while (!$anchor_generated) {

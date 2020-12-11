@@ -7,6 +7,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -36,7 +37,7 @@ final class DrukiContentRedirectController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory')
+      $container->get('config.factory'),
     );
   }
 
@@ -51,7 +52,7 @@ final class DrukiContentRedirectController extends ControllerBase {
    * @return \Symfony\Component\HttpFoundation\Response
    *   The redirect response.
    */
-  public function build(DrukiContentInterface $druki_content, string $redirect_to) {
+  public function build(DrukiContentInterface $druki_content, string $redirect_to): Response {
     $repository_url = $this->gitConfig->get('repository_url');
     $relative_pathname = $druki_content->getRelativePathname();
 

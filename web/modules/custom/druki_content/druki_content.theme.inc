@@ -37,7 +37,7 @@ function template_preprocess_druki_content_toc(array &$variables): void {
   /** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
   $druki_content = $variables['druki_content'];
   $variables['links'] = [];
-  $headings = $druki_content->get('content')->filter(function ($item) {
+  $headings = $druki_content->get('content')->filter(static function ($item) {
     return $item->entity->bundle() == 'druki_heading';
   });
 
@@ -132,7 +132,7 @@ function _druki_content_toc_prepare_link(ParagraphInterface $paragraph, array $l
  * @return array
  *   The array with links in tree format.
  */
-function _druki_content_toc_build_tree(array $links, $parent_id = 0) {
+function _druki_content_toc_build_tree(array $links, int $parent_id = 0): array {
   $tree = [];
 
   foreach ($links as $link) {
@@ -164,7 +164,7 @@ function template_preprocess_druki_content_category_navigation(array &$variables
     $link['attributes'] = new Attribute();
     $link['is_active'] = $path_matcher->matchPath(
       $current_path,
-      $path_alias_manager->getPathByAlias($link['url']->toString())
+      $path_alias_manager->getPathByAlias($link['url']->toString()),
     );
   }
 }

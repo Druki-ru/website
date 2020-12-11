@@ -2,8 +2,6 @@
 
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
-use InvalidArgumentException;
-
 /**
  * Class ParagraphCode.
  *
@@ -44,8 +42,8 @@ final class ParagraphCode extends ParagraphContentBase {
    *   The paragraph content.
    */
   private function setContent(string $content): void {
-    if (!mb_strlen($content)) {
-      throw new InvalidArgumentException("The code content can't be empty.");
+    if (!\mb_strlen($content)) {
+      throw new \InvalidArgumentException("The code content can't be empty.");
     }
 
     $this->content = $content;

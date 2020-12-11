@@ -3,7 +3,6 @@
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
 use Drupal\Component\Render\FormattableMarkup;
-use UnexpectedValueException;
 
 /**
  * Class ParagraphContentBase.
@@ -29,7 +28,7 @@ abstract class ParagraphContentBase implements ParagraphContentInterface {
       $message = new FormattableMarkup('The paragraph content value objects must contain paragraph type. Consider to set this value in "$paragraphType" property for @class.', [
         '@class' => static::class,
       ]);
-      throw new UnexpectedValueException($message);
+      throw new \UnexpectedValueException($message);
     }
 
     return $this->paragraphType;

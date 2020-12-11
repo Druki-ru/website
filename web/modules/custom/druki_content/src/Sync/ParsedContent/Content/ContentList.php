@@ -2,13 +2,10 @@
 
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
-use ArrayIterator;
-use IteratorAggregate;
-
 /**
  * Provides value object for store list of content.
  */
-final class ContentList implements IteratorAggregate {
+final class ContentList implements \IteratorAggregate {
 
   /**
    * The content array.
@@ -38,7 +35,7 @@ final class ContentList implements IteratorAggregate {
    *   The last content element if exists.
    */
   public function end(): ?ParagraphContentInterface {
-    $last_element = end($this->content);
+    $last_element = \end($this->content);
 
     if ($last_element instanceof ParagraphContentInterface) {
       return $last_element;
@@ -55,7 +52,7 @@ final class ContentList implements IteratorAggregate {
    *   The popped content element.
    */
   public function pop(): ?ParagraphContentInterface {
-    $last_element = array_pop($this->content);
+    $last_element = \array_pop($this->content);
 
     if ($last_element instanceof ParagraphContentInterface) {
       return $last_element;
@@ -71,8 +68,8 @@ final class ContentList implements IteratorAggregate {
    * @return \ArrayIterator
    *   The iterator for array.
    */
-  public function getIterator() {
-    return new ArrayIterator($this->content);
+  public function getIterator(): \ArrayIterator {
+    return new \ArrayIterator($this->content);
   }
 
   /**
@@ -82,7 +79,7 @@ final class ContentList implements IteratorAggregate {
    *   The content count value.
    */
   public function count(): int {
-    return count($this->content);
+    return \count($this->content);
   }
 
 }

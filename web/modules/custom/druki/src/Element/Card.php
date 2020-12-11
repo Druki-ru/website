@@ -24,9 +24,9 @@ class Card extends RenderElement {
    * @return array
    *   The processed element.
    */
-  public static function preRender(array $element) {
+  public static function preRender(array $element): array {
     if (isset($element['#primary_url']) && !$element['#primary_url'] instanceof Url) {
-      if ((strpos($element['#primary_url'], '/') !== 0) && (strpos($element['#primary_url'], '#') !== 0) && (strpos($element['#primary_url'], '?') !== 0)) {
+      if ((\strpos($element['#primary_url'], '/') !== 0) && (\strpos($element['#primary_url'], '#') !== 0) && (\strpos($element['#primary_url'], '?') !== 0)) {
         $primary_url = Url::fromUri($element['#primary_url']);
       }
       else {

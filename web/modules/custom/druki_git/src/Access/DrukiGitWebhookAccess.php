@@ -38,7 +38,7 @@ class DrukiGitWebhookAccess implements AccessInterface {
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
    */
-  public function access($key): AccessResultInterface {
+  public function access(string $key): AccessResultInterface {
     if ($key != $this->state->get('druki_git.webhook_key')) {
       return AccessResult::forbidden()->setCacheMaxAge(0);
     }

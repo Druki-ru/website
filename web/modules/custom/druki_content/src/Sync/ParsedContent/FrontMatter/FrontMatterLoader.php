@@ -53,8 +53,8 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
     if ($front_matter->has('category')) {
       $category = $front_matter->get('category')->getValue();
       $category_area = $category['area'];
-      $category_order = (isset($category['order'])) ? $category['order'] : 0;
-      $category_title = (isset($category['title'])) ? $category['title'] : NULL;
+      $category_order = $category['order'] ?? 0;
+      $category_title = $category['title'] ?? NULL;
 
       $content->setCategory($category_area, $category_order, $category_title);
     }
@@ -111,9 +111,9 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
       if (isset($field_definitions['difficulty'])) {
         $difficulty = $field_definitions['difficulty'];
         $settings = $difficulty->getSetting('allowed_values');
-        $allowed_values = array_keys($settings);
+        $allowed_values = \array_keys($settings);
 
-        if (in_array($front_matter->get('difficulty')->getValue(), $allowed_values)) {
+        if (\in_array($front_matter->get('difficulty')->getValue(), $allowed_values)) {
           $content->set('difficulty', $front_matter->get('difficulty')->getValue());
         }
       }
@@ -170,7 +170,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
       $allowed_values = ['title', 'description'];
 
       foreach ($metatags as $key => $value) {
-        if (!in_array($key, $allowed_values)) {
+        if (!\in_array($key, $allowed_values)) {
           unset($metatags[$key]);
         }
       }
@@ -184,7 +184,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
         $metatags['og_description'] = $metatags['description'];
       }
 
-      $content->set('metatags', serialize($metatags));
+      $content->set('metatags', \serialize($metatags));
     }
   }
 

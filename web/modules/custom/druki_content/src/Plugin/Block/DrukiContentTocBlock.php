@@ -38,7 +38,7 @@ class DrukiContentTocBlock extends BlockBase {
     $build = [];
 
     if ($druki_content = $this->getDrukiContentFromContext()) {
-      $headings = $druki_content->get('content')->filter(function ($item) {
+      $headings = $druki_content->get('content')->filter(static function ($item) {
         return $item->entity->bundle() == 'druki_heading';
       });
 
@@ -75,7 +75,7 @@ class DrukiContentTocBlock extends BlockBase {
 
     return Cache::mergeTags(
       parent::getCacheTags(),
-      $cache_tags
+      $cache_tags,
     );
   }
 
@@ -89,7 +89,7 @@ class DrukiContentTocBlock extends BlockBase {
 
     return Cache::mergeContexts(
       parent::getCacheContexts(),
-      $cache_contexts
+      $cache_contexts,
     );
   }
 

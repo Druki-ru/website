@@ -2,7 +2,6 @@
 
 namespace Drupal\druki_content\Plugin\Filter;
 
-use DOMXPath;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -72,7 +71,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): InternalLinks {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $druki_content_storage = $container->get('entity_type.manager')->getStorage('druki_content');
-    assert($druki_content_storage instanceof DrukiContentStorage);
+    \assert($druki_content_storage instanceof DrukiContentStorage);
     $instance->contentStorage = $druki_content_storage;
     $instance->gitSettings = $container->get('config.factory')->get('druki_git.git_settings');
     $instance->gitRepositoryPath = $instance->gitSettings->get('repository_path');
@@ -89,12 +88,12 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
     $result = new FilterProcessResult($text);
 
     // Do not run processing if text doesn't contains this value.
-    if (stristr($text, 'data-druki-internal-link-filepath') === FALSE) {
+    if (\stristr($text, 'data-druki-internal-link-filepath') === FALSE) {
       return $result;
     }
 
     $dom = Html::load($text);
-    $xpath = new DOMXPath($dom);
+    $xpath = new \DOMXPath($dom);
 
     // <a href="services/services.md" data-druki-internal-link-filepath="public://druki-content-source/docs/ru/8/settings-php.md">сервис</a>
     /** @var \DOMElement $node */
@@ -104,7 +103,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       $original_href = $node->getAttribute('href');
       $link_source_filepath = $node->getAttribute('data-druki-internal-link-filepath');
       $source_realpath = $this->fileSystem->realpath($link_source_filepath);
-      $source_dirname = dirname($source_realpath);
+      $source_dirname = \dirname($source_realpath);
       // realpath() checks for file existence. So we wrap it to condition.
       // Also we add trailing slash after dirname for this contact:
       // - /path/to/source/dirname
@@ -118,8 +117,8 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       // repository root.
       // We also remove leading slash from repository path. This is needed
       // because "relative_pathname" stored without it: docs/ru/file.md.
-      $destination_relative_pathname = str_replace($this->gitRepositoryRealpath . '/', '', $destination_realpath);
-      if (realpath($destination_realpath)) {
+      $destination_relative_pathname = \str_replace($this->gitRepositoryRealpath . '/', '', $destination_realpath);
+      if (\realpath($destination_realpath)) {
         // If we are here, this means the path is valid and file is exist.
         // Now we need to find the druki_content entity associated with this
         // relative pathname.
@@ -172,26 +171,26 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
    * @see https://stackoverflow.com/a/10067975/4751623
    */
   protected function normalizePath(string $path): string {
-    $result_path = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $path, '');
+    $result_path = &drupal_static(self::class . ':' . __METHOD__ . ':' . $path, '');
 
     if (empty($result_path)) {
-      $root = ($path[0] === '/') ? '/' : '';
+      $root = $path[0] === '/' ? '/' : '';
 
-      $segments = explode('/', trim($path, '/'));
+      $segments = \explode('/', \trim($path, '/'));
       $ret = [];
       foreach ($segments as $segment) {
-        if (($segment == '.') || strlen($segment) === 0) {
+        if (($segment == '.') || \strlen($segment) === 0) {
           continue;
         }
         if ($segment == '..') {
-          array_pop($ret);
+          \array_pop($ret);
         }
         else {
-          array_push($ret, $segment);
+          \array_push($ret, $segment);
         }
       }
 
-      $result_path = $root . implode('/', $ret);
+      $result_path = $root . \implode('/', $ret);
     }
 
     return $result_path;
@@ -207,7 +206,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
    *   The content entity.
    */
   protected function loadDrukiContentByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $relative_pathname);
+    $result = &drupal_static(self::class . ':' . __METHOD__ . ':' . $relative_pathname);
 
     if (!isset($result)) {
       $content_ids = $this
@@ -218,7 +217,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
         ->execute();
 
       if (!empty($content_ids)) {
-        $content_id = array_shift($content_ids);
+        $content_id = \array_shift($content_ids);
         $result = $this->contentStorage->load($content_id);
       }
     }

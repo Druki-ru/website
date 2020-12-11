@@ -217,7 +217,7 @@ final class DrukiContentSyncForm extends FormBase {
    */
   public function createQueueFromFolder(array $form, FormStateInterface $form_state): void {
     $uri = $form_state->getValue(['queue_builder', 'folder', 'uri']);
-    if (!is_dir($uri)) {
+    if (!\is_dir($uri)) {
       return;
     }
 

@@ -86,7 +86,7 @@ final class FileTracker {
       ->execute();
 
     if (!empty($result)) {
-      $fid = reset($result);
+      $fid = \reset($result);
 
       return $this->fileStorage->load($fid);
     }
@@ -103,11 +103,11 @@ final class FileTracker {
    * @return string
    *   The file hash.
    */
-  protected function getFileHash($uri): string {
-    $result = &drupal_static(__CLASS__ . ':' . __METHOD__ . ':' . $uri);
+  protected function getFileHash(string $uri): string {
+    $result = &drupal_static(self::class . ':' . __METHOD__ . ':' . $uri);
 
     if (!isset($result)) {
-      $result = md5_file($uri);
+      $result = \md5_file($uri);
     }
 
     return $result;
@@ -123,7 +123,7 @@ final class FileTracker {
       ->fileStorage
       ->getQuery()
       ->exists('uri')
-      ->condition('status', FILE_STATUS_PERMANENT)
+      ->condition('status', \FILE_STATUS_PERMANENT)
       ->execute();
 
     $files = $this->fileStorage->loadMultiple($file_ids);
@@ -185,7 +185,7 @@ final class FileTracker {
     // Since there is possible to have multiple usage of the same file in
     // different media entities through code and other modules, we just pick the
     // first one.
-    $media_id = (isset($usage['file']['media'])) ? array_keys($usage['file']['media'])[0] : NULL;
+    $media_id = isset($usage['file']['media']) ? \array_keys($usage['file']['media'])[0] : NULL;
     if ($media_id) {
       return $this->mediaStorage->load($media_id);
     }

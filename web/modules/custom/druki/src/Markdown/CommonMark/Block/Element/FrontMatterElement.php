@@ -62,11 +62,7 @@ final class FrontMatterElement extends AbstractStringContainerBlock {
    * {@inheritdoc}
    */
   public function matchesNextLine(Cursor $cursor): bool {
-    if ($this->isCloserFound()) {
-      return FALSE;
-    }
-
-    return TRUE;
+    return !$this->isCloserFound();
   }
 
   /**
@@ -85,7 +81,7 @@ final class FrontMatterElement extends AbstractStringContainerBlock {
    * @param bool $status
    *   The status is closer found or not.
    */
-  public function setIsCloserFound($status): void {
+  public function setIsCloserFound(bool $status): void {
     $this->isCloserFound = $status;
   }
 
@@ -112,7 +108,7 @@ final class FrontMatterElement extends AbstractStringContainerBlock {
   public function finalize(ContextInterface $context, int $endLineNumber) {
     parent::finalize($context, $endLineNumber);
 
-    $this->finalStringContents = implode(PHP_EOL, $this->strings->toArray());
+    $this->finalStringContents = \implode(\PHP_EOL, $this->strings->toArray());
   }
 
 }

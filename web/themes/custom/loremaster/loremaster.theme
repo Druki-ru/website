@@ -46,14 +46,14 @@ function loremaster_preprocess_paragraph__druki_note(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK() for 'block--system-menu-block.html.twig'.
  */
-function loremaster_preprocess_block__system_menu_block(&$variables) {
+function loremaster_preprocess_block__system_menu_block(array &$variables): void {
   $variables['content']['#attributes']['data-block-id'] = $variables['block_id'];
 }
 
 /**
  * Implements hook_preprocess_HOOK() for 'menu--main.html.twig'.
  */
-function loremaster_preprocess_menu__main(&$variables) {;
+function loremaster_preprocess_menu__main(array &$variables): void {
   if (isset($variables['attributes']['data-block-id'])) {
     $variables['system_menu_block_id'] = $variables['attributes']['data-block-id'];
     unset($variables['attributes']['data-block-id']);

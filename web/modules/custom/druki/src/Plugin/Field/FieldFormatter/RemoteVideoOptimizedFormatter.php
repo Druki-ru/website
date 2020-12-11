@@ -156,7 +156,7 @@ final class RemoteVideoOptimizedFormatter extends FormatterBase implements Conta
   protected function parseVideoId(string $provider_name, string $video_url): ?string {
     switch ($provider_name) {
       case 'YouTube':
-        if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match)) {
+        if (\preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match)) {
           return $match[1];
         }
         break;

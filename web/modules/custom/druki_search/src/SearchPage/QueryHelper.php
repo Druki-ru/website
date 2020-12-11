@@ -4,6 +4,7 @@ namespace Drupal\druki_search\SearchPage;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\search_api\ParseMode\ParseModePluginManager;
+use Drupal\search_api\Query\QueryInterface;
 use Drupal\search_api\Utility\QueryHelperInterface;
 
 /**
@@ -74,7 +75,7 @@ class QueryHelper {
    *
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
-  public function getQuery($search_id = self::FULL) {
+  public function getQuery(string $search_id = self::FULL): QueryInterface {
     $index = $this->indexStorage->load('global');
     /** @var \Drupal\search_api\Query\Query $query */
     $query = $this->queryHelper->createQuery($index);

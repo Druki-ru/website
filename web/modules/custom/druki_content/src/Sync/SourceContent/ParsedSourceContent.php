@@ -66,7 +66,7 @@ final class ParsedSourceContent {
    *   The hash for source and parsed source content combined.
    */
   public function getSourceHash(): string {
-    $string = serialize($this->source) . serialize($this->parsed);
+    $string = \serialize($this->source) . \serialize($this->parsed);
     return Crypt::hashBase64($string);
   }
 

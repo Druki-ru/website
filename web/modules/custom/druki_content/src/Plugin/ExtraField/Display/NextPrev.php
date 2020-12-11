@@ -58,7 +58,7 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')->getStorage('druki_content')
+      $container->get('entity_type.manager')->getStorage('druki_content'),
     );
   }
 
@@ -98,7 +98,7 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
   protected function getLink(DrukiContentInterface $entity, string $direction): ?Link {
-    if (!in_array($direction, ['next', 'prev'])) {
+    if (!\in_array($direction, ['next', 'prev'])) {
       return NULL;
     }
 
@@ -125,7 +125,7 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
       return NULL;
     }
 
-    $entity_id = reset($result);
+    $entity_id = \reset($result);
     $result_entity = $this->contentStorage->load($entity_id);
 
     return $result_entity->toLink($result_entity->get('category')->title);

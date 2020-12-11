@@ -88,7 +88,7 @@ final class CategoryNavigationBlock extends BlockBase implements ContainerFactor
 
     return Cache::mergeContexts(
       parent::getCacheContexts(),
-      $cache_contexts
+      $cache_contexts,
     );
   }
 
@@ -111,7 +111,7 @@ final class CategoryNavigationBlock extends BlockBase implements ContainerFactor
 
     return Cache::mergeTags(
       parent::getCacheTags(),
-      $cache_tags
+      $cache_tags,
     );
   }
 

@@ -3,7 +3,6 @@
 namespace Drupal\druki_content\Sync\Queue;
 
 use Drupal\druki_content\Sync\SourceContent\SourceContentList;
-use InvalidArgumentException;
 
 /**
  * Provides value object that holds queue data for single processing.
@@ -71,7 +70,7 @@ final class SyncQueueItem {
    */
   protected function setOperation(string $operation): void {
     $allowed = [self::SYNC, self::CLEAN];
-    if (!in_array($operation, $allowed)) {
+    if (!\in_array($operation, $allowed)) {
       throw new InvalidSyncQueueOperationException($operation, $allowed);
     }
 
@@ -98,13 +97,13 @@ final class SyncQueueItem {
     switch ($this->operation) {
       case self::SYNC:
         if (!$payload instanceof SourceContentList) {
-          throw new InvalidArgumentException('The synchronization queue operation only allowed for \Drupal\druki_content\SourceContent\SourceContentList as data.');
+          throw new \InvalidArgumentException('The synchronization queue operation only allowed for \Drupal\druki_content\SourceContent\SourceContentList as data.');
         }
         break;
 
       case self::CLEAN:
-        if (!is_int($payload)) {
-          throw new InvalidArgumentException('The clean queue operation only allowed for integer.');
+        if (!\is_int($payload)) {
+          throw new \InvalidArgumentException('The clean queue operation only allowed for integer.');
         }
         break;
     }

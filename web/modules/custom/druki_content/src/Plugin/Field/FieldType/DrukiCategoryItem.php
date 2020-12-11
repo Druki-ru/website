@@ -26,15 +26,15 @@ class DrukiCategoryItem extends FieldItemBase {
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition): array {
 
     $properties['area'] = DataDefinition::create('string')
-      ->setLabel(t('Area'))
+      ->setLabel(\t('Area'))
       ->setRequired(TRUE);
 
     $properties['order'] = DataDefinition::create('integer')
-      ->setLabel(t('Order'))
+      ->setLabel(\t('Order'))
       ->setRequired(TRUE);
 
     $properties['title'] = DataDefinition::create('string')
-      ->setLabel(t('Area'));
+      ->setLabel(\t('Area'));
 
     return $properties;
   }
@@ -75,9 +75,9 @@ class DrukiCategoryItem extends FieldItemBase {
    */
   public static function generateSampleValue(FieldDefinitionInterface $field_definition): array {
     $random = new Random();
-    $values['area'] = $random->word(mt_rand(1, 50));
-    $values['order'] = rand(0, 10);
-    $values['title'] = $random->word(mt_rand(1, 50));
+    $values['area'] = $random->word(\mt_rand(1, 50));
+    $values['order'] = \rand(0, 10);
+    $values['title'] = $random->word(\mt_rand(1, 50));
 
     return $values;
   }

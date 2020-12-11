@@ -38,7 +38,7 @@ function druki_preprocess_page__front(array &$variables): void {
 /**
  * Implements hook_theme().
  */
-function druki_theme($existing, $type, $theme, $path) {
+function druki_theme(): array {
   $file = 'druki.theme.inc';
 
   return [
@@ -87,14 +87,19 @@ function druki_theme($existing, $type, $theme, $path) {
 
 /**
  * Implements hook_imagemagick_arguments_alter().
+ *
+ * @todo Rewrite on events, this hook doesn't exists anymore.
+ * @see https://github.com/Druki-ru/website/issues/34
+ * @codingStandardsIgnoreStart
  */
-function druki_imagemagick_arguments_alter(ImagemagickExecArguments $arguments, $command) {
+function druki_imagemagick_arguments_alter(ImagemagickExecArguments $arguments, $command): void {
   // https://developers.google.com/speed/docs/insights/OptimizeImages
   $arguments->add('-sampling-factor 4:2:0');
   // Progression JPEG and interlaced PNG's support.
   $arguments->add('-interlace Plane');
   // Clean image for all unused data. I.e. EXIF.
   $arguments->add('-strip');
+  // @codingStandardsIgnoreEnd
 }
 
 /**
@@ -109,7 +114,7 @@ function druki_preprocess_html(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK() for 'responsive-image.html.twig'.
  */
-function druki_preprocess_responsive_image(array &$variables) {
+function druki_preprocess_responsive_image(array &$variables): void {
   // This hook is also set width and height required by default lazy loading
   // implementation. But this one called after, so with and height is not set
   // at the point when default lazy is added, so we force it.
@@ -141,14 +146,14 @@ function druki_preprocess_responsive_image(array &$variables) {
 /**
  * Implements hook_preprocess_HOOK() for 'image.html.twig'.
  */
-function druki_preprocess_image(array &$variables) {
+function druki_preprocess_image(array &$variables): void {
   $variables['attributes']['decoding'] = 'async';
 }
 
 /**
  * Implements hook_entity_base_field_info().
  */
-function druki_entity_base_field_info(EntityTypeInterface $entity_type) {
+function druki_entity_base_field_info(EntityTypeInterface $entity_type): array {
   $fields = [];
 
   if ($entity_type->id() === 'file') {
@@ -165,7 +170,7 @@ function druki_entity_base_field_info(EntityTypeInterface $entity_type) {
 /**
  * Implements hook_ENTITY_TYPE_presave().
  */
-function druki_file_presave(EntityInterface $entity) {
+function druki_file_presave(EntityInterface $entity): void {
   /** @var \Drupal\druki\File\FileTracker $file_tracker */
   $file_tracker = \Drupal::service('druki.file_tracker');
 

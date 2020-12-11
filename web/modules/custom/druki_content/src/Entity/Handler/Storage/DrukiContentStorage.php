@@ -34,15 +34,15 @@ final class DrukiContentStorage extends SqlContentEntityStorage {
    *
    * @param string $external_id
    *   The external content ID.
-   * @param null|string $langcode
+   * @param string|null $langcode
    *   The langcode of content. By default default site language.
-   * @param null|string $core
+   * @param string|null $core
    *   The core version, if applicable.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
    *   The content.
    */
-  public function loadByExternalId(string $external_id, string $langcode = NULL, string $core = NULL): ?DrukiContentInterface {
+  public function loadByExternalId(string $external_id, ?string $langcode = NULL, ?string $core = NULL): ?DrukiContentInterface {
     if (!$langcode) {
       $langcode = $this->languageManager->getCurrentLanguage()->getId();
     }
@@ -62,8 +62,8 @@ final class DrukiContentStorage extends SqlContentEntityStorage {
 
     $result = $entity_query->execute();
     if (!empty($result)) {
-      reset($result);
-      $first = key($result);
+      \reset($result);
+      $first = \key($result);
 
       return $this->load($first);
     }

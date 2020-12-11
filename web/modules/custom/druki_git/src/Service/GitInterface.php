@@ -50,7 +50,7 @@ interface GitInterface {
    * @return string|null
    *   The commit hash id, NULL if not found.
    */
-  public function getFileLastCommitId($relative_path): ?string;
+  public function getFileLastCommitId(string $relative_path): ?string;
 
   /**
    * Gets file commits statistics.
@@ -64,6 +64,6 @@ interface GitInterface {
    *   - name: The username of contributor.
    *   - email: The email of contributor.
    */
-  public function getFileCommitsInfo($relative_path): array;
+  public function getFileCommitsInfo(string $relative_path): array;
 
 }

@@ -111,7 +111,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
       '- **Sync timestamp:** ' . $this->getEntityFromContext()->getSyncTimestamp(),
     ];
 
-    return implode(PHP_EOL, $pieces);
+    return \implode(\PHP_EOL, $pieces);
   }
 
 }

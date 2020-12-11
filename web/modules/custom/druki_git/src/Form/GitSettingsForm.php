@@ -83,7 +83,7 @@ final class GitSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Git status'),
       ];
 
-      $status_markup = implode('<br/>', $repository_status);
+      $status_markup = \implode('<br/>', $repository_status);
       $form['git']['status'] = [
         '#markup' => $status_markup,
       ];

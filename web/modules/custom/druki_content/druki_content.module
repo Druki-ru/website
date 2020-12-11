@@ -44,6 +44,6 @@ function druki_content_theme(): array {
 /**
  * Implements hook_block_view_BASE_BLOCK_ID_alter().
  */
-function druki_content_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block) {
+function druki_content_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block): void {
   $build['#configuration']['label'] = $block->label();
 }

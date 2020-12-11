@@ -121,7 +121,7 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
     $druki_content = $this->getDrukiContentFromContext();
     $variations = $this->loadAllVariations($druki_content);
     $current_version = $druki_content->getCore();
-    $other_variations = array_map(function (DrukiContentInterface $druki_content) use ($cacheable_metadata, $current_version) {
+    $other_variations = \array_map(static function (DrukiContentInterface $druki_content) use ($cacheable_metadata, $current_version) {
       $cacheable_metadata->addCacheableDependency($druki_content);
       if ($druki_content->getCore() != $current_version) {
         $element = $druki_content->toLink($druki_content->getCore())->toRenderable();

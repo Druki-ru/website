@@ -11,7 +11,6 @@ use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\Sync\SourceContent\SourceContentFinder;
 use Drupal\druki_content\Sync\SourceContent\SourceContentList;
-use Exception;
 
 /**
  * Provides queue manager for synchronization content.
@@ -74,7 +73,7 @@ final class SyncQueueManager {
    */
   public function __construct(SourceContentFinder $content_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
     $this->contentFinder = $content_finder;
-    $this->queue = $queue_factory->get(static::QUEUE_NAME);
+    $this->queue = $queue_factory->get(self::QUEUE_NAME);
     $this->state = $state;
     $this->time = $time;
     $this->queueWorker = $queue_worker;
@@ -101,7 +100,7 @@ final class SyncQueueManager {
    * @param \Drupal\druki_content\Sync\SourceContent\SourceContentList $source_content_list
    *   The source content list.
    */
-  public function buildFromSourceContentList(SourceContentList $source_content_list) {
+  public function buildFromSourceContentList(SourceContentList $source_content_list): void {
     if (!$source_content_list->numberOfItems()) {
       return;
     }
@@ -136,10 +135,10 @@ final class SyncQueueManager {
     // Make sure queue exists. There is no harm in trying to recreate an
     // existing queue.
     $this->queue->createQueue();
-    $end = time() + $time_limit;
+    $end = \time() + $time_limit;
     $lease_time = $time_limit;
     $count = 0;
-    while (time() < $end && ($item = $this->queue->claimItem($lease_time))) {
+    while (\time() < $end && ($item = $this->queue->claimItem($lease_time))) {
       try {
         $queue_worker->processItem($item->data);
         $this->queue->deleteItem($item);
@@ -154,10 +153,10 @@ final class SyncQueueManager {
         // release the item and skip to the next queue.
         $this->queue->releaseItem($item);
       }
-      catch (Exception $e) {
+      catch (\Exception $e) {
         // In case of any other kind of exception, log it and leave the item
         // in the queue to be processed again later.
-        watchdog_exception('druki_content', $e);
+        \watchdog_exception('druki_content', $e);
       }
     }
 

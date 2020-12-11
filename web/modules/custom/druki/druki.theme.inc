@@ -41,7 +41,7 @@ function template_preprocess_druki_mobile_header(array &$variables): void {
  *
  * // @todo cache tags.
  */
-function template_preprocess_druki_official_user_guide(array &$variables) {
+function template_preprocess_druki_official_user_guide(array &$variables): void {
   $user_guide_settings = \Drupal::config('druki.official_user_guide_settings');
   /** @var \Drupal\media\MediaStorage $media_storage */
   $media_storage = \Drupal::entityTypeManager()->getStorage('media');
@@ -79,7 +79,7 @@ function template_preprocess_druki_official_user_guide(array &$variables) {
  * @param array $variables
  *   An associative array containing default theme hook variables.
  */
-function template_preprocess_druki_wiki(array &$variables) {
+function template_preprocess_druki_wiki(array &$variables): void {
   $variables['user_guide'] = [
     '#theme' => 'druki_official_user_guide',
   ];

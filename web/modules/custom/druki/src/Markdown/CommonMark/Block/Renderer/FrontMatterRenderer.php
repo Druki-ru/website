@@ -31,7 +31,7 @@ final class FrontMatterRenderer implements BlockRendererInterface {
     return new HtmlElement(
       'div',
       ['data-druki-element' => 'front-matter'],
-      json_encode($content)
+      \json_encode($content),
     );
   }
 
