@@ -3,6 +3,8 @@ name: PHPStan
 on:
   workflow_dispatch:
   pull_request:
+  push:
+    branches: [ 9.x-dev ]
 
 env:
   COMPOSER_FLAGS: '--ansi --no-interaction --no-progress --no-suggest --prefer-dist'
@@ -23,7 +25,7 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           coverage: 'none'
-          extensions: 'intl, zip'
+          extensions: 'intl, zip, intl, zip, date, dom, filter, gd, hash, json, pcre, pdf, session, simplexml, spl, tokenizer, xml'
           ini-values: 'memory_limit=-1'
           php-version: ${{ matrix.php-version }}
 
