@@ -13,10 +13,6 @@
     <include>
       <directory>./web/modules/custom</directory>
     </include>
-    <exclude>
-      <directory>./web/modules/custom/*/src/Tests</directory>
-      <directory>./web/modules/custom/*/tests</directory>
-    </exclude>
   </coverage>
   <php>
     <ini name="error_reporting" value="32767"/>
@@ -26,7 +22,7 @@
   </php>
   <testsuites>
     <testsuite name="Druki">
-      <directory>./web/modules/custom</directory>
+      <directory>./tests</directory>
     </testsuite>
   </testsuites>
   <listeners>
