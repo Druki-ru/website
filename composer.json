@@ -70,7 +70,13 @@
         "chi-teck/drupal-coder-extension": "^1.0",
         "drupal/core-dev": "^9.0",
         "mglaman/drupal-check": "^1.1",
-        "phpspec/prophecy-phpunit": "^2"
+        "phpspec/prophecy-phpunit": "^2",
+        "weitzman/drupal-test-traits": "^1.5"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Druki\\Tests": "tests/src"
+        }
     },
     "conflict": {
         "drupal/drupal": "*"

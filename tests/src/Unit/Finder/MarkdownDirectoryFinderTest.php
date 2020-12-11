@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki\Unit\Finder;
+namespace Druki\Tests\Unit\Finder;
 
 use Drupal\druki\Finder\MarkdownDirectoryFinder;
 use Drupal\Tests\UnitTestCase;

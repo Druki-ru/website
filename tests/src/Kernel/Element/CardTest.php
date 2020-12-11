@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki\Kernel\Element;
+namespace Druki\Tests\Kernel\Element;
 
 use Drupal\KernelTests\AssertContentTrait;
 use Drupal\KernelTests\KernelTestBase;

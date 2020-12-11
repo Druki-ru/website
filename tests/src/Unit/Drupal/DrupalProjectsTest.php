@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki\Unit\Drupal;
+namespace Druki\Tests\Unit\Drupal;
 
 use Drupal\druki\Drupal\DrupalProjects;
 use Drupal\Tests\UnitTestCase;

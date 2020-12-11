@@ -1,0 +1,23 @@
+<?php
+
+namespace Druki\Tests\ExistingSite\Controller;
+
+use Drupal\Core\Url;
+use weitzman\DrupalTestTraits\ExistingSiteBase;
+
+/**
+ * Provides frontpage controller.
+ *
+ * @coversDefaultClass \Drupal\druki\Controller\FrontpageController
+ */
+final class FrontpageControllerTest extends ExistingSiteBase {
+
+  /**
+   * Tests frontpage.
+   */
+  public function testFrontpage(): void {
+    $this->drupalGet(Url::fromRoute('<front>'));
+    $this->assertSession()->elementExists('css', '.frontpage-hero');
+  }
+
+}

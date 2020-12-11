@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki\Kernel;
+namespace Druki\Tests\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki\Unit\Utility;
+namespace Druki\Tests\Unit\Utility;
 
 use Drupal\druki\Utility\Anchor;
 use Drupal\Tests\UnitTestCase;

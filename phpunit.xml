@@ -19,10 +19,20 @@
     <ini name="memory_limit" value="-1"/>
     <env name="SIMPLETEST_BASE_URL" value="http://nginx"/>
     <env name="SIMPLETEST_DB" value="sqlite://localhost//dev/shm/d9.db"/>
+    <env name="DTT_BASE_URL" value="http://nginx"/>
   </php>
   <testsuites>
-    <testsuite name="Druki">
-      <directory>./tests</directory>
+    <testsuite name="existing-site-javascript">
+      <directory>./tests/src/ExistingSiteJavascript</directory>
+    </testsuite>
+    <testsuite name="existing-site">
+      <directory>./tests/src/ExistingSite</directory>
+    </testsuite>
+    <testsuite name="kernel">
+      <directory>./tests/src/Kernel</directory>
+    </testsuite>
+    <testsuite name="unit">
+      <directory>./tests/src/Unit</directory>
     </testsuite>
   </testsuites>
   <listeners>
