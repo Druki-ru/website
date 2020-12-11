@@ -6,8 +6,10 @@ use Drupal\Core\State\StateInterface;
 
 /**
  * Provides class that store information about Drupal releases.
+ *
+ * @todo add interface and make it final.
  */
-final class DrupalReleases {
+class DrupalReleases {
 
   /**
    * The cache tag used to update last stable release information.
