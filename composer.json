@@ -75,7 +75,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Druki\\Tests": "tests/src"
+            "Druki\\Tests\\": "tests/src"
         }
     },
     "conflict": {
