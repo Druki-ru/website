@@ -9,7 +9,6 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\image\Entity\ImageStyle;
-use Drupal\imagemagick\ImagemagickExecArguments;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 /**
@@ -83,23 +82,6 @@ function druki_theme(): array {
       'file' => $file,
     ],
   ];
-}
-
-/**
- * Implements hook_imagemagick_arguments_alter().
- *
- * @todo Rewrite on events, this hook doesn't exists anymore.
- * @see https://github.com/Druki-ru/website/issues/34
- * @codingStandardsIgnoreStart
- */
-function druki_imagemagick_arguments_alter(ImagemagickExecArguments $arguments, $command): void {
-  // https://developers.google.com/speed/docs/insights/OptimizeImages
-  $arguments->add('-sampling-factor 4:2:0');
-  // Progression JPEG and interlaced PNG's support.
-  $arguments->add('-interlace Plane');
-  // Clean image for all unused data. I.e. EXIF.
-  $arguments->add('-strip');
-  // @codingStandardsIgnoreEnd
 }
 
 /**
