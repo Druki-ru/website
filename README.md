@@ -2,6 +2,10 @@
   <img src="https://i.imgur.com/GVA0m4I.png" alt="Druki" width="223">
 </p>
 
+![Continuous Integration](https://github.com/Druki-ru/website/workflows/Continuous%20Integration/badge.svg?branch=9.x) 
+![PHPCS](https://github.com/Druki-ru/website/workflows/PHPCS/badge.svg) 
+![PHPStan](https://github.com/Druki-ru/website/workflows/PHPStan/badge.svg) 
+
 # Druki Website
 
 > Wikipedia is the best thing ever. Anyone in the world can write anything they want about any subject. So you know you are getting the best possible information.
