@@ -2,7 +2,6 @@
 
 namespace Drupal\druki\Drupal;
 
-
 /**
  * Provides interface for classes that store information about Drupal releases.
  */

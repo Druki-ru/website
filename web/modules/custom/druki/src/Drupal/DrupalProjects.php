@@ -74,7 +74,8 @@ final class DrupalProjects implements DrupalProjectsInterface {
   protected function parseXml(string $raw_xml): ?array {
     try {
       $xml = new \SimpleXMLElement($raw_xml);
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       // SimpleXMLElement::__construct produces an E_WARNING error message for
       // each error found in the XML data and throws an exception if errors
       // were detected. Catch any exception and return failure (NULL).

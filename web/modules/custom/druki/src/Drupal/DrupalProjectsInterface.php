@@ -23,5 +23,5 @@ interface DrupalProjectsInterface {
    *   stable release is missing.
    */
   public function getCoreLastStableVersion(): ?array;
-  
+
 }
