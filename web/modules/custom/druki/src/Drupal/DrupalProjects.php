@@ -7,7 +7,7 @@ use Drupal\update\UpdateFetcherInterface;
 /**
  * Fetches information about drupal projects.
  */
-class DrupalProjects {
+final class DrupalProjects implements DrupalProjectsInterface {
 
   /**
    * The update fetcher.
@@ -27,10 +27,7 @@ class DrupalProjects {
   }
 
   /**
-   * Gets last minor version info for Drupal core.
-   *
-   * @return array|null
-   *   The version info.
+   * {@inheritdoc}
    */
   public function getCoreLastMinorVersion(): ?array {
     $releases = $this->fetchProjectData('drupal');
@@ -77,8 +74,7 @@ class DrupalProjects {
   protected function parseXml(string $raw_xml): ?array {
     try {
       $xml = new \SimpleXMLElement($raw_xml);
-    }
-    catch (\Exception $e) {
+    } catch (\Exception $e) {
       // SimpleXMLElement::__construct produces an E_WARNING error message for
       // each error found in the XML data and throws an exception if errors
       // were detected. Catch any exception and return failure (NULL).
@@ -121,11 +117,7 @@ class DrupalProjects {
   }
 
   /**
-   * Gets project last stable release.
-   *
-   * @return array|null
-   *   The last stable release version info, NULL if something wrong happens or
-   *   stable release is missing.
+   * {@inheritdoc}
    */
   public function getCoreLastStableVersion(): ?array {
     $releases = $this->fetchProjectData('drupal');

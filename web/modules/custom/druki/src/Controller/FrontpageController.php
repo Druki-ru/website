@@ -7,7 +7,7 @@ use Drupal\Core\Controller\ControllerBase;
 /**
  * Returns responses for Druki routes.
  */
-class FrontpageController extends ControllerBase {
+final class FrontpageController extends ControllerBase {
 
   /**
    * Builds the response.

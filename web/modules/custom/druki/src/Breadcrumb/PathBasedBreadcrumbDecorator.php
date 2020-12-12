@@ -11,7 +11,7 @@ use Drupal\system\PathBasedBreadcrumbBuilder;
 /**
  * Alter a bit PathBasedBreadcrumbBuilder.
  */
-class PathBasedBreadcrumbDecorator extends PathBasedBreadcrumbBuilder implements BreadcrumbBuilderInterface {
+final class PathBasedBreadcrumbDecorator extends PathBasedBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 
   /**
    * {@inheritdoc}

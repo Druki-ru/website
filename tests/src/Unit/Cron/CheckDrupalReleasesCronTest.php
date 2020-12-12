@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\Unit\Cron;
+namespace Druki\Tests\Unit\Cron;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
@@ -9,8 +9,8 @@ use Drupal\Core\DependencyInjection\Container;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\druki\Cron\CheckDrupalReleasesCron;
-use Drupal\druki\Drupal\DrupalProjects;
-use Drupal\druki\Drupal\DrupalReleases;
+use Drupal\druki\Drupal\DrupalProjectsInterface;
+use Drupal\druki\Drupal\DrupalReleasesInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -77,12 +77,12 @@ final class CheckDrupalReleasesCronTest extends UnitTestCase {
    * @param array $inital_values
    *   The storage initial values.
    *
-   * @return \Drupal\druki\Drupal\DrupalReleases
+   * @return \Drupal\druki\Drupal\DrupalReleasesInterface
    */
-  protected function buildDrukiDrupalReleases(array $initial_values): DrupalReleases {
-    $drupal_releases = $this->prophesize(DrupalReleases::class);
+  protected function buildDrukiDrupalReleases(array $initial_values): DrupalReleasesInterface {
+    $drupal_releases = $this->prophesize(DrupalReleasesInterface::class);
     $drupal_releases->get()->willReturn($initial_values);
-    $drupal_releases->set(Argument::type('array'))->will(function ($args) use ($drupal_releases) {
+    $drupal_releases->set(Argument::type('array'))->will(function ($args) use ($drupal_releases): void {
       $drupal_releases->get()->willReturn($args[0]);
     });
     return $drupal_releases->reveal();
@@ -96,10 +96,10 @@ final class CheckDrupalReleasesCronTest extends UnitTestCase {
    * @param array|null $minor_version
    *   The minor version info.
    *
-   * @return \Drupal\druki\Drupal\DrupalProjects
+   * @return \Drupal\druki\Drupal\DrupalProjectsInterface
    */
-  protected function buildDrukiDrupalProjects(?array $stable_version = NULL, ?array $minor_version = NULL): DrupalProjects {
-    $drupal_projects = $this->prophesize(DrupalProjects::class);
+  protected function buildDrukiDrupalProjects(?array $stable_version = NULL, ?array $minor_version = NULL): DrupalProjectsInterface {
+    $drupal_projects = $this->prophesize(DrupalProjectsInterface::class);
     $drupal_projects->getCoreLastStableVersion()->willReturn($stable_version);
     $drupal_projects->getCoreLastMinorVersion()->willReturn($minor_version);
     return $drupal_projects->reveal();

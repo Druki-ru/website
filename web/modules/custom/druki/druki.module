@@ -45,16 +45,6 @@ function druki_theme(): array {
       'variables' => [],
       'file' => $file,
     ],
-    'druki_card' => [
-      'variables' => [
-        'title' => NULL,
-        'subhead' => NULL,
-        'description' => NULL,
-        'actions' => [],
-        'primary_url' => NULL,
-      ],
-      'file' => $file,
-    ],
     'druki_header_search' => [
       'variables' => [
         'default_value' => '',
@@ -69,16 +59,6 @@ function druki_theme(): array {
     ],
     'druki_wiki' => [
       'variables' => [],
-      'file' => $file,
-    ],
-    'druki_media_remote_video_optimized' => [
-      'variables' => [
-        'thumbnail_style_id' => NULL,
-        'thumbnail_uri' => NULL,
-        'thumbnail_alt' => NULL,
-        'video_provider' => NULL,
-        'video_id' => NULL,
-      ],
       'file' => $file,
     ],
   ];

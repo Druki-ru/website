@@ -5,8 +5,8 @@ namespace Drupal\druki\Cron;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\druki\Drupal\DrupalProjects;
-use Drupal\druki\Drupal\DrupalReleases;
+use Drupal\druki\Drupal\DrupalProjectsInterface;
+use Drupal\druki\Drupal\DrupalReleasesInterface;
 
 /**
  * Provides cron processor to check Drupal releases.
@@ -30,14 +30,14 @@ final class CheckDrupalReleasesCron implements CronProcessorInterface {
   /**
    * The Drupal projects.
    *
-   * @var \Drupal\druki\Drupal\DrupalProjects
+   * @var \Drupal\druki\Drupal\DrupalProjectsInterface
    */
   protected $drupalProjects;
 
   /**
    * The Drupal releases.
    *
-   * @var \Drupal\druki\Drupal\DrupalReleases
+   * @var \Drupal\druki\Drupal\DrupalReleasesInterface
    */
   protected $drupalReleases;
 
@@ -48,12 +48,12 @@ final class CheckDrupalReleasesCron implements CronProcessorInterface {
    *   The datetime.
    * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator
    *   The cache tags invalidator.
-   * @param \Drupal\druki\Drupal\DrupalReleases $drupal_releases
+   * @param \Drupal\druki\Drupal\DrupalReleasesInterface $drupal_releases
    *   The Drupal releases.
-   * @param \Drupal\druki\Drupal\DrupalProjects $drupal_projects
+   * @param \Drupal\druki\Drupal\DrupalProjectsInterface $drupal_projects
    *   The Drupal projects.
    */
-  public function __construct(TimeInterface $time, CacheTagsInvalidatorInterface $cache_tags_invalidator, DrupalReleases $drupal_releases, DrupalProjects $drupal_projects) {
+  public function __construct(TimeInterface $time, CacheTagsInvalidatorInterface $cache_tags_invalidator, DrupalReleasesInterface $drupal_releases, DrupalProjectsInterface $drupal_projects) {
     $this->time = $time;
     $this->cacheTagsInvalidator = $cache_tags_invalidator;
     $this->drupalReleases = $drupal_releases;
@@ -104,7 +104,7 @@ final class CheckDrupalReleasesCron implements CronProcessorInterface {
 
     $this->drupalReleases->set($drupal_releases);
     // Invalidate all caches which uses last stable release value.
-    $this->cacheTagsInvalidator->invalidateTags([DrupalReleases::CACHE_TAG]);
+    $this->cacheTagsInvalidator->invalidateTags([DrupalReleasesInterface::CACHE_TAG]);
   }
 
 }
