@@ -63,7 +63,10 @@ class DrukiContentNextPrev extends RenderElement {
       '#type' => 'html_tag',
       '#tag' => 'div',
       '#attributes' => [
-        'class' => ['druki-content-next-prev__item', 'druki-content-next-prev__item--prev'],
+        'class' => [
+          'druki-content-next-prev__item',
+          'druki-content-next-prev__item--prev',
+        ],
       ],
     ];
 
@@ -81,7 +84,10 @@ class DrukiContentNextPrev extends RenderElement {
       '#type' => 'html_tag',
       '#tag' => 'div',
       '#attributes' => [
-        'class' => ['druki-content-next-prev__item', 'druki-content-next-prev__item--next'],
+        'class' => [
+          'druki-content-next-prev__item',
+          'druki-content-next-prev__item--next',
+        ],
       ],
     ];
 

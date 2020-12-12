@@ -3,9 +3,7 @@
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
 /**
- * Interface ParagraphContentInterface.
- *
- * @package Drupal\druki_content\Sync\ParsedContent\Content
+ * Provides interface for parsed paragraph.
  */
 interface ParagraphContentInterface {
 

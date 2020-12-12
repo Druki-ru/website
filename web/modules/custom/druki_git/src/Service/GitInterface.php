@@ -3,9 +3,7 @@
 namespace Drupal\druki_git\Service;
 
 /**
- * Interface GitInterface.
- *
- * @package Drupal\druki_git\Service
+ * Provides interface for Git utility classes.
  */
 interface GitInterface {
 

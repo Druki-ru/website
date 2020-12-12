@@ -14,7 +14,7 @@ use Drupal\druki_content\Entity\DrukiContentInterface;
 /**
  * Implements hook_requirements().
  */
-function druki_content_requirements($phase): array {
+function druki_content_requirements(string $phase): array {
   $requirements = [];
 
   if ($phase == 'install') {
@@ -39,7 +39,7 @@ function druki_content_requirements($phase): array {
 }
 
 /**
- * Implements hook_uninstall()
+ * Implements hook_uninstall().
  */
 function druki_content_uninstall(): void {
   // Remove state settings.
@@ -57,7 +57,7 @@ function druki_content_uninstall(): void {
  * For less complex example see
  * comment_post_update_enable_comment_admin_view().
  */
-function druki_content_update_8601(&$sandbox) {
+function druki_content_update_8601(array &$sandbox): string {
   $module_handler = \Drupal::moduleHandler();
   $druki_content_module = $module_handler->getModule('druki_content');
   $config_install_path = $druki_content_module->getPath() . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
@@ -161,7 +161,7 @@ function druki_content_update_8601(&$sandbox) {
 /**
  * Adds metatag field to druki_content.
  */
-function druki_content_update_8602(&$sandbox) {
+function druki_content_update_8602(array &$sandbox): string {
   $module_handler = \Drupal::moduleHandler();
   $druki_content_module = $module_handler->getModule('druki_content');
   $config_install_path = $druki_content_module->getPath() . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY;
@@ -195,7 +195,7 @@ function druki_content_update_8602(&$sandbox) {
 /**
  * Migrate druki_content_sync state value to druki_content.
  */
-function druki_content_update_8801(array &$sandbox) {
+function druki_content_update_8801(array &$sandbox): string {
   $state = \Drupal::state();
   $value = $state->get('druki_content_sync.settings.force_update', FALSE);
   $state->delete('druki_content_sync.settings.force_update');
@@ -208,7 +208,7 @@ function druki_content_update_8801(array &$sandbox) {
  * Update run by fault. =)
  */
 function druki_content_update_8802(array &$sandbox): void {
-
+  // This update was run accidentally so it's just has it reserve.
 }
 
 /**
@@ -287,8 +287,8 @@ function druki_content_update_8807(array &$sandbox): void {
  * Fix all missing entity updates.
  */
 function druki_content_update_9001(array &$sandbox): void {
-  // Without this changes system_post_update_entity_revision_metadata_bc_cleanup()
-  // will not apply.
+  // Without this changes
+  // system_post_update_entity_revision_metadata_bc_cleanup() will not apply.
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');

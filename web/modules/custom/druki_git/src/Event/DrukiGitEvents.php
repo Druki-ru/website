@@ -12,6 +12,6 @@ final class DrukiGitEvents {
   /**
    * The FINISH_PULL event occurs when "git pull" is finished successfully.
    */
-  const FINISH_PULL = 'druki_git.pull.finish';
+  public const FINISH_PULL = 'druki_git.pull.finish';
 
 }

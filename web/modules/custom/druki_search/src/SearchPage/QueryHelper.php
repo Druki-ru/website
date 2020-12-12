@@ -17,12 +17,12 @@ class QueryHelper {
   /**
    * Marks query as full search, without being filtered.
    */
-  const FULL = 'druki_search.search_page.full';
+  public const FULL = 'druki_search.search_page.full';
 
   /**
-   * The query tipe which can be filtered not directly by others.
+   * The query type which can be filtered not directly by others.
    */
-  const FILTERED = 'druki_search.search_page.filtered';
+  public const FILTERED = 'druki_search.search_page.filtered';
 
   /**
    * The query helper.

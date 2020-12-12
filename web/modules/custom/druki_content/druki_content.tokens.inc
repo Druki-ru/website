@@ -10,7 +10,7 @@ use Drupal\Core\Render\BubbleableMetadata;
 /**
  * Implements hook_token_info().
  */
-function druki_content_token_info() {
+function druki_content_token_info(): array {
   $druki_content['computed-alias'] = [
     'name' => t('Computed alias'),
     'description' => t('The computed alias depends on meta data.'),
@@ -26,7 +26,7 @@ function druki_content_token_info() {
 /**
  * Implements hook_tokens().
  */
-function druki_content_tokens(string $type, array $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+function druki_content_tokens(string $type, array $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata): array {
   $replacements = [];
 
   if ($type == 'druki_content' && !empty($data['druki_content'])) {

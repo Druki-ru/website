@@ -8,7 +8,7 @@
 /**
  * Implements hook_theme().
  */
-function druki_search_theme($existing, $type, $theme, $path) {
+function druki_search_theme(): array {
   return [
     'druki_search_result' => [
       'variables' => [
