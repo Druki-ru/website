@@ -17,13 +17,6 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 final class FileTrackerTest extends ExistingSiteBase {
 
   /**
-   * The test files.
-   *
-   * @var \stdClass[]
-   */
-  protected $cleanupFiles = [];
-
-  /**
    * The file tracker.
    *
    * @var \Drupal\druki\File\FileTracker
@@ -84,8 +77,8 @@ final class FileTrackerTest extends ExistingSiteBase {
   public function testUpdateTrackingInformation(): void {
     $file = $this->createTestFile();
 
-    // Since there is no possible for new files to exist without value, we
-    // intentionally reset value via SQL. We can't use API since it wil trigger
+    // Since there iы no possible way for new files to exist without value, we
+    // intentionally reset value via SQL. We can't use API since it will trigger
     // presave hooks and value will be set again.
     $connection = \Drupal::database();
     $connection->update('file_managed')
