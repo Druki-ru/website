@@ -133,7 +133,7 @@ function druki_entity_base_field_info(EntityTypeInterface $entity_type): array {
  * Implements hook_ENTITY_TYPE_presave().
  */
 function druki_file_presave(EntityInterface $entity): void {
-  /** @var \Drupal\druki\File\FileTracker $file_tracker */
+  /** @var \Drupal\druki\File\FileTrackerInterface $file_tracker */
   $file_tracker = \Drupal::service('druki.file_tracker');
 
   try {

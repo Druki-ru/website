@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Utility\Token;
-use Drupal\druki\File\FileTracker;
+use Drupal\druki\File\FileTrackerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
@@ -34,7 +34,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
   /**
    * The file tracker.
    *
-   * @var \Drupal\druki\File\FileTracker
+   * @var \Drupal\druki\File\FileTrackerInterface
    */
   protected $fileTracker;
 
@@ -80,7 +80,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
    *   The entity type manager.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
-   * @param \Drupal\druki\File\FileTracker $file_tracker
+   * @param \Drupal\druki\File\FileTrackerInterface $file_tracker
    *   The file tracker.
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
@@ -92,7 +92,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, FileTracker $file_tracker, EntityFieldManagerInterface $entity_field_manager, Token $token, FileSystemInterface $file_system) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, FileTrackerInterface $file_tracker, EntityFieldManagerInterface $entity_field_manager, Token $token, FileSystemInterface $file_system) {
     parent::__construct($entity_type_manager);
     $this->mediaStorage = $entity_type_manager->getStorage('media');
     $this->fileStorage = $entity_type_manager->getStorage('file');

@@ -22,6 +22,7 @@
     <env name="DTT_BASE_URL" value="http://nginx"/>
     <env name="DTT_MINK_DRIVER_ARGS" value='["chrome", {"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless"]}}, "http://chrome:9515"]'/>
     <env name="DTT_SCREENSHOT_REPORT_DIRECTORY" value="/var/www/html/web/sites/simpletest/browser_output"/>
+    <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
   </php>
   <testsuites>
     <testsuite name="existing-site-javascript">

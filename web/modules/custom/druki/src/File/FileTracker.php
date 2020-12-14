@@ -9,9 +9,9 @@ use Drupal\file\FileInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
 
 /**
- * Provides file tracker.
+ * Provides file tracker implementation.
  */
-final class FileTracker {
+final class FileTracker implements FileTrackerInterface {
 
   /**
    * The file storage.
@@ -67,13 +67,7 @@ final class FileTracker {
   }
 
   /**
-   * Checks if file from provided uri is duplicate on of the existed.
-   *
-   * @param string $uri
-   *   The URI to file, need to be checked.
-   *
-   * @return \Drupal\Core\Entity\EntityInterface|null
-   *   The file entity, which store the same file, NULL if not found.
+   * {@inheritdoc}
    */
   public function checkDuplicate(string $uri): ?EntityInterface {
     $file_hash = $this->getFileHash($uri);
@@ -114,7 +108,7 @@ final class FileTracker {
   }
 
   /**
-   * Loads all files and add\update tracking information for them.
+   * {@inheritdoc}
    */
   public function updateTrackingInformation(): void {
     $this->clearTrackingInformation();
@@ -150,15 +144,7 @@ final class FileTracker {
   }
 
   /**
-   * Updates tracking information about file or creates new one if this is new.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   *
-   * @return bool
-   *   TRUE if tracking was successful, FALSE if file is not permanent.
-   *
-   * @throws \Exception
+   * {@inheritdoc}
    */
   public function track(FileInterface $file): bool {
     if ($file->isPermanent()) {
@@ -172,13 +158,7 @@ final class FileTracker {
   }
 
   /**
-   * Looking for media entity that uses file.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file entity.
-   *
-   * @return \Drupal\Core\Entity\EntityInterface|null
-   *   The media entity, if found, NULL otherwise.
+   * {@inheritdoc}
    */
   public function getMediaForFile(FileInterface $file): ?EntityInterface {
     $usage = $this->fileUsage->listUsage($file);
