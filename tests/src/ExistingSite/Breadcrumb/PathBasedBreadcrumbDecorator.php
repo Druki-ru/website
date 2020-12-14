@@ -18,6 +18,7 @@ final class PathBasedBreadcrumbDecorator extends ExistingSiteBase {
    * @covers ::build
    */
   public function testDecorator(): void {
+    // @todo In future create special trait and use generated entity content.
     $this->drupalGet('/wiki/drupal');
     $this->assertSession()->elementExists('css', '.breadcrumb__item-link--current');
     $this->assertSession()->elementTextContains('css', '.breadcrumb__item-link--current', new TranslatableMarkup('Wiki'));
