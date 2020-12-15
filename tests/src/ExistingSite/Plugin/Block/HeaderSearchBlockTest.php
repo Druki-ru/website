@@ -17,7 +17,7 @@ final class HeaderSearchBlockTest extends ExistingSiteBase {
    */
   public function testSearchIsOnPage(): void {
     $this->drupalGet(Url::fromRoute('<front>'));
-    $this->assertSession()->elementExists('css', 'druki-header-search');
+    $this->assertSession()->elementExists('css', '.druki-header-search');
   }
 
 }
