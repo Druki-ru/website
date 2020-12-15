@@ -4,7 +4,6 @@ namespace Druki\Tests\ExistingSiteJavascript;
 
 use Drupal\Core\Url;
 use weitzman\DrupalTestTraits\ExistingSiteSelenium2DriverTestBase;
-use weitzman\DrupalTestTraits\ScreenShotTrait;
 
 /**
  * Provides test for mobile sidebar button.
@@ -12,8 +11,6 @@ use weitzman\DrupalTestTraits\ScreenShotTrait;
  * @coversDefaultClass \Drupal\druki\Plugin\Block\MobileSidebarButton
  */
 final class MobileSidebarButtonTest extends ExistingSiteSelenium2DriverTestBase {
-
-  use ScreenShotTrait;
 
   /**
    * Tests that button is exists and works.
