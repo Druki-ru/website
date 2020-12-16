@@ -2,6 +2,7 @@
 
 namespace Druki\Tests\ExistingSite\Breadcrumb;
 
+use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
@@ -10,7 +11,9 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
  *
  * @coversDefaultClass \Drupal\druki\Breadcrumb\PathBasedBreadcrumbDecorator
  */
-final class PathBasedBreadcrumbDecorator extends ExistingSiteBase {
+final class PathBasedBreadcrumbDecoratorTest extends ExistingSiteBase {
+
+  use DrukiContentCreationTrait;
 
   /**
    * Test decorator title for link change.
@@ -18,8 +21,8 @@ final class PathBasedBreadcrumbDecorator extends ExistingSiteBase {
    * @covers ::build
    */
   public function testDecorator(): void {
-    // @todo In future create special trait and use generated entity content.
-    $this->drupalGet('/wiki/drupal');
+    $content = $this->createDrukiContent();
+    $this->drupalGet($content->toUrl());
     $this->assertSession()->elementExists('css', '.breadcrumb__item-link--current');
     $this->assertSession()->elementTextContains('css', '.breadcrumb__item-link--current', new TranslatableMarkup('Wiki'));
   }
