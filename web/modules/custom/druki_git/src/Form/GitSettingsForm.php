@@ -22,7 +22,7 @@ final class GitSettingsForm extends ConfigFormBase {
   /**
    * The git helper.
    *
-   * @var \Drupal\druki_git\Service\GitInterface
+   * @var \Drupal\druki_git\Git\GitInterface
    */
   protected $git;
 

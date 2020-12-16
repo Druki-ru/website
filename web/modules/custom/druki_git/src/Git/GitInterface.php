@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_git\Service;
+namespace Drupal\druki_git\Git;
 
 /**
  * Provides interface for Git utility classes.

@@ -5,7 +5,7 @@ services:
     arguments: ['druki_git']
 
   druki_git:
-    class: Drupal\druki_git\Service\Git
+    class: Drupal\druki_git\Git\Git
     arguments: ['@config.factory', '@file_system', '@event_dispatcher']
 
   access_check.druki_git_webhook:

@@ -2,7 +2,7 @@
 
 namespace Drupal\druki_git\Event;
 
-use Drupal\druki_git\Service\GitInterface;
+use Drupal\druki_git\Git\GitInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -13,14 +13,14 @@ class DrukiGitEvent extends Event {
   /**
    * The git service instance.
    *
-   * @var \Drupal\druki_git\Service\GitInterface
+   * @var \Drupal\druki_git\Git\GitInterface
    */
   protected $git;
 
   /**
    * DrukiGitEvent constructor.
    *
-   * @param \Drupal\druki_git\Service\GitInterface $git
+   * @param \Drupal\druki_git\Git\GitInterface $git
    *   The git service.
    */
   public function __construct(GitInterface $git) {
@@ -30,7 +30,7 @@ class DrukiGitEvent extends Event {
   /**
    * Gets current instance of Git service.
    *
-   * @return \Drupal\druki_git\Service\GitInterface
+   * @return \Drupal\druki_git\Git\GitInterface
    *   The git service.
    */
   public function git(): GitInterface {

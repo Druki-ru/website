@@ -37,7 +37,7 @@ final class DrukiContentSyncForm extends FormBase {
   /**
    * The Git wrapper.
    *
-   * @var \Drupal\druki_git\Service\Git|object|null
+   * @var \Drupal\druki_git\Git\Git
    */
   protected $git;
 

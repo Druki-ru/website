@@ -2,109 +2,132 @@
 
 namespace Drupal\druki_git\Git;
 
+use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\druki_git\Event\DrukiGitEvent;
+use Drupal\druki_git\Event\DrukiGitEvents;
 use Drupal\druki_git\Exception\GitCommandFailedException;
-use Symfony\Component\Process\Process;
 
 /**
- * Provide git utility.
+ * Provides git service.
  */
-class Git {
+final class Git implements GitInterface {
 
   /**
-   * Pulls from remote repository.
+   * The configuration object.
    *
-   * @param string $dir
-   *   The absolute path to working dir.
-   *
-   * @return string
-   *   The command output.
+   * @var \Drupal\Core\Config\ImmutableConfig
    */
-  public static function pull(string $dir): string {
-    $process = new Process('git pull', $dir);
-    $process->run();
+  protected $configuration;
 
-    if (!$process->isSuccessful()) {
-      throw new GitCommandFailedException($process);
-    }
+  /**
+   * The file system.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
 
-    return $process->getOutput();
+  /**
+   * The event dispatcher.
+   *
+   * @var \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher
+   */
+  protected $eventDispatcher;
+
+  /**
+   * The repository path.
+   *
+   * @var string
+   */
+  protected $repositoryPath;
+
+  /**
+   * The repository realpath.
+   *
+   * @var string
+   */
+  protected $repositoryRealpath;
+
+  /**
+   * Git constructor.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The file system.
+   * @param \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher $event_dispatcher
+   *   The event dispatcher.
+   */
+  public function __construct(
+    ConfigFactoryInterface $config_factory,
+    FileSystemInterface $file_system,
+    ContainerAwareEventDispatcher $event_dispatcher
+  ) {
+
+    $this->configuration = $config_factory->get('druki_git.git_settings');
+    $this->fileSystem = $file_system;
+    $this->eventDispatcher = $event_dispatcher;
+
+    $this->repositoryPath = $this->configuration->get('repository_path');
+    $this->repositoryRealpath = $this->fileSystem->realpath($this->repositoryPath);
   }
 
   /**
-   * Gets last commit ID (hash).
-   *
-   * @param string $dir
-   *   The absolute path to working dir.
-   *
-   * @return string
-   *   The command output.
+   * {@inheritdoc}
    */
-  public static function getLastCommitId(string $dir): string {
-    $process = new Process('git log --format="%H" -n 1', $dir);
-    $process->run();
+  public function pull(): bool {
+    try {
+      GitHelper::pull($this->getRepositoryRealpath());
 
-    if (!$process->isSuccessful()) {
-      throw new GitCommandFailedException($process);
+      $event = new DrukiGitEvent($this);
+      $this->eventDispatcher->dispatch(DrukiGitEvents::FINISH_PULL, $event);
+
+      return TRUE;
     }
-
-    return $process->getOutput();
+    catch (GitCommandFailedException $e) {
+      return FALSE;
+    }
   }
 
   /**
-   * Gets the file list commit ID.
-   *
-   * @param string $filepath
-   *   The relative path to the file.
-   * @param string $dir
-   *   The absolute path to working dir.
-   *
-   * @return string
-   *   The command output.
+   * {@inheritdoc}
    */
-  public static function getFileLastCommitId(string $filepath, string $dir): string {
-    $process = new Process('git log --format="%H" -n 1 -- ' . $filepath, $dir);
-    $process->run();
-
-    if (!$process->isSuccessful()) {
-      throw new GitCommandFailedException($process);
-    }
-
-    return $process->getOutput();
+  public function getRepositoryRealpath(): string {
+    return $this->repositoryRealpath;
   }
 
   /**
-   * Gets the file list commit ID.
-   *
-   * @param string $filepath
-   *   The relative path to the file.
-   * @param string $dir
-   *   The absolute path to working dir.
-   *
-   * @return array
-   *   The array with contribution statistics.
-   * @see https://stackoverflow.com/a/43042363/4751623
+   * {@inheritdoc}
    */
-  public static function getFileCommitsInfo(string $filepath, string $dir): array {
-    $process = new Process('git shortlog HEAD -sen -- ' . $filepath, $dir);
-    $process->run();
+  public function getLastCommitId(): string {
+    return \rtrim(GitHelper::getLastCommitId($this->getRepositoryRealpath()));
+  }
 
-    if (!$process->isSuccessful()) {
-      throw new GitCommandFailedException($process);
+  /**
+   * {@inheritdoc}
+   */
+  public function getRepositoryPath(): string {
+    return $this->repositoryPath;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFileLastCommitId($relative_path): ?string {
+    try {
+      return \rtrim(GitHelper::getFileLastCommitId($relative_path, $this->getRepositoryRealpath()));
     }
-
-    $results = \explode(\PHP_EOL, \rtrim($process->getOutput()));
-    $commits_info = [];
-    foreach ($results as $item) {
-      \preg_match_all("/(\d+)\s(.+)\s<([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)>/", $item, $matches);
-
-      $commits_info[] = [
-        'count' => $matches[1][0],
-        'name' => $matches[2][0],
-        'email' => $matches[3][0],
-      ];
+    catch (GitCommandFailedException $e) {
+      return NULL;
     }
+  }
 
-    return $commits_info;
+  /**
+   * {@inheritdoc}
+   */
+  public function getFileCommitsInfo($relative_path): array {
+    return GitHelper::getFileCommitsInfo($relative_path, $this->getRepositoryRealpath());
   }
 
 }
