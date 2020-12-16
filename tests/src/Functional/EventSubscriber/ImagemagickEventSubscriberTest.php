@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Unit\EventSubscriber;
+namespace Druki\Tests\Functional\EventSubscriber;
 
 use Drupal\druki\EventSubscriber\ImagemagickEventSubscriber;
 use Drupal\imagemagick\Event\ImagemagickExecutionEvent;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Unit\Access;
+namespace Druki\Tests\Functional\Access;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Access\AccessResultAllowed;

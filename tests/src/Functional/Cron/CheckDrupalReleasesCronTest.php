@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Unit\Cron;
+namespace Druki\Tests\Functional\Cron;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;

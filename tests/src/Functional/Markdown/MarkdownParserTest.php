@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Unit\Markdown;
+namespace Druki\Tests\Functional\Markdown;
 
 use Drupal\druki\Markdown\Parser\MarkdownParser;
 use Drupal\Tests\UnitTestCase;

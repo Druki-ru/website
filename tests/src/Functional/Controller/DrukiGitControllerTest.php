@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Unit\Controller;
+namespace Druki\Tests\Functional\Controller;
 
 use Drupal\Component\DependencyInjection\Container;
 use Drupal\Core\Logger\LoggerChannelInterface;
