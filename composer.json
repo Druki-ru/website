@@ -87,9 +87,9 @@
         "sort-packages": true
     },
     "scripts": {
-        "phpcs": "phpcs",
-        "phpstan": "phpstan analyse",
-        "phpunit": "phpunit"
+        "phpcs": "vendor/bin/phpcs",
+        "phpstan": "vendor/bin/phpstan analyse",
+        "phpunit": "vendor/bin/phpunit"
     },
     "extra": {
         "patches": {

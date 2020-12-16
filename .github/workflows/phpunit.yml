@@ -1,0 +1,54 @@
+# Incomplete
+name: PHPUnit
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ 9.x-dev ]
+
+env:
+  COMPOSER_FLAGS: '--ansi --no-interaction --no-progress --no-suggest --prefer-dist'
+
+jobs:
+  phpunit:
+    name: 'PHPUnit'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - '7.3'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          coverage: 'none'
+          extensions: 'intl, zip, intl, zip, date, dom, filter, gd, hash, json, pcre, pdf, session, simplexml, spl, tokenizer, xml'
+          ini-values: 'memory_limit=-1'
+          php-version: ${{ matrix.php-version }}
+
+      - name: 'Determine composer cache directory'
+        id: 'determine-composer-cache-directory'
+        run: echo "::set-output name=directory::$(composer config cache-dir)"
+
+      - name: 'Cache dependencies installed with composer'
+        uses: 'actions/cache@v2'
+        with:
+          path: ${{ steps.determine-composer-cache-directory.outputs.directory }}
+          key: php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: php-${{ matrix.php-version }}
+
+      - name: 'Install Composer dependencies'
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install $COMPOSER_FLAGS
+
+      - name: 'Create Database'
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+
+      - name: 'Execute tests'
+        run: composer run-script phpunit
