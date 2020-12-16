@@ -1,27 +1,23 @@
 :root {
-  --druki-search-result-url-color: var(--color-jade);
+  --search-results-url-color: var(--color-jade);
 }
 
-.druki-search-result__link {
+.search-results__item {
   display: block;
 }
 
-.druki-search-result__title {
-  font-size: var(--font-size-h6);
+.search-results__items {
+  display: grid;
+  grid-gap: var(--spacing-md);
+}
+
+.search-results__item-label {
+  font-size: var(--font-size-h4);
   color: var(--link-color);
 }
 
-.druki-search-result__link:hover .druki-search-result__title {
-  text-decoration: underline;
-}
-
-.druki-search-result__url {
+.search-results__item-url {
   font-size: var(--font-size-sm);
-  color: var(--druki-search-result-url-color);
+  color: var(--search-results-url-color);
   margin-top: var(--spacing-xxs);
-}
-
-.druki-search-result__supporting-text {
-  font-size: var(--font-size-sm);
-  margin-top: var(--spacing-sm);
 }

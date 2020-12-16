@@ -1,4 +1,0 @@
-services:
-  druki_search.page.query_helper:
-    class: 'Drupal\druki_search\SearchPage\QueryHelper'
-    arguments: ['@search_api.query_helper', '@entity_type.manager', '@plugin.manager.search_api.parse_mode']

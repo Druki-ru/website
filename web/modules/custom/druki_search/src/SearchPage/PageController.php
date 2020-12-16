@@ -3,26 +3,15 @@
 namespace Drupal\druki_search\SearchPage;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Pager\PagerManagerInterface;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
+use Drupal\search_api\Query\ResultSetInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Provides search page controller.
- *
- * @todo refactor it.
  */
 final class PageController implements ContainerInjectionInterface {
-
-  /**
-   * The query helper.
-   *
-   * @var \Drupal\druki_search\SearchPage\QueryHelper
-   */
-  protected $queryHelper;
 
   /**
    * The amount of results per page.
@@ -32,13 +21,6 @@ final class PageController implements ContainerInjectionInterface {
   protected $limit = 10;
 
   /**
-   * The request.
-   *
-   * @var \Symfony\Component\HttpFoundation\Request
-   */
-  protected $request;
-
-  /**
    * The pager manager.
    *
    * @var \Drupal\Core\Pager\PagerManagerInterface
@@ -46,30 +28,45 @@ final class PageController implements ContainerInjectionInterface {
   protected $pagerManager;
 
   /**
-   * Constructs a new PageController object.
+   * The request stack.
    *
-   * @param \Drupal\druki_search\SearchPage\QueryHelper $query_helper
-   *   The query helper.
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The current request.
-   * @param \Drupal\Core\Pager\PagerManagerInterface $pager_manager
-   *   The pager manager.
+   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
-  public function __construct(QueryHelper $query_helper, Request $request, PagerManagerInterface $pager_manager) {
-    $this->queryHelper = $query_helper;
-    $this->request = $request;
-    $this->pagerManager = $pager_manager;
-  }
+  protected $requestStack;
+
+  /**
+   * The query helper.
+   *
+   * @var \Drupal\search_api\Utility\QueryHelperInterface
+   */
+  protected $queryHelper;
+
+  /**
+   * The search API index.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $indexStorage;
+
+  /**
+   * The pager parameters.
+   *
+   * @var \Drupal\Core\Pager\PagerParameters
+   */
+  protected $pagerParameters;
 
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('druki_search.page.query_helper'),
-      $container->get('request_stack')->getCurrentRequest(),
-      $container->get('pager.manager'),
-    );
+  public static function create(ContainerInterface $container): self {
+    $instance = new self();
+    $instance->indexStorage = $container->get('entity_type.manager')
+      ->getStorage('search_api_index');
+    $instance->queryHelper = $container->get('search_api.query_helper');
+    $instance->requestStack = $container->get('request_stack');
+    $instance->pagerManager = $container->get('pager.manager');
+    $instance->pagerParameters = $container->get('pager.parameters');
+    return $instance;
   }
 
   /**
@@ -81,77 +78,30 @@ final class PageController implements ContainerInjectionInterface {
    * @throws \Drupal\search_api\SearchApiException
    */
   public function build(): array {
-    $keys = $this->request->get('text', NULL);
-    if (\mb_strlen($keys) == 0) {
-      $keys = NULL;
-      $results = [];
-      $result_items = [];
-    }
-    else {
-      $results = $this->doSearch($keys);
-      $result_items = $this->prepareSearchResults($results);
-    }
-
+    $results = $this->execute();
     $build = [];
-    if (!$keys) {
+    if (!$this->isSearchExecutable()) {
       $build['#title'] = new TranslatableMarkup('Search');
+      $build['content'] = [
+        '#markup' => new TranslatableMarkup("You didn't enter a search query."),
+      ];
     }
     elseif (empty($results)) {
-      $build['#title'] = new TranslatableMarkup('No results found for "%keys"', ['%keys' => $keys]);
-    }
-    else {
-      $build['#title'] = new TranslatableMarkup('Search results for "%keys"', ['%keys' => $keys]);
-    }
-
-    if (empty($results)) {
-      $build['page'] = [
-        '#type' => 'container',
-        '#attributes' => [
-          'class' => ['druki-search-page'],
-        ],
-      ];
-    }
-
-    if (!$keys) {
-      $search_results = [
-        '#type' => 'container',
-        '#markup' => new TranslatableMarkup("You didn't enter a search query."),
-        '#attributes' => [
-          'class' => 'druki-search-page__supporting-text',
-        ],
-      ];
-    }
-    elseif (empty($result_items)) {
-      $search_results = [
-        '#type' => 'container',
-        '#markup' => new TranslatableMarkup("No results found."),
-        '#attributes' => [
-          'class' => 'druki-search-page__supporting-text',
-        ],
+      $build['#title'] = new TranslatableMarkup('No results found for "%keys"', ['%keys' => $this->getSearchKeywords()]);
+      $build['content'] = [
+        '#markup' => new TranslatableMarkup('No results found.'),
       ];
     }
     else {
-      $search_results = $this->prepareSearchResults($results);
+      $build['#title'] = new TranslatableMarkup('Search results for "%keys"', ['%keys' => $this->getSearchKeywords()]);
+      $build['content'] = [
+        '#theme' => 'druki_search_results',
+        '#items' => $results,
+        '#pager' => [
+          '#type' => 'pager',
+        ],
+      ];
     }
-
-    $build['page']['search_results'] = [
-      '#type' => 'container',
-      '#attributes' => [
-        'class' => ['druki-search-page__results'],
-      ],
-      0 => $search_results,
-    ];
-
-    $build['page']['pager'] = [
-      '#type' => 'container',
-      '#attributes' => [
-        'class' => ['druki-search-page__pager'],
-      ],
-      0 => [
-        '#type' => 'pager',
-        '#quantity' => 3,
-      ],
-    ];
 
     $build['#cache'] = [
       'keys' => [
@@ -170,78 +120,77 @@ final class PageController implements ContainerInjectionInterface {
   }
 
   /**
-   * Do real search for results.
-   *
-   * @param string $keys
-   *   The search keyword.
-   *
-   * @return \Drupal\search_api\Item\ItemInterface[]
-   *   The result set.
-   *
-   * @throws \Drupal\search_api\SearchApiException
-   */
-  protected function doSearch(string $keys): array {
-    $total_results = $this->getTotalResultItems($keys);
-    $this->pagerManager->createPager($total_results, $this->limit);
-
-    return $this->queryHelper
-      ->getQuery(QueryHelper::FILTERED)
-      ->range($this->pagerManager->getPager()->getCurrentPage() * $this->limit, $this->limit)
-      ->keys($keys)
-      ->execute()
-      ->getResultItems();
-  }
-
-  /**
-   * Gets total query result items.
-   *
-   * @param string $keys
-   *   The search keyword.
-   *
-   * @return int
-   *   The amount of result items.
-   *
-   * @throws \Drupal\search_api\SearchApiException
-   */
-  protected function getTotalResultItems(string $keys): int {
-    return $this->queryHelper
-      ->getQuery(QueryHelper::FILTERED)
-      ->keys($keys)
-      ->execute()
-      ->getResultCount();
-  }
-
-  /**
-   * Prepare render array with result items from result set.
-   *
-   * @param \Drupal\search_api\Item\ItemInterface[] $results
-   *   The array of search results.
+   * Run search.
    *
    * @return array
-   *   The array with render arrays of results.
+   *   The search results.
    */
-  protected function prepareSearchResults(array $results): array {
-    $search_results = [];
-    /** @var \Drupal\search_api\Item\Item $result */
-    foreach ($results as $result) {
-      $url = Url::fromUserInput($result->getField('url')->getValues()[0]);
-      $search_results[] = [
-        '#type' => 'druki_search_result',
-        '#title' => $result->getField('title')->getValues()[0],
-        '#url' => $url,
-        '#display_url' => $url->setAbsolute()->toString(),
-        '#supporting_text' => Markup::create($result->getExcerpt()),
-        '#theme_wrappers' => [
-          'container' => [
-            '#attributes' => [
-              'class' => ['druki-search-page__result'],
-            ],
-          ],
-        ],
-      ];
+  protected function execute(): array {
+    if ($this->isSearchExecutable()) {
+      $results = $this->findResults();
+
+      if ($results->getResultCount()) {
+        return $this->prepareResults();
+      }
     }
 
-    return $search_results;
+    return [];
+  }
+
+  /**
+   * Verifies that everything is fine to run search.
+   *
+   * @return bool
+   *   TRUE if search can be run.
+   */
+  protected function isSearchExecutable(): bool {
+    return !empty($this->getSearchKeywords());
+  }
+
+  /**
+   * Gets search keywords.
+   *
+   * @return string|null
+   *   The search keywords. NULL if not found or empty.
+   */
+  protected function getSearchKeywords(): ?string {
+    return $this->requestStack->getCurrentRequest()->query->get('text');
+  }
+
+  /**
+   * Querying results from search engine.
+   *
+   * @return \Drupal\search_api\Query\ResultSetInterface
+   *   The result set.
+   */
+  protected function findResults(): ResultSetInterface {
+    $index = $this->indexStorage->load('global');
+    $query = $this->queryHelper->createQuery($index);
+    $query->keys($this->getSearchKeywords());
+    $query->range($this->pagerParameters->findPage() * $this->limit, $this->limit);
+    $result = $query->execute();
+    $this->pagerManager->createPager($result->getResultCount(), $this->limit);
+    return $result;
+  }
+
+  /**
+   * Prepares search results.
+   *
+   * @return array
+   *   An array with processed search results.
+   */
+  protected function prepareResults(): array {
+    $results = $this->findResults();
+    $items = [];
+    foreach ($results->getResultItems() as $result_item) {
+      $url = Url::fromUserInput($result_item->getField('url')->getValues()[0]);
+      $items[] = [
+        'label' => $result_item->getField('title')->getValues()[0],
+        'url' => $url,
+        'url_absolute' => $url->setAbsolute()->toString(),
+      ];
+    }
+    return $items;
   }
 
 }

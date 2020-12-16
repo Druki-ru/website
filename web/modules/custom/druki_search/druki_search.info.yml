@@ -2,12 +2,10 @@ name: Druki - Search
 type: module
 description: Helpers and improvements for search.
 package: druki
-core: 8.x
 core_version_requirement: ^8 || ^9
 dependencies:
   - search_api:search_api
   - search_api:search_api_db
-  - drupal:rest
 
 'interface translation project': druki_search
 'interface translation server pattern': modules/custom/%project/translations/%language.po

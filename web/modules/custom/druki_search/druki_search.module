@@ -10,12 +10,10 @@
  */
 function druki_search_theme(): array {
   return [
-    'druki_search_result' => [
+    'druki_search_results' => [
       'variables' => [
-        'title' => NULL,
-        'url' => NULL,
-        'display_url' => NULL,
-        'supporting_text' => NULL,
+        'items' => [],
+        'pager' => NULL,
       ],
     ],
   ];
