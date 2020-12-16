@@ -5,7 +5,7 @@ namespace Druki\Tests\Functional\Controller;
 use Drupal\Component\DependencyInjection\Container;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\druki_git\Controller\DrukiGitController;
-use Drupal\druki_git\Service\GitInterface;
+use Drupal\druki_git\Git\GitInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\HttpFoundation\JsonResponse;
