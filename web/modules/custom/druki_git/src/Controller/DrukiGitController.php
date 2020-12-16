@@ -9,8 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Returns responses for Druki — git routes.
- *
- * @todo Add tests.
  */
 final class DrukiGitController implements ContainerInjectionInterface {
 
