@@ -14,8 +14,6 @@
   <php>
     <ini name="error_reporting" value="32767"/>
     <ini name="memory_limit" value="-1"/>
-    <env name="SIMPLETEST_BASE_URL" value="http://nginx"/>
-    <env name="SIMPLETEST_DB" value="sqlite://localhost//dev/shm/d9.db"/>
     <env name="DTT_BASE_URL" value="http://nginx"/>
     <env name="DTT_MINK_DRIVER_ARGS" value='["chrome", {"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless"]}}, "http://chrome:9515"]'/>
     <env name="DTT_SCREENSHOT_REPORT_DIRECTORY" value="/var/www/html/web/sites/simpletest/browser_output"/>
@@ -23,19 +21,19 @@
   </php>
   <testsuites>
     <testsuite name="existing-site-javascript">
-      <directory>./tests/src/ExistingSiteJavascript</directory>
+      <directory>./tests/ExistingSiteJavascript</directory>
     </testsuite>
     <testsuite name="existing-site">
-      <directory>./tests/src/ExistingSite</directory>
+      <directory>./tests/ExistingSite</directory>
     </testsuite>
     <testsuite name="kernel">
-      <directory>./tests/src/Kernel</directory>
+      <directory>./tests/Kernel</directory>
     </testsuite>
     <testsuite name="functional">
-      <directory>./tests/src/Functional</directory>
+      <directory>./tests/Functional</directory>
     </testsuite>
     <testsuite name="unit">
-      <directory>./tests/src/Unit</directory>
+      <directory>./tests/Unit</directory>
     </testsuite>
   </testsuites>
   <listeners>
