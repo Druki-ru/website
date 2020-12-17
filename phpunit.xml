@@ -20,20 +20,17 @@
     <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
   </php>
   <testsuites>
-    <testsuite name="existing-site-javascript">
-      <directory>./tests/ExistingSiteJavascript</directory>
-    </testsuite>
-    <testsuite name="existing-site">
-      <directory>./tests/ExistingSite</directory>
-    </testsuite>
-    <testsuite name="kernel">
-      <directory>./tests/Kernel</directory>
+    <testsuite name="unit">
+      <directory>./tests/Unit</directory>
     </testsuite>
     <testsuite name="functional">
       <directory>./tests/Functional</directory>
     </testsuite>
-    <testsuite name="unit">
-      <directory>./tests/Unit</directory>
+    <testsuite name="existing-site">
+      <directory>./tests/ExistingSite</directory>
+    </testsuite>
+    <testsuite name="existing-site-javascript">
+      <directory>./tests/ExistingSiteJavascript</directory>
     </testsuite>
   </testsuites>
   <listeners>
