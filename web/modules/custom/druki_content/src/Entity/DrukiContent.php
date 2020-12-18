@@ -144,9 +144,9 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
 
     // Invalidate cache tag for category area block.
     // @see CategoryNavigationBlock::getCacheTags().
-    // @todo maybe move it to its module.
     if (!$this->get('category')->isEmpty()) {
-      $cache_tags[] = 'druki_category_navigation:' . Crypt::hashBase64($this->get('category')->area);
+      $category_area = $this->get('category')->first()->getCategoryArea();
+      $cache_tags[] = 'druki_category_navigation:' . Crypt::hashBase64($category_area);
     }
 
     return $cache_tags;

@@ -94,8 +94,43 @@ class DrukiCategoryItem extends FieldItemBase {
    */
   public function isEmpty(): bool {
     $value = $this->get('area')->getValue();
-
     return $value === NULL || $value === '';
+  }
+
+  /**
+   * Gets category area name.
+   *
+   * @return string
+   *   The category area.
+   *
+   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   */
+  public function getCategoryArea(): string {
+    return $this->get('area')->getValue();
+  }
+
+  /**
+   * Gets item order inside category.
+   *
+   * @return int
+   *   The order of item.
+   *
+   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   */
+  public function getCategoryItemOrder(): int {
+    return $this->get('order')->getValue();
+  }
+
+  /**
+   * Gets item title for category listing.
+   *
+   * @return string
+   *   The item title.
+   *
+   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   */
+  public function getCategoryItemTitle(): string {
+    return $this->get('title')->getValue() ?? $this->getEntity()->label();
   }
 
 }

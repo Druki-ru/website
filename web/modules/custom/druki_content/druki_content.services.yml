@@ -14,10 +14,6 @@ services:
     class: Drupal\druki_content\Sync\Queue\SyncQueueManager
     arguments: ['@druki_content.source_content_finder', '@queue', '@state', '@datetime.time', '@plugin.manager.queue_worker']
 
-  druki_content.category.navigation:
-    class: Drupal\druki_content\Category\CategoryNavigation
-    arguments: ['@current_route_match', '@entity_type.manager']
-
   druki_content.source_content_finder:
     class: Drupal\druki_content\Sync\SourceContent\SourceContentFinder
     arguments: ['@language_manager']
