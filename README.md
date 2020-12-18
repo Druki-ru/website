@@ -3,8 +3,7 @@
 </p>
 
 ![Continuous Integration](https://github.com/Druki-ru/website/workflows/Continuous%20Integration/badge.svg?branch=9.x)
-![PHPCS](https://github.com/Druki-ru/website/workflows/PHPCS/badge.svg)
-![PHPStan](https://github.com/Druki-ru/website/workflows/PHPStan/badge.svg)
+![Tests](https://github.com/Druki-ru/website/workflows/Tests/badge.svg)
 
 # Druki Website
 
