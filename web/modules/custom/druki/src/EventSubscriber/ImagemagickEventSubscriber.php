@@ -2,8 +2,8 @@
 
 namespace Drupal\druki\EventSubscriber;
 
-use Composer\EventDispatcher\EventSubscriberInterface;
 use Drupal\imagemagick\Event\ImagemagickExecutionEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Provides Imagemagick event subscriber.
