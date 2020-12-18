@@ -27,3 +27,8 @@ services:
   druki.file_tracker:
     class: Drupal\druki\File\FileTracker
     arguments: ['@entity_type.manager', '@logger.channel.druki', '@file.usage']
+
+  druki.imagemagick_event_subscriber:
+    class: Drupal\druki\EventSubscriber\ImagemagickEventSubscriber
+    tags:
+      - { name: event_subscriber }
