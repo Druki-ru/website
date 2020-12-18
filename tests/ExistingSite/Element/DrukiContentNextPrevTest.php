@@ -54,9 +54,9 @@ final class DrukiContentNextPrevTest extends ExistingSiteBase {
     ];
 
     $html = $this->renderer->renderPlain($element);
-    $this->assertContains('Previous', $html);
-    $this->assertContains('Next', $html);
-    $this->assertContains($url->toString(), $html);
+    $this->assertStringContainsString('Previous', $html);
+    $this->assertStringContainsString('Next', $html);
+    $this->assertStringContainsString($url->toString(), $html);
   }
 
 }
