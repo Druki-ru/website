@@ -2,9 +2,9 @@
   <img src="https://i.imgur.com/GVA0m4I.png" alt="Druki" width="223">
 </p>
 
-![Continuous Integration](https://github.com/Druki-ru/website/workflows/Continuous%20Integration/badge.svg?branch=9.x) 
-![PHPCS](https://github.com/Druki-ru/website/workflows/PHPCS/badge.svg) 
-![PHPStan](https://github.com/Druki-ru/website/workflows/PHPStan/badge.svg) 
+![Continuous Integration](https://github.com/Druki-ru/website/workflows/Continuous%20Integration/badge.svg?branch=9.x)
+![PHPCS](https://github.com/Druki-ru/website/workflows/PHPCS/badge.svg)
+![PHPStan](https://github.com/Druki-ru/website/workflows/PHPStan/badge.svg)
 
 # Druki Website
 
@@ -29,7 +29,10 @@ This is required for correct configuration split process.
 
 ### Install a local copy
 
+**Warning!** Currently, Drupal cor has a bug [#3176625](https://www.drupal.org/project/drupal/issues/3176625). Before it resolved, you must patch core before running installation process, otherwise it will fail during config imports. Nothing can be done from our site.
+
 1. Clone this repository by `git clone https://github.com/Druki-ru/website.git`.
+1. Add `$settings['config_sync_directory'] = '../config/sync';` to your **settings.php**.
 1. Run `composer install`
 1. (optional) Run `yarn install`
 1. Run Drupal installation as usual.
