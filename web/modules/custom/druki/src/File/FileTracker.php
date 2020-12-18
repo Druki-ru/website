@@ -77,6 +77,7 @@ final class FileTracker implements FileTrackerInterface {
       ->getQuery()
       ->condition('druki_file_hash', $file_hash)
       ->range(0, 1)
+      ->sort('fid')
       ->execute();
 
     if (!empty($result)) {

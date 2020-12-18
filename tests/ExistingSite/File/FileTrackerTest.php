@@ -77,7 +77,7 @@ final class FileTrackerTest extends ExistingSiteBase {
   public function testUpdateTrackingInformation(): void {
     $file = $this->createTestFile();
 
-    // Since there iы no possible way for new files to exist without value, we
+    // Since there is no possible way for new files to exist without value, we
     // intentionally reset value via SQL. We can't use API since it will trigger
     // presave hooks and value will be set again.
     $connection = \Drupal::database();
