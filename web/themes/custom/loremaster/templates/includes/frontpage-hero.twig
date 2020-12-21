@@ -5,7 +5,7 @@
   ]
 %}
 {% set attributes = create_attribute() %}
-<section{{ attributes.addClass(classes) }}>
+<div{{ attributes.addClass(classes) }}>
   <div class="{{ bem(block, 'container') }}">
     <div class="{{ bem(block, 'welcome') }}">
       <h1 class="page-title {{ bem(block, 'title') }}">{{ 'Drupal Encyclopedia'|t }}</h1>
@@ -42,4 +42,4 @@
       {{ {'#theme': 'druki_drupal_versions'} }}
     </div>
   </div>
-</section>
+</div>

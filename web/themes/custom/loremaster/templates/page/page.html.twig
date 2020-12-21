@@ -18,22 +18,22 @@
   {% include '@loremaster/includes/footer.twig' %}
 {% endset %}
 
-<section class="page-container">
+<main class="page-container">
   <header class="header">
     {{ page.header }}
     {{ page.mobile_toolbar }}
   </header>
   {{ page.content_header }}
 
-  <main{{ main_layout_attributes.addClass(main_layout_classes) }}>
+  <div{{ main_layout_attributes.addClass(main_layout_classes) }}>
     {% if is_front %}
       {% include '@loremaster/includes/frontpage.twig' %}
     {% else %}
       {{ page.content }}
       {{ page.sidebar_right }}
     {% endif %}
-  </main>
+  </div>
 
   {{ footer }}
   {{ page.mobile_sidebar }}
-</section>
+</main>

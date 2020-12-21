@@ -6,7 +6,7 @@
   ]
 %}
 {{ attach_library('loremaster/asciinema-player') }}
-<section{{ attributes.addClass(classes) }}>
+<div{{ attributes.addClass(classes) }}>
   <div class="{{ bem(block, 'content') }}">
     <h2 class="{{ bem(block, 'title') }}">{{ 'Choose Drupal'|t }}</h2>
 
@@ -45,4 +45,4 @@
       class="{{ bem(block, 'player') }}"
     ></asciinema-player>
   </div>
-</section>
+</div>
