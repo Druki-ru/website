@@ -47,7 +47,7 @@
             bem(block_base, 'link'),
           ]
         %}
-        <a href="#{{ item.anchor }}" {{ link_attributes.addClass(link_classes) }}>{{ item.text }}</a>
+        <a href="#{{ item.anchor }}" {{ link_attributes.addClass(link_classes).setAttribute('title', item.text) }}>{{ item.text }}</a>
         {% if item.children %}
           {{ toc.links(item.children, item.level + 1, block_base) }}
         {% endif %}

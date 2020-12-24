@@ -24,7 +24,7 @@
       <ul{{ attributes.addClass([bem_base ? bem_base ~ 'menu']) }}>
         {% for item in links %}
           <li class="{{ bem_base ~ 'item' }}">
-            <a href="#{{ item.anchor }}" class="{{ bem_base ~ 'link' }}">{{ item.text }}</a>
+            <a href="#{{ item.anchor }}" class="{{ bem_base ~ 'link' }}" title="{{ item.text }}">{{ item.text }}</a>
             {% if item.children %}
               {{ toc.links(item.children, attributes, item.level, bem_base) }}
             {% endif %}
