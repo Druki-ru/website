@@ -1,0 +1,1 @@
+{"version":3,"sources":["04-components/layout/region-content.pcss"],"names":[],"mappings":"AAAA,wCACE,+BACF","file":"../../../04-components/layout/region-content.css","sourcesContent":[".region-content .block:not(:last-child) {\n  margin-bottom: var(--spacing-lg);\n}\n"]}

@@ -8,10 +8,7 @@ package: Glisseo
 core_version_requirement: ^8 || ^9
 
 libraries:
-  - loremaster/style.base
-  - loremaster/style.layout
-  - loremaster/style.component
-  - loremaster/style.utilities
+  - loremaster/global-styling
 
 regions:
   header: Header

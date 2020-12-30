@@ -1,0 +1,2 @@
+:root{--layout-container-side-gap:var(--spacing-sm);@media (min-width:768px){--layout-container-side-gap:var(--spacing-lg)}}.layout-container{width:100%;max-width:var(--grid-container-max-width);margin:0 auto;padding:0 var(--layout-container-side-gap)}
+/*# sourceMappingURL=../maps/01-generic/layout.css.map */

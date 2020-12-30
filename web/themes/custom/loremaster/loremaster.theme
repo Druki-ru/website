@@ -8,6 +8,13 @@
 use Drupal\druki\Utility\Anchor;
 
 /**
+ * Implements hook_preprocess_HOOK() for druki-content.html.twig.
+ */
+function loremaster_preprocess_druki_content(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_content';
+}
+
+/**
  * Implements hook_preprocess_HOOK() for paragraph--druki-heading.html.twig.
  */
 function loremaster_preprocess_paragraph__druki_heading(array &$variables): void {
@@ -18,6 +25,7 @@ function loremaster_preprocess_paragraph__druki_heading(array &$variables): void
   $variables['heading_level'] = $paragraph->get('druki_heading_level')->value;
   $variables['title'] = $title;
   $variables['anchor'] = Anchor::generate($title, 'druki_content_toc_theme', Anchor::REUSE);
+  $variables['#attached']['library'][] = 'loremaster/paragraph.druki_heading';
 }
 
 /**
@@ -25,6 +33,7 @@ function loremaster_preprocess_paragraph__druki_heading(array &$variables): void
  */
 function loremaster_preprocess_paragraph__druki_code(array &$variables): void {
   $variables['#attached']['library'][] = 'loremaster/code-highlight';
+  $variables['#attached']['library'][] = 'loremaster/paragraph.druki_code';
 }
 
 /**
@@ -41,6 +50,7 @@ function loremaster_preprocess_paragraph__druki_note(array &$variables): void {
 
   $variables['note_type'] = $druki_note_type->value;
   $variables['note_type_label'] = $types[$druki_note_type->value];
+  $variables['#attached']['library'][] = 'loremaster/paragraph.druki_note';
 }
 
 /**
@@ -58,4 +68,11 @@ function loremaster_preprocess_menu__main(array &$variables): void {
     $variables['system_menu_block_id'] = $variables['attributes']['data-block-id'];
     unset($variables['attributes']['data-block-id']);
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-wiki.html.twig.
+ */
+function loremaster_preprocess_druki_wiki(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_wiki';
 }

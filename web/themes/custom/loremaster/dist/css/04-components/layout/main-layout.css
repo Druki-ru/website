@@ -1,0 +1,2 @@
+.main-layout{margin:var(--spacing-xl) auto}.main-layout--one-sidebar{display:grid;grid-gap:var(--spacing-xl);grid-template-columns:1fr;@media (min-width:992px){grid-template-columns:1fr 280px}}
+/*# sourceMappingURL=../../maps/04-components/layout/main-layout.css.map */

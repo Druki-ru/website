@@ -1,0 +1,1 @@
+{"version":3,"sources":["04-components/ui/menu.pcss"],"names":[],"mappings":"AAAA,MACE,QAAS,CACT,SAAU,CACV,eACF","file":"../../../04-components/ui/menu.css","sourcesContent":[".menu {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n"]}

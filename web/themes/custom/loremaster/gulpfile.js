@@ -1,38 +1,33 @@
 const gulp = require('gulp');
-const sass = require('gulp-sass');
-const sassGlob = require('gulp-sass-glob');
 const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
-const postcssCustomMedia = require('postcss-custom-media');
-const postcssInlineSvg = require('postcss-inline-svg');
-const cssnano = require('cssnano');
+const rename = require('gulp-rename');
 
 gulp.task('build:css', function() {
   return gulp.src([
-    'assets/scss/03-generic/generic.scss',
-    'assets/scss/04-elements/elements.scss',
-    'assets/scss/05-objects/objects.scss',
-    'assets/scss/06-components/components.scss',
-    'assets/scss/07-utilities/utilities.scss',
+    'css/**/*.pcss',
   ])
     .pipe(sourcemaps.init())
-    .pipe(sassGlob())
-    .pipe(sass({includePaths: ['../../../../node_modules']}).on('error', sass.logError))
     .pipe(postcss([
-      postcssInlineSvg({
+      // require('postcss-import'),
+      require('postcss-inline-svg')({
         paths: ['assets/images/icons']
       }),
-      postcssCustomMedia(),
-      autoprefixer(),
-      cssnano({
+      require('postcss-custom-media')({
+        importFrom: 'css/01-generic/media-breakpoints.pcss',
+      }),
+      require('autoprefixer'),
+      require('cssnano')({
         preset: 'default'
       }),
     ]))
+    .pipe(rename({
+      extname: '.css',
+    }))
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest('assets/css/'));
+    .pipe(gulp.dest('dist/css/'));
 });
 
 gulp.task('watch:css', function() {
-  gulp.watch('assets/scss/**', gulp.parallel('build:css'));
+  gulp.watch('css/**/*.pcss', gulp.parallel('build:css'));
 });

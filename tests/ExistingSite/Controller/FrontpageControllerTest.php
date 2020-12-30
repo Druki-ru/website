@@ -14,6 +14,8 @@ final class FrontpageControllerTest extends ExistingSiteBase {
 
   /**
    * Tests frontpage.
+   * 
+   * @covers ::build
    */
   public function testFrontpage(): void {
     $this->drupalGet(Url::fromRoute('<front>'));
