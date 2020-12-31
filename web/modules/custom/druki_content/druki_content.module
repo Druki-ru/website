@@ -38,6 +38,12 @@ function druki_content_theme(): array {
         'help_url' => NULL,
       ],
     ],
+    'druki_content_next_prev' => [
+      'variables' => [
+        'prev_link' => NULL,
+        'next_link' => NULL,
+      ],
+    ],
   ];
 }
 

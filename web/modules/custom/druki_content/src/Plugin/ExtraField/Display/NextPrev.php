@@ -13,8 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides an extra field to display next and prev links.
  *
- * @todo redo with using render element.
- *
  * @ExtraFieldDisplay(
  *   id = "next_prev",
  *   label = @Translation("Next and previous links"),

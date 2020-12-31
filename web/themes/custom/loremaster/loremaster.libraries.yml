@@ -37,7 +37,6 @@ global-styling:
       dist/css/04-components/ui/form-element.css: { }
       dist/css/04-components/ui/form-boolean.css: { }
       dist/css/04-components/ui/counter-list.css: { }
-      dist/css/04-components/ui/comments.css: { }
       dist/css/04-components/layout/footer.css: { }
       dist/css/04-components/layout/main-layout.css: { }
       dist/css/04-components/layout/region-sidebar-right.css: { }
@@ -53,26 +52,25 @@ global-styling:
       dist/css/04-components/block/mobile-dark-mode-switcher.css: { }
       dist/css/04-components/block/header-repository-button.css: { }
       dist/css/04-components/block/header-dark-mode-switcher.css: { }
+      dist/css/04-components/block/druki-content-toc-mobile.css: { }
       dist/css/04-components/menu/main.css: { }
       dist/css/04-components/menu/main-mobile-navigation.css: { }
       dist/css/04-components/javascript/mobile-sidebar.css: { }
       dist/css/04-components/javascript/photoswipe.css: { }
+      dist/css/04-components/theme/druki-header-search.css: { }
     state:
       dist/css/05-utilities/hidden.css: { }
 
-paragraph.druki_code:
+druki_content_variations:
+  css:
+    theme:
+      dist/css/04-components/block/druki-content-variations.css: {}
+
+paragraph:
   css:
     theme:
       dist/css/04-components/paragraph/druki-code.css: { }
-
-paragraph.druki_note:
-  css:
-    theme:
       dist/css/04-components/paragraph/druki-note.css: { }
-
-paragraph.druki_heading:
-  css:
-    theme:
       dist/css/04-components/paragraph/druki-heading.css: { }
 
 code-highlight:
@@ -92,6 +90,61 @@ druki_wiki:
   css:
     theme:
       dist/css/04-components/theme/druki-wiki-page.css: { }
+
+druki_download:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-page-download.css: { }
+
+druki_category_navigation:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-category-navigation.css: { }
+
+official_user_guide:
+  css:
+    theme:
+      dist/css/04-components/theme/official-user-guide.css: { }
+
+frontpage_hero:
+  css:
+    theme:
+      dist/css/04-components/theme/frontpage-hero.css: { }
+
+frontpage_download:
+  css:
+    theme:
+      dist/css/04-components/theme/frontpage-download.css: { }
+
+druki_content_help_and_feedback:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-content-help-and-feedback.css: { }
+
+druki_content_next_prev:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-content-next-prev.css: { }
+
+druki_content_toc:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-content-toc.css: { }
+
+druki_mobile_toc:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-mobile-toc.css: { }
+
+drupal_versions:
+  css:
+    theme:
+      dist/css/04-components/theme/drupal-versions.css: { }
+
+druki_search_results:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-search-results.css: { }
 
 prismjs:
   remote: https://prismjs.com/

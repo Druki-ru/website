@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present content TOC.
+ *
+ * Available variables:
+ * - attributes: HTML attrubutes for container.
+ * - prev_link: The link to previous content.
+ * - next_link: The link to next content.
+ */
+#}
+<div{{ attributes.addClass('druki-content-next-prev') }}>
+  {% if prev_link %}
+    <div class="druki-content-next-prev__item druki-content-next-prev__item--prev">
+      <a href="{{ prev_link.getUrl }}" class="druki-content-next-prev__link druki-content-next-prev__link--prev">{{ prev_link.getText }}</a>
+    </div>
+  {% endif %}
+  {% if next_link %}
+    <div class="druki-content-next-prev__item druki-content-next-prev__item--next">
+      <a href="{{ next_link.getUrl }}" class="druki-content-next-prev__link druki-content-next-prev__link--next">{{ next_link.getText }}</a>
+    </div>
+  {% endif %}
+</div>

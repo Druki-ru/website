@@ -1,1 +1,0 @@
-{"version":3,"sources":["04-components/ui/comments.pcss"],"names":[],"mappings":"AAEA,6BACE,8BACF","file":"../../../04-components/ui/comments.css","sourcesContent":[".comments { }\n\n.comments__content .indented {\n  padding-left: var(--spacing-md);\n}\n"]}
