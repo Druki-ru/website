@@ -50,7 +50,7 @@ class DrukiContentNextPrev extends RenderElement {
     if (!$prev_link && !$next_link) {
       return [];
     }
-    
+
     $element['#theme'] = 'druki_content_next_prev';
     $element['#prev_link'] = $prev_link;
     $element['#next_link'] = $next_link;
