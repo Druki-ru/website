@@ -7,12 +7,6 @@ description: 'Loremaster of Drupal.'
 package: Glisseo
 core_version_requirement: ^8 || ^9
 
-libraries:
-  - loremaster/style.base
-  - loremaster/style.layout
-  - loremaster/style.component
-  - loremaster/style.utilities
-
 regions:
   header: Header
   mobile_toolbar: Mobile Toolbar
@@ -23,10 +17,19 @@ regions:
   footer_menu_first: 'Footer menu first'
   footer_menu_second: 'Footer menu second'
 
+libraries:
+  - loremaster/global-styling
+
 # Disable system libraries.
 libraries-override:
   system/base: false
   # We don't support older browser like IE 9-11 anyway, so there is no need to
   # load polyfills which will overhead JS engine for  nothing.
   core/picturefill: false
-  drupal.paragraphs.unpublished: false
+  paragraphs/drupal.paragraphs.unpublished: false
+
+libraries-extend:
+  druki_content/toc:
+    - loremaster/druki_content_toc
+  druki_content/mobile-toc:
+    - loremaster/druki_mobile_toc

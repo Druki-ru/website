@@ -1,31 +1,150 @@
-style.base:
+global-styling:
   css:
     base:
-      assets/css/generic.css: {}
-
-style.layout:
-  css:
-    layout:
-      assets/css/elements.css: {}
-      assets/css/objects.css: {}
-
-style.component:
-  css:
+      dist/css/01-generic/modern-css-reset.css: { }
+      dist/css/01-generic/custom-reset.css: { }
+      dist/css/01-generic/colors.css: { }
+      dist/css/01-generic/grid.css: { }
+      dist/css/01-generic/icons.css: { }
+      dist/css/01-generic/layout.css: { }
+      dist/css/01-generic/shadow.css: { }
+      dist/css/01-generic/radius.css: { }
+      dist/css/01-generic/spacing.css: { }
+      dist/css/02-elements/typography.css: { }
+      dist/css/02-elements/blockquotes.css: { }
+      dist/css/02-elements/fieldset.css: { }
+      dist/css/02-elements/focus.css: { }
+      dist/css/02-elements/headings.css: { }
+      dist/css/02-elements/horizontal-rules.css: { }
+      dist/css/02-elements/links.css: { }
+      dist/css/02-elements/lists.css: { }
+      dist/css/02-elements/page.css: { }
+      dist/css/02-elements/selection.css: { }
     component:
-      assets/css/components.css: {}
-
-style.utilities:
-  css:
+      dist/css/04-components/ui/button.css: { }
+      dist/css/04-components/ui/breadcrumb.css: { }
+      dist/css/04-components/ui/vertical-tabs.css: { }
+      dist/css/04-components/ui/tabs.css: { }
+      dist/css/04-components/ui/table.css: { }
+      dist/css/04-components/ui/pager.css: { }
+      dist/css/04-components/ui/page-title.css: { }
+      dist/css/04-components/ui/message.css: { }
+      dist/css/04-components/ui/menu.css: { }
+      dist/css/04-components/ui/local-actions.css: { }
+      dist/css/04-components/ui/links.css: { }
+      dist/css/04-components/ui/form-textarea.css: { }
+      dist/css/04-components/ui/form-item.css: { }
+      dist/css/04-components/ui/form-element.css: { }
+      dist/css/04-components/ui/form-boolean.css: { }
+      dist/css/04-components/ui/counter-list.css: { }
+      dist/css/04-components/layout/footer.css: { }
+      dist/css/04-components/layout/main-layout.css: { }
+      dist/css/04-components/layout/region-sidebar-right.css: { }
+      dist/css/04-components/layout/region-mobile-toolbar.css: { }
+      dist/css/04-components/layout/region-mobile-sidebar.css: { }
+      dist/css/04-components/layout/region-header.css: { }
+      dist/css/04-components/layout/region-content-header.css: { }
+      dist/css/04-components/layout/region-content.css: { }
+      dist/css/04-components/layout/page-container.css: { }
+      dist/css/04-components/block/branding.css: { }
+      dist/css/04-components/block/mobile-branding.css: { }
+      dist/css/04-components/block/mobile-sidebar-button.css: { }
+      dist/css/04-components/block/mobile-dark-mode-switcher.css: { }
+      dist/css/04-components/block/header-repository-button.css: { }
+      dist/css/04-components/block/header-dark-mode-switcher.css: { }
+      dist/css/04-components/block/druki-content-toc-mobile.css: { }
+      dist/css/04-components/menu/main.css: { }
+      dist/css/04-components/menu/main-mobile-navigation.css: { }
+      dist/css/04-components/javascript/mobile-sidebar.css: { }
+      dist/css/04-components/javascript/photoswipe.css: { }
+      dist/css/04-components/theme/druki-header-search.css: { }
     state:
-      assets/css/utilities.css: {}
+      dist/css/05-utilities/hidden.css: { }
 
+druki_content_variations:
+  css:
+    theme:
+      dist/css/04-components/block/druki-content-variations.css: {}
+
+paragraph:
+  css:
+    theme:
+      dist/css/04-components/paragraph/druki-code.css: { }
+      dist/css/04-components/paragraph/druki-note.css: { }
+      dist/css/04-components/paragraph/druki-heading.css: { }
 
 code-highlight:
   js:
-    assets/js/code-highlight.js: {}
+    assets/js/code-highlight.js: { }
   dependencies:
     - core/drupal
     - loremaster/prismjs
+
+druki_content:
+  css:
+    theme:
+      dist/css/04-components/druki-content/druki-content-full.css: { }
+      dist/css/04-components/druki-content/druki-content-content.css: { }
+
+druki_wiki:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-wiki-page.css: { }
+
+druki_download:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-page-download.css: { }
+
+druki_category_navigation:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-category-navigation.css: { }
+
+official_user_guide:
+  css:
+    theme:
+      dist/css/04-components/theme/official-user-guide.css: { }
+
+frontpage_hero:
+  css:
+    theme:
+      dist/css/04-components/theme/frontpage-hero.css: { }
+
+frontpage_download:
+  css:
+    theme:
+      dist/css/04-components/theme/frontpage-download.css: { }
+
+druki_content_help_and_feedback:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-content-help-and-feedback.css: { }
+
+druki_content_next_prev:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-content-next-prev.css: { }
+
+druki_content_toc:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-content-toc.css: { }
+
+druki_mobile_toc:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-mobile-toc.css: { }
+
+drupal_versions:
+  css:
+    theme:
+      dist/css/04-components/theme/drupal-versions.css: { }
+
+druki_search_results:
+  css:
+    theme:
+      dist/css/04-components/theme/druki-search-results.css: { }
 
 prismjs:
   remote: https://prismjs.com/
@@ -33,6 +152,9 @@ prismjs:
   license:
     name: MIT
     gpl-compatible: true
+  css:
+    theme:
+      dist/css/04-components/javascript/prismjs.css: { }
   js:
     assets/js/prism.manual.js: { weight: -1 }
     # Prism has no dist files in any repo. So we use prebuild JS from theme.

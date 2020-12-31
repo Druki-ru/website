@@ -10,7 +10,7 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 /**
  * Provides test search page.
  *
- * @coversDefaultClass \Drupal\druki_search\SearchPage\PageController
+ * @covers \Drupal\druki_search\SearchPage\PageController
  */
 final class PageControllerTest extends ExistingSiteBase {
 

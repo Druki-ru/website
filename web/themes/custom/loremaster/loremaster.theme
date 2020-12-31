@@ -8,6 +8,20 @@
 use Drupal\druki\Utility\Anchor;
 
 /**
+ * Implements hook_preprocess_HOOK() for druki-content.html.twig.
+ */
+function loremaster_preprocess_druki_content(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_content';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph.html.twig.
+ */
+function loremaster_preprocess_paragraph(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/paragraph';
+}
+
+/**
  * Implements hook_preprocess_HOOK() for paragraph--druki-heading.html.twig.
  */
 function loremaster_preprocess_paragraph__druki_heading(array &$variables): void {
@@ -41,6 +55,7 @@ function loremaster_preprocess_paragraph__druki_note(array &$variables): void {
 
   $variables['note_type'] = $druki_note_type->value;
   $variables['note_type_label'] = $types[$druki_note_type->value];
+  $variables['#attached']['library'][] = 'loremaster/paragraph.druki_note';
 }
 
 /**
@@ -58,4 +73,67 @@ function loremaster_preprocess_menu__main(array &$variables): void {
     $variables['system_menu_block_id'] = $variables['attributes']['data-block-id'];
     unset($variables['attributes']['data-block-id']);
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-wiki.html.twig.
+ */
+function loremaster_preprocess_druki_wiki(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_wiki';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block--druki-content-variations.html.twig.
+ */
+function loremaster_preprocess_block__druki_content_variations(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_content_variations';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-content-category-navigation.html.twig.
+ */
+function loremaster_preprocess_druki_content_category_navigation(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_category_navigation';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-official-user-guide.html.twig.
+ */
+function loremaster_preprocess_druki_official_user_guide(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/official_user_guide';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-content-help-and-feedback.html.twig.
+ */
+function loremaster_preprocess_druki_content_help_and_feedback(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_content_help_and_feedback';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-content-next-prev.html.twig.
+ */
+function loremaster_preprocess_druki_content_next_prev(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_content_next_prev';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-download.html.twig.
+ */
+function loremaster_preprocess_druki_download(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_download';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-drupal-versions.html.twig.
+ */
+function loremaster_preprocess_druki_drupal_versions(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/drupal_versions';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for druki-search-results.html.twig.
+ */
+function loremaster_preprocess_druki_search_results(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/druki_search_results';
 }

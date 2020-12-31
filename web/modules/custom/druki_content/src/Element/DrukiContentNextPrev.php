@@ -51,55 +51,9 @@ class DrukiContentNextPrev extends RenderElement {
       return [];
     }
 
-    $element['wrapper'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
-      '#attributes' => [
-        'class' => ['druki-content-next-prev'],
-      ],
-    ];
-
-    $element['wrapper']['prev_wrapper'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
-      '#attributes' => [
-        'class' => [
-          'druki-content-next-prev__item',
-          'druki-content-next-prev__item--prev',
-        ],
-      ],
-    ];
-
-    if ($prev_link) {
-      $element['wrapper']['prev_wrapper']['link'] = $prev_link->toRenderable();
-      $element['wrapper']['prev_wrapper']['link']['#attributes'] = [
-        'class' => [
-          'druki-content-next-prev__link',
-          'druki-content-next-prev__link--prev',
-        ],
-      ];
-    }
-
-    $element['wrapper']['next_wrapper'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
-      '#attributes' => [
-        'class' => [
-          'druki-content-next-prev__item',
-          'druki-content-next-prev__item--next',
-        ],
-      ],
-    ];
-
-    if ($next_link) {
-      $element['wrapper']['next_wrapper']['link'] = $next_link->toRenderable();
-      $element['wrapper']['next_wrapper']['link']['#attributes'] = [
-        'class' => [
-          'druki-content-next-prev__link',
-          'druki-content-next-prev__link--next',
-        ],
-      ];
-    }
+    $element['#theme'] = 'druki_content_next_prev';
+    $element['#prev_link'] = $prev_link;
+    $element['#next_link'] = $next_link;
 
     return $element;
   }

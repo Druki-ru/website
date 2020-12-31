@@ -1,0 +1,1 @@
+{"version":3,"sources":["04-components/druki-content/druki-content-content.pcss"],"names":[],"mappings":"AAAA,uBACE,2BAKF,CAHE,yBAHF,uBAII,SAEJ,CADE","file":"../../../04-components/druki-content/druki-content-content.css","sourcesContent":[".druki-content-content {\n  padding: 0 var(--spacing-lg);\n\n  @media (--md) {\n    padding: 0;\n  }\n}\n"]}

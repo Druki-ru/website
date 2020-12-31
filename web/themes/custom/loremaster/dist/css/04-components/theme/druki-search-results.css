@@ -1,0 +1,2 @@
+:root{--search-results-url-color:var(--color-jade)}.search-results__item{display:block}.search-results__items{display:grid;grid-gap:var(--spacing-md)}.search-results__item-label{font-size:var(--font-size-h4);color:var(--link-color)}.search-results__item-url{font-size:var(--font-size-sm);color:var(--search-results-url-color);margin-top:var(--spacing-xxs)}
+/*# sourceMappingURL=../../maps/04-components/theme/druki-search-results.css.map */

@@ -4,6 +4,7 @@
     bem(block),
   ]
 %}
+{{ attach_library('loremaster/frontpage_hero') }}
 {% set attributes = create_attribute() %}
 <div{{ attributes.addClass(classes) }}>
   <div class="{{ bem(block, 'container') }}">
