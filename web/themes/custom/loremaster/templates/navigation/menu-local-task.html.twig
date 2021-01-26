@@ -1,0 +1,24 @@
+{# @todo Remove template when glisseo will change classes. #}
+{% set block = 'local-tasks' %}
+{%
+  set modifiers = [
+    is_active ? 'active',
+  ]
+%}
+{%
+  set classes = [
+    bem(block, 'item', modifiers),
+  ]
+%}
+{%
+  set link = link|merge({
+    '#options': {
+      'attributes': {
+        'class': [
+          bem(block, 'link', modifiers),
+        ]
+      }
+    }
+  })
+%}
+<li{{ attributes.addClass(classes) }}>{{ link }}</li>

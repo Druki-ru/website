@@ -137,3 +137,73 @@ function loremaster_preprocess_druki_drupal_versions(array &$variables): void {
 function loremaster_preprocess_druki_search_results(array &$variables): void {
   $variables['#attached']['library'][] = 'loremaster/druki_search_results';
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for pager.html.twig.
+ */
+function loremaster_preprocess_pager(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/pager';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu-local-tasks.html.twig.
+ */
+function loremaster_preprocess_menu_local_tasks(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/local_tasks';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for breadcrumb.html.twig.
+ */
+function loremaster_preprocess_breadcrumb(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/breadcrumb';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for vertical-tabs.html.twig.
+ */
+function loremaster_preprocess_vertical_tabs(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/vertical_tabs';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu-local-action.html.twig.
+ */
+function loremaster_preprocess_menu_local_action(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/local_actions';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for links.html.twig.
+ */
+function loremaster_preprocess_links(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/links';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for photoswipe-image-formatter.html.twig.
+ */
+function loremaster_preprocess_photoswipe_image_formatter(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/photoswipe';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for region--content-header.html.twig.
+ */
+function loremaster_preprocess_region__content_header(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/region_content_header';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for region--sidebar-right.html.twig.
+ */
+function loremaster_preprocess_region__sidebar_right(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/region_sidebar_right';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block--druki-contetn-toc-mobile.html.twig.
+ */
+function loremaster_preprocess_block__druki_content_toc_mobile(array &$variables): void {
+  $variables['#attached']['library'][] = 'loremaster/block_druki_content_toc_mobile';
+}

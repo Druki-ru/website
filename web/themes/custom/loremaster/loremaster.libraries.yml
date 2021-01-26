@@ -20,18 +20,17 @@ global-styling:
       dist/css/02-elements/lists.css: { }
       dist/css/02-elements/page.css: { }
       dist/css/02-elements/selection.css: { }
+    layout:
+      dist/css/04-components/layout/region-header.css: { }
+      dist/css/04-components/layout/region-mobile-toolbar.css: { }
+      dist/css/04-components/layout/region-mobile-sidebar.css: { }
+      dist/css/04-components/layout/region-content.css: { }
     component:
       dist/css/04-components/ui/button.css: { }
-      dist/css/04-components/ui/breadcrumb.css: { }
-      dist/css/04-components/ui/vertical-tabs.css: { }
-      dist/css/04-components/ui/tabs.css: { }
       dist/css/04-components/ui/table.css: { }
-      dist/css/04-components/ui/pager.css: { }
       dist/css/04-components/ui/page-title.css: { }
       dist/css/04-components/ui/message.css: { }
       dist/css/04-components/ui/menu.css: { }
-      dist/css/04-components/ui/local-actions.css: { }
-      dist/css/04-components/ui/links.css: { }
       dist/css/04-components/ui/form-textarea.css: { }
       dist/css/04-components/ui/form-item.css: { }
       dist/css/04-components/ui/form-element.css: { }
@@ -39,12 +38,6 @@ global-styling:
       dist/css/04-components/ui/counter-list.css: { }
       dist/css/04-components/layout/footer.css: { }
       dist/css/04-components/layout/main-layout.css: { }
-      dist/css/04-components/layout/region-sidebar-right.css: { }
-      dist/css/04-components/layout/region-mobile-toolbar.css: { }
-      dist/css/04-components/layout/region-mobile-sidebar.css: { }
-      dist/css/04-components/layout/region-header.css: { }
-      dist/css/04-components/layout/region-content-header.css: { }
-      dist/css/04-components/layout/region-content.css: { }
       dist/css/04-components/layout/page-container.css: { }
       dist/css/04-components/block/branding.css: { }
       dist/css/04-components/block/mobile-branding.css: { }
@@ -52,14 +45,62 @@ global-styling:
       dist/css/04-components/block/mobile-dark-mode-switcher.css: { }
       dist/css/04-components/block/header-repository-button.css: { }
       dist/css/04-components/block/header-dark-mode-switcher.css: { }
-      dist/css/04-components/block/druki-content-toc-mobile.css: { }
       dist/css/04-components/menu/main.css: { }
       dist/css/04-components/menu/main-mobile-navigation.css: { }
       dist/css/04-components/javascript/mobile-sidebar.css: { }
-      dist/css/04-components/javascript/photoswipe.css: { }
       dist/css/04-components/theme/druki-header-search.css: { }
     state:
       dist/css/05-utilities/hidden.css: { }
+
+links:
+  css:
+    component:
+      dist/css/04-components/ui/links.css: { }
+
+local_actions:
+  css:
+    component:
+      dist/css/04-components/ui/local-actions.css: { }
+
+vertical_tabs:
+  css:
+    component:
+      dist/css/04-components/ui/vertical-tabs.css: { }
+
+breadcrumb:
+  css:
+    component:
+      dist/css/04-components/ui/breadcrumb.css: { }
+
+local_tasks:
+  css:
+    component:
+      dist/css/04-components/ui/local-tasks.css: { }
+
+pager:
+  css:
+    component:
+      dist/css/04-components/ui/pager.css: { }
+
+region_content_header:
+  css:
+    layout:
+      dist/css/04-components/layout/region-content-header.css: { }
+
+region_sidebar_right:
+  css:
+    layout:
+      dist/css/04-components/layout/region-sidebar-right.css: { }
+
+block_druki_content_toc_mobile:
+  css:
+    theme:
+      dist/css/04-components/block/druki-content-toc-mobile.css: { }
+
+photoswipe:
+  css:
+    component:
+      dist/css/04-components/javascript/photoswipe.css: { }
 
 druki_content_variations:
   css:
