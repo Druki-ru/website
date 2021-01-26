@@ -71,7 +71,6 @@
         "drupal/core-dev": "^9.0",
         "mglaman/drupal-check": "^1.1",
         "phpspec/prophecy-phpunit": "^2",
-        "phpunit/phpunit": "9.4.3",
         "weitzman/drupal-test-traits": "^1.5"
     },
     "autoload-dev": {
