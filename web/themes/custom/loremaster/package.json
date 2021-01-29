@@ -33,7 +33,6 @@
     "postcss-custom-media": "^7.0.8",
     "postcss-import": "^14.0.0",
     "postcss-inline": "^1.2.0",
-    "postcss-inline-svg": "^5.0.0",
     "postcss-nesting": "^7.0.1"
   }
 }

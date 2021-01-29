@@ -7,7 +7,6 @@ const cssnano = require('cssnano');
 const postcssCustomMedia = require('postcss-custom-media');
 const postcssImport = require('postcss-import');
 const postcssNesting = require('postcss-nesting');
-const postcssInlineSvg = require('postcss-inline-svg');
 
 /**
  * Builds CSS files from PostCSS.
@@ -18,9 +17,6 @@ function buildCss() {
   let plugins = [
     postcssImport(),
     postcssNesting(),
-    postcssInlineSvg({
-      paths: ['assets/images/icons']
-    }),
     postcssCustomMedia({
       importFrom: 'assets/pcss/01-generic/media-breakpoints.pcss',
     }),

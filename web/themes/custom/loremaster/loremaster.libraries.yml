@@ -8,7 +8,6 @@ global.style.generic:
       assets/css/01-generic/radius.css: { }
       assets/css/01-generic/spacing.css: { }
       assets/css/01-generic/grid.css: { }
-      assets/css/01-generic/icons.css: { }
       assets/css/01-generic/shadow.css: { }
 
 global.style.elements:
