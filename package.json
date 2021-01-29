@@ -7,8 +7,8 @@
   "license": "GPL v2",
   "private": true,
   "scripts": {
-    "build:theme": "THEME_PATH=web/themes/custom/loremaster; gulp build:css --gulpfile=$THEME_PATH/gulpfile.js;",
-    "watch:theme": "THEME_PATH=web/themes/custom/loremaster; gulp watch:css --gulpfile=$THEME_PATH/gulpfile.js;"
+    "build:theme": "THEME_PATH=web/themes/custom/loremaster; gulp buildCss --gulpfile=$THEME_PATH/gulpfile.js;",
+    "watch:theme": "THEME_PATH=web/themes/custom/loremaster; gulp watchCss --gulpfile=$THEME_PATH/gulpfile.js;"
   },
   "devDependencies": {
     "loremaster": "file:./web/themes/custom/loremaster"

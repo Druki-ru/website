@@ -18,7 +18,10 @@ regions:
   footer_menu_second: 'Footer menu second'
 
 libraries:
-  - loremaster/global-styling
+  - loremaster/global.style.generic
+  - loremaster/global.style.elements
+  - loremaster/global.style.components
+  - loremaster/global.style.utilities
 
 # Disable system libraries.
 libraries-override:
@@ -30,6 +33,6 @@ libraries-override:
 
 libraries-extend:
   druki_content/toc:
-    - loremaster/druki_content_toc
+    - loremaster/component.theme.druki-content-toc
   druki_content/mobile-toc:
-    - loremaster/druki_mobile_toc
+    - loremaster/component.theme.druki-mobile-toc

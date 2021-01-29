@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/Niklan/Glisseo#readme",
   "scripts": {
-    "build:theme": "gulp build:css",
-    "watch:theme": "gulp watch:css"
+    "build:theme": "gulp buildCss",
+    "watch:theme": "gulp watchCss"
   },
   "dependencies": {
     "autoprefixer": "^9.4.3",

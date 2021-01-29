@@ -1,9 +1,0 @@
-{# @todo Remove template when glisseo will change classes. #}
-{% if primary %}
-  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-  <ul class="{{ bem('local-tasks', null, ['primary']) }}">{{ primary }}</ul>
-{% endif %}
-{% if secondary %}
-  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-  <ul class="{{ bem('local-tasks', null, ['secondary']) }}">{{ secondary }}</ul>
-{% endif %}

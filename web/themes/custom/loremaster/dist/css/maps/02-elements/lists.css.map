@@ -1,1 +1,0 @@
-{"version":3,"sources":["02-elements/lists.pcss"],"names":[],"mappings":"AAAA,MACE,wBAAyB,CACzB,yBACF,CAEA,MAEE,yBAA0B,CAC1B,2BACF","file":"../../02-elements/lists.css","sourcesContent":[":root {\n  --list-margin: 0 0 1rem 0;\n  --list-padding: 0 0 0 2rem;\n}\n\nol,\nul {\n  margin: var(--list-margin);\n  padding: var(--list-padding);\n}\n\n"]}

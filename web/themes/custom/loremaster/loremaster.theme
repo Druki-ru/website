@@ -8,17 +8,46 @@
 use Drupal\druki\Utility\Anchor;
 
 /**
- * Implements hook_preprocess_HOOK() for druki-content.html.twig.
+ * Implements hook_preprocess().
  */
-function loremaster_preprocess_druki_content(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_content';
-}
+function loremaster_preprocess(array &$variables, string $hook): void {
+  // An array with libraries that must be attached on demand. This is done here
+  // to simplify things for loremaster theme. You can attach them whatever you
+  // want.
+  // An array contains:
+  // - theme_hook_original: The theme hook to attach to.
+  //   - libraries: An array with libraries to attach to that theme hook.
+  $dynamic_libraries = [
+    // Drupal core specific.
+    'breadcrumb' => ['loremaster/component.ui.breadcrumb'],
+    'links' => ['loremaster/component.ui.links'],
+    'menu_local_tasks' => ['loremaster/component.ui.local-tasks'],
+    'menu_local_action' => ['loremaster/component.ui.local-actions'],
+    'vertical_tabs' => ['loremaster/component.ui.vertical-tabs'],
+    'menu' => ['loremaster/component.ui.menu'],
+    'page_title' => ['loremaster/component.ui.page-title'],
+    'pager' => ['loremaster/component.ui.pager'],
+    'status_messages' => ['loremaster/component.ui.status-messages'],
+    // Custom theme hooks.
+    'photoswipe_image_formatter' => ['loremaster/component.javascript.photoswipe'],
+    'paragraph' => ['loremaster/component.paragraph'],
+    'druki_content' => ['loremaster/component.druki-content'],
+    'druki_wiki' => ['loremaster/component.theme.druki-wiki'],
+    'druki_download' => ['loremaster/component.theme.druki-download'],
+    'druki_category_navigation' => ['loremaster/component.theme.druki-category-navigation'],
+    'druki_official_user_guide' => ['loremaster/component.theme.official-user-guide'],
+    'druki_content_help_and_feedback' => ['loremaster/component.theme.druki-content-help-and-feedback'],
+    'druki_content_next_prev' => ['loremaster/component.theme.druki-content-next-prev'],
+    'druki_drupal_versions' => ['loremaster/component.theme.drupal-versions'],
+    'druki_search_results' => ['loremaster/component.theme.druki-search-results'],
+  ];
 
-/**
- * Implements hook_preprocess_HOOK() for paragraph.html.twig.
- */
-function loremaster_preprocess_paragraph(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/paragraph';
+  $theme_hook_original = $variables['theme_hook_original'];
+  if (array_key_exists($theme_hook_original, $dynamic_libraries)) {
+    foreach ($dynamic_libraries[$theme_hook_original] as $library) {
+      $variables['#attached']['library'][] = $library;
+    }
+  }
 }
 
 /**
@@ -76,134 +105,29 @@ function loremaster_preprocess_menu__main(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for druki-wiki.html.twig.
- */
-function loremaster_preprocess_druki_wiki(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_wiki';
-}
-
-/**
  * Implements hook_preprocess_HOOK() for block--druki-content-variations.html.twig.
  */
 function loremaster_preprocess_block__druki_content_variations(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_content_variations';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for druki-content-category-navigation.html.twig.
- */
-function loremaster_preprocess_druki_content_category_navigation(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_category_navigation';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for druki-official-user-guide.html.twig.
- */
-function loremaster_preprocess_druki_official_user_guide(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/official_user_guide';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for druki-content-help-and-feedback.html.twig.
- */
-function loremaster_preprocess_druki_content_help_and_feedback(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_content_help_and_feedback';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for druki-content-next-prev.html.twig.
- */
-function loremaster_preprocess_druki_content_next_prev(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_content_next_prev';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for druki-download.html.twig.
- */
-function loremaster_preprocess_druki_download(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_download';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for druki-drupal-versions.html.twig.
- */
-function loremaster_preprocess_druki_drupal_versions(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/drupal_versions';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for druki-search-results.html.twig.
- */
-function loremaster_preprocess_druki_search_results(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/druki_search_results';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for pager.html.twig.
- */
-function loremaster_preprocess_pager(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/pager';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for menu-local-tasks.html.twig.
- */
-function loremaster_preprocess_menu_local_tasks(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/local_tasks';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for breadcrumb.html.twig.
- */
-function loremaster_preprocess_breadcrumb(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/breadcrumb';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for vertical-tabs.html.twig.
- */
-function loremaster_preprocess_vertical_tabs(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/vertical_tabs';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for menu-local-action.html.twig.
- */
-function loremaster_preprocess_menu_local_action(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/local_actions';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for links.html.twig.
- */
-function loremaster_preprocess_links(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/links';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for photoswipe-image-formatter.html.twig.
- */
-function loremaster_preprocess_photoswipe_image_formatter(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/photoswipe';
+  $variables['#attached']['library'][] = 'loremaster/component.block.druki-content-variations';
 }
 
 /**
  * Implements hook_preprocess_HOOK() for region--content-header.html.twig.
  */
 function loremaster_preprocess_region__content_header(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/region_content_header';
+  $variables['#attached']['library'][] = 'loremaster/component.layout.region-content-header';
 }
 
 /**
  * Implements hook_preprocess_HOOK() for region--sidebar-right.html.twig.
  */
 function loremaster_preprocess_region__sidebar_right(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/region_sidebar_right';
+  $variables['#attached']['library'][] = 'loremaster/component.layout.region-sidebar-right';
 }
 
 /**
- * Implements hook_preprocess_HOOK() for block--druki-contetn-toc-mobile.html.twig.
+ * Implements hook_preprocess_HOOK() for block--druki-content-toc-mobile.html.twig.
  */
 function loremaster_preprocess_block__druki_content_toc_mobile(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/block_druki_content_toc_mobile';
+  $variables['#attached']['library'][] = 'loremaster/component.block.druki-content-toc-mobile';
 }

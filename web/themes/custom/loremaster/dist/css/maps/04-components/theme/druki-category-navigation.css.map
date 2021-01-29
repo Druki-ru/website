@@ -1,1 +1,0 @@
-{"version":3,"sources":["04-components/theme/druki-category-navigation.pcss"],"names":[],"mappings":"AAAA,qBACE,6BAA8B,CAC9B,eACF","file":"../../../04-components/theme/druki-category-navigation.css","sourcesContent":[".category-navigation {\n  font-size: var(--font-size-sm);\n  line-height: 1.7;\n}\n"]}
