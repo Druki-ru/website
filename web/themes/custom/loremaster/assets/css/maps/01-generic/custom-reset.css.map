@@ -1,0 +1,1 @@
+{"version":3,"sources":["01-generic/custom-reset.pcss"],"names":[],"mappings":"AAAA,EACE,qBAAsB,CAEtB,WACF","file":"../../01-generic/custom-reset.css","sourcesContent":["* {\n  box-sizing: border-box;\n  /* Workaround for flexboxes. */\n  min-width: 0;\n}\n"]}

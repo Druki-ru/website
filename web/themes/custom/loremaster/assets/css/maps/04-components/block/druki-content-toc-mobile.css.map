@@ -1,0 +1,1 @@
+{"version":3,"sources":["04-components/block/druki-content-toc-mobile.pcss"],"names":[],"mappings":"AACE,yBADF,iCAEI,YAEJ,CADE","file":"../../../04-components/block/druki-content-toc-mobile.css","sourcesContent":[".block--druki-content-toc-mobile {\n  @media (--lg) {\n    display: none;\n  }\n}\n"]}
