@@ -3,7 +3,7 @@ name: Continuous Integration
 on:
   workflow_dispatch:
   push:
-    branches: [ 9.x ]
+    branches: [ production ]
 
 env:
   SSH_KEY: ${{ secrets.ci_deploy_key }}
@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           ssh production "cd $DEPLOY_PATH && git fetch && git checkout"
-          ssh production "cd $DEPLOY_PATH && git pull origin 9.x"
+          ssh production "cd $DEPLOY_PATH && git pull origin production"
 
       - name: 'Install Composer dependencies'
         run: ssh production "cd $DEPLOY_PATH && composer install --no-dev -o -n"
