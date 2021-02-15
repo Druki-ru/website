@@ -7,10 +7,21 @@
   "license": "GPL v2",
   "private": true,
   "scripts": {
-    "build:theme": "THEME_PATH=web/themes/custom/loremaster; gulp buildCss --gulpfile=$THEME_PATH/gulpfile.js;",
-    "watch:theme": "THEME_PATH=web/themes/custom/loremaster; gulp watchCss --gulpfile=$THEME_PATH/gulpfile.js;"
+    "compile": "gulp compile --gulpfile=scripts/gulpfile.esm.js;",
+    "watch": "gulp watch --gulpfile=scripts/gulpfile.esm.js;"
   },
   "devDependencies": {
-    "loremaster": "file:./web/themes/custom/loremaster"
+    "esm": "^3.2.25",
+    "autoprefixer": "^9.4.3",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.0",
+    "gulp-postcss": "^9.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "postcss": "^8.2.2",
+    "postcss-custom-media": "^7.0.8",
+    "postcss-import": "^14.0.0",
+    "postcss-inline": "^1.2.0",
+    "postcss-nesting": "^7.0.1"
   }
 }

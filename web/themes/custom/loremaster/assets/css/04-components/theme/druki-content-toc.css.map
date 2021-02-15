@@ -1,0 +1,1 @@
+{"version":3,"sources":["04-components/theme/druki-content-toc.pcss"],"names":[],"mappings":"AAAA,KACE,6BAA8B,CAC9B,eACF","file":"druki-content-toc.css","sourcesContent":[".toc {\n  font-size: var(--font-size-sm);\n  line-height: 1.7;\n}\n"]}

@@ -43,6 +43,31 @@ This is required for correct configuration split process.
 1. Make a cup of coffee ☕️ and wait until the installation is finished.
 1. Enjoy your copy.
 
+## Compile CSS and JS
+
+If you want to modify sites theme or some of the JSs, you must run compilation process to do so.
+
+- `yarn install` (`npm install`) (if not yet done)
+- `yarn run compile` (`npm run compile`) - to one time build.
+- `yarn run watch` (`npm run watch`) - to watch for file changes and compile them.
+
+These scripts will:
+
+- Compile PostCSS to CSS files.
+- Compile JavaScript files with `.es6.js` ending into `.js` files, compress and optimize them.
+
+The dist files are placed at the same folder where is a source. It can be a bit overwhelming in project tree, so it's suggested for JetBrains IDEs users to do:
+
+1. `SHIFT` + `SHIFT`
+1. Type `File nesting`, select found element.
+1. In opened window add new rules:
+  - `.es6.js` | `.js`
+  - `.pcss` | `.css`
+
+As a result, it will make your structure clean and usable.
+
+![File nesting PHPStorm](https://i.imgur.com/iIDcfTD.png)
+
 ### Code static analyse and Testing
 
 #### PHP Unit

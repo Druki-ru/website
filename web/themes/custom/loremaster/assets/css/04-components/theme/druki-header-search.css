@@ -1,2 +1,2 @@
 .druki-header-search{position:relative;display:flex}.druki-header-search__input{padding:0 var(--spacing-xs);padding-left:calc(2rem + var(--spacing-xs));color:var(--color-white);border:unset;border-radius:var(--radius-xxs);background-color:var(--color-black--light-24);font-size:var(--font-size-xs);height:2rem;width:100%}.druki-header-search__input:hover{opacity:.9}.druki-header-search__submit{position:absolute;z-index:1;top:0;left:0;width:2rem;height:2rem;border:unset;border-radius:var(--radius-xxs);background:transparent url(../../../icons/ffffff/magnify.svg) no-repeat 50%}
-/*# sourceMappingURL=../../maps/04-components/theme/druki-header-search.css.map */
+/*# sourceMappingURL=druki-header-search.css.map */

@@ -1,2 +1,2 @@
 .region-mobile-toolbar{background-color:var(--region-header-background-color);height:var(--region-header-height);display:flex;align-items:center}.region-mobile-toolbar .block--mobile-repository-button{margin-left:auto}.region-mobile-toolbar .block--mobile-sidebar-button{margin-right:var(--spacing-sm)}@media (min-width:992px){.region-mobile-toolbar{display:none}}
-/*# sourceMappingURL=../../maps/04-components/layout/region-mobile-toolbar.css.map */
+/*# sourceMappingURL=region-mobile-toolbar.css.map */
