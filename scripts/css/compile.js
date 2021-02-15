@@ -2,7 +2,7 @@ import {dest, src} from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
-import destinationToSource from "../utility/destinationToSource";
+import destinationToSource from "../utils/destinationToSource";
 import {paths} from "../config";
 import postCssPlugins from "./postCssPlugins";
 
