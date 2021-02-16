@@ -208,7 +208,7 @@ component.theme.druki-search-results:
 
 code-highlight:
   js:
-    assets/js/code-highlight.js: { }
+    assets/js/code-highlight.js: { minified: true }
   dependencies:
     - core/drupal
     - loremaster/prismjs
@@ -223,7 +223,7 @@ prismjs:
     theme:
       assets/css/04-components/javascript/prismjs.css: { }
   js:
-    assets/js/prism.manual.js: { weight: -1 }
+    assets/js/prism.manual.js: { weight: -1, minified: true }
     # Prism has no dist files in any repo. So we use prebuild JS from theme.
     assets/js/prism.js: { minfied: true }
 

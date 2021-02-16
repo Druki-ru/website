@@ -1,14 +1,14 @@
 toc:
   version: VERSION
   js:
-    assets/js/druki-content-toc.js: {}
+    assets/js/druki-content-toc.js: { minified: true }
   dependencies:
     - druki/throttle
     - core/drupal
 
 mobile-toc:
   js:
-    assets/js/druki-mobile-toc.js: {}
+    assets/js/druki-mobile-toc.js: { minified: true }
   dependencies:
     - core/drupal
 
@@ -16,4 +16,4 @@ form:
   version: VERSION
   css:
     layout:
-      assets/css/druki_content.form.css: {}
+      assets/css/druki_content.form.css: { minified: true }

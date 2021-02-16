@@ -7,22 +7,22 @@ druki.toolbar:
 throttle:
   version: VERSION
   js:
-    assets/js/throttle.js: {}
+    assets/js/throttle.js: { minified: true }
   dependencies:
     - core/drupal
 
 mobile-sidebar:
   version: VERSION
   js:
-    assets/js/mobile-sidebar.js: {}
+    assets/js/mobile-sidebar.js: { minified: true }
   dependencies:
     - core/drupal
 
 instant-page:
   version: VERSION
   js:
-    /libraries/instant.page/instantpage.js: {}
-    assets/js/instant-page.js: {}
+    /libraries/instant.page/instantpage.js: { minified: true }
+    assets/js/instant-page.js: { minified: true }
   dependencies:
     - core/drupal
 
@@ -30,12 +30,6 @@ dark-mode:
   js:
     # The earlier library will execute, the less "screen flash" will be.
     # Drupal global variable init occurs at -17 weight, so we place it after it.
-    assets/js/dark-mode.js: { weight: -16 }
-  dependencies:
-    - core/drupal
-
-remote_video_optimized:
-  js:
-    assets/js/druki-media-remote-video-optimized.js: {}
+    assets/js/dark-mode.js: { weight: -16, minified: true }
   dependencies:
     - core/drupal
