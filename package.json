@@ -18,6 +18,7 @@
     "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.0.1",
     "postcss": "^8.2.2",
     "postcss-custom-media": "^7.0.8",
     "postcss-import": "^14.0.0",

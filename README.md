@@ -56,6 +56,7 @@ These scripts will:
 - Compile PostCSS to CSS files.
 - Compile JavaScript files with `.es6.js` ending into `.js` files, compress and optimize them.
 
+
 The dist files are placed at the same folder where is a source. It can be a bit overwhelming in project tree, so it's suggested for JetBrains IDEs users to do:
 
 1. `SHIFT` + `SHIFT`

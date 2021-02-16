@@ -13,7 +13,6 @@ global.style.generic:
 global.style.elements:
   css:
     base:
-      assets/css/02-elements/globals.css: { }
       assets/css/02-elements/focus.css: { }
       assets/css/02-elements/selection.css: { }
       assets/css/02-elements/page.css: { }

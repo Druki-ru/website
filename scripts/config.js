@@ -15,6 +15,10 @@ const paths = {
   theme: {
     base: PROJECT_ROOT + '/web/themes/custom/loremaster',
     css: PROJECT_ROOT + '/web/themes/custom/loremaster/assets/css',
+    js: PROJECT_ROOT + '/web/themes/custom/loremaster/assets/js',
+  },
+  modules: {
+    custom: PROJECT_ROOT + '/web/modules/custom',
   }
 }
 
