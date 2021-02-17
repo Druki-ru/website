@@ -1,1 +1,0 @@
-{"version":3,"sources":["02-elements/horizontal-rules.pcss"],"names":[],"mappings":"AAAA,GACE,0BAA2B,CAC3B,YAAa,CACb,wCACF","file":"horizontal-rules.css","sourcesContent":["hr {\n  margin: var(--spacing-sm) 0;\n  border: unset;\n  border-top: 1px solid var(--color-border);\n}\n"]}

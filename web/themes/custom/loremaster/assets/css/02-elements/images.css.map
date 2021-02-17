@@ -1,1 +1,0 @@
-{"version":3,"sources":["02-elements/images.pcss"],"names":[],"mappings":"AAAA,IACE,cAAe,CAEf,WAAY,CAEZ,iBAAkB,CAElB,qBACF","file":"images.css","sourcesContent":["img {\n  max-width: 100%;\n  /*Fixes aspect ratio.*/\n  height: auto;\n  /*For ALT attribute.*/\n  font-style: italic;\n  /*Fixes whitespace under images.*/\n  vertical-align: middle;\n}\n"]}

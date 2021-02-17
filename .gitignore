@@ -57,3 +57,5 @@ web.config
 example.sites.php
 example.settings.local.php
 
+# Ignore maps for builded files like .css.map, .js.map.
+.map
