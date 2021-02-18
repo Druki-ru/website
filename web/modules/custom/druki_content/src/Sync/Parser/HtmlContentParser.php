@@ -9,6 +9,7 @@ use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImage;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphNote;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphText;
 use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter;
+use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface;
 use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterValue;
 use Drupal\druki_content\Sync\ParsedContent\ParsedContent;
 use Symfony\Component\DomCrawler\Crawler;
@@ -97,13 +98,13 @@ final class HtmlContentParser {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $meta_information
+   * @param FrontMatterInterface $meta_information
    *   The content meta information.
    *
    * @return bool|null
    *   TRUE if parsed successfully, NULL otherwise.
    */
-  protected function parseFrontMatter(\DOMElement $dom_element, FrontMatter $meta_information): bool {
+  protected function parseFrontMatter(\DOMElement $dom_element, FrontMatterInterface $meta_information): bool {
     $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
     $meta_block = $crawler->filter('div[data-druki-element="front-matter"]');
 

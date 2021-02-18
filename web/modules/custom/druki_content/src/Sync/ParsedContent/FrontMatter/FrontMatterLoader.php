@@ -32,24 +32,24 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'title' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    */
-  protected function processTitle(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processTitle(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     $content->setTitle($front_matter->get('title')->getValue());
   }
 
   /**
    * Process 'category' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    */
-  protected function processCategory(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processCategory(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     if ($front_matter->has('category')) {
       $category = $front_matter->get('category')->getValue();
       $category_area = $category['area'];
@@ -63,12 +63,12 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'core' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    */
-  protected function processCore(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processCore(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     if ($front_matter->has('core')) {
       $content->setCore($front_matter->get('core')->getValue());
     }
@@ -77,14 +77,14 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'path' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    *
    * @see druki_content_tokens()
    */
-  protected function processPath(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processPath(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     if ($front_matter->has('path')) {
       $forced_alias = $front_matter->get('path')->getValue();
       $content->set('forced_path', $forced_alias);
@@ -94,14 +94,14 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'difficulty' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    *
    * @todo Consider remove this field or use it.
    */
-  protected function processDifficulty(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processDifficulty(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     // Reset value. Assumes that value was cleared.
     $content->set('difficulty', NULL);
     if ($front_matter->has('difficulty')) {
@@ -123,14 +123,14 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'labels' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    *
    * @todo Consider remove this field or use it.
    */
-  protected function processLabels(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processLabels(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     // Reset value. Assumes that value was cleared.
     $content->set('labels', NULL);
     if ($front_matter->has('labels')) {
@@ -141,12 +141,12 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'search-keywords' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    */
-  protected function processSearchKeywords(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processSearchKeywords(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     // Reset value. Assumes that value was cleared.
     $content->set('search_keywords', NULL);
     if ($front_matter->has('search-keywords')) {
@@ -157,12 +157,12 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'metatags' value.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
    */
-  protected function processMetatags(FrontMatter $front_matter, DrukiContentInterface $content): void {
+  protected function processMetatags(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     // Reset value. Assumes that value was cleared.
     $content->set('metatags', NULL);
     if ($front_matter->has('metatags')) {

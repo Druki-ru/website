@@ -3,7 +3,7 @@
 namespace Drupal\druki_content\Sync\ParsedContent;
 
 use Drupal\druki_content\Sync\ParsedContent\Content\ContentList;
-use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter;
+use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface;
 
 /**
  * Provides value object for content structure.
@@ -13,7 +13,7 @@ final class ParsedContent {
   /**
    * The meta information for this content.
    *
-   * @var \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter
+   * @var FrontMatterInterface
    */
   protected $frontMatter;
 
@@ -27,12 +27,12 @@ final class ParsedContent {
   /**
    * ContentStructure constructor.
    *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter $front_matter
+   * @param FrontMatterInterface $front_matter
    *   The content front matter.
    * @param \Drupal\druki_content\Sync\ParsedContent\Content\ContentList $content
    *   The content list.
    */
-  public function __construct(FrontMatter $front_matter, ContentList $content) {
+  public function __construct(FrontMatterInterface $front_matter, ContentList $content) {
     $this->frontMatter = $front_matter;
     $this->content = $content;
   }
@@ -53,10 +53,10 @@ final class ParsedContent {
   /**
    * Gets meta information.
    *
-   * @return \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter
+   * @return FrontMatterInterface
    *   The meta information.
    */
-  public function getFrontMatter(): FrontMatter {
+  public function getFrontMatter(): FrontMatterInterface {
     return $this->frontMatter;
   }
 

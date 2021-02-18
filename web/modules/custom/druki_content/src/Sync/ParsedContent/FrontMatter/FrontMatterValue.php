@@ -2,10 +2,7 @@
 
 namespace Drupal\druki_content\Sync\ParsedContent\FrontMatter;
 
-/**
- * Provides value object for store single Front Matter value.
- */
-final class FrontMatterValue {
+final class FrontMatterValue implements FrontMatterValueInterface {
 
   /**
    * The key.
@@ -35,20 +32,14 @@ final class FrontMatterValue {
   }
 
   /**
-   * Gets the key.
-   *
-   * @return string
-   *   The key.
+   * {@inheritdoc}
    */
   public function getKey(): string {
     return $this->key;
   }
 
   /**
-   * Gets the value.
-   *
-   * @return mixed
-   *   The value.
+   * {@inheritdoc}
    */
   public function getValue() {
     return $this->value;
