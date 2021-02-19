@@ -32,7 +32,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'title' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
@@ -44,7 +44,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'category' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
@@ -63,7 +63,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'core' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
@@ -77,7 +77,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'path' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
@@ -94,7 +94,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'difficulty' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
@@ -123,7 +123,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'labels' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
@@ -141,7 +141,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'search-keywords' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.
@@ -157,7 +157,7 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   /**
    * Process 'metatags' value.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The parsed Front Matter.
    * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
    *   The destination content.

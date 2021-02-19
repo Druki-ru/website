@@ -2,6 +2,9 @@
 
 namespace Drupal\druki_content\Sync\ParsedContent\FrontMatter;
 
+/**
+ * Provides default front matter value implementation.
+ */
 final class FrontMatterValue implements FrontMatterValueInterface {
 
   /**

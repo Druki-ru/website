@@ -98,7 +98,7 @@ final class HtmlContentParser {
    *
    * @param \DOMElement $dom_element
    *   The DOM element to process.
-   * @param FrontMatterInterface $meta_information
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $meta_information
    *   The content meta information.
    *
    * @return bool|null

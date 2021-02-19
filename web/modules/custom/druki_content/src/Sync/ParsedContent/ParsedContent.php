@@ -13,7 +13,7 @@ final class ParsedContent {
   /**
    * The meta information for this content.
    *
-   * @var FrontMatterInterface
+   * @var \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface
    */
   protected $frontMatter;
 
@@ -27,7 +27,7 @@ final class ParsedContent {
   /**
    * ContentStructure constructor.
    *
-   * @param FrontMatterInterface $front_matter
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
    *   The content front matter.
    * @param \Drupal\druki_content\Sync\ParsedContent\Content\ContentList $content
    *   The content list.
@@ -53,7 +53,7 @@ final class ParsedContent {
   /**
    * Gets meta information.
    *
-   * @return FrontMatterInterface
+   * @return \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface
    *   The meta information.
    */
   public function getFrontMatter(): FrontMatterInterface {

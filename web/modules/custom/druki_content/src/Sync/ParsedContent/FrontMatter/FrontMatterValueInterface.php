@@ -2,7 +2,6 @@
 
 namespace Drupal\druki_content\Sync\ParsedContent\FrontMatter;
 
-
 /**
  * Provides value object for store single Front Matter value.
  */
