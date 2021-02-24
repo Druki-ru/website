@@ -22,8 +22,8 @@ final class ParagraphCodeLoaderTest extends ExistingSiteBase {
   public function testProcess(): void {
     $paragraph_code = new ParagraphCode("echo 'Hello World!';");
     $druki_content = $this->createDrukiContent();
-    $paragraph_code_loader = $this->container->get('druki_content.parsed_content_loader.paragraph_code');
-    $paragraph_code_loader->process($paragraph_code, $druki_content);
+    $content_loader = $this->container->get('druki_content.parsed_content_loader');
+    $content_loader->process($paragraph_code, $druki_content);
 
     /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $first_paragraph */
     $first_paragraph_item = $druki_content->get('content')->first();

@@ -22,8 +22,8 @@ final class ParagraphNoteLoaderTest extends ExistingSiteBase {
   public function testProcess(): void {
     $paragraph_note = new ParagraphNote('warning', 'This is the warning!');
     $druki_content = $this->createDrukiContent();
-    $paragraph_note_loader = $this->container->get('druki_content.parsed_content_loader.paragraph_note');
-    $paragraph_note_loader->process($paragraph_note, $druki_content);
+    $content_loader = $this->container->get('druki_content.parsed_content_loader');
+    $content_loader->process($paragraph_note, $druki_content);
 
     /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $first_paragraph */
     $first_paragraph_item = $druki_content->get('content')->first();

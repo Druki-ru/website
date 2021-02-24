@@ -22,8 +22,8 @@ final class ParagraphHeadingLoaderTest extends ExistingSiteBase {
   public function testProcess(): void {
     $paragraph_heading = new ParagraphHeading('h2', 'Foo bar');
     $druki_content = $this->createDrukiContent();
-    $paragraph_heading_loader = $this->container->get('druki_content.parsed_content_loader.paragraph_heading');
-    $paragraph_heading_loader->process($paragraph_heading, $druki_content);
+    $content_loader = $this->container->get('druki_content.parsed_content_loader');
+    $content_loader->process($paragraph_heading, $druki_content);
 
     /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $first_paragraph */
     $first_paragraph_item = $druki_content->get('content')->first();
