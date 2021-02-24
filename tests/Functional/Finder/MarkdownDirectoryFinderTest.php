@@ -2,6 +2,7 @@
 
 namespace Druki\Tests\Functional\Finder;
 
+use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\druki\Finder\MarkdownDirectoryFinder;
 use Drupal\Tests\UnitTestCase;
 use org\bovigo\vfs\vfsStream;
@@ -13,6 +14,8 @@ use org\bovigo\vfs\vfsStream;
  */
 class MarkdownDirectoryFinderTest extends UnitTestCase {
 
+  use SourceContentProviderTrait;
+  
   /**
    * Tests Markdown directory finder.
    *
@@ -20,7 +23,7 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
    * @dataProvider directoriesProvider
    */
   public function testFinder(array $directories, int $expected): void {
-    $this->setUpVfsStream();
+    $this->setupFakeSourceDir();
     $discovery = new MarkdownDirectoryFinder($directories);
     $data = $discovery->findAll();
 
@@ -28,35 +31,11 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
   }
 
   /**
-   * Set up fake filesystem.
-   */
-  protected function setUpVfsStream(): void {
-    vfsStream::setup('content', NULL, [
-      'docs' => [
-        'ru' => [
-          'standards' => [
-            'php.md' => 'Drupal PHP code standards.',
-          ],
-          'drupal.md' => 'Drupal description.',
-        ],
-        'en' => [
-          'standards' => [
-            'php.md' => 'Drupal PHP code standards.',
-          ],
-          'drupal.md' => 'Drupal description.',
-        ],
-        'de' => [],
-      ],
-      'README.md' => "Readme file.",
-    ]);
-  }
-
-  /**
    * Tests directories that doesn't exists.
    */
   public function testDirectoryNotFound(): void {
     $this->expectException('\Symfony\Component\Finder\Exception\DirectoryNotFoundException');
-    $this->setUpVfsStream();
+    $this->setupFakeSourceDir();
     $discovery = new MarkdownDirectoryFinder([vfsStream::url('content/docs/fr'), vfsStream::url('content/docs/es')]);
     $discovery->findAll();
   }
