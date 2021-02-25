@@ -2,7 +2,6 @@
 
 namespace Drupal\druki_git\Git;
 
-
 /**
  * Provides interface for git settings implementations.
  */
