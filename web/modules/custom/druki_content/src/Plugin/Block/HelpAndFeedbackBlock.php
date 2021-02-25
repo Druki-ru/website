@@ -28,20 +28,18 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The remote repository URL.
+   * The git settings.
    *
-   * @var string
+   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  protected $repositoryUrl;
+  protected $gitSettings;
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $config_factory = $container->get('config.factory');
-    $instance->repositoryUrl = $config_factory->get('druki_git.git_settings')->get('repository_url');
-
+    $instance->gitSettings = $container->get('druki_git.settings');
     return $instance;
   }
 
@@ -70,6 +68,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build(): array {
+    $repository_url = $this->gitSettings->getRepositoryUrl();
     $improve_title = new TranslatableMarkup('Feedback: @title', [
       '@title' => $this->getEntityFromContext()->label(),
     ]);
@@ -77,14 +76,14 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
     return [
       '#theme' => 'druki_content_help_and_feedback',
       '#edit_url' => $this->getEntityFromContext()->toUrl('edit-remote'),
-      '#improve_url' => Url::fromUri($this->repositoryUrl . '/issues/new', [
+      '#improve_url' => Url::fromUri($repository_url . '/issues/new', [
         'query' => [
           'title' => $improve_title,
           'body' => $this->buildImproveBody(),
           'labels' => 'improvement',
         ],
       ]),
-      '#help_url' => Url::fromUri($this->repositoryUrl . '/discussions/new', [
+      '#help_url' => Url::fromUri($repository_url . '/discussions/new', [
         'query' => [
           'category' => 'Help',
         ],

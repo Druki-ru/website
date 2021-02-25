@@ -3,7 +3,6 @@
 namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
 use Drupal\Component\Render\PlainTextOutput;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\Exception\FileException;
@@ -11,6 +10,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\druki\File\FileTrackerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_git\Git\GitSettingsInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 
@@ -25,11 +25,11 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
   protected $supportedInterfaceOrClass = ParagraphImage::class;
 
   /**
-   * The config factory.
+   * The git settings.
    *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  protected $configFactory;
+  protected $gitSettings;
 
   /**
    * The file tracker.
@@ -78,8 +78,8 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
+   * @param \Drupal\druki_git\Git\GitSettingsInterface $git_settings
+   *   The git settings.
    * @param \Drupal\druki\File\FileTrackerInterface $file_tracker
    *   The file tracker.
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
@@ -92,11 +92,11 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, FileTrackerInterface $file_tracker, EntityFieldManagerInterface $entity_field_manager, Token $token, FileSystemInterface $file_system) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, GitSettingsInterface $git_settings, FileTrackerInterface $file_tracker, EntityFieldManagerInterface $entity_field_manager, Token $token, FileSystemInterface $file_system) {
     parent::__construct($entity_type_manager);
     $this->mediaStorage = $entity_type_manager->getStorage('media');
     $this->fileStorage = $entity_type_manager->getStorage('file');
-    $this->configFactory = $config_factory;
+    $this->gitSettings = $git_settings;
     $this->fileTracker = $file_tracker;
     $this->entityFieldManager = $entity_field_manager;
     $this->token = $token;
@@ -129,10 +129,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
     else {
       // If no scheme is set, we treat this file as local and relative to
       // repository root folder.
-      $repository_path = $this
-        ->configFactory
-        ->get('druki_git.git_settings')
-        ->get('repository_path');
+      $repository_path = $this->gitSettings->getRepositoryPath();
       $repository_path = \rtrim($repository_path, '/');
       $src = \ltrim($src, '/');
       $file_uri = $repository_path . '/' . $src;

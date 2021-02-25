@@ -3,7 +3,6 @@
 namespace Drupal\druki_git\Git;
 
 use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
@@ -15,11 +14,11 @@ use Drupal\druki_git\Exception\GitCommandFailedException;
 final class Git implements GitInterface {
 
   /**
-   * The configuration object.
+   * The git settings.
    *
-   * @var \Drupal\Core\Config\ImmutableConfig
+   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  protected $configuration;
+  protected $gitSettings;
 
   /**
    * The file system.
@@ -43,34 +42,19 @@ final class Git implements GitInterface {
   protected $repositoryPath;
 
   /**
-   * The repository realpath.
-   *
-   * @var string
-   */
-  protected $repositoryRealpath;
-
-  /**
    * Git constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
+   * @param \Drupal\druki_git\Git\GitSettingsInterface $git_settings
+   *   The git settings.
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file system.
    * @param \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher $event_dispatcher
    *   The event dispatcher.
    */
-  public function __construct(
-    ConfigFactoryInterface $config_factory,
-    FileSystemInterface $file_system,
-    ContainerAwareEventDispatcher $event_dispatcher
-  ) {
-
-    $this->configuration = $config_factory->get('druki_git.git_settings');
+  public function __construct(GitSettingsInterface $git_settings, FileSystemInterface $file_system, ContainerAwareEventDispatcher $event_dispatcher) {
+    $this->gitSettings = $git_settings;
     $this->fileSystem = $file_system;
     $this->eventDispatcher = $event_dispatcher;
-
-    $this->repositoryPath = $this->configuration->get('repository_path');
-    $this->repositoryRealpath = $this->fileSystem->realpath($this->repositoryPath);
   }
 
   /**
@@ -94,7 +78,7 @@ final class Git implements GitInterface {
    * {@inheritdoc}
    */
   public function getRepositoryRealpath(): string {
-    return $this->repositoryRealpath;
+    return $this->fileSystem->realpath($this->gitSettings->getRepositoryPath());
   }
 
   /**
@@ -108,7 +92,7 @@ final class Git implements GitInterface {
    * {@inheritdoc}
    */
   public function getRepositoryPath(): string {
-    return $this->repositoryPath;
+    return $this->gitSettings->getRepositoryPath();
   }
 
   /**

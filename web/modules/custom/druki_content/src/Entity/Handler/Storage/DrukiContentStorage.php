@@ -2,32 +2,13 @@
 
 namespace Drupal\druki_content\Entity\Handler\Storage;
 
-use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides storage handler for "druki_content" entity.
  */
 final class DrukiContentStorage extends SqlContentEntityStorage {
-
-  /**
-   * The git settings configuration.
-   *
-   * @var \Drupal\Core\Config\ImmutableConfig
-   */
-  protected $gitSettings;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
-    $instance = parent::createInstance($container, $entity_type);
-    $config_factory = $container->get('config.factory');
-    $instance->gitSettings = $config_factory->get('druki_git.git_settings');
-    return $instance;
-  }
 
   /**
    * Loads content by its meta information.

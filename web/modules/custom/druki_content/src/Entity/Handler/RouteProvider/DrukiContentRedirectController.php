@@ -2,10 +2,10 @@
 
 namespace Drupal\druki_content\Entity\Handler\RouteProvider;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_git\Git\GitSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -16,20 +16,20 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class DrukiContentRedirectController extends ControllerBase {
 
   /**
-   * The config factory.
+   * The git settings.
    *
-   * @var \Drupal\Core\Config\ImmutableConfig
+   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  private $gitConfig;
+  private $gitSettings;
 
   /**
    * Constructs a new DrukiContentRedirectController object.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
+   * @param \Drupal\druki_git\Git\GitSettingsInterface $git_settings
+   *   The git settings.
    */
-  public function __construct(ConfigFactoryInterface $config_factory) {
-    $this->gitConfig = $config_factory->get('druki_git.git_settings');
+  public function __construct(GitSettingsInterface $git_settings) {
+    $this->gitSettings = $git_settings;
   }
 
   /**
@@ -37,7 +37,7 @@ final class DrukiContentRedirectController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
+      $container->get('druki_git.settings'),
     );
   }
 
@@ -53,7 +53,7 @@ final class DrukiContentRedirectController extends ControllerBase {
    *   The redirect response.
    */
   public function build(DrukiContentInterface $druki_content, string $redirect_to): Response {
-    $repository_url = $this->gitConfig->get('repository_url');
+    $repository_url = $this->gitSettings->getRepositoryUrl();
     $relative_pathname = $druki_content->getRelativePathname();
 
     switch ($redirect_to) {

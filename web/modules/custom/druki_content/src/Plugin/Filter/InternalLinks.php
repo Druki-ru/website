@@ -40,16 +40,9 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   /**
    * The git settings.
    *
-   * @var \Drupal\Core\Config\ImmutableConfig
+   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
   protected $gitSettings;
-
-  /**
-   * The repository path.
-   *
-   * @var array|null
-   */
-  protected $gitRepositoryPath;
 
   /**
    * The file system.
@@ -59,25 +52,17 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   protected $fileSystem;
 
   /**
-   * The relapath for git repository.
-   *
-   * @var false|string
-   */
-  protected $gitRepositoryRealpath;
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): InternalLinks {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $druki_content_storage = $container->get('entity_type.manager')->getStorage('druki_content');
+    $druki_content_storage = $container->get('entity_type.manager')
+      ->getStorage('druki_content');
     \assert($druki_content_storage instanceof DrukiContentStorage);
     $instance->contentStorage = $druki_content_storage;
-    $instance->gitSettings = $container->get('config.factory')->get('druki_git.git_settings');
+    $instance->gitSettings = $container->get('druki_git.settings');
     $instance->gitRepositoryPath = $instance->gitSettings->get('repository_path');
     $instance->fileSystem = $container->get('file_system');
-    $instance->gitRepositoryRealpath = $instance->fileSystem->realpath($instance->gitRepositoryPath);
-
     return $instance;
   }
 
@@ -94,6 +79,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
 
     $dom = Html::load($text);
     $xpath = new \DOMXPath($dom);
+    $repository_realpath = $this->fileSystem->realpath($this->gitSettings->getRepositoryPath());
 
     // <a href="services/services.md" data-druki-internal-link-filepath="public://druki-content-source/docs/ru/8/settings-php.md">сервис</a>
     /** @var \DOMElement $node */
@@ -117,7 +103,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       // repository root.
       // We also remove leading slash from repository path. This is needed
       // because "relative_pathname" stored without it: docs/ru/file.md.
-      $destination_relative_pathname = \str_replace($this->gitRepositoryRealpath . '/', '', $destination_realpath);
+      $destination_relative_pathname = \str_replace($repository_realpath . '/', '', $destination_realpath);
       if (\realpath($destination_realpath)) {
         // If we are here, this means the path is valid and file is exist.
         // Now we need to find the druki_content entity associated with this
