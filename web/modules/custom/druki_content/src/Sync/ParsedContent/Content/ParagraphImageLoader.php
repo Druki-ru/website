@@ -136,50 +136,47 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
     }
 
     // If some problems occurs and we doesn't have valid uti.
-    if (!$file_uri) {
+    if (!$file_uri || !\file_exists($file_uri)) {
       return;
     }
 
-    // If file is found locally.
-    if (\file_exists($file_uri)) {
-      $paragraph = $this->getParagraphStorage()->create(['type' => $data->getParagraphType()]);
-      $duplicate = $this->fileTracker->checkDuplicate($file_uri);
+    $paragraph = $this->getParagraphStorage()->create(['type' => $data->getParagraphType()]);
+    $duplicate = $this->fileTracker->checkDuplicate($file_uri);
 
-      // If we already have file with same content.
-      if ($duplicate instanceof FileInterface) {
-        $media = $this->saveImageFileToMediaImage($duplicate, $alt);
-      }
-      else {
-        $destination_uri = $this->getMediaImageFieldDestination();
-        $basename = \basename($file_uri);
-        $contents = \file_get_contents($file_uri);
+    // If we already have file with same content.
+    if ($duplicate instanceof FileInterface) {
+      $media = $this->saveImageFileToMediaImage($duplicate, $alt);
+    }
+    else {
+      $destination_uri = $this->getMediaImageFieldDestination();
+      $basename = \basename($file_uri);
+      $contents = \file_get_contents($file_uri);
 
-        // Ensure folder is exists and writable.
-        if ($this->fileSystem->prepareDirectory($destination_uri, FileSystemInterface::CREATE_DIRECTORY)) {
-          try {
-            $uri = $this->fileSystem->saveData($contents, $destination_uri . '/' . $basename);
-            $file = $this->fileStorage->create([
-              'uri' => $uri,
-              // This is doesn't matter for us.
-              'uid' => 1,
-              'status' => \FILE_STATUS_PERMANENT,
-            ]);
-            $file->save();
-            $media = $this->saveImageFileToMediaImage($file);
-          }
-          catch (FileException $e) {
-            // Do nothing if file cannot be created. It will attempted nex time.
-          }
+      // Ensure folder is exists and writable.
+      if ($this->fileSystem->prepareDirectory($destination_uri, FileSystemInterface::CREATE_DIRECTORY)) {
+        try {
+          $uri = $this->fileSystem->saveData($contents, $destination_uri . '/' . $basename);
+          $file = $this->fileStorage->create([
+            'uri' => $uri,
+            // This is doesn't matter for us.
+            'uid' => 1,
+            'status' => \FILE_STATUS_PERMANENT,
+          ]);
+          $file->save();
+          $media = $this->saveImageFileToMediaImage($file, $alt);
+        }
+        catch (FileException $e) {
+          // Do nothing if file cannot be created. It will attempted nex time.
         }
       }
+    }
 
-      // If media entity was created or found.
-      if ($media instanceof MediaInterface) {
-        $paragraph->set('druki_image', [
-          'target_id' => $media->id(),
-        ]);
-        $this->saveAndAppend($paragraph, $content);
-      }
+    // If media entity was created or found.
+    if ($media instanceof MediaInterface) {
+      $paragraph->set('druki_image', [
+        'target_id' => $media->id(),
+      ]);
+      $this->saveAndAppend($paragraph, $content);
     }
   }
 
@@ -211,6 +208,7 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
       }
       $media->set('field_media_image', [
         'target_id' => $file->id(),
+        'alt' => $name,
       ]);
       $media->save();
     }
