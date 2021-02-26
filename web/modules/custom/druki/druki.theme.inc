@@ -57,9 +57,9 @@ function template_preprocess_druki_official_user_guide(array &$variables): void 
   $variables['image'] = NULL;
   // Check is media and style is really existed.
   if ($image_media instanceof MediaInterface && $image_style instanceof ResponsiveImageStyleInterface) {
-    $fid = $image_media->getSource()->getSourceFieldValue($image_media);
+    $source_field = $image_media->getSource()->getConfiguration()['source_field'];
     /** @var \Drupal\file\FileInterface $file */
-    $file = $file_storage->load($fid);
+    $file = $image_media->get($source_field)->entity;
     $variables['image'] = [
       '#type' => 'responsive_image',
       '#responsive_image_style_id' => $image_style->id(),
