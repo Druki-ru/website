@@ -45,8 +45,6 @@ function template_preprocess_druki_official_user_guide(array &$variables): void 
   $user_guide_settings = \Drupal::config('druki.official_user_guide_settings');
   /** @var \Drupal\media\MediaStorage $media_storage */
   $media_storage = \Drupal::entityTypeManager()->getStorage('media');
-  /** @var \Drupal\file\FileStorageInterface $file_storage */
-  $file_storage = \Drupal::entityTypeManager()->getStorage('file');
   /** @var \Drupal\Core\Entity\EntityStorageInterface $responsive_image_style_storage */
   $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
   $image_settings = $user_guide_settings->get('image');
