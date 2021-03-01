@@ -3,6 +3,7 @@
 namespace Druki\Tests\Traits;
 
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 
 /**
  * Provides trait to generate fake source content files and structure.
@@ -12,8 +13,8 @@ trait SourceContentProviderTrait {
   /**
    * Prepare fake structure for source content with some contents.
    */
-  protected function setupFakeSourceDir(): void {
-    vfsStream::setup('content', NULL, [
+  protected function setupFakeSourceDir(): vfsStreamDirectory {
+    return vfsStream::setup('content', NULL, [
       'docs' => [
         'ru' => [
           'standards' => [

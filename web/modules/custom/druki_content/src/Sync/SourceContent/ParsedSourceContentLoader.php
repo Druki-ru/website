@@ -74,7 +74,7 @@ final class ParsedSourceContentLoader {
    * @param \Drupal\druki_content\Sync\SourceContent\ParsedSourceContent $parsed_source_content
    *   The parsed source content.
    * @param bool $force
-   *   TRUE if content must be updated eve if source hash is equal.
+   *   TRUE if content must be updated even if source hash is equal.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The update content entity.

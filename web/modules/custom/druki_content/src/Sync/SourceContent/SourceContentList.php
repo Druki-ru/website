@@ -51,6 +51,16 @@ final class SourceContentList implements \IteratorAggregate {
   }
 
   /**
+   * Returns source content items as array.
+   *
+   * @return \Drupal\druki_content\Sync\SourceContent\SourceContent[]
+   *   An array with source content items.
+   */
+  public function toArray(): array {
+    return $this->items;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getIterator() {
