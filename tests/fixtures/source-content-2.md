@@ -1,6 +1,6 @@
 ---
 id: example
-title: The title
+title: The modified version of source content
 ---
 
 Hello world!

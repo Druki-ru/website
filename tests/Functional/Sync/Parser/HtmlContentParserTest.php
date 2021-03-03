@@ -33,7 +33,8 @@ class HtmlContentParserTest extends TestCase {
 
     $front_matter = $parsed_content->getFrontMatter();
     $expected_front_matter = [
-      new FrontMatterValue('id', 'Drupal'),
+      new FrontMatterValue('id', 'example'),
+      new FrontMatterValue('title', 'The title'),
     ];
     $this->assertEquals($expected_front_matter, $front_matter->getValues());
 
