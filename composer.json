@@ -50,7 +50,7 @@
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
         "drupal/extra_field": "^1.0",
-        "drupal/glisseo": "1.x-dev",
+        "drupal/glisseo": "^1.0@alpha",
         "drupal/google_tag": "^1.1",
         "drupal/imagemagick": "^3.0",
         "drupal/metatag": "^1.8",

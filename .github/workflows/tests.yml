@@ -103,6 +103,9 @@ jobs:
       - name: 'Run docker'
         run: make
 
+      - name: 'Composer diagnose'
+        run: 'make composer diagnose -vvv'
+
       - name: 'Install site dependencies'
         run: 'make composer install'
 
