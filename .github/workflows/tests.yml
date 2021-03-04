@@ -85,3 +85,26 @@ jobs:
 
       - name: 'PHPStan Analyse'
         run: vendor/bin/phpstan analyse --configuration=phpstan.neon
+
+  phpunit:
+    name: 'PHPUnit'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Copy files for environment'
+        run: |
+          cp ./.github/workflows/d4d-phpunit/.env ./.env
+          cp ./.github/workflows/d4d-phpunit/docker-compose.yml ./docker-compose.yml
+          cp ./.github/workflows/d4d-phpunit/Makefile ./Makefile
+          cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
+
+      - name: 'Run docker'
+        run: make
+
+      - name: 'Install website'
+        run: 'make drush site:install druki_installer'
+
+      - name: 'Run tests'
+        run: 'make composer run-script phpunit'

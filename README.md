@@ -12,7 +12,7 @@
 
 Welcome to the public home of Druki Website.
 
-**Druki** — wiki-alike [website](druki.ru) about Drupal made on Drupal. This repository contains the source code of that website.
+**Druki** — wiki-alike [website](https://druki.ru) about Drupal made on Drupal. This repository contains the source code of that website.
 
 It was inspired by many other documentation sites, and their content editing process, but most important inspiration comes from ArchWiki. This project is trying to achieve the same things, but about Drupal and on Drupal, because, why not?
 
@@ -28,18 +28,14 @@ This is required for correct configuration split process.
 
 ### Install a local copy
 
-**Warning!** Currently, Drupal core has a bug [#3176625](https://www.drupal.org/project/drupal/issues/3176625). Before it resolved, you must patch core before running installation process, otherwise it will fail during config imports. Nothing can be done from our siвe.
+**Warning!** Currently, Drupal core has a bug [#3176625](https://www.drupal.org/project/drupal/issues/3176625). Before it resolved, you must patch core before running installation process, otherwise it will fail during config imports. Nothing can be done from our site. _The current versions of codebase include that patch._
 
 1. Clone this repository by `git clone https://github.com/Druki-ru/website.git`.
 1. Run `composer install`
 1. Add `$settings['config_sync_directory'] = '../config/sync';` to your **settings.php**.
 1. (optional) Run `yarn install`
-1. Run Drupal installation as usual.
-1. Select the preferred language.
-1. Select "Use existing configuration" and continue.
-
-    ![Profile](https://i.imgur.com/vsVKAHD.png)
-
+1. Open your local website address.
+1. The installation will start automatically and prepare website for you!
 1. Make a cup of coffee ☕️ and wait until the installation is finished.
 1. Enjoy your copy.
 

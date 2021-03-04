@@ -96,6 +96,9 @@
         "patches": {
             "drupal/photoswipe": {
                 "Responsive image support. https://dgo.to/2980534": "./patches/drupal-photoswipe-2980534-21.patch"
+            },
+            "drupal/core": {
+                "Fix configuration installer with module dependency on theme.": "./patches/drupal-3176625-13.patch"
             }
         },
         "drupal-scaffold": {

@@ -27,14 +27,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.druki_content.category
-  core:
-    label: 'Druki Content Core'
-    property_path: druki_content_core
-    type: string
-  difficulty:
-    label: 'Druki Content Difficulty'
-    property_path: druki_content_difficulty
-    type: string
   external_id:
     label: 'External content ID'
     datasource_id: 'entity:druki_content'
@@ -95,14 +87,10 @@ processor_settings:
   aggregated_field:
     weights:
       add_properties: 20
-  druki_content_core: {  }
-  druki_content_difficulty: {  }
   html_filter:
     all_fields: true
     fields:
       - category
-      - core
-      - difficulty
       - external_id
       - labels
       - rendered_item
@@ -124,8 +112,6 @@ processor_settings:
     all_fields: true
     fields:
       - category
-      - core
-      - difficulty
       - external_id
       - labels
       - rendered_item
@@ -407,8 +393,6 @@ processor_settings:
     all_fields: true
     fields:
       - category
-      - core
-      - difficulty
       - external_id
       - labels
       - rendered_item
