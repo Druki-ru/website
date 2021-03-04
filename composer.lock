@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7001bf5e62c300c9a40ec0d83ac2b447",
+    "content-hash": "a3a6ad6f5d9b0d5b31966e80d6120f0c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2239,11 +2239,17 @@
         },
         {
             "name": "drupal/glisseo",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha19",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/glisseo.git",
-                "reference": "7bf990647b72b012c5048b65ae889bc6fa3148cb"
+                "reference": "8.x-1.0-alpha19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/glisseo-8.x-1.0-alpha19.zip",
+                "reference": "8.x-1.0-alpha19",
+                "shasum": "be9c5bcb8ab2be0ae3f96f7466f3a1de03d510f1"
             },
             "require": {
                 "drupal/core": "^9",
@@ -2251,15 +2257,12 @@
             },
             "type": "drupal-theme",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0-alpha18+6-dev",
-                    "datestamp": "1613135093",
+                    "version": "8.x-1.0-alpha19",
+                    "datestamp": "1613135246",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "message": "Alpha releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -12577,7 +12580,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/glisseo": 20
+        "drupal/glisseo": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
