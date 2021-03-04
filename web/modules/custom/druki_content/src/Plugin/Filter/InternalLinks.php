@@ -61,7 +61,6 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
     \assert($druki_content_storage instanceof DrukiContentStorage);
     $instance->contentStorage = $druki_content_storage;
     $instance->gitSettings = $container->get('druki_git.settings');
-    $instance->gitRepositoryPath = $instance->gitSettings->get('repository_path');
     $instance->fileSystem = $container->get('file_system');
     return $instance;
   }
