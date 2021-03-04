@@ -87,34 +87,34 @@ jobs:
         run: vendor/bin/phpstan analyse --configuration=phpstan.neon
 
 #  @see https://github.com/Druki-ru/website/issues/37
-#  phpunit:
-#    name: 'PHPUnit'
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: 'Checkout'
-#        uses: 'actions/checkout@v2'
-#
-#      - name: 'Copy files for environment'
-#        run: |
-#          cp ./.github/workflows/d4d-phpunit/.env ./.env
-#          cp ./.github/workflows/d4d-phpunit/docker-compose.yml ./docker-compose.yml
-#          cp ./.github/workflows/d4d-phpunit/Makefile ./Makefile
-#          cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
-#
-#      - name: 'Run docker'
-#        run: make
-#
-#      - name: 'Composer diagnose'
-#        run: 'make composer diagnose -vvv'
-#
-#      - name: 'Configure Composer'
-#        run: 'make shell && composer config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
-#
-#      - name: 'Install site dependencies'
-#        run: 'make composer install'
-#
-#      - name: 'Install website'
-#        run: 'make drush site:install druki_installer'
-#
-#      - name: 'Run tests'
-#        run: 'make composer run-script phpunit'
+  phpunit:
+    name: 'PHPUnit'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Copy files for environment'
+        run: |
+          cp ./.github/workflows/d4d-phpunit/.env ./.env
+          cp ./.github/workflows/d4d-phpunit/docker-compose.yml ./docker-compose.yml
+          cp ./.github/workflows/d4d-phpunit/Makefile ./Makefile
+          cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
+
+      - name: 'Run docker'
+        run: make
+
+      - name: 'Composer diagnose'
+        run: 'make composer diagnose -vvv'
+
+      - name: 'Configure Composer'
+        run: 'make composer config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
+
+      - name: 'Install site dependencies'
+        run: 'make composer install'
+
+      - name: 'Install website'
+        run: 'make drush site:install druki_installer'
+
+      - name: 'Run tests'
+        run: 'make composer run-script phpunit'
