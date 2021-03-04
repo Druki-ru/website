@@ -104,8 +104,8 @@ jobs:
       - name: 'Run docker'
         run: make
 
-      - name: 'Composer diagnose'
-        run: "docker-compose exec -T php bash -c 'composer diagnose -vvv'"
+#      - name: 'Composer diagnose'
+#        run: "docker-compose exec -T php bash -c 'composer diagnose -vvv'"
 
 #      - name: 'Configure Composer'
 #        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
