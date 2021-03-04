@@ -13,6 +13,9 @@ jobs:
   phpcs:
     name: 'PHPCS'
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/vscode/devcontainers/base:ubuntu
+      options: --user 1000
     strategy:
       matrix:
         php-version:
@@ -106,10 +109,6 @@ jobs:
 
 #      - name: 'Configure Composer'
 #        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
-
-      # web/libraries/instant.page does not exist and could not be created.
-      - name: 'Prepare folder'
-        run: 'mkdir -p web/libraries/instant.page'
 
       - name: 'Install site dependencies'
         run: "docker-compose exec -T php composer install"
