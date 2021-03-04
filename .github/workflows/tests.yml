@@ -106,6 +106,9 @@ jobs:
       - name: 'Composer diagnose'
         run: 'make composer diagnose -vvv'
 
+      - name: 'Configure Composer'
+        run: 'make composer config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
+
       - name: 'Install site dependencies'
         run: 'make composer install'
 
