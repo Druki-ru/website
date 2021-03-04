@@ -104,14 +104,15 @@ jobs:
       - name: 'Run docker'
         run: make
 
-#      - name: 'Composer diagnose'
-#        run: "docker-compose exec -T php bash -c 'composer diagnose -vvv'"
-
 #      - name: 'Configure Composer'
 #        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
 
+      # web/libraries/instant.page does not exist and could not be created.
+      - name: 'Prepare folder'
+        run: 'mkdir web/libraries/instant.page'
+
       - name: 'Install site dependencies'
-        run: "docker-compose exec -T php bash -c 'composer install'"
+        run: "docker-compose exec -T php composer install"
 
       - name: 'Install website'
         run: 'make drush site:install druki_installer'
