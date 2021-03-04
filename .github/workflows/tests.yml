@@ -103,6 +103,9 @@ jobs:
       - name: 'Run docker'
         run: make
 
+      - name: 'Install site dependencies'
+        run: 'make composer install'
+
       - name: 'Install website'
         run: 'make drush site:install druki_installer'
 
