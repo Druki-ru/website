@@ -105,13 +105,13 @@ jobs:
         run: make
 
       - name: 'Composer diagnose'
-        run: 'make composer diagnose -vvv'
+        run: 'docker-compose exec php composer diagnose -vvv'
 
-      - name: 'Configure Composer'
-        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
+#      - name: 'Configure Composer'
+#        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
 
       - name: 'Install site dependencies'
-        run: 'make composer install'
+        run: 'docker-compose exec php composer install'
 
       - name: 'Install website'
         run: 'make drush site:install druki_installer'
