@@ -94,8 +94,14 @@ jobs:
     name: 'PHPUnit'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Test ID'
+        run: id
+
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
+
+      - name: 'Permissions'
+        run: ln -ls
 
       - name: 'Copy files for environment'
         run: |
