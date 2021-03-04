@@ -13,9 +13,6 @@ jobs:
   phpcs:
     name: 'PHPCS'
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/vscode/devcontainers/base:ubuntu
-      options: --user 1000
     strategy:
       matrix:
         php-version:
