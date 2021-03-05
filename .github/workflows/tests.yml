@@ -112,7 +112,10 @@ jobs:
           cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
 
       - name: 'Run docker'
-        run: "docker-compose up -d --remove-orphans"
+        run: "docker-compose up -dd --build --remove-orphans"
+
+      - name: 'Test docker'
+        run: "docker ps"
 
 #      - name: 'Configure Composer'
 #        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
