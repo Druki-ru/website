@@ -107,14 +107,10 @@ jobs:
         run: |
           cp ./.github/workflows/d4d-phpunit/.env ./.env
           cp ./.github/workflows/d4d-phpunit/docker-compose.yml ./docker-compose.yml
-          cp ./.github/workflows/d4d-phpunit/Makefile ./Makefile
           cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
 
       - name: 'Run docker'
         run: docker-compose up -d
-
-      - name: 'Test ID'
-        run: id
 
 #      - name: 'Configure Composer'
 #        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
@@ -123,7 +119,7 @@ jobs:
         run: "docker-compose exec -T php composer install"
 
       - name: 'Install website'
-        run: 'make drush site:install druki_installer'
+        run: 'docker-compose exec -T drush site:install druki_installer'
 
       - name: 'Run tests'
-        run: 'make composer run-script phpunit'
+        run: 'docker-compose exec -T composer run-script phpunit'

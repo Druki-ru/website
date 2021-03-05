@@ -14,9 +14,10 @@ services:
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
+    user: root
     environment:
-      PHP_FPM_USER: runner
-      PHP_FPM_GROUP: runner
+      PHP_FPM_USER: root
+      PHP_FPM_GROUP: root
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       DB_HOST: $DB_HOST
       DB_PORT: $DB_PORT
