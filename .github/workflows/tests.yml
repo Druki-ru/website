@@ -96,14 +96,8 @@ jobs:
 #      - phpstan
 #      - phpcs
     steps:
-      - name: 'Test ID'
-        run: id
-
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
-
-      - name: 'Permissions'
-        run: ls -ln
 
       - name: 'Copy files for environment'
         run: |
@@ -113,9 +107,6 @@ jobs:
 
       - name: 'Run docker'
         run: "docker-compose up -d --force-recreate --build --remove-orphans"
-
-      - name: 'Test docker'
-        run: "docker ps"
 
 #      - name: 'Configure Composer'
 #        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
