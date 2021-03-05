@@ -90,9 +90,10 @@ jobs:
   phpunit:
     name: 'PHPUnit'
     runs-on: ubuntu-latest
-    needs:
-      - phpstan
-      - phpcs
+    # Enable when it will work.
+#    needs:
+#      - phpstan
+#      - phpcs
     steps:
       - name: 'Test ID'
         run: id
