@@ -10,91 +10,88 @@ env:
   COMPOSER_FLAGS: '--ansi --no-interaction --no-progress --no-suggest --prefer-dist'
 
 jobs:
-  # Enable back when PHPUnit will be configured.
-#  phpcs:
-#    name: 'PHPCS'
-#    runs-on: ubuntu-20.04
-#    strategy:
-#      matrix:
-#        php-version:
-#          - '7.3'
-#          - '7.4'
-#    steps:
-#      - name: 'Checkout'
-#        uses: 'actions/checkout@v2'
-#
-#      - name: 'Install PHP'
-#        uses: 'shivammathur/setup-php@v2'
-#        with:
-#          coverage: 'none'
-#          extensions: 'intl, zip, intl, zip, date, dom, filter, gd, hash, json, pcre, pdf, session, simplexml, spl, tokenizer, xml'
-#          ini-values: 'memory_limit=-1'
-#          php-version: ${{ matrix.php-version }}
-#
-#      - name: 'Determine composer cache directory'
-#        id: 'determine-composer-cache-directory'
-#        run: echo "::set-output name=directory::$(composer config cache-dir)"
-#
-#      - name: 'Cache dependencies installed with composer'
-#        uses: 'actions/cache@v2'
-#        with:
-#          path: ${{ steps.determine-composer-cache-directory.outputs.directory }}
-#          key: php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
-#          restore-keys: php-${{ matrix.php-version }}
-#
-#      - name: 'Install Composer dependencies'
-#        if: steps.composer-cache.outputs.cache-hit != 'true'
-#        run: composer install $COMPOSER_FLAGS
-#
-#      - name: 'PHPCS Analyse'
-#        run: vendor/bin/phpcs
-#
-#  phpstan:
-#    name: 'PHPStan'
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        php-version:
-#          - '7.3'
-#          - '7.4'
-#    steps:
-#      - name: 'Checkout'
-#        uses: 'actions/checkout@v2'
-#
-#      - name: 'Install PHP'
-#        uses: 'shivammathur/setup-php@v2'
-#        with:
-#          coverage: 'none'
-#          extensions: 'intl, zip, intl, zip, date, dom, filter, gd, hash, json, pcre, pdf, session, simplexml, spl, tokenizer, xml'
-#          ini-values: 'memory_limit=-1'
-#          php-version: ${{ matrix.php-version }}
-#
-#      - name: 'Determine composer cache directory'
-#        id: 'determine-composer-cache-directory'
-#        run: echo "::set-output name=directory::$(composer config cache-dir)"
-#
-#      - name: 'Cache dependencies installed with composer'
-#        uses: 'actions/cache@v2'
-#        with:
-#          path: ${{ steps.determine-composer-cache-directory.outputs.directory }}
-#          key: php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
-#          restore-keys: php-${{ matrix.php-version }}
-#
-#      - name: 'Install Composer dependencies'
-#        if: steps.composer-cache.outputs.cache-hit != 'true'
-#        run: composer install $COMPOSER_FLAGS
-#
-#      - name: 'PHPStan Analyse'
-#        run: vendor/bin/phpstan analyse --configuration=phpstan.neon
+  phpcs:
+    name: 'PHPCS'
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        php-version:
+          - '7.3'
+          - '7.4'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
 
-#  @see https://github.com/Druki-ru/website/issues/37
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          coverage: 'none'
+          extensions: 'intl, zip, intl, zip, date, dom, filter, gd, hash, json, pcre, pdf, session, simplexml, spl, tokenizer, xml'
+          ini-values: 'memory_limit=-1'
+          php-version: ${{ matrix.php-version }}
+
+      - name: 'Determine composer cache directory'
+        id: 'determine-composer-cache-directory'
+        run: echo "::set-output name=directory::$(composer config cache-dir)"
+
+      - name: 'Cache dependencies installed with composer'
+        uses: 'actions/cache@v2'
+        with:
+          path: ${{ steps.determine-composer-cache-directory.outputs.directory }}
+          key: php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: php-${{ matrix.php-version }}
+
+      - name: 'Install Composer dependencies'
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install $COMPOSER_FLAGS
+
+      - name: 'PHPCS Analyse'
+        run: vendor/bin/phpcs
+
+  phpstan:
+    name: 'PHPStan'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - '7.3'
+          - '7.4'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          coverage: 'none'
+          extensions: 'intl, zip, intl, zip, date, dom, filter, gd, hash, json, pcre, pdf, session, simplexml, spl, tokenizer, xml'
+          ini-values: 'memory_limit=-1'
+          php-version: ${{ matrix.php-version }}
+
+      - name: 'Determine composer cache directory'
+        id: 'determine-composer-cache-directory'
+        run: echo "::set-output name=directory::$(composer config cache-dir)"
+
+      - name: 'Cache dependencies installed with composer'
+        uses: 'actions/cache@v2'
+        with:
+          path: ${{ steps.determine-composer-cache-directory.outputs.directory }}
+          key: php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: php-${{ matrix.php-version }}
+
+      - name: 'Install Composer dependencies'
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install $COMPOSER_FLAGS
+
+      - name: 'PHPStan Analyse'
+        run: vendor/bin/phpstan analyse --configuration=phpstan.neon
+
   phpunit:
     name: 'PHPUnit'
     runs-on: ubuntu-latest
-    # Enable when it will work.
-#    needs:
-#      - phpstan
-#      - phpcs
+    needs:
+      - phpstan
+      - phpcs
     steps:
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
@@ -106,7 +103,7 @@ jobs:
           cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
 
       - name: 'Run docker'
-        run: "docker-compose up -d --force-recreate --build --remove-orphans"
+        run: "docker-compose up -d"
 
 #      - name: 'Configure Composer'
 #        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
