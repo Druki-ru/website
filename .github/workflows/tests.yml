@@ -112,7 +112,7 @@ jobs:
           cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
 
       - name: 'Run docker'
-        run: "docker-compose up -dd --build --remove-orphans"
+        run: "docker-compose up -df --build --remove-orphans"
 
       - name: 'Test docker'
         run: "docker ps"
