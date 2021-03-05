@@ -14,6 +14,9 @@ services:
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
+    # This fixed permissions issues caused in GitHub Actions.
+    # GHA has UID 1001, but D4D uses 1000. It results that d4d containers can't write anything to cloned files.
+    user: root
     environment:
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       DB_HOST: $DB_HOST
