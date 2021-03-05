@@ -14,7 +14,6 @@ services:
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
-    user: root
     environment:
       PHP_FPM_USER: root
       PHP_FPM_GROUP: root
