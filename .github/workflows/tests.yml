@@ -98,7 +98,7 @@ jobs:
         run: id
 
       - name: 'Add group'
-        run: groupadd -o -g 1000 runner
+        run: groupadd -o -g 1000 docker4drupal
 
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
