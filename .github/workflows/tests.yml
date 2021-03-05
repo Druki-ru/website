@@ -124,7 +124,7 @@ jobs:
         run: "docker-compose exec -T php composer install"
 
       - name: 'Install website'
-        run: 'docker-compose exec -T drush site:install druki_installer'
+        run: 'docker-compose exec -T php drush site:install druki_installer'
 
       - name: 'Run tests'
-        run: 'docker-compose exec -T composer run-script phpunit'
+        run: 'docker-compose exec -T php composer run-script phpunit'
