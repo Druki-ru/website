@@ -97,14 +97,8 @@ jobs:
       - name: 'Test ID'
         run: id
 
-      - name: 'Add group'
-        run: groupadd -o -g 1000 docker4drupal
-
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
-
-      - name: 'Test ID'
-        run: id
 
       - name: 'Permissions'
         run: ls -ln
