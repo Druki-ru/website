@@ -81,3 +81,7 @@ services:
     arguments: ['@current_route_match']
     tags:
       - { name: context_provider }
+
+  druki_content.redirect.finder:
+    class: Drupal\druki_content\Redirect\RedirectFinder
+    arguments: ['@language_manager']
