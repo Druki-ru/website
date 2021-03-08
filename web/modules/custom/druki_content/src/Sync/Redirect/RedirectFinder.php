@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Redirect;
+namespace Drupal\druki_content\Sync\Redirect;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\Finder\Finder;
@@ -33,7 +33,7 @@ final class RedirectFinder {
    * @param string $directory
    *   The path where to look at.
    *
-   * @return \Drupal\druki_content\Redirect\RedirectFileList
+   * @return \Drupal\druki_content\Sync\Redirect\RedirectFileList
    *   The list with redirect files.
    */
   public function findAll(string $directory): RedirectFileList {

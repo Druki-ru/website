@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Redirect;
+namespace Drupal\druki_content\Sync\Redirect;
 
 /**
  * Provides storage for redirects file.

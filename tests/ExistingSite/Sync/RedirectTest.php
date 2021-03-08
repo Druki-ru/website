@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\ExistingSite\Content;
+namespace Druki\Tests\ExistingSite\Sync;
 
 use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -29,15 +29,14 @@ final class RedirectTest extends ExistingSiteBase {
    */
   public function testRedirectFinder(): void {
     $source_dir = $this->setupFakeSourceDir();
-    /** @var \Drupal\druki_content\Redirect\RedirectFinder $finder */
+    /** @var \Drupal\druki_content\Sync\Redirect\RedirectFinder $finder */
     $finder = $this->container->get('druki_content.redirect.finder');
-    /** @var \Drupal\druki_content\Redirect\RedirectFileList $redirect_list */
     $redirect_list = $finder->findAll($source_dir->url());
-    $expected_content = '/foo-bar,/' . PHP_EOL;
+    $expected_content = '/foo-bar,/' . \PHP_EOL;
     $redirect_list->getIterator()->rewind();
     $first_redirect = $redirect_list->getIterator()->current();
     $this->assertEquals($expected_content, \file_get_contents($first_redirect->getPathname()));
-    $expected_hash = hash('sha256', $expected_content);
+    $expected_hash = \hash('sha256', $expected_content);
     $this->assertEquals($expected_hash, $first_redirect->getHash());
     $this->assertEquals('ru', $first_redirect->getLanguage());
   }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Redirect;
+namespace Drupal\druki_content\Sync\Redirect;
 
 /**
  * Provides list with redirect files.
@@ -10,14 +10,14 @@ final class RedirectFileList implements \IteratorAggregate {
   /**
    * The list of redirect files.
    *
-   * @var \Drupal\druki_content\Redirect\RedirectFile
+   * @var \Drupal\druki_content\Sync\Redirect\RedirectFile
    */
   protected $files = [];
 
   /**
    * Adds file to the list.
    *
-   * @param \Drupal\druki_content\Redirect\RedirectFile $file
+   * @param \Drupal\druki_content\Sync\Redirect\RedirectFile $file
    *   The redirect file.
    *
    * @return $this

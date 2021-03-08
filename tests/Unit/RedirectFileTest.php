@@ -3,13 +3,13 @@
 namespace Druki\Tests\Unit;
 
 use Druki\Tests\Traits\SourceContentProviderTrait;
-use Drupal\druki_content\Redirect\RedirectFile;
+use Drupal\druki_content\Sync\Redirect\RedirectFile;
 use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests redirect file value object.
  *
- * @coversDefaultClass \Drupal\druki_content\Redirect\RedirectFile
+ * @coversDefaultClass \Drupal\druki_content\Sync\Redirect\RedirectFile
  */
 final class RedirectFileTest extends UnitTestCase {
 

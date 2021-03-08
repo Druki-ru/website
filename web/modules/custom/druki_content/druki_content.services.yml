@@ -83,5 +83,5 @@ services:
       - { name: context_provider }
 
   druki_content.redirect.finder:
-    class: Drupal\druki_content\Redirect\RedirectFinder
+    class: Drupal\druki_content\Sync\Redirect\RedirectFinder
     arguments: ['@language_manager']
