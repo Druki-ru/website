@@ -31,9 +31,15 @@ final class RedirectTest extends ExistingSiteBase {
     $source_dir = $this->setupFakeSourceDir();
     /** @var \Drupal\druki_content\Redirect\RedirectFinder $finder */
     $finder = $this->container->get('druki_content.redirect.finder');
-    /** @var \Symfony\Component\Finder\SplFileInfo $first_file */
-    $first_file = $finder->findAll($source_dir->url());
-    $this->assertEquals('/foo-bar,/' . PHP_EOL, $first_file->getContents());
+    /** @var \Drupal\druki_content\Redirect\RedirectFileList $redirect_list */
+    $redirect_list = $finder->findAll($source_dir->url());
+    $expected_content = '/foo-bar,/' . PHP_EOL;
+    $redirect_list->getIterator()->rewind();
+    $first_redirect = $redirect_list->getIterator()->current();
+    $this->assertEquals($expected_content, \file_get_contents($first_redirect->getPathname()));
+    $expected_hash = hash('sha256', $expected_content);
+    $this->assertEquals($expected_hash, $first_redirect->getHash());
+    $this->assertEquals('ru', $first_redirect->getLanguage());
   }
 
 }

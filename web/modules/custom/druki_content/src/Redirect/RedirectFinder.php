@@ -4,7 +4,6 @@ namespace Drupal\druki_content\Redirect;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Provides finder for redirect files.
@@ -34,12 +33,10 @@ final class RedirectFinder {
    * @param string $directory
    *   The path where to look at.
    *
-   * @return \Symfony\Component\Finder\SplFileInfo
-   *   The file info.
-   *
-   * @todo return list.
+   * @return \Drupal\druki_content\Redirect\RedirectFileList The file info.
+   *   The list with redirect files.
    */
-  public function findAll(string $directory): SplFileInfo {
+  public function findAll(string $directory): RedirectFileList {
     $finder = new Finder();
     $finder->name('redirects.csv');
     // Look only at specific directory without hierarchy.
@@ -48,6 +45,7 @@ final class RedirectFinder {
     $active_languages = $this->languageManager->getLanguages();
     $active_langcodes = \array_keys($active_languages);
 
+    $redirect_file_list = new RedirectFileList();
     foreach ($active_langcodes as $langcode) {
       // The file must be in the root of language source content.
       $look_at = "{$directory}/docs/{$langcode}";
@@ -57,9 +55,11 @@ final class RedirectFinder {
       }
       $iterator = $finder->getIterator();
       $iterator->rewind();
+      /** @var \Symfony\Component\Finder\SplFileInfo $first_file */
       $first_file = $iterator->current();
-      return $first_file;
+      $redirect_file_list->addFile(new RedirectFile($first_file->getPathname(), $langcode));
     }
+    return $redirect_file_list;
   }
 
 }
