@@ -54,7 +54,7 @@ final class RedirectFile {
    *   The hash string.
    */
   public function getHash(): string {
-    return hash('sha256', \file_get_contents($this->getPathname()));
+    return \hash('sha256', \file_get_contents($this->getPathname()));
   }
 
   /**

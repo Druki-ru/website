@@ -33,7 +33,7 @@ final class RedirectFinder {
    * @param string $directory
    *   The path where to look at.
    *
-   * @return \Drupal\druki_content\Redirect\RedirectFileList The file info.
+   * @return \Drupal\druki_content\Redirect\RedirectFileList
    *   The list with redirect files.
    */
   public function findAll(string $directory): RedirectFileList {
