@@ -2,12 +2,12 @@
 
 namespace Drupal\druki_content\Sync\Clean;
 
-use Drupal\druki_content\Sync\Queue\SyncQueueItemInterface;
+use Drupal\druki_content\Sync\Queue\QueueItemInterface;
 
 /**
  * Provides queue item for clean up missing content.
  */
-final class CleanQueueItem implements SyncQueueItemInterface {
+final class CleanQueueItem implements QueueItemInterface {
 
   /**
    * The timestamp for the last update.

@@ -32,7 +32,7 @@ final class SyncQueueTest extends ExistingSiteBase {
   /**
    * The sync queue manager.
    *
-   * @var \Drupal\druki_content\Sync\Queue\SyncQueueManager
+   * @var \Drupal\druki_content\Sync\Queue\QueueManager
    */
   protected $syncQueueManager;
 

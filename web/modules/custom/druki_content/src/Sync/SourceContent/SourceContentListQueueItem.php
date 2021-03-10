@@ -2,12 +2,12 @@
 
 namespace Drupal\druki_content\Sync\SourceContent;
 
-use Drupal\druki_content\Sync\Queue\SyncQueueItemInterface;
+use Drupal\druki_content\Sync\Queue\QueueItemInterface;
 
 /**
  * Provides queue item for synchronization content.
  */
-final class SourceContentListQueueItem implements SyncQueueItemInterface {
+final class SourceContentListQueueItem implements QueueItemInterface {
 
   /**
    * The content to process.

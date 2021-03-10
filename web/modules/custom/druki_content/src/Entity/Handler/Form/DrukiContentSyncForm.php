@@ -5,7 +5,7 @@ namespace Drupal\druki_content\Entity\Handler\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki_content\Sync\Queue\SyncQueueManager;
+use Drupal\druki_content\Sync\Queue\QueueManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -30,7 +30,7 @@ final class DrukiContentSyncForm extends FormBase {
   /**
    * The queue manager.
    *
-   * @var \Drupal\druki_content\Sync\Queue\SyncQueueManager
+   * @var \Drupal\druki_content\Sync\Queue\QueueManager
    */
   protected $queueManager;
 
@@ -47,7 +47,7 @@ final class DrukiContentSyncForm extends FormBase {
   public static function create(ContainerInterface $container) {
     $instance = new static();
     $instance->state = $container->get('state');
-    $instance->queue = $container->get('queue')->get(SyncQueueManager::QUEUE_NAME);
+    $instance->queue = $container->get('queue')->get(QueueManager::QUEUE_NAME);
     $instance->queueManager = $container->get('druki_content.sync_queue_manager');
     $instance->git = $container->get('druki_git');
     return $instance;

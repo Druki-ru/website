@@ -11,7 +11,7 @@ services:
       - { name: event_subscriber }
 
   druki_content.sync_queue_manager:
-    class: Drupal\druki_content\Sync\Queue\SyncQueueManager
+    class: Drupal\druki_content\Sync\Queue\QueueManager
     arguments: ['@druki_content.source_content_finder', '@queue', '@state', '@datetime.time', '@plugin.manager.queue_worker']
 
   druki_content.source_content_finder:
@@ -23,8 +23,24 @@ services:
     arguments: ['@druki.markdown_parser']
 
   druki_content.sync_queue_processor:
-    class: Drupal\druki_content\Sync\Queue\SyncQueueProcessor
+    class: Drupal\druki_content\Sync\Queue\QueueProcessor
     arguments: ['@entity_type.manager', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache']
+    tags:
+      - { name: service_collector, tag: druki_sync_queue_processor, call: addProcessor }
+
+  druki_content.sync_queue_processor.source_content_list:
+    class: Drupal\druki_content\Sync\SourceContent\SourceContentListQueueProcessor
+    public: false
+    arguments: ['@state', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader']
+    tags:
+      - { name: druki_sync_queue_processor }
+
+  druki_content.sync_queue_processor.clean:
+    class: Drupal\druki_content\Sync\Clean\CleanQueueProcessor
+    public: false
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: druki_sync_queue_processor }
 
   druki_content.parsed_source_content_loader:
     class: Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader

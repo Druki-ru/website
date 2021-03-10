@@ -17,7 +17,7 @@ use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
 /**
  * Provides queue manager for synchronization content.
  */
-final class SyncQueueManager {
+final class QueueManager {
 
   /**
    * The queue name used for synchronisation.
