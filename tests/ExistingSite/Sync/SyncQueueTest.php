@@ -6,10 +6,10 @@ use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Queue\QueueInterface;
-use Drupal\druki_content\Sync\Queue\InvalidSyncQueueOperationException;
-use Drupal\druki_content\Sync\Queue\SyncQueueItem;
+use Drupal\druki_content\Sync\Clean\CleanQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContent;
 use Drupal\druki_content\Sync\SourceContent\SourceContentList;
+use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
 use org\bovigo\vfs\vfsStream;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
@@ -84,7 +84,7 @@ final class SyncQueueTest extends ExistingSiteBase {
 
     $queue = $this->getSyncQueue();
     $this->assertEquals(0, $queue->numberOfItems());
-    $queue->createItem(new SyncQueueItem(SyncQueueItem::SYNC, $source_content_list));
+    $queue->createItem(new SourceContentListQueueItem($source_content_list));
     $this->assertEquals(1, $queue->numberOfItems());
 
     /** @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage $druki_content_storage */
@@ -105,7 +105,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $source_content = new SourceContent($file->url(), $file->path(), 'ru');
     $source_content_list = new SourceContentList();
     $source_content_list->add($source_content);
-    $queue->createItem(new SyncQueueItem(SyncQueueItem::SYNC, $source_content_list));
+    $queue->createItem(new SourceContentListQueueItem($source_content_list));
 
     $old_id = $druki_content->id();
     $this->syncQueueManager->run();
@@ -129,7 +129,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $druki_content = $druki_content_storage->loadByExternalId('test_clean_up');
     $this->assertEquals('test_clean_up', $druki_content->getExternalId());
 
-    $queue_item = new SyncQueueItem(SyncQueueItem::CLEAN, 2);
+    $queue_item = new CleanQueueItem(2);
     $queue = $this->getSyncQueue();
     $queue->createItem($queue_item);
     $this->syncQueueManager->run();
@@ -145,32 +145,6 @@ final class SyncQueueTest extends ExistingSiteBase {
     $source_content_list = new SourceContentList();
     $this->syncQueueManager->buildFromSourceContentList($source_content_list);
     $this->assertEquals(0, $this->getSyncQueue()->numberOfItems());
-  }
-
-  /**
-   * Test how queue item will react on wrong operation.
-   */
-  public function testWrongOperation(): void {
-    $this->expectException(InvalidSyncQueueOperationException::class);
-    new SyncQueueItem('foo', 1);
-  }
-
-  /**
-   * Tests that queue item reacts on wrong payload type.
-   */
-  public function testQueueItemWrongSyncPayload(): void {
-    $this->expectException(\InvalidArgumentException::class);
-    // Sync is expect SourceContentList as payload.
-    new SyncQueueItem(SyncQueueItem::SYNC, 1);
-  }
-
-  /**
-   * Tests that queue item reacts on wrong payload type.
-   */
-  public function testQueueItemWrongCleanPayload(): void {
-    $this->expectException(\InvalidArgumentException::class);
-    // Clean expects integer with timestamp.
-    new SyncQueueItem(SyncQueueItem::CLEAN, new SourceContentList());
   }
 
   /**
@@ -191,8 +165,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $this->syncQueueManager = $this->container->get('druki_content.sync_queue_manager');
 
     // Make sure the queue is empty during testing.
-    $this->queueFactory->get($this->syncQueueManager::QUEUE_NAME)
-      ->deleteQueue();
+    $this->queueFactory->get($this->syncQueueManager::QUEUE_NAME)->deleteQueue();
     $this->storeEntityIds(['druki_content', 'media', 'file']);
   }
 

@@ -6,9 +6,11 @@ use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
+use Drupal\druki_content\Sync\Clean\CleanQueueItem;
 use Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader;
 use Drupal\druki_content\Sync\SourceContent\SourceContent;
 use Drupal\druki_content\Sync\SourceContent\SourceContentList;
+use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContentParser;
 
 /**
@@ -81,18 +83,20 @@ final class SyncQueueProcessor {
   /**
    * Process single queue item.
    *
-   * @param \Drupal\druki_content\Sync\Queue\SyncQueueItem $queue_item
+   * @param \Drupal\druki_content\Sync\Queue\SyncQueueItemInterface $queue_item
    *   The queue item to process.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function processItem(SyncQueueItem $queue_item): void {
-    switch ($queue_item->getOperation()) {
-      case SyncQueueItem::SYNC:
+  public function processItem(SyncQueueItemInterface $queue_item): void {
+    // @todo Provide processor for each queue item type.
+    //   Current service will become their manager.
+    switch (\get_class($queue_item)) {
+      case SourceContentListQueueItem::class:
         $this->processSync($queue_item->getPayload());
         break;
 
-      case SyncQueueItem::CLEAN:
+      case CleanQueueItem::class:
         $this->processClean($queue_item->getPayload());
         break;
     }

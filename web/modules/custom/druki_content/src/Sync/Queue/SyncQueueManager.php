@@ -9,8 +9,10 @@ use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Sync\Clean\CleanQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContentFinder;
 use Drupal\druki_content\Sync\SourceContent\SourceContentList;
+use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
 
 /**
  * Provides queue manager for synchronization content.
@@ -109,11 +111,11 @@ final class SyncQueueManager {
     $this->queue->deleteQueue();
     $items_per_queue = Settings::get('entity_update_batch_size', 50);
     foreach ($source_content_list->chunk($items_per_queue) as $content_list_chunk) {
-      $this->queue->createItem(new SyncQueueItem(SyncQueueItem::SYNC, $content_list_chunk));
+      $this->queue->createItem(new SourceContentListQueueItem($content_list_chunk));
     }
 
     $sync_timestamp = $this->time->getRequestTime();
-    $this->queue->createItem(new SyncQueueItem(SyncQueueItem::CLEAN, $sync_timestamp));
+    $this->queue->createItem(new CleanQueueItem($sync_timestamp));
     $this->state->set('druki_content.last_sync_timestamp', $this->time->getRequestTime());
   }
 
