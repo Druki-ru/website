@@ -40,6 +40,8 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\State\StateInterface $state
+   *   The state storage.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, StateInterface $state) {
     $this->entityTypeManager = $entity_type_manager;
@@ -153,7 +155,7 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
       'path' => $raw_path,
       'query' => NULL,
     ];
-    if (strpos($raw_path, '?') !== FALSE) {
+    if (\strpos($raw_path, '?') !== FALSE) {
       $url = UrlHelper::parse($raw_path);
     }
     return $url;
