@@ -17,6 +17,7 @@ dependencies:
   - drupal:responsive_image
   - pathauto:pathauto
   - metatag:metatag
+  - redirect:redirect
 
 'interface translation project': druki_content
 'interface translation server pattern': modules/custom/%project/translations/%language.po

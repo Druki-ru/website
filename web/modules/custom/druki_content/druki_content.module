@@ -6,6 +6,9 @@
  */
 
 use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements hook_theme().
@@ -52,4 +55,28 @@ function druki_content_theme(): array {
  */
 function druki_content_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block): void {
   $build['#configuration']['label'] = $block->label();
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function druki_content_entity_base_field_info(EntityTypeInterface $entity_type): array {
+  $fields = [];
+  if ($entity_type->id() == 'redirect') {
+    $fields['druki_content_redirect'] = druki_content_redirect_druki_content_redirect_base_field();
+  }
+  return $fields;
+}
+
+/**
+ * Gets definition for redirects 'druki_content_redirect' field.
+ *
+ * @return \Drupal\Core\Field\BaseFieldDefinition
+ *   The field definition.
+ */
+function druki_content_redirect_druki_content_redirect_base_field(): BaseFieldDefinition {
+  return BaseFieldDefinition::create('boolean')
+    ->setLabel(new TranslatableMarkup('Used by druki content'))
+    ->setDescription(new TranslatableMarkup('Indicates whether the redirect is created automatically.'))
+    ->setDefaultValue(FALSE);
 }

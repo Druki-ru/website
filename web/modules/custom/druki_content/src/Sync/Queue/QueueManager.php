@@ -9,13 +9,16 @@ use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Sync\Clean\CleanQueueItem;
+use Drupal\druki_content\Sync\Redirect\RedirectFinder;
+use Drupal\druki_content\Sync\Redirect\RedirectQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContentFinder;
-use Drupal\druki_content\Sync\SourceContent\SourceContentList;
+use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
 
 /**
  * Provides queue manager for synchronization content.
  */
-final class SyncQueueManager {
+final class QueueManager {
 
   /**
    * The queue name used for synchronisation.
@@ -58,10 +61,19 @@ final class SyncQueueManager {
   protected $queueWorker;
 
   /**
+   * The redirect finder.
+   *
+   * @var \Drupal\druki_content\Sync\Redirect\RedirectFinder
+   */
+  protected $redirectFinder;
+
+  /**
    * Constructs a new SynchronizationQueueBuilder object.
    *
    * @param \Drupal\druki_content\Sync\SourceContent\SourceContentFinder $content_finder
    *   The source content finder.
+   * @param \Drupal\druki_content\Sync\Redirect\RedirectFinder $redirect_finder
+   *   The redirect finder.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory.
    * @param \Drupal\Core\State\StateInterface $state
@@ -71,8 +83,9 @@ final class SyncQueueManager {
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker
    *   The queue manager.
    */
-  public function __construct(SourceContentFinder $content_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
+  public function __construct(SourceContentFinder $content_finder, RedirectFinder $redirect_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
     $this->contentFinder = $content_finder;
+    $this->redirectFinder = $redirect_finder;
     $this->queue = $queue_factory->get(self::QUEUE_NAME);
     $this->state = $state;
     $this->time = $time;
@@ -90,30 +103,52 @@ final class SyncQueueManager {
    *   The with source content. This directory will be parsed on call.
    */
   public function buildFromPath(string $directory): void {
-    $content_list = $this->contentFinder->findAll($directory);
-    $this->buildFromSourceContentList($content_list);
+    // Clear queue to exclude duplicate work.
+    $this->queue->deleteQueue();
+    $this->addSourceContentList($directory);
+    $this->addRedirectFileList($directory);
+    $this->addCleanOperation();
   }
 
   /**
    * Builds new queue from source content list.
    *
-   * @param \Drupal\druki_content\Sync\SourceContent\SourceContentList $source_content_list
-   *   The source content list.
+   * @param string $directory
+   *   The directory with content.
    */
-  public function buildFromSourceContentList(SourceContentList $source_content_list): void {
+  protected function addSourceContentList(string $directory): void {
+    $source_content_list = $this->contentFinder->findAll($directory);
     if (!$source_content_list->numberOfItems()) {
       return;
     }
 
-    // Clear queue to exclude duplicate work.
-    $this->queue->deleteQueue();
     $items_per_queue = Settings::get('entity_update_batch_size', 50);
     foreach ($source_content_list->chunk($items_per_queue) as $content_list_chunk) {
-      $this->queue->createItem(new SyncQueueItem(SyncQueueItem::SYNC, $content_list_chunk));
+      $this->queue->createItem(new SourceContentListQueueItem($content_list_chunk));
     }
+  }
 
+  /**
+   * Adds redirect files into queue.
+   *
+   * @param string $directory
+   *   The directory with content.
+   */
+  protected function addRedirectFileList(string $directory): void {
+    $redirect_file_list = $this->redirectFinder->findAll($directory);
+    if ($redirect_file_list->getIterator()->count() == 0) {
+      return;
+    }
+    $redirect_queue_item = new RedirectQueueItem($redirect_file_list);
+    $this->queue->createItem($redirect_queue_item);
+  }
+
+  /**
+   * Adds clean operation into queue.
+   */
+  protected function addCleanOperation(): void {
     $sync_timestamp = $this->time->getRequestTime();
-    $this->queue->createItem(new SyncQueueItem(SyncQueueItem::CLEAN, $sync_timestamp));
+    $this->queue->createItem(new CleanQueueItem($sync_timestamp));
     $this->state->set('druki_content.last_sync_timestamp', $this->time->getRequestTime());
   }
 

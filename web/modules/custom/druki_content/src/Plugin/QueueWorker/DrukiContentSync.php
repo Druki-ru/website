@@ -4,7 +4,7 @@ namespace Drupal\druki_content\Plugin\QueueWorker;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
-use Drupal\druki_content\Sync\Queue\SyncQueueItem;
+use Drupal\druki_content\Sync\Queue\QueueItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -24,7 +24,7 @@ final class DrukiContentSync extends QueueWorkerBase implements ContainerFactory
   /**
    * The queue processor.
    *
-   * @var \Drupal\druki_content\Sync\Queue\SyncQueueProcessor
+   * @var \Drupal\druki_content\Sync\Queue\QueueProcessor
    */
   protected $queueProcessor;
 
@@ -43,11 +43,10 @@ final class DrukiContentSync extends QueueWorkerBase implements ContainerFactory
   public function processItem($queue_item): void {
     // First of all, check is item is value object we expected. We ignore all
     // values not passed via our object.
-    if (!$queue_item instanceof SyncQueueItem) {
+    if (!$queue_item instanceof QueueItemInterface) {
       return;
     }
-
-    $this->queueProcessor->processItem($queue_item);
+    $this->queueProcessor->process($queue_item);
   }
 
 }

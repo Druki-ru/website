@@ -353,3 +353,12 @@ function druki_content_update_9004(array &$sandbox): void {
   $druki_content_definition->setLinkTemplate('sync', '/admin/structure/druki-content/sync');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
+
+/**
+ * Install 'druki_content_redirect' field.
+ */
+function druki_content_update_9101(array &$sandbox): void {
+  $field_definition = druki_content_redirect_druki_content_redirect_base_field();
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('druki_content_redirect', 'redirect', 'druki_content', $field_definition);
+}

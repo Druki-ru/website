@@ -21,6 +21,7 @@ trait SourceContentProviderTrait {
             'php.md' => 'Drupal PHP code standards.',
           ],
           'drupal.md' => 'Drupal description.',
+          'redirects.csv' => \file_get_contents(__DIR__ . '/../fixtures/redirects.csv'),
         ],
         'en' => [
           'standards' => [
