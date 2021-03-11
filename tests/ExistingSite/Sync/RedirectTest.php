@@ -32,7 +32,7 @@ final class RedirectTest extends ExistingSiteBase {
     /** @var \Drupal\druki_content\Sync\Redirect\RedirectFinder $finder */
     $finder = $this->container->get('druki_content.redirect.finder');
     $redirect_list = $finder->findAll($source_dir->url());
-    $expected_content = '/foo-bar,/' . \PHP_EOL;
+    $expected_content = \file_get_contents($source_dir->url() . '/docs/ru/redirects.csv');
     $redirect_list->getIterator()->rewind();
     $first_redirect = $redirect_list->getIterator()->current();
     $this->assertEquals($expected_content, \file_get_contents($first_redirect->getPathname()));

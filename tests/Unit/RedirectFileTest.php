@@ -25,7 +25,7 @@ final class RedirectFileTest extends UnitTestCase {
     $expected_content = \file_get_contents($file_pathname);
     $this->assertEquals($expected_content, \file_get_contents($redirect_file->getPathname()));
     $this->assertEquals('ru', $redirect_file->getLanguage());
-    $expected_hash = hash('sha256', $expected_content);
+    $expected_hash = \hash('sha256', $expected_content);
     $this->assertEquals($expected_hash, $redirect_file->getHash());
   }
 
