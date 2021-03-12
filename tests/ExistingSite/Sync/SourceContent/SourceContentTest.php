@@ -20,8 +20,8 @@ final class SourceContentTest extends ExistingSiteBase {
    */
   public function testValueObject(): void {
     $source_directory = $this->setupFakeSourceDir();
-    $realpath = $source_directory->url() . '/docs/ru/drupal.md';
-    $relative_pathname = 'docs/ru/drupal.md';
+    $realpath = $source_directory->url() . '/docs/ru/drupal/index.md';
+    $relative_pathname = 'docs/ru/drupal/index.md';
     $language = 'ru';
 
     $source_content = new SourceContent($realpath, $relative_pathname, $language);

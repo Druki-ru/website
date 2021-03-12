@@ -18,16 +18,25 @@ trait SourceContentProviderTrait {
       'docs' => [
         'ru' => [
           'standards' => [
-            'php.md' => 'Drupal PHP code standards.',
+            'php' => [
+              'php.md' => 'This file is not be using as content.',
+              'index.md' => 'Drupal PHP code standards.',
+            ],
           ],
-          'drupal.md' => 'Drupal description.',
+          'drupal' => [
+            'index.md' => 'Drupal description.',
+          ],
           'redirects.csv' => \file_get_contents(__DIR__ . '/../fixtures/redirects.csv'),
         ],
         'en' => [
           'standards' => [
-            'php.md' => 'Drupal PHP code standards.',
+            'php' => [
+              'index.md' => 'Drupal PHP code standards.',
+            ],
           ],
-          'drupal.md' => 'Drupal description.',
+          'drupal' => [
+            'index.md' => 'Drupal description.',
+          ],
         ],
         'de' => [],
       ],

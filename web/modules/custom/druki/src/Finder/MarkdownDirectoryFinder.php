@@ -6,6 +6,8 @@ use Symfony\Component\Finder\Finder;
 
 /**
  * Provides Markdown files finder.
+ *
+ * @todo move into druki_content and refactor it as SourceContentFinder.
  */
 final class MarkdownDirectoryFinder {
 
@@ -31,8 +33,7 @@ final class MarkdownDirectoryFinder {
    */
   public function __construct(array $directories) {
     $this->finder = new Finder();
-    $this->finder->name('*.md');
-    $this->finder->name('*.MD');
+    $this->finder->name('index.md');
     $this->directories = $directories;
   }
 
