@@ -43,8 +43,8 @@ final class SourceContentParserTest extends ExistingSiteBase {
    * Tests parsers.
    */
   public function testParser(): void {
-    $realpath = $this->sourceDirectory->url() . '/docs/ru/drupal.md';
-    $relative_pathname = 'docs/ru/drupal.md';
+    $realpath = $this->sourceDirectory->url() . '/docs/ru/drupal/index.md';
+    $relative_pathname = 'docs/ru/drupal/index.md';
     $language = 'ru';
     $source_content = new SourceContent($realpath, $relative_pathname, $language);
     $parsed_source = $this->parser->parse($source_content);

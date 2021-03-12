@@ -15,19 +15,17 @@ use org\bovigo\vfs\vfsStream;
 class MarkdownDirectoryFinderTest extends UnitTestCase {
 
   use SourceContentProviderTrait;
-  
+
   /**
    * Tests Markdown directory finder.
    *
    * @covers ::findAll
-   * @dataProvider directoriesProvider
    */
-  public function testFinder(array $directories, int $expected): void {
-    $this->setupFakeSourceDir();
-    $discovery = new MarkdownDirectoryFinder($directories);
+  public function testFinder(): void {
+    $root = $this->setupFakeSourceDir();
+    $discovery = new MarkdownDirectoryFinder([$root->url()]);
     $data = $discovery->findAll();
-
-    $this->assertCount($expected, $data);
+    $this->assertCount(4, $data);
   }
 
   /**
@@ -38,27 +36,6 @@ class MarkdownDirectoryFinderTest extends UnitTestCase {
     $this->setupFakeSourceDir();
     $discovery = new MarkdownDirectoryFinder([vfsStream::url('content/docs/fr'), vfsStream::url('content/docs/es')]);
     $discovery->findAll();
-  }
-
-  /**
-   * Provides sets of directories sets for testing.
-   */
-  public function directoriesProvider(): array {
-    return [
-      // The subdirectories.
-      'multiple with subdirectories' => [
-        [
-          vfsStream::url('content/docs/ru'),
-          vfsStream::url('content/docs/en'),
-        ],
-        4,
-      ],
-      // An empty directory.
-      'empty directory' => [
-        [vfsStream::url('content/docs/de')],
-        0,
-      ],
-    ];
   }
 
 }

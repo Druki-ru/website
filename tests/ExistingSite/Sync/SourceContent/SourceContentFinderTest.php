@@ -30,8 +30,8 @@ final class SourceContentFinderTest extends ExistingSiteBase {
     $first_content = \array_shift($content_list_array);
     $this->assertTrue($first_content instanceof SourceContent);
     $this->assertEquals('ru', $first_content->getLanguage());
-    $this->assertEquals('vfs://content/docs/ru/standards/php.md', $first_content->getRealpath());
-    $this->assertEquals('docs/ru/standards/php.md', $first_content->getRelativePathname());
+    $this->assertEquals('vfs://content/docs/ru/standards/php/index.md', $first_content->getRealpath());
+    $this->assertEquals('docs/ru/standards/php/index.md', $first_content->getRelativePathname());
   }
 
 }
