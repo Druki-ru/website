@@ -39,18 +39,7 @@ function druki_content_tokens(string $type, array $tokens, array $data, array $o
           $path_parts = [];
           // Force /wiki to be in path in every file.
           $path_parts[] = 'wiki';
-
-          if ($druki_content->hasField('forced_path') && !$druki_content->get('forced_path')->isEmpty()) {
-            $path_parts[] = $druki_content->get('forced_path')->value;
-          }
-          else {
-            if ($druki_content->hasField('core') && !$druki_content->get('core')->isEmpty()) {
-              $path_parts[] = $druki_content->get('core')->value;
-            }
-
-            $path_parts[] = $druki_content->get('external_id')->value;
-          }
-
+          $path_parts[] = $druki_content->getSlug();
           $replacements[$original] = '/' . implode('/', $path_parts);
           break;
       }

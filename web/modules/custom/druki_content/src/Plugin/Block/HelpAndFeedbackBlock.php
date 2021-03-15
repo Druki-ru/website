@@ -104,7 +104,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
       '---',
       '',
       '- **Entity ID:** ' . $this->getEntityFromContext()->id(),
-      '- **External ID:** ' . $this->getEntityFromContext()->getExternalId(),
+      '- **Slug:** ' . $this->getEntityFromContext()->getSlug(),
       '- **Core (if set):** ' . $this->getEntityFromContext()->getCore(),
       '- **Relative pathname:** ' . $this->getEntityFromContext()->getRelativePathname(),
       '- **Sync timestamp:** ' . $this->getEntityFromContext()->getSyncTimestamp(),

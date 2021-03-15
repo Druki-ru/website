@@ -29,7 +29,7 @@ trait DrukiContentCreationTrait {
   protected function createDrukiContent(array $values = []): DrukiContentInterface {
     $values += [
       'title' => $this->randomMachineName(32),
-      'external_id' => $this->randomMachineName(32),
+      'slug' => $this->randomMachineName(32),
       'relative_pathname' => 'docs/' . $this->randomMachineName() . '.md',
       'search_keywords' => [
         $this->randomMachineName(),

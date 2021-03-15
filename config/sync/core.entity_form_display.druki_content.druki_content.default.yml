@@ -5,9 +5,6 @@ dependencies:
   config:
     - field.field.druki_content.druki_content.category
     - field.field.druki_content.druki_content.content
-    - field.field.druki_content.druki_content.difficulty
-    - field.field.druki_content.druki_content.forced_path
-    - field.field.druki_content.druki_content.labels
     - field.field.druki_content.druki_content.metatags
     - field.field.druki_content.druki_content.search_keywords
   module:
@@ -40,20 +37,6 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
-    third_party_settings: {  }
-  difficulty:
-    type: options_select
-    weight: 2
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  labels:
-    type: string_textfield
-    weight: 4
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -92,5 +75,4 @@ content:
     third_party_settings: {  }
 hidden:
   category: true
-  forced_path: true
   sync_timestamp: true

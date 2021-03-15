@@ -90,7 +90,7 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
 
     // Don't call '::findOtherVariations' to simplify logic and reduce DB usage.
     $query = $this->drukiContentStorage->getQuery()
-      ->condition('external_id', $druki_content->getExternalId())
+      ->condition('slug', $druki_content->getSlug())
       ->exists('core')
       ->condition('core', $druki_content->getCore(), '<>')
       ->count();
@@ -176,7 +176,7 @@ final class ContentVariationsBlock extends BlockBase implements ContainerFactory
    */
   protected function loadAllVariations(DrukiContentInterface $druki_content): array {
     $content_ids = $this->drukiContentStorage->getQuery()
-      ->condition('external_id', $druki_content->getExternalId())
+      ->condition('slug', $druki_content->getSlug())
       ->exists('core')
       ->sort('core', 'ASC')
       ->execute();

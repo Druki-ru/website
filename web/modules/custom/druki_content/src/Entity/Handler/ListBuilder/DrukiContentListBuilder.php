@@ -65,7 +65,7 @@ final class DrukiContentListBuilder extends EntityListBuilder {
    */
   public function buildHeader(): array {
     $header['internal_id'] = $this->t('Internal ID');
-    $header['external_id'] = $this->t('External ID');
+    $header['slug'] = $this->t('Slug');
     $header['langcode'] = $this->t('Langcode');
     $header['core'] = $this->t('Core version');
     $header['title'] = $this->t('Title');
@@ -79,7 +79,7 @@ final class DrukiContentListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity): array {
     /** @var \Drupal\druki_content\Entity\DrukiContentInterface $entity */
     $row['internal_id'] = $entity->id();
-    $row['external_id'] = $entity->getExternalId();
+    $row['slug'] = $entity->getSlug();
     $row['langcode'] = $entity->get('langcode')->value;
     $row['core'] = $entity->get('core')->value;
     $row['title'] = $entity->toLink();

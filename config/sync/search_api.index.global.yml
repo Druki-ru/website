@@ -4,13 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.druki_content.category
-    - field.storage.druki_content.labels
     - field.storage.druki_content.search_keywords
     - search_api.server.database
   module:
     - druki_content
     - search_api
-    - druki_search
 _core:
   default_config_hash: znEv_GoqzJ8bJd0azpMIu7pgamAYgxhgglY7QX_smLU
 id: global
@@ -27,24 +25,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.druki_content.category
-  external_id:
-    label: 'External content ID'
-    datasource_id: 'entity:druki_content'
-    property_path: external_id
-    type: text
-    boost: !!float 5
-    dependencies:
-      module:
-        - druki_content
-  labels:
-    label: Labels
-    datasource_id: 'entity:druki_content'
-    property_path: labels
-    type: text
-    boost: !!float 2
-    dependencies:
-      config:
-        - field.storage.druki_content.labels
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item
@@ -91,8 +71,6 @@ processor_settings:
     all_fields: true
     fields:
       - category
-      - external_id
-      - labels
       - rendered_item
       - search_keywords
       - title
@@ -112,8 +90,6 @@ processor_settings:
     all_fields: true
     fields:
       - category
-      - external_id
-      - labels
       - rendered_item
       - search_keywords
       - title
@@ -130,8 +106,6 @@ processor_settings:
     all_fields: true
     fields:
       - category
-      - external_id
-      - labels
       - rendered_item
       - search_keywords
       - title
@@ -378,8 +352,6 @@ processor_settings:
     all_fields: true
     fields:
       - category
-      - external_id
-      - labels
       - rendered_item
       - search_keywords
       - title
@@ -389,12 +361,11 @@ processor_settings:
     weights:
       preprocess_index: -46
       preprocess_query: -45
+    ignored: ._-
   transliteration:
     all_fields: true
     fields:
       - category
-      - external_id
-      - labels
       - rendered_item
       - search_keywords
       - title

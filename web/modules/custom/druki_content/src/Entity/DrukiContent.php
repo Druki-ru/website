@@ -63,19 +63,17 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
    * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
-
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    // The string entity id used in source files.
-    $fields['external_id'] = BaseFieldDefinition::create('string')
-      ->setLabel('External content ID')
+    $fields['slug'] = BaseFieldDefinition::create('string')
+      ->setLabel(new TranslatableMarkup('The content slug'))
       ->setRequired(TRUE)
       ->setReadOnly(TRUE);
 
     $fields['title'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
-      ->setLabel(\t('Title'))
-      ->setDescription(\t('The title of the druki content entity.'))
+      ->setLabel(new TranslatableMarkup('Title'))
+      ->setDescription(new TranslatableMarkup('The title of the druki content entity.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 255)
       ->setDisplayOptions('form', [
@@ -92,8 +90,8 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
 
     $fields['relative_pathname'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
-      ->setLabel(\t('Relative pathname'))
-      ->setDescription(\t('The pathname of source file.'))
+      ->setLabel(new TranslatableMarkup('Relative pathname'))
+      ->setDescription(new TranslatableMarkup('The pathname of source file.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 255)
       ->setDisplayOptions('view', [
@@ -129,6 +127,8 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
 
   /**
    * {@inheritdoc}
+   *
+   * @todo Evaluate which of this is not needed anymore and simplify.
    */
   public function getCacheTagsToInvalidate(): array {
     $cache_tags = parent::getCacheTagsToInvalidate();
@@ -138,7 +138,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
     if ($this->isNew()) {
       $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->id();
     }
-    $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->getExternalId();
+    $cache_tags[] = $this->entityTypeId . ':' . $langcode . ':' . $this->getSlug();
     $relative_pathname_hash = Crypt::hashBase64($this->getRelativePathname());
     $cache_tags[] = $this->entityTypeId . ':relative_pathname:' . $relative_pathname_hash;
 
@@ -155,8 +155,8 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function getExternalId(): ?string {
-    return $this->get('external_id')->value;
+  public function getSlug(): string {
+    return $this->get('slug')->getString();
   }
 
   /**

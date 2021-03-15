@@ -39,10 +39,10 @@ final class DrukiContentForm extends ContentEntityForm {
       '#tree' => TRUE,
     ];
 
-    $form['content_info']['external_id'] = [
+    $form['content_info']['slug'] = [
       '#type' => 'item',
-      '#title' => $this->t('External ID'),
-      '#markup' => $druki_content->get('external_id')->value,
+      '#title' => $this->t('Slug'),
+      '#markup' => $druki_content->getSlug(),
       '#wrapper_attributes' => [
         'class' => [
           'container-inline',

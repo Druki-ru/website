@@ -48,8 +48,8 @@ final class FrontMatter implements FrontMatterInterface {
    */
   public function valid(): bool {
     $required_values = [
-      'id',
       'title',
+      'slug',
     ];
 
     foreach ($required_values as $required_value) {

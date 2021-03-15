@@ -20,11 +20,9 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
    */
   public function process($data, DrukiContentInterface $content): void {
     $this->processTitle($data, $content);
+    $this->processSlug($data, $content);
     $this->processCategory($data, $content);
     $this->processCore($data, $content);
-    $this->processPath($data, $content);
-    $this->processDifficulty($data, $content);
-    $this->processLabels($data, $content);
     $this->processSearchKeywords($data, $content);
     $this->processMetatags($data, $content);
   }
@@ -39,6 +37,18 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
    */
   protected function processTitle(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     $content->setTitle($front_matter->get('title')->getValue());
+  }
+
+  /**
+   * Process 'title' value.
+   *
+   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
+   *   The parsed Front Matter.
+   * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
+   *   The destination content.
+   */
+  protected function processSlug(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
+    $content->set('slug', $front_matter->get('slug')->getValue());
   }
 
   /**
@@ -71,70 +81,6 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
   protected function processCore(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
     if ($front_matter->has('core')) {
       $content->setCore($front_matter->get('core')->getValue());
-    }
-  }
-
-  /**
-   * Process 'path' value.
-   *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
-   *   The parsed Front Matter.
-   * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
-   *   The destination content.
-   *
-   * @see druki_content_tokens()
-   */
-  protected function processPath(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
-    if ($front_matter->has('path')) {
-      $forced_alias = $front_matter->get('path')->getValue();
-      $content->set('forced_path', $forced_alias);
-    }
-  }
-
-  /**
-   * Process 'difficulty' value.
-   *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
-   *   The parsed Front Matter.
-   * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
-   *   The destination content.
-   *
-   * @todo Consider remove this field or use it.
-   */
-  protected function processDifficulty(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
-    // Reset value. Assumes that value was cleared.
-    $content->set('difficulty', NULL);
-    if ($front_matter->has('difficulty')) {
-      // Get available values directly from field.
-      $field_definitions = $content->getFieldDefinitions();
-
-      if (isset($field_definitions['difficulty'])) {
-        $difficulty = $field_definitions['difficulty'];
-        $settings = $difficulty->getSetting('allowed_values');
-        $allowed_values = \array_keys($settings);
-
-        if (\in_array($front_matter->get('difficulty')->getValue(), $allowed_values)) {
-          $content->set('difficulty', $front_matter->get('difficulty')->getValue());
-        }
-      }
-    }
-  }
-
-  /**
-   * Process 'labels' value.
-   *
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $front_matter
-   *   The parsed Front Matter.
-   * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
-   *   The destination content.
-   *
-   * @todo Consider remove this field or use it.
-   */
-  protected function processLabels(FrontMatterInterface $front_matter, DrukiContentInterface $content): void {
-    // Reset value. Assumes that value was cleared.
-    $content->set('labels', NULL);
-    if ($front_matter->has('labels')) {
-      $content->set('labels', $front_matter->get('labels')->getValue());
     }
   }
 

@@ -17,7 +17,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Основной
     position: 0
     display_options:
       access:
@@ -40,11 +40,11 @@ display:
         options:
           submit_button: Применить
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Сбросить
+          exposed_sorts_label: 'Сортировать по'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'По возрастанию'
+          sort_desc_label: 'По убыванию'
       pager:
         type: some
         options:
@@ -185,7 +185,7 @@ display:
     display_options:
       display_description: 'Список новых пользователей'
       block_description: 'Новые пользователи'
-      block_category: User
+      block_category: Пользователь
       display_extenders: {  }
     cache_metadata:
       contexts:

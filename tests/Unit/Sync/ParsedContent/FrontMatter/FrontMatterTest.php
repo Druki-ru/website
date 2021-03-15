@@ -17,7 +17,7 @@ final class FrontMatterTest extends UnitTestCase {
    * Tests the basic behaviors under normal conditions.
    */
   public function test(): void {
-    $value_1 = $this->prophesizeFrontMatterProphecy('id', 'drupal');
+    $value_1 = $this->prophesizeFrontMatterProphecy('slug', 'drupal');
     $value_2 = $this->prophesizeFrontMatterProphecy('title', 'Hello World!');
 
     $front_matter = new FrontMatter();
@@ -29,10 +29,10 @@ final class FrontMatterTest extends UnitTestCase {
     // Test fluent setter.
     $this->assertSame($front_matter, $returned_value);
 
-    $this->assertSame($value_1, $front_matter->get('id'));
+    $this->assertSame($value_1, $front_matter->get('slug'));
     $this->assertSame($value_2, $front_matter->get('title'));
     $this->assertNull($front_matter->get('foo-bar'));
-    $this->assertTrue($front_matter->has('id'));
+    $this->assertTrue($front_matter->has('slug'));
     $this->assertFalse($front_matter->has('foo-bar'));
     $this->assertSame([$value_1, $value_2], $front_matter->getValues());
   }

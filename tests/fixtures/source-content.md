@@ -1,6 +1,6 @@
 ---
-id: example
 title: The title
+slug: example
 ---
 
 Hello world!

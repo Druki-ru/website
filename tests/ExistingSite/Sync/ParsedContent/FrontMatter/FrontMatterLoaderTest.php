@@ -22,15 +22,13 @@ final class FrontMatterLoaderTest extends ExistingSiteBase {
   public function testProcess(): void {
     $front_matter = new FrontMatter();
     $front_matter->add(new FrontMatterValue('title', 'Foo bar!'));
+    $front_matter->add(new FrontMatterValue('slug', 'foo-bar'));
     $front_matter->add(new FrontMatterValue('category', [
       'area' => 'foo',
       'order' => 10,
       'title' => 'bar',
     ]));
     $front_matter->add(new FrontMatterValue('core', '9'));
-    $front_matter->add(new FrontMatterValue('path', '/foo-bar'));
-    $front_matter->add(new FrontMatterValue('difficulty', 'medium'));
-    $front_matter->add(new FrontMatterValue('labels', ['foo', 'bar']));
     $front_matter->add(new FrontMatterValue('search-keywords', ['foo', 'bar']));
     $front_matter->add(new FrontMatterValue('metatags', [
       'title' => 'Foo bar!',
@@ -42,14 +40,9 @@ final class FrontMatterLoaderTest extends ExistingSiteBase {
     $content_loader->process($front_matter, $druki_content);
 
     $this->assertEquals($front_matter->get('title')->getValue(), $druki_content->label());
+    $this->assertEquals($front_matter->get('slug')->getValue(), $druki_content->getSlug());
     $this->assertEquals($front_matter->get('category')->getValue(), $druki_content->get('category')->first()->getValue());
     $this->assertEquals($front_matter->get('core')->getValue(), $druki_content->getCore());
-    $this->assertEquals($front_matter->get('path')->getValue(), $druki_content->get('forced_path')->value);
-    $this->assertEquals($front_matter->get('difficulty')->getValue(), $druki_content->get('difficulty')->value);
-    $this->assertEquals($front_matter->get('labels')->getValue(), [
-      $druki_content->get('labels')->offsetGet(0)->value,
-      $druki_content->get('labels')->offsetGet(1)->value,
-    ]);
     $this->assertEquals($front_matter->get('search-keywords')->getValue(), [
       $druki_content->get('search_keywords')->offsetGet(0)->value,
       $druki_content->get('search_keywords')->offsetGet(1)->value,
