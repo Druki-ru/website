@@ -161,15 +161,6 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
 
   /**
    * {@inheritdoc}
-   *
-   * @deprecated
-   */
-  public function getExternalId(): ?string {
-    return NULL;
-  }
-
-  /**
-   * {@inheritdoc}
    */
   public function getRelativePathname(): string {
     return $this->get('relative_pathname')->value;
