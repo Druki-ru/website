@@ -11,7 +11,7 @@ register_no_approval_required:
   body: "[user:display-name],\r\n\r\nБлагодарим вас за регистрацию на сайте «[site:name]». Можете войти на сайт, щёлкнув по следующей ссылке, или скопировав её в адресную строку браузера:\r\n\r\n[user:one-time-login-url] \r\n\r\nЭта одноразовая ссылка для входа на сайт ведёт на страницу установки пароля.\r\n\r\nПосле установки пароля войти на сайт можно на странице [site:login-url], введя:\r\n\r\nИмя пользователя: [user:name]\r\nПароль: ваш пароль \r\n\r\n-- Команда сайта «[site:name]»"
   subject: 'Детали учётной записи пользователя [user:display-name] на сайте [site:name]'
 register_pending_approval:
-  body: "[user:display-name],\r\n\r\nThank you for registering at [site:name]. Your application for an account is currently pending approval. Once it has been approved, you will receive another email containing information about how to log in, set your password, and other details.\r\n\r\n--  [site:name] team"
+  body: "[user:display-name],\r\n\r\nСпасибо за регистрацию на [site:name]. Ваша заявка на учетную запись в настоящее время ожидает одобрения. После того, как он будет одобрен, вы получите еще одно электронное письмо, содержащее информацию о том, как войти в систему, установить пароль и другие сведения.\r\n\r\n-- [site:name] команда"
   subject: 'Детали учётной записи [user:display-name] на сайте «[site:name]» (ожидает одобрения администратором)'
 register_pending_approval_admin:
   body: "[user:display-name] подал заявку на получение учётной записи.\r\n\r\n[user:edit-url]"

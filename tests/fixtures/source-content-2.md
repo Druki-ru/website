@@ -1,6 +1,6 @@
 ---
-id: example
 title: The modified version of source content
+slug: example
 ---
 
 Hello world!

@@ -7,5 +7,6 @@ _core:
 id: druki_note
 label: Note
 icon_uuid: null
+icon_default: null
 description: ''
 behavior_plugins: {  }

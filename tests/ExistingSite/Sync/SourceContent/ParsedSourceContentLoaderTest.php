@@ -23,7 +23,7 @@ final class ParsedSourceContentLoaderTest extends ExistingSiteBase {
     $source_content = new SourceContent('fake://drupal.md', 'drupal.md', 'ru');
     $front_matter = new FrontMatter();
     $front_matter->add(new FrontMatterValue('title', 'Drupal Test Loader'));
-    $front_matter->add(new FrontMatterValue('id', 'test-loader'));
+    $front_matter->add(new FrontMatterValue('slug', 'test-loader'));
     $front_matter->add(new FrontMatterValue('core', '10'));
     $content_list = new ContentList();
     $content_list->add(new ParagraphText('Hello World!'));
@@ -40,7 +40,7 @@ final class ParsedSourceContentLoaderTest extends ExistingSiteBase {
     $source_content = new SourceContent('fake://drupal.md', 'drupal.md', 'ru');
     $front_matter = new FrontMatter();
     $front_matter->add(new FrontMatterValue('title', 'Drupal Test Label changed'));
-    $front_matter->add(new FrontMatterValue('id', 'test-loader'));
+    $front_matter->add(new FrontMatterValue('slug', 'test-loader'));
     $front_matter->add(new FrontMatterValue('core', '10'));
     $content_list = new ContentList();
     $content_list->add(new ParagraphText('Hello World!'));

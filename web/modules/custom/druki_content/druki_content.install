@@ -362,3 +362,25 @@ function druki_content_update_9101(array &$sandbox): void {
   \Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('druki_content_redirect', 'redirect', 'druki_content', $field_definition);
 }
+
+/**
+ * Uninstall druki_content 'external_id' field.
+ */
+function druki_content_update_9102(array &$sandbox): void {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  if ($external_id = $definition_update_manager->getFieldStorageDefinition('external_id', 'druki_content')) {
+    $definition_update_manager->uninstallFieldStorageDefinition($external_id);
+  }
+}
+
+/**
+ * Install new content field 'slug'.
+ */
+function druki_content_update_9103(array &$sandbox): void {
+  $field_definition = BaseFieldDefinition::create('string')
+    ->setLabel(new TranslatableMarkup('The content slug'))
+    ->setRequired(TRUE)
+    ->setReadOnly(TRUE);
+  Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('slug', 'druki_content', 'druki_content', $field_definition);
+}

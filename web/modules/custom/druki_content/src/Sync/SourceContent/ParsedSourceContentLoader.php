@@ -114,17 +114,13 @@ final class ParsedSourceContentLoader {
    */
   protected function loadDrukiContent(ParsedSourceContent $parsed_source_content): DrukiContentInterface {
     $front_matter = $parsed_source_content->getParsedSource()->getFrontMatter();
-    $id = $front_matter->get('id')->getValue();
-    $core = NULL;
-    if ($front_matter->has('core')) {
-      $core = $front_matter->get('core')->getValue();
-    }
+    $slug = $front_matter->get('slug')->getValue();
     $language = $parsed_source_content->getSource()->getLanguage();
-    $entity = $this->drukiContentStorage->loadByExternalId($id, $language, $core);
+    $entity = $this->drukiContentStorage->loadBySlug($slug, $language);
 
     if (!$entity) {
       $entity = $this->drukiContentStorage->create([
-        'external_id' => $id,
+        'slug' => $slug,
         'langcode' => $language,
       ]);
     }

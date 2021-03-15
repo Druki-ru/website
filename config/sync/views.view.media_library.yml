@@ -26,7 +26,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Основной
     position: 0
     display_options:
       access:
@@ -49,11 +49,11 @@ display:
         options:
           submit_button: 'Применить фильтры'
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Сбросить
+          exposed_sorts_label: 'Сортировать по'
           expose_sort_order: false
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: 'По возрастанию'
+          sort_desc_label: 'По убыванию'
       pager:
         type: mini
         options:
@@ -63,12 +63,12 @@ display:
           total_pages: null
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Элементов на страницу'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Все -'
             offset: false
-            offset_label: Offset
+            offset_label: Пропустить
           tags:
             previous: ‹‹
             next: ››
@@ -252,7 +252,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Name
+            label: Название
             description: ''
             use_operator: false
             operator: name_op
@@ -435,7 +435,7 @@ display:
           order: ASC
           exposed: true
           expose:
-            label: 'Name (A-Z)'
+            label: 'Имя (А-Я)'
           entity_type: media
           entity_field: name
           plugin_id: standard
@@ -449,7 +449,7 @@ display:
           order: DESC
           exposed: true
           expose:
-            label: 'Name (Z-A)'
+            label: 'Имя (Я-А)'
           entity_type: media
           entity_field: name
           plugin_id: standard
@@ -495,7 +495,7 @@ display:
   page:
     display_plugin: page
     id: page
-    display_title: Page
+    display_title: Страница
     position: 1
     display_options:
       display_extenders: {  }
@@ -676,7 +676,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: Edit
+          text: Редактировать
           output_url_as_text: false
           absolute: false
           entity_type: media
@@ -729,7 +729,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: Delete
+          text: Удалить
           output_url_as_text: false
           absolute: false
           entity_type: media
@@ -985,7 +985,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Name
+            label: Название
             description: ''
             use_operator: false
             operator: name_op
@@ -1107,7 +1107,7 @@ display:
           table: views
           field: display_link
           display_id: widget
-          label: Grid
+          label: Сетка
           plugin_id: display_link
           empty: true
         display_link_table:
@@ -1115,7 +1115,7 @@ display:
           table: views
           field: display_link
           display_id: widget_table
-          label: Table
+          label: Таблица
           plugin_id: display_link
           empty: true
       rendering_language: '***LANGUAGE_language_interface***'
@@ -1190,7 +1190,7 @@ display:
             image_link: ''
         name:
           id: name
-          label: Name
+          label: Название
           table: media_field_data
           field: name
           relationship: none
@@ -1284,7 +1284,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: Name
+            label: Название
             description: ''
             use_operator: false
             operator: name_op
@@ -1405,7 +1405,7 @@ display:
           table: views
           field: display_link
           display_id: widget
-          label: Grid
+          label: Сетка
           plugin_id: display_link
           empty: true
         display_link_table:
@@ -1413,7 +1413,7 @@ display:
           table: views
           field: display_link
           display_id: widget_table
-          label: Table
+          label: Таблица
           plugin_id: display_link
           empty: true
       rendering_language: '***LANGUAGE_language_interface***'

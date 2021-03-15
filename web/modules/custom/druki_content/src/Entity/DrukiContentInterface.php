@@ -48,14 +48,6 @@ interface DrukiContentInterface extends ContentEntityInterface {
   public function setRelativePathname(string $relative_pathname): DrukiContentInterface;
 
   /**
-   * Gets content external ID.
-   *
-   * @return string
-   *   The external ID.
-   */
-  public function getExternalId(): ?string;
-
-  /**
    * Sets core version.
    *
    * @param string $core
@@ -132,5 +124,13 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @return $this
    */
   public function setSourceHash(string $hash): DrukiContentInterface;
+
+  /**
+   * Gets content slug.
+   *
+   * @return string
+   *   The content slug.
+   */
+  public function getSlug(): string;
 
 }

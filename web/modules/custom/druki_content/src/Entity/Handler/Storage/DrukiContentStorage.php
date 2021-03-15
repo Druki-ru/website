@@ -11,19 +11,17 @@ use Drupal\druki_content\Entity\DrukiContentInterface;
 final class DrukiContentStorage extends SqlContentEntityStorage {
 
   /**
-   * Loads content by its meta information.
+   * Loads content by slug.
    *
-   * @param string $external_id
-   *   The external content ID.
+   * @param string $slug
+   *   The content slug.
    * @param string|null $langcode
-   *   The langcode of content. By default default site language.
-   * @param string|null $core
-   *   The core version, if applicable.
+   *   The langcode of content. Defaults to site language.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
    *   The content.
    */
-  public function loadByExternalId(string $external_id, ?string $langcode = NULL, ?string $core = NULL): ?DrukiContentInterface {
+  public function loadBySlug(string $slug, ?string $langcode = NULL): ?DrukiContentInterface {
     if (!$langcode) {
       $langcode = $this->languageManager->getCurrentLanguage()->getId();
     }
@@ -31,21 +29,14 @@ final class DrukiContentStorage extends SqlContentEntityStorage {
     $entity_query = $this->getQuery();
     $entity_query->accessCheck(FALSE);
     $and = $entity_query->andConditionGroup();
-    $and->condition('external_id', $external_id);
+    $and->condition('slug', $slug);
     $and->condition('langcode', $langcode);
-    if ($core) {
-      $and->condition('core', $core);
-    }
-    else {
-      $and->notExists('core');
-    }
     $entity_query->condition($and);
 
     $result = $entity_query->execute();
     if (!empty($result)) {
       \reset($result);
       $first = \key($result);
-
       return $this->load($first);
     }
 

@@ -15,27 +15,10 @@ final class DrukiContentComputesAliasTokenTest extends ExistingSiteBase {
   /**
    * Tests behavior for common content entity.
    */
-  public function testDefaultAlias(): void {
+  public function testAlias(): void {
     $entity = $this->createDrukiContent();
-    $expected = '/wiki/' . $entity->getExternalId();
+    $expected = '/wiki/' . $entity->getSlug();
     $this->assertEquals($expected, $entity->toUrl()->toString());
-  }
-
-  /**
-   * Tests alias for content with 'core' set.
-   */
-  public function testWithCoreValue(): void {
-    $entity = $this->createDrukiContent(['core' => 9]);
-    $expected = '/wiki/9/' . $entity->getExternalId();
-    $this->assertEquals($expected, $entity->toUrl()->toString());
-  }
-
-  /**
-   * Tests alias for content with 'path' set.
-   */
-  public function testForcedPath(): void {
-    $entity = $this->createDrukiContent(['forced_path' => '/foo-bar/test']);
-    $this->assertEquals('/wiki/foo-bar/test', $entity->toUrl()->toString());
   }
 
 }

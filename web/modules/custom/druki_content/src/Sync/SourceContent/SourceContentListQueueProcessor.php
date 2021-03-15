@@ -57,6 +57,11 @@ final class SourceContentListQueueProcessor implements QueueProcessorInterface {
     $source_content_list = $item->getPayload();
     foreach ($source_content_list as $source_content) {
       $parsed_source_content = $this->parser->parse($source_content);
+      // Do nothing if it's invalid.
+      // @todo Maybe it's better to return NULL during parse.
+      if (!$parsed_source_content->getParsedSource()->valid()) {
+        continue;
+      }
       $this->loader->process($parsed_source_content, $is_force_update);
     }
   }

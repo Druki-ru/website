@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: sL588ui1E_8-2c_UupwyYxcqX2OVyMFp3HTLbbFqvPc
 id: global
-label: Global
+label: Глобальный
 tags:
   canonical_url: '[current-page:url]'
   google: google-site-verification=2ivXF1ydCxp5SIlv3CWX0EhK0PF-SHn7KbCxGs7oL8U

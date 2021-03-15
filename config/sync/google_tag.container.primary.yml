@@ -1,8 +1,18 @@
+uuid: aca0398d-4e78-4a00-8a19-60f39366d5ce
+langcode: ru
 status: true
+dependencies: {  }
 id: primary
 label: Primary
 weight: 0
 container_id: GTM-KLBKSMP
+data_layer: dataLayer
+include_classes: false
+whitelist_classes: "google\nnonGooglePixels\nnonGoogleScripts\nnonGoogleIframes"
+blacklist_classes: "customScripts\ncustomPixels"
+include_environment: false
+environment_id: ''
+environment_token: ''
 path_toggle: 'exclude listed'
 path_list: "/admin*\n/batch*\n/node/add*\n/node/*/edit\n/node/*/delete\n/user/*/edit*\n/user/*/cancel*"
 role_toggle: 'exclude listed'
@@ -12,11 +22,4 @@ role_list:
   administrator: '0'
 status_toggle: 'exclude listed'
 status_list: "403\n404"
-data_layer: dataLayer
-include_classes: false
-whitelist_classes: "google\nnonGooglePixels\nnonGoogleScripts\nnonGoogleIframes"
-blacklist_classes: "customScripts\ncustomPixels"
-include_environment: false
-environment_id: ''
-environment_token: ''
-langcode: ru
+conditions: {  }

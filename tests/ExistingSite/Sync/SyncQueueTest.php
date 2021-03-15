@@ -93,13 +93,13 @@ final class SyncQueueTest extends ExistingSiteBase {
 
     /** @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage $druki_content_storage */
     $druki_content_storage = $this->container->get('entity_type.manager')->getStorage('druki_content');
-    $druki_content = $druki_content_storage->loadByExternalId('example');
+    $druki_content = $druki_content_storage->loadBySlug('example');
     $this->assertNull($druki_content);
 
     $this->syncQueueManager->run();
     $this->assertEquals(0, $queue->numberOfItems());
-    $druki_content = $druki_content_storage->loadByExternalId('example');
-    $this->assertEquals('example', $druki_content->getExternalId());
+    $druki_content = $druki_content_storage->loadBySlug('example');
+    $this->assertEquals('example', $druki_content->getSlug());
     $this->assertEquals('The title', $druki_content->label());
 
     // Emulate that file is updated while content present on the site.
@@ -113,7 +113,7 @@ final class SyncQueueTest extends ExistingSiteBase {
 
     $old_id = $druki_content->id();
     $this->syncQueueManager->run();
-    $druki_content = $druki_content_storage->loadByExternalId('example');
+    $druki_content = $druki_content_storage->loadBySlug('example');
     // It should update an existed content, not delete and create new one.
     $this->assertEquals($old_id, $druki_content->id());
     $this->assertEquals('The modified version of source content', $druki_content->label());
@@ -150,21 +150,21 @@ final class SyncQueueTest extends ExistingSiteBase {
    */
   public function testCleanQueue(): void {
     $this->createDrukiContent([
-      'external_id' => 'test_clean_up',
+      'slug' => 'test_clean_up',
       'sync_timestamp' => 1,
     ]);
 
     /** @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage $druki_content_storage */
     $druki_content_storage = $this->container->get('entity_type.manager')->getStorage('druki_content');
-    $druki_content = $druki_content_storage->loadByExternalId('test_clean_up');
-    $this->assertEquals('test_clean_up', $druki_content->getExternalId());
+    $druki_content = $druki_content_storage->loadBySlug('test_clean_up');
+    $this->assertEquals('test_clean_up', $druki_content->getSlug());
 
     $queue_item = new CleanQueueItem(2);
     $queue = $this->getSyncQueue();
     $queue->createItem($queue_item);
     $this->syncQueueManager->run();
 
-    $druki_content = $druki_content_storage->loadByExternalId('test_clean_up');
+    $druki_content = $druki_content_storage->loadBySlug('test_clean_up');
     $this->assertNull($druki_content);
   }
 
