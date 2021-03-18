@@ -121,10 +121,19 @@
     </div>
 
     <div class="druki-wiki-page__column">
+      <h2 class="druki-wiki-page__column-title">Стандартные модули</h2>
+      <ul class="druki-wiki-page__links">
+        <li class="druki-wiki-page__link">{{ _self.link('Internal Dynamic Page Cache', '/wiki/9/dynamic-page-cache', 'Кеширование страниц с динамическим содержимым.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Internal Page Cache', '/wiki/9/page-cache', 'Статическое кешиерование страниц для анонимных пользователей.') }}</li>
+      </ul>
+    </div>
+
+    <div class="druki-wiki-page__column">
       <h2 class="druki-wiki-page__column-title">Прочие возможности</h2>
       <ul class="druki-wiki-page__links">
         <li class="druki-wiki-page__link">{{ _self.link('Регулярные операции (cron)', '/wiki/9/cron', 'Выполнение регулярных операций.') }}</li>
         <li class="druki-wiki-page__link">{{ _self.link('Псевдо-поля (экстра-поля), Extra Fields', '/wiki/9/extra-fields', 'Добавление виртуальных полей к сущностям.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Drupal JavaScript once API', '/wiki/drupal-once', 'API для предотвращения множественных обработок элементов.') }}</li>
       </ul>
     </div>
 
@@ -163,6 +172,7 @@
         <li class="druki-wiki-page__link">{{ _self.link('Семантическое версионирование', '/wiki/semver', 'Спецификация о присвоении версий для релизов.') }}</li>
         <li class="druki-wiki-page__link">{{ _self.link('Депрекация', '/wiki/deprecation', 'Процесс вывода старого кода из оборота.') }}</li>
         <li class="druki-wiki-page__link">{{ _self.link('Обратная совместимость', '/wiki/backward-compatibility', 'Сохранение обратной совместимости с предыдущими релизами.') }}</li>
+        <li class="druki-wiki-page__link">{{ _self.link('Web Vitals', '/wiki/web-vitals', 'Метрики качества сайта и советы по их улучшению.') }}</li>
       </ul>
     </div>
   </section>
