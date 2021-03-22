@@ -1,0 +1,1 @@
+{"version":3,"sources":["01-generic/shadow.pcss"],"names":[],"mappings":"AAAA,MACE,sDAAuD,CACvD,uDAAwD,CACxD,wDACF","file":"shadow.css","sourcesContent":[":root {\n  --shadow-xs: 0px 2px 4px var(--color-black--opacity-10);\n  --shadow-sm: 0px 4px 10px var(--color-black--opacity-10);\n  --shadow-md: 0px 14px 30px var(--color-black--opacity-10);\n}\n"]}

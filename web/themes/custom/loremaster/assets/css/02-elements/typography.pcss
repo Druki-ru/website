@@ -2,7 +2,7 @@
   /* Text sizes. */
   --line-height: 1.5;
   --font-size-base: 1rem; /* 1rem = 16px if font root is 100% ands browser defaults are used. */
-  --font-size-h1: 2.027rem; /* ~32px */
+  --font-size-h1: 2.5rem; /* ~40px */
   --font-size-h2: 1.5rem; /* 24px */
   --font-size-h3: 1.25rem; /* 20px */
   --font-size-h4: 1rem; /* 16px */
@@ -17,7 +17,7 @@
 
   --text-color: var(--color-raisin-black);
 
-  --mark-background: var(--color-sunglow);
+  --mark-background: rgb(var(--color-sunglow));
   --code-background: var(--color-cultured);
 
   --p-margin--y: var(--spacing-md);
@@ -31,6 +31,8 @@
 html {
   /* Initial for (R)EM. */
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -65,7 +67,7 @@ code {
   font-size: 90%;
   padding: 0.125rem var(--spacing-xs);
   word-break: break-all;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xs);
   background-color: var(--code-background);
 }
 

@@ -1,0 +1,1 @@
+{"version":3,"sources":["02-elements/page.pcss"],"names":[],"mappings":"AAAA,MACE,4CACF,CAEA,kBACE,6CACF,CAEA,KACE,iCACF","file":"page.css","sourcesContent":[":root {\n  --page-background: var(--color-white--dark-1);\n}\n\n[data-theme=\"dark\"] {\n  --page-background: var(--color-black--light-4);\n}\n\nbody {\n  background: var(--page-background);\n}\n\n"]}
