@@ -8,6 +8,14 @@
   margin-top: var(--spacing-xl);
 }
 
+/* Reduce spacing if headings are close to each other. */
+.druki-content-full h2 + h3,
+.druki-content-full h3 + h4,
+.druki-content-full h4 + h5,
+.druki-content-full h5 + h6 {
+  margin-top: var(--spacing-sm);
+}
+
 .druki-content-full ol li,
 .druki-content-full ul li,
 .druki-content-full ol ol,
