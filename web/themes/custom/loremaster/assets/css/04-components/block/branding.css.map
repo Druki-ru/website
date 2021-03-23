@@ -1,1 +1,0 @@
-{"version":3,"sources":["04-components/block/branding.pcss"],"names":[],"mappings":"AAAA,gBACE,aACF","file":"branding.css","sourcesContent":[".branding__logo {\n  display: block;\n}\n"]}

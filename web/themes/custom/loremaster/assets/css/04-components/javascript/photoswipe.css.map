@@ -1,1 +1,0 @@
-{"version":3,"sources":["04-components/javascript/photoswipe.pcss"],"names":[],"mappings":"AAAA,sBACE,aACF","file":"photoswipe.css","sourcesContent":[".photoswipe-gallery a {\n  display: block;\n}\n"]}
