@@ -15,3 +15,22 @@ druki.official_user_guide_settings:
   description: Settings for displaying the official user guide.
   route_name: druki.official_user_guide_settings
   parent: druki.admin_general
+
+druki.front:
+  title: 'Frontpage'
+  title_context: short
+  route_name: '<front>'
+  menu_name: main
+  weight: 1
+
+druki.wiki:
+  title: 'Wiki'
+  route_name: druki.wiki
+  menu_name: main
+  weight: 2
+
+druki.download:
+  title: 'Download Drupal'
+  route_name: druki.download
+  menu_name: main
+  weight: 3

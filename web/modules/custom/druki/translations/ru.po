@@ -29,6 +29,10 @@ msgstr "Настройки главной страницы"
 msgid "Frontpage"
 msgstr "Главная страница"
 
+msgctxt "short"
+msgid "Frontpage"
+msgstr "Главная"
+
 msgid "Settings for frontpage."
 msgstr "Настройки для главной страницы."
 
