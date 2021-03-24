@@ -8,15 +8,12 @@ package: Glisseo
 core_version_requirement: ^8 || ^9
 
 regions:
-  sidebar: Sidebar
   header: Header
   content: Content
   mobile_toolbar: Mobile Toolbar
   mobile_sidebar: Mobile Sidebar
   content_header: Content header
   sidebar_right: 'Sidebar Right'
-  footer_menu_first: 'Footer menu first'
-  footer_menu_second: 'Footer menu second'
 
 libraries:
   - loremaster/global.style.generic

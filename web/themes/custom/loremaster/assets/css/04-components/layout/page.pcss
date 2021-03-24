@@ -1,8 +1,9 @@
 :root {
   --page-header-height: 64px;
-  --page-content-gap: calc(var(--spacing-md) * 4);
   --page-sidebar-width: 320px;
   --page-sidebar-background-color: transparent;
+  --page-content-gap: calc(var(--spacing-md) * 4);
+  --page-content-width: 820px;
 }
 
 .page {
@@ -65,7 +66,7 @@
 }
 
 .page__sidebar-blocks > .block {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-lg);
 }
 
 .page__sidebar-separator {
@@ -88,8 +89,52 @@
   );
 }
 
-.page__content .region-header {
+.page__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.page__body .footer {
+  margin-top: auto;
+}
+
+.page__toolbar {
   height: var(--page-header-height);
   display: flex;
   align-items: stretch;
+}
+
+.page__search {
+  flex: 1;
+  max-width: var(--page-content-width);
+  margin-right: auto;
+}
+
+.page__toolbar-separator {
+  margin-top: 0;
+  position: relative;
+  top: -1px;
+}
+
+.page__toolbar-separator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--color-black-rgb), 0.07) 0,
+    rgba(var(--color-black-rgb), 0.07) calc(100% - 2rem),
+    rgba(var(--color-black-rgb), 0) 100%
+  );
+}
+
+.page__tools {
+  display: flex;
+  align-items: center;
+}
+
+.page__tools > .block {
+  margin-left: var(--spacing-sm);
 }

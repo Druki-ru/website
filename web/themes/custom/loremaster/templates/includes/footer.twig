@@ -5,31 +5,27 @@
 #}
 {% set block = 'footer' %}
 <footer class="{{ bem(block) }}">
-  <div class="layout-container {{ bem(block, 'container') }}">
-    {{ page.footer_menu_first }}
-    {{ page.footer_menu_second }}
-    <div class="{{ bem(block, 'legal') }}">
-      <div class="{{ bem(block, 'some-love') }}">
-        {% set url = 'https://niklan.net' %}
-        {% set name = 'Niklan' %}
-        {% trans %}Developed by <a href="{{ url }}">{{ name }}</a> with love on Drupal.{% endtrans %}
-      </div>
+  <div class="{{ bem(block, 'legal') }}">
+    <div class="{{ bem(block, 'some-love') }}">
+      {% set url = 'https://niklan.net' %}
+      {% set name = 'Niklan' %}
+      {% trans %}Developed by <a href="{{ url }}">{{ name }}</a> with love on Drupal.{% endtrans %}
+    </div>
 
-      <div class="{{ bem(block, 'copyright') }}">
-        {% set url = 'https://dri.es/' %}
-        {% set name = 'Dries Buytaert' %}
-        {% trans %}Drupal is a registered trademark of <a href="{{ url }}">{{ name }}</a>.{% endtrans %}
-        <br/>
-        {% set source_url = 'https://github.com/Niklan/druki-website' %}
-        {% set license_url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.ru.html' %}
-        {% set license_name = 'GNU GPL v2 license' %}
-        {% trans %}<a href="{{ source_url }}">The source code</a> of the site is provided under the <a href="{{ license_url }}">{{ license_name }}</a>.{% endtrans %}
-        <br/>
-        {% set source_url = 'https://github.com/Niklan/druki-content' %}
-        {% set license_url = 'https://creativecommons.org/licenses/by-sa/4.0/legalcode' %}
-        {% set license_name = 'Creative Commons Attribution CC-BY-SA 4.0 license' %}
-        {% trans %}<a href="{{ source_url }}">The content</a> of the site is provided under the <a href="{{ license_url }}">{{ license_name }}</a>.{% endtrans %}
-      </div>
+    <div class="{{ bem(block, 'copyright') }}">
+      {% set url = 'https://dri.es/' %}
+      {% set name = 'Dries Buytaert' %}
+      {% trans %}Drupal is a registered trademark of <a href="{{ url }}">{{ name }}</a>.{% endtrans %}
+      <br/>
+      {% set source_url = 'https://github.com/Niklan/druki-website' %}
+      {% set license_url = 'https://www.gnu.org/licenses/old-licenses/gpl-2.0.ru.html' %}
+      {% set license_name = 'GNU GPL v2 license' %}
+      {% trans %}<a href="{{ source_url }}">The source code</a> of the site is provided under the <a href="{{ license_url }}">{{ license_name }}</a>.{% endtrans %}
+      <br/>
+      {% set source_url = 'https://github.com/Niklan/druki-content' %}
+      {% set license_url = 'https://creativecommons.org/licenses/by-sa/4.0/legalcode' %}
+      {% set license_name = 'Creative Commons Attribution CC-BY-SA 4.0 license' %}
+      {% trans %}<a href="{{ source_url }}">The content</a> of the site is provided under the <a href="{{ license_url }}">{{ license_name }}</a>.{% endtrans %}
     </div>
   </div>
 </footer>

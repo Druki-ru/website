@@ -31,7 +31,6 @@ global.style.components:
     layout:
       assets/css/04-components/layout/layout.css: { }
       assets/css/04-components/layout/page.css: { }
-      assets/css/04-components/layout/region-header.css: { }
       assets/css/04-components/layout/region-mobile-toolbar.css: { }
       assets/css/04-components/layout/region-mobile-sidebar.css: { }
       assets/css/04-components/layout/region-content.css: { }

@@ -15,20 +15,31 @@
   ]
 %}
 {% set footer %}
-  {% include '@loremaster/includes/footer.twig' %}
+  {% include '@loremaster/includes/footer.twig' only %}
 {% endset %}
 
 <div class="layout-container page">
   <div class="page__sidebar">
     <div class="page__sidebar-blocks">
-      {{ drupal_block('system_branding_block') }}
+      {{- drupal_block('system_branding_block') -}}
       <div class="page__sidebar-separator"></div>
-      {{ drupal_block('system_menu_block:main') }}
+      {{- drupal_block('system_menu_block:main') -}}
     </div>
     <div class="page__sidebar-shadow"></div>
   </div>
 
-  <div class="page__content">
-    {{ page.header }}
+  <div class="page__body">
+    <div class="page__toolbar">
+      <div class="page__search">
+        {{- drupal_block('druki_header_search', wrapper=false) -}}
+        <div class="page__toolbar-separator"></div>
+      </div>
+      <div class="page__tools">
+        {{- drupal_block('druki_header_repository_button') -}}
+        {{- drupal_block('druki_header_dark_mode_switcher') -}}
+      </div>
+    </div>
+
+    {{- footer -}}
   </div>
 </div>
