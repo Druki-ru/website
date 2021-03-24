@@ -179,6 +179,9 @@ msgid "Download Drupal"
 msgstr "Загрузить Drupal"
 
 msgid "Drupal Wiki"
+msgstr "Drupal Энциклопедия"
+
+msgid "Drupal wiki"
 msgstr "Drupal энциклопедия"
 
 msgid "Optimized remote video"
