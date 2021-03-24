@@ -19,9 +19,10 @@
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
-  {% if site_logo %}
-    <a href="{{ path('<front>') }}" rel="home" class="{{ bem(block, 'logo') }}">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" class="{{ bem(block, 'img') }}" width="26" height="34" />
-    </a>
-  {% endif %}
+  <a href="{{ path('<front>') }}" rel="home" class="{{ bem(block, 'logo') }}">
+    <div class="{{ bem(block, 'image') }}">
+      {{ source(site_logo) }}
+    </div>
+    <div class="{{ bem(block, 'name') }}">Drupal Wiki</div>
+  </a>
 </div>

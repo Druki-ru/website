@@ -9,7 +9,7 @@ dependencies:
 id: header_search
 theme: loremaster
 region: header
-weight: -8
+weight: -11
 provider: null
 plugin: druki_header_search
 settings:

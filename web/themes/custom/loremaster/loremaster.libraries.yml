@@ -24,13 +24,13 @@ global.style.elements:
       assets/css/02-elements/horizontal-rules.css: { }
       assets/css/02-elements/fieldset.css: { }
       assets/css/02-elements/blockquotes.css: { }
+      assets/css/02-elements/scroll.css: { }
 
 global.style.components:
   css:
     layout:
       assets/css/04-components/layout/layout.css: { }
-      assets/css/04-components/layout/main-layout.css: { }
-      assets/css/04-components/layout/page-container.css: { }
+      assets/css/04-components/layout/page.css: { }
       assets/css/04-components/layout/region-header.css: { }
       assets/css/04-components/layout/region-mobile-toolbar.css: { }
       assets/css/04-components/layout/region-mobile-sidebar.css: { }
@@ -242,3 +242,8 @@ asciinema-player:
         defer: defer
       }
     }
+
+keyboard-focus:
+  version: VERSION
+  js:
+    assets/js/keyboard-focus.js: {}

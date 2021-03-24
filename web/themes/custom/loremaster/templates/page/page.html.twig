@@ -18,22 +18,17 @@
   {% include '@loremaster/includes/footer.twig' %}
 {% endset %}
 
-<main class="page-container">
-  <header class="header">
-    {{ page.header }}
-    {{ page.mobile_toolbar }}
-  </header>
-  {{ page.content_header }}
-
-  <div{{ main_layout_attributes.addClass(main_layout_classes) }}>
-    {% if is_front %}
-      {% include '@loremaster/includes/frontpage.twig' %}
-    {% else %}
-      {{ page.content }}
-      {{ page.sidebar_right }}
-    {% endif %}
+<div class="layout-container page">
+  <div class="page__sidebar">
+    <div class="page__sidebar-blocks">
+      {{ drupal_block('system_branding_block') }}
+      <div class="page__sidebar-separator"></div>
+      {{ drupal_block('system_menu_block:main') }}
+    </div>
+    <div class="page__sidebar-shadow"></div>
   </div>
 
-  {{ footer }}
-  {{ page.mobile_sidebar }}
-</main>
+  <div class="page__content">
+    {{ page.header }}
+  </div>
+</div>

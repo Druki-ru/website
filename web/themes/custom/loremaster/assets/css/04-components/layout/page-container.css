@@ -1,2 +1,2 @@
-:root{--page-container-background-color:var(--color-white)}[data-theme=dark]{--page-container-background-color:var(--color-black--light-7)}.page-container{background-color:var(--page-container-background-color);max-width:1600px;margin:0 auto}
+:root{--page-container-background-color:var(--color-white)}[data-theme=dark]{--page-container-background-color:var(--color-black--light-7)}.page-container{background-color:var(--page-container-background-color);max-width:1440px;margin:0 auto}
 /*# sourceMappingURL=page-container.css.map */

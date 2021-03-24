@@ -11,7 +11,7 @@ _core:
 id: loremaster_breadcrumbs
 theme: loremaster
 region: content_header
-weight: -5
+weight: -11
 provider: null
 plugin: system_breadcrumb_block
 settings:
