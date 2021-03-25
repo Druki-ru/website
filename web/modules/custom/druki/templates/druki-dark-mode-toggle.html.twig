@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present dark mode theme toggle.
+ *
+ * Available variables:
+ * - attributes: The attributes for main wrapper.
+ */
+#}
+{{ attach_library('druki/dark-mode-toggle') }}
+{% do attributes.setAttribute('data-druki-selector', 'dark-mode-toggle') %}
+<div{{ attributes.addClass('dark-mode-toggle') }}>
+  <input type="radio" id="dark-mode-light" name="druki_dark_mode_toggle" value="light" data-mode-option>
+  <label for="dark-mode-light" class="dark-mode-toggle__button dark-mode-toggle__button--light" aria-label="{{ 'Light'|t([], {'context': 'color scheme'}) }}" title="{{ 'Light'|t([], {'context': 'color scheme'}) }}"></label>
+  <input type="radio" id="dark-mode-auto" name="druki_dark_mode_toggle" value="auto" data-mode-option>
+  <label for="dark-mode-auto" class="dark-mode-toggle__button dark-mode-toggle__button--auto" aria-label="{{ 'Inherit from the system'|t([], {'context': 'color scheme'}) }}" title="{{ 'Inherit from the system'|t([], {'context': 'color scheme'}) }}"></label>
+  <input type="radio" id="dark-mode-dark" name="druki_dark_mode_toggle" value="dark" data-mode-option>
+  <label for="dark-mode-dark" class="dark-mode-toggle__button dark-mode-toggle__button--dark" aria-label="{{ 'Dark'|t([], {'context': 'color scheme'}) }}" title="{{ 'Dark'|t([], {'context': 'color scheme'}) }}"></label>
+</div>

@@ -46,13 +46,12 @@ global.style.components:
       assets/css/04-components/block/branding.css: { }
       assets/css/04-components/block/mobile-branding.css: { }
       assets/css/04-components/block/mobile-sidebar-button.css: { }
-      assets/css/04-components/block/mobile-dark-mode-switcher.css: { }
       assets/css/04-components/block/header-repository-button.css: { }
-      assets/css/04-components/block/header-dark-mode-switcher.css: { }
       assets/css/04-components/menu/main.css: { }
       assets/css/04-components/menu/main-mobile-navigation.css: { }
       assets/css/04-components/javascript/mobile-sidebar.css: { }
       assets/css/04-components/theme/druki-header-search.css: { }
+      assets/css/04-components/theme/druki-dark-mode-toggle.css: { }
 
 global.style.utilities:
   css:
@@ -130,7 +129,7 @@ component.javascript.photoswipe:
 component.block.druki-content-variations:
   css:
     theme:
-      assets/css/04-components/block/druki-content-variations.css: {}
+      assets/css/04-components/block/druki-content-variations.css: { }
 
 component.paragraph:
   css:
@@ -245,4 +244,4 @@ asciinema-player:
 keyboard-focus:
   version: VERSION
   js:
-    assets/js/keyboard-focus.js: {}
+    assets/js/keyboard-focus.js: { }

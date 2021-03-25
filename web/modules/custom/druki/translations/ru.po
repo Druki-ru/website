@@ -198,3 +198,15 @@ msgstr "Репозиторий проекта"
 
 msgid "Get help"
 msgstr "Получить помощь"
+
+msgctxt "color scheme"
+msgid "Light"
+msgstr "Светлая"
+
+msgctxt "color scheme"
+msgid "Dark"
+msgstr "Тёмная"
+
+msgctxt "color scheme"
+msgid "Inherit from the system"
+msgstr "Наследовать из системы"

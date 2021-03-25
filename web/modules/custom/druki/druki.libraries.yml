@@ -27,9 +27,15 @@ instant-page:
     - core/drupal
 
 dark-mode:
+  header: TRUE
+  version: VERSION
   js:
-    # The earlier library will execute, the less "screen flash" will be.
-    # Drupal global variable init occurs at -17 weight, so we place it after it.
-    assets/js/dark-mode.js: { weight: -16, minified: true }
+    assets/js/dark-mode.js: {}
+
+dark-mode-toggle:
+  version: VERSION
+  js:
+    assets/js/dark-mode-toggle.js: {}
   dependencies:
+    - druki/dark-mode
     - core/drupal
