@@ -1,2 +1,2 @@
-.header-repository-button{width:2rem;height:2rem;background:transparent url(../../../icons/333333/github.svg) 50% no-repeat;cursor:pointer;border:none;align-self:center;display:flex}
+.header-repository-button{width:2rem;height:2rem;background:transparent url(../../../icons/333333/github.svg) 50% no-repeat;cursor:pointer;border:none;align-self:center;display:flex}[data-theme=dark] .header-repository-button{background-image:url(../../../icons/ffffff/github.svg)}
 /*# sourceMappingURL=header-repository-button.css.map */

@@ -8,8 +8,8 @@ dependencies:
     - loremaster
 id: category_navigation
 theme: loremaster
-region: sidebar_right
-weight: -4
+region: content_sidebar
+weight: -7
 provider: null
 plugin: druki_category_navigation
 settings:

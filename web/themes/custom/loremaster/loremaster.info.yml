@@ -9,11 +9,11 @@ core_version_requirement: ^8 || ^9
 
 regions:
   header: Header
+  content_above: Content Above
   content: Content
+  content_sidebar: Content sidebar
   mobile_toolbar: Mobile Toolbar
   mobile_sidebar: Mobile Sidebar
-  content_header: Content header
-  sidebar_right: 'Sidebar Right'
 
 libraries:
   - loremaster/global.style.generic

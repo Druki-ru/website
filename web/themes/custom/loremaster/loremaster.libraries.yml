@@ -31,6 +31,7 @@ global.style.components:
     layout:
       assets/css/04-components/layout/layout.css: { }
       assets/css/04-components/layout/page.css: { }
+      assets/css/04-components/layout/region-content-above.css: { }
       assets/css/04-components/layout/region-mobile-toolbar.css: { }
       assets/css/04-components/layout/region-mobile-sidebar.css: { }
       assets/css/04-components/layout/region-content.css: { }
@@ -106,15 +107,10 @@ component.ui.status-messages:
       assets/css/04-components/ui/status-messages.css: { }
 
 # Custom libraries.
-component.layout.region-content-header:
+component.layout.region-content-sidebar:
   css:
     layout:
-      assets/css/04-components/layout/region-content-header.css: { }
-
-component.layout.region-sidebar-right:
-  css:
-    layout:
-      assets/css/04-components/layout/region-sidebar-right.css: { }
+      assets/css/04-components/layout/region-content-sidebar.css: { }
 
 component.block.druki-content-toc-mobile:
   css:

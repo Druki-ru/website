@@ -2,9 +2,14 @@
   display: flex;
   align-items: center;
   border-radius: 3rem;
-  background-color: var(--color-light-gray);
   --toggle-button-icon: none;
   --toggle-button-background-color: transparent;
+  --toggle-wrapper-background-color: var(--color-light-gray);
+  background-color: var(--toggle-wrapper-background-color);
+}
+
+[data-theme="dark"] .dark-mode-toggle {
+  --toggle-wrapper-background-color: var(--color-black--light-24);
 }
 
 .dark-mode-toggle > input {
@@ -28,15 +33,31 @@
   --toggle-button-icon: url('../../../icons/333333/white-balance-sunny.svg');
 }
 
+[data-theme="dark"] .dark-mode-toggle__button--light {
+  --toggle-button-icon: url('../../../icons/ffffff/white-balance-sunny.svg');
+}
+
 .dark-mode-toggle__button--auto {
   --toggle-button-icon: url('../../../icons/333333/theme-light-dark.svg');
+}
+
+[data-theme="dark"] .dark-mode-toggle__button--auto {
+  --toggle-button-icon: url('../../../icons/ffffff/theme-light-dark.svg');
 }
 
 .dark-mode-toggle__button--dark {
   --toggle-button-icon: url('../../../icons/333333/weather-night.svg');
 }
 
+[data-theme="dark"] .dark-mode-toggle__button--dark {
+  --toggle-button-icon: url('../../../icons/ffffff/weather-night.svg');
+}
+
 .dark-mode-toggle input:checked + .dark-mode-toggle__button  {
   --toggle-button-background-color: var(--color-white);
   box-shadow: var(--shadow-xs), var(--shadow-sm);
+}
+
+[data-theme="dark"] .dark-mode-toggle input:checked + .dark-mode-toggle__button {
+  --toggle-button-background-color: rgb(var(--color-eerie-black--variant-1));
 }

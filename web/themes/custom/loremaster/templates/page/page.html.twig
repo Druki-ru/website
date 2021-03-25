@@ -29,7 +29,7 @@
   </div>
 
   <div class="page__body">
-    <div class="page__toolbar">
+    <header class="page__toolbar">
       <div class="page__search">
         {{- drupal_block('druki_header_search', wrapper=false) -}}
         <div class="page__toolbar-separator"></div>
@@ -38,8 +38,19 @@
         {{- drupal_block('druki_header_repository_button') -}}
         {{- drupal_block('druki_header_dark_mode_switcher') -}}
       </div>
-    </div>
+    </header>
+    <main class="page__main">
+      <div class="page__content-above">
+        {{- page.content_above -}}
+      </div>
 
+      <div class="page__content">
+        {{- page.content -}}
+        <div class="page__content-sidebar">
+          {{- page.content_sidebar -}}
+        </div>
+      </div>
+    </main>
     {{- footer -}}
   </div>
 </div>
