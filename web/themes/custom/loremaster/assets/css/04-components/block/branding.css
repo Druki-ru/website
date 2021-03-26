@@ -1,2 +1,2 @@
-.branding__image,.branding__logo{display:flex;align-items:center}.branding__logo:hover{text-decoration:none}.branding__image svg{fill:var(--color-celtic-blue)}.branding__name{font-size:var(--font-size-h3);margin-left:var(--spacing-md);color:var(--text-color);font-weight:700}
+.branding__image,.branding__logo{display:flex;align-items:center}.branding__logo:hover{text-decoration:none}.branding__image svg{fill:var(--color-celtic-blue)}[data-theme=dark] .branding__image svg{fill:rgb(var(--color-orange))}.branding__name{font-size:var(--font-size-h3);margin-left:var(--spacing-md);color:var(--text-color);font-weight:700}
 /*# sourceMappingURL=branding.css.map */

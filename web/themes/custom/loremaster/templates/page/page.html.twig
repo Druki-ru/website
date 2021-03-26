@@ -40,16 +40,20 @@
       </div>
     </header>
     <main class="page__main">
-      <div class="page__content-above">
-        {{- page.content_above -}}
-      </div>
-
-      <div class="page__content">
-        {{- page.content -}}
-        <div class="page__content-sidebar">
-          {{- page.content_sidebar -}}
+      {% if is_front %}
+        {% include '@loremaster/includes/frontpage.twig' %}
+      {% else %}
+        <div class="page__content-above">
+          {{- page.content_above -}}
         </div>
-      </div>
+
+        <div class="page__content{{ is_page_content_fullwidth ? ' page__content--fullwidth' }}">
+          {{- page.content -}}
+          <div class="page__content-sidebar">
+            {{- page.content_sidebar -}}
+          </div>
+        </div>
+      {% endif %}
     </main>
     {{- footer -}}
   </div>
