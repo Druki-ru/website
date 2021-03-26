@@ -34,11 +34,7 @@ function loremaster_preprocess(array &$variables, string $hook): void {
     'druki_content' => ['loremaster/component.druki-content'],
     'druki_wiki' => ['loremaster/component.theme.druki-wiki'],
     'druki_download' => ['loremaster/component.theme.druki-download'],
-    'druki_category_navigation' => ['loremaster/component.theme.druki-category-navigation'],
     'druki_official_user_guide' => ['loremaster/component.theme.official-user-guide'],
-    'druki_content_help_and_feedback' => ['loremaster/component.theme.druki-content-help-and-feedback'],
-    'druki_content_next_prev' => ['loremaster/component.theme.druki-content-next-prev'],
-    'druki_drupal_versions' => ['loremaster/component.theme.drupal-versions'],
     'druki_search_results' => ['loremaster/component.theme.druki-search-results'],
   ];
 

@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present content TOC.
+ *
+ * Available variables:
+ * - attributes: HTML attrubutes for container.
+ * - prev_link: The link to previous content.
+ * - next_link: The link to next content.
+ */
+#}
+{{ attach_library('loremaster/component.theme.druki-content-next-prev') }}
+<div{{ attributes.addClass('content-next-prev') }}>
+  {% if prev_link %}
+    <a href="{{ prev_link.getUrl }}" class="content-next-prev__link content-next-prev__link--prev">
+      <span class="content-next-prev__direction">{% trans with {'context': 'content'} %}Previous{% endtrans %}</span>
+      <span class="content-next-prev__title">{{ prev_link.getText }}</span>
+    </a>
+  {% endif %}
+  {% if next_link %}
+    <a href="{{ next_link.getUrl }}" class="content-next-prev__link content-next-prev__link--next">
+      <span class="content-next-prev__direction">{% trans with {'context': 'content'} %}Next{% endtrans %}</span>
+      <span class="content-next-prev__title">{{ next_link.getText }}</span>
+    </a>
+  {% endif %}
+</div>

@@ -210,3 +210,35 @@ msgstr "Тёмная"
 msgctxt "color scheme"
 msgid "Inherit from the system"
 msgstr "Наследовать из системы"
+
+msgctxt "content"
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgctxt "content"
+msgid "Next"
+msgstr "Следующий"
+
+msgid "Help us to improve these docs!"
+msgstr "Помогите нам сделать документацию лучше!"
+
+msgid "All Druki docs are open source. See something that's wrong or unclear? Submit a pull request."
+msgstr "Вся документация Druki с отрытым исходным кодом. Нашли ошибку или неточность? Создайте pull request."
+
+msgid "Edit this doc"
+msgstr "Редактировать текущий документ"
+
+msgid "Discuss an improvement"
+msgstr "Обсудить улучшение"
+
+msgid "Or, <a href=\"@url\">learn how to contribute</a>."
+msgstr "Или <a href=\"@url\">узнайте как контрибутить</a>."
+
+msgid "Still need help?"
+msgstr "По-прежнему нужна помощь?"
+
+msgid "Ask on GitHub community"
+msgstr "Задайте вопрос на GitHub"
+
+msgid "See other community resources"
+msgstr "Смотрите другие ресурсы сообщества"
