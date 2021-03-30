@@ -4,6 +4,16 @@
   grid-template-columns: repeat(2, 1fr);
   font-size: var(--font-size-xs);
   --button-icon: transparent;
+  --button-icon--hover: var(--button-icon);
+  --description-color: rgb(var(--color-slate-gray));
+  --button-background-color--hover: var(--color-celtic-blue);
+  --button-color--hover: var(--color-white);
+}
+
+[data-theme="dark"] .help-and-feedback {
+  --description-color: rgb(var(--color-cadet-blue-crayola));
+  --button-background-color--hover: var(--link-color);
+  --button-color--hover: rgb(var(--color-eerie-black));
 }
 
 .help-and-feedback__title {
@@ -11,7 +21,7 @@
 }
 
 .help-and-feedback p {
-  color: rgb(var(--color-slate-gray));
+  color: var(--description-color);
 }
 
 .help-and-feedback__button {
@@ -29,40 +39,49 @@
 
 .help-and-feedback__button:hover,
 .help-and-feedback__button:focus {
-  color: var(--color-white);
-  background-color: var(--color-celtic-blue);
-  border-color: var(--color-celtic-blue);
+  color: var(--button-color--hover);
+  background-color: var(--button-background-color--hover);
+  background-image: var(--button-icon--hover);
+  border-color: var(--button-background-color--hover);
   text-decoration: none;
 }
 
 .help-and-feedback__button--pull {
   --button-icon: url('../../../icons/333333/source-pull.svg');
+  --button-icon--hover: url('../../../icons/ffffff/source-pull.svg');
 }
 
-.help-and-feedback__button--pull:hover {
-  --button-icon: url('../../../icons/ffffff/source-pull.svg');
+[data-theme="dark"] .help-and-feedback__button--pull {
+  --button-icon: url('../../../icons/FFC66B/source-pull.svg');
+  --button-icon--hover: url('../../../icons/333333/source-pull.svg');
 }
 
 .help-and-feedback__button--issue {
   --button-icon: url('../../../icons/333333/alert-circle-outline.svg');
+  --button-icon--hover: url('../../../icons/ffffff/alert-circle-outline.svg');
 }
 
-.help-and-feedback__button--issue:hover {
-  --button-icon: url('../../../icons/ffffff/alert-circle-outline.svg');
+[data-theme="dark"] .help-and-feedback__button--issue {
+  --button-icon: url('../../../icons/FFC66B/alert-circle-outline.svg');
+  --button-icon--hover: url('../../../icons/333333/alert-circle-outline.svg');
 }
 
 .help-and-feedback__button--discussion {
   --button-icon: url('../../../icons/333333/forum-outline.svg');
+  --button-icon--hover: url('../../../icons/ffffff/forum-outline.svg');
 }
 
-.help-and-feedback__button--discussion:hover {
-  --button-icon: url('../../../icons/ffffff/forum-outline.svg');
+[data-theme="dark"] .help-and-feedback__button--discussion {
+  --button-icon: url('../../../icons/FFC66B/forum-outline.svg');
+  --button-icon--hover: url('../../../icons/333333/forum-outline.svg');
 }
 
 .help-and-feedback__button--community {
   --button-icon: url('../../../icons/333333/account-group-outline.svg');
+  --button-icon--hover: url('../../../icons/ffffff/account-group-outline.svg');
 }
 
-.help-and-feedback__button--community:hover {
-  --button-icon: url('../../../icons/ffffff/account-group-outline.svg');
+[data-theme="dark"] .help-and-feedback__button--community {
+  --button-icon: url('../../../icons/FFC66B/account-group-outline.svg');
+  --button-icon--hover: url('../../../icons/333333/account-group-outline.svg');
 }

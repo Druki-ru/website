@@ -1,111 +1,38 @@
-.druki-wiki-page__section {
+.druki-wiki-page-section {
   margin: var(--spacing-xl) 0;
+  --description-color: rgb(var(--color-slate-gray));
 }
 
-.druki-wiki-page__section--welcome {
-  display: grid;
-  grid-gap: var(--spacing-xl);
-
-  @media (--lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.druki-wiki-page-item {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border-secondary);
+  display: flex;
+  align-items: center;
+  --p-margin--y: 0;
+  background-color: var(--color-cultured);
 }
 
-.druki-wiki-page__section--drupal-api {
-  display: grid;
-  grid-gap: var(--spacing-xl);
-
-  @media (--xl) {
-    grid-template-columns: repeat(2, 1fr) 2fr;
-  }
-}
-
-.druki-wiki-page__section--files-services-and-others {
-  display: grid;
-  grid-gap: var(--spacing-xl);
-
-  @media (--sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (--lg) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.druki-wiki-page__section--additional {
-  display: grid;
-  grid-gap: var(--spacing-xl);
-
-  @media (--sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (--lg) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.druki-wiki-page__column-title {
-  margin-bottom: var(--spacing-md);
-}
-
-.druki-wiki-page__column-description {
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-.druki-wiki-page-link {
-  line-height: 1.2;
-  display: inline-block;
-}
-
-.druki-wiki-page-link:hover {
-  text-decoration: none;
+[data-theme="dark"] .druki-wiki-page-item {
+  background-color: rgb(var(--color-eerie-black--variant-1));
+  border: 1px solid rgba(var(--color-white-rgb), 0.07);
+  box-shadow: 0 0 0 1px rgb(var(--color-pure-black)), var(--shadow-xs);
 }
 
 .druki-wiki-page-link__title {
-  font-weight: bold;
-  display: block;
+  font-weight: 500;
+  font-size: var(--font-size-h4);
+}
+
+.druki-wiki-page-item__content {
+  margin-right: auto;
+}
+
+.druki-wiki-page-item__actions {
+  margin-left: var(--spacing-lg);
 }
 
 .druki-wiki-page-link__description {
   font-size: var(--font-size-sm);
-  display: block;
-  margin-top: var(--spacing-xs);
-  color: var(--color-roman-silver);
-}
-
-.druki-wiki-page__link:not(:last-child) {
-  margin-bottom: var(--spacing-sm);
-}
-
-.druki-wiki-page__links--drupal-api {
-  display: grid;
-  grid-gap: var(--spacing-md);
-
-  @media (--sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.druki-wiki-page__links--drupal-api .druki-wiki-page__link {
-  margin: 0;
-}
-
-.druki-wiki-page__links--helpful {
-  display: grid;
-  grid-gap: var(--spacing-md);
-
-  @media (--sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (--lg) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.druki-wiki-page__links--helpful .druki-wiki-page__link {
-  margin: 0;
 }
