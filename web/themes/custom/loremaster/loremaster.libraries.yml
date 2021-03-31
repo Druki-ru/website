@@ -200,6 +200,11 @@ component.theme.druki-search-results:
     theme:
       assets/css/04-components/theme/druki-search-results.css: { }
 
+component.theme.frontpage:
+  css:
+    theme:
+      assets/css/04-components/theme/frontpage.css: { }
+
 code-highlight:
   js:
     assets/js/code-highlight.js: { minified: true }
