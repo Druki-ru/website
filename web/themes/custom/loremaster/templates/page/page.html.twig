@@ -41,7 +41,7 @@
     </header>
     <main class="page__main">
       {% if is_front %}
-        {% include '@loremaster/includes/frontpage.twig' %}
+        {% include '@loremaster/includes/frontpage.twig' only %}
       {% else %}
         <div class="page__content-above">
           {{- page.content_above -}}

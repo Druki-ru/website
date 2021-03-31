@@ -5,13 +5,17 @@ namespace Drupal\druki\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\media\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configure Druki user guide settings.
  */
 final class OfficialUserGuideSettingsForm extends ConfigFormBase {
+
+  /**
+   * The state key for media entity storage.
+   */
+  public const IMAGE_STORAGE_KEY = 'druki_official_user_guide_media';
 
   /**
    * The media storage.
@@ -21,13 +25,6 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
   protected $mediaStorage;
 
   /**
-   * The media view builder.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $mediaViewBuilder;
-
-  /**
    * The responsive image style sotrage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
@@ -35,14 +32,21 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
   protected $responsiveImageStyleStorage;
 
   /**
+   * The state storage.
+   *
+   * @var \Drupal\Core\State\State
+   */
+  protected $state;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): object {
     $instance = new static($container->get('config.factory'));
     $instance->mediaStorage = $container->get('entity_type.manager')->getStorage('media');
-    $instance->mediaViewBuilder = $container->get('entity_type.manager')->getViewBuilder('media');
-    $instance->responsiveImageStyleStorage = $container->get('entity_type.manager')->getStorage('responsive_image_style');
-
+    $instance->responsiveImageStyleStorage = $container->get('entity_type.manager')
+      ->getStorage('responsive_image_style');
+    $instance->state = $container->get('state');
     return $instance;
   }
 
@@ -57,7 +61,7 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
-    $image_settings = $this->config('druki.official_user_guide_settings')->get('image');
+    $settings = $this->config('druki.official_user_guide_settings');
 
     $form['image'] = [
       '#type' => 'fieldset',
@@ -66,17 +70,9 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
     ];
 
     $default_image = NULL;
-    if (isset($image_settings['media'])) {
-      $media = $this->mediaStorage->load($image_settings['media']);
-
-      if ($media instanceof MediaInterface) {
+    if ($media_id = $this->state->get(self::IMAGE_STORAGE_KEY)) {
+      if ($media = $this->mediaStorage->load($media_id)) {
         $default_image = $media;
-
-        $preview = $this->mediaViewBuilder->view($default_image, 'media_library');
-        $preview['#prefix'] = '<div class="media-library-item">';
-        $preview['#suffix'] = '</div>';
-        $form['image']['image_preview'] = $preview;
-        $form['#attached']['library'][] = 'media_library/style';
       }
     }
 
@@ -93,7 +89,7 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
     $form['image']['style'] = [
       '#type' => 'select',
       '#options' => $this->getResponsiveImageStyleOptions(),
-      '#default_value' => isset($image_settings['style']) ?? $image_settings['style'],
+      '#default_value' => $settings->get('image_style'),
       '#title' => new TranslatableMarkup('Image style'),
     ];
 
@@ -130,8 +126,16 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('druki.official_user_guide_settings')
-      ->set('image', $form_state->getValue('image'))
+      ->set('image_style', $form_state->getValue(['image', 'style']))
       ->save();
+
+    if ($media_id = $form_state->getValue(['image', 'media'])) {
+      $this->state->set(self::IMAGE_STORAGE_KEY, $media_id);
+    }
+    else {
+      $this->state->delete(self::IMAGE_STORAGE_KEY);
+    }
+
     parent::submitForm($form, $form_state);
   }
 

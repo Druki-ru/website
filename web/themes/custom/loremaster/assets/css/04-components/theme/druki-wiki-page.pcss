@@ -1,17 +1,18 @@
 .druki-wiki-page-section {
-  margin: var(--spacing-xl) 0;
   --description-color: rgb(var(--color-slate-gray));
+  margin: var(--spacing-xl) 0;
 }
 
 .druki-wiki-page-item {
-  margin: var(--spacing-lg) 0;
-  padding: var(--spacing-md);
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--color-border-secondary);
-  display: flex;
   align-items: center;
-  --p-margin--y: 0;
   background-color: var(--color-cultured);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--radius-xs);
+  box-shadow: inset 0 0 0 1px var(--color-white);
+  display: flex;
+  margin: var(--spacing-lg) 0;
+  --p-margin--y: 0;
+  padding: var(--spacing-md);
 }
 
 [data-theme="dark"] .druki-wiki-page-item {
@@ -21,8 +22,8 @@
 }
 
 .druki-wiki-page-link__title {
-  font-weight: 500;
   font-size: var(--font-size-h4);
+  font-weight: 500;
 }
 
 .druki-wiki-page-item__content {

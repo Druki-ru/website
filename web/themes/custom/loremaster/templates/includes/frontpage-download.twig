@@ -5,7 +5,6 @@
     bem(block),
   ]
 %}
-{{ attach_library('loremaster/asciinema-player') }}
 {{ attach_library('loremaster/component.theme.frontpage-download') }}
 <div{{ attributes.addClass(classes) }}>
   <div class="{{ bem(block, 'content') }}">
@@ -35,15 +34,5 @@
   </div>
 
   <div class="{{ bem(block, 'player-wrapper') }}">
-    <asciinema-player
-      src="{{ 'public://ascii.cast'|file_url }}"
-      cols="132"
-      rows="26"
-      autoplay="true"
-      loop="true"
-      font-size="small"
-      title="{{ 'Download Drupal'|t }}"
-      class="{{ bem(block, 'player') }}"
-    ></asciinema-player>
   </div>
 </div>

@@ -5,29 +5,24 @@
  *
  * Available variables:
  * - attributes: HTML attributes for containing element.
- * - :
+ * - image: The promo image.
  *
  * @see template_preprocess_druki_official_user_guide()
  */
 #}
-📖 Руководство пользователя<
 <div class="official-user-guide">
+  <div class="official-user-guide__content">
+    <h2 class="official-user-guide__title">📖 Руководство пользователя</h2>
+    <p>Официальное руководство пользователя рассчитано на пользователей не знакомых с CMS и Drupal.</p>
+    <p>Вы узнаете базовые понятия, возможности и научитесь делать простые сайты без использования кода и управлять ими.</p>
+
+    <div class="official-user-guide__action">
+      <a href="https://www.drupal.org/ru/docs/user_guide/ru/index.html" target="_blank" rel="nofollow noopener" class="button button--primary button--small official-user-guide__link">Читать онлайн</a>
+      <a href="https://www.drupal.org/docs/8/understanding-drupal-8/user-guide-e-book-downloads" target="_blank" rel="nofollow noopener" class="button button--primary button--small official-user-guide__link">Загрузить E-book</a>
+    </div>
+  </div>
+
   <div class="official-user-guide__image">
     {{ image }}
   </div>
-  <ul class="official-user-guide__links">
-    <li>
-      <a href="https://www.drupal.org/ru/docs/user_guide/ru/index.html" target="_blank" rel="nofollow noopener" class="official-user-guide__link">
-        <span class="official-user-guide__link-title">Читать онлайн</span>
-        <span class="official-user-guide__link-description">Без регистрации и СМС.</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="https://www.drupal.org/docs/8/understanding-drupal-8/user-guide-e-book-downloads" target="_blank" rel="nofollow noopener" class="official-user-guide__link">
-        <span class="official-user-guide__link-title">Загрузить</span>
-        <span class="official-user-guide__link-description">Читайте на любом устройстве в формате PDF, ePub, Mobi и AZW3.</span>
-      </a>
-    </li>
-  </ul>
 </div>

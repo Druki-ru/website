@@ -221,22 +221,6 @@ prismjs:
     # Prism has no dist files in any repo. So we use prebuild JS from theme.
     assets/js/prism.js: { minfied: true }
 
-asciinema-player:
-  remote: https://github.com/asciinema/asciinema-player
-  version: 2.6.0
-  license:
-    name: Apache
-    gpl-compatible: true
-  css:
-    component:
-      /libraries/asciinema-player/resources/public/css/asciinema-player.css: { }
-  js:
-    /libraries/asciinema-player/resources/public/js/asciinema-player.js: {
-      attributes: {
-        defer: defer
-      }
-    }
-
 keyboard-focus:
   version: VERSION
   js:

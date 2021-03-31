@@ -7,21 +7,14 @@
 }
 
 .frontpage-hero {
-  margin: var(--spacing-xl) 0;
+  padding-left: var(--page-content-gap);
+  margin: var(--spacing-lg) 0;
 }
 
 .frontpage-hero__container {
   display: grid;
   grid-gap: var(--spacing-xl);
-  grid-template-columns: 1fr;
-
-  @media (--md) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (--xl) {
-    grid-template-columns: 2fr 2fr 1fr;
-  }
+  grid-template-columns: 1fr 300px;
 }
 
 .frontpage-hero__welcome {

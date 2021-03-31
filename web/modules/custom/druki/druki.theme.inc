@@ -7,8 +7,7 @@
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki\Drupal\DrupalReleases;
-use Drupal\media\MediaInterface;
-use Drupal\responsive_image\ResponsiveImageStyleInterface;
+use Drupal\druki\Form\OfficialUserGuideSettingsForm;
 
 /**
  * Implements hook_preprocess_HOOK() for druki-drupal-versions.html.twig.
@@ -39,34 +38,47 @@ function template_preprocess_druki_mobile_header(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK() for 'druki-official-user-guide.html.twig'.
  *
- * // @todo cache tags.
+ * @todo cache tags.
  */
 function template_preprocess_druki_official_user_guide(array &$variables): void {
-  $user_guide_settings = \Drupal::config('druki.official_user_guide_settings');
+  $variables['image'] = NULL;
+  $media_id = \Drupal::state()->get(OfficialUserGuideSettingsForm::IMAGE_STORAGE_KEY);
+  if (!$media_id) {
+    return;
+  }
+
   /** @var \Drupal\media\MediaStorage $media_storage */
   $media_storage = \Drupal::entityTypeManager()->getStorage('media');
+  /** @var \Drupal\media\MediaInterface $image_media */
+  $image_media = $media_storage->load($media_id);
+  if (!$image_media) {
+    return;
+  }
+
+  $user_guide_settings = \Drupal::config('druki.official_user_guide_settings');
+  $image_style_id = $user_guide_settings->get('image_style');
+  if (!$image_style_id) {
+    return;
+  }
+
   /** @var \Drupal\Core\Entity\EntityStorageInterface $responsive_image_style_storage */
   $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
-  $image_settings = $user_guide_settings->get('image');
-
-  /** @var \Drupal\media\MediaInterface $image_media */
-  $image_media = $media_storage->load($image_settings['media']);
-  $image_style = $responsive_image_style_storage->load($image_settings['style']);
-  $variables['image'] = NULL;
-  // Check is media and style is really existed.
-  if ($image_media instanceof MediaInterface && $image_style instanceof ResponsiveImageStyleInterface) {
-    $source_field = $image_media->getSource()->getConfiguration()['source_field'];
-    /** @var \Drupal\file\FileInterface $file */
-    $file = $image_media->get($source_field)->entity;
-    $variables['image'] = [
-      '#type' => 'responsive_image',
-      '#responsive_image_style_id' => $image_style->id(),
-      '#uri' => $file->getFileUri(),
-      '#attributes' => [
-        'alt' => new TranslatableMarkup('Official user guide'),
-      ],
-    ];
+  $image_style = $responsive_image_style_storage->load($image_style_id);
+  if (!$image_style) {
+    return;
   }
+
+  $source_field = $image_media->getSource()->getConfiguration()['source_field'];
+  /** @var \Drupal\file\FileInterface $file */
+  $file = $image_media->get($source_field)->entity;
+  $variables['image'] = [
+    '#type' => 'responsive_image',
+    '#responsive_image_style_id' => $image_style_id,
+    '#uri' => $file->getFileUri(),
+    '#attributes' => [
+      'alt' => new TranslatableMarkup('Official user guide'),
+    ],
+  ];
 }
 
 /**
