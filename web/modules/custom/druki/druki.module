@@ -86,7 +86,10 @@ function druki_preprocess_responsive_image(array &$variables): void {
   // This hook is also set width and height required by default lazy loading
   // implementation. But this one called after, so with and height is not set
   // at the point when default lazy is added, so we force it.
-  $variables['img_element']['#attributes']['loading'] = 'lazy';
+  // Prioritize source value for it.
+  if (!isset($variables['img_element']['#attributes']['loading'])) {
+    $variables['img_element']['#attributes']['loading'] = 'lazy';
+  }
   $variables['img_element']['#attributes']['decoding'] = 'async';
 
   // The code below adds 'width' and 'height' for fallback image. This help

@@ -146,6 +146,10 @@ function template_preprocess_druki_frontpage_download(array &$variables): void {
     '#uri' => $file->getFileUri(),
     '#attributes' => [
       'alt' => new TranslatableMarkup('Druplicon'),
+      // This image is part of FCP, disable lazyload because it hurts LCP.
+      // This trick improve LCP (Desktop mode) from 950ms (96/100) to 732ms
+      // (99/100).
+      'loading' => 'eager',
     ],
   ];
 
