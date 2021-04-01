@@ -1,2 +1,2 @@
-:root{--focus-box-shadow:0 0 0 2px var(--color-white),0 0 0 5px var(--color-jade)}[data-theme=dark]{--focus-box-shadow:0 0 0 2px var(--color-black--light-7),0 0 0 5px var(--color-jade)}:focus{outline:none;box-shadow:var(--focus-box-shadow)}.is-using-mouse{--focus-box-shadow:none}
+:root{--focus-box-shadow:0 0 0 2px var(--page-background,transparent),0 0 0 5px var(--color-celtic-blue)}[data-theme=dark]{--focus-box-shadow:0 0 0 2px var(--page-background,transparent),0 0 0 5px rgb(var(--color-orange-peel))}:focus{outline:none;box-shadow:var(--focus-box-shadow)}.is-using-mouse{--focus-box-shadow:none}
 /*# sourceMappingURL=focus.css.map */
