@@ -5,3 +5,12 @@ druki.official_user_guide_settings:
     image_style:
       type: string
       label: 'Image style'
+
+druki.frontpage.settings:
+  type: config_object
+  label: 'Frontpage settings'
+  mapping:
+    download:
+      image_style:
+        type: string
+        label: 'Image style'

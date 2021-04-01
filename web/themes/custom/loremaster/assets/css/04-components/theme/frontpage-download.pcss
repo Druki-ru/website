@@ -9,8 +9,7 @@
 .frontpage-download {
   display: grid;
   background-color: var(--frontpage-download-background-color);
-  grid-gap: var(--spacing-lg);
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 500px;
   overflow: hidden;
 }
 
@@ -21,4 +20,9 @@
     padding: var(--spacing-xl);
     padding-left: var(--page-content-gap);
   }
+}
+
+.frontpage-download__media {
+  align-self: flex-end;
+  justify-self: flex-end;
 }

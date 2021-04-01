@@ -3,7 +3,7 @@ langcode: ru
 status: true
 dependencies: {  }
 name: paragraph_druki_image_thumbnail_xs
-label: 'Paragraph - Druki Image - Thumbnail: XS'
+label: 'Paragraph / Druki Image / Thumbnail: XS'
 effects:
   51bd1537-8983-4f56-98fc-8100f28e00df:
     uuid: 51bd1537-8983-4f56-98fc-8100f28e00df

@@ -64,6 +64,9 @@ function druki_theme(): array {
     'druki_dark_mode_toggle' => [
       'variables' => [],
     ],
+    'druki_frontpage_download' => [
+      'variables' => [],
+    ],
   ];
 }
 

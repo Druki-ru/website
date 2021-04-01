@@ -242,3 +242,9 @@ msgstr "Задайте вопрос на GitHub"
 
 msgid "See other community resources"
 msgstr "Смотрите другие ресурсы сообщества"
+
+msgid "Frontpage settings"
+msgstr "Настройки главной страницы"
+
+msgid "Settings for elements displayed on frontpage."
+msgstr "Настройки для элементов отображаемых на главной странице."

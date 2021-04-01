@@ -4,24 +4,14 @@ status: true
 dependencies:
   config:
     - image.style.paragraph_druki_image_thumbnail_lg
-    - image.style.paragraph_druki_image_thumbnail_lg_2x
-    - image.style.paragraph_druki_image_thumbnail_lg_3x
     - image.style.paragraph_druki_image_thumbnail_md
-    - image.style.paragraph_druki_image_thumbnail_md_2x
-    - image.style.paragraph_druki_image_thumbnail_md_3x
     - image.style.paragraph_druki_image_thumbnail_sm
-    - image.style.paragraph_druki_image_thumbnail_sm_2x
-    - image.style.paragraph_druki_image_thumbnail_sm_3x
     - image.style.paragraph_druki_image_thumbnail_xl
-    - image.style.paragraph_druki_image_thumbnail_xl_2x
-    - image.style.paragraph_druki_image_thumbnail_xl_3x
     - image.style.paragraph_druki_image_thumbnail_xs
-    - image.style.paragraph_druki_image_thumbnail_xs_2x
-    - image.style.paragraph_druki_image_thumbnail_xs_3x
   theme:
     - loremaster
 id: paragraph_druki_image_thumbnail
-label: 'Paragraph - Druki Image - Thumbnail'
+label: 'Paragraph / Druki Image / Thumbnail'
 image_style_mappings:
   -
     breakpoint_id: loremaster.xl
@@ -29,74 +19,24 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xl
   -
-    breakpoint_id: loremaster.xl
-    multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_xl_2x
-  -
-    breakpoint_id: loremaster.xl
-    multiplier: 3x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_xl_3x
-  -
     breakpoint_id: loremaster.lg
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_lg
-  -
-    breakpoint_id: loremaster.lg
-    multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_lg_2x
-  -
-    breakpoint_id: loremaster.lg
-    multiplier: 3x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_lg_3x
   -
     breakpoint_id: loremaster.md
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_md
   -
-    breakpoint_id: loremaster.md
-    multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_md_2x
-  -
-    breakpoint_id: loremaster.md
-    multiplier: 3x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_md_3x
-  -
     breakpoint_id: loremaster.sm
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_sm
   -
-    breakpoint_id: loremaster.sm
-    multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_sm_2x
-  -
-    breakpoint_id: loremaster.sm
-    multiplier: 3x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_sm_3x
-  -
     breakpoint_id: loremaster.xs
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xs
-  -
-    breakpoint_id: loremaster.xs
-    multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_xs_2x
-  -
-    breakpoint_id: loremaster.xs
-    multiplier: 3x
-    image_mapping_type: image_style
-    image_mapping: paragraph_druki_image_thumbnail_xs_3x
 breakpoint_group: loremaster
 fallback_image_style: paragraph_druki_image_thumbnail_xl

@@ -16,6 +16,12 @@ druki.official_user_guide_settings:
   route_name: druki.official_user_guide_settings
   parent: druki.admin_general
 
+druki.frontpage.settings:
+  title: 'Frontpage settings'
+  description: 'Settings for elements displayed on frontpage.'
+  route_name: druki.frontpage.settings
+  parent: druki.admin_general
+
 druki.front:
   title: 'Frontpage'
   title_context: short

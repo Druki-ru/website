@@ -7,5 +7,7 @@
 {{ attach_library('loremaster/component.theme.frontpage') }}
 <div class="frontpage">
   <div class="frontpage__section">{% include '@loremaster/includes/frontpage-hero.twig' %}</div>
-  <div class="frontpage__section">{% include '@loremaster/includes/frontpage-download.twig' %}</div>
+  <div class="frontpage__section">
+    {{ {'#theme': 'druki_frontpage_download'} }}
+  </div>
 </div>

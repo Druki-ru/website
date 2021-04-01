@@ -1,0 +1,18 @@
+uuid: fc133269-cbaa-44a1-9a9b-c7542813a74d
+langcode: ru
+status: true
+dependencies:
+  config:
+    - image.style.frontpage_download_media_xl
+  theme:
+    - loremaster
+id: frontpage_download_media
+label: 'Frontpage / Download / Media'
+image_style_mappings:
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_download_media_xl
+breakpoint_group: loremaster
+fallback_image_style: frontpage_download_media_xl

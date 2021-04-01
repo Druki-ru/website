@@ -5,8 +5,10 @@
  * Main file for custom theme hook preprocess.
  */
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki\Drupal\DrupalReleases;
+use Drupal\druki\Form\FrontpageSettings;
 use Drupal\druki\Form\OfficialUserGuideSettingsForm;
 
 /**
@@ -37,8 +39,6 @@ function template_preprocess_druki_mobile_header(array &$variables): void {
 
 /**
  * Implements hook_preprocess_HOOK() for 'druki-official-user-guide.html.twig'.
- *
- * @todo cache tags.
  */
 function template_preprocess_druki_official_user_guide(array &$variables): void {
   $variables['image'] = NULL;
@@ -79,6 +79,12 @@ function template_preprocess_druki_official_user_guide(array &$variables): void 
       'alt' => new TranslatableMarkup('Official user guide'),
     ],
   ];
+
+  $cache = new CacheableMetadata();
+  $cache->addCacheableDependency($user_guide_settings);
+  $cache->addCacheableDependency($image_style);
+  $cache->addCacheableDependency($image_media);
+  $cache->applyTo($variables);
 }
 
 /**
@@ -93,4 +99,59 @@ function template_preprocess_druki_wiki(array &$variables): void {
   $variables['user_guide'] = [
     '#theme' => 'druki_official_user_guide',
   ];
+}
+
+/**
+ * Prepares variables for druki frontpage download templates.
+ *
+ * Default template: druki-frontpage-download.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing default theme hook variables.
+ */
+function template_preprocess_druki_frontpage_download(array &$variables): void {
+  $variables['image'] = NULL;
+  $download_media_id = \Drupal::state()->get(FrontpageSettings::DOWNLOAD_MEDIA_STORAGE_KEY);
+  if (!$download_media_id) {
+    return;
+  }
+
+  /** @var \Drupal\media\MediaStorage $media_storage */
+  $media_storage = \Drupal::entityTypeManager()->getStorage('media');
+  /** @var \Drupal\media\MediaInterface $download_media */
+  $download_media = $media_storage->load($download_media_id);
+  if (!$download_media) {
+    return;
+  }
+
+  $frontpage_settings = \Drupal::config('druki.frontpage.settings');
+  $download_media_image_style_id = $frontpage_settings->get('download.image_style');
+  if (!$download_media_image_style_id) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Entity\EntityStorageInterface $responsive_image_style_storage */
+  $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
+  $download_image_style = $responsive_image_style_storage->load($download_media_image_style_id);
+  if (!$download_image_style) {
+    return;
+  }
+
+  $source_field = $download_media->getSource()->getConfiguration()['source_field'];
+  /** @var \Drupal\file\FileInterface $file */
+  $file = $download_media->get($source_field)->entity;
+  $variables['image'] = [
+    '#type' => 'responsive_image',
+    '#responsive_image_style_id' => $download_media_image_style_id,
+    '#uri' => $file->getFileUri(),
+    '#attributes' => [
+      'alt' => new TranslatableMarkup('Druplicon'),
+    ],
+  ];
+
+  $cache = new CacheableMetadata();
+  $cache->addCacheableDependency($frontpage_settings);
+  $cache->addCacheableDependency($download_image_style);
+  $cache->addCacheableDependency($download_media);
+  $cache->applyTo($variables);
 }
