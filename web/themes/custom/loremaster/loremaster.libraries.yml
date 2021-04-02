@@ -45,7 +45,6 @@ global.style.components:
       assets/css/04-components/ui/form-item.css: { }
       assets/css/04-components/ui/counter-list.css: { }
       assets/css/04-components/block/branding.css: { }
-      assets/css/04-components/block/mobile-branding.css: { }
       assets/css/04-components/block/mobile-sidebar-button.css: { }
       assets/css/04-components/block/header-repository-button.css: { }
       assets/css/04-components/menu/main.css: { }
@@ -229,4 +228,11 @@ prismjs:
 keyboard-focus:
   version: VERSION
   js:
-    assets/js/keyboard-focus.js: { }
+    assets/js/keyboard-focus.js: { minified: true }
+
+page:
+  version: VERSION
+  js:
+    assets/js/page.js: { minified: true }
+  dependencies:
+    - core/drupal

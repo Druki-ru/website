@@ -1,8 +1,0 @@
-uuid: b40618d1-a5ea-47c4-828f-70a969fd0c6e
-langcode: ru
-status: true
-dependencies: {  }
-id: footer-community
-label: 'Подвал - сообщество'
-description: ''
-locked: false

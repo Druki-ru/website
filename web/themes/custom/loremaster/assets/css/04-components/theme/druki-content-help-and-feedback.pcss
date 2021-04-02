@@ -1,13 +1,17 @@
 .help-and-feedback {
   display: grid;
-  grid-gap: var(--spacing-xl);
-  grid-template-columns: repeat(2, 1fr);
   font-size: var(--font-size-xs);
+  grid-gap: var(--spacing-md);
   --button-icon: transparent;
   --button-icon--hover: var(--button-icon);
   --description-color: rgb(var(--color-slate-gray));
   --button-background-color--hover: var(--color-celtic-blue);
   --button-color--hover: var(--color-white);
+
+  @media (--md) {
+    grid-gap: var(--spacing-xl);
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 [data-theme="dark"] .help-and-feedback {

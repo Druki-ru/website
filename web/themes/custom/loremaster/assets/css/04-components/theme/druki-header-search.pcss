@@ -5,6 +5,11 @@
   width: 100%;
   --search-icon: url('../../../icons/8e929c/magnify.svg');
   --search-icon--hover: url('../../../icons/003cc5/magnify.svg');
+  display: none;
+
+  @media (--xl) {
+    display: flex;
+  }
 }
 
 [data-theme="dark"] .druki-header-search {

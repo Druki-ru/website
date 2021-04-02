@@ -12,8 +12,14 @@
   text-decoration: none;
 }
 
+.branding__image {
+  margin-right: var(--spacing-md);
+  display: flex;
+}
+
 .branding__image svg {
   fill: var(--color-celtic-blue);
+  align-self: center;
 }
 
 [data-theme="dark"] .branding__image svg {
@@ -22,7 +28,41 @@
 
 .branding__name {
   font-size: var(--font-size-h3);
-  margin-left: var(--spacing-md);
   color: var(--text-color);
   font-weight: 700;
+}
+
+.branding--mobile {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.branding--mobile .branding__name {
+  font-size: var(--font-size-xs);
+  word-wrap: break-word;
+
+  @media (--sm) {
+    font-size: var(--font-size-base);
+  }
+
+  @media (--md) {
+    font-size: var(--font-size-h3);
+  }
+}
+
+.branding--mobile .branding__name span {
+  display: block;
+
+  @media (--md) {
+    display: inline;
+  }
+}
+
+.branding--mobile .branding__image {
+  display: none;
+
+  @media (--sm) {
+    display: flex;
+  }
 }

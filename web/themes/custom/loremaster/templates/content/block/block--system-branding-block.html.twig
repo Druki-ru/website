@@ -16,6 +16,7 @@
 {%
   set classes = [
     bem(block),
+    block_id == 'mobile_branding' ? bem(block, null, ['mobile']),
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
@@ -23,6 +24,9 @@
     <div class="{{ bem(block, 'image') }}">
       {{ source(site_logo) }}
     </div>
-    <div class="{{ bem(block, 'name') }}">{% trans %}Drupal Wiki{% endtrans %}</div>
+    <div class="{{ bem(block, 'name') }}">
+      <span>{% trans %}Drupal{% endtrans%}</span>
+      <span>{% trans %} Wiki{% endtrans %}</span>
+    </div>
   </a>
 </div>

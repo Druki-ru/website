@@ -21,6 +21,7 @@ libraries:
   - loremaster/global.style.components
   - loremaster/global.style.utilities
   - loremaster/keyboard-focus
+  - loremaster/page
 
 # Disable system libraries.
 libraries-override:

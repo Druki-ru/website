@@ -1,2 +1,2 @@
-:root{--grid-gap:var(--spacing-md);--grid-container-max-width:100%;--grid-template-columns-12:repeat(12,[col] 1fr)}@media (min-width:1024px){:root{--grid-container-max-width:1024px}}@media (min-width:1440px){:root{--grid-container-max-width:1440px}}
+:root{--grid-gap:var(--spacing-md);--grid-container-max-width:100%;--grid-template-columns-12:repeat(12,[col] 1fr)}@media (min-width:1440px){:root{--grid-container-max-width:1440px}}
 /*# sourceMappingURL=grid.css.map */
