@@ -93,7 +93,10 @@ final class FrontpageSettings extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $download_media_image_style_id = $form_state->getValue(['download', 'image_style']);
+    $download_media_image_style_id = $form_state->getValue([
+      'download',
+      'image_style',
+    ]);
     if ($download_media_image_style_id) {
       $this->config('druki.frontpage.settings')
         ->set('download.image_style', $download_media_image_style_id)

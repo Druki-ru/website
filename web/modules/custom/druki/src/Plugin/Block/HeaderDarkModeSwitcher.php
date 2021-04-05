@@ -3,8 +3,6 @@
 namespace Drupal\druki\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Provides a header dark mode switcher block.
