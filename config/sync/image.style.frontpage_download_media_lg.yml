@@ -1,0 +1,15 @@
+uuid: b053a0d8-15a8-40e7-93e0-49a8bb84ded4
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_download_media_lg
+label: 'Frontpage / Download / Media: LG'
+effects:
+  d38f4058-1724-4719-8934-fa92605db5ea:
+    uuid: d38f4058-1724-4719-8934-fa92605db5ea
+    id: image_scale
+    weight: 1
+    data:
+      width: 500
+      height: null
+      upscale: false

@@ -2,14 +2,15 @@ druki.official_user_guide_settings:
   type: config_object
   label: 'Official user guide settings'
   mapping:
-    image:
-      type: mapping
-      label: 'Image'
-      mapping:
-        media:
-          type: string
-          label: 'Media ID'
-        style:
-          type: string
-          label: 'Image style'
+    image_style:
+      type: string
+      label: 'Image style'
 
+druki.frontpage.settings:
+  type: config_object
+  label: 'Frontpage settings'
+  mapping:
+    download:
+      image_style:
+        type: string
+        label: 'Image style'

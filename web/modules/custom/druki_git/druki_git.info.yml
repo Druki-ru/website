@@ -6,6 +6,3 @@ core: 8.x
 core_version_requirement: ^8 || ^9
 dependencies:
   - druki:druki
-
-'interface translation project': druki_git
-'interface translation server pattern': modules/custom/%project/translations/%language.po

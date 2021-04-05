@@ -16,21 +16,11 @@ druki.official_user_guide_settings:
   route_name: druki.official_user_guide_settings
   parent: druki.admin_general
 
-druki.front:
-  title: 'Frontpage'
-  title_context: short
-  route_name: '<front>'
-  menu_name: main
-  weight: 1
+druki.frontpage.settings:
+  title: 'Frontpage settings'
+  description: 'Settings for elements displayed on frontpage.'
+  route_name: druki.frontpage.settings
+  parent: druki.admin_general
 
-druki.wiki:
-  title: 'Wiki'
-  route_name: druki.wiki
-  menu_name: main
-  weight: 2
-
-druki.download:
-  title: 'Download Drupal'
-  route_name: druki.download
-  menu_name: main
-  weight: 3
+druki.static_menu_links:
+  deriver: \Drupal\druki\Plugin\Deriver\StaticMenuLinkDeriver

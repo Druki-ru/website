@@ -1,2 +1,2 @@
-:root{--selection-background:var(--color-light-gray);--selection-color:var(--text-color)}::-moz-selection{background:var(--selection-background);color:var(--selection-color)}::selection{background:var(--selection-background);color:var(--selection-color)}
+:root{--selection-background:var(--color-light-gray);--selection-color:var(--text-color)}[data-theme=dark]{--selection-background:rgb(var(--color-maximum-yellow-red));--selection-color:rgb(var(--color-eerie-black))}::-moz-selection{background:var(--selection-background);color:var(--selection-color)}::selection{background:var(--selection-background);color:var(--selection-color)}
 /*# sourceMappingURL=selection.css.map */

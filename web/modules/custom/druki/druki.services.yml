@@ -32,3 +32,7 @@ services:
     class: Drupal\druki\EventSubscriber\ImagemagickEventSubscriber
     tags:
       - { name: event_subscriber }
+
+  druki.helper.responsive_image_style:
+    class: Drupal\druki\Helper\ResponsiveImageStyleHelper
+    arguments: ['@entity_type.manager', '@cache.static']

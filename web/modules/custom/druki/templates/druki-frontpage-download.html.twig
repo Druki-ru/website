@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present frontpage download section.
+ *
+ * Default variables:
+ * - image: The media image ready to use.
+ */
+#}
+<section class="frontpage-download">
+  <div class="frontpage-download__content">
+    <h2 class="frontpage-download__title">{{ 'Choose Drupal'|t }}</h2>
+    <div class="frontpage-download__description">
+      <p>
+        {% trans %}
+          Drupal is the leading OpenSource platform that knows that your web content should cover more than just websites.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+          Drupal is built in such a way that you can deliver the right content to the right person, at the right time - on any device.
+        {% endtrans %}
+      </p>
+    </div>
+    <div class="frontpage-download__actions">
+      <a href="/download" class="button button--primary">{{ 'Download Drupal'|t }}</a>
+    </div>
+  </div>
+
+  <div class="frontpage-download__media">
+    {{- image -}}
+  </div>
+</section>

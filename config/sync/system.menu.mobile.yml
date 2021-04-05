@@ -1,0 +1,8 @@
+uuid: 50806bd1-0e21-478b-9469-a0fb6f62ab65
+langcode: ru
+status: true
+dependencies: {  }
+id: mobile
+label: 'Мобильная навигация'
+description: ''
+locked: false

@@ -10,8 +10,8 @@ _core:
   default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
 id: loremaster_breadcrumbs
 theme: loremaster
-region: content_header
-weight: -5
+region: content_above
+weight: -8
 provider: null
 plugin: system_breadcrumb_block
 settings:

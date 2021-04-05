@@ -3,13 +3,13 @@ langcode: ru
 status: true
 dependencies: {  }
 name: official_user_guide_magazine_xs
-label: 'Official user guide magazine: XS'
+label: 'Official User Guide: XS'
 effects:
-  3c5f0b28-86ab-4c1c-b983-d1f57fa4cf7f:
-    uuid: 3c5f0b28-86ab-4c1c-b983-d1f57fa4cf7f
-    id: image_scale_and_crop
+  7485de87-9df9-45cb-94f8-8820b055bf6a:
+    uuid: 7485de87-9df9-45cb-94f8-8820b055bf6a
+    id: image_scale
     weight: 1
     data:
-      width: 288
-      height: 205
-      anchor: center-center
+      width: 270
+      height: null
+      upscale: false

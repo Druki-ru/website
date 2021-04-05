@@ -1,2 +1,2 @@
-:root{--link-color:var(--color-celtic-blue);--link-color--hover:var(--color-blue--dark)}[data-theme=dark]{--link-color:var(--color-light-cornflower-blue);--link-color--hover:var(--color-light-cornflower-blue--dark-1)}a{color:var(--link-color);text-decoration:none}a:hover{--link-color:var(--link-color--hover);text-decoration:underline}
+:root{--link-color:var(--color-celtic-blue);--link-color--hover:var(--color-celtic-blue)}[data-theme=dark]{--link-color:rgb(var(--color-maximum-yellow-red));--link-color--hover:rgb(var(--color-orange-peel))}a{color:var(--link-color);text-decoration:none}a:hover{--link-color:var(--link-color--hover);text-decoration:underline}
 /*# sourceMappingURL=links.css.map */

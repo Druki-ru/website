@@ -1,0 +1,15 @@
+uuid: f3e639c7-3dec-4e72-aa63-8bef4d51f668
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_download_media_md
+label: 'Frontpage / Download / Media: MD'
+effects:
+  cf0c47d3-00fa-4925-816e-199914501b0e:
+    uuid: cf0c47d3-00fa-4925-816e-199914501b0e
+    id: image_scale
+    weight: 1
+    data:
+      width: 360
+      height: null
+      upscale: false

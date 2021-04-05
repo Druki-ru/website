@@ -1,18 +1,23 @@
 .druki-heading {
-  scroll-margin-top: var(--spacing-xl);
-  --link-color: var(--color-old-silver);
+  scroll-margin-top: calc(var(--spacing-xl) + var(--page-header-height));
+  word-break: break-word;
+
+  @media (--xl) {
+    scroll-margin-top: var(--spacing-xl);
+  }
 }
 
 .druki-heading__anchor {
   line-height: 1;
-  visibility: visible;
   float: left;
   width: 20px;
   margin-left: -20px;
   padding-right: var(--spacing-xs);
   vertical-align: middle;
+  display: none;
 
-  @media (--md) {
+  @media (--xl) {
+    display: block;
     visibility: hidden;
   }
 }

@@ -1,32 +1,73 @@
-.druki-header-search {
+.header-search {
+  display: flex;
+  height: 100%;
+  --search-icon: url('../../../icons/8e929c/magnify.svg');
+  --search-icon--hover: url('../../../icons/003cc5/magnify.svg');
+  --toggle-icon: url('../../../icons/000000/magnify.svg');
+  --toggle-icon--close: url('../../../icons/000000/close.svg');
+  --search-icon-size: 2rem;
+  width: 100%;
+
+  @media (--xl) {
+    padding-left: calc(var(--page-content-gap) - var(--search-icon-size) - var(--spacing-xs));
+  }
+}
+
+.header-search__elements {
   position: relative;
+  display: none;
+  flex: 1;
+
+  @media (--xl) {
+    display: flex;
+  }
+}
+
+.header-search--active .header-search__elements {
   display: flex;
 }
 
-.druki-header-search__input {
-  padding: 0 var(--spacing-xs);
-  padding-left: calc(2rem + var(--spacing-xs));
-  color: var(--color-white);
-  border: unset;
-  border-radius: var(--radius-xxs);
-  background-color: var(--color-black--light-24);
-  font-size: var(--font-size-xs);
-  height: 2rem;
+[data-theme="dark"] .header-search {
+  --search-icon--hover: url('../../../icons/FFC66B/magnify.svg');
+  --toggle-icon: url('../../../icons/ffffff/magnify.svg');
+  --toggle-icon--close: url('../../../icons/ffffff/close.svg');
+}
+
+.header-search__input {
+  background-color: transparent;
+  border: none;
+  padding: 0 var(--page-content-gap);
+  padding-left: calc(var(--search-icon-size) + var(--spacing-xs));
   width: 100%;
 }
 
-.druki-header-search__input:hover {
-  opacity: 0.9;
+.header-search__input:hover + .header-search__submit,
+.header-search__input:focus + .header-search__submit,
+.header-search__submit:hover,
+.header-search__submit:focus {
+  background-image: var(--search-icon--hover);
 }
 
-.druki-header-search__submit {
+.header-search__submit {
+  background: transparent var(--search-icon) center no-repeat;
+  background-size: 18px;
+  border: none;
+  height: 100%;
+  padding: 0;
   position: absolute;
-  z-index: 1;
-  top: 0;
+  width: var(--search-icon-size);
   left: 0;
-  width: 2rem;
-  height: 2rem;
-  border: unset;
-  border-radius: var(--radius-xxs);
-  background: transparent url('../../../icons/ffffff/magnify.svg') no-repeat center;
+}
+
+.header-search__toggle {
+  background: transparent var(--toggle-icon) no-repeat center;
+  width: 3rem;
+
+  @media (--xl) {
+    display: none;
+  }
+}
+
+.header-search--active .header-search__toggle {
+  background-image: var(--toggle-icon--close);
 }

@@ -2,75 +2,114 @@
  * @file
  * Dark mode switcher.
  */
+(function () {
 
-(function (Drupal) {
+  'use strict';
 
-  Drupal.behaviors.loremasterDarkMode = {
-    attach: function (context, settings) {
-      // Force init to fast change after page loads.
-      this.init();
+  function DarkMode() {
+    this.store = localStorage;
+    // The key to store value of active scheme.
+    this.name = 'dark-mode-toggle';
+    this.eventHandlers = {
+      'onUpdate': [],
+    };
+    this.init();
+  }
 
-      let toggles = context.querySelectorAll('.js-dark-mode-switcher');
+  DarkMode.prototype = {
 
-      toggles.forEach(item => {
-        if (item.processed) {
-          return;
-        }
+    /**
+     * Initialize script.
+     */
+    init: function () {
+      // Update theme on script initialization.
+      this.update();
 
-        item.addEventListener('click', () => {
-          this.toggle();
-        });
+      // Add listener to color scheme changes.
+      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      darkModeMediaQuery.addEventListener('change', () => {
+        this.update();
       });
     },
 
     /**
-     * Init script for dark mode.
+     * Sets needed color scheme.
      */
-    init: function () {
-      if (!this.isEnabled()) {
-        return;
-      }
-
-      this.enable();
-    },
-
-    /**
-     * Gets status for dark mode.
-     *
-     * @return boolean
-     *   TRUE if dark mode is active, FALSE otherwise.
-     */
-    isEnabled: function () {
-      return localStorage.getItem('loremaster-dark-mode') || false;
-    },
-
-    /**
-     * Toggle dark mode.
-     */
-    toggle: function () {
-      if (document.documentElement.hasAttribute('data-theme')) {
-        this.disable();
+    setColorScheme: function (scheme) {
+      if (['auto', 'light', 'dark'].includes(scheme)) {
+        if (scheme ===  'auto') {
+          // By removing value we fallback to 'system detection' mode.
+          this.store.removeItem(this.name);
+        }
+        else {
+          this.store.setItem(this.name, scheme);
+        }
       }
       else {
-        this.enable();
+        // If provided not valid scheme, reset it to 'auto'.
+        this.store.removeItem(this.name);
+      }
+      this.update();
+    },
+
+    /**
+     * Get currently active color scheme.
+     */
+    getColorScheme: function () {
+      let currentScheme = this.store.getItem(this.name);
+      // If no value is set, let it be handled bu user's system.
+      if (!currentScheme) {
+        currentScheme = this.getColorSchemeFromSystem();
+      }
+      return currentScheme;
+    },
+
+    /**
+     * Gets current color scheme from system settings.
+     */
+    getColorSchemeFromSystem: function () {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      else {
+        return 'light';
       }
     },
 
     /**
-     * Activates dark mode.
+     * Checks if current color scheme from system or specified.
      */
-    enable: function () {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('loremaster-dark-mode', true);
+    isSchemeFromSystem: function () {
+      return this.store.getItem(this.name) === null;
     },
 
     /**
-     * Disable dark mode.
+     * Sets correct attributes to update theme visuals.
      */
-    disable: function () {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.removeItem('loremaster-dark-mode');
+    update: function () {
+      this.dispatchEvent('onUpdate', this.getColorScheme(), this.isSchemeFromSystem());
+      document.documentElement.setAttribute('data-theme', this.getColorScheme());
     },
-  };
 
-})(Drupal);
+    /**
+     * Adds handler for 'onUpdate' event.
+     */
+    onUpdate: function (handler) {
+      this.eventHandlers.onUpdate.push(handler);
+    },
+
+    /**
+     * Dispatch custom event.
+     */
+    dispatchEvent: function (eventName, ...args) {
+      this.eventHandlers[eventName].forEach(handler => {
+        handler.call(this, ...args);
+      });
+    },
+
+  }
+
+  // The DarkMode object is internal. Pass only instance into global scope.
+  window['DarkMode'] = new DarkMode();
+
+})();

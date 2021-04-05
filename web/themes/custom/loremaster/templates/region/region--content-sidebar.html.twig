@@ -1,0 +1,8 @@
+{% extends 'region.html.twig' %}
+
+{% block region %}
+  {{ attach_library('loremaster/component.layout.region-content-sidebar') }}
+  <div{{ attributes.addClass(classes) }}>
+    {{ block('content') }}
+  </div>
+{% endblock %}

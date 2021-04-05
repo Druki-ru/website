@@ -8,8 +8,8 @@ dependencies:
     - loremaster
 id: content_toc
 theme: loremaster
-region: sidebar_right
-weight: -3
+region: content_sidebar
+weight: -6
 provider: null
 plugin: druki_content_toc
 settings:

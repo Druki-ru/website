@@ -24,14 +24,14 @@ global.style.elements:
       assets/css/02-elements/horizontal-rules.css: { }
       assets/css/02-elements/fieldset.css: { }
       assets/css/02-elements/blockquotes.css: { }
+      assets/css/02-elements/scroll.css: { }
 
 global.style.components:
   css:
     layout:
       assets/css/04-components/layout/layout.css: { }
-      assets/css/04-components/layout/main-layout.css: { }
-      assets/css/04-components/layout/page-container.css: { }
-      assets/css/04-components/layout/region-header.css: { }
+      assets/css/04-components/layout/page.css: { }
+      assets/css/04-components/layout/region-content-above.css: { }
       assets/css/04-components/layout/region-mobile-toolbar.css: { }
       assets/css/04-components/layout/region-mobile-sidebar.css: { }
       assets/css/04-components/layout/region-content.css: { }
@@ -45,15 +45,12 @@ global.style.components:
       assets/css/04-components/ui/form-item.css: { }
       assets/css/04-components/ui/counter-list.css: { }
       assets/css/04-components/block/branding.css: { }
-      assets/css/04-components/block/mobile-branding.css: { }
       assets/css/04-components/block/mobile-sidebar-button.css: { }
-      assets/css/04-components/block/mobile-dark-mode-switcher.css: { }
       assets/css/04-components/block/header-repository-button.css: { }
-      assets/css/04-components/block/header-dark-mode-switcher.css: { }
       assets/css/04-components/menu/main.css: { }
-      assets/css/04-components/menu/main-mobile-navigation.css: { }
+      assets/css/04-components/menu/mobile.css: { }
       assets/css/04-components/javascript/mobile-sidebar.css: { }
-      assets/css/04-components/theme/druki-header-search.css: { }
+      assets/css/04-components/theme/druki-dark-mode-toggle.css: { }
 
 global.style.utilities:
   css:
@@ -108,15 +105,10 @@ component.ui.status-messages:
       assets/css/04-components/ui/status-messages.css: { }
 
 # Custom libraries.
-component.layout.region-content-header:
+component.layout.region-content-sidebar:
   css:
     layout:
-      assets/css/04-components/layout/region-content-header.css: { }
-
-component.layout.region-sidebar-right:
-  css:
-    layout:
-      assets/css/04-components/layout/region-sidebar-right.css: { }
+      assets/css/04-components/layout/region-content-sidebar.css: { }
 
 component.block.druki-content-toc-mobile:
   css:
@@ -131,7 +123,7 @@ component.javascript.photoswipe:
 component.block.druki-content-variations:
   css:
     theme:
-      assets/css/04-components/block/druki-content-variations.css: {}
+      assets/css/04-components/block/druki-content-variations.css: { }
 
 component.paragraph:
   css:
@@ -206,6 +198,20 @@ component.theme.druki-search-results:
     theme:
       assets/css/04-components/theme/druki-search-results.css: { }
 
+component.theme.frontpage:
+  css:
+    theme:
+      assets/css/04-components/theme/frontpage.css: { }
+
+component.theme.header-search:
+  css:
+    theme:
+      assets/css/04-components/theme/druki-header-search.css: { }
+  js:
+    assets/js/header-search.js: { minified: true }
+  dependencies:
+    - core/drupal
+
 code-highlight:
   js:
     assets/js/code-highlight.js: { minified: true }
@@ -227,18 +233,14 @@ prismjs:
     # Prism has no dist files in any repo. So we use prebuild JS from theme.
     assets/js/prism.js: { minfied: true }
 
-asciinema-player:
-  remote: https://github.com/asciinema/asciinema-player
-  version: 2.6.0
-  license:
-    name: Apache
-    gpl-compatible: true
-  css:
-    component:
-      /libraries/asciinema-player/resources/public/css/asciinema-player.css: { }
+keyboard-focus:
+  version: VERSION
   js:
-    /libraries/asciinema-player/resources/public/js/asciinema-player.js: {
-      attributes: {
-        defer: defer
-      }
-    }
+    assets/js/keyboard-focus.js: { minified: true }
+
+page:
+  version: VERSION
+  js:
+    assets/js/page.js: { minified: true }
+  dependencies:
+    - core/drupal

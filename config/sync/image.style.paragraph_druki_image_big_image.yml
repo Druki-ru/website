@@ -3,7 +3,7 @@ langcode: ru
 status: true
 dependencies: {  }
 name: paragraph_druki_image_big_image
-label: 'Paragraph - Druki Image - Big image'
+label: 'Paragraph / Druki Image / Big image'
 effects:
   c07ac801-d73e-4f0c-a9c1-615c8020b664:
     uuid: c07ac801-d73e-4f0c-a9c1-615c8020b664

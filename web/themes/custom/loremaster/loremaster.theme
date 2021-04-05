@@ -34,11 +34,7 @@ function loremaster_preprocess(array &$variables, string $hook): void {
     'druki_content' => ['loremaster/component.druki-content'],
     'druki_wiki' => ['loremaster/component.theme.druki-wiki'],
     'druki_download' => ['loremaster/component.theme.druki-download'],
-    'druki_category_navigation' => ['loremaster/component.theme.druki-category-navigation'],
     'druki_official_user_guide' => ['loremaster/component.theme.official-user-guide'],
-    'druki_content_help_and_feedback' => ['loremaster/component.theme.druki-content-help-and-feedback'],
-    'druki_content_next_prev' => ['loremaster/component.theme.druki-content-next-prev'],
-    'druki_drupal_versions' => ['loremaster/component.theme.drupal-versions'],
     'druki_search_results' => ['loremaster/component.theme.druki-search-results'],
   ];
 
@@ -47,6 +43,22 @@ function loremaster_preprocess(array &$variables, string $hook): void {
     foreach ($dynamic_libraries[$theme_hook_original] as $library) {
       $variables['#attached']['library'][] = $library;
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for 'page.html.twig'.
+ */
+function loremaster_preprocess_page(array &$variables): void {
+  $variables['is_page_content_fullwidth'] = FALSE;
+  $routes_with_fullwidth = [
+    'druki.frontpage',
+    'druki.download',
+    'druki.wiki',
+  ];
+  $route_match = \Drupal::routeMatch();
+  if (\in_array($route_match->getRouteName(), $routes_with_fullwidth)) {
+    $variables['is_page_content_fullwidth'] = TRUE;
   }
 }
 
@@ -102,27 +114,6 @@ function loremaster_preprocess_menu__main(array &$variables): void {
     $variables['system_menu_block_id'] = $variables['attributes']['data-block-id'];
     unset($variables['attributes']['data-block-id']);
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK() for block--druki-content-variations.html.twig.
- */
-function loremaster_preprocess_block__druki_content_variations(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/component.block.druki-content-variations';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for region--content-header.html.twig.
- */
-function loremaster_preprocess_region__content_header(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/component.layout.region-content-header';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for region--sidebar-right.html.twig.
- */
-function loremaster_preprocess_region__sidebar_right(array &$variables): void {
-  $variables['#attached']['library'][] = 'loremaster/component.layout.region-sidebar-right';
 }
 
 /**

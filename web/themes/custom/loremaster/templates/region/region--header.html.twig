@@ -2,8 +2,6 @@
 
 {% block region %}
   <div{{ attributes.addClass(classes) }}>
-    <div class="layout-container {{ bem(block, 'container') }}">
-      {{ block('content') }}
-    </div>
+    {{ block('content') }}
   </div>
 {% endblock %}

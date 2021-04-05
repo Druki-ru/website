@@ -8,5 +8,5 @@ id: node
 label: Содержимое
 tags:
   canonical_url: '[node:url]'
-  title: '[node:title]'
+  title: '[node:title] | [site:name]'
   description: '[node:summary]'

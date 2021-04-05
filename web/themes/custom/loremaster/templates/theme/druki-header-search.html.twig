@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present header search form.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for containing element.
+ * - default_value: Default value for input.
+ */
+#}
+{{ attach_library('loremaster/component.theme.header-search') }}
+<form action="/search" class="header-search" data-loremaster-selector="header-search" data-class-active="header-search--active">
+  <div class="header-search__elements">
+    <input type="text"
+           name="text"
+           placeholder="Поиск по энциклопедии"
+           autocomplete="off"
+           class="header-search__input"
+           value="{{ default_value }}"
+           aria-label="{{ 'Site search'|t }}">
+    <button class="header-search__submit" aria-label="{{ 'Search'|t }}"></button>
+  </div>
+  <div class="header-search__toggle" aria-label="{{ 'Toggle search form'|t }}" role="button" data-toggle></div>
+</form>

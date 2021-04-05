@@ -1,39 +1,51 @@
-{# Main lauout classes. #}
-{% set main_layout_attributes = create_attribute() %}
-{% set main_layout_block = 'main-layout' %}
-{%
-  set main_layout_modifiers = [
-    page.sidebar_right ? 'sidebar-right',
-    not page.sidebar_right ? 'no-sidebars',
-    page.sidebar_right ? 'one-sidebar',
-  ]
-%}
-{%
-  set main_layout_classes = [
-   'layout-container',
-    bem(main_layout_block, null, main_layout_modifiers),
-  ]
-%}
 {% set footer %}
-  {% include '@loremaster/includes/footer.twig' %}
+  {% include '@loremaster/includes/footer.twig' only %}
 {% endset %}
 
-<main class="page-container">
-  <header class="header">
-    {{ page.header }}
-    {{ page.mobile_toolbar }}
-  </header>
-  {{ page.content_header }}
-
-  <div{{ main_layout_attributes.addClass(main_layout_classes) }}>
-    {% if is_front %}
-      {% include '@loremaster/includes/frontpage.twig' %}
-    {% else %}
-      {{ page.content }}
-      {{ page.sidebar_right }}
-    {% endif %}
+<div class="page" data-loremaster-selector="page">
+  <div class="page__sidebar">
+    <div class="page__sidebar-blocks">
+      {{- drupal_block('system_branding_block') -}}
+      <div class="page__sidebar-separator"></div>
+      {{- drupal_block('system_menu_block:main') -}}
+    </div>
+    <div class="page__sidebar-shadow"></div>
   </div>
 
-  {{ footer }}
-  {{ page.mobile_sidebar }}
-</main>
+  <div class="page__body">
+    <header class="page__toolbar">
+      <div class="page__toolbar-mobile">
+        <button class="page__toolbar-hamburger" aria-label="{% trans %}Open menu{% endtrans %}" data-mobile-hamburger></button>
+        {{- drupal_block('system_branding_block', {'id': 'mobile_branding'}) -}}
+      </div>
+      <div class="page__search">
+        {{- drupal_block('druki_header_search', wrapper=false) -}}
+        <div class="page__toolbar-separator"></div>
+      </div>
+      <div class="page__tools">
+        {{- drupal_block('druki_header_repository_button') -}}
+        {{- drupal_block('druki_header_dark_mode_switcher') -}}
+      </div>
+      <div class="page__mobile-dropdown">
+        {{- drupal_block('system_menu_block:mobile') -}}
+      </div>
+    </header>
+    <main class="page__main">
+      {% if is_front %}
+        {% include '@loremaster/includes/frontpage.twig' only %}
+      {% else %}
+        <div class="page__content-above">
+          {{- page.content_above -}}
+        </div>
+
+        <div class="page__content{{ is_page_content_fullwidth ? ' page__content--fullwidth' }}">
+          {{- page.content -}}
+          <div class="page__content-sidebar">
+            {{- page.content_sidebar -}}
+          </div>
+        </div>
+      {% endif %}
+    </main>
+    {{- footer -}}
+  </div>
+</div>
