@@ -3,16 +3,34 @@ langcode: ru
 status: true
 dependencies:
   config:
-    - image.style.frontpage_download_media_xl
+    - image.style.frontpage_download_media_lg
+    - image.style.frontpage_download_media_md
+    - image.style.frontpage_download_media_sm
+    - image.style.frontpage_download_media_xs
   theme:
     - loremaster
 id: frontpage_download_media
 label: 'Frontpage / Download / Media'
 image_style_mappings:
   -
+    breakpoint_id: loremaster.lg
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_download_media_lg
+  -
+    breakpoint_id: loremaster.md
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_download_media_md
+  -
+    breakpoint_id: loremaster.sm
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: frontpage_download_media_sm
+  -
     breakpoint_id: loremaster.xs
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: frontpage_download_media_xl
+    image_mapping: frontpage_download_media_xs
 breakpoint_group: loremaster
-fallback_image_style: frontpage_download_media_xl
+fallback_image_style: frontpage_download_media_xs

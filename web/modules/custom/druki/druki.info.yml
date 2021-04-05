@@ -13,4 +13,4 @@ dependencies:
   - drupal:update
 
 'interface translation project': druki
-'interface translation server pattern': modules/custom/%project/translations/%language.po
+'interface translation server pattern': ../translations/%language.po

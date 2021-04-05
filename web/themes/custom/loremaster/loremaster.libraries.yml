@@ -48,9 +48,8 @@ global.style.components:
       assets/css/04-components/block/mobile-sidebar-button.css: { }
       assets/css/04-components/block/header-repository-button.css: { }
       assets/css/04-components/menu/main.css: { }
-      assets/css/04-components/menu/main-mobile-navigation.css: { }
+      assets/css/04-components/menu/mobile.css: { }
       assets/css/04-components/javascript/mobile-sidebar.css: { }
-      assets/css/04-components/theme/druki-header-search.css: { }
       assets/css/04-components/theme/druki-dark-mode-toggle.css: { }
 
 global.style.utilities:
@@ -203,6 +202,15 @@ component.theme.frontpage:
   css:
     theme:
       assets/css/04-components/theme/frontpage.css: { }
+
+component.theme.header-search:
+  css:
+    theme:
+      assets/css/04-components/theme/druki-header-search.css: { }
+  js:
+    assets/js/header-search.js: { minified: true }
+  dependencies:
+    - core/drupal
 
 code-highlight:
   js:

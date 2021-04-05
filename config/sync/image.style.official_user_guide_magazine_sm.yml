@@ -3,13 +3,13 @@ langcode: ru
 status: true
 dependencies: {  }
 name: official_user_guide_magazine_sm
-label: 'Official user guide magazine: SM'
+label: 'Official User Guide: SM'
 effects:
-  a9147037-9310-4556-b208-dbdbb26fc63e:
-    uuid: a9147037-9310-4556-b208-dbdbb26fc63e
-    id: image_scale_and_crop
+  943bf1cb-628c-4bf2-98b6-62078c6dfc03:
+    uuid: 943bf1cb-628c-4bf2-98b6-62078c6dfc03
+    id: image_scale
     weight: 1
     data:
-      width: 160
-      height: 114
-      anchor: center-center
+      width: 401
+      height: null
+      upscale: false

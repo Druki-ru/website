@@ -1,28 +1,22 @@
-uuid: 3e7b0f75-e44e-49a1-b149-b1d1efa9cb92
+uuid: 5931686c-9c96-43d0-a200-c2ac83f87f7c
 langcode: ru
 status: true
 dependencies:
   config:
-    - image.style.official_user_guide_magazine_lg
     - image.style.official_user_guide_magazine_md
     - image.style.official_user_guide_magazine_sm
     - image.style.official_user_guide_magazine_xl
     - image.style.official_user_guide_magazine_xs
   theme:
     - loremaster
-id: official_user_guide_magazine
-label: 'Official user guide magazine'
+id: official_user_guide
+label: 'Official User Guide'
 image_style_mappings:
   -
     breakpoint_id: loremaster.xl
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: official_user_guide_magazine_xl
-  -
-    breakpoint_id: loremaster.lg
-    multiplier: 1x
-    image_mapping_type: image_style
-    image_mapping: official_user_guide_magazine_lg
   -
     breakpoint_id: loremaster.md
     multiplier: 1x
@@ -39,4 +33,4 @@ image_style_mappings:
     image_mapping_type: image_style
     image_mapping: official_user_guide_magazine_xs
 breakpoint_group: loremaster
-fallback_image_style: official_user_guide_magazine_xl
+fallback_image_style: official_user_guide_magazine_xs

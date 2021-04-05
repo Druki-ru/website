@@ -59,3 +59,6 @@ example.settings.local.php
 
 # Ignore maps for builded files like .css.map, .js.map.
 *.map
+
+# Ignore .mo files if someone try to use Poedit
+/translations/*.mo

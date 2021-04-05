@@ -7,10 +7,17 @@
 }
 
 .frontpage-download {
-  display: grid;
   background-color: var(--frontpage-download-background-color);
-  grid-template-columns: 1fr 500px;
+  display: grid;
   overflow: hidden;
+
+  @media (--md) {
+    grid-template-columns: 1fr 360px;
+  }
+
+  @media (--lg) {
+    grid-template-columns: 1fr 500px;
+  }
 }
 
 .frontpage-download__content {
@@ -23,6 +30,20 @@
 }
 
 .frontpage-download__media {
-  align-self: flex-end;
-  justify-self: flex-end;
+  justify-self: center;
+  margin-top: var(--spacing-lg);
+
+  @media (--md) {
+    align-self: flex-end;
+    justify-self: flex-end;
+  }
+}
+
+.frontpage-download__actions .button {
+  display: block;
+  text-align: center;
+
+  @media (--md) {
+    display: inline-block;
+  }
 }

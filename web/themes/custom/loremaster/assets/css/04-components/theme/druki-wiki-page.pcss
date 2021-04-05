@@ -13,6 +13,11 @@
   margin: var(--spacing-lg) 0;
   --p-margin--y: 0;
   padding: var(--spacing-md);
+  flex-direction: column;
+
+  @media (--md) {
+    flex-direction: row;
+  }
 }
 
 [data-theme="dark"] .druki-wiki-page-item {
@@ -31,7 +36,19 @@
 }
 
 .druki-wiki-page-item__actions {
-  margin-left: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  width: 100%;
+
+  @media (--md) {
+    width: auto;
+    margin-top: 0;
+    margin-left: var(--spacing-lg);
+  }
+}
+
+.druki-wiki-page-item__actions .button {
+  display: block;
+  text-align: center;
 }
 
 .druki-wiki-page-link__description {

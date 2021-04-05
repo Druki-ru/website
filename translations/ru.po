@@ -1,0 +1,556 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n"
+"%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Nikita Malyshev <niklanrus@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"X-Generator: Poedit 2.4.1\n"
+
+msgid "Promo"
+msgstr "Промо"
+
+msgid "Promo image"
+msgstr "Промо-изображение"
+
+msgid "Media entity that contains a promo image."
+msgstr "Медиа-сущность, которая содержит промо-изображение."
+
+msgid "Promo image style"
+msgstr "Стиль промо-изображения"
+
+msgid "Why Drupal"
+msgstr "Почему Drupal"
+
+msgid "Media entity that contains a remote video."
+msgstr "Медиа сущность которая содержит внешнее видео."
+
+msgid "Druki Settings"
+msgstr "Настройки Druki"
+
+msgid "Frontpage settings"
+msgstr "Настройки главной страницы"
+
+msgid "Frontpage"
+msgstr "Главная страница"
+
+msgctxt "short"
+msgid "Frontpage"
+msgstr "Главная"
+
+msgid "Settings for frontpage."
+msgstr "Настройки для главной страницы."
+
+msgid "General settings"
+msgstr "Общие настройки"
+
+msgid "Wiki"
+msgstr "Энциклопедия"
+
+msgid "Drupal event"
+msgstr "Drupal мероприятие"
+
+msgid "Event image"
+msgstr "Изображение мероприятия"
+
+msgid "Media entity that contains an event promo image"
+msgstr "Медиа-сущность, которая содержит промо-изображение для мероприятия"
+
+msgid "Official user guide settings"
+msgstr "Настройки официального руководства пользователя"
+
+msgid "Official user guide"
+msgstr "Официальное руководство пользователя"
+
+msgid "Settings for displaying the official user guide."
+msgstr "Настройки отображения официального руководства пользователя."
+
+msgctxt "edit content"
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Drupal is a registered trademark of <a href=\"@url\">@name</a>."
+msgstr "Drupal — зарегистрированная торговая марка <a href=\"@url\">@name</a>."
+
+msgid ""
+"<a href=\"@source_url\">The source code</a> of the site is provided under "
+"the <a href=\"@license_url\">@license_name</a>."
+msgstr ""
+"<a href=\"@source_url\">Исходный код</a> сайта предоставляется по лицензии "
+"<a href=\"@license_url\">@license_name</a>."
+
+msgid ""
+"<a href=\"@source_url\">The content</a> of the site is provided under the <a "
+"href=\"@license_url\">@license_name</a>."
+msgstr ""
+"<a href=\"@source_url\">Содержимое</a> сайта предоставляется по лицензии <a "
+"href=\"@license_url\">@license_name</a>."
+
+msgid "Developed by <a href=\"@url\">@name</a> with love on Drupal."
+msgstr "Разработано <a href=\"@url\">@name</a> с любовью на Drupal."
+
+msgid "Read more"
+msgstr "Подробнее"
+
+msgid "A structured, free, and open source information about Drupal."
+msgstr "Структурированный, свободный и открытый источник информации о Drupal."
+
+msgid "Drupal Encyclopedia"
+msgstr "Drupal Энциклопедия"
+
+msgid "Site search"
+msgstr "Поиск по сайту"
+
+msgid "What do you want to know today?"
+msgstr "Что вы хотите узнать сегодня?"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Go to encyclopedia"
+msgstr "Перейти в энциклопедию"
+
+msgid "What Drupal is?"
+msgstr "Что такое Drupal?"
+
+msgid ""
+"Drupal is the leading OpenSource platform that knows that your web content "
+"should cover more than just websites."
+msgstr ""
+"Drupal — это лидирующая OpenSource платформа, которая знает, что ваш веб-"
+"контент должен охватывать не только веб-сайты."
+
+msgid ""
+"Drupal is built in such a way that you can deliver the right content to the "
+"right person, at the right time - on any device."
+msgstr ""
+"Drupal построен таким образом, что вы можете доставлять необходимый контент, "
+"нужному человеку, в нужное время - на любом устройстве."
+
+msgid "Actual minor release"
+msgstr "Актуальный минорный релиз"
+
+msgid "from"
+msgstr "от"
+
+msgid "Actual patch release"
+msgstr "Актуальный патч релиз"
+
+msgid "Next minor release"
+msgstr "Следующий минорный релиз"
+
+msgid "Full list of releases"
+msgstr "Полный список релизов"
+
+msgid "The best way to try Drupal is to download it."
+msgstr "Лучший способ попробовать Drupal — загрузить его."
+
+msgid "Choose Drupal"
+msgstr "Выбирайте Drupal"
+
+msgid ""
+"If you are just getting started with web development, Drupal will provide "
+"you with invaluable experience in various areas and technologies. You will "
+"always have something to learn and develop your professional skills."
+msgstr ""
+"Если вы только начинаете своё знакомство с веб-разработкой, Drupal "
+"предоставит вам бесценный опыт в различных направлениях и технологиях. Вам "
+"всегда будет чему научиться и развить свои профессиональные навыки."
+
+msgid ""
+"For an experienced developer - Drupal will open new horizons, tools, "
+"approaches and implementations. Drupal means strict code standards, tens of "
+"thousands of tests, incredible flexibility and scalability for any needs."
+msgstr ""
+"Для опытного разработчика — Drupal откроет новые горизонты, инструменты, "
+"подходы и реализации. Drupal — это строгие стандарты кода, десятки тысяч "
+"тестов, невероятная гибкость и масштабируемость под любые нужды."
+
+msgid ""
+"We all have different needs - Drupal allows us to create a unique space in "
+"the world of template solutions."
+msgstr ""
+"У всех нас разные потребности — Drupal позволяет создать уникальное "
+"пространство в мире шаблонных решений."
+
+msgid "encyclopedia"
+msgstr "энциклопедия"
+
+msgid "Help & Feedback"
+msgstr "Помощь и обратная связь"
+
+msgid "Edit this page"
+msgstr "Редактировать эту страницу"
+
+msgid ""
+"If you <strong>spot an error or a need for improvement</strong> and would "
+"like to <strong>fix it yourself</strong> in a Pull Request"
+msgstr ""
+"Если вы <strong>обнаружили ошибку или хотите внести улучшения</strong>, и "
+"желаете <strong>внести изменения самостоятельно</strong> при помощи Pull "
+"Request"
+
+msgid ""
+"If you would like to <strong>suggest an improvement to this doc</strong>"
+msgstr ""
+"Если вы желаете <strong>предложить улучшение для этого документа</strong>"
+
+msgid "Feedback: @title"
+msgstr "Обратная связь: @title"
+
+msgid "Create an issue"
+msgstr "Создать обращение"
+
+msgid "Describe what is wrong."
+msgstr "Опишите, что не так."
+
+msgid "Get Help"
+msgstr "Обратиться за помощью"
+
+msgid "Send email"
+msgstr "Отправить email"
+
+msgid ""
+"If you didn't find what you were looking for, <a href=\"@search_url\">search "
+"the docs</a>."
+msgstr ""
+"Если вы не нашли то что искали, <a href=\"@search_url\">воспользуйтесь "
+"поиском</a>."
+
+msgid ""
+"If you want help with something specific, <a href=\"@community_resources_url"
+"\">contact the community</a>."
+msgstr ""
+"Если вам нужна помощь с чем-то конкретным, <a href=\"@community_resources_url"
+"\">обратитесь к сообществу</a>."
+
+msgid "Anchor link"
+msgstr "Ссылка-якорь"
+
+msgid "Download Drupal"
+msgstr "Загрузить Drupal"
+
+msgid "Drupal Wiki"
+msgstr "Drupal Энциклопедия"
+
+msgid "Drupal wiki"
+msgstr "Drupal энциклопедия"
+
+msgid "Optimized remote video"
+msgstr "Оптимизированное внешнее видео"
+
+msgid "Thumbnail style"
+msgstr "Стиль уменьшенного изображения"
+
+msgid "Thumbnail style: @style"
+msgstr "Стиль уменьшенного изображения: @style"
+
+msgid "Project repository"
+msgstr "Репозиторий проекта"
+
+msgid "Get help"
+msgstr "Получить помощь"
+
+msgctxt "color scheme"
+msgid "Light"
+msgstr "Светлая"
+
+msgctxt "color scheme"
+msgid "Dark"
+msgstr "Тёмная"
+
+msgctxt "color scheme"
+msgid "Inherit from the system"
+msgstr "Наследовать из системы"
+
+msgctxt "content"
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgctxt "content"
+msgid "Next"
+msgstr "Следующий"
+
+msgid "Help us to improve these docs!"
+msgstr "Помогите нам сделать документацию лучше!"
+
+msgid ""
+"All Druki docs are open source. See something that's wrong or unclear? "
+"Submit a pull request."
+msgstr ""
+"Вся документация Druki с отрытым исходным кодом. Нашли ошибку или "
+"неточность? Создайте pull request."
+
+msgid "Edit this doc"
+msgstr "Редактировать текущий документ"
+
+msgid "Discuss an improvement"
+msgstr "Обсудить улучшение"
+
+msgid "Or, <a href=\"@url\">learn how to contribute</a>."
+msgstr "Или <a href=\"@url\">узнайте как контрибутить</a>."
+
+msgid "Still need help?"
+msgstr "По-прежнему нужна помощь?"
+
+msgid "Ask on GitHub community"
+msgstr "Задайте вопрос на GitHub"
+
+msgid "See other community resources"
+msgstr "Смотрите другие ресурсы сообщества"
+
+msgid "Settings for elements displayed on frontpage."
+msgstr "Настройки для элементов отображаемых на главной странице."
+
+msgid "Druki content"
+msgstr "Druki содержимое"
+
+msgid "Druki content TOC"
+msgstr "Содержание Druki содержимого"
+
+msgid "Internal links"
+msgstr "Внутренние ссылки"
+
+msgid "Druki content page"
+msgstr "Страница Druki содержимого"
+
+msgid "Computed alias"
+msgstr "Вычисленный псевдоним"
+
+msgid "The computed alias depends on meta data."
+msgstr "Вычисляемый всевдоним зависящий от метаданных."
+
+msgid "Are you sure you want to do this?"
+msgstr "Вы уверены что хотите сделать это?"
+
+msgid "Git Information"
+msgstr "Информация из Git"
+
+msgid "External ID"
+msgstr "Внешний ID"
+
+msgid "Core version"
+msgstr "Версия ядра"
+
+msgid "Relative pathname"
+msgstr "Относительный путь"
+
+msgid "Last commit ID"
+msgstr "ID последнего коммита"
+
+msgid "New druki content %label has been created."
+msgstr "Создано новое Druki содержимое %label."
+
+msgid "The druki content %label has been updated."
+msgstr "Обновлена метка Druki содержимого %label."
+
+msgid "Total druki contents: @total"
+msgstr "Количество Druki содержимого: @total"
+
+msgid "Internal ID"
+msgstr "Внутренний ID"
+
+msgid "Convert internal links by content ID to actual links."
+msgstr "Конвертирует внутренние ссылки по их ID содержимого в реальные ссылки."
+
+msgid "Delete all druki content"
+msgstr "Удалить всё Druki содержимое"
+
+msgid "Settings for Druki content entity."
+msgstr "Настройки для сущности Druki содержимого."
+
+msgid "Entity settings"
+msgstr "Настройки сущности"
+
+msgid "Configure a Druki content entity type."
+msgstr "Конфигурации для сущности Druki содержимого."
+
+msgid "List of content"
+msgstr "Список содержимого"
+
+msgid "List of druki content."
+msgstr "Список Druki содержимого."
+
+msgid "Contents"
+msgstr "Содержание"
+
+msgid "Difficulty"
+msgstr "Сложность"
+
+msgid "Update queue"
+msgstr "Очередь обновлений"
+
+msgid "Current queue items: @count"
+msgstr "Текущее количество элементов очереди: @count"
+
+msgid "Force content processing"
+msgstr "Принудительная обработка содержимого"
+
+msgid "Content will be processed even if it not updated from last queue."
+msgstr ""
+"Содержимое будет обработано даже в том случае, если оно не изменилось с "
+"момента прошлой очереди."
+
+msgid "Run queue"
+msgstr "Запустить очередь"
+
+msgid "Clear queue"
+msgstr "Очистить очередь"
+
+msgid "Druki content sync."
+msgstr "Синхронизация Druki содержимого."
+
+msgid ""
+"The required dependency @dependency is missing. Install it and try again."
+msgstr ""
+"Обязательная зависимость @dependency не найдена. Установите её и попробуйте "
+"снова."
+
+msgid "Druki category"
+msgstr "Druki категория"
+
+msgid "Category navigation"
+msgstr "Навигация по категории"
+
+msgid "Content sync"
+msgstr "Синхронизация содержимого"
+
+msgid "Manage queue"
+msgstr "Управление очередью"
+
+msgid "Queue builder"
+msgstr "Построитель очереди"
+
+msgid "Build from Git"
+msgstr "Собрать из Git"
+
+msgid "Pull from Git"
+msgstr "Запросить из Git"
+
+msgid ""
+"The \"git pull\" command will be invoked, which will trigger event and build "
+"queue from it."
+msgstr ""
+"Будет выполнена команда \"git pull\", которая вызовет событие, которое, в "
+"свою очередь, соберёт очередь."
+
+msgid "Build from folder"
+msgstr "Собрать из директории"
+
+msgid "The URI with source content."
+msgstr "URI до директории с исходным содержимым."
+
+msgid "You're reading the content for <strong>Drupal @core</strong>."
+msgstr "Вы читаете материал для <strong>Drupal @core</strong>."
+
+msgid "The content is also available for other versions: @links."
+msgstr "Материал также доступен для следующих версий: @links."
+
+msgid ""
+"Git repository not found in provided path. Please, make sure you have actual "
+"repository in the path, or path is correct."
+msgstr ""
+"Git репозиторий не найден по указанному пути. Пожалуйста, убедитесь что "
+"репозиторий действительно существует по указанному пути, или путь указан "
+"верно."
+
+msgid "Git status"
+msgstr "Git статус"
+
+msgid "Pull from remote repository"
+msgstr "Получить из удаленного репозитория"
+
+msgid ""
+"The Webhook URL which can be used to trigger pull events and all consecutive "
+"operations."
+msgstr ""
+"URL Webhook, который может быть использован для вызова событий получения "
+"данных и всех последующих операций."
+
+msgid "Regenerate key"
+msgstr "Перегенерировать ключ"
+
+msgid "Repository path"
+msgstr "Путь до репозитория"
+
+msgid "The local path to repository cloning."
+msgstr "Локальный путь для клонирования репозитория."
+
+msgid "<strong>Last commit ID:</strong> @value"
+msgstr "<strong>ID последнего коммита:</strong> @value"
+
+msgid "Git pull executed successfully."
+msgstr "Git pull вызван успешно."
+
+msgid "Git pull end up with error."
+msgstr "Git pull завершился с ошибкой."
+
+msgid "Druki Git Settings"
+msgstr "Настройки Druki Git"
+
+msgid "Git settings"
+msgstr "Настройки Git"
+
+msgid "Settings and status"
+msgstr "Настройки и статус"
+
+msgid ""
+"Status about last commit, git pull, settings for webhook URL and repository "
+"path."
+msgstr ""
+"Статус о последнем коммите, git pull, настройки для URL вебхука и путь до "
+"репозитория."
+
+msgid "Repository settings"
+msgstr "Настройки репозитория"
+
+msgid "Repository URL"
+msgstr "URL репозитория"
+
+msgid "The remote repository URL."
+msgstr "URL до удаленного репозитория."
+
+msgid "Global search"
+msgstr "Глобальный поиск"
+
+msgid "Druki content core"
+msgstr "Ядро Druki содержимого"
+
+msgid "Processed core value."
+msgstr "Обработанное значение ядра."
+
+msgid "Druki content difficulty"
+msgstr "Сложность Druki содержимого"
+
+msgid "Processed difficulty value."
+msgstr "Обработанное значение сложности."
+
+msgid "What are we searching for today?"
+msgstr "Что поищем сегодня?"
+
+msgid "Apply filters"
+msgstr "Применить фильтры"
+
+msgid "Not applicable"
+msgstr "Не применимо"
+
+msgid "Nothing was found."
+msgstr "Ничего не найдено."
+
+msgid "Search results for \"%keys\""
+msgstr "Результаты поиска для \"%keys\""
+
+msgid "No results found for \"%keys\""
+msgstr "Результаты по запросу \"%keys\" не найдены"
+
+msgid "No results found."
+msgstr "Ничего не найдено."
+
+msgid "You didn't enter a search query."
+msgstr "Вы не указали поисковый запрос."

@@ -23,12 +23,11 @@
         <div class="page__toolbar-separator"></div>
       </div>
       <div class="page__tools">
-        <div class="page__toolbar-search">@todo search button</div>
         {{- drupal_block('druki_header_repository_button') -}}
         {{- drupal_block('druki_header_dark_mode_switcher') -}}
       </div>
       <div class="page__mobile-dropdown">
-        {{- drupal_block('system_menu_block:main', {'id': 'mobile_menu'}) -}}
+        {{- drupal_block('system_menu_block:mobile') -}}
       </div>
     </header>
     <main class="page__main">

@@ -1,0 +1,15 @@
+uuid: fc2b496d-318c-49e9-a991-7fa96d0e2c76
+langcode: ru
+status: true
+dependencies: {  }
+name: frontpage_download_media_xs
+label: 'Frontpage / Download / Media: XS'
+effects:
+  19122979-0b58-4722-83a2-01249f1e50df:
+    uuid: 19122979-0b58-4722-83a2-01249f1e50df
+    id: image_scale
+    weight: 1
+    data:
+      width: 320
+      height: null
+      upscale: false

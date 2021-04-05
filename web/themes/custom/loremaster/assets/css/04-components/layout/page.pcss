@@ -191,6 +191,10 @@
   }
 }
 
+.is-search-expanded .page__toolbar-mobile {
+  display: none;
+}
+
 .page__toolbar-hamburger {
   background: transparent var(--hamburger-icon) no-repeat center;
   border: none;
@@ -210,10 +214,25 @@
 }
 
 .page__search {
-  display: none;
+  margin-left: auto;
+
+  @media (--xl) {
+    flex: 1;
+    max-width: var(--page-content-width);
+    margin-right: auto;
+    margin-left: initial;
+  }
+}
+
+.is-search-expanded .page__search {
   flex: 1;
-  margin-right: auto;
-  max-width: var(--page-content-width);
+}
+
+.page__toolbar-separator {
+  display: none;
+  margin-top: 0;
+  position: relative;
+  top: -1px;
 
   @media (--xl) {
     display: block;
@@ -222,9 +241,6 @@
 
 .page__toolbar-separator {
   display: none;
-  margin-top: 0;
-  position: relative;
-  top: -1px;
 
   @media (--xl) {
     display: block;

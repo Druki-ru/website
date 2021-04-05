@@ -6,7 +6,7 @@ loremaster.xs:
     - 1x
 loremaster.sm:
   label: SM
-  mediaQuery: '(min-width: 576px)'
+  mediaQuery: '(min-width: 425px)'
   weight: 0
   multipliers:
     - 1x
