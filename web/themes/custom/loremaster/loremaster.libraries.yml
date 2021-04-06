@@ -32,8 +32,6 @@ global.style.components:
       assets/css/04-components/layout/layout.css: { }
       assets/css/04-components/layout/page.css: { }
       assets/css/04-components/layout/region-content-above.css: { }
-      assets/css/04-components/layout/region-mobile-toolbar.css: { }
-      assets/css/04-components/layout/region-mobile-sidebar.css: { }
       assets/css/04-components/layout/region-content.css: { }
       assets/css/04-components/layout/footer.css: { }
     theme:
@@ -49,7 +47,6 @@ global.style.components:
       assets/css/04-components/block/header-repository-button.css: { }
       assets/css/04-components/menu/main.css: { }
       assets/css/04-components/menu/mobile.css: { }
-      assets/css/04-components/javascript/mobile-sidebar.css: { }
       assets/css/04-components/theme/druki-dark-mode-toggle.css: { }
 
 global.style.utilities:
