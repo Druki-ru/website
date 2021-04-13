@@ -46,7 +46,6 @@
         "druki/druki_git": "^1.0",
         "druki/druki_search": "^1.0",
         "druki/loremaster": "^1.0",
-        "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
         "drupal/extra_field": "^1.0",
