@@ -74,9 +74,7 @@ function druki_theme(): array {
  * Implements hook_preprocess_HOOK() for 'html.html.twig'.
  */
 function druki_preprocess_html(array &$variables): void {
-  $variables['#attached']['library'][] = 'druki/instant-page';
-  // Make instant.page library prefetch link in viewport instead of touch.
-  $variables['attributes']['data-instant-intensity'] = 'viewport';
+  $variables['#attached']['library'][] = 'druki/quicklink';
 }
 
 /**

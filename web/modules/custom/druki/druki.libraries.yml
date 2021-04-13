@@ -2,7 +2,7 @@ druki.toolbar:
   version: VERSION
   css:
     theme:
-      assets/css/druki.toolbar.css: {}
+      assets/css/druki.toolbar.css: { }
 
 throttle:
   version: VERSION
@@ -18,24 +18,22 @@ mobile-sidebar:
   dependencies:
     - core/drupal
 
-instant-page:
-  version: VERSION
-  js:
-    /libraries/instant.page/instantpage.js: { minified: true }
-    assets/js/instant-page.js: { minified: true }
-  dependencies:
-    - core/drupal
-
 dark-mode:
   header: TRUE
   version: VERSION
   js:
-    assets/js/dark-mode.js: {}
+    assets/js/dark-mode.js: { }
 
 dark-mode-toggle:
   version: VERSION
   js:
-    assets/js/dark-mode-toggle.js: {}
+    assets/js/dark-mode-toggle.js: { }
   dependencies:
     - druki/dark-mode
     - core/drupal
+
+quicklink:
+  version: VERSION
+  js:
+    /libraries/quicklink/quicklink.umd.js: { minified: true }
+    assets/js/quicklink.js: { minified: true }

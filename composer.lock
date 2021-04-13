@@ -1322,18 +1322,17 @@
         },
         {
             "name": "druki/druki",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/druki",
-                "reference": "b18281f003de7c88a9e922f5cb9d70aa42fbe2df"
+                "reference": "ba317d7e3fad5a545a5fcd5ab6771f2adaf11899"
             },
             "require": {
                 "ext-json": "*",
                 "ext-simplexml": "*",
                 "ext-xmlreader": "*",
                 "league/commonmark": "^1.0.0",
-                "npm-asset/instant.page": "^3.0",
                 "symfony/finder": "~4.0"
             },
             "type": "drupal-custom-module",
@@ -4505,18 +4504,6 @@
             "type": "npm-asset",
             "license": [
                 "Apache-2.0"
-            ]
-        },
-        {
-            "name": "npm-asset/instant.page",
-            "version": "3.0.0",
-            "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/instant.page/-/instant.page-3.0.0.tgz"
-            },
-            "type": "npm-asset",
-            "license": [
-                "MIT"
             ]
         },
         {

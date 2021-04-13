@@ -2,7 +2,7 @@
     "name": "druki/druki",
     "type": "drupal-custom-module",
     "description": "The main module for common code.",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "keywords": [
         "Drupal"
     ],
@@ -11,7 +11,6 @@
         "ext-simplexml": "*",
         "ext-xmlreader": "*",
         "symfony/finder": "~4.0",
-        "npm-asset/instant.page": "^3.0",
         "league/commonmark": "^1.0.0"
     }
 }
