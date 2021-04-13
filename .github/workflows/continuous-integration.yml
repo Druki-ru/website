@@ -41,14 +41,8 @@ jobs:
       - name: 'Apply database updates'
         run: ssh production "cd $DEPLOY_PATH && drush updatedb -y"
 
-      - name: 'Configuration split export'
-        run: ssh production "cd $DEPLOY_PATH && drush config-split:export live -y"
-
       - name: 'Synchronize configurations'
         run: ssh production "cd $DEPLOY_PATH && drush config:import --diff -y"
-
-      - name: 'Configuration split import'
-        run: ssh production "cd $DEPLOY_PATH && drush config-split:import live -y"
 
       - name: 'Localization update'
         run: |
