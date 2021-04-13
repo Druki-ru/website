@@ -3,7 +3,6 @@ module:
   breakpoint: 0
   config: 0
   config_filter: 0
-  config_split: 0
   contextual: 0
   ctools: 0
   dblog: 0
