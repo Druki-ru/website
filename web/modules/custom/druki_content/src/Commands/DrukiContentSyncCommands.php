@@ -54,7 +54,7 @@ class DrukiContentSyncCommands extends DrushCommands {
   }
 
   /**
-   * Synchronization one entity.
+   * Synchronization one entity by source file.
    *
    * @param string $uri
    *   The URI to source file.
@@ -62,12 +62,12 @@ class DrukiContentSyncCommands extends DrushCommands {
    *   An associative array of options.
    *
    * @option locale A short language code.
-   * @command druki:sync:uri
+   * @command druki-content:sync-file
    *
-   * @usage drush druki:sync:uri docs/ru/drupal/9/routing/index.md --locale=ru
+   * @usage drush druki-content:sync-file docs/ru/drupal/9/routing/index.md --locale=ru
    *   Create/Update entity URI to source file.
    */
-  public function syncUri(string $uri, array $options = ['locale' => NULL]): void {
+  public function syncFile(string $uri, array $options = ['locale' => NULL]): void {
     $realPath = \rtrim($this->gitService->getRepositoryRealpath(), "/");
     $realPath .= '/' . \ltrim($uri, "/");
     $locale = $options['locale'];
