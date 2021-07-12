@@ -84,3 +84,20 @@ composer run-script phpstan
 ```php
 composer run-script phpcs
 ```
+
+### Drush Commands
+
+### druki-content:sync-file
+
+The command `druki-content:sync-file` allows you to run import/update process for the specific file. Expects filepath to the file which should be processed relative to content source path.
+
+**Options:**
+
+* `locale`: The langcode which used for content. By default, uses sites default.
+
+Examples:
+
+```bash
+drush druki-content:sync-file docs/ru/drupal/index.md
+drush druki-content:sync-file docs/ru/drupal/index.md --locale=en
+```
