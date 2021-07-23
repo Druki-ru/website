@@ -1,7 +1,7 @@
 parameters:
   paths:
     - ./web/modules/custom
-  excludes_analyse:
+  excludePaths:
     - *Test.php
     - *TestBase.php
   level: 1
