@@ -12,8 +12,8 @@
 {{ attach_library('loremaster/component.theme.druki-content-help-and-feedback') }}
 {% set community_resources_url = '/wiki/community/resources' %}
 <div class="help-and-feedback">
-    <div class="help-and-feedback__col">
-      <h2 class="help-and-feedback__title">{% trans %}Help us to improve these docs!{% endtrans %}</h2>
+    <div class="help-and-feedback__col help-and-feedback__col--help">
+      <h2 class="help-and-feedback__title">💝 {% trans %}Help us to improve these docs!{% endtrans %}</h2>
       <p>{% trans %}All Druki docs are open source. See something that's wrong or unclear? Submit a pull request.{% endtrans %}</p>
       <a href="{{ edit_url }}" class="help-and-feedback__button help-and-feedback__button--pull">{% trans %}Edit this doc{% endtrans %}</a>
       <a href="{{ improve_url }}" class="help-and-feedback__button help-and-feedback__button--issue">{% trans %}Discuss an improvement{% endtrans %}</a>
@@ -21,8 +21,9 @@
       <p>{% trans %}Or, <a href="{{ url }}">learn how to contribute</a>.{% endtrans %}</p>
     </div>
 
-  <div class="help-and-feedback__col">
-    <h2 class="help-and-feedback__title">{% trans %}Still need help?{% endtrans %}</h2>
+  <div class="help-and-feedback__col help-and-feedback__col--ask">
+    <h2 class="help-and-feedback__title">🤔 {% trans %}Still need help?{% endtrans %}</h2>
+    <p>{% trans %}Can't find an answer to your question? Ask the community for help!{% endtrans %}</p>
     <a href="{{ help_url }}" class="help-and-feedback__button help-and-feedback__button--discussion">{% trans %}Ask on GitHub community{% endtrans %}</a>
     <a href="{{ community_resources_url }}" class="help-and-feedback__button help-and-feedback__button--community">{% trans %}See other community resources{% endtrans %}</a>
   </div>

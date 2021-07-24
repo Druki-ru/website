@@ -5,11 +5,12 @@
   --button-icon: transparent;
   --button-icon--hover: var(--button-icon);
   --description-color: rgb(var(--color-slate-gray));
+  --button-background-color: var(--color-white);
   --button-background-color--hover: var(--color-celtic-blue);
   --button-color--hover: var(--color-white);
 
   @media (--md) {
-    grid-gap: var(--spacing-xl);
+    grid-gap: var(--spacing-lg);
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -17,7 +18,22 @@
 [data-theme="dark"] .help-and-feedback {
   --description-color: rgb(var(--color-cadet-blue-crayola));
   --button-background-color--hover: var(--link-color);
+  --button-background-color: rgb(var(--color-eerie-black));
   --button-color--hover: rgb(var(--color-eerie-black));
+}
+
+.help-and-feedback__col {
+  padding: var(--spacing-md);
+  border-radius: var(--spacing-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.help-and-feedback__col--help {
+  background-image: radial-gradient(#9dff001c, #00ff9514);
+}
+
+.help-and-feedback__col--ask {
+  background-image: radial-gradient(rgb(216 255 0 / 10%),rgb(255 129 0 / 10%));;
 }
 
 .help-and-feedback__title {
@@ -35,10 +51,12 @@
   padding: var(--spacing-xs) var(--spacing-sm);
   padding-left: 2.5rem;
   border-radius: var(--radius-xs);
+  background-color: var(--button-background-color);
   background-image: var(--button-icon);
   background-position: var(--spacing-sm) center;
   background-repeat: no-repeat;
   background-size: 18px;
+  font-weight: 500;
 }
 
 .help-and-feedback__button:hover,

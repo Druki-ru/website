@@ -7,9 +7,13 @@
 }
 
 .frontpage-download {
-  background-color: var(--frontpage-download-background-color);
   display: grid;
   overflow: hidden;
+  margin: 0 0 0 var(--page-content-gap) ;
+  background-image: linear-gradient(135deg,#1461A8,#1A7BC0);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  color: var(--color-white);
 
   @media (--md) {
     grid-template-columns: 1fr 360px;
@@ -42,6 +46,8 @@
 .frontpage-download__actions .button {
   display: block;
   text-align: center;
+  --button-background-color: var(--color-white);
+  --button-color: rgb(var(--color-eerie-black));
 
   @media (--md) {
     display: inline-block;
