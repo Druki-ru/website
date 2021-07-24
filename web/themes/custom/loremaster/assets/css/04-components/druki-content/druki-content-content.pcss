@@ -8,3 +8,14 @@
 .druki-content-content a:hover {
   text-decoration-color: var(--link-color);
 }
+
+.druki-content-content a[href*="//"]::after {
+  background: transparent var(--link-external-icon) center no-repeat;
+  background-size: contain;
+  content: '';
+  display: inline-block;
+  height: 1em;
+  margin-left: var(--spacing-xxs);
+  vertical-align: middle;
+  width: 1em;
+}
