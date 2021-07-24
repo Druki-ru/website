@@ -39,18 +39,19 @@ jobs:
         run: ssh production "cd $DEPLOY_PATH && composer install --no-dev -o -n"
 
       - name: 'Apply database updates'
-        run: ssh production "cd $DEPLOY_PATH && drush updatedb -y"
+        run: ssh production "cd $DEPLOY_PATH && drush updatedb -y --no-cache-clear"
+
+      - name: 'Rebuild cache'
+        run: ssh production "cd $DEPLOY_PATH && drush cache:rebuild -y"
 
       - name: 'Synchronize configurations'
         run: ssh production "cd $DEPLOY_PATH && drush config:import --diff -y"
 
-      - name: 'Localization update'
-        run: |
-          ssh production "cd $DEPLOY_PATH && drush locale:check -y"
-          ssh production "cd $DEPLOY_PATH && drush locale:update -y"
-
       - name: 'Rebuild cache'
         run: ssh production "cd $DEPLOY_PATH && drush cache:rebuild -y"
+
+      - name: 'Import custom translations'
+        run: ssh production "cd $DEPLOY_PATH && drush locale:import --type=customized --override=all ru ../translations/ru.po"
 
       - name: 'Enqueue cache warming'
         run: |
