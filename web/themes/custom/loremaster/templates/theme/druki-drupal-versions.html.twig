@@ -18,26 +18,24 @@
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
-  <div class="{{ bem(block, 'version') }}">
-    <div class="{{ bem(block, 'label') }}">{{ 'Actual minor release'|t }}</div>
-    <div class="{{ bem(block, 'info') }}">
-      <a href="/wiki/9/releases/{{ last_minor_release.version }}">{{ last_minor_release.version }}</a> {{ 'from'|t }} {{ last_minor_release.date|date('d.m.Y') }}
-    </div>
-  </div>
+  <div class="{{ bem(block, 'title') }}">{{ 'Actual versions'|t }}</div>
 
-  <div class="{{ bem(block, 'version') }}">
-    <div class="{{ bem(block, 'label') }}">{{ 'Actual patch release'|t }}</div>
-    <div class="{{ bem(block, 'info') }}">
-      <a href="/wiki/9/releases/{{ last_stable_release.version }}">{{ last_stable_release.version }}</a> {{ 'from'|t }} {{ last_stable_release.date|date('d.m.Y') }}
-    </div>
-  </div>
+  <a href="/wiki/9/releases/{{ last_minor_release.version }}" class="{{ bem(block, 'info') }}">
+    <div class="{{ bem(block, 'version') }}">{{ last_minor_release.version }}</div>
+    <div class="{{ bem(block, 'type') }}">{{ 'Minor release'|t }} {{ 'from'|t }} {{ last_minor_release.date|date('d.m.Y') }}</div>
+  </a>
 
-  <div class="{{ bem(block, 'version') }}">
-    <div class="{{ bem(block, 'label') }}">{{ 'Next minor release'|t }}</div>
-    <div class="{{ bem(block, 'info') }}">
-      <a href="/wiki/9/releases/9.2.0">9.2.0</a>
-    </div>
-  </div>
+  <a href="/wiki/9/releases/{{ last_stable_release.version }}" class="{{ bem(block, 'info') }}">
+    <div class="{{ bem(block, 'version') }}">{{ last_stable_release.version }}</div>
+    <div class="{{ bem(block, 'type') }}">{{ 'Patch release'|t }} {{ 'from'|t }} {{ last_stable_release.date|date('d.m.Y') }}</div>
+  </a>
 
-  <a href="/wiki/9/releases" class="{{ bem(block, 'all') }} button button--secondary button--small">{{ 'Full list of releases'|t }}</a>
+  <div class="{{ bem(block, 'title') }}">{{ 'In development'|t }}</div>
+
+  <a href="/wiki/9/releases/9.3.0" class="{{ bem(block, 'info') }}">
+    <div class="{{ bem(block, 'version') }}">9.3.0</div>
+    <div class="{{ bem(block, 'type') }}">{{ 'Minor release'|t }}</div>
+  </a>
+
+  <a href="/wiki/9/releases" class="{{ bem(block, 'all') }}">{{ 'Full list of releases'|t }}</a>
 </div>

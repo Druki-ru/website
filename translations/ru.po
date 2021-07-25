@@ -557,3 +557,15 @@ msgstr "Вы не указали поисковый запрос."
 
 msgid "Can't find an answer to your question? Ask the community for help!"
 msgstr "Не нашли ответа на свой вопрос? Попросите помощи у сообщества!"
+
+msgid "Actual versions"
+msgstr "Актуальные версии"
+
+msgid "Minor release"
+msgstr "Минорный релиз"
+
+msgid "Patch release"
+msgstr "Патч релиз"
+
+msgid "In development"
+msgstr "В разработке"

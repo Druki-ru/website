@@ -9,7 +9,7 @@
 .frontpage-download {
   display: grid;
   overflow: hidden;
-  margin: 0 0 0 var(--page-content-gap) ;
+  margin: 0 var(--page-content-gap);
   background-image: linear-gradient(135deg,#1461A8,#1A7BC0);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -21,6 +21,10 @@
 
   @media (--lg) {
     grid-template-columns: 1fr 500px;
+  }
+
+  @media (--xl) {
+    margin-right: 0;
   }
 }
 
