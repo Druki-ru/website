@@ -25,8 +25,14 @@
     <div class="{{ bem(block, 'type') }}">{{ 'Minor release'|t }} {{ 'from'|t }} {{ last_minor_release.date|date('d.m.Y') }}</div>
   </a>
 
+  {% set is_security_update = 'Security update' in last_stable_release.terms['Release type'] %}
   <a href="/wiki/9/releases/{{ last_stable_release.version }}" class="{{ bem(block, 'info') }}">
-    <div class="{{ bem(block, 'version') }}">{{ last_stable_release.version }}</div>
+    <div class="{{ bem(block, 'version') }}">
+      {{ is_security_update ? '⚠️ ' }}{{ last_stable_release.version }}
+      {% if is_security_update %}
+        <span class="{{ bem(block, 'security-update') }}">{% trans %}security update{% endtrans %}</span>
+      {% endif %}
+    </div>
     <div class="{{ bem(block, 'type') }}">{{ 'Patch release'|t }} {{ 'from'|t }} {{ last_stable_release.date|date('d.m.Y') }}</div>
   </a>
 

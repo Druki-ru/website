@@ -569,3 +569,6 @@ msgstr "Патч релиз"
 
 msgid "In development"
 msgstr "В разработке"
+
+msgid "security update"
+msgstr "обновление безопасности"
