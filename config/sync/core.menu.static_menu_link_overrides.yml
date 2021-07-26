@@ -5,6 +5,42 @@ definitions:
     parent: ''
     weight: 0
     expanded: false
+  'druki__static_menu_links:druki__frontpage__main':
+    weight: -50
+    menu_name: main
+    parent: ''
+    enabled: true
+    expanded: false
+  'druki__static_menu_links:druki__wiki__main':
+    weight: -49
+    menu_name: main
+    parent: ''
+    expanded: false
+    enabled: true
+  'druki__static_menu_links:druki__download__main':
+    weight: -47
+    menu_name: main
+    parent: ''
+    expanded: false
+    enabled: true
+  'druki__static_menu_links:druki__frontpage__mobile':
+    weight: -50
+    menu_name: mobile
+    parent: ''
+    enabled: true
+    expanded: false
+  'druki__static_menu_links:druki__wiki__mobile':
+    weight: -49
+    menu_name: mobile
+    parent: ''
+    expanded: false
+    enabled: true
+  'druki__static_menu_links:druki__download__mobile':
+    weight: -47
+    menu_name: mobile
+    parent: ''
+    expanded: false
+    enabled: true
 _core:
   default_config_hash: jdY7AU0tU-QsjmiOw3W8vwpYMb-By--_MSFgbqKUTYM
 langcode: ru
