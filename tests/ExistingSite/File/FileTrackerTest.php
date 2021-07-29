@@ -93,7 +93,8 @@ final class FileTrackerTest extends ExistingSiteBase {
     // Make sure value is not set.
     $this->assertEquals(TRUE, $file->get('druki_file_hash')->isEmpty());
 
-    $this->fileTracker->updateTrackingInformation();
+    $this->fileTracker->track($file);
+    $file->save();
 
     // Fetch actual entity.
     $file = File::load($file->id());
