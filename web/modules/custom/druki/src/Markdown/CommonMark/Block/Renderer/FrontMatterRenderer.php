@@ -2,6 +2,8 @@
 
 namespace Drupal\druki\Markdown\CommonMark\Block\Renderer;
 
+use Drupal\Component\FrontMatter\Exception\FrontMatterParseException;
+use Drupal\Component\Serialization\Exception\InvalidDataTypeException;
 use Drupal\Core\Serialization\Yaml;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
@@ -18,7 +20,12 @@ final class FrontMatterRenderer implements BlockRendererInterface {
    */
   public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = FALSE): HtmlElement {
     $content = [];
-    $yaml_array = Yaml::decode($block->getStringContent());
+    try {
+      $yaml_array = Yaml::decode($block->getStringContent());
+    }
+    catch (InvalidDataTypeException $e) {
+      throw new FrontMatterParseException($e);
+    }
 
     foreach ($yaml_array as $key => $value) {
       $content[$key] = $value;

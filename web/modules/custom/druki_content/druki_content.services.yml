@@ -37,7 +37,7 @@ services:
   druki_content.sync_queue_processor.source_content_list:
     class: Drupal\druki_content\Sync\SourceContent\SourceContentListQueueProcessor
     public: false
-    arguments: ['@state', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader']
+    arguments: ['@state', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@logger.channel.druki_content']
     tags:
       - { name: druki_sync_queue_processor }
 

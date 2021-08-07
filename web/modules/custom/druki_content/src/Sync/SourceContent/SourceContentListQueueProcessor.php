@@ -2,7 +2,10 @@
 
 namespace Drupal\druki_content\Sync\SourceContent;
 
+use Drupal\Component\FrontMatter\Exception\FrontMatterParseException;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\State\StateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Sync\Queue\QueueItemInterface;
 use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
 
@@ -33,6 +36,13 @@ final class SourceContentListQueueProcessor implements QueueProcessorInterface {
   protected $loader;
 
   /**
+   * The logger channel.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   */
+  protected $logger;
+
+  /**
    * SourceContentListQueueProcessor constructor.
    *
    * @param \Drupal\Core\State\StateInterface $state
@@ -41,11 +51,14 @@ final class SourceContentListQueueProcessor implements QueueProcessorInterface {
    *   The source content parser.
    * @param \Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader $loader
    *   The parsed source content loader.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger.
    */
-  public function __construct(StateInterface $state, SourceContentParser $parser, ParsedSourceContentLoader $loader) {
+  public function __construct(StateInterface $state, SourceContentParser $parser, ParsedSourceContentLoader $loader, LoggerChannelInterface $logger) {
     $this->state = $state;
     $this->parser = $parser;
     $this->loader = $loader;
+    $this->logger = $logger;
   }
 
   /**
@@ -56,7 +69,17 @@ final class SourceContentListQueueProcessor implements QueueProcessorInterface {
     /** @var \Drupal\druki_content\Sync\SourceContent\SourceContentList $source_content_list */
     $source_content_list = $item->getPayload();
     foreach ($source_content_list as $source_content) {
-      $parsed_source_content = $this->parser->parse($source_content);
+      try {
+        $parsed_source_content = $this->parser->parse($source_content);
+      }
+      catch (FrontMatterParseException $e) {
+        $this->logger->warning(new TranslatableMarkup('File "@path" skipped. Error parsing front matter block. Text error: "@message"', [
+          '@path' => $source_content->getRelativePathname(),
+          '@message' => $e->getMessage(),
+        ]));
+        continue;
+      }
+
       // Do nothing if it's invalid.
       // @todo Maybe it's better to return NULL during parse.
       if (!$parsed_source_content->getParsedSource()->valid()) {
