@@ -68,6 +68,9 @@ final class FrontMatterLoader extends ParsedContentItemLoaderBase {
 
       $content->setCategory($category_area, $category_order, $category_title);
     }
+    else {
+      $content->set('category', NULL);
+    }
   }
 
   /**
