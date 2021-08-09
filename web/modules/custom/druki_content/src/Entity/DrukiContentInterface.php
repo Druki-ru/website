@@ -82,6 +82,11 @@ interface DrukiContentInterface extends ContentEntityInterface {
   public function setCategory(string $area, int $order = 0, ?string $title = NULL): DrukiContentInterface;
 
   /**
+   * Reset category value.
+   */
+  public function unsetCategory(): void;
+
+  /**
    * Gets category.
    *
    * @return array

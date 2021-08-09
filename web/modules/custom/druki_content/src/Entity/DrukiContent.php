@@ -223,6 +223,13 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
+  public function unsetCategory(): void {
+    $this->set('category', NULL);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getCategory(): array {
     return $this->get('category')->first()->getValue();
   }
