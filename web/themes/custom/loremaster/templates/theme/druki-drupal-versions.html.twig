@@ -20,13 +20,13 @@
 <div{{ attributes.addClass(classes) }}>
   <div class="{{ bem(block, 'title') }}">{{ 'Actual versions'|t }}</div>
 
-  <a href="/wiki/9/releases/{{ last_minor_release.version }}" class="{{ bem(block, 'info') }}">
+  <a href="/wiki/drupal/releases/{{ last_minor_release.version }}" class="{{ bem(block, 'info') }}">
     <div class="{{ bem(block, 'version') }}">{{ last_minor_release.version }}</div>
     <div class="{{ bem(block, 'type') }}">{{ 'Minor release'|t }} {{ 'from'|t }} {{ last_minor_release.date|date('d.m.Y') }}</div>
   </a>
 
   {% set is_security_update = 'Security update' in last_stable_release.terms['Release type'] %}
-  <a href="/wiki/9/releases/{{ last_stable_release.version }}" class="{{ bem(block, 'info') }}">
+  <a href="/wiki/drupal/releases/{{ last_stable_release.version }}" class="{{ bem(block, 'info') }}">
     <div class="{{ bem(block, 'version') }}">
       {{ last_stable_release.version }}
       {% if is_security_update %}
@@ -38,10 +38,10 @@
 
   <div class="{{ bem(block, 'title') }}">{{ 'In development'|t }}</div>
 
-  <a href="/wiki/9/releases/9.3.0" class="{{ bem(block, 'info') }}">
+  <a href="/wiki/drupal/releases/9.3.0" class="{{ bem(block, 'info') }}">
     <div class="{{ bem(block, 'version') }}">9.3.0</div>
     <div class="{{ bem(block, 'type') }}">{{ 'Minor release'|t }}</div>
   </a>
 
-  <a href="/wiki/9/releases" class="{{ bem(block, 'all') }}">{{ 'Full list of releases'|t }}</a>
+  <a href="/wiki/drupal/releases" class="{{ bem(block, 'all') }}">{{ 'Full list of releases'|t }}</a>
 </div>
