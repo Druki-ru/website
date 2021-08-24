@@ -31,7 +31,8 @@ This is required for correct configuration split process.
 **Warning!** Currently, Drupal core has a bug [#3176625](https://www.drupal.org/project/drupal/issues/3176625). Before it resolved, you must patch core before running installation process, otherwise it will fail during config imports. Nothing can be done from our site. _The current versions of codebase include that patch._
 
 1. Clone this repository by `git clone https://github.com/Druki-ru/website.git`.
-1. Run `composer install`
+1. Run `composer install`.
+1. Copy file `/web/sites/default/default.settings.php`, rename it to **settings.php** and place in the same path.   
 1. Add `$settings['config_sync_directory'] = '../config/sync';` to your **settings.php**.
 1. (optional) Run `yarn install`
 1. Open your local website address.
