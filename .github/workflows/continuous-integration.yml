@@ -53,6 +53,9 @@ jobs:
       - name: 'Synchronize configurations'
         run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN config:import --diff -y"
 
+      - name: 'Build CSS and JavaScript'
+        run: ssh production "cd $PROJECT_ROOT && docker compose up node"
+
       - name: 'Rebuild cache'
         run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN cache:rebuild -y"
 
