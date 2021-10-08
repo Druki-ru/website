@@ -1,2 +1,0 @@
-:root{--druki-code-background-color:var(--color-cultured)}[data-theme=dark]{--druki-code-background-color:var(--color-black--light-4)}.paragraph-druki-code{background-color:var(--druki-code-background-color);margin:var(--p-margin--y) 0;border-radius:var(--radius-sm)}.paragraph-druki-code pre{margin:unset}.paragraph-druki-code pre code{display:block;overflow-x:auto;padding:var(--spacing-lg)}
-/*# sourceMappingURL=druki-code.css.map */

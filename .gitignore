@@ -60,5 +60,14 @@ example.settings.local.php
 # Ignore maps for builded files like .css.map, .js.map.
 *.map
 
+# Ignore builded CSS files.
+web/themes/custom/loremaster/assets/**/*.css
+
+# Ignore builded JavaScript files.
+web/themes/custom/loremaster/assets/**/*.js
+!web/themes/custom/loremaster/assets/**/*.es6.js
+web/modules/custom/**/assets/js/**/*.js
+!web/modules/custom/**/assets/js/**/*.es6.js
+
 # Ignore .mo files if someone try to use Poedit
 /translations/*.mo

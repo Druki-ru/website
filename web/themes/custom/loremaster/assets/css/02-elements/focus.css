@@ -1,2 +1,0 @@
-:root{--focus-box-shadow:0 0 0 2px var(--page-background,transparent),0 0 0 5px var(--color-celtic-blue)}[data-theme=dark]{--focus-box-shadow:0 0 0 2px var(--page-background,transparent),0 0 0 5px rgb(var(--color-orange-peel))}:focus{outline:none;box-shadow:var(--focus-box-shadow)}.is-using-mouse{--focus-box-shadow:none}
-/*# sourceMappingURL=focus.css.map */

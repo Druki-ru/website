@@ -1,2 +1,0 @@
-:root{--page-background:var(--color-white)}[data-theme=dark]{--page-background:rgb(var(--color-eerie-black))}body{background:var(--page-background)}
-/*# sourceMappingURL=page.css.map */

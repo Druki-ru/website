@@ -1,2 +1,0 @@
-!function(e){e.behaviors.loremasterHeaderSearch={attach(e){const t=e.querySelector('[data-loremaster-selector="header-search"]');if(!t||t.processed)return;t.processed=!0;const r=t.dataset.classActive||"is-active",s=t.querySelector("[data-toggle]");if(!s)return;const a=document.querySelector("body");s.addEventListener("click",(()=>{t.classList.toggle(r),a.classList.toggle("is-search-expanded")}))}}}(Drupal);
-//# sourceMappingURL=header-search.js.map

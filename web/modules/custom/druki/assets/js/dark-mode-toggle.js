@@ -1,2 +1,0 @@
-!function(e,o){const t=(e,o,t)=>{const a=t?"auto":o;e.querySelector(`[data-mode-option][value="${a}"]`).checked=!0};e.behaviors.darkModeToggle={attach(e){e.querySelectorAll('[data-druki-selector="dark-mode-toggle"]').forEach((e=>{e.dataset.processed||(e.dataset.processed=!0,t(e,o.getColorScheme(),o.isSchemeFromSystem()),o.onUpdate(((o,a)=>{t(e,o,a)})),e.querySelectorAll("[data-mode-option]").forEach((e=>{e.addEventListener("click",(()=>{o.setColorScheme(e.value)}))})))}))}}}(Drupal,DarkMode);
-//# sourceMappingURL=dark-mode-toggle.js.map

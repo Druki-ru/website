@@ -1,2 +1,0 @@
-!function(e){e.behaviors.drukiContentMobileToc={attach:function(e,t){let c;c=window.requestIdleCallback?e=>{requestIdleCallback(e)}:e=>{e()},c((()=>{const t=e.querySelector(".druki-mobile-toc");t&&!t.processed&&(t.processed=!0,this.attachEvents(t,e))}))},attachEvents:function(e){const t=e.querySelector(".druki-mobile-toc__toggle"),c=()=>{e.classList.toggle("druki-mobile-toc--active")};t.removeEventListener("click",c),t.addEventListener("click",c)}}}(Drupal);
-//# sourceMappingURL=druki-mobile-toc.js.map

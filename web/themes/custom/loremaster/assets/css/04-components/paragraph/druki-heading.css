@@ -1,2 +1,0 @@
-.druki-heading{scroll-margin-top:calc(var(--spacing-xl) + var(--page-header-height));word-break:break-word}@media (min-width:1440px){.druki-heading{scroll-margin-top:var(--spacing-xl)}}.druki-heading__anchor{line-height:1;float:left;width:20px;margin-left:-20px;padding-right:var(--spacing-xs);vertical-align:middle;display:none}@media (min-width:1440px){.druki-heading__anchor{display:block;visibility:hidden}}.druki-heading:hover .druki-heading__anchor{visibility:visible}
-/*# sourceMappingURL=druki-heading.css.map */
