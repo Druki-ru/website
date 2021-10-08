@@ -32,9 +32,9 @@ This is required for correct configuration split process.
 
 1. Clone this repository by `git clone https://github.com/Druki-ru/website.git`.
 1. Run `composer install`.
-1. Copy file `/web/sites/default/default.settings.php`, rename it to **settings.php** and place in the same path.   
+1. Copy file `/web/sites/default/default.settings.php`, rename it to **settings.php** and place in the same path.
 1. Add `$settings['config_sync_directory'] = '../config/sync';` to your **settings.php**.
-1. (optional) Run `yarn install`
+1. Run `yarn install && yarn run compile` to build CSS and JavaScript files.
 1. Open your local website address.
 1. The installation will start automatically and prepare website for you!
 1. Make a cup of coffee ☕️ and wait until the installation is finished.
