@@ -9,7 +9,13 @@ env:
   SSH_KEY: ${{ secrets.ci_deploy_key }}
   SSH_USER: ${{ secrets.ci_production_username }}
   SSH_HOST: ${{ secrets.ci_production_host }}
-  DEPLOY_PATH: ${{ secrets.ci_deploy_path }}
+  # The root of an App. This where git root is.
+  APP_ROOT: ${{ secrets.ci_app_root }}
+  # The App located inside project root. Mainly the product root is the folder
+  # with docker-compose.yml.
+  PROJECT_ROOT: ${{ secrets.ci_project_root }}
+  COMPOSER_BIN: 'docker compose exec php composer'
+  DRUSH_BIN: 'docker compose exec php drush'
   DRUSH_URI: 'https://druki.ru'
 
 jobs:
@@ -32,28 +38,28 @@ jobs:
       - name: 'Pull changes'
         shell: bash
         run: |
-          ssh production "cd $DEPLOY_PATH && git fetch && git checkout"
-          ssh production "cd $DEPLOY_PATH && git pull origin production"
+          ssh production "cd $APP_ROOT && git fetch && git checkout"
+          ssh production "cd $APP_ROOT && git pull origin production"
 
       - name: 'Install Composer dependencies'
-        run: ssh production "cd $DEPLOY_PATH && composer install --no-dev -o -n"
+        run: ssh production "cd $PROJECT_ROOT && $COMPOSER_BIN install --no-dev -o -n"
 
       - name: 'Apply database updates'
-        run: ssh production "cd $DEPLOY_PATH && drush updatedb -y --no-cache-clear"
+        run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN updatedb -y --no-cache-clear"
 
       - name: 'Rebuild cache'
-        run: ssh production "cd $DEPLOY_PATH && drush cache:rebuild -y"
+        run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN cache:rebuild -y"
 
       - name: 'Synchronize configurations'
-        run: ssh production "cd $DEPLOY_PATH && drush config:import --diff -y"
+        run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN config:import --diff -y"
 
       - name: 'Rebuild cache'
-        run: ssh production "cd $DEPLOY_PATH && drush cache:rebuild -y"
+        run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN cache:rebuild -y"
 
       - name: 'Import custom translations'
-        run: ssh production "cd $DEPLOY_PATH && drush locale:import --type=customized --override=all ru ../translations/ru.po"
+        run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN locale:import --type=customized --override=all ru ../translations/ru.po"
 
       - name: 'Enqueue cache warming'
         run: |
-          ssh production "cd $DEPLOY_PATH && drush queue:delete warmer --uri=$DRUSH_URI"
-          ssh production "cd $DEPLOY_PATH && drush warmer:enqueue sitemap --uri=$DRUSH_URI"
+          ssh production "cd $PROJECT_ROOT && $DRUSH_BIN queue:delete warmer --uri=$DRUSH_URI"
+          ssh production "cd $PROJECT_ROOT && $DRUSH_BIN warmer:enqueue sitemap --uri=$DRUSH_URI"
