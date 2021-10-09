@@ -60,6 +60,14 @@ services:
       - "--verbose"
       - "--whitelisted-ips="
 
+  node:
+    image: wodby/node:$NODE_TAG
+    container_name: "${PROJECT_NAME}_node"
+    working_dir: /var/www/html
+    volumes:
+      - ./www:/var/www/html
+    command: sh -c 'yarn install && yarn run compile'
+
   traefik:
     image: traefik:v2.0
     container_name: "${PROJECT_NAME}_traefik"
