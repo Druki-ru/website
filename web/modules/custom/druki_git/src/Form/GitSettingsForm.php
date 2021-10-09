@@ -13,7 +13,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_git\Exception\GitCommandFailedException;
 use Drupal\druki_git\Git\GitInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Configure Druki — git settings for this site.
