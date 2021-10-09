@@ -12,17 +12,13 @@ final class ParsedSourceContent {
 
   /**
    * The source content.
-   *
-   * @var \Drupal\druki_content\Sync\SourceContent\SourceContent
    */
-  protected $source;
+  protected SourceContent $source;
 
   /**
    * The parsed content.
-   *
-   * @var \Drupal\druki_content\Sync\ParsedContent\ParsedContent
    */
-  protected $parsed;
+  protected ParsedContent $parsed;
 
   /**
    * Constructs a new ParsedSourceContent object.

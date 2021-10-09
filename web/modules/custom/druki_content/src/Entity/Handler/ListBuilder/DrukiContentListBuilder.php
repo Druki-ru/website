@@ -2,9 +2,12 @@
 
 namespace Drupal\druki_content\Entity\Handler\ListBuilder;
 
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Routing\RedirectDestinationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -14,24 +17,18 @@ final class DrukiContentListBuilder extends EntityListBuilder {
 
   /**
    * The date formatter service.
-   *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
    */
-  protected $dateFormatter;
+  protected DateFormatterInterface $dateFormatter;
 
   /**
    * The redirect destination service.
-   *
-   * @var \Drupal\Core\Routing\RedirectDestinationInterface
    */
-  protected $redirectDestination;
+  protected RedirectDestinationInterface $redirectDestination;
 
   /**
    * The database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
    */
-  protected $database;
+  protected Connection $database;
 
   /**
    * {@inheritdoc}

@@ -17,10 +17,8 @@ final class DrukiContentRouteContext implements ContextProviderInterface {
 
   /**
    * The route match.
-   *
-   * @var \Drupal\Core\Routing\RouteMatchInterface
    */
-  protected $routeMatch;
+  protected RouteMatchInterface $routeMatch;
 
   /**
    * Constructs a new DrukiContentRouteContext object.

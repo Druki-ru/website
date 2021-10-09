@@ -15,20 +15,16 @@ abstract class ParagraphLoaderBase extends ParsedContentItemLoaderBase {
 
   /**
    * The paragraph storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $paragraphStorage;
+  protected EntityStorageInterface $paragraphStorage;
 
   /**
    * The default text filter for text fields.
    *
    * Use full html for default form since we convert markdown during sync. Using
    * markdown filter will only reduce performance for nothing.
-   *
-   * @var string
    */
-  protected $defaultTextFilter = 'full_html';
+  protected string $defaultTextFilter = 'full_html';
 
   /**
    * Constructs a new ParagraphLoaderBase object.

@@ -17,10 +17,8 @@ final class DrukiContentRedirectController extends ControllerBase {
 
   /**
    * The git settings.
-   *
-   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  private $gitSettings;
+  private GitSettingsInterface $gitSettings;
 
   /**
    * Constructs a new DrukiContentRedirectController object.

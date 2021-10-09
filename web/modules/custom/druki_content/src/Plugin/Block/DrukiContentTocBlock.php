@@ -38,9 +38,7 @@ class DrukiContentTocBlock extends BlockBase {
     $build = [];
 
     if ($druki_content = $this->getDrukiContentFromContext()) {
-      $headings = $druki_content->get('content')->filter(static function ($item) {
-        return $item->entity->bundle() == 'druki_heading';
-      });
+      $headings = $druki_content->get('content')->filter(static fn ($item) => $item->entity->bundle() == 'druki_heading');
 
       if (!$headings->isEmpty()) {
         $build['toc'] = [

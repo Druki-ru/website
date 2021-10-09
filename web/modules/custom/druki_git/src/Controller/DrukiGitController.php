@@ -3,6 +3,8 @@
 namespace Drupal\druki_git\Controller;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\druki_git\Git\GitInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,17 +16,13 @@ final class DrukiGitController implements ContainerInjectionInterface {
 
   /**
    * The logger.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
    */
-  protected $logger;
+  protected LoggerChannelInterface $logger;
 
   /**
    * The git.
-   *
-   * @var \Drupal\druki_git\Service\GitInterface
    */
-  protected $git;
+  protected GitInterface $git;
 
   /**
    * {@inheritdoc}

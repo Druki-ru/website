@@ -7,9 +7,11 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -28,17 +30,13 @@ final class CategoryNavigationBlock extends BlockBase implements ContainerFactor
 
   /**
    * The druki content storage.
-   *
-   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
-  protected $contentStorage;
+  protected DrukiContentStorage $contentStorage;
 
   /**
    * The static cache.
-   *
-   * @var \Drupal\Core\Cache\CacheBackendInterface
    */
-  protected $staticCache;
+  protected CacheBackendInterface $staticCache;
 
   /**
    * {@inheritdoc}

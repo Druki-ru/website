@@ -11,10 +11,8 @@ final class DrupalProjects implements DrupalProjectsInterface {
 
   /**
    * The update fetcher.
-   *
-   * @var \Drupal\update\UpdateFetcherInterface
    */
-  protected $updateFetcher;
+  protected UpdateFetcherInterface $updateFetcher;
 
   /**
    * Constructs a new DrupalProjects object.

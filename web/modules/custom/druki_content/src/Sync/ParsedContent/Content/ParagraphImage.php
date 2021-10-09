@@ -13,24 +13,18 @@ final class ParagraphImage extends ParagraphContentBase {
 
   /**
    * The paragraph type.
-   *
-   * @var string
    */
-  protected $paragraphType = 'druki_image';
+  protected string $paragraphType = 'druki_image';
 
   /**
    * The image source uri.
-   *
-   * @var string
    */
-  private $src;
+  private string $src;
 
   /**
    * The image alt.
-   *
-   * @var string
    */
-  private $alt;
+  private string $alt;
 
   /**
    * ParagraphNote constructor.

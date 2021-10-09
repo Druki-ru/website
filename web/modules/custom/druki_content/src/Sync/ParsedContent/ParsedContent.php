@@ -12,17 +12,13 @@ final class ParsedContent {
 
   /**
    * The meta information for this content.
-   *
-   * @var \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface
    */
-  protected $frontMatter;
+  protected FrontMatterInterface $frontMatter;
 
   /**
    * The list of content.
-   *
-   * @var \Drupal\druki_content\Sync\ParsedContent\Content\ContentList
    */
-  protected $content;
+  protected ContentList $content;
 
   /**
    * ContentStructure constructor.

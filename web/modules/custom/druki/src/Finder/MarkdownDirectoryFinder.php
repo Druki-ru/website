@@ -16,14 +16,12 @@ final class MarkdownDirectoryFinder {
    *
    * @var array
    */
-  protected $directories;
+  protected array $directories;
 
   /**
    * The finder.
-   *
-   * @var \Symfony\Component\Finder\Finder
    */
-  protected $finder;
+  protected Finder $finder;
 
   /**
    * Constructs a new MarkdownDirectoryFinder object.

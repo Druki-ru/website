@@ -25,10 +25,8 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
 
   /**
    * The druki content storage.
-   *
-   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
-  private $contentStorage;
+  private DrukiContentStorage $contentStorage;
 
   /**
    * Constructs a new NextPrev object.

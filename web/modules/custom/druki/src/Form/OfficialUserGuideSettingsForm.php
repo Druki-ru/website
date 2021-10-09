@@ -2,9 +2,12 @@
 
 namespace Drupal\druki\Form;
 
+use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki\Helper\ResponsiveImageStyleHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -19,24 +22,18 @@ final class OfficialUserGuideSettingsForm extends ConfigFormBase {
 
   /**
    * The state storage.
-   *
-   * @var \Drupal\Core\State\State
    */
-  protected $state;
+  protected State $state;
 
   /**
    * The responsive image style helper.
-   *
-   * @var \Drupal\druki\Helper\ResponsiveImageStyleHelper
    */
-  protected $responsiveImageStyleHelper;
+  protected ResponsiveImageStyleHelper $responsiveImageStyleHelper;
 
   /**
    * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManager
    */
-  protected $entityTypeManager;
+  protected EntityTypeManager $entityTypeManager;
 
   /**
    * {@inheritdoc}

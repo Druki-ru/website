@@ -16,10 +16,8 @@ final class GitSettings implements GitSettingsInterface {
 
   /**
    * The config factory.
-   *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
-  protected $configFactory;
+  protected ConfigFactoryInterface $configFactory;
 
   /**
    * GitSettings constructor.

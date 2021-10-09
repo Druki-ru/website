@@ -16,10 +16,8 @@ final class DrupalReleases implements DrupalReleasesInterface {
 
   /**
    * The key/value store.
-   *
-   * @var \Drupal\Core\State\StateInterface
    */
-  protected $state;
+  protected StateInterface $state;
 
   /**
    * Constructs a new DrupalReleases object.

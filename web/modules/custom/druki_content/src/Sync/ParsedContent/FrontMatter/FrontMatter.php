@@ -12,7 +12,7 @@ final class FrontMatter implements FrontMatterInterface {
    *
    * @var array
    */
-  private $values = [];
+  private array $values = [];
 
   /**
    * {@inheritdoc}

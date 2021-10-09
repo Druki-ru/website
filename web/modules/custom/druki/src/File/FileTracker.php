@@ -3,6 +3,7 @@
 namespace Drupal\druki\File;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\file\FileInterface;
@@ -22,24 +23,18 @@ final class FileTracker implements FileTrackerInterface {
 
   /**
    * The logger channel.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
    */
-  protected $logger;
+  protected LoggerChannelInterface $logger;
 
   /**
    * The file usage.
-   *
-   * @var \Drupal\file\FileUsage\FileUsageInterface
    */
-  protected $fileUsage;
+  protected FileUsageInterface $fileUsage;
 
   /**
    * The media storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $mediaStorage;
+  protected EntityStorageInterface $mediaStorage;
 
   /**
    * DrukiFileTracker constructor.

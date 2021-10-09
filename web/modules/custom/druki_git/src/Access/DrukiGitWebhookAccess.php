@@ -14,10 +14,8 @@ class DrukiGitWebhookAccess implements AccessInterface {
 
   /**
    * The state system.
-   *
-   * @var \Drupal\Core\State\StateInterface
    */
-  protected $state;
+  protected StateInterface $state;
 
   /**
    * DrukiGitWebhookAccess constructor.

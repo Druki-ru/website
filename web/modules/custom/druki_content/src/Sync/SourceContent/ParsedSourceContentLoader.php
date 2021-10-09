@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Sync\SourceContent;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
@@ -20,31 +21,23 @@ final class ParsedSourceContentLoader {
 
   /**
    * The druki content storage.
-   *
-   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
-  protected $drukiContentStorage;
+  protected DrukiContentStorage $drukiContentStorage;
 
   /**
    * The system time.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
    */
-  protected $time;
+  protected TimeInterface $time;
 
   /**
    * The paragraph storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $paragraphStorage;
+  protected EntityStorageInterface $paragraphStorage;
 
   /**
    * The parsed content loader.
-   *
-   * @var \Drupal\druki_content\Sync\ParsedContent\ParsedContentLoader
    */
-  protected $parsedContentLoader;
+  protected ParsedContentLoader $parsedContentLoader;
 
   /**
    * Constructs a new ParsedSourceContentLoader object.

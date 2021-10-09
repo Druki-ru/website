@@ -15,17 +15,15 @@ final class ParagraphHeading extends ParagraphContentBase {
 
   /**
    * The paragraph type.
-   *
-   * @var string
    */
-  protected $paragraphType = 'druki_heading';
+  protected string $paragraphType = 'druki_heading';
 
   /**
    * The available types of heading levels.
    *
    * @var array
    */
-  private $availableLevels = [
+  private array $availableLevels = [
     'h1',
     'h2',
     'h3',
@@ -36,17 +34,13 @@ final class ParagraphHeading extends ParagraphContentBase {
 
   /**
    * The heading level.
-   *
-   * @var string
    */
-  private $level;
+  private string $level;
 
   /**
    * The heading content.
-   *
-   * @var string
    */
-  private $content;
+  private string $content;
 
   /**
    * ParagraphNote constructor.

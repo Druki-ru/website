@@ -37,9 +37,7 @@ function template_preprocess_druki_content_toc(array &$variables): void {
   /** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
   $druki_content = $variables['druki_content'];
   $variables['links'] = [];
-  $headings = $druki_content->get('content')->filter(static function ($item) {
-    return $item->entity->bundle() == 'druki_heading';
-  });
+  $headings = $druki_content->get('content')->filter(static fn ($item) => $item->entity->bundle() == 'druki_heading');
 
   if (!$headings->isEmpty()) {
     $flat_links = [];

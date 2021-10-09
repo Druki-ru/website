@@ -9,17 +9,13 @@ final class FrontMatterValue implements FrontMatterValueInterface {
 
   /**
    * The key.
-   *
-   * @var string
    */
-  private $key;
+  private string $key;
 
   /**
    * The value.
-   *
-   * @var string
    */
-  private $value;
+  private mixed $value;
 
   /**
    * FrontMatterValue constructor.
@@ -44,7 +40,7 @@ final class FrontMatterValue implements FrontMatterValueInterface {
   /**
    * {@inheritdoc}
    */
-  public function getValue() {
+  public function getValue(): mixed {
     return $this->value;
   }
 

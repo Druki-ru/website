@@ -5,7 +5,9 @@ namespace Drupal\druki\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Routing\CurrentRouteMatch;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a header search block.
@@ -20,17 +22,13 @@ final class HeaderSearchBlock extends BlockBase implements ContainerFactoryPlugi
 
   /**
    * The request stack.
-   *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
-  protected $requestStack;
+  protected RequestStack $requestStack;
 
   /**
    * The current route match.
-   *
-   * @var \Drupal\Core\Routing\CurrentRouteMatch
    */
-  protected $routeMatch;
+  protected CurrentRouteMatch $routeMatch;
 
   /**
    * {@inheritdoc}

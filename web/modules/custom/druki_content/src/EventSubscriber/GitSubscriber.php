@@ -14,10 +14,8 @@ final class GitSubscriber implements EventSubscriberInterface {
 
   /**
    * The sync queue manager.
-   *
-   * @var \Drupal\druki_content\Sync\Queue\QueueManager
    */
-  protected $queueManager;
+  protected QueueManager $queueManager;
 
   /**
    * Constructs a new GitSubscriber object.

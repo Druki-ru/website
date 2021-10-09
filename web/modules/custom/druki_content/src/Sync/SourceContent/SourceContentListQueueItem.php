@@ -11,10 +11,8 @@ final class SourceContentListQueueItem implements QueueItemInterface {
 
   /**
    * The content to process.
-   *
-   * @var \Drupal\druki_content\Sync\SourceContent\SourceContentList
    */
-  protected $payload;
+  protected SourceContentList $payload;
 
   /**
    * SourceContentListQueueItem constructor.

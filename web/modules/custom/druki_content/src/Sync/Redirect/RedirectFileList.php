@@ -9,10 +9,8 @@ final class RedirectFileList implements \IteratorAggregate {
 
   /**
    * The list of redirect files.
-   *
-   * @var \Drupal\druki_content\Sync\Redirect\RedirectFile
    */
-  protected $files = [];
+  protected array $files = [];
 
   /**
    * Adds file to the list.

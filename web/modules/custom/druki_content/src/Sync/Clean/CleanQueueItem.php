@@ -11,10 +11,8 @@ final class CleanQueueItem implements QueueItemInterface {
 
   /**
    * The timestamp for the last update.
-   *
-   * @var int
    */
-  protected $payload;
+  protected int $payload;
 
   /**
    * CleanQueueItem constructor.

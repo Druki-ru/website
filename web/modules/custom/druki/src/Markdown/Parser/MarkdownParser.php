@@ -15,10 +15,8 @@ final class MarkdownParser implements MarkdownParserInterface {
 
   /**
    * The markdown parser.
-   *
-   * @var \League\CommonMark\CommonMarkConverter
    */
-  protected $markdownParser;
+  protected CommonMarkConverter $markdownParser;
 
   /**
    * Constructs a new MarkdownParser object.

@@ -4,8 +4,11 @@ namespace Drupal\druki_content\Entity\Handler\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Queue\QueueInterface;
+use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Sync\Queue\QueueManager;
+use Drupal\druki_git\Git\Git;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -15,31 +18,23 @@ final class DrukiContentSyncForm extends FormBase {
 
   /**
    * The state.
-   *
-   * @var \Drupal\Core\State\State
    */
-  protected $state;
+  protected State $state;
 
   /**
    * The queue.
-   *
-   * @var \Drupal\Core\Queue\QueueInterface
    */
-  protected $queue;
+  protected QueueInterface $queue;
 
   /**
    * The queue manager.
-   *
-   * @var \Drupal\druki_content\Sync\Queue\QueueManager
    */
-  protected $queueManager;
+  protected QueueManager $queueManager;
 
   /**
    * The Git wrapper.
-   *
-   * @var \Drupal\druki_git\Git\Git
    */
-  protected $git;
+  protected Git $git;
 
   /**
    * {@inheritdoc}

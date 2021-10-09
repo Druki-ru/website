@@ -15,17 +15,13 @@ final class SourceContentParser {
 
   /**
    * The Markdown parser.
-   *
-   * @var \Drupal\druki\Markdown\Parser\MarkdownParserInterface
    */
-  protected $markdownParser;
+  protected MarkdownParserInterface $markdownParser;
 
   /**
    * The HTML parser.
-   *
-   * @var \Drupal\druki_content\Sync\Parser\HtmlContentParser
    */
-  protected $htmlParser;
+  protected HtmlContentParser $htmlParser;
 
   /**
    * Constructs a new SourceContentParser object.

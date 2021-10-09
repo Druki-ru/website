@@ -12,10 +12,8 @@ class GitCommandFailedException extends \RuntimeException {
 
   /**
    * The command process.
-   *
-   * @var \Symfony\Component\Process\Process
    */
-  protected $process;
+  protected Process $process;
 
   /**
    * Constructs a new GitCommandFailedException object.

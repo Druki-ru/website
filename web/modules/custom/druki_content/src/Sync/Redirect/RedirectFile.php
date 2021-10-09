@@ -9,17 +9,13 @@ final class RedirectFile {
 
   /**
    * The path to file.
-   *
-   * @var string
    */
-  protected $pathname;
+  protected string $pathname;
 
   /**
    * The langcode of redirects.
-   *
-   * @var string
    */
-  protected $language;
+  protected string $language;
 
   /**
    * RedirectFile constructor.

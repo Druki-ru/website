@@ -15,31 +15,23 @@ final class Git implements GitInterface {
 
   /**
    * The git settings.
-   *
-   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  protected $gitSettings;
+  protected GitSettingsInterface $gitSettings;
 
   /**
    * The file system.
-   *
-   * @var \Drupal\Core\File\FileSystemInterface
    */
-  protected $fileSystem;
+  protected FileSystemInterface $fileSystem;
 
   /**
    * The event dispatcher.
-   *
-   * @var \Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher
    */
-  protected $eventDispatcher;
+  protected ContainerAwareEventDispatcher $eventDispatcher;
 
   /**
    * The repository path.
-   *
-   * @var string
    */
-  protected $repositoryPath;
+  protected string $repositoryPath;
 
   /**
    * Git constructor.

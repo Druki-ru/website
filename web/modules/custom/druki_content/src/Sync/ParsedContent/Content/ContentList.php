@@ -12,7 +12,7 @@ final class ContentList implements \IteratorAggregate {
    *
    * @var array
    */
-  private $content = [];
+  private array $content = [];
 
   /**
    * Adds content to list.

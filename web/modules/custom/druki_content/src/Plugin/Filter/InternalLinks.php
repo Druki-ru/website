@@ -4,9 +4,11 @@ namespace Drupal\druki_content\Plugin\Filter;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
+use Drupal\druki_git\Git\GitSettingsInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -28,28 +30,22 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
    *
    * @var array
    */
-  protected $lazyCacheTags = [];
+  protected array $lazyCacheTags = [];
 
   /**
    * The druki content sotrage.
-   *
-   * @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage
    */
-  protected $contentStorage;
+  protected DrukiContentStorage $contentStorage;
 
   /**
    * The git settings.
-   *
-   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  protected $gitSettings;
+  protected GitSettingsInterface $gitSettings;
 
   /**
    * The file system.
-   *
-   * @var \Drupal\Core\File\FileSystemInterface
    */
-  protected $fileSystem;
+  protected FileSystemInterface $fileSystem;
 
   /**
    * {@inheritdoc}

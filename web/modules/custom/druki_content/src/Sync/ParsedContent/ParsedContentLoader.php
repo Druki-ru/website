@@ -14,7 +14,7 @@ final class ParsedContentLoader {
    *
    * @var \Drupal\druki_content\Sync\ParsedContent\ParsedContentItemLoaderInterface[]
    */
-  protected $loaders = [];
+  protected array $loaders = [];
 
   /**
    * Adds loader to the list.

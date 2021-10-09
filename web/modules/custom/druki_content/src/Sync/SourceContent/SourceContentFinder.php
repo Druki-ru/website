@@ -27,10 +27,8 @@ final class SourceContentFinder {
 
   /**
    * The language manager.
-   *
-   * @var \Drupal\Core\Language\LanguageManagerInterface
    */
-  protected $languageManager;
+  protected LanguageManagerInterface $languageManager;
 
   /**
    * Constructs a new SourceContentFinder object.

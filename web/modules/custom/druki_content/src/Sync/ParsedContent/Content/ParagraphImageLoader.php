@@ -4,6 +4,7 @@ namespace Drupal\druki_content\Sync\ParsedContent\Content;
 
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\FileSystemInterface;
@@ -12,6 +13,7 @@ use Drupal\druki\File\FileTrackerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_git\Git\GitSettingsInterface;
 use Drupal\file\FileInterface;
+use Drupal\file\FileStorage;
 use Drupal\media\MediaInterface;
 
 /**
@@ -26,52 +28,38 @@ final class ParagraphImageLoader extends ParagraphLoaderBase {
 
   /**
    * The git settings.
-   *
-   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  protected $gitSettings;
+  protected GitSettingsInterface $gitSettings;
 
   /**
    * The file tracker.
-   *
-   * @var \Drupal\druki\File\FileTrackerInterface
    */
-  protected $fileTracker;
+  protected FileTrackerInterface $fileTracker;
 
   /**
    * The entity field manager.
-   *
-   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
    */
-  protected $entityFieldManager;
+  protected EntityFieldManagerInterface $entityFieldManager;
 
   /**
    * The token converter.
-   *
-   * @var \Drupal\Core\Utility\Token
    */
-  protected $token;
+  protected Token $token;
 
   /**
    * The file system.
-   *
-   * @var \Drupal\Core\File\FileSystemInterface
    */
-  protected $fileSystem;
+  protected FileSystemInterface $fileSystem;
 
   /**
    * The media storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $mediaStorage;
+  protected EntityStorageInterface $mediaStorage;
 
   /**
    * The file storage.
-   *
-   * @var \Drupal\file\FileStorage
    */
-  protected $fileStorage;
+  protected FileStorage $fileStorage;
 
   /**
    * Constructs a new ParagraphImageLoader object.

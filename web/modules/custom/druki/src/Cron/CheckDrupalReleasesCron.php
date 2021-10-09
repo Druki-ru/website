@@ -15,31 +15,23 @@ final class CheckDrupalReleasesCron implements CronProcessorInterface {
 
   /**
    * The datetime service.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
    */
-  protected $time;
+  protected TimeInterface $time;
 
   /**
    * The cache tags invalidator.
-   *
-   * @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface
    */
-  protected $cacheTagsInvalidator;
+  protected CacheTagsInvalidatorInterface $cacheTagsInvalidator;
 
   /**
    * The Drupal projects.
-   *
-   * @var \Drupal\druki\Drupal\DrupalProjectsInterface
    */
-  protected $drupalProjects;
+  protected DrupalProjectsInterface $drupalProjects;
 
   /**
    * The Drupal releases.
-   *
-   * @var \Drupal\druki\Drupal\DrupalReleasesInterface
    */
-  protected $drupalReleases;
+  protected DrupalReleasesInterface $drupalReleases;
 
   /**
    * Constructs a new CheckDrupalReleasesCron object.

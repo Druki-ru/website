@@ -12,10 +12,8 @@ final class NoteElement extends AbstractBlock {
 
   /**
    * The note type.
-   *
-   * @var string
    */
-  protected $type;
+  protected string $type;
 
   /**
    * NoteElement constructor.

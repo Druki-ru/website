@@ -26,9 +26,7 @@ abstract class ParsedContentItemLoaderBase implements ParsedContentItemLoaderInt
 
     $supported = (array) $this->supportedInterfaceOrClass;
 
-    return (bool) \array_filter($supported, static function ($name) use ($data) {
-      return $data instanceof $name;
-    });
+    return (bool) \array_filter($supported, static fn ($name) => $data instanceof $name);
   }
 
   /**

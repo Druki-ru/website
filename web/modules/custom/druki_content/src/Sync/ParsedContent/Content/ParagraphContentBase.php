@@ -15,10 +15,8 @@ abstract class ParagraphContentBase implements ParagraphContentInterface {
 
   /**
    * The paragraph type.
-   *
-   * @var string
    */
-  protected $paragraphType;
+  protected string $paragraphType;
 
   /**
    * {@inheritDoc}

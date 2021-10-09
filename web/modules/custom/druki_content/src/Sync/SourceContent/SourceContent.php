@@ -9,31 +9,23 @@ final class SourceContent {
 
   /**
    * The source content path URI.
-   *
-   * @var string
    */
-  protected $realpath;
+  protected string $realpath;
 
   /**
    * The source content language.
-   *
-   * @var string
    */
-  protected $language;
+  protected string $language;
 
   /**
    * The source file information.
-   *
-   * @var \SplFileInfo|null
    */
-  protected $file = NULL;
+  protected ?\SplFileInfo $file = NULL;
 
   /**
    * The relative pathname.
-   *
-   * @var string
    */
-  protected $relativePathname;
+  protected string $relativePathname;
 
   /**
    * Constructs a new SourceContent object.

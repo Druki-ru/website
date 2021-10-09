@@ -16,24 +16,18 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
 
   /**
    * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * The state storage.
-   *
-   * @var \Drupal\Core\State\StateInterface
    */
-  protected $state;
+  protected StateInterface $state;
 
   /**
    * The redirect storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface|null
    */
-  protected $redirectStorage;
+  protected ?EntityStorageInterface $redirectStorage = NULL;
 
   /**
    * RedirectQueueProcessor constructor.

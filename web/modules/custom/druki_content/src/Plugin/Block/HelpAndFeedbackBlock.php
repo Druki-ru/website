@@ -7,6 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_git\Git\GitSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -29,10 +30,8 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
 
   /**
    * The git settings.
-   *
-   * @var \Drupal\druki_git\Git\GitSettingsInterface
    */
-  protected $gitSettings;
+  protected GitSettingsInterface $gitSettings;
 
   /**
    * {@inheritdoc}

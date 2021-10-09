@@ -12,10 +12,8 @@ class DrukiGitEvent extends Event {
 
   /**
    * The git service instance.
-   *
-   * @var \Drupal\druki_git\Git\GitInterface
    */
-  protected $git;
+  protected GitInterface $git;
 
   /**
    * DrukiGitEvent constructor.

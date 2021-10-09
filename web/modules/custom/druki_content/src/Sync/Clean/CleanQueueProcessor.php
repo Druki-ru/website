@@ -16,10 +16,8 @@ final class CleanQueueProcessor implements QueueProcessorInterface {
 
   /**
    * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * CleanQueueProcessor constructor.

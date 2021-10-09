@@ -4,6 +4,7 @@ namespace Drupal\druki_content\Sync\Queue;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Queue\QueueFactory;
+use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
@@ -27,45 +28,33 @@ final class QueueManager {
 
   /**
    * The source content finder.
-   *
-   * @var \Drupal\druki_content\Sync\SourceContent\SourceContentFinder
    */
-  protected $contentFinder;
+  protected SourceContentFinder $contentFinder;
 
   /**
    * The queue with synchronization items.
-   *
-   * @var \Drupal\Core\Queue\QueueInterface
    */
-  protected $queue;
+  protected QueueInterface $queue;
 
   /**
    * The state storage.
-   *
-   * @var \Drupal\Core\State\StateInterface
    */
-  protected $state;
+  protected StateInterface $state;
 
   /**
    * The system time.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
    */
-  protected $time;
+  protected TimeInterface $time;
 
   /**
    * The queue worker.
-   *
-   * @var \Drupal\Core\Queue\QueueWorkerManagerInterface
    */
-  protected $queueWorker;
+  protected QueueWorkerManagerInterface $queueWorker;
 
   /**
    * The redirect finder.
-   *
-   * @var \Drupal\druki_content\Sync\Redirect\RedirectFinder
    */
-  protected $redirectFinder;
+  protected RedirectFinder $redirectFinder;
 
   /**
    * Constructs a new SynchronizationQueueBuilder object.

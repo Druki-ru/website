@@ -5,11 +5,15 @@ namespace Drupal\druki_git\Form;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_git\Exception\GitCommandFailedException;
+use Drupal\druki_git\Git\GitInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Configure Druki — git settings for this site.
@@ -21,31 +25,23 @@ final class GitSettingsForm extends ConfigFormBase {
 
   /**
    * The git helper.
-   *
-   * @var \Drupal\druki_git\Git\GitInterface
    */
-  protected $git;
+  protected GitInterface $git;
 
   /**
    * The state system.
-   *
-   * @var \Drupal\Core\State\StateInterface
    */
-  protected $state;
+  protected StateInterface $state;
 
   /**
    * The current request stack.
-   *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
-  protected $requestStack;
+  protected RequestStack $requestStack;
 
   /**
    * The logger.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
    */
-  protected $logger;
+  protected LoggerChannelInterface $logger;
 
   /**
    * {@inheritdoc}

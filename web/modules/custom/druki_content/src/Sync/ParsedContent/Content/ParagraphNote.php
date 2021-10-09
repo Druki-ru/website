@@ -15,17 +15,15 @@ final class ParagraphNote extends ParagraphContentBase {
 
   /**
    * The paragraph type.
-   *
-   * @var string
    */
-  protected $paragraphType = 'druki_note';
+  protected string $paragraphType = 'druki_note';
 
   /**
    * The available types of notes supported by paragraph.
    *
    * @var array
    */
-  private $availableTypes = [
+  private array $availableTypes = [
     'note',
     'warning',
     'tip',
@@ -34,17 +32,13 @@ final class ParagraphNote extends ParagraphContentBase {
 
   /**
    * The note type.
-   *
-   * @var string
    */
-  private $type;
+  private string $type;
 
   /**
    * The note content.
-   *
-   * @var string
    */
-  private $content;
+  private string $content;
 
   /**
    * ParagraphNote constructor.

@@ -15,10 +15,8 @@ final class FrontMatterElement extends AbstractStringContainerBlock {
 
   /**
    * Indicates is meta information closing block found.
-   *
-   * @var bool
    */
-  protected $isCloserFound;
+  protected bool $isCloserFound;
 
   /**
    * FrontMatter constructor.

@@ -16,31 +16,23 @@ final class SourceContentListQueueProcessor implements QueueProcessorInterface {
 
   /**
    * The state storage.
-   *
-   * @var \Drupal\Core\State\StateInterface
    */
-  protected $state;
+  protected StateInterface $state;
 
   /**
    * The source content parser.
-   *
-   * @var \Drupal\druki_content\Sync\SourceContent\SourceContentParser
    */
-  protected $parser;
+  protected SourceContentParser $parser;
 
   /**
    * The parsed source content loader.
-   *
-   * @var \Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader
    */
-  protected $loader;
+  protected ParsedSourceContentLoader $loader;
 
   /**
    * The logger channel.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
    */
-  protected $logger;
+  protected LoggerChannelInterface $logger;
 
   /**
    * SourceContentListQueueProcessor constructor.

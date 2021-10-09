@@ -13,17 +13,13 @@ final class ParagraphText extends ParagraphContentBase {
 
   /**
    * The paragraph type.
-   *
-   * @var string
    */
-  protected $paragraphType = 'druki_text';
+  protected string $paragraphType = 'druki_text';
 
   /**
    * The text content.
-   *
-   * @var string
    */
-  private $content;
+  private string $content;
 
   /**
    * ParagraphNote constructor.

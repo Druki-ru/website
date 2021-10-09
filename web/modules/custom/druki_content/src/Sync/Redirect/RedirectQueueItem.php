@@ -11,10 +11,8 @@ final class RedirectQueueItem implements QueueItemInterface {
 
   /**
    * The redirect file list.
-   *
-   * @var \Drupal\druki_content\Sync\Redirect\RedirectFileList
    */
-  protected $payload;
+  protected RedirectFileList $payload;
 
   /**
    * RedirectQueueItem constructor.

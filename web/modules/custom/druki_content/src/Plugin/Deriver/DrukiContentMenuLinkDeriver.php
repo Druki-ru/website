@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Plugin\Deriver;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -14,17 +15,13 @@ final class DrukiContentMenuLinkDeriver extends DeriverBase implements Container
 
   /**
    * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * The base plugin ID.
-   *
-   * @var string
    */
-  protected $basePluginId;
+  protected string $basePluginId;
 
   /**
    * {@inheritdoc}

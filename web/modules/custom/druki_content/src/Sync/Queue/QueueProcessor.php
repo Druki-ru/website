@@ -12,7 +12,7 @@ final class QueueProcessor implements QueueProcessorInterface {
    *
    * @var \Drupal\druki_content\Sync\Queue\QueueProcessorInterface[]
    */
-  protected $processors = [];
+  protected array $processors = [];
 
   /**
    * Adds loader to the list.

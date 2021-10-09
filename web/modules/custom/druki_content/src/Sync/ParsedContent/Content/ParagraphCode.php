@@ -13,17 +13,13 @@ final class ParagraphCode extends ParagraphContentBase {
 
   /**
    * The paragraph type.
-   *
-   * @var string
    */
-  protected $paragraphType = 'druki_code';
+  protected string $paragraphType = 'druki_code';
 
   /**
    * The heading content.
-   *
-   * @var string
    */
-  private $content;
+  private string $content;
 
   /**
    * ParagraphNote constructor.

@@ -3,10 +3,15 @@
 namespace Drupal\druki_search\SearchPage;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Pager\PagerManagerInterface;
+use Drupal\Core\Pager\PagerParameters;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\search_api\Query\ResultSetInterface;
+use Drupal\search_api\Utility\QueryHelperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides search page controller.
@@ -15,45 +20,33 @@ final class PageController implements ContainerInjectionInterface {
 
   /**
    * The amount of results per page.
-   *
-   * @var int
    */
-  protected $limit = 10;
+  protected int $limit = 10;
 
   /**
    * The pager manager.
-   *
-   * @var \Drupal\Core\Pager\PagerManagerInterface
    */
-  protected $pagerManager;
+  protected PagerManagerInterface $pagerManager;
 
   /**
    * The request stack.
-   *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
-  protected $requestStack;
+  protected RequestStack $requestStack;
 
   /**
    * The query helper.
-   *
-   * @var \Drupal\search_api\Utility\QueryHelperInterface
    */
-  protected $queryHelper;
+  protected QueryHelperInterface $queryHelper;
 
   /**
    * The search API index.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $indexStorage;
+  protected EntityStorageInterface $indexStorage;
 
   /**
    * The pager parameters.
-   *
-   * @var \Drupal\Core\Pager\PagerParameters
    */
-  protected $pagerParameters;
+  protected PagerParameters $pagerParameters;
 
   /**
    * {@inheritdoc}

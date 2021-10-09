@@ -12,7 +12,7 @@ final class SourceContentList implements \IteratorAggregate {
    *
    * @var \Drupal\druki_content\Sync\SourceContent\SourceContent[]
    */
-  protected $items = [];
+  protected array $items = [];
 
   /**
    * Split items into chunks.

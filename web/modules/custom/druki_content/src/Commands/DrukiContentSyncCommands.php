@@ -17,24 +17,18 @@ class DrukiContentSyncCommands extends DrushCommands {
 
   /**
    * The git service.
-   *
-   * @var \Drupal\druki_git\Git\GitInterface
    */
-  protected $gitService;
+  protected GitInterface $gitService;
 
   /**
    * The language manager service.
-   *
-   * @var \Drupal\Core\Language\LanguageManagerInterface
    */
-  protected $languageManager;
+  protected LanguageManagerInterface $languageManager;
 
   /**
    * The queue item processors.
-   *
-   * @var \Drupal\druki_content\Sync\Queue\QueueProcessorInterface
    */
-  protected $queueProcessor;
+  protected QueueProcessorInterface $queueProcessor;
 
   /**
    * DrukiContentSyncCommands constructor.
