@@ -34,11 +34,6 @@ final class GitSettingsForm extends ConfigFormBase {
   protected StateInterface $state;
 
   /**
-   * The current request stack.
-   */
-  protected RequestStack $requestStack;
-
-  /**
    * The logger.
    */
   protected LoggerChannelInterface $logger;
@@ -50,8 +45,8 @@ final class GitSettingsForm extends ConfigFormBase {
     $instance = parent::create($container);
     $instance->git = $container->get('druki_git');
     $instance->state = $container->get('state');
-    $instance->requestStack = $container->get('request_stack');
     $instance->logger = $container->get('logger.channel.druki_git');
+    $instance->setRequestStack($container->get('request_stack'));
 
     return $instance;
   }

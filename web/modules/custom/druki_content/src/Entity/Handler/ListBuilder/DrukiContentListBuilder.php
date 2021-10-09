@@ -21,11 +21,6 @@ final class DrukiContentListBuilder extends EntityListBuilder {
   protected DateFormatterInterface $dateFormatter;
 
   /**
-   * The redirect destination service.
-   */
-  protected RedirectDestinationInterface $redirectDestination;
-
-  /**
    * The database connection.
    */
   protected Connection $database;
@@ -36,8 +31,8 @@ final class DrukiContentListBuilder extends EntityListBuilder {
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type): object {
     $instance = parent::createInstance($container, $entity_type);
     $instance->dateFormatter = $container->get('date.formatter');
-    $instance->redirectDestination = $container->get('redirect.destination');
     $instance->database = $container->get('database');
+    $instance->setRedirectDestination($container->get('redirect.destination'));
     return $instance;
   }
 
