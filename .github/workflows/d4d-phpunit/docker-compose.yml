@@ -18,6 +18,9 @@ services:
     # GHA has UID 1001, but D4D uses 1000. It results that d4d containers can't write anything to cloned files.
     user: root
     environment:
+      # This parameter will pass .env contents to PHP container. This is
+      # required by settings.php file.
+      PHP_FPM_CLEAR_ENV: "no"
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       DB_HOST: $DB_HOST
       DB_PORT: $DB_PORT

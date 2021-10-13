@@ -103,9 +103,6 @@ jobs:
       - name: 'Run docker'
         run: "docker-compose up -d"
 
-#      - name: 'Configure Composer'
-#        run: 'make composer --global config gitlab-token.gitlab.com ${{ secrets.ci_gitlab_token }}'
-
       - name: 'Install site dependencies'
         run: "docker-compose exec -T php composer install"
 
