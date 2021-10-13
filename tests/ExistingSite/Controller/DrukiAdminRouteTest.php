@@ -23,7 +23,7 @@ final class DrukiAdminRouteTest extends ExistingSiteBase {
    * Test page under admin user.
    */
   public function testAdmin(): void {
-    $this->markTestSkipped('Fix this test in https://github.com/Druki-ru/website/issues/74.');
+    #$this->markTestSkipped('Fix this test in https://github.com/Druki-ru/website/issues/74.');
     $admin = $this->createUser([], 'admin_test', TRUE);
     $this->drupalLogin($admin);
     $this->drupalGet(Url::fromRoute('druki.admin'));
