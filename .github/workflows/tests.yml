@@ -110,8 +110,4 @@ jobs:
         run: 'docker-compose exec -T php drush site:install druki_installer'
 
       - name: 'Run tests'
-        continue-on-error: true
         run: 'docker-compose exec -T php composer run-script phpunit'
-
-      - name: 'Show PHP logs'
-        run: 'docker-compose logs php'
