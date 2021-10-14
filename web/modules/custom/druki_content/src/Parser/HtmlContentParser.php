@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Parser;
+namespace Drupal\druki_content\Parser;
 
 use Drupal\druki_content\Sync\ParsedContent\Content\ContentList;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphCode;

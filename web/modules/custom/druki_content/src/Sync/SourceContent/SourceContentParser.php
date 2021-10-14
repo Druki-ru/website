@@ -3,7 +3,7 @@
 namespace Drupal\druki_content\Sync\SourceContent;
 
 use Drupal\druki\Markdown\Parser\MarkdownParserInterface;
-use Drupal\druki_content\Sync\Parser\HtmlContentParser;
+use Drupal\druki_content\Parser\HtmlContentParser;
 
 /**
  * Provides parser for source content.

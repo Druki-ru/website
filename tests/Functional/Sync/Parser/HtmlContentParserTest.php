@@ -3,19 +3,19 @@
 namespace Druki\Tests\Drupal\druki_content\Sync\Parser;
 
 use Drupal\druki\Markdown\Parser\MarkdownParser;
+use Drupal\druki_content\Parser\HtmlContentParser;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphCode;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphHeading;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImage;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphNote;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphText;
 use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterValue;
-use Drupal\druki_content\Sync\Parser\HtmlContentParser;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Provides test for HTML content parser.
  *
- * @coversDefaultClass \Drupal\druki_content\Sync\Parser\HtmlContentParser
+ * @coversDefaultClass \Drupal\druki_content\Parser\HtmlContentParser
  */
 class HtmlContentParserTest extends TestCase {
 
