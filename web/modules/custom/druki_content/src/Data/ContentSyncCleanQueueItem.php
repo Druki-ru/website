@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki_content\Queue;
+namespace Drupal\druki_content\Data;
 
-use Drupal\druki_content\Sync\Queue\QueueItemInterface;
+use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 
 /**
  * Provides queue item for clean up missing content.
  */
-final class CleanQueueItem implements QueueItemInterface {
+final class ContentSyncCleanQueueItem implements ContentSyncQueueItemInterface {
 
   /**
    * The timestamp for the last update.
@@ -15,7 +15,7 @@ final class CleanQueueItem implements QueueItemInterface {
   protected int $payload;
 
   /**
-   * CleanQueueItem constructor.
+   * ContentSyncCleanQueueItem constructor.
    *
    * @param int $timestamp
    *   The last update timestamp.

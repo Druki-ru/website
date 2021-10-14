@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki_content\Sync\Queue\QueueManager;
+use Drupal\druki_content\Queue\ContentSyncQueueManager;
 use Drupal\druki_git\Git\Git;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -29,7 +29,7 @@ final class DrukiContentSyncForm extends FormBase {
   /**
    * The queue manager.
    */
-  protected QueueManager $queueManager;
+  protected ContentSyncQueueManager $queueManager;
 
   /**
    * The Git wrapper.
@@ -42,8 +42,8 @@ final class DrukiContentSyncForm extends FormBase {
   public static function create(ContainerInterface $container) {
     $instance = new static();
     $instance->state = $container->get('state');
-    $instance->queue = $container->get('queue')->get(QueueManager::QUEUE_NAME);
-    $instance->queueManager = $container->get('druki_content.sync_queue_manager');
+    $instance->queue = $container->get('queue')->get(ContentSyncQueueManager::QUEUE_NAME);
+    $instance->queueManager = $container->get('druki_content.queue.content_sync_manager');
     $instance->git = $container->get('druki_git');
     return $instance;
   }

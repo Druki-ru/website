@@ -6,13 +6,13 @@ use Drupal\Component\FrontMatter\Exception\FrontMatterParseException;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki_content\Sync\Queue\QueueItemInterface;
-use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
+use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
+use Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface;
 
 /**
  * Provides source content list queue processor.
  */
-final class SourceContentListQueueProcessor implements QueueProcessorInterface {
+final class SourceContentListQueueProcessor implements ContentSyncQueueProcessorInterface {
 
   /**
    * The state storage.
@@ -56,7 +56,7 @@ final class SourceContentListQueueProcessor implements QueueProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function process(QueueItemInterface $item): void {
+  public function process(ContentSyncQueueItemInterface $item): void {
     $is_force_update = $this->state->get('druki_content.settings.force_update', FALSE);
     /** @var \Drupal\druki_content\Sync\SourceContent\SourceContentList $source_content_list */
     $source_content_list = $item->getPayload();
@@ -84,8 +84,8 @@ final class SourceContentListQueueProcessor implements QueueProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(QueueItemInterface $item): bool {
-    return $item instanceof SourceContentListQueueItem;
+  public function isApplicable(ContentSyncQueueItemInterface $item): bool {
+    return $item instanceof SourceContentListContentSyncQueueItem;
   }
 
 }

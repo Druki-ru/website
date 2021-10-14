@@ -6,14 +6,13 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
 use Drupal\druki_content\Data\RedirectSourceFile;
-use Drupal\druki_content\Sync\Queue\QueueItemInterface;
-use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
 
 /**
  * Provides redirect queue processor.
  */
-final class RedirectQueueProcessor implements QueueProcessorInterface {
+final class ContentSyncRedirectQueueItemProcessor implements ContentSyncQueueProcessorInterface {
 
   /**
    * The entity type manager.
@@ -31,7 +30,7 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
   protected ?EntityStorageInterface $redirectStorage = NULL;
 
   /**
-   * RedirectQueueProcessor constructor.
+   * ContentSyncRedirectQueueItemProcessor constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -46,7 +45,7 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function process(QueueItemInterface $item): void {
+  public function process(ContentSyncQueueItemInterface $item): void {
     /** @var \Drupal\druki_content\Data\RedirectSourceFileList $files */
     $files = $item->getPayload();
     foreach ($files as $file) {
@@ -137,8 +136,8 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(QueueItemInterface $item): bool {
-    return $item instanceof RedirectQueueItem;
+  public function isApplicable(ContentSyncQueueItemInterface $item): bool {
+    return $item instanceof ContentSyncRedirectQueueItem;
   }
 
   /**

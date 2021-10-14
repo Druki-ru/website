@@ -6,13 +6,13 @@ use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Queue\QueueInterface;
+use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
+use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
 use Drupal\druki_content\Data\RedirectSourceFile;
 use Drupal\druki_content\Data\RedirectSourceFileList;
-use Drupal\druki_content\Queue\CleanQueueItem;
-use Drupal\druki_content\Queue\RedirectQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContent;
 use Drupal\druki_content\Sync\SourceContent\SourceContentList;
-use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
+use Drupal\druki_content\Sync\SourceContent\SourceContentListContentSyncQueueItem;
 use org\bovigo\vfs\vfsStream;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
@@ -35,7 +35,7 @@ final class SyncQueueTest extends ExistingSiteBase {
   /**
    * The sync queue manager.
    *
-   * @var \Drupal\druki_content\Sync\Queue\QueueManager
+   * @var \Drupal\druki_content\Queue\ContentSyncQueueManager
    */
   protected $syncQueueManager;
 
@@ -88,7 +88,7 @@ final class SyncQueueTest extends ExistingSiteBase {
 
     $queue = $this->getSyncQueue();
     $this->assertEquals(0, $queue->numberOfItems());
-    $queue->createItem(new SourceContentListQueueItem($source_content_list));
+    $queue->createItem(new SourceContentListContentSyncQueueItem($source_content_list));
     $this->assertEquals(1, $queue->numberOfItems());
 
     /** @var \Drupal\druki_content\Storage\DrukiContentStorage $druki_content_storage */
@@ -109,7 +109,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $source_content = new SourceContent($file->url(), $file->path(), 'ru');
     $source_content_list = new SourceContentList();
     $source_content_list->add($source_content);
-    $queue->createItem(new SourceContentListQueueItem($source_content_list));
+    $queue->createItem(new SourceContentListContentSyncQueueItem($source_content_list));
 
     $old_id = $druki_content->id();
     $this->syncQueueManager->run();
@@ -126,7 +126,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $file_pathname = $this->sourceRoot->url() . '/docs/ru/redirects.csv';
     $redirect_file_list = new RedirectSourceFileList();
     $redirect_file_list->addFile(new RedirectSourceFile($file_pathname, 'ru'));
-    $redirect_queue_item = new RedirectQueueItem($redirect_file_list);
+    $redirect_queue_item = new ContentSyncRedirectQueueItem($redirect_file_list);
 
     $queue = $this->getSyncQueue();
     $queue->createItem($redirect_queue_item);
@@ -159,7 +159,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $druki_content = $druki_content_storage->loadBySlug('test_clean_up');
     $this->assertEquals('test_clean_up', $druki_content->getSlug());
 
-    $queue_item = new CleanQueueItem(2);
+    $queue_item = new ContentSyncCleanQueueItem(2);
     $queue = $this->getSyncQueue();
     $queue->createItem($queue_item);
     $this->syncQueueManager->run();
@@ -185,7 +185,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     parent::setUp();
     $this->sourceRoot = $this->setupFakeSourceDir();
     $this->queueFactory = $this->container->get('queue');
-    $this->syncQueueManager = $this->container->get('druki_content.sync_queue_manager');
+    $this->syncQueueManager = $this->container->get('druki_content.queue.content_sync_manager');
 
     // Make sure the queue is empty during testing.
     $this->queueFactory->get($this->syncQueueManager::QUEUE_NAME)->deleteQueue();

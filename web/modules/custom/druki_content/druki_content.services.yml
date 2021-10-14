@@ -6,12 +6,12 @@ services:
 
   druki_content.git_subscriber:
     class: Drupal\druki_content\EventSubscriber\GitSubscriber
-    arguments: ['@druki_content.sync_queue_manager']
+    arguments: ['@druki_content.queue.content_sync_manager']
     tags:
       - { name: event_subscriber }
 
-  druki_content.sync_queue_manager:
-    class: Drupal\druki_content\Sync\Queue\QueueManager
+  druki_content.queue.content_sync_manager:
+    class: Drupal\druki_content\Queue\ContentSyncQueueManager
     arguments:
       - '@druki_content.source_content_finder'
       - '@druki_content.finder.redirect_source_file'
@@ -28,8 +28,8 @@ services:
     class: Drupal\druki_content\Sync\SourceContent\SourceContentParser
     arguments: ['@druki.markdown_parser']
 
-  druki_content.sync_queue_processor:
-    class: Drupal\druki_content\Sync\Queue\QueueProcessor
+  druki_content.queue.content_sync_processor:
+    class: Drupal\druki_content\Queue\ContentSyncQueueProcessor
     arguments: ['@entity_type.manager', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache']
     tags:
       - { name: service_collector, tag: druki_sync_queue_processor, call: addProcessor }
@@ -42,14 +42,14 @@ services:
       - { name: druki_sync_queue_processor }
 
   druki_content.queue.clean_queue_processor:
-    class: Drupal\druki_content\Queue\CleanQueueProcessor
+    class: Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor
     public: false
     arguments: ['@entity_type.manager']
     tags:
       - { name: druki_sync_queue_processor }
 
   druki_content.queue.redirect_queue_processor:
-    class: Drupal\druki_content\Queue\RedirectQueueProcessor
+    class: Drupal\druki_content\Queue\ContentSyncRedirectQueueItemProcessor
     public: false
     arguments: ['@entity_type.manager', '@state']
     tags:

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Queue;
+namespace Drupal\druki_content\Queue;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Queue\QueueFactory;
@@ -10,16 +10,16 @@ use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
+use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
 use Drupal\druki_content\Finder\RedirectSourceFileFinder;
-use Drupal\druki_content\Queue\CleanQueueItem;
-use Drupal\druki_content\Queue\RedirectQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContentFinder;
-use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
+use Drupal\druki_content\Sync\SourceContent\SourceContentListContentSyncQueueItem;
 
 /**
  * Provides queue manager for synchronization content.
  */
-final class QueueManager {
+final class ContentSyncQueueManager {
 
   /**
    * The queue name used for synchronisation.
@@ -113,7 +113,7 @@ final class QueueManager {
 
     $items_per_queue = Settings::get('entity_update_batch_size', 50);
     foreach ($source_content_list->chunk($items_per_queue) as $content_list_chunk) {
-      $this->queue->createItem(new SourceContentListQueueItem($content_list_chunk));
+      $this->queue->createItem(new SourceContentListContentSyncQueueItem($content_list_chunk));
     }
   }
 
@@ -128,7 +128,7 @@ final class QueueManager {
     if ($redirect_file_list->getIterator()->count() == 0) {
       return;
     }
-    $redirect_queue_item = new RedirectQueueItem($redirect_file_list);
+    $redirect_queue_item = new ContentSyncRedirectQueueItem($redirect_file_list);
     $this->queue->createItem($redirect_queue_item);
   }
 
@@ -137,7 +137,7 @@ final class QueueManager {
    */
   protected function addCleanOperation(): void {
     $sync_timestamp = $this->time->getRequestTime();
-    $this->queue->createItem(new CleanQueueItem($sync_timestamp));
+    $this->queue->createItem(new ContentSyncCleanQueueItem($sync_timestamp));
     $this->state->set('druki_content.last_sync_timestamp', $this->time->getRequestTime());
   }
 

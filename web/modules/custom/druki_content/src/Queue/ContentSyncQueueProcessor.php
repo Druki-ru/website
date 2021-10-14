@@ -1,33 +1,33 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Queue;
+namespace Drupal\druki_content\Queue;
 
 /**
  * Provides processing for sync queue items.
  */
-final class QueueProcessor implements QueueProcessorInterface {
+final class ContentSyncQueueProcessor implements ContentSyncQueueProcessorInterface {
 
   /**
    * The list of available queue processors.
    *
-   * @var \Drupal\druki_content\Sync\Queue\QueueProcessorInterface[]
+   * @var \Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface
    */
   protected array $processors = [];
 
   /**
    * Adds loader to the list.
    *
-   * @param \Drupal\druki_content\Sync\Queue\QueueProcessorInterface $processor
+   * @param \Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface $processor
    *   The loader instance.
    */
-  public function addProcessor(QueueProcessorInterface $processor): void {
+  public function addProcessor(ContentSyncQueueProcessorInterface $processor): void {
     $this->processors[] = $processor;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function process(QueueItemInterface $item): void {
+  public function process(ContentSyncQueueItemInterface $item): void {
     foreach ($this->processors as $processor) {
       if ($processor->isApplicable($item)) {
         $processor->process($item);
@@ -39,7 +39,7 @@ final class QueueProcessor implements QueueProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(QueueItemInterface $item): bool {
+  public function isApplicable(ContentSyncQueueItemInterface $item): bool {
     return FALSE;
   }
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Queue;
+namespace Drupal\druki_content\Queue;
 
 /**
  * Provides interface for queue items used during content synchronization.
  */
-interface QueueItemInterface {
+interface ContentSyncQueueItemInterface {
 
   /**
    * Gets queue item payload.

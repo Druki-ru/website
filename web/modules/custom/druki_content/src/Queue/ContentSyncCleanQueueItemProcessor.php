@@ -3,8 +3,7 @@
 namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\druki_content\Sync\Queue\QueueItemInterface;
-use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
+use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 
 /**
  * Provides synchronization clean queue processor.
@@ -12,7 +11,7 @@ use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
  * This processor will remove all content which has last sync timestamp lesser
  * than queue was built.
  */
-final class CleanQueueProcessor implements QueueProcessorInterface {
+final class ContentSyncCleanQueueItemProcessor implements ContentSyncQueueProcessorInterface {
 
   /**
    * The entity type manager.
@@ -20,7 +19,7 @@ final class CleanQueueProcessor implements QueueProcessorInterface {
   protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
-   * CleanQueueProcessor constructor.
+   * ContentSyncCleanQueueItemProcessor constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -32,7 +31,7 @@ final class CleanQueueProcessor implements QueueProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function process(QueueItemInterface $item): void {
+  public function process(ContentSyncQueueItemInterface $item): void {
     /** @var \Drupal\druki_content\Storage\DrukiContentStorage $druki_content_storage */
     $druki_content_storage = $this->entityTypeManager->getStorage('druki_content');
     $druki_content_storage->cleanOutdated($item->getPayload());
@@ -41,8 +40,8 @@ final class CleanQueueProcessor implements QueueProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(QueueItemInterface $item): bool {
-    return $item instanceof CleanQueueItem;
+  public function isApplicable(ContentSyncQueueItemInterface $item): bool {
+    return $item instanceof ContentSyncCleanQueueItem;
   }
 
 }
