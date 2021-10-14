@@ -10,9 +10,9 @@ use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
-use Drupal\druki_content\Sync\Clean\CleanQueueItem;
-use Drupal\druki_content\Sync\Redirect\RedirectFinder;
+use Drupal\druki_content\Finder\RedirectFileFinder;
 use Drupal\druki_content\Sync\Redirect\RedirectQueueItem;
+use Drupal\druki_content\Sync\Clean\CleanQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContentFinder;
 use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
 
@@ -54,14 +54,14 @@ final class QueueManager {
   /**
    * The redirect finder.
    */
-  protected RedirectFinder $redirectFinder;
+  protected RedirectFileFinder $redirectFinder;
 
   /**
    * Constructs a new SynchronizationQueueBuilder object.
    *
    * @param \Drupal\druki_content\Sync\SourceContent\SourceContentFinder $content_finder
    *   The source content finder.
-   * @param \Drupal\druki_content\Sync\Redirect\RedirectFinder $redirect_finder
+   * @param \Drupal\druki_content\Finder\RedirectFileFinder $redirect_finder
    *   The redirect finder.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory.
@@ -72,7 +72,7 @@ final class QueueManager {
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker
    *   The queue manager.
    */
-  public function __construct(SourceContentFinder $content_finder, RedirectFinder $redirect_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
+  public function __construct(SourceContentFinder $content_finder, RedirectFileFinder $redirect_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
     $this->contentFinder = $content_finder;
     $this->redirectFinder = $redirect_finder;
     $this->queue = $queue_factory->get(self::QUEUE_NAME);

@@ -29,8 +29,8 @@ final class RedirectTest extends ExistingSiteBase {
    */
   public function testRedirectFinder(): void {
     $source_dir = $this->setupFakeSourceDir();
-    /** @var \Drupal\druki_content\Sync\Redirect\RedirectFinder $finder */
-    $finder = $this->container->get('druki_content.redirect.finder');
+    /** @var \Drupal\druki_content\Finder\RedirectFileFinder $finder */
+    $finder = $this->container->get('druki_content.finder.redirect_file');
     $redirect_list = $finder->findAll($source_dir->url());
     $expected_content = \file_get_contents($source_dir->url() . '/docs/ru/redirects.csv');
     $redirect_list->getIterator()->rewind();

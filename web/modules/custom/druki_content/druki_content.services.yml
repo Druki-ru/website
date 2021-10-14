@@ -14,7 +14,7 @@ services:
     class: Drupal\druki_content\Sync\Queue\QueueManager
     arguments:
       - '@druki_content.source_content_finder'
-      - '@druki_content.redirect.finder'
+      - '@druki_content.finder.redirect_file'
       - '@queue'
       - '@state'
       - '@datetime.time'
@@ -111,6 +111,6 @@ services:
     tags:
       - { name: context_provider }
 
-  druki_content.redirect.finder:
-    class: Drupal\druki_content\Sync\Redirect\RedirectFinder
+  druki_content.finder.redirect_file:
+    class: Drupal\druki_content\Finder\RedirectFileFinder
     arguments: ['@language_manager']

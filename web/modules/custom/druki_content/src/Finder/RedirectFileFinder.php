@@ -1,14 +1,16 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Redirect;
+namespace Drupal\druki_content\Finder;
 
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\druki_content\Sync\Redirect\RedirectFile;
+use Drupal\druki_content\Sync\Redirect\RedirectFileList;
 use Symfony\Component\Finder\Finder;
 
 /**
  * Provides finder for redirect files.
  */
-final class RedirectFinder {
+final class RedirectFileFinder {
 
   /**
    * The language manager.
