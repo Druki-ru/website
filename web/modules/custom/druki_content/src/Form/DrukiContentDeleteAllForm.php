@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\druki_content\Entity\Handler\Form;
+namespace Drupal\druki_content\Form;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
+use Drupal\druki_content\Storage\DrukiContentStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

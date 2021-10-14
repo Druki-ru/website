@@ -7,7 +7,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
+use Drupal\druki_content\Storage\DrukiContentStorage;
 use Drupal\druki_git\Git\GitSettingsInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;

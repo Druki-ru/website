@@ -6,7 +6,7 @@ use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
+use Drupal\druki_content\Storage\DrukiContentStorage;
 use Drupal\druki_content\Sync\ParsedContent\Content\ContentList;
 use Drupal\druki_content\Sync\ParsedContent\ParsedContentLoader;
 use Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList;

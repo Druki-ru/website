@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Entity\Handler\Form;
+namespace Drupal\druki_content\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;

@@ -91,7 +91,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $queue->createItem(new SourceContentListQueueItem($source_content_list));
     $this->assertEquals(1, $queue->numberOfItems());
 
-    /** @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage $druki_content_storage */
+    /** @var \Drupal\druki_content\Storage\DrukiContentStorage $druki_content_storage */
     $druki_content_storage = $this->container->get('entity_type.manager')->getStorage('druki_content');
     $druki_content = $druki_content_storage->loadBySlug('example');
     $this->assertNull($druki_content);
@@ -154,7 +154,7 @@ final class SyncQueueTest extends ExistingSiteBase {
       'sync_timestamp' => 1,
     ]);
 
-    /** @var \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage $druki_content_storage */
+    /** @var \Drupal\druki_content\Storage\DrukiContentStorage $druki_content_storage */
     $druki_content_storage = $this->container->get('entity_type.manager')->getStorage('druki_content');
     $druki_content = $druki_content_storage->loadBySlug('test_clean_up');
     $this->assertEquals('test_clean_up', $druki_content->getSlug());

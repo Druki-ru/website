@@ -6,7 +6,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage;
+use Drupal\druki_content\Storage\DrukiContentStorage;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -37,7 +37,7 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
    *   The plugin ID.
    * @param array $plugin_definition
    *   The plugin definition.
-   * @param \Drupal\druki_content\Entity\Handler\Storage\DrukiContentStorage $content_storage
+   * @param \Drupal\druki_content\Storage\DrukiContentStorage $content_storage
    *   The druki content storage.
    */
   public function __construct(array $configuration, string $plugin_id, array $plugin_definition, DrukiContentStorage $content_storage) {

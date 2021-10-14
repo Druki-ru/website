@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Entity\Handler\RouteProvider;
+namespace Drupal\druki_content\Routing;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;

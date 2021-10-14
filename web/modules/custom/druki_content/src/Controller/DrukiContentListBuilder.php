@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Entity\Handler\ListBuilder;
+namespace Drupal\druki_content\Controller;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DateFormatterInterface;

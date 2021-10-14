@@ -384,3 +384,79 @@ function druki_content_update_9103(array &$sandbox): void {
   Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('slug', 'druki_content', 'druki_content', $field_definition);
 }
+
+/**
+ * Change druki_content Access handlers location.
+ */
+function druki_content_update_9201(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('access', 'Drupal\druki_content\Access\DrukiContentAccessControlHandler');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Change druki_content form handlers location.
+ */
+function druki_content_update_9202(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $form_handlers = [
+    'edit' => 'Drupal\druki_content\Form\DrukiContentForm',
+    'delete' => 'Drupal\Core\Entity\ContentEntityDeleteForm',
+    'delete-all' => 'Drupal\druki_content\Form\DrukiContentDeleteAllForm',
+    'settings' => 'Drupal\druki_content\Form\DrukiContentSettingsForm',
+    'sync' => 'Drupal\druki_content\Form\DrukiContentSyncForm',
+  ];
+  $druki_content_definition->setHandlerClass('form', $form_handlers);
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Change druki_content list_builder handler location.
+ */
+function druki_content_update_9203(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('list_builder', 'Drupal\druki_content\Controller\DrukiContentListBuilder');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Change druki_content route_provider handler location.
+ */
+function druki_content_update_9204(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $route_providers = [
+    'html' => 'Drupal\druki_content\Routing\DrukiContentHtmlRouteProvider',
+  ];
+  $druki_content_definition->setHandlerClass('route_provider', $route_providers);
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Change druki_content redirect_controller handler location.
+ */
+function druki_content_update_9205(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('redirect_controller', 'Drupal\druki_content\Routing\DrukiContentRedirectController');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Change druki_content storage handler location.
+ */
+function druki_content_update_9206(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Storage\DrukiContentStorage');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
