@@ -3,8 +3,8 @@
 namespace Drupal\druki_content\Finder;
 
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\druki_content\Sync\Redirect\RedirectFile;
-use Drupal\druki_content\Sync\Redirect\RedirectFileList;
+use Drupal\druki_content\Data\RedirectSourceFile;
+use Drupal\druki_content\Data\RedirectSourceFileList;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -33,10 +33,10 @@ final class RedirectSourceFileFinder {
    * @param string $directory
    *   The path where to look at.
    *
-   * @return \Drupal\druki_content\Sync\Redirect\RedirectFileList
+   * @return \Drupal\druki_content\Data\RedirectSourceFileList
    *   The list with redirect files.
    */
-  public function findAll(string $directory): RedirectFileList {
+  public function findAll(string $directory): RedirectSourceFileList {
     $finder = new Finder();
     $finder->name('redirects.csv');
     // Look only at specific directory without hierarchy.
@@ -45,7 +45,7 @@ final class RedirectSourceFileFinder {
     $active_languages = $this->languageManager->getLanguages();
     $active_langcodes = \array_keys($active_languages);
 
-    $redirect_file_list = new RedirectFileList();
+    $redirect_file_list = new RedirectSourceFileList();
     foreach ($active_langcodes as $langcode) {
       // The file must be in the root of language source content.
       $look_at = "{$directory}/docs/{$langcode}";
@@ -57,7 +57,7 @@ final class RedirectSourceFileFinder {
       $iterator->rewind();
       /** @var \Symfony\Component\Finder\SplFileInfo $first_file */
       $first_file = $iterator->current();
-      $redirect_file_list->addFile(new RedirectFile($first_file->getPathname(), $langcode));
+      $redirect_file_list->addFile(new RedirectSourceFile($first_file->getPathname(), $langcode));
     }
     return $redirect_file_list;
   }

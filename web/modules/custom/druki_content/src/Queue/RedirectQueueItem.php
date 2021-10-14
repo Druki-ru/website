@@ -1,7 +1,8 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Redirect;
+namespace Drupal\druki_content\Queue;
 
+use Drupal\druki_content\Data\RedirectSourceFileList;
 use Drupal\druki_content\Sync\Queue\QueueItemInterface;
 
 /**
@@ -12,22 +13,22 @@ final class RedirectQueueItem implements QueueItemInterface {
   /**
    * The redirect file list.
    */
-  protected RedirectFileList $payload;
+  protected RedirectSourceFileList $payload;
 
   /**
    * RedirectQueueItem constructor.
    *
-   * @param \Drupal\druki_content\Sync\Redirect\RedirectFileList $payload
+   * @param \Drupal\druki_content\Data\RedirectSourceFileList $payload
    *   The redirect file list.
    */
-  public function __construct(RedirectFileList $payload) {
+  public function __construct(RedirectSourceFileList $payload) {
     $this->payload = $payload;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getPayload(): RedirectFileList {
+  public function getPayload(): RedirectSourceFileList {
     return $this->payload;
   }
 

@@ -6,10 +6,10 @@ use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Queue\QueueInterface;
+use Drupal\druki_content\Data\RedirectSourceFile;
+use Drupal\druki_content\Data\RedirectSourceFileList;
+use Drupal\druki_content\Queue\RedirectQueueItem;
 use Drupal\druki_content\Sync\Clean\CleanQueueItem;
-use Drupal\druki_content\Sync\Redirect\RedirectFile;
-use Drupal\druki_content\Sync\Redirect\RedirectFileList;
-use Drupal\druki_content\Sync\Redirect\RedirectQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContent;
 use Drupal\druki_content\Sync\SourceContent\SourceContentList;
 use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
@@ -124,8 +124,8 @@ final class SyncQueueTest extends ExistingSiteBase {
    */
   public function testRedirectQueue(): void {
     $file_pathname = $this->sourceRoot->url() . '/docs/ru/redirects.csv';
-    $redirect_file_list = new RedirectFileList();
-    $redirect_file_list->addFile(new RedirectFile($file_pathname, 'ru'));
+    $redirect_file_list = new RedirectSourceFileList();
+    $redirect_file_list->addFile(new RedirectSourceFile($file_pathname, 'ru'));
     $redirect_queue_item = new RedirectQueueItem($redirect_file_list);
 
     $queue = $this->getSyncQueue();

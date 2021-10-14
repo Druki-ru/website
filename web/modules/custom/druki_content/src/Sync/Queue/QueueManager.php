@@ -10,9 +10,9 @@ use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Queue\RedirectQueueItem;
 use Drupal\druki_content\Finder\RedirectSourceFileFinder;
 use Drupal\druki_content\Sync\Clean\CleanQueueItem;
-use Drupal\druki_content\Sync\Redirect\RedirectQueueItem;
 use Drupal\druki_content\Sync\SourceContent\SourceContentFinder;
 use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
 

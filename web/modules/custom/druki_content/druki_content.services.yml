@@ -14,7 +14,7 @@ services:
     class: Drupal\druki_content\Sync\Queue\QueueManager
     arguments:
       - '@druki_content.source_content_finder'
-      - '@druki_content.finder.redirect_file'
+      - '@druki_content.finder.redirect_source_file'
       - '@queue'
       - '@state'
       - '@datetime.time'
@@ -48,8 +48,8 @@ services:
     tags:
       - { name: druki_sync_queue_processor }
 
-  druki_content.sync_queue_processor.redirect:
-    class: Drupal\druki_content\Sync\Redirect\RedirectQueueProcessor
+  druki_content.queue.redirect_queue_processor:
+    class: Drupal\druki_content\Queue\RedirectQueueProcessor
     public: false
     arguments: ['@entity_type.manager', '@state']
     tags:
@@ -111,6 +111,6 @@ services:
     tags:
       - { name: context_provider }
 
-  druki_content.finder.redirect_file:
+  druki_content.finder.redirect_source_file:
     class: Drupal\druki_content\Finder\RedirectSourceFileFinder
     arguments: ['@language_manager']

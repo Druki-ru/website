@@ -1,11 +1,12 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Redirect;
+namespace Drupal\druki_content\Queue;
 
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Data\RedirectSourceFile;
 use Drupal\druki_content\Sync\Queue\QueueItemInterface;
 use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
 
@@ -46,7 +47,7 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
    * {@inheritdoc}
    */
   public function process(QueueItemInterface $item): void {
-    /** @var \Drupal\druki_content\Sync\Redirect\RedirectFileList $files */
+    /** @var \Drupal\druki_content\Data\RedirectSourceFileList $files */
     $files = $item->getPayload();
     foreach ($files as $file) {
       $this->processRedirectFile($file);
@@ -56,10 +57,10 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
   /**
    * Process single redirect file.
    *
-   * @param \Drupal\druki_content\Sync\Redirect\RedirectFile $redirect_file
+   * @param \Drupal\druki_content\Data\RedirectSourceFile $redirect_file
    *   The redirect file.
    */
-  protected function processRedirectFile(RedirectFile $redirect_file): void {
+  protected function processRedirectFile(RedirectSourceFile $redirect_file): void {
     $state_id = 'druki_content:redirect_last_hash:' . $redirect_file->getLanguage();
     $previous_hash = $this->state->get($state_id);
     if ($previous_hash == $redirect_file->getHash()) {
@@ -72,10 +73,10 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
   /**
    * Updated redirect entities.
    *
-   * @param \Drupal\druki_content\Sync\Redirect\RedirectFile $redirect_file
+   * @param \Drupal\druki_content\Data\RedirectSourceFile $redirect_file
    *   The redirect file.
    */
-  protected function updateRedirects(RedirectFile $redirect_file): void {
+  protected function updateRedirects(RedirectSourceFile $redirect_file): void {
     $this->cleanRedirects($redirect_file->getLanguage());
     $this->createRedirects($redirect_file);
   }
@@ -114,10 +115,10 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
   /**
    * Creates redirects from provided file.
    *
-   * @param \Drupal\druki_content\Sync\Redirect\RedirectFile $redirect_file
+   * @param \Drupal\druki_content\Data\RedirectSourceFile $redirect_file
    *   The redirect file.
    */
-  protected function createRedirects(RedirectFile $redirect_file): void {
+  protected function createRedirects(RedirectSourceFile $redirect_file): void {
     if (($handle = \fopen($redirect_file->getPathname(), 'r')) !== FALSE) {
       while (($row = \fgetcsv($handle)) !== FALSE) {
         $from = UrlHelper::parse($row[0]);
@@ -131,6 +132,13 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
         $redirect->save();
       }
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isApplicable(QueueItemInterface $item): bool {
+    return $item instanceof RedirectQueueItem;
   }
 
   /**
@@ -153,13 +161,6 @@ final class RedirectQueueProcessor implements QueueProcessorInterface {
       $url = UrlHelper::parse($raw_path);
     }
     return $url;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isApplicable(QueueItemInterface $item): bool {
-    return $item instanceof RedirectQueueItem;
   }
 
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Redirect;
+namespace Drupal\druki_content\Data;
 
 /**
  * Provides storage for redirects file.
  */
-final class RedirectFile {
+final class RedirectSourceFile {
 
   /**
    * The path to file.
@@ -18,7 +18,7 @@ final class RedirectFile {
   protected string $language;
 
   /**
-   * RedirectFile constructor.
+   * RedirectSourceFile constructor.
    *
    * @param string $pathname
    *   The path to the file.
