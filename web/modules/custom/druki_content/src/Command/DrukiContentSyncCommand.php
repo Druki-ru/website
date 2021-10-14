@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Commands;
+namespace Drupal\druki_content\Command;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
@@ -13,7 +13,7 @@ use Drush\Commands\DrushCommands;
 /**
  * Provides drush commands for synchronization "druki_content" entity.
  */
-class DrukiContentSyncCommands extends DrushCommands {
+class DrukiContentSyncCommand extends DrushCommands {
 
   /**
    * The git service.

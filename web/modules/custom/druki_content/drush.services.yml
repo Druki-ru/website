@@ -1,6 +1,6 @@
 services:
   druki_content.sync.commands:
-    class: Drupal\druki_content\Commands\DrukiContentSyncCommands
+    class: Drupal\druki_content\Command\DrukiContentSyncCommand
     tags:
       - { name: drush.command }
     arguments:
