@@ -41,8 +41,8 @@ services:
     tags:
       - { name: druki_sync_queue_processor }
 
-  druki_content.sync_queue_processor.clean:
-    class: Drupal\druki_content\Sync\Clean\CleanQueueProcessor
+  druki_content.queue.clean_queue_processor:
+    class: Drupal\druki_content\Queue\CleanQueueProcessor
     public: false
     arguments: ['@entity_type.manager']
     tags:

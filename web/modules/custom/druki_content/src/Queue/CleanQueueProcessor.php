@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Sync\Clean;
+namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki_content\Sync\Queue\QueueItemInterface;
