@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * Provides finder for redirect files.
  */
-final class RedirectFileFinder {
+final class RedirectSourceFileFinder {
 
   /**
    * The language manager.

@@ -112,5 +112,5 @@ services:
       - { name: context_provider }
 
   druki_content.finder.redirect_file:
-    class: Drupal\druki_content\Finder\RedirectFileFinder
+    class: Drupal\druki_content\Finder\RedirectSourceFileFinder
     arguments: ['@language_manager']
