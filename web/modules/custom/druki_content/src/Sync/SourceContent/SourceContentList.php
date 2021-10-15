@@ -4,6 +4,8 @@ namespace Drupal\druki_content\Sync\SourceContent;
 
 /**
  * Provides value object to store multiple source content.
+ *
+ * @todo Refactor to ContentSourceFileList.
  */
 final class SourceContentList implements \IteratorAggregate {
 

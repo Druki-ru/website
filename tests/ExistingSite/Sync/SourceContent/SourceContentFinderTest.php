@@ -9,7 +9,7 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 /**
  * Provides test for source content finder.
  *
- * @coversDefaultClass \Drupal\druki_content\Sync\SourceContent\SourceContentFinder
+ * @coversDefaultClass \Drupal\druki_content\Finder\ContentSourceFileFinder
  */
 final class SourceContentFinderTest extends ExistingSiteBase {
 
@@ -20,8 +20,8 @@ final class SourceContentFinderTest extends ExistingSiteBase {
    */
   public function testFindAll(): void {
     $directory = $this->setupFakeSourceDir();
-    /** @var \Drupal\druki_content\Sync\SourceContent\SourceContentFinder $content_finder */
-    $content_finder = $this->container->get('druki_content.source_content_finder');
+    /** @var \Drupal\druki_content\Finder\ContentSourceFileFinder $content_finder */
+    $content_finder = $this->container->get('druki_content.finder.content_source_file');
     $content_list = $content_finder->findAll($directory->url());
     // The current site has only Russian language enabled. So it's expected that
     // finder will skip all unsupported language content.

@@ -16,6 +16,8 @@ use Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList;
  *
  * This class will take all care about finding the existed entity or creating
  * new one, as wel as processing all necessary values.
+ *
+ * @todo Refactor to ContentDocumentLoader.
  */
 final class ParsedSourceContentLoader {
 

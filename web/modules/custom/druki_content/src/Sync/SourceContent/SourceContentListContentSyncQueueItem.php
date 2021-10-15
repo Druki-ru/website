@@ -6,6 +6,8 @@ use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 
 /**
  * Provides queue item for synchronization content.
+ *
+ * @todo Refactor to ContentSourceDocumentListQueueItem.
  */
 final class SourceContentListContentSyncQueueItem implements ContentSyncQueueItemInterface {
 

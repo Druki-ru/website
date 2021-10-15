@@ -4,6 +4,8 @@ namespace Drupal\druki_content\Sync\SourceContent;
 
 /**
  * Provides value object stores single source content.
+ *
+ * @todo Refactor to ContentSourceFile.
  */
 final class SourceContent {
 

@@ -12,8 +12,8 @@ use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
+use Drupal\druki_content\Finder\ContentSourceFileFinder;
 use Drupal\druki_content\Finder\RedirectSourceFileFinder;
-use Drupal\druki_content\Sync\SourceContent\SourceContentFinder;
 use Drupal\druki_content\Sync\SourceContent\SourceContentListContentSyncQueueItem;
 
 /**
@@ -29,7 +29,7 @@ final class ContentSyncQueueManager {
   /**
    * The source content finder.
    */
-  protected SourceContentFinder $contentFinder;
+  protected ContentSourceFileFinder $contentFinder;
 
   /**
    * The queue with synchronization items.
@@ -59,7 +59,7 @@ final class ContentSyncQueueManager {
   /**
    * Constructs a new SynchronizationQueueBuilder object.
    *
-   * @param \Drupal\druki_content\Sync\SourceContent\SourceContentFinder $content_finder
+   * @param \Drupal\druki_content\Finder\ContentSourceFileFinder $content_finder
    *   The source content finder.
    * @param \Drupal\druki_content\Finder\RedirectSourceFileFinder $redirect_finder
    *   The redirect finder.
@@ -72,7 +72,7 @@ final class ContentSyncQueueManager {
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker
    *   The queue manager.
    */
-  public function __construct(SourceContentFinder $content_finder, RedirectSourceFileFinder $redirect_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
+  public function __construct(ContentSourceFileFinder $content_finder, RedirectSourceFileFinder $redirect_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
     $this->contentFinder = $content_finder;
     $this->redirectFinder = $redirect_finder;
     $this->queue = $queue_factory->get(self::QUEUE_NAME);

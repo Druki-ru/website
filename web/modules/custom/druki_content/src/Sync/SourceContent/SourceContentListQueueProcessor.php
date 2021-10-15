@@ -11,6 +11,8 @@ use Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface;
 
 /**
  * Provides source content list queue processor.
+ *
+ * @todo Refactor to ContentSourceDocumentListQueueProcessor.
  */
 final class SourceContentListQueueProcessor implements ContentSyncQueueProcessorInterface {
 

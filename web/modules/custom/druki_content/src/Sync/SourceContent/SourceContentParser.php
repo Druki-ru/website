@@ -10,6 +10,8 @@ use Drupal\druki_content\Parser\HtmlContentParser;
  *
  * This class will parse source content from file and convert it to structured
  * object to further use.
+ *
+ * @todo Refactor to ContentSourceFileParser.
  */
 final class SourceContentParser {
 

@@ -1,9 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Sync\SourceContent;
+namespace Drupal\druki_content\Finder;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\druki\Finder\MarkdownDirectoryFinder;
+use Drupal\druki_content\Sync\SourceContent\SourceContent;
+use Drupal\druki_content\Sync\SourceContent\SourceContentList;
 
 /**
  * Provides finder for source content files.
@@ -23,7 +25,7 @@ use Drupal\druki\Finder\MarkdownDirectoryFinder;
  * This implementation search only for active languages on current Drupal
  * installation. Other languages will be ignored.
  */
-final class SourceContentFinder {
+final class ContentSourceFileFinder {
 
   /**
    * The language manager.
@@ -31,7 +33,7 @@ final class SourceContentFinder {
   protected LanguageManagerInterface $languageManager;
 
   /**
-   * Constructs a new SourceContentFinder object.
+   * Constructs a new ContentSourceFileFinder object.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.

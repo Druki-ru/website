@@ -13,15 +13,15 @@ services:
   druki_content.queue.content_sync_manager:
     class: Drupal\druki_content\Queue\ContentSyncQueueManager
     arguments:
-      - '@druki_content.source_content_finder'
+      - '@druki_content.finder.content_source_file'
       - '@druki_content.finder.redirect_source_file'
       - '@queue'
       - '@state'
       - '@datetime.time'
       - '@plugin.manager.queue_worker'
 
-  druki_content.source_content_finder:
-    class: Drupal\druki_content\Sync\SourceContent\SourceContentFinder
+  druki_content.finder.content_source_file:
+    class: Drupal\druki_content\Finder\ContentSourceFileFinder
     arguments: ['@language_manager']
 
   druki_content.source_content_parser:
