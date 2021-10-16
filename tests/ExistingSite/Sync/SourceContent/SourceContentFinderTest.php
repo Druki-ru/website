@@ -3,7 +3,7 @@
 namespace Druki\Tests\ExistingSite\Sync\SourceContent;
 
 use Druki\Tests\Traits\SourceContentProviderTrait;
-use Drupal\druki_content\Sync\SourceContent\SourceContent;
+use Drupal\druki_content\Data\ContentSourceFile;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
@@ -28,7 +28,7 @@ final class SourceContentFinderTest extends ExistingSiteBase {
     $this->assertEquals(2, $content_list->numberOfItems());
     $content_list_array = $content_list->toArray();
     $first_content = \array_shift($content_list_array);
-    $this->assertTrue($first_content instanceof SourceContent);
+    $this->assertTrue($first_content instanceof ContentSourceFile);
     $this->assertEquals('ru', $first_content->getLanguage());
     $this->assertEquals('vfs://content/docs/ru/standards/php/index.md', $first_content->getRealpath());
     $this->assertEquals('docs/ru/standards/php/index.md', $first_content->getRelativePathname());

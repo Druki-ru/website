@@ -6,12 +6,12 @@ use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Queue\QueueInterface;
+use Drupal\druki_content\Data\ContentSourceFile;
+use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
 use Drupal\druki_content\Data\RedirectSourceFile;
 use Drupal\druki_content\Data\RedirectSourceFileList;
-use Drupal\druki_content\Sync\SourceContent\SourceContent;
-use Drupal\druki_content\Sync\SourceContent\SourceContentList;
 use Drupal\druki_content\Sync\SourceContent\SourceContentListContentSyncQueueItem;
 use org\bovigo\vfs\vfsStream;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
@@ -82,8 +82,8 @@ final class SyncQueueTest extends ExistingSiteBase {
     $file = vfsStream::newFile('example-content.md')
       ->withContent(\file_get_contents(__DIR__ . '/../../fixtures/source-content.md'))
       ->at($this->sourceRoot);
-    $source_content = new SourceContent($file->url(), $file->path(), 'ru');
-    $source_content_list = new SourceContentList();
+    $source_content = new ContentSourceFile($file->url(), $file->path(), 'ru');
+    $source_content_list = new ContentSourceFileList();
     $source_content_list->add($source_content);
 
     $queue = $this->getSyncQueue();
@@ -106,8 +106,8 @@ final class SyncQueueTest extends ExistingSiteBase {
     $file = vfsStream::newFile('example-content.md')
       ->withContent(\file_get_contents(__DIR__ . '/../../fixtures/source-content-2.md'))
       ->at($this->sourceRoot);
-    $source_content = new SourceContent($file->url(), $file->path(), 'ru');
-    $source_content_list = new SourceContentList();
+    $source_content = new ContentSourceFile($file->url(), $file->path(), 'ru');
+    $source_content_list = new ContentSourceFileList();
     $source_content_list->add($source_content);
     $queue->createItem(new SourceContentListContentSyncQueueItem($source_content_list));
 

@@ -1,13 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Sync\SourceContent;
+namespace Drupal\druki_content\Data;
 
 /**
- * Provides value object stores single source content.
- *
- * @todo Refactor to ContentSourceFile.
+ * Provides value object for single content source file found.
  */
-final class SourceContent {
+final class ContentSourceFile {
 
   /**
    * The source content path URI.

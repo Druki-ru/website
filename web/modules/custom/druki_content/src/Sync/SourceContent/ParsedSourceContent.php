@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Sync\SourceContent;
 
 use Drupal\Component\Utility\Crypt;
+use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Sync\ParsedContent\ParsedContent;
 
 /**
@@ -15,7 +16,7 @@ final class ParsedSourceContent {
   /**
    * The source content.
    */
-  protected SourceContent $source;
+  protected ContentSourceFile $source;
 
   /**
    * The parsed content.
@@ -25,12 +26,12 @@ final class ParsedSourceContent {
   /**
    * Constructs a new ParsedSourceContent object.
    *
-   * @param \Drupal\druki_content\Sync\SourceContent\SourceContent $source_content
+   * @param \Drupal\druki_content\Data\ContentSourceFile $source_content
    *   The source content.
    * @param \Drupal\druki_content\Sync\ParsedContent\ParsedContent $parsed_content
    *   The parsed content.
    */
-  public function __construct(SourceContent $source_content, ParsedContent $parsed_content) {
+  public function __construct(ContentSourceFile $source_content, ParsedContent $parsed_content) {
     $this->source = $source_content;
     $this->parsed = $parsed_content;
   }
@@ -38,10 +39,10 @@ final class ParsedSourceContent {
   /**
    * Gets source content.
    *
-   * @return \Drupal\druki_content\Sync\SourceContent\SourceContent
+   * @return \Drupal\druki_content\Data\ContentSourceFile
    *   The source content.
    */
-  public function getSource(): SourceContent {
+  public function getSource(): ContentSourceFile {
     return $this->source;
   }
 

@@ -2,14 +2,14 @@
 
 namespace Druki\Tests\Unit\Sync\SourceContent;
 
-use Drupal\druki_content\Sync\SourceContent\SourceContent;
-use Drupal\druki_content\Sync\SourceContent\SourceContentList;
+use Drupal\druki_content\Data\ContentSourceFile;
+use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\Tests\UnitTestCase;
 
 /**
  * Provides test for list value object contains source contents.
  *
- * @coversDefaultClass \Drupal\druki_content\Sync\SourceContent\SourceContentList
+ * @coversDefaultClass \Drupal\druki_content\Data\ContentSourceFileList
  */
 final class SourceContentListTest extends UnitTestCase {
 
@@ -17,10 +17,10 @@ final class SourceContentListTest extends UnitTestCase {
    * Test the class.
    */
   public function testList(): void {
-    $source_content_list = new SourceContentList();
+    $source_content_list = new ContentSourceFileList();
 
-    $source_content_1 = new SourceContent('foo', 'bar', 'ru');
-    $source_content_2 = new SourceContent('foo', 'bar', 'ru');
+    $source_content_1 = new ContentSourceFile('foo', 'bar', 'ru');
+    $source_content_2 = new ContentSourceFile('foo', 'bar', 'ru');
 
     $return = $source_content_list->add($source_content_1);
     $this->assertSame($source_content_list, $return);
@@ -40,8 +40,8 @@ final class SourceContentListTest extends UnitTestCase {
     $this->assertEquals($expected_array, $iterator->getArrayCopy());
     
     $expected_chunks = [
-      0 => (new SourceContentList())->add($source_content_1),
-      1 => (new SourceContentList())->add($source_content_2),
+      0 => (new ContentSourceFileList())->add($source_content_1),
+      1 => (new ContentSourceFileList())->add($source_content_2),
     ];
     $this->assertEquals($expected_chunks, $source_content_list->chunk(1));
   }

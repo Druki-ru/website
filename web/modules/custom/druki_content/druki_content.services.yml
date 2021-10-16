@@ -24,20 +24,20 @@ services:
     class: Drupal\druki_content\Finder\ContentSourceFileFinder
     arguments: ['@language_manager']
 
-  druki_content.source_content_parser:
-    class: Drupal\druki_content\Sync\SourceContent\SourceContentParser
+  druki_content.parser.content_source_file:
+    class: Drupal\druki_content\Parser\ContentSourceFileParser
     arguments: ['@druki.markdown_parser']
 
   druki_content.queue.content_sync_processor:
     class: Drupal\druki_content\Queue\ContentSyncQueueProcessor
-    arguments: ['@entity_type.manager', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache']
+    arguments: ['@entity_type.manager', '@druki_content.parser.content_source_file', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache']
     tags:
       - { name: service_collector, tag: druki_sync_queue_processor, call: addProcessor }
 
   druki_content.sync_queue_processor.source_content_list:
     class: Drupal\druki_content\Sync\SourceContent\SourceContentListQueueProcessor
     public: false
-    arguments: ['@state', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@logger.channel.druki_content']
+    arguments: ['@state', '@druki_content.parser.content_source_file', '@druki_content.parsed_source_content_loader', '@logger.channel.druki_content']
     tags:
       - { name: druki_sync_queue_processor }
 

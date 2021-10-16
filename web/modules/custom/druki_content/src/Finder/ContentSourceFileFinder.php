@@ -4,8 +4,8 @@ namespace Drupal\druki_content\Finder;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\druki\Finder\MarkdownDirectoryFinder;
-use Drupal\druki_content\Sync\SourceContent\SourceContent;
-use Drupal\druki_content\Sync\SourceContent\SourceContentList;
+use Drupal\druki_content\Data\ContentSourceFile;
+use Drupal\druki_content\Data\ContentSourceFileList;
 
 /**
  * Provides finder for source content files.
@@ -48,11 +48,11 @@ final class ContentSourceFileFinder {
    * @param string $directory
    *   The directory path with sources.
    *
-   * @return \Drupal\druki_content\Sync\SourceContent\SourceContentList
+   * @return \Drupal\druki_content\Data\ContentSourceFileList
    *   Source content list.
    */
-  public function findAll(string $directory): SourceContentList {
-    $all = new SourceContentList();
+  public function findAll(string $directory): ContentSourceFileList {
+    $all = new ContentSourceFileList();
     // Source directory must contain "/docs" folder.
     $docs_folder = 'docs';
 
@@ -64,7 +64,7 @@ final class ContentSourceFileFinder {
       $finder = new MarkdownDirectoryFinder(["{$directory}/{$docs_folder}/{$langcode}"]);
       foreach ($finder->findAll() as $file) {
         $relative_pathname = "{$docs_folder}/{$langcode}/{$file->getRelativePathname()}";
-        $all->add(new SourceContent($file->getPathname(), $relative_pathname, $langcode));
+        $all->add(new ContentSourceFile($file->getPathname(), $relative_pathname, $langcode));
       }
     }
 

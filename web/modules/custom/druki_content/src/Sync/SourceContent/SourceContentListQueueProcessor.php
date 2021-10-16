@@ -6,6 +6,7 @@ use Drupal\Component\FrontMatter\Exception\FrontMatterParseException;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki_content\Parser\ContentSourceFileParser;
 use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 use Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface;
 
@@ -24,7 +25,7 @@ final class SourceContentListQueueProcessor implements ContentSyncQueueProcessor
   /**
    * The source content parser.
    */
-  protected SourceContentParser $parser;
+  protected ContentSourceFileParser $parser;
 
   /**
    * The parsed source content loader.
@@ -41,14 +42,14 @@ final class SourceContentListQueueProcessor implements ContentSyncQueueProcessor
    *
    * @param \Drupal\Core\State\StateInterface $state
    *   The state storage.
-   * @param \Drupal\druki_content\Sync\SourceContent\SourceContentParser $parser
+   * @param \Drupal\druki_content\Parser\ContentSourceFileParser $parser
    *   The source content parser.
    * @param \Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader $loader
    *   The parsed source content loader.
    * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
    *   The logger.
    */
-  public function __construct(StateInterface $state, SourceContentParser $parser, ParsedSourceContentLoader $loader, LoggerChannelInterface $logger) {
+  public function __construct(StateInterface $state, ContentSourceFileParser $parser, ParsedSourceContentLoader $loader, LoggerChannelInterface $logger) {
     $this->state = $state;
     $this->parser = $parser;
     $this->loader = $loader;
@@ -60,7 +61,7 @@ final class SourceContentListQueueProcessor implements ContentSyncQueueProcessor
    */
   public function process(ContentSyncQueueItemInterface $item): void {
     $is_force_update = $this->state->get('druki_content.settings.force_update', FALSE);
-    /** @var \Drupal\druki_content\Sync\SourceContent\SourceContentList $source_content_list */
+    /** @var \Drupal\druki_content\Data\ContentSourceFileList $source_content_list */
     $source_content_list = $item->getPayload();
     foreach ($source_content_list as $source_content) {
       try {

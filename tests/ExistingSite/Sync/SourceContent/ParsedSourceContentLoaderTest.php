@@ -2,13 +2,13 @@
 
 namespace Druki\Tests\ExistingSite\Sync\SourceContent;
 
+use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Sync\ParsedContent\Content\ContentList;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphText;
 use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatter;
 use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterValue;
 use Drupal\druki_content\Sync\ParsedContent\ParsedContent;
 use Drupal\druki_content\Sync\SourceContent\ParsedSourceContent;
-use Drupal\druki_content\Sync\SourceContent\SourceContent;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
@@ -20,7 +20,7 @@ final class ParsedSourceContentLoaderTest extends ExistingSiteBase {
    * Test the creating and updating entities.
    */
   public function testLoader(): void {
-    $source_content = new SourceContent('fake://drupal.md', 'drupal.md', 'ru');
+    $source_content = new ContentSourceFile('fake://drupal.md', 'drupal.md', 'ru');
     $front_matter = new FrontMatter();
     $front_matter->add(new FrontMatterValue('title', 'Drupal Test Loader'));
     $front_matter->add(new FrontMatterValue('slug', 'test-loader'));
@@ -37,7 +37,7 @@ final class ParsedSourceContentLoaderTest extends ExistingSiteBase {
     $this->assertEquals('Drupal Test Loader', $druki_content->label());
 
     // Now provide a bit updated, but the same content.
-    $source_content = new SourceContent('fake://drupal.md', 'drupal.md', 'ru');
+    $source_content = new ContentSourceFile('fake://drupal.md', 'drupal.md', 'ru');
     $front_matter = new FrontMatter();
     $front_matter->add(new FrontMatterValue('title', 'Drupal Test Label changed'));
     $front_matter->add(new FrontMatterValue('slug', 'test-loader'));

@@ -3,13 +3,13 @@
 namespace Druki\Tests\ExistingSite\Sync\SourceContent;
 
 use Druki\Tests\Traits\SourceContentProviderTrait;
-use Drupal\druki_content\Sync\SourceContent\SourceContent;
+use Drupal\druki_content\Data\ContentSourceFile;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
  * Provides source content value object test.
  *
- * @coversDefaultClass \Drupal\druki_content\Sync\SourceContent\SourceContent
+ * @coversDefaultClass \Drupal\druki_content\Data\ContentSourceFile
  */
 final class SourceContentTest extends ExistingSiteBase {
 
@@ -24,7 +24,7 @@ final class SourceContentTest extends ExistingSiteBase {
     $relative_pathname = 'docs/ru/drupal/index.md';
     $language = 'ru';
 
-    $source_content = new SourceContent($realpath, $relative_pathname, $language);
+    $source_content = new ContentSourceFile($realpath, $relative_pathname, $language);
     $this->assertTrue($source_content->isReadable());
     $this->assertEquals('Drupal description.', $source_content->getContent());
     $this->assertEquals($realpath, $source_content->getRealpath());

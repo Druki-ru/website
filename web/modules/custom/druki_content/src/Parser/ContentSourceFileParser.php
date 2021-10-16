@@ -1,19 +1,18 @@
 <?php
 
-namespace Drupal\druki_content\Sync\SourceContent;
+namespace Drupal\druki_content\Parser;
 
 use Drupal\druki\Markdown\Parser\MarkdownParserInterface;
-use Drupal\druki_content\Parser\HtmlContentParser;
+use Drupal\druki_content\Data\ContentSourceFile;
+use Drupal\druki_content\Sync\SourceContent\ParsedSourceContent;
 
 /**
  * Provides parser for source content.
  *
  * This class will parse source content from file and convert it to structured
  * object to further use.
- *
- * @todo Refactor to ContentSourceFileParser.
  */
-final class SourceContentParser {
+final class ContentSourceFileParser {
 
   /**
    * The Markdown parser.
@@ -26,7 +25,7 @@ final class SourceContentParser {
   protected HtmlContentParser $htmlParser;
 
   /**
-   * Constructs a new SourceContentParser object.
+   * Constructs a new ContentSourceFileParser object.
    *
    * @param \Drupal\druki\Markdown\Parser\MarkdownParserInterface $markdown_parser
    *   The markdown parser.
@@ -42,13 +41,13 @@ final class SourceContentParser {
    * This will read file, make all conversions and wrap result to structured
    * value object suitable to consume.
    *
-   * @param \Drupal\druki_content\Sync\SourceContent\SourceContent $source_content
+   * @param \Drupal\druki_content\Data\ContentSourceFile $source_content
    *   The source content to parse.
    *
    * @return \Drupal\druki_content\Sync\SourceContent\ParsedSourceContent|null
    *   The parsed content. NULL if there is some problems with file.
    */
-  public function parse(SourceContent $source_content): ?ParsedSourceContent {
+  public function parse(ContentSourceFile $source_content): ?ParsedSourceContent {
     if (!$source_content->isReadable()) {
       return NULL;
     }

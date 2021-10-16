@@ -1,18 +1,16 @@
 <?php
 
-namespace Drupal\druki_content\Sync\SourceContent;
+namespace Drupal\druki_content\Data;
 
 /**
- * Provides value object to store multiple source content.
- *
- * @todo Refactor to ContentSourceFileList.
+ * Provides value object to store multiple content source files.
  */
-final class SourceContentList implements \IteratorAggregate {
+final class ContentSourceFileList implements \IteratorAggregate {
 
   /**
    * The array with content sources.
    *
-   * @var \Drupal\druki_content\Sync\SourceContent\SourceContent[]
+   * @var \Drupal\druki_content\Data\ContentSourceFile[]
    */
   protected array $items = [];
 
@@ -22,14 +20,14 @@ final class SourceContentList implements \IteratorAggregate {
    * @param int $size
    *   The size of each chunk.
    *
-   * @return \Drupal\druki_content\Sync\SourceContent\SourceContentList[]
-   *   An array with SourceContentList contains no more than size of items.
+   * @return \Drupal\druki_content\Data\ContentSourceFileList[]
+   *   An array with ContentSourceFileList contains no more than size of items.
    */
   public function chunk(int $size): array {
     $chunks = \array_chunk($this->items, $size);
     $result = [];
     foreach ($chunks as $chunk) {
-      $list = new SourceContentList();
+      $list = new ContentSourceFileList();
       foreach ($chunk as $item) {
         $list->add($item);
       }
@@ -42,12 +40,12 @@ final class SourceContentList implements \IteratorAggregate {
   /**
    * Adds content source item to collection.
    *
-   * @param \Drupal\druki_content\Sync\SourceContent\SourceContent $source_content
+   * @param \Drupal\druki_content\Data\ContentSourceFile $source_content
    *   The content source item.
    *
    * @return $this
    */
-  public function add(SourceContent $source_content): SourceContentList {
+  public function add(ContentSourceFile $source_content): ContentSourceFileList {
     $this->items[] = $source_content;
     return $this;
   }
@@ -55,7 +53,7 @@ final class SourceContentList implements \IteratorAggregate {
   /**
    * Returns source content items as array.
    *
-   * @return \Drupal\druki_content\Sync\SourceContent\SourceContent[]
+   * @return \Drupal\druki_content\Data\ContentSourceFile[]
    *   An array with source content items.
    */
   public function toArray(): array {

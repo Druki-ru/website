@@ -2,6 +2,7 @@
 
 namespace Drupal\druki_content\Sync\SourceContent;
 
+use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 
 /**
@@ -14,22 +15,22 @@ final class SourceContentListContentSyncQueueItem implements ContentSyncQueueIte
   /**
    * The content to process.
    */
-  protected SourceContentList $payload;
+  protected ContentSourceFileList $payload;
 
   /**
    * SourceContentListContentSyncQueueItem constructor.
    *
-   * @param \Drupal\druki_content\Sync\SourceContent\SourceContentList $payload
+   * @param \Drupal\druki_content\Data\ContentSourceFileList $payload
    *   The queue payload.
    */
-  public function __construct(SourceContentList $payload) {
+  public function __construct(ContentSourceFileList $payload) {
     $this->payload = $payload;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getPayload(): SourceContentList {
+  public function getPayload(): ContentSourceFileList {
     return $this->payload;
   }
 
