@@ -114,3 +114,15 @@ services:
   druki_content.finder.redirect_source_file:
     class: Drupal\druki_content\Finder\RedirectSourceFileFinder
     arguments: ['@language_manager']
+
+  # This is fallback and default element parser. Called last if rest of parsers
+  # passed.
+  druki_content.parser.content_html_text_element:
+    class: Drupal\druki_content\Parser\ContentHtmlTextElementParser
+    tags:
+      - { name: druki_content_html_element_parser, priority: -1000 }
+
+  druki_content.parser.content_html_heading_element:
+    class: Drupal\druki_content\Parser\ContentHtmlHeadingElementParser
+    tags:
+      - { name: druki_content_html_element_parser }

@@ -12,7 +12,7 @@ use Drupal\Tests\UnitTestCase;
 /**
  * Tests content document value object.
  *
- * @covers \Drupal\druki_content\Data\ContentDocument
+ * @coversDefaultClass  \Drupal\druki_content\Data\ContentDocument
  */
 final class ContentDocumentTest extends UnitTestCase {
 

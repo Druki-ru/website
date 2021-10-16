@@ -84,7 +84,7 @@ final class ContentMetadata {
    *   An associative array with metadata.
    *
    * @return static
-   *    The new instance.
+   *   The new instance.
    */
   public static function createFromArray(array $data): self {
     $required_metadata = ['title', 'slug'];

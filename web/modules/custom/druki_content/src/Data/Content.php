@@ -4,24 +4,38 @@ declare(strict_types=1);
 
 namespace Drupal\druki_content\Data;
 
-
 /**
  * Provides structured content.
- *
- * @todo Complete it.
  */
-final class Content implements \IteratorAggregate {
+final class Content {
 
+  /**
+   * An array with blocks.
+   *
+   * @var array
+   */
   protected array $blocks = [];
 
-  public function addBlock() {
-
+  /**
+   * Adds content block.
+   *
+   * @param \Drupal\druki_content\Data\ContentBlockInterface $block
+   *   The content block.
+   *
+   * @return $this
+   */
+  public function addBlock(ContentBlockInterface $block): self {
+    $this->blocks[] = $block;
+    return $this;
   }
 
   /**
-   * {@inheritdoc}
+   * Gets blocks.
+   *
+   * @return \ArrayIterator
+   *   An array iterator for blocks.
    */
-  public function getIterator(): \ArrayIterator {
+  public function getBlocks(): \ArrayIterator {
     return new \ArrayIterator($this->blocks);
   }
 

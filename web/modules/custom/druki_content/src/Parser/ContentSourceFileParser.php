@@ -6,6 +6,7 @@ use Drupal\Component\FrontMatter\FrontMatter;
 use Drupal\druki\Markdown\Parser\MarkdownParserInterface;
 use Drupal\druki_content\Data\ContentDocument;
 use Drupal\druki_content\Data\ContentMetadata;
+use Drupal\druki_content\Data\ContentParserContext;
 use Drupal\druki_content\Data\ContentSourceFile;
 
 /**
@@ -56,10 +57,14 @@ final class ContentSourceFileParser {
       return NULL;
     }
 
+    $context = new ContentParserContext();
+    $context->setContentSourceFile($content_file);
+
     $front_matter = new FrontMatter($content_file->getContent());
     $content_metadata = ContentMetadata::createFromArray($front_matter->getData());
-    $content_html = $this->markdownParser->parse($content_file->getContent());
-    $content = $this->htmlParser->parse($content_html);
+    $content_markdown = $content_file->getContent();
+    $content_html = $this->markdownParser->parse($content_markdown);
+    $content = $this->htmlParser->parse($content_html, $context);
 
     return new ContentDocument(
       $content_file->getLanguage(),

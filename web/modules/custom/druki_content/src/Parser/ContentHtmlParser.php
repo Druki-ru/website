@@ -3,9 +3,9 @@
 namespace Drupal\druki_content\Parser;
 
 use Drupal\druki_content\Data\Content;
+use Drupal\druki_content\Data\ContentParserContext;
 use Drupal\druki_content\Sync\ParsedContent\Content\ContentList;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphCode;
-use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphHeading;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImage;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphNote;
 use Symfony\Component\DomCrawler\Crawler;
@@ -35,19 +35,26 @@ final class ContentHtmlParser {
    *
    * @param string $html
    *   The HTML to parse.
+   * @param \Drupal\druki_content\Data\ContentParserContext|null $context
+   *   The parser context.
    *
    * @return \Drupal\druki_content\Data\Content
    *   The structured content.
    */
-  public function parse(string $html): Content {
+  public function parse(string $html, ?ContentParserContext $context = NULL): Content {
+    $content = new Content();
+    if (!$context) {
+      $context = new ContentParserContext();
+    }
+    $context->setContent($content);
+
     $crawler = new Crawler($html);
     // Move to body. We expect content here.
     $crawler = $crawler->filter('body');
-    $content = new Content();
     foreach ($crawler->children() as $element) {
       /** @var \Drupal\druki_content\Parser\ContentHtmlElementParserInterface $element_parser */
       foreach ($this->elementParsers as $element_parser) {
-        if ($element_parser->parse($element, $content)) {
+        if ($element_parser->parse($element, $context)) {
           // If element successfully parsed, move to another element.
           continue 2;
         }
@@ -121,31 +128,6 @@ final class ContentHtmlParser {
   }
 
   /**
-   * Parses heading.
-   *
-   * @param \DOMElement $dom_element
-   *   The DOM element to process.
-   * @param \Drupal\druki_content\Sync\ParsedContent\Content\ContentList $content
-   *   The value object of content list.
-   *
-   * @return bool
-   *   TRUE if parsed successfully, NULL otherwise.
-   */
-  protected function parseHeading(\DOMElement $dom_element, ContentList $content): bool {
-    $node_name = $dom_element->nodeName;
-    $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-
-    if (\in_array($node_name, $heading_elements)) {
-      $heading = new ParagraphHeading($dom_element->nodeName, $dom_element->textContent);
-      $content->add($heading);
-
-      return TRUE;
-    }
-
-    return FALSE;
-  }
-
-  /**
    * Parses code.
    *
    * @param \DOMElement $dom_element
@@ -193,43 +175,6 @@ final class ContentHtmlParser {
     }
 
     return FALSE;
-  }
-
-  /**
-   * Parses meta information.
-   *
-   * Meta information is custom Markdown syntax and structure.
-   *
-   * @param \DOMElement $dom_element
-   *   The DOM element to process.
-   * @param \Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface $meta_information
-   *   The content meta information.
-   *
-   * @return bool|null
-   *   TRUE if parsed successfully, NULL otherwise.
-   */
-  protected function parseFrontMatter(\DOMElement $dom_element, FrontMatterInterface $meta_information): bool {
-    $crawler = new Crawler($dom_element->ownerDocument->saveHTML($dom_element));
-    $meta_block = $crawler->filter('div[data-druki-element="front-matter"]');
-
-    if (\count($meta_block)) {
-      $meta_array = \json_decode($meta_block->text(), TRUE);
-      foreach ($meta_array as $key => $value) {
-        $meta_value = new FrontMatterValue($key, $value);
-        $meta_information->add($meta_value);
-      }
-
-      return TRUE;
-    }
-
-    return FALSE;
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function parseElement(\DOMElement $element, Content $content): bool {
-
   }
 
 }
