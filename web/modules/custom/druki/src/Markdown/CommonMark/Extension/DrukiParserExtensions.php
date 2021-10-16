@@ -23,11 +23,6 @@ final class DrukiParserExtensions implements ExtensionInterface {
       ->addBlockRenderer(
         'Drupal\druki\Markdown\CommonMark\Block\Element\NoteElement',
         new NoteRenderer(),
-      )
-      ->addBlockParser(new FrontMatterParser(), 30)
-      ->addBlockRenderer(
-        'Drupal\druki\Markdown\CommonMark\Block\Element\FrontMatterElement',
-        new FrontMatterRenderer(),
       );
   }
 

@@ -9,7 +9,7 @@ use Drupal\druki_content\Sync\ParsedContent\ParsedContent;
 /**
  * Provides value object for parsed source content.
  *
- * @todo Refactor to ContentDocument.
+ * @depredated Deprecated in favor of ContentDocument.
  */
 final class ParsedSourceContent {
 

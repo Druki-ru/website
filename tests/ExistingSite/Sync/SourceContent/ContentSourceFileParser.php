@@ -12,7 +12,7 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 /**
  * Provides test for source content parser.
  */
-final class SourceContentParserTest extends ExistingSiteBase {
+final class ContentSourceFileParser extends ExistingSiteBase {
 
   use SourceContentProviderTrait;
 

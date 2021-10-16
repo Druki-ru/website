@@ -3,7 +3,7 @@
 namespace Druki\Tests\Drupal\druki_content\Sync\Parser;
 
 use Drupal\druki\Markdown\Parser\MarkdownParser;
-use Drupal\druki_content\Parser\HtmlContentParser;
+use Drupal\druki_content\Parser\ContentHtmlParser;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphCode;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphHeading;
 use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImage;
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Provides test for HTML content parser.
  *
- * @coversDefaultClass \Drupal\druki_content\Parser\HtmlContentParser
+ * @coversDefaultClass \Drupal\druki_content\Parser\ContentHtmlParser
  */
 class HtmlContentParserTest extends TestCase {
 
@@ -28,8 +28,8 @@ class HtmlContentParserTest extends TestCase {
     $markdown_parser = new MarkdownParser();
     $html = $markdown_parser->parse($markdown_content);
 
-    $content_parser = new HtmlContentParser();
-    $parsed_content = $content_parser->parse($html, 'foo/bar');
+    $content_parser = new ContentHtmlParser();
+    $parsed_content = $content_parser->parseElement($html, 'foo/bar');
 
     $front_matter = $parsed_content->getFrontMatter();
     $expected_front_matter = [

@@ -1,6 +1,9 @@
 ---
 title: The title
 slug: example
+metatags:
+  title: This is metatag title.
+  description: This is metatag description.
 ---
 
 Hello world!

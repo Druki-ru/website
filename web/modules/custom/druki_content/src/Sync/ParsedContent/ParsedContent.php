@@ -7,6 +7,8 @@ use Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterInterface;
 
 /**
  * Provides value object for content structure.
+ *
+ * @depredated Deprecated in favor of Content.
  */
 final class ParsedContent {
 
