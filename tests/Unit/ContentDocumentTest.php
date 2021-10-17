@@ -18,8 +18,6 @@ final class ContentDocumentTest extends UnitTestCase {
 
   /**
    * Tests value object behavior.
-   *
-   * @return void
    */
   public function testObject(): void {
     $language = 'ru';

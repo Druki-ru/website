@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Data;
 
 /**
- * Provides content block for headings.
+ * Provides content element for headings.
  */
-final class ContentHeadingBlock extends ContentBlockBase {
+final class ContentHeadingElement extends ContentElementBase {
 
   /**
    * The heading level.
@@ -20,7 +20,7 @@ final class ContentHeadingBlock extends ContentBlockBase {
   protected string $content;
 
   /**
-   * Constructs a new ContentHeadingBlock object.
+   * Constructs a new ContentHeadingElement object.
    *
    * @param int $level
    *   The heading level.
@@ -29,7 +29,7 @@ final class ContentHeadingBlock extends ContentBlockBase {
    */
   public function __construct(int $level, string $content) {
     if ($level < 1 || $level > 6) {
-      $error = \sprintf('The content heading block level should have level from 1 to 6, %s given.', $level);
+      $error = \sprintf('The content heading element level should have level from 1 to 6, %s given.', $level);
       throw new \InvalidArgumentException($error);
     }
     $this->level = $level;

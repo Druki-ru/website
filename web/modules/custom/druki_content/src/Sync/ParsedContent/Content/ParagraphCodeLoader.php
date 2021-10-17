@@ -6,6 +6,8 @@ use Drupal\druki_content\Entity\DrukiContentInterface;
 
 /**
  * Provides loader for paragraph entity 'druki_code'.
+ *
+ * @depredated Deprecated and should be replacedy by specific renderer.
  */
 final class ParagraphCodeLoader extends ParagraphLoaderBase {
 

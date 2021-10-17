@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\druki_content\Parser;
 
-use Drupal\druki_content\Data\ContentHeadingBlock;
+use Drupal\druki_content\Data\ContentHeadingElement;
 use Drupal\druki_content\Data\ContentParserContext;
 
 /**
@@ -15,7 +15,7 @@ final class ContentHtmlHeadingElementParser implements ContentHtmlElementParserI
   /**
    * {@inheritdoc}
    */
-  public function parse(\DOMElement $element, ContentParserContext $context): bool {
+  public function parse(\DOMElement $element, ContentParserContext $context, ContentHtmlParser $parser): bool {
     $node_name = $element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
     if (!\in_array($node_name, $heading_elements)) {
@@ -29,12 +29,12 @@ final class ContentHtmlHeadingElementParser implements ContentHtmlElementParserI
       'h4' => 4,
       'h5' => 5,
       'h6' => 6,
-    // Drupal Coding Standards fails to validate 'match' statement.
     // @codingStandardsIgnoreStart
+    // Drupal Coding Standards fails to validate 'match' statement.
     };
     // @codingStandardsIgnoreEnd
-    $block = new ContentHeadingBlock($level, $element->textContent);
-    $context->getContent()->addBlock($block);
+    $heading_element = new ContentHeadingElement($level, $element->textContent);
+    $context->getContent()->addElement($heading_element);
     return TRUE;
   }
 

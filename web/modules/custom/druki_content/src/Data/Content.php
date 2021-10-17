@@ -14,29 +14,29 @@ final class Content {
    *
    * @var array
    */
-  protected array $blocks = [];
+  protected array $elements = [];
 
   /**
-   * Adds content block.
+   * Adds content element.
    *
-   * @param \Drupal\druki_content\Data\ContentBlockInterface $block
-   *   The content block.
+   * @param \Drupal\druki_content\Data\ContentElementInterface $element
+   *   The content element.
    *
    * @return $this
    */
-  public function addBlock(ContentBlockInterface $block): self {
-    $this->blocks[] = $block;
+  public function addElement(ContentElementInterface $element): self {
+    $this->elements[] = $element;
     return $this;
   }
 
   /**
-   * Gets blocks.
+   * Gets elements.
    *
    * @return \ArrayIterator
-   *   An array iterator for blocks.
+   *   An array iterator for elements.
    */
-  public function getBlocks(): \ArrayIterator {
-    return new \ArrayIterator($this->blocks);
+  public function getElements(): \ArrayIterator {
+    return new \ArrayIterator($this->elements);
   }
 
 }

@@ -19,8 +19,6 @@ final class ContentHtmlHeadingElementParserTest extends ExistingSiteBase {
   /**
    * Tests parser.
    *
-   * @return void
-   *
    * @covers ::parse()
    */
   public function testParser(): void {
@@ -32,17 +30,18 @@ final class ContentHtmlHeadingElementParserTest extends ExistingSiteBase {
     $context = new ContentParserContext();
     $context->setContent($content);
 
+    $html_parser = $this->container->get('druki_content.parser.content_html_parser');
     $parser = $this->container->get('druki_content.parser.content_html_heading_element');
     foreach ($crawler->children() as $element) {
-      $parser->parse($element, $context);
+      $parser->parse($element, $context, $html_parser);
     }
 
-    /** @var \Drupal\druki_content\Data\ContentHeadingBlock $block */
-    $block = $content->getBlocks()->offsetGet(0);
+    /** @var \Drupal\druki_content\Data\ContentHeadingElement $block */
+    $block = $content->getElements()->offsetGet(0);
     $this->assertEquals(1, $block->getLevel());
     $this->assertEquals('Hello first!', $block->getContent());
 
-    $block = $content->getBlocks()->offsetGet(1);
+    $block = $content->getElements()->offsetGet(1);
     $this->assertEquals(2, $block->getLevel());
     $this->assertEquals('Hello second!', $block->getContent());
   }

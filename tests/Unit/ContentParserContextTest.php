@@ -18,8 +18,6 @@ final class ContentParserContextTest extends UnitTestCase {
 
   /**
    * Tests that object works as expected.
-   *
-   * @return void
    */
   public function testObject(): void {
     $context = new ContentParserContext();

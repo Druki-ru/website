@@ -10,11 +10,11 @@ use Symfony\Component\DomCrawler\Crawler;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
- * Provides test for content html text element parser.
+ * Provides test for content html image element parser.
  *
- * @coversDefaultClass \Drupal\druki_content\Parser\ContentHtmlTextElementParser
+ * @coversDefaultClass \Drupal\druki_content\Parser\ContentHtmlImageElementParser
  */
-final class ContentHtmlTextElementParserTest extends ExistingSiteBase {
+final class ContentHtmlImageElementParserTest extends ExistingSiteBase {
 
   /**
    * Tests parser.
@@ -22,7 +22,7 @@ final class ContentHtmlTextElementParserTest extends ExistingSiteBase {
    * @covers ::parse()
    */
   public function testParser(): void {
-    $html = '<p>Hello World!</p>';
+    $html = '<img src="https://example.com/img.jpg" alt="Hello World!">';
     $crawler = new Crawler($html);
     $crawler = $crawler->filter('body');
 
@@ -31,14 +31,15 @@ final class ContentHtmlTextElementParserTest extends ExistingSiteBase {
     $context->setContent($content);
 
     $html_parser = $this->container->get('druki_content.parser.content_html_parser');
-    $parser = $this->container->get('druki_content.parser.content_html_text_element');
+    $parser = $this->container->get('druki_content.parser.content_html_image_element');
     foreach ($crawler->children() as $element) {
       $parser->parse($element, $context, $html_parser);
     }
 
-    /** @var \Drupal\druki_content\Data\ContentTextElement $block */
-    $block = $content->getElements()->offsetGet(0);
-    $this->assertEquals($html, $block->getContent());
+    /** @var \Drupal\druki_content\Data\ContentImageElement $element */
+    $element = $content->getElements()->offsetGet(0);
+    $this->assertEquals('https://example.com/img.jpg', $element->getSrc());
+    $this->assertEquals('Hello World!', $element->getAlt());
   }
 
 }

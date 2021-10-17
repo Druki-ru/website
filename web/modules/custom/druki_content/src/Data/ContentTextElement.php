@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Data;
 
 /**
- * Provides content text block.
+ * Provides content text element.
  *
  * This block used for simple text.
  */
-final class ContentTextBlock extends ContentBlockBase {
+final class ContentTextElement extends ContentElementBase {
 
   /**
    * The block contents.
@@ -17,7 +17,7 @@ final class ContentTextBlock extends ContentBlockBase {
   private string $content;
 
   /**
-   * Constructs a new ContentTextBlock object.
+   * Constructs a new ContentTextElement object.
    *
    * @param string $content
    *   The contents.

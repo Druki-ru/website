@@ -126,3 +126,18 @@ services:
     class: Drupal\druki_content\Parser\ContentHtmlHeadingElementParser
     tags:
       - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_image_element:
+    class: Drupal\druki_content\Parser\ContentHtmlImageElementParser
+    tags:
+      - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_code_element:
+    class: Drupal\druki_content\Parser\ContentHtmlCodeElementParser
+    tags:
+      - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_note_element:
+    class: Drupal\druki_content\Parser\ContentHtmlNoteElementParser
+    tags:
+      - { name: druki_content_html_element_parser }

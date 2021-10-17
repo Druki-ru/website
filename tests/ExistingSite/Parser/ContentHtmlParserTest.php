@@ -17,8 +17,6 @@ final class ContentHtmlParserTest extends ExistingSiteBase {
   /**
    * Tests that parser working and returns specific type.
    *
-   * @return void
-   *
    * @covers ::parse()
    */
   public function testParse(): void {

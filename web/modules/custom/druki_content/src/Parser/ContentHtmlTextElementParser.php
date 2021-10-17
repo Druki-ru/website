@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Parser;
 
 use Drupal\druki_content\Data\ContentParserContext;
-use Drupal\druki_content\Data\ContentTextBlock;
+use Drupal\druki_content\Data\ContentTextElement;
 
 /**
  * Provides text element parser.
@@ -15,10 +15,10 @@ final class ContentHtmlTextElementParser implements ContentHtmlElementParserInte
   /**
    * {@inheritdoc}
    */
-  public function parse(\DOMElement $element, ContentParserContext $context): bool {
+  public function parse(\DOMElement $element, ContentParserContext $context, ContentHtmlParser $parser): bool {
     $html = $element->ownerDocument->saveHTML($element);
-    $block = new ContentTextBlock($html);
-    $context->getContent()->addBlock($block);
+    $text_element = new ContentTextElement($html);
+    $context->getContent()->addElement($text_element);
     return TRUE;
   }
 
