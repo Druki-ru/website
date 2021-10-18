@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\druki_content\Parser;
 
-use Drupal\druki_content\Data\ContentHeadingElement;
 use Drupal\druki_content\Data\ContentImageElement;
 use Drupal\druki_content\Data\ContentParserContext;
-use Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImage;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -19,16 +17,12 @@ final class ContentHtmlImageElementParser implements ContentHtmlElementParserInt
    * {@inheritdoc}
    */
   public function parse(\DOMElement $element, ContentParserContext $context, ContentHtmlParser $parser): bool {
-    $crawler = new Crawler($element);
-    $image = $crawler->filter('img')->first();
-    if (!\count($image)) {
+    if ($element->nodeName != 'img') {
       return FALSE;
     }
-
-    $alt = $image->attr('alt') ?? '';
-    $image_element = new ContentImageElement($image->attr('src'), $alt);
+    $alt = $element->getAttribute('alt') ?? '';
+    $image_element = new ContentImageElement($element->getAttribute('src'), $alt);
     $context->getContent()->addElement($image_element);
-
     return TRUE;
   }
 

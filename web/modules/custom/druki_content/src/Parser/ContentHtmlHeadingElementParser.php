@@ -16,9 +16,8 @@ final class ContentHtmlHeadingElementParser implements ContentHtmlElementParserI
    * {@inheritdoc}
    */
   public function parse(\DOMElement $element, ContentParserContext $context, ContentHtmlParser $parser): bool {
-    $node_name = $element->nodeName;
     $heading_elements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-    if (!\in_array($node_name, $heading_elements)) {
+    if (!\in_array($element->nodeName, $heading_elements)) {
       return FALSE;
     }
 

@@ -6,6 +6,7 @@ namespace Drupal\druki_content\Parser;
 
 use Drupal\druki_content\Data\ContentNoteElement;
 use Drupal\druki_content\Data\ContentParserContext;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Provides note element parser.
@@ -24,9 +25,10 @@ final class ContentHtmlNoteElementParser implements ContentHtmlElementParserInte
 
     $note_type = $element->getAttribute('data-druki-note');
     $note_element = new ContentNoteElement($note_type);
-    foreach ($element as $child_element) {
-      // @todo Think how to better parse children.
-    }
+
+    $crawler = new Crawler($element);
+    $parser->parseChildren($crawler->html(), $context, $note_element);
+
     $context->getContent()->addElement($note_element);
     return TRUE;
   }

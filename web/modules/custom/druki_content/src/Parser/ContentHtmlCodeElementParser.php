@@ -16,8 +16,7 @@ final class ContentHtmlCodeElementParser implements ContentHtmlElementParserInte
    * {@inheritdoc}
    */
   public function parse(\DOMElement $element, ContentParserContext $context, ContentHtmlParser $parser): bool {
-    $node_name = $element->nodeName;
-    if ($node_name != 'pre') {
+    if ($element->nodeName != 'pre') {
       return FALSE;
     }
     $html = $element->ownerDocument->saveHTML($element);

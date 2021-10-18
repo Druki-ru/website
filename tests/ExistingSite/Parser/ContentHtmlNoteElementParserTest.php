@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Druki\Tests\ExistingSite\Parser;
 
 use Drupal\druki_content\Data\Content;
+use Drupal\druki_content\Data\ContentImageElement;
+use Drupal\druki_content\Data\ContentNoteElement;
 use Drupal\druki_content\Data\ContentParserContext;
+use Drupal\druki_content\Data\ContentTextElement;
 use Symfony\Component\DomCrawler\Crawler;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
@@ -41,7 +44,14 @@ final class ContentHtmlNoteElementParserTest extends ExistingSiteBase {
       $parser->parse($element, $context, $html_parser);
     }
 
-    //dump($content);
+    $this->assertEquals(1, $content->getElements()->count());
+    $note_element = $content->getElements()->offsetGet(0);
+    $this->assertInstanceOf(ContentNoteElement::class, $note_element);
+    $this->assertEquals(2, $note_element->getChildren()->count());
+    $first_child = $note_element->getChildren()->offsetGet(0);
+    $this->assertInstanceOf(ContentTextElement::class, $first_child);
+    $second_child = $note_element->getChildren()->offsetGet(1);
+    $this->assertInstanceOf(ContentImageElement::class, $second_child);
   }
 
 }

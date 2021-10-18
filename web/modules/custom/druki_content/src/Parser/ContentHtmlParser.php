@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Parser;
 
 use Drupal\druki_content\Data\Content;
+use Drupal\druki_content\Data\ContentElementInterface;
 use Drupal\druki_content\Data\ContentParserContext;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -24,6 +25,25 @@ final class ContentHtmlParser {
    */
   public function addElementParser(ContentHtmlElementParserInterface $element_parser): void {
     $this->elementParsers[] = $element_parser;
+  }
+
+  /**
+   * Parse children content.
+   *
+   * @param string $html
+   *   The children HTML markup.
+   * @param \Drupal\druki_content\Data\ContentParserContext $context
+   *   The parent context.
+   * @param \Drupal\druki_content\Data\ContentElementInterface $parent
+   *   The parent element.
+   */
+  public function parseChildren(string $html, ContentParserContext $context, ContentElementInterface $parent): void {
+    $children_content = $this->parse($html, clone $context);
+    /** @var \Drupal\druki_content\Data\ContentElementInterface $child_element */
+    foreach ($children_content->getElements() as $child_element) {
+      $child_element->setParent($parent);
+      $parent->addChild($child_element);
+    }
   }
 
   /**
