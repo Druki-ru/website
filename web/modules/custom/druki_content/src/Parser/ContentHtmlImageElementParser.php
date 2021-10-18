@@ -6,7 +6,6 @@ namespace Drupal\druki_content\Parser;
 
 use Drupal\druki_content\Data\ContentImageElement;
 use Drupal\druki_content\Data\ContentParserContext;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Provides image element parser.

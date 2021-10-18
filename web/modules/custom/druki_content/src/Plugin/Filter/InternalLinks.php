@@ -22,6 +22,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE,
  *   weight = -10
  * )
+ *
+ * @todo Refactor this plugin with Crawler.
  */
 final class InternalLinks extends FilterBase implements ContainerFactoryPluginInterface {
 
