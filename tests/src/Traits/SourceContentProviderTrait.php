@@ -24,9 +24,9 @@ trait SourceContentProviderTrait {
             ],
           ],
           'drupal' => [
-            'index.md' => \file_get_contents(__DIR__ . '/../fixtures/source-content.md'),
+            'index.md' => \file_get_contents(__DIR__ . '/../../fixtures/source-content.md'),
           ],
-          'redirects.csv' => \file_get_contents(__DIR__ . '/../fixtures/redirects.csv'),
+          'redirects.csv' => \file_get_contents(__DIR__ . '/../../fixtures/redirects.csv'),
         ],
         'en' => [
           'standards' => [

@@ -39,7 +39,7 @@ class DrupalProjectsTest extends UnitTestCase {
     $prophecy = $this->prophesize(UpdateFetcherInterface::class);
 
     $fetch_project_data = new MethodProphecy($prophecy, 'fetchProjectData', [['name' => 'drupal']]);
-    $fetch_project_data->willReturn(file_get_contents(__DIR__ . '/../../fixtures/drupal-release-history.xml'));
+    $fetch_project_data->willReturn(file_get_contents(__DIR__ . '/../../../fixtures/drupal-release-history.xml'));
     $prophecy->addMethodProphecy($fetch_project_data);
 
     return $prophecy->reveal();

@@ -80,7 +80,7 @@ final class SyncQueueTest extends ExistingSiteBase {
    */
   public function testSyncQueue(): void {
     $file = vfsStream::newFile('example-content.md')
-      ->withContent(\file_get_contents(__DIR__ . '/../../fixtures/source-content.md'))
+      ->withContent(\file_get_contents(__DIR__ . '/../../../fixtures/source-content.md'))
       ->at($this->sourceRoot);
     $source_content = new ContentSourceFile($file->url(), $file->path(), 'ru');
     $source_content_list = new ContentSourceFileList();
@@ -104,7 +104,7 @@ final class SyncQueueTest extends ExistingSiteBase {
 
     // Emulate that file is updated while content present on the site.
     $file = vfsStream::newFile('example-content.md')
-      ->withContent(\file_get_contents(__DIR__ . '/../../fixtures/source-content-2.md'))
+      ->withContent(\file_get_contents(__DIR__ . '/../../../fixtures/source-content-2.md'))
       ->at($this->sourceRoot);
     $source_content = new ContentSourceFile($file->url(), $file->path(), 'ru');
     $source_content_list = new ContentSourceFileList();
