@@ -2,11 +2,11 @@ services:
   logger.channel.druki_content:
     class: Drupal\Core\Logger\LoggerChannel
     factory: logger.factory:get
-    arguments: ['druki_content']
+    arguments: [ 'druki_content' ]
 
   druki_content.git_subscriber:
     class: Drupal\druki_content\EventSubscriber\GitSubscriber
-    arguments: ['@druki_content.queue.content_sync_manager']
+    arguments: [ '@druki_content.queue.content_sync_manager' ]
     tags:
       - { name: event_subscriber }
 
@@ -22,47 +22,48 @@ services:
 
   druki_content.finder.content_source_file:
     class: Drupal\druki_content\Finder\ContentSourceFileFinder
-    arguments: ['@language_manager']
+    arguments: [ '@language_manager' ]
 
   druki_content.parser.content_source_file:
     class: Drupal\druki_content\Parser\ContentSourceFileParser
-    arguments: ['@druki.markdown_parser', '@druki_content.parser.content_html_parser']
+    arguments: [ '@druki.markdown_parser', '@druki_content.parser.content_html_parser' ]
 
   druki_content.parser.content_html_parser:
     class: Drupal\druki_content\Parser\ContentHtmlParser
     tags:
       - { name: service_collector, tag: druki_content_html_element_parser, call: addElementParser }
+      - { name: service_collector, tag: druki_content_html_preprocessor, call: addHtmlPreprocessor }
 
   druki_content.queue.content_sync_processor:
     class: Drupal\druki_content\Queue\ContentSyncQueueProcessor
-    arguments: ['@entity_type.manager', '@druki_content.parser.content_source_file', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache']
+    arguments: [ '@entity_type.manager', '@druki_content.parser.content_source_file', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache' ]
     tags:
       - { name: service_collector, tag: druki_sync_queue_processor, call: addProcessor }
 
   druki_content.sync_queue_processor.source_content_list:
     class: Drupal\druki_content\Sync\SourceContent\SourceContentListQueueProcessor
     public: false
-    arguments: ['@state', '@druki_content.parser.content_source_file', '@druki_content.parsed_source_content_loader', '@logger.channel.druki_content']
+    arguments: [ '@state', '@druki_content.parser.content_source_file', '@druki_content.parsed_source_content_loader', '@logger.channel.druki_content' ]
     tags:
       - { name: druki_sync_queue_processor }
 
   druki_content.queue.clean_queue_processor:
     class: Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor
     public: false
-    arguments: ['@entity_type.manager']
+    arguments: [ '@entity_type.manager' ]
     tags:
       - { name: druki_sync_queue_processor }
 
   druki_content.queue.redirect_queue_processor:
     class: Drupal\druki_content\Queue\ContentSyncRedirectQueueItemProcessor
     public: false
-    arguments: ['@entity_type.manager', '@state']
+    arguments: [ '@entity_type.manager', '@state' ]
     tags:
       - { name: druki_sync_queue_processor }
 
   druki_content.parsed_source_content_loader:
     class: Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader
-    arguments: ['@druki_content.parsed_content_loader', '@entity_type.manager', '@datetime.time']
+    arguments: [ '@druki_content.parsed_content_loader', '@entity_type.manager', '@datetime.time' ]
 
   druki_content.parsed_content_loader:
     class: Drupal\druki_content\Sync\ParsedContent\ParsedContentLoader
@@ -72,7 +73,7 @@ services:
   druki_content.parsed_content_loader.paragraph_base:
     abstract: true
     class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphLoaderBase
-    arguments: ['@entity_type.manager']
+    arguments: [ '@entity_type.manager' ]
 
   druki_content.parsed_content_loader.paragraph_text:
     parent: druki_content.parsed_content_loader.paragraph_base
@@ -101,19 +102,19 @@ services:
   druki_content.parsed_content_loader.paragraph_image:
     parent: druki_content.parsed_content_loader.paragraph_base
     class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImageLoader
-    arguments: ['@druki_git.settings', '@druki.file_tracker', '@entity_field.manager', '@token', '@file_system']
+    arguments: [ '@druki_git.settings', '@druki.file_tracker', '@entity_field.manager', '@token', '@file_system' ]
     tags:
       - { name: druki_parsed_content_loader }
 
   druki_content.druki_content_route_context:
     class: Drupal\druki_content\ContextProvider\DrukiContentRouteContext
-    arguments: ['@current_route_match']
+    arguments: [ '@current_route_match' ]
     tags:
       - { name: context_provider }
 
   druki_content.finder.redirect_source_file:
     class: Drupal\druki_content\Finder\RedirectSourceFileFinder
-    arguments: ['@language_manager']
+    arguments: [ '@language_manager' ]
 
   # This is fallback and default element parser. Called last if rest of parsers
   # passed.
@@ -141,3 +142,8 @@ services:
     class: Drupal\druki_content\Parser\ContentHtmlNoteElementParser
     tags:
       - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_internal_link_preprocessor:
+    class: Drupal\druki_content\Parser\ContentHtmlInternalLinkPreprocessor
+    tags:
+      - { name: druki_content_html_preprocessor }

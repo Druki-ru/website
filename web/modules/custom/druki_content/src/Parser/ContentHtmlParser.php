@@ -18,6 +18,16 @@ final class ContentHtmlParser {
   protected array $elementParsers = [];
 
   /**
+   * An array with HTML preprocessors.
+   */
+  protected array $htmlPreprocessors = [];
+
+  /**
+   * Indicates should HTML be preprocessed.
+   */
+  protected bool $preprocess = TRUE;
+
+  /**
    * Adds element parser.
    *
    * @param \Drupal\druki_content\Parser\ContentHtmlElementParserInterface $element_parser
@@ -25,6 +35,16 @@ final class ContentHtmlParser {
    */
   public function addElementParser(ContentHtmlElementParserInterface $element_parser): void {
     $this->elementParsers[] = $element_parser;
+  }
+
+  /**
+   * Adds HTML preprocessor.
+   *
+   * @param \Drupal\druki_content\Parser\ContentHtmlPreprocessorInterface $preprocessor
+   *   The HTML preprocessor.
+   */
+  public function addHtmlPreprocessor(ContentHtmlPreprocessorInterface $preprocessor): void {
+    $this->htmlPreprocessors[] = $preprocessor;
   }
 
   /**
@@ -38,7 +58,11 @@ final class ContentHtmlParser {
    *   The parent element.
    */
   public function parseChildren(string $html, ContentParserContext $context, ContentElementInterface $parent): void {
+    // Disable HTML preprocessing, since it was done for main HTML from which
+    // these current part was taken.
+    $this->preprocess = FALSE;
     $children_content = $this->parse($html, clone $context);
+    $this->preprocess = TRUE;
     /** @var \Drupal\druki_content\Data\ContentElementInterface $child_element */
     foreach ($children_content->getElements() as $child_element) {
       $child_element->setParent($parent);
@@ -58,11 +82,15 @@ final class ContentHtmlParser {
    *   The structured content.
    */
   public function parse(string $html, ?ContentParserContext $context = NULL): Content {
-    $content = new Content();
     if (!$context) {
       $context = new ContentParserContext();
     }
+    $content = new Content();
     $context->setContent($content);
+
+    if ($this->preprocess) {
+      $html = $this->preprocess($html, $context);
+    }
 
     $crawler = new Crawler($html);
     // Move to body. We expect content here.
@@ -80,36 +108,22 @@ final class ContentHtmlParser {
   }
 
   /**
-   * Parses internal links to another markdown files.
+   * Preprocess HTML.
    *
-   * @param \DOMNode $dom_element
-   *   The DOM element to process.
-   * @param string $filepath
-   *   The filepath of file in which this link was found.
+   * @param string $html
+   *   The source HTML.
+   * @param \Drupal\druki_content\Data\ContentParserContext $context
+   *   The content parser context.
    *
-   * @todo Add preprocess for parser.
+   * @return string
+   *   The processed HTML.
    */
-  protected function processInternalLink(\DOMNode $dom_element, string $filepath): void {
-    if (empty($dom_element->childNodes)) {
-      return;
+  protected function preprocess(string $html, ContentParserContext $context): string {
+    /** @var \Drupal\druki_content\Parser\ContentHtmlPreprocessorInterface $preprocessor */
+    foreach ($this->htmlPreprocessors as $preprocessor) {
+      $html = $preprocessor->preprocess($html, $context);
     }
-
-    /** @var \DOMElement $child_node */
-    foreach ($dom_element->childNodes as $child_node) {
-
-      if ($child_node->nodeName == 'a') {
-        $href = $child_node->getAttribute('href');
-
-        // Must end up with Markdown extension: .md, .MD.
-        if (!\preg_match("/.*\.md$/mi", $href)) {
-          continue;
-        }
-
-        $child_node->setAttribute('data-druki-internal-link-filepath', $filepath);
-      }
-
-      $this->processInternalLink($child_node, $filepath);
-    }
+    return $html;
   }
 
 }
