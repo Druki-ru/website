@@ -62,7 +62,7 @@ final class ContentSourceFileParser {
 
     $front_matter = new FrontMatter($content_file->getContent());
     $content_metadata = ContentMetadata::createFromArray($front_matter->getData());
-    $content_markdown = $content_file->getContent();
+    $content_markdown = $front_matter->getContent();
     $content_html = $this->markdownParser->parse($content_markdown);
     $content = $this->htmlParser->parse($content_html, $context);
 

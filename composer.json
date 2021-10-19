@@ -89,7 +89,7 @@
         "phpcs": "vendor/bin/phpcs",
         "phpcbf": "vendor/bin/phpcbf",
         "phpstan": "vendor/bin/phpstan analyse",
-        "phpunit": "vendor/bin/phpunit"
+        "phpunit": "vendor/bin/phpunit --coverage-text"
     },
     "extra": {
         "patches": {

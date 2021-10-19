@@ -147,3 +147,13 @@ services:
     class: Drupal\druki_content\Parser\ContentHtmlInternalLinkPreprocessor
     tags:
       - { name: druki_content_html_preprocessor }
+
+  druki_content.builder.content_render_array:
+    class: Drupal\druki_content\Builder\ContentRenderArrayBuilder
+    tags:
+      - { name: service_collector, tag: druki_content_element_render_array_builder, call: addBuilder }
+
+  druki_content.builder.content_text_element_render_array:
+    class: Drupal\druki_content\Builder\ContentTextElementRenderArrayBuilder
+    tags:
+      - { name: druki_content_element_render_array_builder }
