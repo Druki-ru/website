@@ -32,7 +32,7 @@ final class ContentSyncCleanQueueItemProcessor implements ContentSyncQueueProces
    * {@inheritdoc}
    */
   public function process(ContentSyncQueueItemInterface $item): void {
-    /** @var \Drupal\druki_content\Storage\DrukiContentStorage $druki_content_storage */
+    /** @var \Drupal\druki_content\Repository\DrukiContentStorage $druki_content_storage */
     $druki_content_storage = $this->entityTypeManager->getStorage('druki_content');
     $druki_content_storage->cleanOutdated($item->getPayload());
   }

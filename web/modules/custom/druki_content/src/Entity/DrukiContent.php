@@ -16,7 +16,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki content"),
  *   handlers = {
- *     "storage" = "Drupal\druki_content\Storage\DrukiContentStorage",
+ *     "storage" = "Drupal\druki_content\Repository\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\druki_content\Controller\DrukiContentListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",

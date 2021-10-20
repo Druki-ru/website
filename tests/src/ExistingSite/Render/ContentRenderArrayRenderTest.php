@@ -31,8 +31,6 @@ final class ContentRenderArrayRenderTest extends ExistingSiteBase {
     $html = (string) $renderer->renderRoot($content_render_array);
     $this->container->get('twig')->enableDebug();
     $expected = \file_get_contents(__DIR__ . '/../../../fixtures/source-content.html');
-    // Remove trailing new line from file.
-    $expected = \rtrim($expected);
     $this->assertEquals($expected, $html);
   }
 

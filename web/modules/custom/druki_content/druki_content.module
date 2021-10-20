@@ -52,6 +52,23 @@ function druki_content_theme(): array {
         'content' => NULL,
       ],
     ],
+    'druki_content_element_heading' => [
+      'variables' => [
+        'level' => NULL,
+        'content' => NULL,
+      ],
+    ],
+    'druki_content_element_code' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
+    'druki_content_element_note' => [
+      'variables' => [
+        'note_type' => NULL,
+        'content' => NULL,
+      ],
+    ],
   ];
 }
 

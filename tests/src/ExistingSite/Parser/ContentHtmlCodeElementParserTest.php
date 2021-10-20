@@ -39,7 +39,7 @@ final class ContentHtmlCodeElementParserTest extends ExistingSiteBase {
 
     /** @var \Drupal\druki_content\Data\ContentCodeElement $element */
     $element = $content->getElements()->offsetGet(0);
-    $this->assertEquals($html, $element->getContent());
+    $this->assertEquals("console.log('Hello World');", $element->getContent());
   }
 
 }

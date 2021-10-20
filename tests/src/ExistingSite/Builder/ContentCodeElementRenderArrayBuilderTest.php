@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Druki\Tests\ExistingSite\Builder;
 
 use Drupal\druki_content\Builder\ContentElementRenderArrayBuilderInterface;
+use Drupal\druki_content\Data\ContentCodeElement;
 use Drupal\druki_content\Data\ContentElementBase;
 use Drupal\druki_content\Data\ContentTextElement;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
@@ -12,9 +13,9 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 /**
  * Provides test for content text element render array builder.
  *
- * @coversDefaultClass \Drupal\druki_content\Builder\ContentTextElementRenderArrayBuilder
+ * @coversDefaultClass \Drupal\druki_content\Builder\ContentCodeElementRenderArrayBuilder
  */
-final class ContentTextElementRenderArrayBuilderTest extends ExistingSiteBase {
+final class ContentCodeElementRenderArrayBuilderTest extends ExistingSiteBase {
 
   /**
    * The builder.
@@ -30,7 +31,7 @@ final class ContentTextElementRenderArrayBuilderTest extends ExistingSiteBase {
     $broken_element = new class() extends ContentElementBase {};
     $this->assertFalse($this->builder->isApplicable($broken_element));
 
-    $valid_element = new ContentTextElement('Hello World!');
+    $valid_element = new ContentCodeElement("echo 'Hello World!'");
     $this->assertTrue($this->builder->isApplicable($valid_element));
   }
 
@@ -40,9 +41,9 @@ final class ContentTextElementRenderArrayBuilderTest extends ExistingSiteBase {
    * @covers ::build()
    */
   public function testBuild(): void {
-    $element = new ContentTextElement('Hello World!');
+    $element = new ContentCodeElement("echo 'Hello World!'");
     $expected = [
-      '#theme' => 'druki_content_element_text',
+      '#theme' => 'druki_content_element_code',
       '#content' => [
         '#type' => 'processed_text',
         '#text' => $element->getContent(),
@@ -57,7 +58,7 @@ final class ContentTextElementRenderArrayBuilderTest extends ExistingSiteBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->builder = $this->container->get('druki_content.builder.content_text_element_render_array');
+    $this->builder = $this->container->get('druki_content.builder.content_code_element_render_array');
   }
 
 }

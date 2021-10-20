@@ -460,3 +460,14 @@ function druki_content_update_9206(array &$sandbox): void {
   $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Storage\DrukiContentStorage');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
+
+/**
+ * Change druki_content storage handler location.
+ */
+function druki_content_update_9207(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Repository\DrukiContentStorage');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}

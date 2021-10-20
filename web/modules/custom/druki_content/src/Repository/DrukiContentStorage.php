@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\druki_content\Storage;
+namespace Drupal\druki_content\Repository;
 
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\druki_content\Entity\DrukiContentInterface;

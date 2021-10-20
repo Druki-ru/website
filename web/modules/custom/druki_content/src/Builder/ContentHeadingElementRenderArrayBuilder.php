@@ -5,27 +5,28 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Builder;
 
 use Drupal\druki_content\Data\ContentElementInterface;
-use Drupal\druki_content\Data\ContentTextElement;
+use Drupal\druki_content\Data\ContentHeadingElement;
 
 /**
- * Provides render array builder for text element.
+ * Provides render array builder for heading element.
  */
-final class ContentTextElementRenderArrayBuilder extends ContentElementRenderArrayBuilderBase {
+final class ContentHeadingElementRenderArrayBuilder extends ContentElementRenderArrayBuilderBase {
 
   /**
    * {@inheritdoc}
    */
   public static function isApplicable(ContentElementInterface $element): bool {
-    return $element instanceof ContentTextElement;
+    return $element instanceof ContentHeadingElement;
   }
 
   /**
    * {@inheritdoc}
    */
   public function build(ContentElementInterface $element, array $children_render_array = []): array {
-    \assert($element instanceof ContentTextElement);
+    \assert($element instanceof ContentHeadingElement);
     return [
-      '#theme' => 'druki_content_element_text',
+      '#theme' => 'druki_content_element_heading',
+      '#level' => $element->getLevel(),
       '#content' => [
         '#type' => 'processed_text',
         '#text' => $element->getContent(),
