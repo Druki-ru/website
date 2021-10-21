@@ -133,4 +133,10 @@ services:
 
   druki_content.repository.content_media_image:
     class: Drupal\druki_content\Repository\ContentMediaImageRepository
-    arguments: ['@druki.file_tracker']
+    arguments:
+      - '@druki.file_tracker'
+      - '@entity_field.manager'
+      - '@token'
+      - '@cache.static'
+      - '@entity_type.manager'
+      - '@file_system'
