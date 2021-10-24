@@ -67,6 +67,15 @@ function druki_theme(): array {
     'druki_frontpage_download' => [
       'variables' => [],
     ],
+    'druki_photoswipe_responsive_image' => [
+      'variables' => [
+        'uri' => NULL,
+        'alt' => NULL,
+        'responsive_image_style_id' => NULL,
+        'photoswipe_image_style_id' => NULL,
+      ],
+      'file' => $file,
+    ],
   ];
 }
 

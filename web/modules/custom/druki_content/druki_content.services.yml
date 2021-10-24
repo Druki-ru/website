@@ -126,6 +126,12 @@ services:
     tags:
       - { name: druki_content_element_render_array_builder }
 
+  druki_content.builder.content_image_element_render_array:
+    class: Drupal\druki_content\Builder\ContentImageElementRenderArrayBuilder
+    arguments: ['@druki_content.repository.content_media_image', '@entity_type.manager']
+    tags:
+      - { name: druki_content_element_render_array_builder }
+
   stream_wrapper.druki_content_source:
     class: Drupal\druki_content\StreamWrapper\DrukiContentSourceStream
     tags:

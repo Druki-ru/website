@@ -34,6 +34,10 @@ interface ContentElementRenderArrayBuilderInterface extends CacheableDependencyI
    *
    * @return array
    *   The render array.
+   *
+   * @todo Add support for NULL return value if processing can't be dont for
+   *   a specific element. This situation should be processed by a main builder.
+   *   This is most likely will be needed for image render array builder.
    */
   public function build(ContentElementInterface $element, array $children_render_array = []): array;
 

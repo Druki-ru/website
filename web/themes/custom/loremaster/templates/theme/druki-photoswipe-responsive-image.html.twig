@@ -1,0 +1,26 @@
+{#
+/**
+ * Theme implementation to display responsive image with photoswipe.
+ *
+ * Available variables:
+ * - attributes: The link attributes.
+ * - uri: The image URI.
+ * - alt: The image alternative description.
+ * - responsive_image_style_id: The responsive image style ID.
+ * - photoswipe_image_style_id: The image style to be used for PhotoSwipe modal.
+ * - image: The responsive image element.
+ * - photoswipe_image_url: The URL with image for PhotoSwipe modal.
+ *
+ * @see template_preprocess_druki_photoswipe_responsive_image()
+ */
+#}
+{#
+/**
+ * Add this wrapper manually, otherwise photoswipe.jquery.js will add it
+ * dynamically which will leads to DOM change and overhad on styles computing.
+ */
+#}
+<a class="photoswipe-gallery">
+  <a href="{{ photoswipe_image_url }}"{{ attributes }}>{{ image }}</a>
+</a>
+
