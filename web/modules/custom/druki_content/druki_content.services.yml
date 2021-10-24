@@ -121,8 +121,8 @@ services:
     tags:
       - { name: druki_content_element_render_array_builder }
 
-  druki_content.builder.content_note_element_render_array:
-    class: Drupal\druki_content\Builder\ContentNoteElementRenderArrayBuilder
+  druki_content.builder.content_aside_element_render_array:
+    class: Drupal\druki_content\Builder\ContentAsideElementRenderArrayBuilder
     tags:
       - { name: druki_content_element_render_array_builder }
 

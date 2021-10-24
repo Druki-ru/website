@@ -11,11 +11,11 @@ use Drupal\druki_content\Data\ContentTextElement;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
- * Provides test for content text element render array builder.
+ * Provides test for content aside element render array builder.
  *
- * @coversDefaultClass \Drupal\druki_content\Builder\ContentNoteElementRenderArrayBuilder
+ * @coversDefaultClass \Drupal\druki_content\Builder\ContentAsideElementRenderArrayBuilder
  */
-final class ContentNoteElementRenderArrayBuilderTest extends ExistingSiteBase {
+final class ContentAsideElementRenderArrayBuilderTest extends ExistingSiteBase {
 
   /**
    * The builder.
@@ -52,8 +52,8 @@ final class ContentNoteElementRenderArrayBuilderTest extends ExistingSiteBase {
       ],
     ];
     $expected = [
-      '#theme' => 'druki_content_element_note',
-      '#note_type' => $element->getType(),
+      '#theme' => 'druki_content_element_aside',
+      '#aside_type' => $element->getType(),
       '#content' => $child_content,
     ];
     $this->assertEquals($expected, $this->builder->build($element, $child_content));
@@ -64,7 +64,7 @@ final class ContentNoteElementRenderArrayBuilderTest extends ExistingSiteBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->builder = $this->container->get('druki_content.builder.content_note_element_render_array');
+    $this->builder = $this->container->get('druki_content.builder.content_aside_element_render_array');
   }
 
 }

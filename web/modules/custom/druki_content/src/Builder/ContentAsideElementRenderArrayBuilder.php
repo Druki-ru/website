@@ -10,7 +10,7 @@ use Drupal\druki_content\Data\ContentNoteElement;
 /**
  * Provides render array builder for note element.
  */
-final class ContentNoteElementRenderArrayBuilder extends ContentElementRenderArrayBuilderBase {
+final class ContentAsideElementRenderArrayBuilder extends ContentElementRenderArrayBuilderBase {
 
   /**
    * {@inheritdoc}
@@ -25,8 +25,8 @@ final class ContentNoteElementRenderArrayBuilder extends ContentElementRenderArr
   public function build(ContentElementInterface $element, array $children_render_array = []): array {
     \assert($element instanceof ContentNoteElement);
     return [
-      '#theme' => 'druki_content_element_note',
-      '#note_type' => $element->getType(),
+      '#theme' => 'druki_content_element_aside',
+      '#aside_type' => $element->getType(),
       '#content' => $children_render_array,
     ];
   }
