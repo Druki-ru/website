@@ -9,7 +9,7 @@ use Drupal\Core\Queue\QueueInterface;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
-use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
+use Drupal\druki_content\Data\RedirectSourceFileListQueueItem;
 use Drupal\druki_content\Data\RedirectSourceFile;
 use Drupal\druki_content\Data\RedirectSourceFileList;
 use Drupal\druki_content\Sync\SourceContent\SourceContentListContentSyncQueueItem;
@@ -87,7 +87,7 @@ final class SyncQueueTest extends ExistingSiteBase {
       ->at($this->sourceRoot);
     $source_content = new ContentSourceFile($file->url(), $file->path(), 'ru');
     $source_content_list = new ContentSourceFileList();
-    $source_content_list->add($source_content);
+    $source_content_list->addFile($source_content);
 
     $queue = $this->getSyncQueue();
     $this->assertEquals(0, $queue->numberOfItems());
@@ -111,7 +111,7 @@ final class SyncQueueTest extends ExistingSiteBase {
       ->at($this->sourceRoot);
     $source_content = new ContentSourceFile($file->url(), $file->path(), 'ru');
     $source_content_list = new ContentSourceFileList();
-    $source_content_list->add($source_content);
+    $source_content_list->addFile($source_content);
     $queue->createItem(new SourceContentListContentSyncQueueItem($source_content_list));
 
     $old_id = $druki_content->id();
@@ -129,7 +129,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $file_pathname = $this->sourceRoot->url() . '/docs/ru/redirects.csv';
     $redirect_file_list = new RedirectSourceFileList();
     $redirect_file_list->addFile(new RedirectSourceFile($file_pathname, 'ru'));
-    $redirect_queue_item = new ContentSyncRedirectQueueItem($redirect_file_list);
+    $redirect_queue_item = new RedirectSourceFileListQueueItem($redirect_file_list);
 
     $queue = $this->getSyncQueue();
     $queue->createItem($redirect_queue_item);

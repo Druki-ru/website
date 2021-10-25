@@ -20,17 +20,20 @@ final class ContentDocument extends StringData {
   /**
    * Gets content document.
    *
-   * @return \Drupal\druki_content\Data\ContentDocument
+   * @return \Drupal\druki_content\Data\ContentDocument|null
    *   The content document object.
    */
-  public function getContentDocument(): ContentDocumentData {
+  public function getContentDocument(): ?ContentDocumentData {
+    if (empty($this->value)) {
+      return NULL;
+    }
     return \unserialize($this->value);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setValue($value, $notify = TRUE) {
+  public function setValue($value, $notify = TRUE): void {
     if ($value instanceof ContentDocumentData) {
       $this->setContentDocument($value, $notify);
     }

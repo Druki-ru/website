@@ -70,7 +70,7 @@ class DrukiContentSyncCommand extends DrushCommands {
       $locale = $activeLanguage->getId();
     }
     $sourceContent = new ContentSourceFile($realPath, $uri, $locale);
-    $sourceContentList = (new ContentSourceFileList())->add($sourceContent);
+    $sourceContentList = (new ContentSourceFileList())->addFile($sourceContent);
     $this->queueProcessor->process(new SourceContentListContentSyncQueueItem($sourceContentList));
   }
 

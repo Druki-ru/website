@@ -7,7 +7,7 @@ use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 /**
  * Provides queue item with redirects.
  */
-final class ContentSyncRedirectQueueItem implements ContentSyncQueueItemInterface {
+final class RedirectSourceFileListQueueItem implements ContentSyncQueueItemInterface {
 
   /**
    * The redirect file list.

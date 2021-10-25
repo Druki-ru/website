@@ -10,11 +10,13 @@ use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_content\Data\ContentSourceFileList;
+use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
-use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
+use Drupal\druki_content\Data\RedirectSourceFileList;
+use Drupal\druki_content\Data\RedirectSourceFileListQueueItem;
 use Drupal\druki_content\Finder\ContentSourceFileFinder;
 use Drupal\druki_content\Finder\RedirectSourceFileFinder;
-use Drupal\druki_content\Sync\SourceContent\SourceContentListContentSyncQueueItem;
 
 /**
  * Provides queue manager for synchronization content.
@@ -27,9 +29,9 @@ final class ContentSyncQueueManager {
   public const QUEUE_NAME = 'druki_content_sync';
 
   /**
-   * The source content finder.
+   * The content source file finder.
    */
-  protected ContentSourceFileFinder $contentFinder;
+  protected ContentSourceFileFinder $contentSourceFileFinder;
 
   /**
    * The queue with synchronization items.
@@ -52,16 +54,16 @@ final class ContentSyncQueueManager {
   protected QueueWorkerManagerInterface $queueWorker;
 
   /**
-   * The redirect finder.
+   * The redirect source file finder.
    */
-  protected RedirectSourceFileFinder $redirectFinder;
+  protected RedirectSourceFileFinder $redirectSourceFileFinder;
 
   /**
    * Constructs a new SynchronizationQueueBuilder object.
    *
-   * @param \Drupal\druki_content\Finder\ContentSourceFileFinder $content_finder
+   * @param \Drupal\druki_content\Finder\ContentSourceFileFinder $content_source_file_finder
    *   The source content finder.
-   * @param \Drupal\druki_content\Finder\RedirectSourceFileFinder $redirect_finder
+   * @param \Drupal\druki_content\Finder\RedirectSourceFileFinder $redirect_source_file_finder
    *   The redirect finder.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory.
@@ -72,9 +74,9 @@ final class ContentSyncQueueManager {
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker
    *   The queue manager.
    */
-  public function __construct(ContentSourceFileFinder $content_finder, RedirectSourceFileFinder $redirect_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
-    $this->contentFinder = $content_finder;
-    $this->redirectFinder = $redirect_finder;
+  public function __construct(ContentSourceFileFinder $content_source_file_finder, RedirectSourceFileFinder $redirect_source_file_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
+    $this->contentSourceFileFinder = $content_source_file_finder;
+    $this->redirectSourceFileFinder = $redirect_source_file_finder;
     $this->queue = $queue_factory->get(self::QUEUE_NAME);
     $this->state = $state;
     $this->time = $time;
@@ -92,11 +94,17 @@ final class ContentSyncQueueManager {
    *   The with source content. This directory will be parsed on call.
    */
   public function buildFromPath(string $directory): void {
-    // Clear queue to exclude duplicate work.
-    $this->queue->deleteQueue();
-    $this->addSourceContentList($directory);
-    $this->addRedirectFileList($directory);
+    $this->clear();
+    $this->addContentSourceFileList($directory);
+    $this->addRedirectSourceFileList($directory);
     $this->addCleanOperation();
+  }
+
+  /**
+   * Clears queue manually.
+   */
+  public function clear(): void {
+    $this->queue->deleteQueue();
   }
 
   /**
@@ -105,15 +113,23 @@ final class ContentSyncQueueManager {
    * @param string $directory
    *   The directory with content.
    */
-  protected function addSourceContentList(string $directory): void {
-    $source_content_list = $this->contentFinder->findAll($directory);
-    if (!$source_content_list->numberOfItems()) {
+  protected function addContentSourceFileList(string $directory): void {
+    $content_source_file_list = $this->contentSourceFileFinder->findAll($directory);
+    if (!$content_source_file_list->getIterator()->count()) {
       return;
     }
 
     $items_per_queue = Settings::get('entity_update_batch_size', 50);
-    foreach ($source_content_list->chunk($items_per_queue) as $content_list_chunk) {
-      $this->queue->createItem(new SourceContentListContentSyncQueueItem($content_list_chunk));
+    $source_files_array = $content_source_file_list->getIterator()->getArrayCopy();
+    $chunks = \array_chunk($source_files_array, $items_per_queue);
+    foreach ($chunks as $chunk) {
+      $content_source_file_list = new ContentSourceFileList();
+      /** @var \Drupal\druki_content\Data\ContentSourceFile $content_source_file */
+      foreach ($chunk as $content_source_file) {
+        $content_source_file_list->addFile($content_source_file);
+      }
+      $queue_item = new ContentSourceFileListQueueItem($content_source_file_list);
+      $this->queue->createItem($queue_item);
     }
   }
 
@@ -123,13 +139,23 @@ final class ContentSyncQueueManager {
    * @param string $directory
    *   The directory with content.
    */
-  protected function addRedirectFileList(string $directory): void {
-    $redirect_file_list = $this->redirectFinder->findAll($directory);
-    if ($redirect_file_list->getIterator()->count() == 0) {
+  protected function addRedirectSourceFileList(string $directory): void {
+    $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory);
+    if (!$redirect_file_list->getIterator()->count()) {
       return;
     }
-    $redirect_queue_item = new ContentSyncRedirectQueueItem($redirect_file_list);
-    $this->queue->createItem($redirect_queue_item);
+
+    $items_per_queue = Settings::get('entity_update_batch_size', 50);
+    $redirect_files_array = $redirect_file_list->getIterator()->getArrayCopy();
+    $chunks = \array_chunk($redirect_files_array, $items_per_queue);
+    foreach ($chunks as $chunk) {
+      $redirect_source_file_list = new RedirectSourceFileList();
+      foreach ($chunk as $redirect_source_file) {
+        $redirect_source_file_list->addFile($redirect_source_file);
+      }
+      $queue_item = new RedirectSourceFileListQueueItem($redirect_source_file_list);
+      $this->queue->createItem($queue_item);
+    }
   }
 
   /**
@@ -185,13 +211,6 @@ final class ContentSyncQueueManager {
     }
 
     return $count;
-  }
-
-  /**
-   * Clears queue manually.
-   */
-  public function clear(): void {
-    $this->queue->deleteQueue();
   }
 
 }

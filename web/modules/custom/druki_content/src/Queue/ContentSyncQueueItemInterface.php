@@ -13,6 +13,6 @@ interface ContentSyncQueueItemInterface {
    * @return mixed
    *   The payload for queue.
    */
-  public function getPayload();
+  public function getPayload(): mixed;
 
 }

@@ -15,29 +15,6 @@ final class ContentSourceFileList implements \IteratorAggregate {
   protected array $items = [];
 
   /**
-   * Split items into chunks.
-   *
-   * @param int $size
-   *   The size of each chunk.
-   *
-   * @return \Drupal\druki_content\Data\ContentSourceFileList[]
-   *   An array with ContentSourceFileList contains no more than size of items.
-   */
-  public function chunk(int $size): array {
-    $chunks = \array_chunk($this->items, $size);
-    $result = [];
-    foreach ($chunks as $chunk) {
-      $list = new ContentSourceFileList();
-      foreach ($chunk as $item) {
-        $list->add($item);
-      }
-      $result[] = $list;
-    }
-
-    return $result;
-  }
-
-  /**
    * Adds content source item to collection.
    *
    * @param \Drupal\druki_content\Data\ContentSourceFile $source_content
@@ -45,19 +22,9 @@ final class ContentSourceFileList implements \IteratorAggregate {
    *
    * @return $this
    */
-  public function add(ContentSourceFile $source_content): ContentSourceFileList {
+  public function addFile(ContentSourceFile $source_content): ContentSourceFileList {
     $this->items[] = $source_content;
     return $this;
-  }
-
-  /**
-   * Returns source content items as array.
-   *
-   * @return \Drupal\druki_content\Data\ContentSourceFile[]
-   *   An array with source content items.
-   */
-  public function toArray(): array {
-    return $this->items;
   }
 
   /**
@@ -65,16 +32,6 @@ final class ContentSourceFileList implements \IteratorAggregate {
    */
   public function getIterator() {
     return new \ArrayIterator($this->items);
-  }
-
-  /**
-   * Gets number of source content items.
-   *
-   * @return int
-   *   The number of items.
-   */
-  public function numberOfItems(): int {
-    return \count($this->items);
   }
 
 }

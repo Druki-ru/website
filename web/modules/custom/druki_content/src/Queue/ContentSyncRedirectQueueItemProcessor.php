@@ -6,7 +6,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\druki_content\Data\ContentSyncRedirectQueueItem;
+use Drupal\druki_content\Data\RedirectSourceFileListQueueItem;
 use Drupal\druki_content\Data\RedirectSourceFile;
 
 /**
@@ -137,7 +137,7 @@ final class ContentSyncRedirectQueueItemProcessor implements ContentSyncQueuePro
    * {@inheritdoc}
    */
   public function isApplicable(ContentSyncQueueItemInterface $item): bool {
-    return $item instanceof ContentSyncRedirectQueueItem;
+    return $item instanceof RedirectSourceFileListQueueItem;
   }
 
   /**
