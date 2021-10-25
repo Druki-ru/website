@@ -10,6 +10,7 @@ use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\entity\BundleFieldDefinition;
 
 /**
  * Implements hook_requirements().
@@ -470,4 +471,16 @@ function druki_content_update_9207(array &$sandbox): void {
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
   $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Repository\DrukiContentStorage');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Adds new "document" field for druki_content entity.
+ */
+function druki_content_update_9208(array &$sandbox): void {
+  $field_storage_definition = BundleFieldDefinition::create('druki_content_document')
+    ->setLabel(new TranslatableMarkup('The content document.'))
+    ->setRequired(TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('document', 'druki_content', 'druki_content', $field_storage_definition);
 }

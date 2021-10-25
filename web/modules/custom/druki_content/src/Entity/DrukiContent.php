@@ -7,6 +7,7 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\entity\BundleFieldDefinition;
 
 /**
  * Defines the druki content entity class.
@@ -121,6 +122,10 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
       ->setRequired(FALSE)
       ->setSetting('max_length', 255)
       ->setReadOnly(TRUE);
+
+    $fields['document'] = BundleFieldDefinition::create('druki_content_document')
+      ->setLabel(new TranslatableMarkup('The content document.'))
+      ->setRequired(TRUE);
 
     return $fields;
   }

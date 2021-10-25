@@ -18,3 +18,4 @@ dependencies:
   - pathauto:pathauto
   - metatag:metatag
   - redirect:redirect
+  - entity:entity
