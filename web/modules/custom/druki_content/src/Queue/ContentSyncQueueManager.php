@@ -95,8 +95,14 @@ final class ContentSyncQueueManager {
    */
   public function buildFromPath(string $directory): void {
     $this->clear();
-    $this->addContentSourceFileList($directory);
-    $this->addRedirectSourceFileList($directory);
+    $content_source_file_list = $this->contentSourceFileFinder->findAll($directory);
+    if ($content_source_file_list->getIterator()->count()) {
+      $this->addContentSourceFileList($content_source_file_list);
+    }
+    $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory);
+    if ($redirect_file_list->getIterator()->count()) {
+      $this->addRedirectSourceFileList($redirect_file_list);
+    }
     $this->addCleanOperation();
   }
 
@@ -110,15 +116,10 @@ final class ContentSyncQueueManager {
   /**
    * Builds new queue from source content list.
    *
-   * @param string $directory
-   *   The directory with content.
+   * @param \Drupal\druki_content\Data\ContentSourceFileList $content_source_file_list
+   *   The content source file list.
    */
-  protected function addContentSourceFileList(string $directory): void {
-    $content_source_file_list = $this->contentSourceFileFinder->findAll($directory);
-    if (!$content_source_file_list->getIterator()->count()) {
-      return;
-    }
-
+  protected function addContentSourceFileList(ContentSourceFileList $content_source_file_list): void {
     $items_per_queue = Settings::get('entity_update_batch_size', 50);
     $source_files_array = $content_source_file_list->getIterator()->getArrayCopy();
     $chunks = \array_chunk($source_files_array, $items_per_queue);
@@ -136,17 +137,12 @@ final class ContentSyncQueueManager {
   /**
    * Adds redirect files into queue.
    *
-   * @param string $directory
-   *   The directory with content.
+   * @param \Drupal\druki_content\Data\RedirectSourceFileList $redirect_source_file_list
+   *   The redirect source file list.
    */
-  protected function addRedirectSourceFileList(string $directory): void {
-    $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory);
-    if (!$redirect_file_list->getIterator()->count()) {
-      return;
-    }
-
+  protected function addRedirectSourceFileList(RedirectSourceFileList $redirect_source_file_list): void {
     $items_per_queue = Settings::get('entity_update_batch_size', 50);
-    $redirect_files_array = $redirect_file_list->getIterator()->getArrayCopy();
+    $redirect_files_array = $redirect_source_file_list->getIterator()->getArrayCopy();
     $chunks = \array_chunk($redirect_files_array, $items_per_queue);
     foreach ($chunks as $chunk) {
       $redirect_source_file_list = new RedirectSourceFileList();
@@ -204,8 +200,11 @@ final class ContentSyncQueueManager {
         $this->queue->releaseItem($item);
       }
       catch (\Exception $e) {
-        // In case of any other kind of exception, log it and leave the item
-        // in the queue to be processed again later.
+        // In case of any other kind of exception, log this information and
+        // delete that item from queue so it wont block processing other items.
+        // Maybe this should somehow notify about problem.
+        $this->queue->deleteItem($item);
+        $count++;
         \watchdog_exception('druki_content', $e);
       }
     }
