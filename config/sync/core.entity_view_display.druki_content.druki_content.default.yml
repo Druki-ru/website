@@ -26,6 +26,13 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  document:
+    label: hidden
+    type: druki_content_document_render_array
+    weight: -4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   extra_field_next_prev:
     weight: 1
     region: content

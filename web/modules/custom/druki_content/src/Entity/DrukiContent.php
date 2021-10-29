@@ -126,7 +126,13 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
 
     $fields['document'] = BundleFieldDefinition::create('druki_content_document')
       ->setLabel(new TranslatableMarkup('The content document.'))
-      ->setRequired(TRUE);
+      ->setRequired(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
 
     return $fields;
   }

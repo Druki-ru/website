@@ -19,6 +19,7 @@ use Drupal\druki_content\Data\ContentMetadata;
  *   label = @Translation("Druki content document"),
  *   category = @Translation("Druki"),
  *   no_ui = TRUE,
+ *   default_formatter = "druki_content_document_render_array",
  * )
  */
 class ContentDocumentItem extends FieldItemBase {
