@@ -60,17 +60,17 @@ final class ContentMetadata {
   /**
    * The Drupal core major version.
    */
-  protected ?int $core;
+  protected ?int $core = NULL;
 
   /**
    * An array with category metadata.
    */
-  protected ?array $category;
+  protected ?array $category = NULL;
 
   /**
    * An array with search keywords.
    */
-  protected ?array $searchKeywords;
+  protected ?array $searchKeywords = NULL;
 
   /**
    * An array with metatags.
@@ -96,18 +96,18 @@ final class ContentMetadata {
     }
 
     $instance = new self();
-    $instance->title = $data['title'];
-    $instance->slug = $data['slug'];
+    $instance->title = (string) $data['title'];
+    $instance->slug = (string) $data['slug'];
 
     if (isset($data['core'])) {
       $instance->core = \intval($data['core']);
     }
 
     if (isset($data['category'])) {
-      if (!\is_array($data)) {
+      if (!\is_array($data['category'])) {
         throw new \InvalidArgumentException("The 'category' metadata should be an array.");
       }
-      if (!isset($data['area'])) {
+      if (!isset($data['category']['area'])) {
         throw new \InvalidArgumentException("The 'category.area' is required if 'category' is set.");
       }
       $default_values = [
@@ -183,6 +183,16 @@ final class ContentMetadata {
   }
 
   /**
+   * Checks metadata for search keywords value.
+   *
+   * @return bool
+   *   TRUE if value is set.
+   */
+  public function hasSearchKeywords(): bool {
+    return isset($this->searchKeywords);
+  }
+
+  /**
    * Gets search keywords.
    *
    * @return array|null
@@ -218,7 +228,41 @@ final class ContentMetadata {
    *   TRUE if metatag is set.
    */
   public function hasMetatag(string $name): bool {
-    return \isset($this->metatags[$name]);
+    return isset($this->metatags[$name]);
+  }
+
+  /**
+   * Gets metatags array.
+   *
+   * @return array|null
+   *   An array with metatags.
+   */
+  public function getMetatags(): ?array {
+    if (!$this->hasMetatags()) {
+      return NULL;
+    }
+    $metatags = $this->metatags;
+
+    if ($this->hasMetatag('title')) {
+      $metatags['og_title'] = $this->getMetatag('title');
+      $metatags['twitter_cards_title'] = $this->getMetatag('title');
+    }
+
+    if ($this->hasMetatag('description')) {
+      $metatags['og_description'] = $this->getMetatag('description');
+    }
+
+    return $metatags;
+  }
+
+  /**
+   * Checks for metatags value.
+   *
+   * @return bool
+   *   TRUE if at least single value for metatag is presented.
+   */
+  public function hasMetatags(): bool {
+    return !empty($this->metatags);
   }
 
 }

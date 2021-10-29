@@ -2,15 +2,17 @@
 
 namespace Drupal\druki_content\Queue;
 
+use Drupal\Core\Logger\LoggerChannelInterface;
+
 /**
- * Provides processing for sync queue items.
+ * Provides chained processor for content sync queue.
  */
-final class ContentSyncQueueProcessor implements ContentSyncQueueProcessorInterface {
+final class ChainContentSyncQueueProcessor implements ContentSyncQueueProcessorInterface {
 
   /**
    * The list of available queue processors.
    *
-   * @var \Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface
+   * @var \Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface[]
    */
   protected array $processors = [];
 
@@ -40,7 +42,7 @@ final class ContentSyncQueueProcessor implements ContentSyncQueueProcessorInterf
    * {@inheritdoc}
    */
   public function isApplicable(ContentSyncQueueItemInterface $item): bool {
-    return FALSE;
+    return TRUE;
   }
 
 }

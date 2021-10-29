@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\druki_content\Data\ContentDocument;
 
 /**
  * Provides an interface defining a druki content entity type.
@@ -50,13 +51,13 @@ interface DrukiContentInterface extends ContentEntityInterface {
   /**
    * Sets core version.
    *
-   * @param string $core
+   * @param int|null $core
    *   The core version.
    *
    * @return \Drupal\druki_content\Entity\DrukiContentInterface
    *   The called druki content entity.
    */
-  public function setCore(string $core): DrukiContentInterface;
+  public function setCore(?int $core): DrukiContentInterface;
 
   /**
    * Gets core version.
@@ -89,10 +90,10 @@ interface DrukiContentInterface extends ContentEntityInterface {
   /**
    * Gets category.
    *
-   * @return array
+   * @return array|null
    *   The category info.
    */
-  public function getCategory(): array;
+  public function getCategory(): ?array;
 
   /**
    * Gets last sync timestamp where content was found.
@@ -137,5 +138,23 @@ interface DrukiContentInterface extends ContentEntityInterface {
    *   The content slug.
    */
   public function getSlug(): string;
+
+  /**
+   * Sets content document.
+   *
+   * @param \Drupal\druki_content\Data\ContentDocument $content_document
+   *   The content document.
+   *
+   * @return $this
+   */
+  public function setContentDocument(ContentDocument $content_document): self;
+
+  /**
+   * Gets content document.
+   *
+   * @return \Drupal\druki_content\Data\ContentDocument
+   *   The content document.
+   */
+  public function getContentDocument(): ContentDocument;
 
 }

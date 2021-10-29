@@ -7,6 +7,7 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki_content\Data\ContentDocument;
 use Drupal\entity\BundleFieldDefinition;
 
 /**
@@ -199,7 +200,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setCore(string $core): DrukiContentInterface {
+  public function setCore(?int $core): DrukiContentInterface {
     $this->set('core', $core);
 
     return $this;
@@ -235,7 +236,10 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function getCategory(): array {
+  public function getCategory(): ?array {
+    if ($this->get('category')->isEmpty()) {
+      return NULL;
+    }
     return $this->get('category')->first()->getValue();
   }
 
@@ -267,6 +271,21 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   public function setSourceHash(string $hash): DrukiContentInterface {
     $this->set('source_hash', $hash);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setContentDocument(ContentDocument $content_document): self {
+    $this->set('document', $content_document);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContentDocument(): ContentDocument {
+    return $this->get('document')->first()->get('document')->getContentDocument();
   }
 
 }

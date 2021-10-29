@@ -35,8 +35,7 @@ services:
       - { name: service_collector, tag: druki_content_html_preprocessor, call: addHtmlPreprocessor }
 
   druki_content.queue.content_sync_processor:
-    class: Drupal\druki_content\Queue\ContentSyncQueueProcessor
-    arguments: [ '@entity_type.manager', '@druki_content.parser.content_source_file', '@state', '@entity.memory_cache' ]
+    class: Drupal\druki_content\Queue\ChainContentSyncQueueProcessor
     tags:
       - { name: service_collector, tag: druki_sync_queue_processor, call: addProcessor }
 
@@ -146,3 +145,12 @@ services:
       - '@cache.static'
       - '@entity_type.manager'
       - '@file_system'
+
+  druki_content.queue.content_source_file_list_queue_item:
+    class: Drupal\druki_content\Queue\ContentSourceFileListQueueItemProcessor
+    arguments: ['@entity_type.manager', '@druki_content.parser.content_source_file', '@druki_content.generator.content_document_checksum']
+    tags:
+      - { name: druki_sync_queue_processor }
+
+  druki_content.generator.content_document_checksum:
+    class: Drupal\druki_content\Generator\ContentDocumentChecksumGenerator

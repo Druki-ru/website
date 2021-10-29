@@ -44,4 +44,20 @@ trait SourceContentProviderTrait {
     ]);
   }
 
+  /**
+   * Prepares file structure which was updated.
+   */
+  protected function setupFakeSourceDirUpdate(): vfsStreamDirectory {
+    return vfsStream::setup('content', NULL, [
+      'docs' => [
+        'ru' => [
+          'drupal' => [
+            'index.md' => \file_get_contents(__DIR__ . '/../../fixtures/source-content-2.md'),
+          ],
+          'redirects.csv' => \file_get_contents(__DIR__ . '/../../fixtures/redirects.csv'),
+        ],
+      ],
+    ]);
+  }
+
 }
