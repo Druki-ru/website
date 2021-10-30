@@ -6,8 +6,8 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\druki_content\Data\RedirectSourceFileListQueueItem;
 use Drupal\druki_content\Data\RedirectSourceFile;
+use Drupal\druki_content\Data\RedirectSourceFileListQueueItem;
 
 /**
  * Provides redirect queue processor.
@@ -45,12 +45,13 @@ final class ContentSyncRedirectQueueItemProcessor implements ContentSyncQueuePro
   /**
    * {@inheritdoc}
    */
-  public function process(ContentSyncQueueItemInterface $item): void {
+  public function process(ContentSyncQueueItemInterface $item): array {
     /** @var \Drupal\druki_content\Data\RedirectSourceFileList $files */
     $files = $item->getPayload();
     foreach ($files as $file) {
       $this->processRedirectFile($file);
     }
+    return [];
   }
 
   /**

@@ -3,7 +3,6 @@
 namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Queue\RequeueException;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 
 /**

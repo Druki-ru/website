@@ -59,7 +59,7 @@ final class ContentRenderArrayBuilder {
    *   The content element.
    *
    * @return array
-   *    The result render array.
+   *   The result render array.
    */
   protected function buildElement(ContentElementInterface $element): array {
     $children_build = [];

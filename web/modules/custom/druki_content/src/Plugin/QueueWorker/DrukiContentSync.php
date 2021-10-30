@@ -4,8 +4,8 @@ namespace Drupal\druki_content\Plugin\QueueWorker;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
-use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 use Drupal\druki_content\Queue\ChainContentSyncQueueProcessor;
+use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

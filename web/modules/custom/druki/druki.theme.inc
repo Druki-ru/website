@@ -176,7 +176,8 @@ function template_preprocess_druki_frontpage_download(array &$variables): void {
  *   - uri: The URI of image to be displayed.
  *   - alt: The image alternative description.
  *   - responsive_image_style_id: The Responsive Image Style ID.
- *   - photoswipe_image_style_id: The image style to be used for PhotoSwipe modal.
+ *   - photoswipe_image_style_id: The image style to be used for PhotoSwipe
+ *     modal.
  */
 function template_preprocess_druki_photoswipe_responsive_image(array &$variables): void {
   $variables['image'] = [];

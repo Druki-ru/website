@@ -46,7 +46,7 @@ final class ContentHtmlImagePreprocessor implements ContentHtmlPreprocessorInter
       $src = \ltrim($src, '/');
       $uri_parts = [
         'druki-content-source:/',
-        \pathinfo($source_content_file->getRealpath(), PATHINFO_DIRNAME),
+        \pathinfo($source_content_file->getRealpath(), \PATHINFO_DIRNAME),
         $src,
       ];
       $image->setAttribute('src', \implode('/', $uri_parts));

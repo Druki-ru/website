@@ -5,8 +5,8 @@ namespace Drupal\druki_content\Command;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
+use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface;
-use Drupal\druki_content\Sync\SourceContent\SourceContentListContentSyncQueueItem;
 use Drupal\druki_git\Git\GitInterface;
 use Drush\Commands\DrushCommands;
 
@@ -71,7 +71,7 @@ class DrukiContentSyncCommand extends DrushCommands {
     }
     $sourceContent = new ContentSourceFile($realPath, $uri, $locale);
     $sourceContentList = (new ContentSourceFileList())->addFile($sourceContent);
-    $this->queueProcessor->process(new SourceContentListContentSyncQueueItem($sourceContentList));
+    $this->queueProcessor->process(new ContentSourceFileListQueueItem($sourceContentList));
   }
 
 }

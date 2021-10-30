@@ -68,7 +68,7 @@ final class ContentMediaImageRepository {
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
    * @param \Drupal\token\Token $token
-   *   The token
+   *   The token.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager

@@ -81,11 +81,12 @@ final class ContentSyncQueueManager {
     if ($content_source_file_list->getIterator()->count()) {
       $this->addContentSourceFileList($content_source_file_list);
     }
-    # @todo Move to druki_redirect module.
-    # $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory);
-    # if ($redirect_file_list->getIterator()->count()) {
-    #   $this->addRedirectSourceFileList($redirect_file_list);
-    # }
+    // @todo Move to druki_redirect module.
+    // $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory
+    // );
+    // if ($redirect_file_list->getIterator()->count()) {
+    // $this->addRedirectSourceFileList($redirect_file_list);
+    // }
     $this->addCleanOperation();
   }
 
