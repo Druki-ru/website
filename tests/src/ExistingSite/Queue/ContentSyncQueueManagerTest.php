@@ -52,7 +52,7 @@ final class ContentSyncQueueManagerTest extends ExistingSiteBase {
     $this->assertEquals(0, $this->syncQueue->numberOfItems());
     $this->syncQueue->createItem('test');
     $this->assertEquals(1, $this->syncQueue->numberOfItems());
-    $this->queueManager->clear();
+    $this->queueManager->delete();
     $this->assertEquals(0, $this->syncQueue->numberOfItems());
   }
 
@@ -62,7 +62,7 @@ final class ContentSyncQueueManagerTest extends ExistingSiteBase {
   public function testBuildFromPath(): void {
     $directory = $this->setupFakeSourceDir();
     $this->queueManager->buildFromPath($directory->url());
-    $this->assertEquals(3, $this->syncQueue->numberOfItems());
+    $this->assertEquals(2, $this->syncQueue->numberOfItems());
   }
 
   /**

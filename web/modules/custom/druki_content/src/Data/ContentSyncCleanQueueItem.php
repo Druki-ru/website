@@ -6,29 +6,18 @@ use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
 
 /**
  * Provides queue item for clean up missing content.
+ *
+ * This queue item exists to be detected by queue processor. It doesn't have
+ * any payload, because it just utility queue item used to clean up deleted
+ * entities during synchronization.
  */
 final class ContentSyncCleanQueueItem implements ContentSyncQueueItemInterface {
-
-  /**
-   * The timestamp for the last update.
-   */
-  protected int $payload;
-
-  /**
-   * ContentSyncCleanQueueItem constructor.
-   *
-   * @param int $timestamp
-   *   The last update timestamp.
-   */
-  public function __construct(int $timestamp) {
-    $this->payload = $timestamp;
-  }
 
   /**
    * {@inheritdoc}
    */
   public function getPayload(): int {
-    return $this->payload;
+    return 0;
   }
 
 }

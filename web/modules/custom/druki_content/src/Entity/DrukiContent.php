@@ -108,15 +108,6 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
       ->setRequired(FALSE)
       ->setReadOnly(TRUE);
 
-    $fields['sync_timestamp'] = BaseFieldDefinition::create('timestamp')
-      ->setLabel(new TranslatableMarkup('Last synchronization timestamp'))
-      ->setDescription(new TranslatableMarkup('The time of last synchronization where this content was presented.'))
-      ->setDisplayOptions('form', [
-        'region' => 'hidden',
-        'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE);
-
     $fields['source_hash'] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Source content hash'))
       ->setDescription(new TranslatableMarkup('Store the last parsed content hash used for current content.'))
@@ -247,21 +238,6 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
       return NULL;
     }
     return $this->get('category')->first()->getValue();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSyncTimestamp(): ?int {
-    return $this->get('sync_timestamp')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setSyncTimestamp(int $timestamp): DrukiContentInterface {
-    $this->set('sync_timestamp', $timestamp);
-    return $this;
   }
 
   /**

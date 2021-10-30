@@ -192,7 +192,7 @@ final class DrukiContentSyncForm extends FormBase {
    * Clear queue from all items.
    */
   public function clearQueue(): void {
-    $this->queueManager->clear();
+    $this->queueManager->delete();
   }
 
   /**

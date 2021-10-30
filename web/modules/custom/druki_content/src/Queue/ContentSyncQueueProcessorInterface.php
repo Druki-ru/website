@@ -12,8 +12,12 @@ interface ContentSyncQueueProcessorInterface {
    *
    * @param \Drupal\druki_content\Queue\ContentSyncQueueItemInterface $item
    *   The queue item to process.
+   *
+   * @return array
+   *   An array with IDs of created or updated entities. Returns an empty array
+   *   if not applicable.
    */
-  public function process(ContentSyncQueueItemInterface $item): void;
+  public function process(ContentSyncQueueItemInterface $item): array;
 
   /**
    * Checks if provided item can be processed by current processor.

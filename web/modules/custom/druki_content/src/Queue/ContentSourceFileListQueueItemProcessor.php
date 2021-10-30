@@ -55,13 +55,15 @@ final class ContentSourceFileListQueueItemProcessor implements ContentSyncQueueP
   /**
    * {@inheritdoc}
    */
-  public function process(ContentSyncQueueItemInterface $item): void {
+  public function process(ContentSyncQueueItemInterface $item): array {
     \assert($item instanceof ContentSourceFileListQueueItem);
     $content_source_file_list = $item->getPayload();
+    $ids = [];
     /** @var \Drupal\druki_content\Data\ContentSourceFile $content_source_file */
     foreach ($content_source_file_list->getIterator() as $content_source_file) {
-      $this->processContentSourceFile($content_source_file);
+      $ids[] = $this->processContentSourceFile($content_source_file);
     }
+    return $ids;
   }
 
   /**
@@ -69,8 +71,11 @@ final class ContentSourceFileListQueueItemProcessor implements ContentSyncQueueP
    *
    * @param \Drupal\druki_content\Data\ContentSourceFile $content_source_file
    *   The content source file.
+   *
+   * @return int
+   *   The ID of created or updated content entity.
    */
-  protected function processContentSourceFile(ContentSourceFile $content_source_file): void {
+  protected function processContentSourceFile(ContentSourceFile $content_source_file): int {
     $content_document = $this->contentSourceFileParser->parse($content_source_file);
     $content_metadata = $content_document->getMetadata();
     $content_entity = $this->prepareContentEntity($content_document);
@@ -78,7 +83,7 @@ final class ContentSourceFileListQueueItemProcessor implements ContentSyncQueueP
     $destination_checksum = $content_entity->getSourceHash();
     $source_checksum = $this->checksumGenerator->generate($content_document);
     if ($destination_checksum == $source_checksum) {
-      return;
+      return (int) $content_entity->id();
     }
     $content_entity->setSourceHash($source_checksum);
 
@@ -111,6 +116,7 @@ final class ContentSourceFileListQueueItemProcessor implements ContentSyncQueueP
     }
 
     $content_entity->save();
+    return (int) $content_entity->id();
   }
 
   /**

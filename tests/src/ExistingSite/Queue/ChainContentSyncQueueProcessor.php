@@ -36,8 +36,9 @@ final class ChainContentSyncQueueProcessor extends ExistingSiteBase {
 
       protected mixed $value = NULL;
 
-      public function process(ContentSyncQueueItemInterface $item): void {
+      public function process(ContentSyncQueueItemInterface $item): array {
         $this->value = $item->getPayload();
+        return [];
       }
 
       public function getValue(): mixed {

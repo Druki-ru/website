@@ -2,21 +2,19 @@
 
 namespace Drupal\druki_content\Queue;
 
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
-use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Data\RedirectSourceFileList;
 use Drupal\druki_content\Data\RedirectSourceFileListQueueItem;
 use Drupal\druki_content\Finder\ContentSourceFileFinder;
-use Drupal\druki_content\Finder\RedirectSourceFileFinder;
+use Drupal\druki_content\Repository\ContentSyncQueueState;
 
 /**
  * Provides queue manager for synchronization content.
@@ -39,48 +37,32 @@ final class ContentSyncQueueManager {
   protected QueueInterface $queue;
 
   /**
-   * The state storage.
-   */
-  protected StateInterface $state;
-
-  /**
-   * The system time.
-   */
-  protected TimeInterface $time;
-
-  /**
    * The queue worker.
    */
   protected QueueWorkerManagerInterface $queueWorker;
 
   /**
-   * The redirect source file finder.
+   * The queue state.
    */
-  protected RedirectSourceFileFinder $redirectSourceFileFinder;
+  protected ContentSyncQueueState $queueState;
 
   /**
    * Constructs a new SynchronizationQueueBuilder object.
    *
    * @param \Drupal\druki_content\Finder\ContentSourceFileFinder $content_source_file_finder
    *   The source content finder.
-   * @param \Drupal\druki_content\Finder\RedirectSourceFileFinder $redirect_source_file_finder
-   *   The redirect finder.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory.
-   * @param \Drupal\Core\State\StateInterface $state
-   *   The state storage.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The system time.
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker
    *   The queue manager.
+   * @param \Drupal\druki_content\Repository\ContentSyncQueueState $sync_state
+   *   The content sync state.
    */
-  public function __construct(ContentSourceFileFinder $content_source_file_finder, RedirectSourceFileFinder $redirect_source_file_finder, QueueFactory $queue_factory, StateInterface $state, TimeInterface $time, QueueWorkerManagerInterface $queue_worker) {
+  public function __construct(ContentSourceFileFinder $content_source_file_finder, QueueFactory $queue_factory, QueueWorkerManagerInterface $queue_worker, ContentSyncQueueState $sync_state) {
     $this->contentSourceFileFinder = $content_source_file_finder;
-    $this->redirectSourceFileFinder = $redirect_source_file_finder;
     $this->queue = $queue_factory->get(self::QUEUE_NAME);
-    $this->state = $state;
-    $this->time = $time;
     $this->queueWorker = $queue_worker;
+    $this->queueState = $sync_state;
   }
 
   /**
@@ -94,23 +76,25 @@ final class ContentSyncQueueManager {
    *   The with source content. This directory will be parsed on call.
    */
   public function buildFromPath(string $directory): void {
-    $this->clear();
+    $this->delete();
     $content_source_file_list = $this->contentSourceFileFinder->findAll($directory);
     if ($content_source_file_list->getIterator()->count()) {
       $this->addContentSourceFileList($content_source_file_list);
     }
-    $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory);
-    if ($redirect_file_list->getIterator()->count()) {
-      $this->addRedirectSourceFileList($redirect_file_list);
-    }
+    # @todo Move to druki_redirect module.
+    # $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory);
+    # if ($redirect_file_list->getIterator()->count()) {
+    #   $this->addRedirectSourceFileList($redirect_file_list);
+    # }
     $this->addCleanOperation();
   }
 
   /**
    * Clears queue manually.
    */
-  public function clear(): void {
+  public function delete(): void {
     $this->queue->deleteQueue();
+    $this->queueState->delete();
   }
 
   /**
@@ -135,32 +119,30 @@ final class ContentSyncQueueManager {
   }
 
   /**
-   * Adds redirect files into queue.
-   *
-   * @param \Drupal\druki_content\Data\RedirectSourceFileList $redirect_source_file_list
-   *   The redirect source file list.
-   */
-  protected function addRedirectSourceFileList(RedirectSourceFileList $redirect_source_file_list): void {
-    $items_per_queue = Settings::get('entity_update_batch_size', 50);
-    $redirect_files_array = $redirect_source_file_list->getIterator()->getArrayCopy();
-    $chunks = \array_chunk($redirect_files_array, $items_per_queue);
-    foreach ($chunks as $chunk) {
-      $redirect_source_file_list = new RedirectSourceFileList();
-      foreach ($chunk as $redirect_source_file) {
-        $redirect_source_file_list->addFile($redirect_source_file);
-      }
-      $queue_item = new RedirectSourceFileListQueueItem($redirect_source_file_list);
-      $this->queue->createItem($queue_item);
-    }
-  }
-
-  /**
    * Adds clean operation into queue.
    */
   protected function addCleanOperation(): void {
-    $sync_timestamp = $this->time->getRequestTime();
-    $this->queue->createItem(new ContentSyncCleanQueueItem($sync_timestamp));
-    $this->state->set('druki_content.last_sync_timestamp', $this->time->getRequestTime());
+    $this->queue->createItem(new ContentSyncCleanQueueItem());
+  }
+
+  /**
+   * Gets queue state.
+   *
+   * @return \Drupal\druki_content\Repository\ContentSyncQueueState
+   *   The queue state storage.
+   */
+  public function getState(): ContentSyncQueueState {
+    return $this->queueState;
+  }
+
+  /**
+   * Gets queue.
+   *
+   * @return \Drupal\Core\Queue\QueueInterface
+   *   The queue.
+   */
+  public function getQueue(): QueueInterface {
+    return $this->queue;
   }
 
   /**
@@ -210,6 +192,28 @@ final class ContentSyncQueueManager {
     }
 
     return $count;
+  }
+
+  /**
+   * Adds redirect files into queue.
+   *
+   * @param \Drupal\druki_content\Data\RedirectSourceFileList $redirect_source_file_list
+   *   The redirect source file list.
+   *
+   * @todo Move code into druki_redirect.
+   */
+  protected function addRedirectSourceFileList(RedirectSourceFileList $redirect_source_file_list): void {
+    $items_per_queue = Settings::get('entity_update_batch_size', 50);
+    $redirect_files_array = $redirect_source_file_list->getIterator()->getArrayCopy();
+    $chunks = \array_chunk($redirect_files_array, $items_per_queue);
+    foreach ($chunks as $chunk) {
+      $redirect_source_file_list = new RedirectSourceFileList();
+      foreach ($chunk as $redirect_source_file) {
+        $redirect_source_file_list->addFile($redirect_source_file);
+      }
+      $queue_item = new RedirectSourceFileListQueueItem($redirect_source_file_list);
+      $this->queue->createItem($queue_item);
+    }
   }
 
 }

@@ -96,24 +96,6 @@ interface DrukiContentInterface extends ContentEntityInterface {
   public function getCategory(): ?array;
 
   /**
-   * Gets last sync timestamp where content was found.
-   *
-   * @return int|null
-   *   The last sync timestamp. NULL if not synced before.
-   */
-  public function getSyncTimestamp(): ?int;
-
-  /**
-   * Sets last synchronization timestamp for this content.
-   *
-   * @param int $timestamp
-   *   The last sync timestamp.
-   *
-   * @return $this
-   */
-  public function setSyncTimestamp(int $timestamp): DrukiContentInterface;
-
-  /**
    * Gets source hash.
    *
    * @return string|null

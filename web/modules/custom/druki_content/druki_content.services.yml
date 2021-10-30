@@ -14,11 +14,9 @@ services:
     class: Drupal\druki_content\Queue\ContentSyncQueueManager
     arguments:
       - '@druki_content.finder.content_source_file'
-      - '@druki_content.finder.redirect_source_file'
       - '@queue'
-      - '@state'
-      - '@datetime.time'
       - '@plugin.manager.queue_worker'
+      - '@druki_content.repository.content_sync_queue_state'
 
   druki_content.finder.content_source_file:
     class: Drupal\druki_content\Finder\ContentSourceFileFinder
@@ -36,22 +34,25 @@ services:
 
   druki_content.queue.content_sync_processor:
     class: Drupal\druki_content\Queue\ChainContentSyncQueueProcessor
+    arguments: ['@druki_content.repository.content_sync_queue_state']
     tags:
       - { name: service_collector, tag: druki_sync_queue_processor, call: addProcessor }
 
   druki_content.queue.clean_queue_processor:
     class: Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor
-    public: false
-    arguments: [ '@entity_type.manager' ]
+    arguments:
+      - '@entity_type.manager'
+      - '@druki_content.queue.content_sync_manager'
     tags:
       - { name: druki_sync_queue_processor }
 
-  druki_content.queue.redirect_queue_processor:
-    class: Drupal\druki_content\Queue\ContentSyncRedirectQueueItemProcessor
-    public: false
-    arguments: [ '@entity_type.manager', '@state' ]
-    tags:
-      - { name: druki_sync_queue_processor }
+  # @todo Move everything related to redirect into druki_redirect.
+  #druki_content.queue.redirect_queue_processor:
+  #  class: Drupal\druki_content\Queue\ContentSyncRedirectQueueItemProcessor
+  #  public: false
+  #  arguments: [ '@entity_type.manager', '@state' ]
+  #  tags:
+  #    - { name: druki_sync_queue_processor }
 
   druki_content.druki_content_route_context:
     class: Drupal\druki_content\ContextProvider\DrukiContentRouteContext
@@ -154,3 +155,7 @@ services:
 
   druki_content.generator.content_document_checksum:
     class: Drupal\druki_content\Generator\ContentDocumentChecksumGenerator
+
+  druki_content.repository.content_sync_queue_state:
+    class: Drupal\druki_content\Repository\ContentSyncQueueState
+    arguments: ['@state']

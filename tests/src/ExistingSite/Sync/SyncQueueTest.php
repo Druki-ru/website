@@ -73,7 +73,7 @@ final class SyncQueueTest extends ExistingSiteBase {
     $this->markTestSkipped('Skipped until content refactoring in reach queue.');
     $this->syncQueueManager->buildFromPath($this->sourceRoot->url());
     $this->assertEquals(3, $this->getSyncQueue()->numberOfItems());
-    $this->syncQueueManager->clear();
+    $this->syncQueueManager->delete();
     $this->assertEquals(0, $this->getSyncQueue()->numberOfItems());
   }
 
@@ -126,6 +126,7 @@ final class SyncQueueTest extends ExistingSiteBase {
    * Tests syncing redirects.
    */
   public function testRedirectQueue(): void {
+    $this->markTestSkipped('Move this code when druki_redirect module is created.');
     $file_pathname = $this->sourceRoot->url() . '/docs/ru/redirects.csv';
     $redirect_file_list = new RedirectSourceFileList();
     $redirect_file_list->addFile(new RedirectSourceFile($file_pathname, 'ru'));

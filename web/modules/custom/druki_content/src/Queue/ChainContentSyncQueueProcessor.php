@@ -2,7 +2,7 @@
 
 namespace Drupal\druki_content\Queue;
 
-use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\druki_content\Repository\ContentSyncQueueState;
 
 /**
  * Provides chained processor for content sync queue.
@@ -17,6 +17,21 @@ final class ChainContentSyncQueueProcessor implements ContentSyncQueueProcessorI
   protected array $processors = [];
 
   /**
+   * The content sync queue state storage.
+   */
+  protected ContentSyncQueueState $syncState;
+
+  /**
+   * Constructs a new ChainContentSyncQueueProcessor object.
+   *
+   * @param \Drupal\druki_content\Repository\ContentSyncQueueState $sync_state
+   *   The content sync queue state storage.
+   */
+  public function __construct(ContentSyncQueueState $sync_state) {
+    $this->syncState = $sync_state;
+  }
+
+  /**
    * Adds loader to the list.
    *
    * @param \Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface $processor
@@ -29,13 +44,17 @@ final class ChainContentSyncQueueProcessor implements ContentSyncQueueProcessorI
   /**
    * {@inheritdoc}
    */
-  public function process(ContentSyncQueueItemInterface $item): void {
+  public function process(ContentSyncQueueItemInterface $item): array {
     foreach ($this->processors as $processor) {
       if ($processor->isApplicable($item)) {
-        $processor->process($item);
+        $ids = $processor->process($item);
+        if (!empty($ids)) {
+          $this->syncState->storeEntityIds($ids);
+        }
         break;
       }
     }
+    return [];
   }
 
   /**
