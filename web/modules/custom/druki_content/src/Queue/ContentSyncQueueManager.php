@@ -11,8 +11,6 @@ use Drupal\Core\Site\Settings;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
-use Drupal\druki_content\Data\RedirectSourceFileList;
-use Drupal\druki_content\Data\RedirectSourceFileListQueueItem;
 use Drupal\druki_content\Finder\ContentSourceFileFinder;
 use Drupal\druki_content\Repository\ContentSyncQueueState;
 
@@ -81,12 +79,6 @@ final class ContentSyncQueueManager {
     if ($content_source_file_list->getIterator()->count()) {
       $this->addContentSourceFileList($content_source_file_list);
     }
-    // @todo Move to druki_redirect module.
-    // $redirect_file_list = $this->redirectSourceFileFinder->findAll($directory
-    // );
-    // if ($redirect_file_list->getIterator()->count()) {
-    // $this->addRedirectSourceFileList($redirect_file_list);
-    // }
     $this->addCleanOperation();
   }
 
@@ -193,28 +185,6 @@ final class ContentSyncQueueManager {
     }
 
     return $count;
-  }
-
-  /**
-   * Adds redirect files into queue.
-   *
-   * @param \Drupal\druki_content\Data\RedirectSourceFileList $redirect_source_file_list
-   *   The redirect source file list.
-   *
-   * @todo Move code into druki_redirect.
-   */
-  protected function addRedirectSourceFileList(RedirectSourceFileList $redirect_source_file_list): void {
-    $items_per_queue = Settings::get('entity_update_batch_size', 50);
-    $redirect_files_array = $redirect_source_file_list->getIterator()->getArrayCopy();
-    $chunks = \array_chunk($redirect_files_array, $items_per_queue);
-    foreach ($chunks as $chunk) {
-      $redirect_source_file_list = new RedirectSourceFileList();
-      foreach ($chunk as $redirect_source_file) {
-        $redirect_source_file_list->addFile($redirect_source_file);
-      }
-      $queue_item = new RedirectSourceFileListQueueItem($redirect_source_file_list);
-      $this->queue->createItem($queue_item);
-    }
   }
 
 }

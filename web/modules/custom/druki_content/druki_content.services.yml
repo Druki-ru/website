@@ -46,23 +46,11 @@ services:
     tags:
       - { name: druki_sync_queue_processor }
 
-  # @todo Move everything related to redirect into druki_redirect.
-  #druki_content.queue.redirect_queue_processor:
-  #  class: Drupal\druki_content\Queue\ContentSyncRedirectQueueItemProcessor
-  #  public: false
-  #  arguments: [ '@entity_type.manager', '@state' ]
-  #  tags:
-  #    - { name: druki_sync_queue_processor }
-
   druki_content.druki_content_route_context:
     class: Drupal\druki_content\ContextProvider\DrukiContentRouteContext
     arguments: [ '@current_route_match' ]
     tags:
       - { name: context_provider }
-
-  druki_content.finder.redirect_source_file:
-    class: Drupal\druki_content\Finder\RedirectSourceFileFinder
-    arguments: [ '@language_manager' ]
 
   # This is fallback and default element parser. Called last if rest of parsers
   # passed.

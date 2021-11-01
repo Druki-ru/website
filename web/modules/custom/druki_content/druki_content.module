@@ -81,6 +81,8 @@ function druki_content_block_view_druki_category_navigation_alter(array &$build,
 
 /**
  * Implements hook_entity_base_field_info().
+ *
+ * @todo Move to 'druki_redirect' when module will be enabled and deployed.
  */
 function druki_content_entity_base_field_info(EntityTypeInterface $entity_type): array {
   $fields = [];
@@ -95,6 +97,8 @@ function druki_content_entity_base_field_info(EntityTypeInterface $entity_type):
  *
  * @return \Drupal\Core\Field\BaseFieldDefinition
  *   The field definition.
+ *
+ * @todo Move to 'druki_redirect' when module will be enabled and deployed.
  */
 function druki_content_redirect_druki_content_redirect_base_field(): BaseFieldDefinition {
   return BaseFieldDefinition::create('boolean')

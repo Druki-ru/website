@@ -1,0 +1,18 @@
+services:
+  druki_redirect.event_subscriber.git_opration:
+    class: Drupal\druki_redirect\EventSubscriber\GitOperationEventSubscriber
+    arguments: ['@druki_redirect.queue.sync_manager']
+    tags:
+      - { name: event_subscriber }
+
+  druki_redirect.finder.redirect_file:
+    class: Drupal\druki_redirect\Finder\RedirectFileFinder
+    arguments: [ '@language_manager' ]
+
+  druki_redirect.queue.sync_manager:
+    class: Drupal\druki_redirect\Queue\RedirectSyncQueueManager
+    arguments: [ '@druki_redirect.finder.redirect_file', '@queue' ]
+
+  druki_redirect.queue.sync_processor:
+    class: Drupal\druki_redirect\Queue\RedirectSyncQueueProcessor
+    arguments: [ '@entity_type.manager' ]

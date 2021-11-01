@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Data;
+namespace Drupal\druki_redirect\Data;
 
 /**
  * Provides list with redirect files.
  */
-final class RedirectSourceFileList implements \IteratorAggregate {
+final class RedirectFileList implements \IteratorAggregate {
 
   /**
    * The list of redirect files.
@@ -15,12 +15,12 @@ final class RedirectSourceFileList implements \IteratorAggregate {
   /**
    * Adds file to the list.
    *
-   * @param \Drupal\druki_content\Data\RedirectSourceFile $file
+   * @param \Drupal\druki_redirect\Data\RedirectFile $file
    *   The redirect file.
    *
    * @return $this
    */
-  public function addFile(RedirectSourceFile $file): self {
+  public function addFile(RedirectFile $file): self {
     $this->files[$file->getHash()] = $file;
     return $this;
   }

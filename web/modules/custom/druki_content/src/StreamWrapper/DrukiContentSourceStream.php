@@ -13,6 +13,9 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *
  * Provides support to accessing files from content source directory without
  * needs of knowing where it's located.
+ *
+ * @todo Move it to 'druki' or 'druki_git' module.
+ * @todo Think about rename to 'druki-repository-path'.
  */
 final class DrukiContentSourceStream extends PublicStream {
 

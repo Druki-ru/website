@@ -3,13 +3,13 @@
 namespace Druki\Tests\Unit;
 
 use Druki\Tests\Traits\SourceContentProviderTrait;
-use Drupal\druki_content\Data\RedirectSourceFile;
+use Drupal\druki_redirect\Data\RedirectFile;
 use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests redirect file value object.
  *
- * @coversDefaultClass \Drupal\druki_content\Data\RedirectSourceFile
+ * @coversDefaultClass \Drupal\druki_redirect\Data\RedirectFile
  */
 final class RedirectFileTest extends UnitTestCase {
 
@@ -21,7 +21,7 @@ final class RedirectFileTest extends UnitTestCase {
   public function testExistedFile(): void {
     $root = $this->setupFakeSourceDir();
     $file_pathname = $root->url() . '/docs/ru/redirects.csv';
-    $redirect_file = new RedirectSourceFile($file_pathname, 'ru');
+    $redirect_file = new RedirectFile($file_pathname, 'ru');
     $expected_content = \file_get_contents($file_pathname);
     $this->assertEquals($expected_content, \file_get_contents($redirect_file->getPathname()));
     $this->assertEquals('ru', $redirect_file->getLanguage());
@@ -34,7 +34,7 @@ final class RedirectFileTest extends UnitTestCase {
    */
   public function testNotExistedFile(): void {
     $this->expectException(\InvalidArgumentException::class);
-    new RedirectSourceFile('foo-bar.csv', 'ru');
+    new RedirectFile('foo-bar.csv', 'ru');
   }
 
 }

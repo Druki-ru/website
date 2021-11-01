@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e82041e51ad497dccd8746fa14a287a",
+    "content-hash": "70338b355f37df081adf980852311424",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1346,6 +1346,26 @@
             },
             "type": "drupal-custom-module",
             "description": "The git integration.",
+            "keywords": [
+                "Drupal"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "druki/druki_redirect",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "web/modules/custom/druki_redirect",
+                "reference": "50b9c40edf173614e273f0e4aa926f34da831486"
+            },
+            "require": {
+                "symfony/finder": "~4.0"
+            },
+            "type": "drupal-custom-module",
+            "description": "Provides ability to create redirect entities from external sources.",
             "keywords": [
                 "Drupal"
             ],

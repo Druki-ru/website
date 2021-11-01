@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki_content\Data;
+namespace Drupal\druki_redirect\Data;
 
 /**
- * Provides storage for redirects file.
+ * Provides storage for redirect file.
  */
-final class RedirectSourceFile {
+final class RedirectFile {
 
   /**
    * The path to file.
