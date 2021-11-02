@@ -1,7 +1,7 @@
 services:
   druki_redirect.event_subscriber.git_opration:
     class: Drupal\druki_redirect\EventSubscriber\GitOperationEventSubscriber
-    arguments: ['@druki_redirect.queue.sync_manager']
+    arguments: [ '@druki_redirect.queue.sync_manager' ]
     tags:
       - { name: event_subscriber }
 
@@ -11,8 +11,26 @@ services:
 
   druki_redirect.queue.sync_manager:
     class: Drupal\druki_redirect\Queue\RedirectSyncQueueManager
-    arguments: [ '@druki_redirect.finder.redirect_file', '@queue' ]
+    arguments: [ '@druki_redirect.finder.redirect_file', '@queue', '@druki_redirect.repository.redirect_sync_queue_state' ]
 
-  druki_redirect.queue.sync_processor:
-    class: Drupal\druki_redirect\Queue\RedirectSyncQueueProcessor
+  druki_redirect.queue.chain_sync_processor:
+    class: Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessor
+    arguments: [ '@druki_redirect.repository.redirect_sync_queue_state' ]
+    tags:
+      - { name: service_collector, tag: druki_redirect_sync_queue_processor, call: addProcessor }
+
+  druki_redirect.repository.redirect_sync_queue_state:
+    class: Drupal\druki_redirect\Repository\RedirectSyncQueueState
+    arguments: [ '@state' ]
+
+  druki_redirect.queue.redirect_file_list_queue_item_processor:
+    class: Drupal\druki_redirect\Queue\RedirectFileListQueueItemProcessor
     arguments: [ '@entity_type.manager' ]
+    tags:
+      - { name: druki_redirect_sync_queue_processor }
+
+  druki_redirect.queue.redirect_clean_queue_item_processor:
+    class: Drupal\druki_redirect\Queue\RedirectCleanQueueItemProcessor
+    arguments: [ '@entity_type.manager', '@druki_redirect.queue.sync_manager' ]
+    tags:
+      - { name: druki_redirect_sync_queue_processor }

@@ -50,6 +50,9 @@ final class RedirectFileFinder {
       foreach ($active_langcodes as $langcode) {
         // The file must be in the root of language source content.
         $look_at = "{$directory}/{$langcode}";
+        if (!\is_dir($look_at)) {
+          continue;
+        }
         $finder->in($look_at);
         if (!$finder->hasResults()) {
           continue;

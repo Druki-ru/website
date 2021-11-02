@@ -6,7 +6,7 @@ namespace Drupal\druki_redirect\EventSubscriber;
 
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueManager;
+use Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -17,15 +17,15 @@ final class GitOperationEventSubscriber implements EventSubscriberInterface {
   /**
    * The redirect queue manager.
    */
-  protected RedirectSyncQueueManager $redirectQueueManager;
+  protected RedirectSyncQueueManagerInterface $redirectQueueManager;
 
   /**
    * Constructs a new GitOperationEventSubscriber object.
    *
-   * @param \Drupal\druki_redirect\Queue\RedirectSyncQueueManager $redirect_queue_manager
+   * @param \Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface $redirect_queue_manager
    *   The redirect queue manager.
    */
-  public function __construct(RedirectSyncQueueManager $redirect_queue_manager) {
+  public function __construct(RedirectSyncQueueManagerInterface $redirect_queue_manager) {
     $this->redirectQueueManager = $redirect_queue_manager;
   }
 

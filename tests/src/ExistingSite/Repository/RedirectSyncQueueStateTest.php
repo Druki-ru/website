@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Repository;
 
-use Drupal\druki_content\Repository\ContentSyncQueueState;
+use Drupal\druki_redirect\Repository\RedirectSyncQueueState;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
- * Tests content sync queue state storage.
+ * Tests redirect sync queue state storage.
  *
- * @coversDefaultClass \Drupal\druki_content\Repository\ContentSyncQueueState
+ * @coversDefaultClass \Drupal\druki_redirect\Repository\RedirectSyncQueueState
  */
-final class ContentSyncQueueStateTest extends ExistingSiteBase {
+final class RedirectSyncQueueStateTest extends ExistingSiteBase {
 
   /**
    * The content sync queue state.
    */
-  protected ContentSyncQueueState $queueState;
+  protected RedirectSyncQueueState $queueState;
 
   /**
    * {@inheritdoc}
@@ -46,7 +46,7 @@ final class ContentSyncQueueStateTest extends ExistingSiteBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->queueState = $this->container->get('druki_content.repository.content_sync_queue_state');
+    $this->queueState = $this->container->get('druki_redirect.repository.redirect_sync_queue_state');
     $this->queueState->delete();
   }
 
