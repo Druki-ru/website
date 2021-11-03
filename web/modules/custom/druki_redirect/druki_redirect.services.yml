@@ -25,7 +25,7 @@ services:
 
   druki_redirect.queue.redirect_file_list_queue_item_processor:
     class: Drupal\druki_redirect\Queue\RedirectFileListQueueItemProcessor
-    arguments: [ '@entity_type.manager' ]
+    arguments: [ '@druki_redirect.repository.redirect' ]
     tags:
       - { name: druki_redirect_sync_queue_processor }
 
@@ -34,3 +34,7 @@ services:
     arguments: [ '@entity_type.manager', '@druki_redirect.queue.sync_manager' ]
     tags:
       - { name: druki_redirect_sync_queue_processor }
+
+  druki_redirect.repository.redirect:
+    class: Drupal\druki_redirect\Repository\RedirectRepository
+    arguments: [ '@entity_type.manager' ]

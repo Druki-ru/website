@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\druki_redirect\Queue;
 
-use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\druki_redirect\Data\Redirect;
 use Drupal\druki_redirect\Data\RedirectFile;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
-use Drupal\redirect\Entity\Redirect;
+use Drupal\druki_redirect\Repository\RedirectRepositoryInterface;
 
 /**
  * Provides processor for redirect file list queue item.
@@ -17,18 +15,18 @@ use Drupal\redirect\Entity\Redirect;
 final class RedirectFileListQueueItemProcessor implements RedirectSyncQueueItemProcessorInterface {
 
   /**
-   * The redirect storage.
+   * The redirect repository.
    */
-  protected EntityStorageInterface $redirectStorage;
+  protected RedirectRepositoryInterface $redirectRepository;
 
   /**
    * Constructs a new RedirectFileListQueueItemProcessor object.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
+   * @param \Drupal\druki_redirect\Repository\RedirectRepositoryInterface $redirect_repository
+   *   The redirect repository.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
-    $this->redirectStorage = $entity_type_manager->getStorage('redirect');
+  public function __construct(RedirectRepositoryInterface $redirect_repository) {
+    $this->redirectRepository = $redirect_repository;
   }
 
   /**
@@ -65,74 +63,44 @@ final class RedirectFileListQueueItemProcessor implements RedirectSyncQueueItemP
     }
     $ids = [];
     while (($row = \fgetcsv($handle)) !== FALSE) {
-      $from = UrlHelper::parse($row[0]);
-      $to = UrlHelper::parse($row[1]);
-      $redirect = $this->prepareRedirectEntity($from, $to, $redirect_file->getLanguage());
-
-      if ($redirect->isNew()) {
-        $redirect->setLanguage($redirect_file->getLanguage());
-        $redirect->setStatusCode(301);
-        $redirect->setSource($from['path'], $from['query']);
-        $redirect->setRedirect($to['path'], $to['query'], ['fragment' => $to['fragment']]);
-        $redirect->set('druki_content_redirect', TRUE);
-        $redirect->save();
-      }
-
-      $ids[] = $redirect->id();
+      $ids[] = $this->processRedirectRow($row, $redirect_file->getLanguage());
     }
     return $ids;
   }
 
   /**
-   * Loads or creates redirect entity.
+   * Process single redirect row from redirect file.
    *
-   * @param array $from
-   *   An array with from value.
-   * @param array $to
-   *   An array with to value.
-   * @param string $langcode
-   *   The language of redirect.
+   * @param array $row
+   *   The row values contains:
+   *   - 0: The source of redirect (from).
+   *   - 1: The redirect destination (to).
+   * @param string $language
+   *   The redirect language.
    *
-   * @return \Drupal\redirect\Entity\Redirect
-   *   The redirect entity.
-   *
-   * @todo Extract that search into RedirectRepository.
+   * @return int
+   *   The updated or created redirect entity.
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function prepareRedirectEntity(array $from, array $to, string $langcode): Redirect {
-    $hash = Redirect::generateHash($from['path'], $from['query'], $langcode);
-    $redirect_uri = $this->prepareRedirectUri($to);
-
-    $redirect_ids = $this->redirectStorage->getQuery()->accessCheck(FALSE)
-      ->condition('hash', $hash)
-      ->condition('redirect_redirect.uri', $redirect_uri['uri'])
-      ->condition('redirect_redirect.options', \serialize($redirect_uri['options']))
-      ->condition('language', $langcode)
-      ->execute();
-    if (!$redirect_ids) {
-      return $this->redirectStorage->create();
+  protected function processRedirectRow(array $row, string $language): int {
+    $redirect = Redirect::createFromUserInput($row[0], $row[1]);
+    if ($redirect_entity = $this->redirectRepository->loadRedirect($redirect, $language)) {
+      $redirect_entity_data = Redirect::createFromRedirectEntity($redirect_entity);
+      // If this condition passes, that means the redirect URL is changed but
+      // the source URL remains the same and we should update entity.
+      if ($redirect->checksum() != $redirect_entity_data->checksum()) {
+        $redirect_entity->setRedirect(
+          $redirect->getRedirect()->getPath(),
+          $redirect->getRedirect()->getQuery(),
+          ['fragment' => $redirect->getRedirect()->getFragment()],
+        );
+        $redirect_entity->save();
+      }
     }
-    return $this->redirectStorage->load(\array_shift($redirect_ids));
-  }
-
-  /**
-   * Prepare redirect URI value.
-   *
-   * @param array $to
-   *   An array with redirect params.
-   *
-   * @return array
-   *   An array for 'link' field values.
-   */
-  protected function prepareRedirectUri(array $to): array {
-    $uri = $to['path'] . ($to['query'] ? '?' . UrlHelper::buildQuery($to['query']) : '');
-    $external = UrlHelper::isValid($to['path'], TRUE);
-    $uri = ($external ? $to['path'] : 'internal:/' . \ltrim($uri, '/'));
-    return [
-      'uri' => $uri,
-      'options' => [
-        'fragment' => $to['fragment'],
-      ],
-    ];
+    else {
+      $redirect_entity = $this->redirectRepository->createRedirect($redirect, $language);
+    }
+    return $redirect_entity->id();
   }
 
 }
