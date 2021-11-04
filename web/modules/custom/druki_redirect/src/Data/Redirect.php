@@ -47,8 +47,8 @@ final class Redirect {
    *   The new instace of Redirect.
    */
   public static function createFromUserInput(string $source_path, string $redirect_path): self {
-    $source_url = RedirectUrl::buildFromUserInput($source_path);
-    $redirect_url = RedirectUrl::buildFromUserInput($redirect_path);
+    $source_url = RedirectUrl::createFromUserInput($source_path);
+    $redirect_url = RedirectUrl::createFromUserInput($redirect_path);
     return new self($source_url, $redirect_url);
   }
 

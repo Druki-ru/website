@@ -80,7 +80,6 @@ final class RedirectFileListQueueItemProcessor implements RedirectSyncQueueItemP
    *
    * @return int
    *   The updated or created redirect entity.
-   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function processRedirectRow(array $row, string $language): int {
     $redirect = Redirect::createFromUserInput($row[0], $row[1]);
@@ -100,7 +99,7 @@ final class RedirectFileListQueueItemProcessor implements RedirectSyncQueueItemP
     else {
       $redirect_entity = $this->redirectRepository->createRedirect($redirect, $language);
     }
-    return $redirect_entity->id();
+    return (int) $redirect_entity->id();
   }
 
 }

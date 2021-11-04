@@ -27,7 +27,8 @@ final class RedirectFile {
    */
   public function __construct(string $pathname, string $language) {
     if (!\file_exists($pathname)) {
-      throw new \InvalidArgumentException("The file doesn't exists.");
+      $message = \sprintf("The file %s doesn't exists.", $pathname);
+      throw new \InvalidArgumentException($message);
     }
     $this->pathname = $pathname;
     $this->language = $language;

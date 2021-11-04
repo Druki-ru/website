@@ -51,7 +51,7 @@ final class RedirectUrl {
    * @return self
    *   The instance of redirect URL.
    */
-  public static function buildFromUserInput(string $url): self {
+  public static function createFromUserInput(string $url): self {
     $parsed_url = UrlHelper::parse(\trim($url));
     return new self($parsed_url['path'], $parsed_url['query'], $parsed_url['fragment']);
   }

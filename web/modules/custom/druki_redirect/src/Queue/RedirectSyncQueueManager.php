@@ -70,15 +70,15 @@ final class RedirectSyncQueueManager implements RedirectSyncQueueManagerInterfac
    * Adds clean operation.
    */
   protected function addCleanOperation(): void {
-    $this->queue->createItem(new RedirectCleanQueueItem());
+    $this->getQueue()->createItem(new RedirectCleanQueueItem());
   }
 
   /**
    * {@inheritdoc}
    */
   public function delete(): void {
-    $this->queue->deleteQueue();
-    $this->syncState->delete();
+    $this->getQueue()->deleteQueue();
+    $this->getState()->delete();
   }
 
   /**
@@ -98,7 +98,7 @@ final class RedirectSyncQueueManager implements RedirectSyncQueueManagerInterfac
         $content_source_file_list->addFile($redirect_file);
       }
       $queue_item = new RedirectFileListQueueItem($content_source_file_list);
-      $this->queue->createItem($queue_item);
+      $this->getQueue()->createItem($queue_item);
     }
   }
 
