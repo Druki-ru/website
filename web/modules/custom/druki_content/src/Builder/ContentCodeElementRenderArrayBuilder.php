@@ -31,6 +31,7 @@ final class ContentCodeElementRenderArrayBuilder extends ContentElementRenderArr
         '#text' => $element->getContent(),
         '#format' => 'basic_html',
       ],
+      '#language' => $element->getLanguage(),
     ];
   }
 

@@ -133,6 +133,11 @@ component.druki-content.element.heading:
     theme:
       assets/css/04-components/druki-content/element-heading.css: { }
 
+component.druki-content.element.code:
+  css:
+    theme:
+      assets/css/04-components/druki-content/element-code.css: { }
+
 component.theme.druki-wiki:
   css:
     theme:

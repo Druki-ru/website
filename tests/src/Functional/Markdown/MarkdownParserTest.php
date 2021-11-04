@@ -49,7 +49,7 @@ Markdown;
 Markdown;
 
     $code_block = <<<'Markdown'
-```
+```php
 echo 'Hello world';
 ```
 Markdown;
@@ -109,7 +109,7 @@ Markdown;
       ],
       'code block' => [
         $code_block,
-        "/<pre><code>echo 'Hello world';[\r\n]<\/code><\/pre>[\r\n]/",
+        "/<pre><code class=\"language-php\">echo 'Hello world';[\r\n]<\/code><\/pre>[\r\n]/",
       ],
     ];
   }

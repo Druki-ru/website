@@ -40,6 +40,24 @@ final class ContentHtmlCodeElementParserTest extends ExistingSiteBase {
     /** @var \Drupal\druki_content\Data\ContentCodeElement $element */
     $element = $content->getElements()->offsetGet(0);
     $this->assertEquals("console.log('Hello World');", $element->getContent());
+    $this->assertNull($element->getLanguage());
+
+    $html = '<pre><code class="language-php">console.log(\'Hello World\');</code></pre>';
+
+    $crawler = new Crawler($html);
+    $crawler = $crawler->filter('body');
+
+    $content = new Content();
+    $context = new ContentParserContext();
+    $context->setContent($content);
+    foreach ($crawler->children() as $element) {
+      $parser->parse($element, $context, $html_parser);
+    }
+
+    /** @var \Drupal\druki_content\Data\ContentCodeElement $element */
+    $element = $content->getElements()->offsetGet(0);
+    $this->assertEquals("console.log('Hello World');", $element->getContent());
+    $this->assertEquals('php', $element->getLanguage());
   }
 
 }

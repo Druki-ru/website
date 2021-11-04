@@ -15,13 +15,21 @@ final class ContentCodeElement extends ContentElementBase {
   protected string $content;
 
   /**
+   * The code language.
+   */
+  protected ?string $language = NULL;
+
+  /**
    * Constructs a new ContentCodeElement object.
    *
    * @param string $content
    *   The code content.
+   * @param string|null $language
+   *   The code language.
    */
-  public function __construct(string $content) {
+  public function __construct(string $content, ?string $language = NULL) {
     $this->content = $content;
+    $this->language = $language;
   }
 
   /**
@@ -32,6 +40,16 @@ final class ContentCodeElement extends ContentElementBase {
    */
   public function getContent(): string {
     return $this->content;
+  }
+
+  /**
+   * Gets code language.
+   *
+   * @return string|null
+   *   The code language.
+   */
+  public function getLanguage(): ?string {
+    return $this->language;
   }
 
 }

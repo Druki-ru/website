@@ -20,6 +20,10 @@ final class ContentCodeElementTest extends UnitTestCase {
   public function testObject(): void {
     $element = new ContentCodeElement('Hello World!');
     $this->assertEquals('Hello World!', $element->getContent());
+    $this->assertNull($element->getLanguage());
+
+    $element = new ContentCodeElement('Hello, World!', 'php');
+    $this->assertEquals('php', $element->getLanguage());
   }
 
 }

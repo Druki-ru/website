@@ -62,6 +62,7 @@ function druki_content_theme(): array {
     'druki_content_element_code' => [
       'variables' => [
         'content' => NULL,
+        'language' => NULL,
       ],
     ],
     'druki_content_element_aside' => [

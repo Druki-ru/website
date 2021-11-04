@@ -41,7 +41,7 @@ final class ContentCodeElementRenderArrayBuilderTest extends ExistingSiteBase {
    * @covers ::build()
    */
   public function testBuild(): void {
-    $element = new ContentCodeElement("echo 'Hello World!'");
+    $element = new ContentCodeElement("echo 'Hello World!'", 'php');
     $expected = [
       '#theme' => 'druki_content_element_code',
       '#content' => [
@@ -49,6 +49,7 @@ final class ContentCodeElementRenderArrayBuilderTest extends ExistingSiteBase {
         '#text' => $element->getContent(),
         '#format' => 'basic_html',
       ],
+      '#language' => 'php',
     ];
     $this->assertEquals($expected, $this->builder->build($element));
   }
