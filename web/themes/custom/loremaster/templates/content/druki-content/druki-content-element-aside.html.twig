@@ -9,7 +9,15 @@
  * - content: The aside contents.
  */
 #}
-<aside role="note"{{ attributes }}>
-  {{ aside_type }}
-  {{ content }}
+{{ attach_library('loremaster/component.druki-content.element.aside') }}
+{%
+  set classes = [
+    'note',
+    'note--' ~ aside_type,
+  ]
+%}
+<aside role="note"{{ attributes.addClass(classes) }}>
+  <div class="note__content">
+    {{ content }}
+  </div>
 </aside>

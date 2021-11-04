@@ -138,6 +138,11 @@ component.druki-content.element.code:
     theme:
       assets/css/04-components/druki-content/element-code.css: { }
 
+component.druki-content.element.aside:
+  css:
+    theme:
+      assets/css/04-components/druki-content/element-aside.css: { }
+
 component.theme.druki-wiki:
   css:
     theme:

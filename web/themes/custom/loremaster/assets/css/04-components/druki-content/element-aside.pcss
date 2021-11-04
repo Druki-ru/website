@@ -1,0 +1,44 @@
+:root {
+  --note-color: var(--color-cultured);
+}
+
+[data-theme="dark"] {
+  --note-background-color: var(--color-black--light-4);
+}
+
+.note {
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-left: 4px solid rgba(var(--note-color), 0.7);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background-color: rgba(var(--note-color), 0.1);
+  margin: var(--p-margin--y) 0;
+}
+
+.note--tip {
+  --note-color: var(--color-minion-yellow);
+}
+
+.note--note {
+  --note-color: var(--color-tufts-blue);
+}
+
+.note--warning {
+  --note-color: var(--color-amber-sae-ece);
+}
+
+.note--important {
+  --note-color: var(--color-international-orange-engineering);
+}
+
+.note__label {
+  font-size: var(--font-size-xxs);
+  font-weight: bold;
+  line-height: 1;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.note__content {
+  --p-margin--y: var(--spacing-sm);
+}
