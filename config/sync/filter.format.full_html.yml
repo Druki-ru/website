@@ -1,11 +1,10 @@
 uuid: f0ae2372-d75c-4363-a23e-1af74c64c625
 langcode: ru
-status: true
+status: false
 dependencies:
   module:
     - druki_content
     - editor
-    - media
 _core:
   default_config_hash: hewPmBgni9jlDK_IjLxUx1HsTbinK-hdl0lOwjbteIY
 name: 'Full HTML'
@@ -36,12 +35,3 @@ filters:
     status: true
     weight: -10
     settings: {  }
-  media_embed:
-    id: media_embed
-    provider: media
-    status: false
-    weight: 100
-    settings:
-      default_view_mode: default
-      allowed_media_types: {  }
-      allowed_view_modes: {  }

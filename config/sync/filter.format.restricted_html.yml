@@ -1,6 +1,6 @@
 uuid: 45e57acb-4d5f-4726-8264-853ce8c58807
 langcode: ru
-status: true
+status: false
 dependencies: {  }
 _core:
   default_config_hash: KUjJ8Ti_ZJSlhGM88E_mhJP-8mmQRNUB6RFof615Kt0
