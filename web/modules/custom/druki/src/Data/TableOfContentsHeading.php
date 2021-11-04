@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\druki\Data;
 
-
 /**
  * Provides heading for table of contents.
  */

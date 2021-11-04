@@ -22,7 +22,7 @@ final class ContentHtmlImageElementParserTest extends ExistingSiteBase {
    * @covers ::parse()
    */
   public function testParser(): void {
-    $html = '<img src="https://example.com/img.jpg" alt="Hello World!">';
+    $html = '<p><img src="https://example.com/img.jpg" alt="Hello World!"></p>';
     $crawler = new Crawler($html);
     $crawler = $crawler->filter('body');
 

@@ -28,7 +28,7 @@ final class ContentHtmlNoteElementParserTest extends ExistingSiteBase {
     $html = <<<'HTML'
       <div data-druki-note="warning">
         <p>Hello World!</p>
-        <img src="https://example.com/img.jpg" alt="Kitty Kitty!">
+        <p><img src="https://example.com/img.jpg" alt="Kitty Kitty!"></p>
       </div>
     HTML;
     $crawler = new Crawler($html);

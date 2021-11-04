@@ -157,7 +157,7 @@ final class ContentMediaImageRepository {
       // The cURL will throw exception, and we softly skip it.
       try {
         $filename = \basename($url);
-        $uri = \system_retrieve_file($url, 'temporary://' . $filename);
+        $uri = \system_retrieve_file($url, 'temporary://' . $filename, replace: FileSystemInterface::EXISTS_REPLACE);
         // If result was FASLE, convert it to NULL.
         if (\is_bool($uri) && !$uri) {
           $uri = NULL;

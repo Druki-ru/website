@@ -202,7 +202,7 @@ function template_preprocess_druki_photoswipe_responsive_image(array &$variables
       'alt' => $variables['alt'],
     ],
   ];
-  $variables['photoswipe_image_url'] = $image_style->buildUrl($variables['uri']);
+  $variables['photoswipe_image_url'] = file_url_transform_relative($image_style->buildUrl($variables['uri']));
   $variables['attributes']['class'][] = 'photoswipe';
   $variables['attributes']['data-overlay-title'] = $variables['alt'];
   $variables['attributes']['data-size'] = $image_file->getWidth() . 'x' . $image_file->getHeight();
