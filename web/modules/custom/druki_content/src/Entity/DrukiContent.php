@@ -266,8 +266,11 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function getContentDocument(): ContentDocument {
-    return $this->get('document')->first()->get('document')->getContentDocument();
+  public function getContentDocument(): ?ContentDocument {
+    if ($this->get('document')->isEmpty()) {
+      return NULL;
+    }
+    return $this->get('document')->first()->getContentDocument();
   }
 
 }

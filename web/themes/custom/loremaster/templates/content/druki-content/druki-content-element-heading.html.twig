@@ -1,0 +1,18 @@
+{#
+/**
+ * Theme implementation to display content heading.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - level: The heading level number.
+ * - content: The heading content.
+ * - raw_content: The raw heading content.
+ */
+#}
+{{ attach_library('loremaster/component.druki-content.element.heading') }}
+{% set anchor = raw_content|druki_anchor('druki_content', 2) %}
+{% set element = 'h' ~ level %}
+<{{ element }}{{ attributes.setAttribute('id', anchor).addClass('druki-heading') }}>
+  <a href="#{{ anchor }}" class="anchor druki-heading__anchor" aria-label="{{ 'Anchor link'|t }}: {{ raw_content }}">¶</a>
+  {{- content -}}
+</{{ element }}>

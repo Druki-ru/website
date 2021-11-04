@@ -4,29 +4,31 @@
  * Default theme implementation to present content TOC.
  *
  * Available variables:
- * - links: The array with link for TOC.
- *
- * @see template_preprocess_druki_content_toc().
+ * - toc: The array with link for TOC.
+ * - links: An heierarchical array tree with TOC links, contains:
+ *   - heading: The TableOfContentsHeading element.
+ *   - children: An array with children TOC links.
  */
 #}
-{% import _self as toc %}
-{% set bem_block = 'druki-content-toc' %}
+{{ attach_library('druki_content/toc') }}
+{% import _self as toc_builder %}
+{% set bem_block = 'toc' %}
+
 <div{{ attributes.addClass(bem_block) }}>
   {% set bem_base = bem_block ~ '__' %}
   {% do attributes.removeClass(bem_block) %}
-  {{ toc.links(links, attributes, 0, bem_base) }}
+  {{ toc_builder.links(links, attributes, 0, bem_base) }}
 </div>
-
 {% macro links(links, attributes, toc_level, bem_base) %}
-  {% import _self as toc %}
+  {% import _self as toc_builder %}
   {% if links %}
     {% if toc_level == 0 %}
       <ul{{ attributes.addClass([bem_base ? bem_base ~ 'menu']) }}>
         {% for item in links %}
           <li class="{{ bem_base ~ 'item' }}">
-            <a href="#{{ item.anchor }}" class="{{ bem_base ~ 'link' }}" title="{{ item.text }}">{{ item.text }}</a>
-            {% if item.children %}
-              {{ toc.links(item.children, attributes, item.level, bem_base) }}
+            <a href="#{{ item.heading.getText|druki_anchor('druki_content', 2) }}" class="{{ bem_base ~ 'link' }}" title="{{ item.heading.getText }}">{{ item.heading.getText }}</a>
+            {% if item.children|length %}
+              {{ toc_builder.links(item.children, attributes, item.heading.getLevel + 1, bem_base) }}
             {% endif %}
           </li>
         {% endfor %}
@@ -35,9 +37,9 @@
       <ul class="{% if bem_base %}{{ bem_base }}submenu{% endif %}">
         {% for item in links %}
           <li class="{{ bem_base ~ 'item' }}">
-            <a href="#{{ item.anchor }}" class="{{ bem_base ~ 'link' }}" title="{{ item.text }}">{{ item.text }}</a>
-            {% if item.children %}
-              {{ toc.links(item.children, attributes, item.level + 1, bem_base) }}
+            <a href="#{{ item.heading.getText|druki_anchor('druki_content', 2) }}" class="{{ bem_base ~ 'link' }}" title="{{ item.heading.getText }}">{{ item.heading.getText }}</a>
+            {% if item.children|length %}
+              {{ toc_builder.links(item.children, attributes, item.heading.level + 1, bem_base) }}
             {% endif %}
           </li>
         {% endfor %}

@@ -15,6 +15,15 @@ final class ContentRenderArrayRenderTest extends ExistingSiteBase {
   use SourceContentProviderTrait;
 
   /**
+   * {@inheritdoc}
+   */
+  public function setUp(): void {
+    parent::setUp();
+    $bartik = $this->container->get('theme.initialization')->initTheme('bartik');
+    $this->container->get('theme.manager')->setActiveTheme($bartik);
+  }
+
+  /**
    * Tests that render works as expected.
    */
   public function testRender(): void {

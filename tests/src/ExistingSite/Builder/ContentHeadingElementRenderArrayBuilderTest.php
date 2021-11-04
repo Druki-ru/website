@@ -50,6 +50,7 @@ final class ContentHeadingElementRenderArrayBuilderTest extends ExistingSiteBase
         '#text' => $element->getContent(),
         '#format' => 'basic_html',
       ],
+      '#raw_content' => $element->getContent(),
     ];
     $this->assertEquals($expected, $this->builder->build($element));
   }

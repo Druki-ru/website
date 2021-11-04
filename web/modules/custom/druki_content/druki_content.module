@@ -24,7 +24,7 @@ function druki_content_theme(): array {
     ],
     'druki_content_toc' => [
       'variables' => [
-        'druki_content' => NULL,
+        'toc' => NULL,
       ],
       'file' => 'druki_content.theme.inc',
     ],
@@ -56,6 +56,7 @@ function druki_content_theme(): array {
       'variables' => [
         'level' => NULL,
         'content' => NULL,
+        'raw_content' => NULL,
       ],
     ],
     'druki_content_element_code' => [

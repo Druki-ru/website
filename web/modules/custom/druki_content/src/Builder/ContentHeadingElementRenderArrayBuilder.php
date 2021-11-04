@@ -27,6 +27,7 @@ final class ContentHeadingElementRenderArrayBuilder extends ContentElementRender
     return [
       '#theme' => 'druki_content_element_heading',
       '#level' => $element->getLevel(),
+      '#raw_content' => $element->getContent(),
       '#content' => [
         '#type' => 'processed_text',
         '#text' => $element->getContent(),

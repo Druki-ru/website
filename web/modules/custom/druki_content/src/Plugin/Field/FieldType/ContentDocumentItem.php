@@ -49,6 +49,19 @@ class ContentDocumentItem extends FieldItemBase {
   }
 
   /**
+   * Gets content document.
+   *
+   * @return \Drupal\druki_content\Data\ContentDocument|null
+   *   The content document.
+   */
+  public function getContentDocument(): ?ContentDocument {
+    if ($this->isEmpty()) {
+      return NULL;
+    }
+    return $this->get('document')->getContentDocument();
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function generateSampleValue(FieldDefinitionInterface $field_definition): array {

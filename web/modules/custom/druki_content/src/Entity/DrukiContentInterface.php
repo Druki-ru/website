@@ -134,9 +134,9 @@ interface DrukiContentInterface extends ContentEntityInterface {
   /**
    * Gets content document.
    *
-   * @return \Drupal\druki_content\Data\ContentDocument
+   * @return \Drupal\druki_content\Data\ContentDocument|null
    *   The content document.
    */
-  public function getContentDocument(): ContentDocument;
+  public function getContentDocument(): ?ContentDocument;
 
 }

@@ -36,3 +36,8 @@ services:
   druki.helper.responsive_image_style:
     class: Drupal\druki\Helper\ResponsiveImageStyleHelper
     arguments: ['@entity_type.manager', '@cache.static']
+
+  druki.twig.extension:
+    class: Drupal\druki\Twig\DrukiTwigExtension
+    tags:
+      - { name: twig.extension }
