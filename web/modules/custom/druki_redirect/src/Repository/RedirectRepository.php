@@ -48,7 +48,7 @@ final class RedirectRepository implements RedirectRepositoryInterface {
       ->accessCheck(FALSE)
       ->condition('hash', $hash)
       ->condition('language', $language)
-      ->condition('druki_content_redirect', TRUE)
+      ->condition('druki_redirect', TRUE)
       ->execute();
     return $redirect_ids ? (int) \array_shift($redirect_ids) : NULL;
   }
@@ -69,7 +69,7 @@ final class RedirectRepository implements RedirectRepositoryInterface {
       $redirect->getRedirect()->getQuery(),
       ['fragment' => $redirect->getRedirect()->getFragment()],
     );
-    $redirect_entity->set('druki_content_redirect', TRUE);
+    $redirect_entity->set('druki_redirect', TRUE);
     $redirect_entity->save();
     return $redirect_entity;
   }

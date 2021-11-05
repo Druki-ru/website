@@ -51,11 +51,11 @@ final class RedirectCleanQueueItemProcessorTest extends ExistingSiteBase {
   public function testProcessor(): void {
     $existing_ids = $this->redirectStorage->getQuery()
       ->accessCheck(FALSE)
-      ->condition('druki_content_redirect', TRUE)
+      ->condition('druki_redirect', TRUE)
       ->execute();
     $this->queueState->storeEntityIds($existing_ids);
     $outdated_redirect = $this->redirectStorage->create();
-    $outdated_redirect->set('druki_content_redirect', TRUE);
+    $outdated_redirect->set('druki_redirect', TRUE);
     $outdated_redirect->save();
     $outdated_redirect_id = $outdated_redirect->id();
 
@@ -78,7 +78,7 @@ final class RedirectCleanQueueItemProcessorTest extends ExistingSiteBase {
 
     $new_ids = $this->redirectStorage->getQuery()
       ->accessCheck(FALSE)
-      ->condition('druki_content_redirect', TRUE)
+      ->condition('druki_redirect', TRUE)
       ->execute();
     $this->assertSame($existing_ids, $new_ids);
   }

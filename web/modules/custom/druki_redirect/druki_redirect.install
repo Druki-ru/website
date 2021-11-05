@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Main file for installation on update hooks.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Install 'druki_redirect' field.
+ */
+function druki_redirect_update_9201(array &$sandbox): void {
+  $field_definition = druki_redirect_redirect_druki_redirect_base_field();
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('druki_redirect', 'redirect', 'druki_redirect', $field_definition);
+}

@@ -360,9 +360,11 @@ function druki_content_update_9004(array &$sandbox): void {
  * Install 'druki_content_redirect' field.
  */
 function druki_content_update_9101(array &$sandbox): void {
-  $field_definition = druki_content_redirect_druki_content_redirect_base_field();
-  \Drupal::entityDefinitionUpdateManager()
-    ->installFieldStorageDefinition('druki_content_redirect', 'redirect', 'druki_content', $field_definition);
+  // @codingStandardsIgnoreStart
+  // $field_definition = druki_content_redirect_druki_content_redirect_base_field();
+  // \Drupal::entityDefinitionUpdateManager()
+  //   ->installFieldStorageDefinition('druki_content_redirect', 'redirect', 'druki_content', $field_definition);
+  // @codingStandardsIgnoreEnd
 }
 
 /**
@@ -573,4 +575,14 @@ function druki_content_update_9214(array &$sandbox): string {
   \Drupal::service('druki_content.queue.content_sync_manager')
     ->buildFromPath($git_settings->getRepositoryPath());
   return (string) new TranslatableMarkup('Content marked for rebuild.');
+}
+
+/**
+ * Uninstall redirect 'druki_content_redirect' field.
+ */
+function druki_content_update_9215(array &$sandbox): void {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  if ($external_id = $definition_update_manager->getFieldStorageDefinition('druki_content_redirect', 'redirect')) {
+    $definition_update_manager->uninstallFieldStorageDefinition($external_id);
+  }
 }

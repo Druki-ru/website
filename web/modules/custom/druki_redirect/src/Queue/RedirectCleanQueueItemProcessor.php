@@ -49,7 +49,7 @@ final class RedirectCleanQueueItemProcessor implements RedirectSyncQueueItemProc
   public function process(RedirectSyncQueueItemInterface $item): array {
     $existing_ids = $this->redirectStorage->getQuery()
       ->accessCheck(FALSE)
-      ->condition('druki_content_redirect', TRUE)
+      ->condition('druki_redirect', TRUE)
       ->execute();
     $synced_ids = $this->queueManager->getState()->getStoredEntityIds();
     $removed_redirect_ids = \array_diff($existing_ids, $synced_ids);
