@@ -62,6 +62,7 @@ Disallow: /index.php/user/logout/
 
 # Custom rules
 Disallow: /search
+Disallow: /shields*
 
 Disallow: /druki_content/*/edit-remote
 Disallow: /druki_content/*/history-remote

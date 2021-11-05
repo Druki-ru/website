@@ -2,8 +2,11 @@
   <img src="https://i.imgur.com/GVA0m4I.png" alt="Druki" width="223">
 </p>
 
-![Continuous Integration](https://github.com/Druki-ru/website/workflows/Continuous%20Integration/badge.svg?branch=9.x)
-![Tests](https://github.com/Druki-ru/website/workflows/Tests/badge.svg)
+<p align="center">
+  <img src="https://github.com/Druki-ru/website/workflows/Continuous%20Integration/badge.svg?branch=9.x" alt="Continuous Integration">
+  <img src="https://github.com/Druki-ru/website/workflows/Tests/badge.svg" alt="Tests">
+  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdruki.ru%2Fshields%2Fdrupal-core" alt="Website Drupal Core version">
+</p>
 
 # Druki Website
 

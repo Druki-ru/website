@@ -46,3 +46,11 @@ druki.wiki:
     _controller: '\Drupal\druki\Controller\PagesController::wikiPage'
   requirements:
     _permission: 'access content'
+
+druki.shields.drupal_core:
+  path: '/shields/drupal-core'
+  defaults:
+    _title: 'Drupal Core'
+    _controller: '\Drupal\druki\Controller\ShieldsIoController::drupalCore'
+  requirements:
+    _access: 'TRUE'
