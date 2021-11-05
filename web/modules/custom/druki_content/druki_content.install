@@ -475,9 +475,16 @@ function druki_content_update_9207(array &$sandbox): void {
 }
 
 /**
- * Adds new "document" field for druki_content entity.
+ * Install entity module required for 'druki_content_update_9209'.
  */
 function druki_content_update_9208(array &$sandbox): void {
+  \Drupal::service('module_installer')->install(['entity']);
+}
+
+/**
+ * Adds new "document" field for druki_content entity.
+ */
+function druki_content_update_9209(array &$sandbox): void {
   $field_storage_definition = BundleFieldDefinition::create('druki_content_document')
     ->setLabel(new TranslatableMarkup('The content document.'))
     ->setRequired(TRUE);
@@ -489,7 +496,7 @@ function druki_content_update_9208(array &$sandbox): void {
 /**
  * Make document field view configurable.
  */
-function druki_content_update_9209(array &$sandbox): void {
+function druki_content_update_9210(array &$sandbox): void {
   $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   $field_storage_definition = $entity_definition_update_manager->getFieldStorageDefinition('document', 'druki_content');
   $field_storage_definition->setDisplayOptions('view', [
@@ -505,7 +512,7 @@ function druki_content_update_9209(array &$sandbox): void {
 /**
  * Delete paragraph entities.
  */
-function druki_content_update_9210(array &$sandbox): string {
+function druki_content_update_9211(array &$sandbox): string {
   /** @var \Drupal\Core\Entity\ContentEntityStorageInterface $paragraph_storage */
   $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
   if (!isset($sandbox['progress'])) {
@@ -542,7 +549,7 @@ function druki_content_update_9210(array &$sandbox): string {
 /**
  * Delete unused state value.
  */
-function druki_content_update_9211(array &$sandbox): string {
+function druki_content_update_9212(array &$sandbox): string {
   \Drupal::state()->delete('druki_content.last_sync_timestamp');
   return (string) new TranslatableMarkup('Deleted last sync timestamp state value.');
 }
@@ -550,10 +557,20 @@ function druki_content_update_9211(array &$sandbox): string {
 /**
  * Removes "sync_timestamp" field from druki_content entity.
  */
-function druki_content_update_9212(array &$sandbox): string {
+function druki_content_update_9213(array &$sandbox): string {
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   if ($filename_definition = $definition_update_manager->getFieldStorageDefinition('sync_timestamp', 'druki_content')) {
     $definition_update_manager->uninstallFieldStorageDefinition($filename_definition);
   }
   return (string) new TranslatableMarkup("Deleted 'sync_timestamp' field from druki_content entity.");
+}
+
+/**
+ * Rebuild content.
+ */
+function druki_content_update_9214(array &$sandbox): string {
+  $git_settings = \Drupal::service('druki_git.settings');
+  \Drupal::service('druki_content.queue.content_sync_manager')
+    ->buildFromPath($git_settings->getRepositoryPath());
+  return (string) new TranslatableMarkup('Content marked for rebuild.');
 }
