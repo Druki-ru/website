@@ -18,7 +18,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Основной
+    display_title: 'По умолчанию'
     position: 0
     display_options:
       access:

@@ -4,12 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.druki_content.druki_content.category
-    - field.field.druki_content.druki_content.content
     - field.field.druki_content.druki_content.metatags
     - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
-    - entity_reference_revisions
 _core:
   default_config_hash: 77EbOKfC3M1d96CqA2i0f8-dbCssFxrEEywI4YiEcpQ
 id: druki_content.druki_content.default
@@ -17,15 +15,6 @@ targetEntityType: druki_content
 bundle: druki_content
 mode: default
 content:
-  content:
-    type: entity_reference_revisions_entity_view
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
   document:
     label: hidden
     type: druki_content_document_render_array

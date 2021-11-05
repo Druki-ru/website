@@ -9,7 +9,6 @@ configure: entity.druki_content.settings
 dependencies:
   - druki:druki
   - druki_git:druki_git
-  - paragraphs:paragraphs
   - drupal:text
   - drupal:options
   - drupal:media

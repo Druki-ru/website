@@ -39,6 +39,12 @@ filters:
     status: false
     weight: 11
     settings: {  }
+  druki_content_internal_links:
+    id: druki_content_internal_links
+    provider: druki_content
+    status: true
+    weight: -10
+    settings: {  }
   media_embed:
     id: media_embed
     provider: media
@@ -48,9 +54,3 @@ filters:
       default_view_mode: default
       allowed_media_types: {  }
       allowed_view_modes: {  }
-  druki_content_internal_links:
-    id: druki_content_internal_links
-    provider: druki_content
-    status: true
-    weight: -10
-    settings: {  }
