@@ -108,6 +108,8 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       $original_href = $internal_link->getAttribute('href');
       $link_source_filepath = $internal_link->getAttribute('data-druki-internal-link-filepath');
 
+      // @todo Improve realpath, because it returns FALSE if directory doesn't
+      //   exists, but it doesn't matter. This can results a failed test.
       $source_realpath = $this->fileSystem->realpath($link_source_filepath);
       $source_dirname = \dirname($source_realpath);
 
