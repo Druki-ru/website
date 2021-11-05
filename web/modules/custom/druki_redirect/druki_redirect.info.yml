@@ -1,0 +1,9 @@
+name: Druki - Redirect
+type: module
+description: 'Provides ability to create redirect entities from external sources.'
+package: druki
+core_version_requirement: ^8 || ^9
+
+dependencies:
+  - druki_git:druki_git
+  - redirect:redirect

@@ -1,0 +1,15 @@
+{#
+/**
+ * Theme implementation to display content aside element.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - aside_type: The type of the note. The value can be: note, warning, tip and
+ *   important.
+ * - content: The aside contents.
+ */
+#}
+<aside role="note"{{ attributes }}>
+  {{ aside_type }}
+  {{ content }}
+</aside>

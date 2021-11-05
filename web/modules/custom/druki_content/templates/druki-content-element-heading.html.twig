@@ -1,0 +1,13 @@
+{#
+/**
+ * Theme implementation to display content heading.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - level: The heading level number.
+ * - content: The heading content.
+ * - raw_content: The raw heading content.
+ */
+#}
+{% set element = 'h' ~ level %}
+<{{ element }}{{ attributes }}>{{ content }}</{{ element }}>

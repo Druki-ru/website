@@ -1,0 +1,3 @@
+/foo-bar,/#fragment
+/foo-bar?with=query,/?with=another-query
+/foo-baz,/?also=with-query#fragment

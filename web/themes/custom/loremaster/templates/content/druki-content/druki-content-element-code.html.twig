@@ -1,0 +1,25 @@
+{#
+/**
+ * Theme implementation to display content code element.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - content: The code content.
+ * - language: The code language if provided.
+ */
+#}
+{{ attach_library('loremaster/component.druki-content.element.code') }}
+{{ attach_library('loremaster/code-highlight') }}
+{% set code_attributes = create_attribute() %}
+{%
+  set code_classes = [
+    language ? 'language-' ~ language,
+  ]
+%}
+{% spaceless %}
+  <pre{{ attributes.addClass('code') }}>
+    <code{{ code_attributes.addClass(code_classes) }}>
+      {{- content -}}
+    </code>
+  </pre>
+{% endspaceless %}

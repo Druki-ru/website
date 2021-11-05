@@ -106,7 +106,6 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
       '- **Slug:** ' . $this->getEntityFromContext()->getSlug(),
       '- **Core (if set):** ' . $this->getEntityFromContext()->getCore(),
       '- **Relative pathname:** ' . $this->getEntityFromContext()->getRelativePathname(),
-      '- **Sync timestamp:** ' . $this->getEntityFromContext()->getSyncTimestamp(),
     ];
 
     return \implode(\PHP_EOL, $pieces);

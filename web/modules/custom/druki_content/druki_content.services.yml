@@ -2,115 +2,148 @@ services:
   logger.channel.druki_content:
     class: Drupal\Core\Logger\LoggerChannel
     factory: logger.factory:get
-    arguments: ['druki_content']
+    arguments: [ 'druki_content' ]
 
   druki_content.git_subscriber:
     class: Drupal\druki_content\EventSubscriber\GitSubscriber
-    arguments: ['@druki_content.sync_queue_manager']
+    arguments: [ '@druki_content.queue.content_sync_manager' ]
     tags:
       - { name: event_subscriber }
 
-  druki_content.sync_queue_manager:
-    class: Drupal\druki_content\Sync\Queue\QueueManager
+  druki_content.queue.content_sync_manager:
+    class: Drupal\druki_content\Queue\ContentSyncQueueManager
     arguments:
-      - '@druki_content.source_content_finder'
-      - '@druki_content.redirect.finder'
+      - '@druki_content.finder.content_source_file'
       - '@queue'
-      - '@state'
-      - '@datetime.time'
       - '@plugin.manager.queue_worker'
+      - '@druki_content.repository.content_sync_queue_state'
 
-  druki_content.source_content_finder:
-    class: Drupal\druki_content\Sync\SourceContent\SourceContentFinder
-    arguments: ['@language_manager']
+  druki_content.finder.content_source_file:
+    class: Drupal\druki_content\Finder\ContentSourceFileFinder
+    arguments: [ '@language_manager' ]
 
-  druki_content.source_content_parser:
-    class: Drupal\druki_content\Sync\SourceContent\SourceContentParser
-    arguments: ['@druki.markdown_parser']
+  druki_content.parser.content_source_file:
+    class: Drupal\druki_content\Parser\ContentSourceFileParser
+    arguments: [ '@druki.markdown_parser', '@druki_content.parser.content_html_parser' ]
 
-  druki_content.sync_queue_processor:
-    class: Drupal\druki_content\Sync\Queue\QueueProcessor
-    arguments: ['@entity_type.manager', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@state', '@entity.memory_cache']
+  druki_content.parser.content_html_parser:
+    class: Drupal\druki_content\Parser\ContentHtmlParser
     tags:
-      - { name: service_collector, tag: druki_sync_queue_processor, call: addProcessor }
+      - { name: service_collector, tag: druki_content_html_element_parser, call: addElementParser }
+      - { name: service_collector, tag: druki_content_html_preprocessor, call: addHtmlPreprocessor }
 
-  druki_content.sync_queue_processor.source_content_list:
-    class: Drupal\druki_content\Sync\SourceContent\SourceContentListQueueProcessor
-    public: false
-    arguments: ['@state', '@druki_content.source_content_parser', '@druki_content.parsed_source_content_loader', '@logger.channel.druki_content']
+  druki_content.queue.content_sync_processor:
+    class: Drupal\druki_content\Queue\ChainContentSyncQueueProcessor
+    arguments: ['@druki_content.repository.content_sync_queue_state']
     tags:
-      - { name: druki_sync_queue_processor }
+      - { name: service_collector, tag: druki_content_sync_queue_processor, call: addProcessor }
 
-  druki_content.sync_queue_processor.clean:
-    class: Drupal\druki_content\Sync\Clean\CleanQueueProcessor
-    public: false
-    arguments: ['@entity_type.manager']
+  druki_content.queue.clean_queue_processor:
+    class: Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor
+    arguments:
+      - '@entity_type.manager'
+      - '@druki_content.queue.content_sync_manager'
     tags:
-      - { name: druki_sync_queue_processor }
-
-  druki_content.sync_queue_processor.redirect:
-    class: Drupal\druki_content\Sync\Redirect\RedirectQueueProcessor
-    public: false
-    arguments: ['@entity_type.manager', '@state']
-    tags:
-      - { name: druki_sync_queue_processor }
-
-  druki_content.parsed_source_content_loader:
-    class: Drupal\druki_content\Sync\SourceContent\ParsedSourceContentLoader
-    arguments: ['@druki_content.parsed_content_loader', '@entity_type.manager', '@datetime.time']
-
-  druki_content.parsed_content_loader:
-    class: Drupal\druki_content\Sync\ParsedContent\ParsedContentLoader
-    tags:
-      - { name: service_collector, tag: druki_parsed_content_loader, call: addLoader }
-
-  druki_content.parsed_content_loader.front_matter:
-    class: Drupal\druki_content\Sync\ParsedContent\FrontMatter\FrontMatterLoader
-    tags:
-      - { name: druki_parsed_content_loader }
-
-  druki_content.parsed_content_loader.paragraph_base:
-    abstract: true
-    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphLoaderBase
-    arguments: ['@entity_type.manager']
-
-  druki_content.parsed_content_loader.paragraph_text:
-    parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphTextLoader
-    tags:
-      - { name: druki_parsed_content_loader }
-
-  druki_content.parsed_content_loader.paragraph_heading:
-    parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphHeadingLoader
-    tags:
-      - { name: druki_parsed_content_loader }
-
-  druki_content.parsed_content_loader.paragraph_code:
-    parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphCodeLoader
-    tags:
-      - { name: druki_parsed_content_loader }
-
-  druki_content.parsed_content_loader.paragraph_note:
-    parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphNoteLoader
-    tags:
-      - { name: druki_parsed_content_loader }
-
-  druki_content.parsed_content_loader.paragraph_image:
-    parent: druki_content.parsed_content_loader.paragraph_base
-    class: Drupal\druki_content\Sync\ParsedContent\Content\ParagraphImageLoader
-    arguments: ['@druki_git.settings', '@druki.file_tracker', '@entity_field.manager', '@token', '@file_system']
-    tags:
-      - { name: druki_parsed_content_loader }
+      - { name: druki_content_sync_queue_processor }
 
   druki_content.druki_content_route_context:
     class: Drupal\druki_content\ContextProvider\DrukiContentRouteContext
-    arguments: ['@current_route_match']
+    arguments: [ '@current_route_match' ]
     tags:
       - { name: context_provider }
 
-  druki_content.redirect.finder:
-    class: Drupal\druki_content\Sync\Redirect\RedirectFinder
-    arguments: ['@language_manager']
+  # This is fallback and default element parser. Called last if rest of parsers
+  # passed.
+  druki_content.parser.content_html_text_element:
+    class: Drupal\druki_content\Parser\ContentHtmlTextElementParser
+    tags:
+      - { name: druki_content_html_element_parser, priority: -1000 }
+
+  druki_content.parser.content_html_heading_element:
+    class: Drupal\druki_content\Parser\ContentHtmlHeadingElementParser
+    tags:
+      - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_image_element:
+    class: Drupal\druki_content\Parser\ContentHtmlImageElementParser
+    tags:
+      - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_code_element:
+    class: Drupal\druki_content\Parser\ContentHtmlCodeElementParser
+    tags:
+      - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_note_element:
+    class: Drupal\druki_content\Parser\ContentHtmlNoteElementParser
+    tags:
+      - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_internal_link_preprocessor:
+    class: Drupal\druki_content\Parser\ContentHtmlInternalLinkPreprocessor
+    tags:
+      - { name: druki_content_html_preprocessor }
+
+  druki_content.parser.content_html_image_preprocessor:
+    class: Drupal\druki_content\Parser\ContentHtmlImagePreprocessor
+    tags:
+      - { name: druki_content_html_preprocessor }
+
+  druki_content.builder.content_render_array:
+    class: Drupal\druki_content\Builder\ContentRenderArrayBuilder
+    tags:
+      - { name: service_collector, tag: druki_content_element_render_array_builder, call: addBuilder }
+
+  druki_content.builder.content_text_element_render_array:
+    class: Drupal\druki_content\Builder\ContentTextElementRenderArrayBuilder
+    tags:
+      - { name: druki_content_element_render_array_builder }
+
+  druki_content.builder.content_heading_element_render_array:
+    class: Drupal\druki_content\Builder\ContentHeadingElementRenderArrayBuilder
+    tags:
+      - { name: druki_content_element_render_array_builder }
+
+  druki_content.builder.content_code_element_render_array:
+    class: Drupal\druki_content\Builder\ContentCodeElementRenderArrayBuilder
+    tags:
+      - { name: druki_content_element_render_array_builder }
+
+  druki_content.builder.content_aside_element_render_array:
+    class: Drupal\druki_content\Builder\ContentAsideElementRenderArrayBuilder
+    tags:
+      - { name: druki_content_element_render_array_builder }
+
+  druki_content.builder.content_image_element_render_array:
+    class: Drupal\druki_content\Builder\ContentImageElementRenderArrayBuilder
+    arguments: ['@druki_content.repository.content_media_image', '@entity_type.manager']
+    tags:
+      - { name: druki_content_element_render_array_builder }
+
+  stream_wrapper.druki_content_source:
+    class: Drupal\druki_content\StreamWrapper\DrukiContentSourceStream
+    tags:
+      - { name: stream_wrapper, scheme: druki-content-source }
+
+  druki_content.repository.content_media_image:
+    class: Drupal\druki_content\Repository\ContentMediaImageRepository
+    arguments:
+      - '@druki.file_tracker'
+      - '@entity_field.manager'
+      - '@token'
+      - '@cache.static'
+      - '@entity_type.manager'
+      - '@file_system'
+
+  druki_content.queue.content_source_file_list_queue_item:
+    class: Drupal\druki_content\Queue\ContentSourceFileListQueueItemProcessor
+    arguments: ['@entity_type.manager', '@druki_content.parser.content_source_file', '@druki_content.generator.content_document_checksum']
+    tags:
+      - { name: druki_content_sync_queue_processor }
+
+  druki_content.generator.content_document_checksum:
+    class: Drupal\druki_content\Generator\ContentDocumentChecksumGenerator
+
+  druki_content.repository.content_sync_queue_state:
+    class: Drupal\druki_content\Repository\ContentSyncQueueState
+    arguments: ['@state']

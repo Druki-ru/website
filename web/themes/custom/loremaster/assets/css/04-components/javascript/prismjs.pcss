@@ -1,12 +1,12 @@
 :root {
-  --prismjs-background: var(--color-black-02);
+  --prismjs-background: var(--color-cultured);
   --prismjs-color: var(--color-black);
   --prismjs-keyword: hsl(240, 100%, 25%);
   --prismjs-punctuatuion: var(--prismjs-color);
   --prismjs-tag: #000080;
   --prismjs-string: #008000;
   --prismjs-comment: #808080;
-  --pirsmjs-class-name: var(--color-black);
+  --prismjs-class-name: var(--color-black);
   --prismjs-variable: #660000;
   --prismjs-important: hsl(240, 100%, 25%);
   --prismjs-function: hsl(0, 0%, 0%);
@@ -18,7 +18,7 @@
 }
 
 [data-theme="dark"] {
-  --prismjs-background: var(--color-white-02);
+  --prismjs-background: var(--color-black--light-4);
   --prismjs-color: hsl(211, 20%, 72%);
   --prismjs-important: hsl(27, 61%, 50%);
   --prismjs-keyword: var(--prismjs-important);
@@ -54,12 +54,10 @@ code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-select
 /* Code blocks */
 pre[class*="language-"] {
   overflow: auto;
-  margin: calc(var(--spacing-unit) * 3) 0;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  border: 1px solid var(--color-primary-100);
   background-color: var(--prismjs-background);
 }
 

@@ -1,0 +1,12 @@
+{
+    "name": "druki/druki_redirect",
+    "type": "drupal-custom-module",
+    "description": "Provides ability to create redirect entities from external sources.",
+    "version": "1.0.0",
+    "keywords": [
+        "Drupal"
+    ],
+    "require": {
+        "symfony/finder": "~4.0"
+    }
+}

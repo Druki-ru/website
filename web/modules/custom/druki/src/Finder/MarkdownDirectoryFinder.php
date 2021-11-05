@@ -7,7 +7,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * Provides Markdown files finder.
  *
- * @todo move into druki_content and refactor it as SourceContentFinder.
+ * @todo move into druki_content and refactor it as ContentSourceFileFinder.
  */
 final class MarkdownDirectoryFinder {
 

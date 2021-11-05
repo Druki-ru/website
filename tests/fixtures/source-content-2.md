@@ -1,6 +1,13 @@
 ---
 title: The modified version of source content
-slug: example
+slug: test/example
+core: 9
+search-keywords:
+  - Hello, World!
+category:
+  area: Административный интерфейс
+  title: Содержимое
+  order: 2
 ---
 
 Hello world!

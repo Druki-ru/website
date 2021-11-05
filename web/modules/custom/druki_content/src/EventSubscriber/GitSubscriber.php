@@ -2,7 +2,7 @@
 
 namespace Drupal\druki_content\EventSubscriber;
 
-use Drupal\druki_content\Sync\Queue\QueueManager;
+use Drupal\druki_content\Queue\ContentSyncQueueManager;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -15,15 +15,15 @@ final class GitSubscriber implements EventSubscriberInterface {
   /**
    * The sync queue manager.
    */
-  protected QueueManager $queueManager;
+  protected ContentSyncQueueManager $queueManager;
 
   /**
    * Constructs a new GitSubscriber object.
    *
-   * @param \Drupal\druki_content\Sync\Queue\QueueManager $sync_queue_manager
+   * @param \Drupal\druki_content\Queue\ContentSyncQueueManager $sync_queue_manager
    *   The sync queue manager.
    */
-  public function __construct(QueueManager $sync_queue_manager) {
+  public function __construct(ContentSyncQueueManager $sync_queue_manager) {
     $this->queueManager = $sync_queue_manager;
   }
 

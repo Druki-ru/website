@@ -8,9 +8,11 @@ module:
   druki: 0
   druki_content: 0
   druki_git: 0
+  druki_redirect: 0
   druki_search: 0
   dynamic_page_cache: 0
   editor: 0
+  entity: 0
   entity_reference_revisions: 0
   extra_field: 0
   field: 0

@@ -3,10 +3,10 @@
 namespace Drupal\druki_content\Command;
 
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\druki_content\Sync\Queue\QueueProcessorInterface;
-use Drupal\druki_content\Sync\SourceContent\SourceContent;
-use Drupal\druki_content\Sync\SourceContent\SourceContentList;
-use Drupal\druki_content\Sync\SourceContent\SourceContentListQueueItem;
+use Drupal\druki_content\Data\ContentSourceFile;
+use Drupal\druki_content\Data\ContentSourceFileList;
+use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
+use Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface;
 use Drupal\druki_git\Git\GitInterface;
 use Drush\Commands\DrushCommands;
 
@@ -28,7 +28,7 @@ class DrukiContentSyncCommand extends DrushCommands {
   /**
    * The queue item processors.
    */
-  protected QueueProcessorInterface $queueProcessor;
+  protected ContentSyncQueueProcessorInterface $queueProcessor;
 
   /**
    * DrukiContentSyncCommands constructor.
@@ -37,10 +37,10 @@ class DrukiContentSyncCommand extends DrushCommands {
    *   The git service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   The language manager service.
-   * @param \Drupal\druki_content\Sync\Queue\QueueProcessorInterface $queueProcessor
+   * @param \Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface $queueProcessor
    *   The queue item processors.
    */
-  public function __construct(GitInterface $gitService, LanguageManagerInterface $languageManager, QueueProcessorInterface $queueProcessor) {
+  public function __construct(GitInterface $gitService, LanguageManagerInterface $languageManager, ContentSyncQueueProcessorInterface $queueProcessor) {
     parent::__construct();
     $this->gitService = $gitService;
     $this->languageManager = $languageManager;
@@ -69,9 +69,9 @@ class DrukiContentSyncCommand extends DrushCommands {
       $activeLanguage = $this->languageManager->getDefaultLanguage();
       $locale = $activeLanguage->getId();
     }
-    $sourceContent = new SourceContent($realPath, $uri, $locale);
-    $sourceContentList = (new SourceContentList())->add($sourceContent);
-    $this->queueProcessor->process(new SourceContentListQueueItem($sourceContentList));
+    $sourceContent = new ContentSourceFile($realPath, $uri, $locale);
+    $sourceContentList = (new ContentSourceFileList())->addFile($sourceContent);
+    $this->queueProcessor->process(new ContentSourceFileListQueueItem($sourceContentList));
   }
 
 }

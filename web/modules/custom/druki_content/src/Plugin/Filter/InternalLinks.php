@@ -3,18 +3,39 @@
 namespace Drupal\druki_content\Plugin\Filter;
 
 use Drupal\Component\Utility\Crypt;
-use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\druki\Utility\PathUtils;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Storage\DrukiContentStorage;
+use Drupal\druki_content\Repository\DrukiContentStorage;
 use Drupal\druki_git\Git\GitSettingsInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Provides a 'InternalLinks' filter.
+ *
+ * This filter converts internal links in content (between files) into real one.
+ *
+ * E.g., we have such link in content:
+ *
+ * @code
+ * <a href='services/services.md'
+ *   data-druki-internal-link-filepath='public://druki-content-source/docs/ru/8/settings-php.md'>Service API</a>
+ * @endcode
+ *
+ * The website cannot open 'service/services.md' link, but if this document is
+ * exists, that we know it's entity and by that, we know it's real URL.
+ *
+ * This filter will find such links and replace document-to-document links into
+ * internal one:
+ *
+ * @code
+ * <a href="/wiki/8/services">Service API</a>
+ * @endcode
  *
  * @Filter(
  *   id = "druki_content_internal_links",
@@ -27,13 +48,11 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
 
   /**
    * An array with cache tags for lazy re-render.
-   *
-   * @var array
    */
   protected array $lazyCacheTags = [];
 
   /**
-   * The druki content sotrage.
+   * The druki content storage.
    */
   protected DrukiContentStorage $contentStorage;
 
@@ -48,9 +67,14 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   protected FileSystemInterface $fileSystem;
 
   /**
+   * The cacke backend.
+   */
+  protected CacheBackendInterface $cache;
+
+  /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): InternalLinks {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $druki_content_storage = $container->get('entity_type.manager')
       ->getStorage('druki_content');
@@ -58,6 +82,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
     $instance->contentStorage = $druki_content_storage;
     $instance->gitSettings = $container->get('druki_git.settings');
     $instance->fileSystem = $container->get('file_system');
+    $instance->cache = $container->get('cache.static');
     return $instance;
   }
 
@@ -72,54 +97,53 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       return $result;
     }
 
-    $dom = Html::load($text);
-    $xpath = new \DOMXPath($dom);
     $repository_realpath = $this->fileSystem->realpath($this->gitSettings->getRepositoryPath());
 
-    // <a href="services/services.md" data-druki-internal-link-filepath="public://druki-content-source/docs/ru/8/settings-php.md">сервис</a>
-    /** @var \DOMElement $node */
-    foreach ($xpath->query('//a[@data-druki-internal-link-filepath]') as $node) {
+    $crawler = new Crawler($text);
+    $internal_links = $crawler->filter('a[data-druki-internal-link-filepath]');
+    /** @var \DOMElement $internal_link */
+    foreach ($internal_links as $internal_link) {
       // Initial value for all broken links.
       $destination_href = '#';
-      $original_href = $node->getAttribute('href');
-      $link_source_filepath = $node->getAttribute('data-druki-internal-link-filepath');
-      $source_realpath = $this->fileSystem->realpath($link_source_filepath);
-      $source_dirname = \dirname($source_realpath);
-      // realpath() checks for file existence. So we wrap it to condition.
-      // Also we add trailing slash after dirname for this contact:
-      // - /path/to/source/dirname
-      // - /
-      // - ../path/to/href/file.md
-      // Which will result as: /path/to/source/dirname/../path/to/href/file.md.
-      // So we need this slash to work properly. If there will be double slash
-      // realpath will work also.
-      $destination_realpath = $this->normalizePath($source_dirname . '/' . $original_href);
-      // Now we need to get "relative_pathname" for this file relative to
-      // repository root.
-      // We also remove leading slash from repository path. This is needed
-      // because "relative_pathname" stored without it: docs/ru/file.md.
-      $destination_relative_pathname = \str_replace($repository_realpath . '/', '', $destination_realpath);
-      if (\realpath($destination_realpath)) {
-        // If we are here, this means the path is valid and file is exist.
-        // Now we need to find the druki_content entity associated with this
-        // relative pathname.
-        $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
+      $original_href = $internal_link->getAttribute('href');
+      $link_source_filepath = $internal_link->getAttribute('data-druki-internal-link-filepath');
 
+      // @todo Improve realpath, because it returns FALSE if directory doesn't
+      //   exists, but it doesn't matter. This can results a failed test.
+      $source_realpath = $this->fileSystem->realpath($link_source_filepath);
+      // The $source_realpath will be FALSE if path doesn't exists. In that case
+      // we do not try to search for content, because we simply can't generate
+      // valid path.
+      if ($source_realpath) {
+        $source_dirname = \dirname($source_realpath);
+        $destination_realpath = PathUtils::normalizePath($source_dirname . '/' . $original_href);
+        // Find "relative_pathname" for this file, related to repository root.
+        //
+        // E.g:
+        // - $repository_realpath: /var/www/content
+        // - $destination_realpath: /var/www/content/docs/ru/drupal/index.md
+        // - $destination_relative_pathname: docs/ru/drupal/index.md
+        //
+        // We also remove leading slash (/) from repository path. This is needed
+        // because "relative_pathname" stored in entity without it.
+        $destination_relative_pathname = \str_replace($repository_realpath . '/', '', $destination_realpath);
+
+        $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
         if ($druki_content instanceof DrukiContentInterface) {
           $destination_href = $druki_content
             ->toUrl()
             ->toString(TRUE)
             ->getGeneratedUrl();
         }
+
+        // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
+        $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
+        $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
       }
 
-      // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
-      $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
-      $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
-
       // Replace href value.
-      $node->setAttribute('href', $destination_href);
-      $node->removeAttribute('data-druki-internal-link-filepath');
+      $internal_link->setAttribute('href', $destination_href);
+      $internal_link->removeAttribute('data-druki-internal-link-filepath');
     }
 
     // The main reason for this, is to handle links, which can be created at
@@ -134,47 +158,9 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
     // will be more less CPU intended in long run. But who knows, we can rework
     // it if you prove it.
     $result->setCacheTags($this->lazyCacheTags);
-    $result->setProcessedText(Html::serialize($dom));
+    $result->setProcessedText($crawler->filter('body')->html());
 
     return $result;
-  }
-
-  /**
-   * Normalize path like standard realpath() does, but ignore file existence.
-   *
-   * @param string $path
-   *   The path to process. I.e. "path/to/something/../../file.md" will be
-   *   convert to "path/file.md".
-   *
-   * @return string
-   *   The path.
-   *
-   * @see https://stackoverflow.com/a/10067975/4751623
-   */
-  protected function normalizePath(string $path): string {
-    $result_path = &drupal_static(self::class . ':' . __METHOD__ . ':' . $path, '');
-
-    if (empty($result_path)) {
-      $root = $path[0] === '/' ? '/' : '';
-
-      $segments = \explode('/', \trim($path, '/'));
-      $ret = [];
-      foreach ($segments as $segment) {
-        if (($segment == '.') || \strlen($segment) === 0) {
-          continue;
-        }
-        if ($segment == '..') {
-          \array_pop($ret);
-        }
-        else {
-          \array_push($ret, $segment);
-        }
-      }
-
-      $result_path = $root . \implode('/', $ret);
-    }
-
-    return $result_path;
   }
 
   /**
@@ -187,9 +173,11 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
    *   The content entity.
    */
   protected function loadDrukiContentByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
-    $result = &drupal_static(self::class . ':' . __METHOD__ . ':' . $relative_pathname);
-
-    if (!isset($result)) {
+    $cid = self::class . ':' . __METHOD__ . ':' . $relative_pathname;
+    if ($cache = $this->cache->get($cid)) {
+      return $cache->data;
+    }
+    else {
       $content_ids = $this
         ->contentStorage
         ->getQuery()
@@ -197,13 +185,14 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
         ->range(0, 1)
         ->execute();
 
+      $result = NULL;
       if (!empty($content_ids)) {
         $content_id = \array_shift($content_ids);
         $result = $this->contentStorage->load($content_id);
       }
+      $this->cache->set($cid, $result);
+      return $result;
     }
-
-    return $result;
   }
 
   /**

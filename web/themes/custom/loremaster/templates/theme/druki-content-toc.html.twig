@@ -4,24 +4,25 @@
  * Default theme implementation to present content TOC.
  *
  * Available variables:
- * - links: The array with link for TOC.
- *
- * @see template_preprocess_druki_content_toc().
+ * - toc: The array with link for TOC.
+ * - links: An heierarchical array tree with TOC links, contains:
+ *   - heading: The TableOfContentsHeading element.
+ *   - children: An array with children TOC links.
  */
 #}
-{% set block = 'toc' %}
-{%
-  set classes = [
-    bem(block),
-  ]
-%}
-{% import _self as toc %}
-<div{{ attributes.addClass(classes) }}>
-  {{ toc.links(links, 0, block) }}
+{{ attach_library('druki_content/toc') }}
+
+{% import _self as toc_builder %}
+{% set bem_block = 'toc' %}
+
+<div{{ attributes.addClass(bem_block) }}>
+  {% set bem_base = bem_block ~ '__' %}
+  {% do attributes.removeClass(bem_block) %}
+  {{ toc_builder.links(links, 0, bem_base) }}
 </div>
 
 {% macro links(links, toc_level, block_base) %}
-  {% import _self as toc %}
+  {% import _self as toc_builder %}
   {% set attributes = create_attribute() %}
   {% set counter_list_block = 'counter-list' %}
   {%
@@ -47,9 +48,9 @@
             bem(block_base, 'link'),
           ]
         %}
-        <a href="#{{ item.anchor }}" {{ link_attributes.addClass(link_classes).setAttribute('title', item.text) }}>{{ item.text }}</a>
+        <a href="#{{ item.heading.getText|druki_anchor('druki_content', 2) }}" {{ link_attributes.addClass(link_classes).setAttribute('title', item.heading.getText) }}>{{ item.heading.getText }}</a>
         {% if item.children %}
-          {{ toc.links(item.children, item.level + 1, block_base) }}
+          {{ toc_builder.links(item.children, item.heading.getLevel + 1, block_base) }}
         {% endif %}
       </li>
     {% endfor %}

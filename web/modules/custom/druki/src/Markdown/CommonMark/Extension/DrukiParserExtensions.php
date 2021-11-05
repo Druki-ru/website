@@ -2,9 +2,7 @@
 
 namespace Drupal\druki\Markdown\CommonMark\Extension;
 
-use Drupal\druki\Markdown\CommonMark\Block\Parser\FrontMatterParser;
 use Drupal\druki\Markdown\CommonMark\Block\Parser\NoteParser;
-use Drupal\druki\Markdown\CommonMark\Block\Renderer\FrontMatterRenderer;
 use Drupal\druki\Markdown\CommonMark\Block\Renderer\NoteRenderer;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
@@ -23,11 +21,6 @@ final class DrukiParserExtensions implements ExtensionInterface {
       ->addBlockRenderer(
         'Drupal\druki\Markdown\CommonMark\Block\Element\NoteElement',
         new NoteRenderer(),
-      )
-      ->addBlockParser(new FrontMatterParser(), 30)
-      ->addBlockRenderer(
-        'Drupal\druki\Markdown\CommonMark\Block\Element\FrontMatterElement',
-        new FrontMatterRenderer(),
       );
   }
 

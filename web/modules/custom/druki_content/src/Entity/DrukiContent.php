@@ -7,6 +7,8 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki_content\Data\ContentDocument;
+use Drupal\entity\BundleFieldDefinition;
 
 /**
  * Defines the druki content entity class.
@@ -16,7 +18,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki content"),
  *   handlers = {
- *     "storage" = "Drupal\druki_content\Storage\DrukiContentStorage",
+ *     "storage" = "Drupal\druki_content\Repository\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\druki_content\Controller\DrukiContentListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
@@ -106,21 +108,22 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
       ->setRequired(FALSE)
       ->setReadOnly(TRUE);
 
-    $fields['sync_timestamp'] = BaseFieldDefinition::create('timestamp')
-      ->setLabel(new TranslatableMarkup('Last synchronization timestamp'))
-      ->setDescription(new TranslatableMarkup('The time of last synchronization where this content was presented.'))
-      ->setDisplayOptions('form', [
-        'region' => 'hidden',
-        'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE);
-
     $fields['source_hash'] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Source content hash'))
       ->setDescription(new TranslatableMarkup('Store the last parsed content hash used for current content.'))
       ->setRequired(FALSE)
       ->setSetting('max_length', 255)
       ->setReadOnly(TRUE);
+
+    $fields['document'] = BundleFieldDefinition::create('druki_content_document')
+      ->setLabel(new TranslatableMarkup('The content document.'))
+      ->setRequired(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
 
     return $fields;
   }
@@ -194,7 +197,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setCore(string $core): DrukiContentInterface {
+  public function setCore(?int $core): DrukiContentInterface {
     $this->set('core', $core);
 
     return $this;
@@ -230,23 +233,11 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function getCategory(): array {
+  public function getCategory(): ?array {
+    if ($this->get('category')->isEmpty()) {
+      return NULL;
+    }
     return $this->get('category')->first()->getValue();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSyncTimestamp(): ?int {
-    return $this->get('sync_timestamp')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setSyncTimestamp(int $timestamp): DrukiContentInterface {
-    $this->set('sync_timestamp', $timestamp);
-    return $this;
   }
 
   /**
@@ -262,6 +253,24 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   public function setSourceHash(string $hash): DrukiContentInterface {
     $this->set('source_hash', $hash);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setContentDocument(ContentDocument $content_document): self {
+    $this->set('document', $content_document);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContentDocument(): ?ContentDocument {
+    if ($this->get('document')->isEmpty()) {
+      return NULL;
+    }
+    return $this->get('document')->first()->getContentDocument();
   }
 
 }

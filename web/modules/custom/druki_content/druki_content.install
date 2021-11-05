@@ -8,8 +8,11 @@
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Site\Settings;
+use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\entity\BundleFieldDefinition;
 
 /**
  * Implements hook_requirements().
@@ -44,7 +47,6 @@ function druki_content_requirements(string $phase): array {
 function druki_content_uninstall(): void {
   // Remove state settings.
   \Drupal::state()->delete('druki_content.settings.force_update');
-  \Drupal::state()->delete('druki_content.last_sync_timestamp');
 }
 
 /**
@@ -459,4 +461,116 @@ function druki_content_update_9206(array &$sandbox): void {
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
   $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Storage\DrukiContentStorage');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Change druki_content storage handler location.
+ */
+function druki_content_update_9207(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Repository\DrukiContentStorage');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Install entity module required for 'druki_content_update_9209'.
+ */
+function druki_content_update_9208(array &$sandbox): void {
+  \Drupal::service('module_installer')->install(['entity']);
+}
+
+/**
+ * Adds new "document" field for druki_content entity.
+ */
+function druki_content_update_9209(array &$sandbox): void {
+  $field_storage_definition = BundleFieldDefinition::create('druki_content_document')
+    ->setLabel(new TranslatableMarkup('The content document.'))
+    ->setRequired(TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('document', 'druki_content', 'druki_content', $field_storage_definition);
+}
+
+/**
+ * Make document field view configurable.
+ */
+function druki_content_update_9210(array &$sandbox): void {
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_storage_definition = $entity_definition_update_manager->getFieldStorageDefinition('document', 'druki_content');
+  $field_storage_definition->setDisplayOptions('view', [
+    'label' => 'hidden',
+    'type' => 'string',
+    'weight' => -4,
+  ])
+    ->setDisplayConfigurable('view', TRUE);
+
+  $entity_definition_update_manager->updateFieldStorageDefinition($field_storage_definition);
+}
+
+/**
+ * Delete paragraph entities.
+ */
+function druki_content_update_9211(array &$sandbox): string {
+  /** @var \Drupal\Core\Entity\ContentEntityStorageInterface $paragraph_storage */
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+  if (!isset($sandbox['progress'])) {
+    $sandbox['total'] = $paragraph_storage->getQuery()
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
+    $sandbox['progress'] = 0;
+  }
+
+  if ($sandbox['total'] == 0) {
+    $sandbox['#finished'] = 1;
+    return (string) new TranslatableMarkup('No paragraphs found, skip.');
+  }
+
+  $step_size = Settings::get('entity_update_batch_size', 50);
+  $paragraph_ids = $paragraph_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->range(0, $step_size)
+    ->execute();
+  $paragraphs = $paragraph_storage->loadMultiple($paragraph_ids);
+  $paragraph_storage->delete($paragraphs);
+  $sandbox['progress'] += \count($paragraph_ids);
+
+  $sandbox['#finished'] = $sandbox['progress'] / $sandbox['total'];
+
+  return (string) new PluralTranslatableMarkup(
+    $sandbox['progress'],
+    '@count paragraph has been deleted.',
+    '@count paragraphs has been deleted.',
+  );
+}
+
+/**
+ * Delete unused state value.
+ */
+function druki_content_update_9212(array &$sandbox): string {
+  \Drupal::state()->delete('druki_content.last_sync_timestamp');
+  return (string) new TranslatableMarkup('Deleted last sync timestamp state value.');
+}
+
+/**
+ * Removes "sync_timestamp" field from druki_content entity.
+ */
+function druki_content_update_9213(array &$sandbox): string {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  if ($filename_definition = $definition_update_manager->getFieldStorageDefinition('sync_timestamp', 'druki_content')) {
+    $definition_update_manager->uninstallFieldStorageDefinition($filename_definition);
+  }
+  return (string) new TranslatableMarkup("Deleted 'sync_timestamp' field from druki_content entity.");
+}
+
+/**
+ * Rebuild content.
+ */
+function druki_content_update_9214(array &$sandbox): string {
+  $git_settings = \Drupal::service('druki_git.settings');
+  \Drupal::service('druki_content.queue.content_sync_manager')
+    ->buildFromPath($git_settings->getRepositoryPath());
+  return (string) new TranslatableMarkup('Content marked for rebuild.');
 }

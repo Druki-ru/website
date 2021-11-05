@@ -44,10 +44,12 @@
         "druki/druki": "^1.0",
         "druki/druki_content": "^1.0",
         "druki/druki_git": "^1.0",
+        "druki/druki_redirect": "^1.0",
         "druki/druki_search": "^1.0",
         "druki/loremaster": "^1.0",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
+        "drupal/entity": "^1.2",
         "drupal/extra_field": "^1.0",
         "drupal/glisseo": "^1.0@alpha",
         "drupal/google_tag": "^1.1",
@@ -74,7 +76,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Druki\\Tests\\": "tests"
+            "Druki\\Tests\\": "tests/src"
         }
     },
     "conflict": {
@@ -89,7 +91,7 @@
         "phpcs": "vendor/bin/phpcs",
         "phpcbf": "vendor/bin/phpcbf",
         "phpstan": "vendor/bin/phpstan analyse",
-        "phpunit": "vendor/bin/phpunit"
+        "phpunit": "vendor/bin/phpunit --coverage-text"
     },
     "extra": {
         "patches": {

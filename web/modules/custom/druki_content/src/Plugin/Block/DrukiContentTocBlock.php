@@ -4,6 +4,7 @@ namespace Drupal\druki_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\druki_content\Builder\ContentTableOfContentsBuilder;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 
 /**
@@ -36,18 +37,22 @@ class DrukiContentTocBlock extends BlockBase {
    */
   public function build(): array {
     $build = [];
-
-    if ($druki_content = $this->getDrukiContentFromContext()) {
-      $headings = $druki_content->get('content')->filter(static fn ($item) => $item->entity->bundle() == 'druki_heading');
-
-      if (!$headings->isEmpty()) {
-        $build['toc'] = [
-          '#theme' => 'druki_content_toc',
-          '#druki_content' => $druki_content,
-        ];
-      }
+    $druki_content = $this->getDrukiContentFromContext();
+    if (!$druki_content) {
+      return $build;
     }
 
+    $content_document = $druki_content->getContentDocument();
+    if (!$content_document) {
+      return $build;
+    }
+    $toc = ContentTableOfContentsBuilder::build($content_document->getContent());
+    if ($toc->getIterator()->count()) {
+      $build['toc'] = [
+        '#theme' => 'druki_content_toc',
+        '#toc' => $toc,
+      ];
+    }
     return $build;
   }
 
