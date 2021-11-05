@@ -111,31 +111,35 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       // @todo Improve realpath, because it returns FALSE if directory doesn't
       //   exists, but it doesn't matter. This can results a failed test.
       $source_realpath = $this->fileSystem->realpath($link_source_filepath);
-      $source_dirname = \dirname($source_realpath);
+      // The $source_realpath will be FALSE if path doesn't exists. In that case
+      // we do not try to search for content, because we simply can't generate
+      // valid path.
+      if ($source_realpath) {
+        $source_dirname = \dirname($source_realpath);
+        $destination_realpath = PathUtils::normalizePath($source_dirname . '/' . $original_href);
+        // Find "relative_pathname" for this file, related to repository root.
+        //
+        // E.g:
+        // - $repository_realpath: /var/www/content
+        // - $destination_realpath: /var/www/content/docs/ru/drupal/index.md
+        // - $destination_relative_pathname: docs/ru/drupal/index.md
+        //
+        // We also remove leading slash (/) from repository path. This is needed
+        // because "relative_pathname" stored in entity without it.
+        $destination_relative_pathname = \str_replace($repository_realpath . '/', '', $destination_realpath);
 
-      $destination_realpath = PathUtils::normalizePath($source_dirname . '/' . $original_href);
-      // Find "relative_pathname" for this file, related to repository root.
-      //
-      // E.g:
-      // - $repository_realpath: /var/www/content
-      // - $destination_realpath: /var/www/content/docs/ru/drupal/index.md
-      // - $destination_relative_pathname: docs/ru/drupal/index.md
-      //
-      // We also remove leading slash (/) from repository path. This is needed
-      // because "relative_pathname" stored in entity without it.
-      $destination_relative_pathname = \str_replace($repository_realpath . '/', '', $destination_realpath);
+        $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
+        if ($druki_content instanceof DrukiContentInterface) {
+          $destination_href = $druki_content
+            ->toUrl()
+            ->toString(TRUE)
+            ->getGeneratedUrl();
+        }
 
-      $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
-      if ($druki_content instanceof DrukiContentInterface) {
-        $destination_href = $druki_content
-          ->toUrl()
-          ->toString(TRUE)
-          ->getGeneratedUrl();
+        // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
+        $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
+        $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
       }
-
-      // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
-      $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
-      $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
 
       // Replace href value.
       $internal_link->setAttribute('href', $destination_href);
