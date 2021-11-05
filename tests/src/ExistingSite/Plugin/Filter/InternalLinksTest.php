@@ -59,7 +59,6 @@ final class InternalLinksTest extends ExistingSiteBase {
     // Reset cache so plugin will try to find entity again.
     $this->cache->deleteAll();
 
-    dump($text);
     $filtered_text = $this->filterPlugin->process($text, 'ru');
     $expected = '<a href="' . $content->toUrl()->toString() . '">Drupal 10</a>';
     $this->assertSame($expected, $filtered_text->getProcessedText());

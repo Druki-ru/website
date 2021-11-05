@@ -99,6 +99,7 @@ jobs:
           cp ./.github/workflows/d4d-phpunit/.env ./.env
           cp ./.github/workflows/d4d-phpunit/docker-compose.yml ./docker-compose.yml
           cp ./.github/workflows/d4d-phpunit/settings.php ./web/sites/default/settings.php
+          mkdir ./web/sites/default/files/druki-content-source
 
       - name: 'Run docker'
         run: "docker-compose up -d"
