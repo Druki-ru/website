@@ -7,7 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_git\Git\GitSettingsInterface;
+use Drupal\druki_git\Repository\GitSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

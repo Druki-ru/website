@@ -7,6 +7,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\druki_git\Event\DrukiGitEvent;
 use Drupal\druki_git\Event\DrukiGitEvents;
 use Drupal\druki_git\Exception\GitCommandFailedException;
+use Drupal\druki_git\Repository\GitSettingsInterface;
 
 /**
  * Provides git service.
@@ -36,7 +37,7 @@ final class Git implements GitInterface {
   /**
    * Git constructor.
    *
-   * @param \Drupal\druki_git\Git\GitSettingsInterface $git_settings
+   * @param \Drupal\druki_git\Repository\GitSettingsInterface $git_settings
    *   The git settings.
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file system.

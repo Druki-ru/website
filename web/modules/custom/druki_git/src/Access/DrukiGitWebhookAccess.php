@@ -6,6 +6,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Routing\Access\AccessInterface;
 use Drupal\Core\State\StateInterface;
+use Drupal\druki_git\Repository\GitSettingsInterface;
 
 /**
  * Access check for webhook route.
@@ -13,7 +14,12 @@ use Drupal\Core\State\StateInterface;
 class DrukiGitWebhookAccess implements AccessInterface {
 
   /**
-   * The state system.
+   * The git settings.
+   */
+  protected GitSettingsInterface $gitSettings;
+
+  /**
+   * The key/value state storage.
    */
   protected StateInterface $state;
 
@@ -22,9 +28,12 @@ class DrukiGitWebhookAccess implements AccessInterface {
    *
    * @param \Drupal\Core\State\StateInterface $state
    *   The state system.
+   * @param \Drupal\druki_git\Repository\GitSettingsInterface $git_settings
+   *   The git settings.
    */
-  public function __construct(StateInterface $state) {
+  public function __construct(StateInterface $state, GitSettingsInterface $git_settings) {
     $this->state = $state;
+    $this->gitSettings = $git_settings;
   }
 
   /**
@@ -37,7 +46,7 @@ class DrukiGitWebhookAccess implements AccessInterface {
    *   The access result.
    */
   public function access(string $key): AccessResultInterface {
-    if ($key != $this->state->get('druki_git.webhook_key')) {
+    if ($key != $this->gitSettings->getWebhookAccessKey()) {
       return AccessResult::forbidden()->setCacheMaxAge(0);
     }
     elseif ($this->state->get('system.maintenance_mode')) {

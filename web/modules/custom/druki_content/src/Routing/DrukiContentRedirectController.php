@@ -5,7 +5,7 @@ namespace Drupal\druki_content\Routing;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_git\Git\GitSettingsInterface;
+use Drupal\druki_git\Repository\GitSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -23,7 +23,7 @@ final class DrukiContentRedirectController extends ControllerBase {
   /**
    * Constructs a new DrukiContentRedirectController object.
    *
-   * @param \Drupal\druki_git\Git\GitSettingsInterface $git_settings
+   * @param \Drupal\druki_git\Repository\GitSettingsInterface $git_settings
    *   The git settings.
    */
   public function __construct(GitSettingsInterface $git_settings) {

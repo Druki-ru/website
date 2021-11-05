@@ -9,7 +9,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki\Utility\PathUtils;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_content\Repository\DrukiContentStorage;
-use Drupal\druki_git\Git\GitSettingsInterface;
+use Drupal\druki_git\Repository\GitSettingsInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
