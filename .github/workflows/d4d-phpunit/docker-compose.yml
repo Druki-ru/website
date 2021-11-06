@@ -31,6 +31,7 @@ services:
       SIMPLETEST_BASE_URL: "http://nginx"
       SIMPLETEST_DB: "${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}#tests_"
       MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless"]}}, "http://chrome:9515"]'
+      PHP_PCOV_ENABLED: 1
     volumes:
       - ./:/var/www/html:cached
 
