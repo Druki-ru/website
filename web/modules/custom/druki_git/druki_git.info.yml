@@ -1,7 +1,0 @@
-name: Druki - git
-type: module
-description: The git integration.
-package: druki
-core: 8.x
-core_version_requirement: ^8 || ^9
-

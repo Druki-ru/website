@@ -14,8 +14,8 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  * Provides support to accessing files from content source directory without
  * needs of knowing where it's located.
  *
- * @todo Move it to 'druki' or 'druki_git' module.
- * @todo Think about rename to 'druki-repository-path'.
+ * @todo Move it to 'druki' or 'druki_content' module.
+ * @todo Think about rename to 'druki-repository-uri'.
  */
 final class DrukiContentSourceStream extends PublicStream {
 
@@ -46,10 +46,11 @@ final class DrukiContentSourceStream extends PublicStream {
    * {@inheritdoc}
    */
   public static function basePath($site_path = NULL): string {
-    $repository_path = \Drupal::config('druki_git.git_settings')
-      ->get('repository_path');
-    if ($repository_path) {
-      return $repository_path;
+    /** @var \Drupal\druki_content\Repository\ContentSourceSettingsInterface $source_content_settings */
+    $source_content_settings = \Drupal::service('druki_content.repository.content_source_settings');
+    $repository_uri = $source_content_settings->getRepositoryUri();
+    if ($repository_uri) {
+      return $repository_uri;
     }
     return parent::basePath($site_path);
   }
