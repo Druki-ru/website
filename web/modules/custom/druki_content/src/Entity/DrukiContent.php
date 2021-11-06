@@ -28,7 +28,7 @@ use Drupal\entity\BundleFieldDefinition;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *       "delete-all" = "Drupal\druki_content\Form\DrukiContentDeleteAllForm",
  *       "settings" = "Drupal\druki_content\Form\DrukiContentSettingsForm",
- *       "sync" = "\Drupal\druki_content\Form\DrukiContentSyncForm",
+ *       "sync" = "\Drupal\druki_content\Form\ContentSyncForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\druki_content\Routing\DrukiContentHtmlRouteProvider",
@@ -54,7 +54,7 @@ use Drupal\entity\BundleFieldDefinition;
  *     "edit-remote" = "/druki_content/{druki_content}/edit-remote",
  *     "history-remote" = "/druki_content/{druki_content}/history-remote",
  *     "settings" = "/admin/structure/druki-content",
- *     "sync" = "/admin/structure/druki-content/sync"
+ *     "sync" = "/admin/druki/content/sync"
  *   },
  *   field_ui_base_route = "entity.druki_content.settings"
  * )

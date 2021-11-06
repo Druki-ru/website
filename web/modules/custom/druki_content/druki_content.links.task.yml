@@ -21,7 +21,3 @@ entity.druki_content.collection:
   route_name: entity.druki_content.collection
   base_route: system.admin_content
   weight: 10
-entity.druki_content.sync:
-  title: Content sync
-  route_name: entity.druki_content.sync
-  base_route: entity.druki_content.settings

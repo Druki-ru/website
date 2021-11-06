@@ -5,22 +5,17 @@ namespace Drupal\druki_content\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueInterface;
-use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
 use Drupal\druki_content\Queue\ContentSyncQueueManagerInterface;
+use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Configuration form for a druki content entity type.
- *
- * @todo Refactor that form.
  */
-final class DrukiContentSyncForm extends FormBase {
-
-  /**
-   * The state.
-   */
-  protected State $state;
+final class ContentSyncForm extends FormBase {
 
   /**
    * The queue.
@@ -33,13 +28,24 @@ final class DrukiContentSyncForm extends FormBase {
   protected ContentSyncQueueManagerInterface $queueManager;
 
   /**
+   * The event dispatcher.
+   */
+  protected EventDispatcherInterface $eventDispatcher;
+
+  /**
+   * The content source settings.
+   */
+  protected ContentSourceSettingsInterface $contentSourceSettings;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     $instance = new static();
-    $instance->state = $container->get('state');
     $instance->queue = $container->get('queue')->get(ContentSyncQueueManagerInterface::QUEUE_NAME);
     $instance->queueManager = $container->get('druki_content.queue.content_sync_manager');
+    $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
+    $instance->eventDispatcher = $container->get('event_dispatcher');
     return $instance;
   }
 
@@ -54,24 +60,10 @@ final class DrukiContentSyncForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
-    $form = [];
     $form['#tree'] = TRUE;
+
     $form = $this->buildQueueBuilderForm($form, $form_state);
     $form = $this->buildQueueManagerForm($form, $form_state);
-
-    $form['force_sync'] = [
-      '#type' => 'checkbox',
-      '#title' => new TranslatableMarkup('Force content processing'),
-      '#description' => new TranslatableMarkup('Content will be processed even if it not updated from last queue.'),
-      '#default_value' => $this->state->get('druki_content.settings.force_update', FALSE),
-    ];
-
-    $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = [
-      '#type' => 'submit',
-      '#value' => new TranslatableMarkup('Save settings'),
-      '#button_type' => 'primary',
-    ];
 
     return $form;
   }
@@ -115,6 +107,8 @@ final class DrukiContentSyncForm extends FormBase {
       '#type' => 'textfield',
       '#title' => new TranslatableMarkup('URI'),
       '#description' => new TranslatableMarkup('The URI with source content.'),
+      '#required' => TRUE,
+      '#default_value' => $this->contentSourceSettings->getRepositoryUri(),
     ];
 
     $form['queue_builder']['folder']['build'] = [
@@ -141,21 +135,23 @@ final class DrukiContentSyncForm extends FormBase {
   protected function buildQueueManagerForm(array $form, FormStateInterface $form_state): array {
     $form['queue_manager'] = [
       '#type' => 'fieldset',
-      '#title' => new TranslatableMarkup('Manage queue'),
+      '#title' => new TranslatableMarkup('Synchronization queue'),
     ];
 
     $form['queue_manager']['total'] = [
       '#markup' => '<p>' . new TranslatableMarkup('Current queue items: @count', ['@count' => $this->queue->numberOfItems()]) . '</p>',
     ];
 
-    $form['queue_manager']['actions'] = ['#type' => 'actions'];
+    $form['queue_manager']['actions'] = [
+      '#type' => 'actions',
+      '#access' => (bool) $this->queue->numberOfItems(),
+    ];
     $form['queue_manager']['actions']['run'] = [
       '#type' => 'submit',
       '#button_type' => 'primary',
       '#value' => new TranslatableMarkup('Run queue'),
       '#submit' => [[$this, 'runQueue']],
     ];
-
     $form['queue_manager']['actions']['clear'] = [
       '#type' => 'submit',
       '#button_type' => 'danger',
@@ -164,13 +160,6 @@ final class DrukiContentSyncForm extends FormBase {
     ];
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $this->state->set('druki_content.settings.force_update', $form_state->getValue('force_sync'));
   }
 
   /**
@@ -193,7 +182,7 @@ final class DrukiContentSyncForm extends FormBase {
    * Builds new queue via Git pull.
    */
   public function createQueueFromGit(): void {
-    // @todo Replace.
+    $this->eventDispatcher->dispatch(new RequestSourceContentUpdateEvent());
   }
 
   /**
@@ -211,6 +200,13 @@ final class DrukiContentSyncForm extends FormBase {
     }
 
     $this->queueManager->buildFromPath($uri);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
+    // This form doesn't use default submit handler.
   }
 
 }

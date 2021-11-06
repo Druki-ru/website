@@ -4,6 +4,7 @@ namespace Drupal\druki_content\Routing;
 
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Routing\AdminHtmlRouteProvider;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -60,6 +61,7 @@ final class DrukiContentHtmlRouteProvider extends AdminHtmlRouteProvider {
       $entity_type_id = $entity_type->id();
       $route = new Route($entity_type->getLinkTemplate('sync'));
       $route
+        ->setDefault('_title', (string) new TranslatableMarkup('Content synchronization'))
         ->setDefault('_form', $entity_type->getFormClass('sync'))
         ->setRequirement('_permission', "administer {$entity_type_id}");
 

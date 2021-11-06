@@ -49,21 +49,21 @@ final class InternalLinksTest extends ExistingSiteBase {
    * Tests that links replaced as expected.
    */
   public function testWithLinks(): void {
-    $text = '<a href="10/index.md" data-druki-internal-link-filepath="public://druki-content-source/docs/ru/drupal/index.md">Drupal 10</a>';
+    $text = '<a href="100/index.md" data-druki-internal-link-filepath="public://druki-content-source/docs/ru/drupal/index.md">Drupal 100</a>';
     $filtered_text = $this->filterPlugin->process($text, 'ru');
     // The entity which link reffers to does not exists at this point. We expect
     // such link to be just hash-link.
-    $this->assertSame('<a href="#">Drupal 10</a>', $filtered_text->getProcessedText());
+    $this->assertSame('<a href="#">Drupal 100</a>', $filtered_text->getProcessedText());
 
     $content = $this->createDrukiContent();
-    $content->set('relative_pathname', 'docs/ru/drupal/10/index.md');
+    $content->set('relative_pathname', 'docs/ru/drupal/100/index.md');
     $content->save();
 
     // Reset cache so plugin will try to find entity again.
     $this->cache->deleteAll();
 
     $filtered_text = $this->filterPlugin->process($text, 'ru');
-    $expected = '<a href="' . $content->toUrl()->toString() . '">Drupal 10</a>';
+    $expected = '<a href="' . $content->toUrl()->toString() . '">Drupal 100</a>';
     $this->assertSame($expected, $filtered_text->getProcessedText());
   }
 

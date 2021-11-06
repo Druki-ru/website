@@ -56,7 +56,6 @@ function druki_content_install(bool $is_syncing): void {
  */
 function druki_content_uninstall(): void {
   // Remove state settings.
-  \Drupal::state()->delete('druki_content.settings.force_update');
   \Drupal::keyValue('druki_content.webhook_settings')->deleteAll();
 }
 
@@ -619,4 +618,33 @@ function druki_content_update_9217(array &$sandbox): string {
   \Drupal::keyValue('druki_content.webhook_settings')
     ->set('content_update_access_key', $access_key);
   return (string) new TranslatableMarkup('The webhook access key successfully migrated.');
+}
+
+/**
+ * Change sync form handler.
+ */
+function druki_content_update_9218(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setFormClass('sync', 'Drupal\druki_content\Form\ContentSyncForm');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Update content entity sync link template.
+ */
+function druki_content_update_9219(array &$sandbox): void {
+  /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
+  $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
+  $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
+  $druki_content_definition->setLinkTemplate('sync', '/admin/druki/content/sync');
+  $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
+}
+
+/**
+ * Delete outdated setting.
+ */
+function druki_content_update_9220(array &$sandbox): void {
+  \Drupal::state()->delete('druki_content.settings.force_update');
 }

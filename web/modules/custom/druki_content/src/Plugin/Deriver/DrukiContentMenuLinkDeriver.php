@@ -65,6 +65,15 @@ final class DrukiContentMenuLinkDeriver extends DeriverBase implements Container
       ];
     }
 
+    if ($druki_entity_type->hasLinkTemplate('sync') && $druki_entity_type->hasHandlerClass('form', 'sync')) {
+      $this->derivatives['sync'] = [
+        'title' => new TranslatableMarkup('Content synchronization'),
+        'description' => new TranslatableMarkup('Run synchronization manually or track current progress.'),
+        'route_name' => 'entity.druki_content.sync',
+        'parent' => "{$this->basePluginId}:group",
+      ];
+    }
+
     $this->derivatives['source_content_settings'] = [
       'title' => new TranslatableMarkup('Source content settings'),
       'description' => new TranslatableMarkup('Configure content source URI and remote URL.'),
