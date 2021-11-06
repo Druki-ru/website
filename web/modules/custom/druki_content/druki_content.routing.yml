@@ -1,7 +1,38 @@
 druki_content.admin:
-  path: /admin/druki/content
+  path: '/admin/druki/content'
   defaults:
-    _controller: Drupal\system\Controller\SystemController::systemAdminMenuBlockPage
-    _title: Druki content
+    _title: 'Druki content'
+    _controller: 'Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
   requirements:
     _permission: 'administer druki content'
+
+druki_content.content_source_settings:
+  path: '/admin/druki/content/source-settings'
+  defaults:
+    _title: 'Content source settings'
+    _form: 'Drupal\druki_content\Form\ContentSourceSettingsForm'
+  requirements:
+    _permission: 'administer druki content'
+  options:
+    _admin_route: TRUE
+
+druki_content.content_webhook_settings:
+  path: '/admin/druki/content/webhook-settings'
+  defaults:
+    _title: 'Content webhook settings'
+    _form: 'Drupal\druki_content\Form\ContentWebhookSettingsForm'
+  requirements:
+    _permission: 'administer druki content'
+  options:
+    _admin_route: TRUE
+
+druki_content.webhook.update:
+  path: '/api/webhook/content/update/{access_key}'
+  defaults:
+    _controller: '\Drupal\druki_content\Controller\ContentWebhookController::update'
+  options:
+    no_cache: TRUE
+  requirements:
+    _druki_content_webhook_access_key: 'content_update'
+  methods:
+    - POST

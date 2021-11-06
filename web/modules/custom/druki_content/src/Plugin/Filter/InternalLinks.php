@@ -8,8 +8,8 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki\Utility\PathUtils;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Drupal\druki_content\Repository\DrukiContentStorage;
-use Drupal\druki_git\Git\GitSettingsInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -57,9 +57,9 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   protected DrukiContentStorage $contentStorage;
 
   /**
-   * The git settings.
+   * The content source settings.
    */
-  protected GitSettingsInterface $gitSettings;
+  protected ContentSourceSettingsInterface $contentSourceSettings;
 
   /**
    * The file system.
@@ -75,12 +75,12 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
-    $instance = new static($configuration, $plugin_id, $plugin_definition);
+    $instance = new self($configuration, $plugin_id, $plugin_definition);
     $druki_content_storage = $container->get('entity_type.manager')
       ->getStorage('druki_content');
     \assert($druki_content_storage instanceof DrukiContentStorage);
     $instance->contentStorage = $druki_content_storage;
-    $instance->gitSettings = $container->get('druki_git.settings');
+    $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
     $instance->fileSystem = $container->get('file_system');
     $instance->cache = $container->get('cache.static');
     return $instance;
@@ -97,7 +97,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       return $result;
     }
 
-    $repository_realpath = $this->fileSystem->realpath($this->gitSettings->getRepositoryPath());
+    $repository_realpath = $this->fileSystem->realpath($this->contentSourceSettings->getRepositoryUri());
 
     $crawler = new Crawler($text);
     $internal_links = $crawler->filter('a[data-druki-internal-link-filepath]');

@@ -7,7 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_git\Git\GitSettingsInterface;
+use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -29,16 +29,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The git settings.
+   * The content source settings.
    */
-  protected GitSettingsInterface $gitSettings;
+  protected ContentSourceSettingsInterface $contentSourceSettings;
 
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->gitSettings = $container->get('druki_git.settings');
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
+    $instance = new self($configuration, $plugin_id, $plugin_definition);
+    $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
     return $instance;
   }
 
@@ -67,7 +67,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build(): array {
-    $repository_url = $this->gitSettings->getRepositoryUrl();
+    $repository_url = $this->contentSourceSettings->getRepositoryUrl();
     $improve_title = new TranslatableMarkup('Feedback: @title', [
       '@title' => $this->getEntityFromContext()->label(),
     ]);

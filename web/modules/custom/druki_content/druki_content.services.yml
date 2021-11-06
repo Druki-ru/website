@@ -4,12 +4,6 @@ services:
     factory: logger.factory:get
     arguments: [ 'druki_content' ]
 
-  druki_content.git_subscriber:
-    class: Drupal\druki_content\EventSubscriber\GitSubscriber
-    arguments: [ '@druki_content.queue.content_sync_manager' ]
-    tags:
-      - { name: event_subscriber }
-
   druki_content.queue.content_sync_manager:
     class: Drupal\druki_content\Queue\ContentSyncQueueManager
     arguments:
@@ -147,3 +141,27 @@ services:
   druki_content.repository.content_sync_queue_state:
     class: Drupal\druki_content\Repository\ContentSyncQueueState
     arguments: ['@state']
+
+  druki_content.repository.content_source_settings:
+    class: Drupal\druki_content\Repository\ContentSourceSettings
+    arguments: ['@config.factory']
+
+  druki_content.repository.content_webhook_settings:
+    class: Drupal\druki_content\Repository\ContentWebhookSettings
+    arguments: ['@keyvalue']
+
+  access_check.druki_content_webook:
+    class: Drupal\druki_content\Access\ContentWebhookAccess
+    arguments: [ '@druki_content.repository.content_webhook_settings', '@state' ]
+    tags:
+      - { name: access_check, applies_to: _druki_content_webhook_access_key }
+
+  druki_content.event_subscriber.source_content:
+    class: Drupal\druki_content\EventSubscriber\SourceContentEventSubscriber
+    arguments:
+      - '@druki_content.repository.content_source_settings'
+      - '@druki_content.queue.content_sync_manager'
+      - '@druki.process.git'
+      - '@event_dispatcher'
+    tags:
+      - { name: event_subscriber }

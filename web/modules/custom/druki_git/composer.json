@@ -7,7 +7,6 @@
         "Drupal"
     ],
     "require": {
-        "symfony/process": "^3.4|^4.0",
         "ext-json": "*"
     }
 }

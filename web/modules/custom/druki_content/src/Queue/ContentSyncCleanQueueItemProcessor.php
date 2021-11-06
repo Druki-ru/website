@@ -23,17 +23,17 @@ final class ContentSyncCleanQueueItemProcessor implements ContentSyncQueueProces
   /**
    * The queue manager.
    */
-  protected ContentSyncQueueManager $queueManager;
+  protected ContentSyncQueueManagerInterface $queueManager;
 
   /**
    * ContentSyncCleanQueueItemProcessor constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\druki_content\Queue\ContentSyncQueueManager $queue_manager
+   * @param \Drupal\druki_content\Queue\ContentSyncQueueManagerInterface $queue_manager
    *   The queue manager.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ContentSyncQueueManager $queue_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ContentSyncQueueManagerInterface $queue_manager) {
     $this->entityTypeManager = $entity_type_manager;
     $this->queueManager = $queue_manager;
   }

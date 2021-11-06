@@ -17,12 +17,7 @@ use Drupal\druki_content\Repository\ContentSyncQueueState;
 /**
  * Provides queue manager for synchronization content.
  */
-final class ContentSyncQueueManager {
-
-  /**
-   * The queue name used for synchronisation.
-   */
-  public const QUEUE_NAME = 'druki_content_sync';
+final class ContentSyncQueueManager implements ContentSyncQueueManagerInterface {
 
   /**
    * The content source file finder.
@@ -64,14 +59,7 @@ final class ContentSyncQueueManager {
   }
 
   /**
-   * Builds new queue from source directory.
-   *
-   * The previous queue will be cleared to ensure items will not duplicate each
-   * over. It can happens when multiple builds was called during short period of
-   * time.
-   *
-   * @param string $directory
-   *   The with source content. This directory will be parsed on call.
+   * {@inheritdoc}
    */
   public function buildFromPath(string $directory): void {
     $this->delete();
@@ -83,7 +71,7 @@ final class ContentSyncQueueManager {
   }
 
   /**
-   * Clears queue manually.
+   * {@inheritdoc}
    */
   public function delete(): void {
     $this->queue->deleteQueue();
@@ -119,35 +107,21 @@ final class ContentSyncQueueManager {
   }
 
   /**
-   * Gets queue state.
-   *
-   * @return \Drupal\druki_content\Repository\ContentSyncQueueState
-   *   The queue state storage.
+   * {@inheritdoc}
    */
   public function getState(): ContentSyncQueueState {
     return $this->queueState;
   }
 
   /**
-   * Gets queue.
-   *
-   * @return \Drupal\Core\Queue\QueueInterface
-   *   The queue.
+   * {@inheritdoc}
    */
   public function getQueue(): QueueInterface {
     return $this->queue;
   }
 
   /**
-   * Runs queue manually.
-   *
-   * @param int $time_limit
-   *   The amount of seconds for this job.
-   *
-   * @return int
-   *   The count of processed queue items.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\PluginException
+   * {@inheritdoc}
    */
   public function run(int $time_limit = 15): int {
     /** @var \Drupal\Core\Queue\QueueWorkerInterface $queue_worker */

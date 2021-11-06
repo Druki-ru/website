@@ -11,6 +11,7 @@
         "ext-simplexml": "*",
         "ext-xmlreader": "*",
         "symfony/finder": "~4.0",
-        "league/commonmark": "^1.0.0"
+        "league/commonmark": "^1.0.0",
+        "symfony/process": "^3.4|^4.0"
     }
 }

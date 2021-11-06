@@ -41,3 +41,10 @@ services:
     class: Drupal\druki\Twig\DrukiTwigExtension
     tags:
       - { name: twig.extension }
+
+  druki.terminal:
+    class: Drupal\druki\Process\Terminal
+
+  druki.process.git:
+    class: Drupal\druki\Process\Git
+    arguments: ['@druki.terminal']

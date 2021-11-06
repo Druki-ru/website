@@ -43,27 +43,4 @@ final class DrukiContentStorage extends SqlContentEntityStorage {
     return NULL;
   }
 
-  /**
-   * Clean outdated content.
-   *
-   * The "outdated" content is the one which "sync_timestamp" value is lower
-   * than last sync was complete. This means this content was not presented in
-   * any way and should be removed.
-   *
-   * @param string $timestamp
-   *   The last sync timestamp.
-   *
-   * @throws \Drupal\Core\Entity\EntityStorageException
-   */
-  public function cleanOutdated(string $timestamp): void {
-    $ids = $this
-      ->getQuery()
-      ->accessCheck(FALSE)
-      ->condition('sync_timestamp', $timestamp, '<')
-      ->execute();
-
-    $entities = $this->loadMultiple($ids);
-    $this->delete($entities);
-  }
-
 }
