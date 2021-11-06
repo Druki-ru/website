@@ -30,7 +30,9 @@ final class Git implements GitInterface {
    * {@inheritdoc}
    */
   public function pull(string $directory): Process {
-    return $this->terminal->createProcess(['git', 'pull'], $directory);
+    // @see https://stackoverflow.com/a/62653400/4751623
+    $command = ['git', 'pull', '--ff-only'];
+    return $this->terminal->createProcess($command, $directory);
   }
 
   /**

@@ -34,5 +34,5 @@ druki_content.webhook.update:
     no_cache: TRUE
   requirements:
     _druki_content_webhook_access_key: 'content_update'
-  methods:
-    - POST
+#  methods:
+#    - POST

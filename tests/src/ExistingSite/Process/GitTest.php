@@ -32,7 +32,7 @@ final class GitTest extends ExistingSiteBase {
    */
   public function testPull(): void {
     $process = $this->git->pull('/foo/bar');
-    $this->assertEquals("'git' 'pull'", $process->getCommandLine());
+    $this->assertEquals("'git' 'pull' '--ff-only'", $process->getCommandLine());
     $this->assertEquals('/foo/bar', $process->getWorkingDirectory());
   }
 
