@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Repository;
 
 use Drupal\Component\Render\PlainTextOutput;
+use Drupal\Component\Utility\Random;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
@@ -155,19 +156,18 @@ final class ContentMediaImageRepository {
     else {
       // Sometimes url can be broken, slow or not accessible at this time.
       // The cURL will throw exception, and we softly skip it.
+      $uri = NULL;
       try {
-        $filename = \basename($url);
-        $uri = \system_retrieve_file($url, 'temporary://' . $filename, replace: FileSystemInterface::EXISTS_REPLACE);
+        $destination = $this->fileSystem->tempnam('temporary://', 'druki_content');
+        $uri = \system_retrieve_file($url, $destination);
         // If result was FASLE, convert it to NULL.
         if (\is_bool($uri) && !$uri) {
           $uri = NULL;
         }
         $this->cache->set($cid, $uri);
+      } finally {
         return $uri;
       }
-      catch (\Exception $e) {
-      }
-      return NULL;
     }
   }
 
@@ -182,13 +182,16 @@ final class ContentMediaImageRepository {
    */
   protected function saveImageToFile(string $file_uri): ?FileInterface {
     $destination_uri = $this->getMediaImageFieldDestination();
-    if (!$this->fileSystem->prepareDirectory($destination_uri, FileSystemInterface::CREATE_DIRECTORY)) {
+    if (!$this->fileSystem->prepareDirectory($destination_uri, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS)) {
       return NULL;
     }
+    $basename = \basename($file_uri);
     if (UrlHelper::isExternal($file_uri)) {
       $file_uri = $this->fetchRemoteImage($file_uri);
     }
-    $basename = \basename($file_uri);
+    if (!$file_uri) {
+      return NULL;
+    }
     $contents = \file_get_contents($file_uri);
     $uri = $this->fileSystem->saveData($contents, $destination_uri . '/' . $basename);
     $file_storage = $this->entityTypeManager->getStorage('file');

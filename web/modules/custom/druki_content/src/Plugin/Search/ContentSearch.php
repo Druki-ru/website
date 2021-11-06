@@ -6,10 +6,16 @@ namespace Drupal\druki_content\Plugin\Search;
 
 use Drupal\Core\Config\Config;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Database\Query\PagerSelectExtender;
+use Drupal\Core\Database\StatementInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_content\Repository\DrukiContentStorage;
 use Drupal\search\Plugin\SearchIndexingInterface;
 use Drupal\search\Plugin\SearchPluginBase;
 use Drupal\search\SearchIndexInterface;
+use Drupal\search\SearchQuery;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -43,6 +49,11 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
   protected DrukiContentStorage $contentStorage;
 
   /**
+   * The renderer.
+   */
+  protected RendererInterface $renderer;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
@@ -51,6 +62,7 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
     $instance->searchSettings = $container->get('config.factory')->get('search.settings');
     $instance->searchIndex = $container->get('search.index');
     $instance->contentStorage = $container->get('entity_type.manager')->getStorage('druki_content');
+    $instance->renderer = $container->get('renderer');
     return $instance;
   }
 
@@ -58,7 +70,6 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
    * {@inheritdoc}
    */
   public function execute(): array {
-    return [];
     if ($this->isSearchExecutable()) {
       $results = $this->findResults();
 
@@ -68,6 +79,40 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
     }
 
     return [];
+  }
+
+  /**
+   * Queries to find search results.
+   *
+   * @return \Drupal\Core\Database\StatementInterface|null
+   *   The results from search query execute().
+   */
+  public function findResults(): ?StatementInterface {
+    $keys = $this->getKeywords();
+
+    $query = $this->database
+      ->select('search_index', 'i')
+      ->extend(SearchQuery::class)
+      ->extend(PagerSelectExtender::class);
+
+    $query->searchExpression($keys, $this->getPluginId());
+
+    // Add scoring by relevance.
+    $query->addScore('i.relevance');
+
+    // Add relevance by Drupal Core version.
+    $query->leftJoin('druki_content_field_data', 'cfd', '[i].[sid] = [cfd].[internal_id] AND [i].[type] = :type', [
+      ':type' => $this->getPluginId(),
+    ]);
+    $query->addExpression('(CASE WHEN [cfd].[core] IS NULL THEN 0 ELSE [cfd].[core] END)', 'calculated_drupal_core');
+    // For some reason we can't use aliased expression here.
+    $query->addScore('(CASE WHEN [cfd].[core] IS NULL THEN 0 ELSE [cfd].[core] END)');
+
+    return $query
+      ->fields('i', ['langcode'])
+      ->groupBy('i.langcode')
+      ->limit(10)
+      ->execute();
   }
 
   /**
@@ -108,17 +153,45 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
     try {
       $entities = $this->contentStorage->loadMultiple($content_ids);
       foreach ($entities as $entity) {
-        $words += $this->searchIndex->index(
-          $this->getPluginId(),
-          $entity->id(),
-          $entity->language()->getId(),
-          $entity->label(),
-          FALSE,
-        );
+        $words += $this->indexContent($entity);
       }
     } finally {
       $this->searchIndex->updateWordWeights($words);
     }
+  }
+
+  /**
+   * Indexes a single content.
+   *
+   * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
+   *   The content to index.
+   *
+   * @return array
+   *   An array of words to update after indexing.
+   */
+  protected function indexContent(DrukiContentInterface $content): array {
+    $words = [];
+    $languages = $content->getTranslationLanguages();
+
+    foreach ($languages as $language) {
+      $content = $content->getTranslation($language->getId());
+      $document = $content->get('document')->view([]);
+
+      $text = $this->renderer->renderPlain($document);
+      foreach ($content->get('search_keywords') as $search_keywords_item) {
+        $text .= $search_keywords_item->getString();
+      }
+
+      $words += $this->searchIndex->index(
+        $this->getPluginId(),
+        $content->id(),
+        $content->language()->getId(),
+        $text,
+        FALSE,
+      );
+    }
+
+    return $words;
   }
 
   /**
@@ -155,6 +228,60 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
     $remaining = $remaining_query->execute()->fetchField();
 
     return ['total' => $total, 'remaining' => $remaining];
+  }
+
+  /**
+   * Prepares search results for rendering.
+   *
+   * @param \Drupal\Core\Database\StatementInterface $found
+   *   Found results.
+   *
+   * @return array
+   *   An array with result items.
+   *
+   * @todo Replace by custom theme hook and buildResults() override.
+   */
+  protected function prepareResults(StatementInterface $found): array {
+    $results = [];
+    foreach ($found as $item) {
+      $content = $this->contentStorage->load($item->sid)->getTranslation($item->langcode);
+      $document = $content->get('document')->view([]);
+
+      $text = $this->renderer->renderPlain($document);
+      $results[] = [
+        'link' => $content->toUrl('canonical', ['absolute' => TRUE])->toString(),
+        'type' => $content->label(),
+        'title' => $content->label(),
+        'extra' => '123',
+        'score' => $item->calculated_score,
+        'snippet' => search_excerpt($this->keywords, $text, $item->langcode),
+        'langcode' => $item->langcode,
+      ];
+    }
+    return $results;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function searchFormAlter(array &$form, FormStateInterface $form_state): void {
+    $form = [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildResults() {
+    // @todo
+    return parent::buildResults();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function suggestedTitle() {
+    // @todo
+    return \rand(0, 10000);
   }
 
 }

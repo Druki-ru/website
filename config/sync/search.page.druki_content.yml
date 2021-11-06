@@ -1,0 +1,12 @@
+uuid: 9e967d26-63e1-44d8-9cb4-bcc8a9596d5c
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+id: druki_content
+label: 'Druki content'
+path: content
+weight: 0
+plugin: druki_content
+configuration: {  }
