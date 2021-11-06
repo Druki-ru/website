@@ -30,7 +30,7 @@ final class DrukiRedirectSyncQueueWorker extends QueueWorkerBase implements Cont
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
     $instance = new self($configuration, $plugin_id, $plugin_definition);
-    $instance->chainQueueProcessor = $container->get('druki_content.queue.content_sync_processor');
+    $instance->chainQueueProcessor = $container->get('druki_redirect.queue.chain_sync_processor');
     return $instance;
   }
 
