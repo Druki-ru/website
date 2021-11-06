@@ -44,3 +44,7 @@ services:
 
   druki.terminal:
     class: Drupal\druki\Process\Terminal
+
+  druki.process.git:
+    class: Drupal\druki\Process\Git
+    arguments: ['@druki.terminal']

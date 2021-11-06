@@ -65,6 +65,20 @@ final class DrukiContentMenuLinkDeriver extends DeriverBase implements Container
       ];
     }
 
+    $this->derivatives['source_content_settings'] = [
+      'title' => new TranslatableMarkup('Source content settings'),
+      'description' => new TranslatableMarkup('Configure content source URI and remote URL.'),
+      'route_name' => 'druki_content.content_source_settings',
+      'parent' => "{$this->basePluginId}:group",
+    ];
+
+    $this->derivatives['content_webhook_settings'] = [
+      'title' => new TranslatableMarkup('Webhook settings'),
+      'description' => new TranslatableMarkup('Configure webhooks to be able managing content remotely.'),
+      'route_name' => 'druki_content.content_webhook_settings',
+      'parent' => "{$this->basePluginId}:group",
+    ];
+
     return $this->derivatives;
   }
 

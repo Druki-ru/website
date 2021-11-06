@@ -379,4 +379,5 @@ tracker_settings:
 options:
   index_directly: false
   cron_limit: -1
+  track_changes_in_references: true
 server: database

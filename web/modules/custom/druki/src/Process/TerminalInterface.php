@@ -23,14 +23,14 @@ interface TerminalInterface {
    *   The environment variables or null to use the same environment as the
    *   current PHP process.
    * @param mixed $input
-   *    The input as stream resource, scalar or \Traversable, or null for no
+   *   The input as stream resource, scalar or \Traversable, or null for no
    *    input.
    * @param int|float|null $timeout
-   *    The timeout in seconds or null to disable.
+   *   The timeout in seconds or null to disable.
    *
    * @return \Symfony\Component\Process\Process
    *   The process instance.
    */
-  public function createProcess(array $command, string $cwd = NULL, array $env = NULL, $input = NULL, ?float $timeout = 60): Process;
+  public function createProcess(array $command, ?string $cwd = NULL, ?array $env = NULL, $input = NULL, ?float $timeout = 60): Process;
 
 }

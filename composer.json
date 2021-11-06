@@ -43,7 +43,6 @@
         "cweagans/composer-patches": "^1.6.5",
         "druki/druki": "^1.0",
         "druki/druki_content": "^1.0",
-        "druki/druki_git": "^1.0",
         "druki/druki_redirect": "^1.0",
         "druki/druki_search": "^1.0",
         "druki/loremaster": "^1.0",

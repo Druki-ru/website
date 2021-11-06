@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70338b355f37df081adf980852311424",
+    "content-hash": "69ec15813fc79049d0a00e0855e80027",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1289,14 +1289,15 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/druki",
-                "reference": "ba317d7e3fad5a545a5fcd5ab6771f2adaf11899"
+                "reference": "1bd2a666a6db50eeaf3a4d5c155d93f4650c2de3"
             },
             "require": {
                 "ext-json": "*",
                 "ext-simplexml": "*",
                 "ext-xmlreader": "*",
                 "league/commonmark": "^1.0.0",
-                "symfony/finder": "~4.0"
+                "symfony/finder": "~4.0",
+                "symfony/process": "^3.4|^4.0"
             },
             "type": "drupal-custom-module",
             "description": "The main module for common code.",
@@ -1324,27 +1325,6 @@
             },
             "type": "drupal-custom-module",
             "description": "Provides a druki content entity.",
-            "keywords": [
-                "Drupal"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "druki/druki_git",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "web/modules/custom/druki_git",
-                "reference": "1f05ef624e2895479d4e61ef85425b12ebc9e700"
-            },
-            "require": {
-                "ext-json": "*",
-                "symfony/process": "^3.4|^4.0"
-            },
-            "type": "drupal-custom-module",
-            "description": "The git integration.",
             "keywords": [
                 "Drupal"
             ],

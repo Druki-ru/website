@@ -5,6 +5,7 @@
  * Main file for installation on update hooks.
  */
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -42,11 +43,21 @@ function druki_content_requirements(string $phase): array {
 }
 
 /**
+ * Implements hook_install().
+ */
+function druki_content_install(bool $is_syncing): void {
+  /** @var \Drupal\druki_content\Repository\ContentWebhookSettingsInterface $webhook_settings */
+  $webhook_settings = \Drupal::service('druki_content.repository.content_webhook_settings');
+  $webhook_settings->setContentUpdateWebhookAccessKey(Crypt::randomBytesBase64(55));
+}
+
+/**
  * Implements hook_uninstall().
  */
 function druki_content_uninstall(): void {
   // Remove state settings.
   \Drupal::state()->delete('druki_content.settings.force_update');
+  \Drupal::keyValue('druki_content.webhook_settings')->deleteAll();
 }
 
 /**
@@ -585,4 +596,27 @@ function druki_content_update_9215(array &$sandbox): void {
   if ($external_id = $definition_update_manager->getFieldStorageDefinition('druki_content_redirect', 'redirect')) {
     $definition_update_manager->uninstallFieldStorageDefinition($external_id);
   }
+}
+
+/**
+ * Move source settings from 'druki_git' to 'druki_content' settings.
+ */
+function druki_content_update_9216(array &$sandbox): string {
+  $config_factory = Drupal::service('config.factory');
+  $old_settings = $config_factory->get('druki_git.git_settings');
+  $new_settings = $config_factory->getEditable('druki_content.content_source_settings');
+  $new_settings->set('repository_uri', $old_settings->get('repository_path'));
+  $new_settings->set('repository_url', $old_settings->get('repository_url'));
+  $new_settings->save();
+  return (string) new TranslatableMarkup('The content source settings successfully migrated.');
+}
+
+/**
+ * Move webhook access key from 'druki_git' to 'druki_content' settings.
+ */
+function druki_content_update_9217(array &$sandbox): string {
+  $access_key = \Drupal::state()->get('druki_git.webhook_key');
+  \Drupal::keyValue('druki_content.webhook_settings')
+    ->set('content_update_access_key', $access_key);
+  return (string) new TranslatableMarkup('The webhook access key successfully migrated.');
 }

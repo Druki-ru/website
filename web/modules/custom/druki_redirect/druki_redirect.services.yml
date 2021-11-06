@@ -1,7 +1,9 @@
 services:
-  druki_redirect.event_subscriber.git_opration:
-    class: Drupal\druki_redirect\EventSubscriber\GitOperationEventSubscriber
-    arguments: [ '@druki_redirect.queue.sync_manager' ]
+  druki_redirect.event_subscriber.source_content:
+    class: Drupal\druki_redirect\EventSubscriber\SourceContentEventSubscriber
+    arguments:
+      - '@druki_content.repository.content_source_settings'
+      - '@druki_redirect.queue.sync_manager'
     tags:
       - { name: event_subscriber }
 

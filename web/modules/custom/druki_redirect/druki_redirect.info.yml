@@ -5,5 +5,5 @@ package: druki
 core_version_requirement: ^8 || ^9
 
 dependencies:
-  - druki_git:druki_git
   - redirect:redirect
+  - druki_content:druki_content

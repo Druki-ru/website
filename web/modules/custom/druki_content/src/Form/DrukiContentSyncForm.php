@@ -7,12 +7,13 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki_content\Queue\ContentSyncQueueManager;
-use Drupal\druki_git\Git\Git;
+use Drupal\druki_content\Queue\ContentSyncQueueManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configuration form for a druki content entity type.
+ *
+ * @todo Refactor that form.
  */
 final class DrukiContentSyncForm extends FormBase {
 
@@ -29,12 +30,7 @@ final class DrukiContentSyncForm extends FormBase {
   /**
    * The queue manager.
    */
-  protected ContentSyncQueueManager $queueManager;
-
-  /**
-   * The Git wrapper.
-   */
-  protected Git $git;
+  protected ContentSyncQueueManagerInterface $queueManager;
 
   /**
    * {@inheritdoc}
@@ -42,9 +38,8 @@ final class DrukiContentSyncForm extends FormBase {
   public static function create(ContainerInterface $container) {
     $instance = new static();
     $instance->state = $container->get('state');
-    $instance->queue = $container->get('queue')->get(ContentSyncQueueManager::QUEUE_NAME);
+    $instance->queue = $container->get('queue')->get(ContentSyncQueueManagerInterface::QUEUE_NAME);
     $instance->queueManager = $container->get('druki_content.queue.content_sync_manager');
-    $instance->git = $container->get('druki_git');
     return $instance;
   }
 
@@ -120,7 +115,6 @@ final class DrukiContentSyncForm extends FormBase {
       '#type' => 'textfield',
       '#title' => new TranslatableMarkup('URI'),
       '#description' => new TranslatableMarkup('The URI with source content.'),
-      '#default_value' => $this->git->getRepositoryPath(),
     ];
 
     $form['queue_builder']['folder']['build'] = [
@@ -199,7 +193,7 @@ final class DrukiContentSyncForm extends FormBase {
    * Builds new queue via Git pull.
    */
   public function createQueueFromGit(): void {
-    $this->git->pull();
+    // @todo Replace.
   }
 
   /**

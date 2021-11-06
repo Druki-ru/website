@@ -87,10 +87,10 @@ final class InternalLinksTest extends ExistingSiteBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $git_settings = $this->container->get('druki_git.settings');
+    $source_content_settings = $this->container->get('druki_content.repository.content_source_settings');
 
     $file_system = $this->prophesize(FileSystemInterface::class);
-    $file_system->realpath($git_settings->getRepositoryPath())->willReturn('/var/www/content');
+    $file_system->realpath($source_content_settings->getRepositoryUri())->willReturn('/var/www/content');
     $file_system->realpath('public://druki-content-source/docs/ru/drupal/index.md')
       ->willReturn('/var/www/content/docs/ru/drupal/index.md');
     $this->container->set('file_system', $file_system->reveal());
