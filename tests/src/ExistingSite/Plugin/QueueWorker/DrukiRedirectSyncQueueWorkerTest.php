@@ -71,7 +71,7 @@ final class DrukiRedirectSyncQueueWorkerTest extends ExistingSiteBase {
 
     };
 
-    $this->container->set('druki_content.queue.content_sync_processor', $chain_queue_processor);
+    $this->container->set('druki_redirect.queue.chain_sync_processor', $chain_queue_processor);
     $this->chainQueueProcessor = $this->container->get('druki_redirect.queue.chain_sync_processor');
     $this->queueWorkerManager = $this->container->get('plugin.manager.queue_worker');
   }
