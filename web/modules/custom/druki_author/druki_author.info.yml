@@ -1,0 +1,5 @@
+name: Druki - Author
+type: module
+description: 'Provides ability to create authors from external sources'
+package: druki
+core_version_requirement: ^9
