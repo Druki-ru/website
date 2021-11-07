@@ -1,0 +1,16 @@
+{#
+/**
+ * Theme implementation to display search results.
+ *
+ * Available varaibles:
+ * - attributes: The main wrapper element attributes.
+ * - results: An array with search results.
+ */
+#}
+<div{{ attributes.addClass('search-results') }}>
+  {% for result in results %}
+    <div class="search-results__result">
+      {{ result }}
+    </div>
+  {% endfor %}
+</div>

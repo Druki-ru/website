@@ -1,0 +1,47 @@
+{#
+/**
+ * Theme implementation to display single search result.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - link: The result link.
+ * - title: The result title.
+ * - snippet: (optional) An additional information about result, like excerp.
+ * - toc: (optional) An array with first table of contents elements, contains:
+ *   - title: The ToC heading title.
+ *   - link: The ToC heading link.
+ * - drupal_core: (optional) The Drupal core major version.
+ */
+#}
+{{ attach_library('loremaster/component.theme.search-result') }}
+<div{{ attributes.addClass('search-result') }}>
+  <div class="search-results__head">
+    <a href="{{ link }}" class="search-results__link">
+      <div class="search-results__display-link">{{ link }}</div>
+      <h3 class="search-results__title">
+        {{ title }}
+        {% if drupal_core %}
+          <span class="search-results__drupal-core">Drupal {{ drupal_core }}</span>
+        {% endif %}
+      </h3>
+    </a>
+  </div>
+  <div class="search-results__body">
+    {% if snippet %}
+      <div class="search-results__snippet">
+        {{ snippet }}
+      </div>
+    {% endif %}
+
+    {% if toc|length %}
+      <div class="search-results__toc">
+        {% for toc_item in toc %}
+          {% if not loop.first %}
+            &nbsp;·&nbsp;
+          {% endif %}
+          <a href="{{ toc_item.link }}" class="search-results__toc-link" title="{{ toc_item.title }}">{{ toc_item.title }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

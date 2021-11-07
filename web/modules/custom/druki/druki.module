@@ -76,6 +76,20 @@ function druki_theme(): array {
       ],
       'file' => $file,
     ],
+    'druki_search_results' => [
+      'variables' => [
+        'results' => [],
+      ],
+    ],
+    'druki_search_result' => [
+      'variables' => [
+        'link' => NULL,
+        'title' => NULL,
+        'snippet' => NULL,
+        'toc' => NULL,
+        'drupal_core' => NULL,
+      ],
+    ],
   ];
 }
 

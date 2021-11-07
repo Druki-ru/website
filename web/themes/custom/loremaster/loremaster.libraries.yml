@@ -198,11 +198,6 @@ component.theme.drupal-versions:
     theme:
       assets/css/04-components/theme/drupal-versions.css: { }
 
-component.theme.druki-search-results:
-  css:
-    theme:
-      assets/css/04-components/theme/druki-search-results.css: { }
-
 component.theme.frontpage:
   css:
     theme:
@@ -216,6 +211,16 @@ component.theme.header-search:
     assets/js/header-search.js: { minified: true }
   dependencies:
     - core/drupal
+
+component.theme.search-results:
+  css:
+    theme:
+      assets/css/04-components/theme/search-results.css: { }
+
+component.theme.search-result:
+  css:
+    theme:
+      assets/css/04-components/theme/search-result.css: { }
 
 code-highlight:
   js:
