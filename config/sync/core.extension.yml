@@ -8,7 +8,6 @@ module:
   druki: 0
   druki_content: 0
   druki_redirect: 0
-  druki_search: 0
   dynamic_page_cache: 0
   editor: 0
   entity: 0
@@ -44,8 +43,6 @@ module:
   rest: 0
   restui: 0
   search: 0
-  search_api: 0
-  search_api_db: 0
   serialization: 0
   simple_sitemap: 0
   sophron: 0

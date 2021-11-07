@@ -28,12 +28,10 @@ function loremaster_preprocess(array &$variables, string $hook): void {
     'status_messages' => ['loremaster/component.ui.status-messages'],
     // Custom theme hooks.
     'photoswipe_image_formatter' => ['loremaster/component.javascript.photoswipe'],
-    'paragraph' => ['loremaster/component.paragraph'],
     'druki_content' => ['loremaster/component.druki-content'],
     'druki_wiki' => ['loremaster/component.theme.druki-wiki'],
     'druki_download' => ['loremaster/component.theme.druki-download'],
     'druki_official_user_guide' => ['loremaster/component.theme.official-user-guide'],
-    'druki_search_results' => ['loremaster/component.theme.druki-search-results'],
   ];
 
   $theme_hook_original = $variables['theme_hook_original'];

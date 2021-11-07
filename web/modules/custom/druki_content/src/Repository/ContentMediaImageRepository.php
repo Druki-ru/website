@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Repository;
 
 use Drupal\Component\Render\PlainTextOutput;
-use Drupal\Component\Utility\Random;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;

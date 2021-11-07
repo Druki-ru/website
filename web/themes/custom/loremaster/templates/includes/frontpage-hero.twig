@@ -18,7 +18,7 @@
 
       {% set search_block = 'frontpage-search' %}
       <form class="{{ bem(search_block) }}" action="/search">
-        <input type="search" class="form-element {{ bem(search_block, 'input') }}" placeholder="{{ 'What do you want to know today?'|t }}" name="text" autocomplete="off" aria-label="{{ 'Site search'|t }}" autofocus>
+        <input type="search" class="form-element {{ bem(search_block, 'input') }}" placeholder="{{ 'What do you want to know today?'|t }}" name="keys" autocomplete="off" aria-label="{{ 'Site search'|t }}" autofocus>
         <button class="{{ bem(search_block, 'submit') }}" aria-label="{{ 'Search' }}"></button>
       </form>
 

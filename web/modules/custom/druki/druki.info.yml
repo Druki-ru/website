@@ -11,6 +11,7 @@ dependencies:
   - drupal:image
   - drupal:responsive_image
   - drupal:update
+  - drupal:search
 
 'interface translation project': druki
 'interface translation server pattern': ../translations/%language.po

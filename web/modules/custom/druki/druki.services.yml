@@ -49,3 +49,9 @@ services:
   druki.process.git:
     class: Drupal\druki\Process\Git
     arguments: ['@druki.terminal']
+
+  druki.event_subscriber.route:
+    class: Drupal\druki\EventSubscriber\RouteSubscriber
+    arguments: ['@search.search_page_repository']
+    tags:
+      - { name: event_subscriber }

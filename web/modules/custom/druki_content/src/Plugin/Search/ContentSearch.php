@@ -8,8 +8,10 @@ use Drupal\Core\Config\Config;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Query\PagerSelectExtender;
 use Drupal\Core\Database\StatementInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki\Utility\Anchor;
+use Drupal\druki_content\Builder\ContentTableOfContentsBuilder;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_content\Repository\DrukiContentStorage;
 use Drupal\search\Plugin\SearchIndexingInterface;
@@ -69,55 +71,6 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
   /**
    * {@inheritdoc}
    */
-  public function execute(): array {
-    if ($this->isSearchExecutable()) {
-      $results = $this->findResults();
-
-      if ($results) {
-        return $this->prepareResults($results);
-      }
-    }
-
-    return [];
-  }
-
-  /**
-   * Queries to find search results.
-   *
-   * @return \Drupal\Core\Database\StatementInterface|null
-   *   The results from search query execute().
-   */
-  public function findResults(): ?StatementInterface {
-    $keys = $this->getKeywords();
-
-    $query = $this->database
-      ->select('search_index', 'i')
-      ->extend(SearchQuery::class)
-      ->extend(PagerSelectExtender::class);
-
-    $query->searchExpression($keys, $this->getPluginId());
-
-    // Add scoring by relevance.
-    $query->addScore('i.relevance');
-
-    // Add relevance by Drupal Core version.
-    $query->leftJoin('druki_content_field_data', 'cfd', '[i].[sid] = [cfd].[internal_id] AND [i].[type] = :type', [
-      ':type' => $this->getPluginId(),
-    ]);
-    $query->addExpression('(CASE WHEN [cfd].[core] IS NULL THEN 0 ELSE [cfd].[core] END)', 'calculated_drupal_core');
-    // For some reason we can't use aliased expression here.
-    $query->addScore('(CASE WHEN [cfd].[core] IS NULL THEN 0 ELSE [cfd].[core] END)');
-
-    return $query
-      ->fields('i', ['langcode'])
-      ->groupBy('i.langcode')
-      ->limit(10)
-      ->execute();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getType(): ?string {
     return $this->getPluginId();
   }
@@ -136,7 +89,7 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
     $query->condition(
       $query->orConditionGroup()
         ->where('[sd].[sid] IS NULL')
-        ->condition('sd.reindex', 0, '<>')
+        ->condition('sd.reindex', 0, '<>'),
     );
     $query->orderBy('ex', 'DESC')
       ->orderBy('ex2')
@@ -222,7 +175,7 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
     $remaining_query->condition(
       $remaining_query->orConditionGroup()
         ->isNull('sd.sid')
-        ->condition('sd.reindex', 0, '<>')
+        ->condition('sd.reindex', 0, '<>'),
     );
     $remaining_query->addExpression('COUNT(DISTINCT [dc].[internal_id])');
     $remaining = $remaining_query->execute()->fetchField();
@@ -231,57 +184,113 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
   }
 
   /**
-   * Prepares search results for rendering.
-   *
-   * @param \Drupal\Core\Database\StatementInterface $found
-   *   Found results.
-   *
-   * @return array
-   *   An array with result items.
-   *
-   * @todo Replace by custom theme hook and buildResults() override.
+   * {@inheritdoc}
    */
-  protected function prepareResults(StatementInterface $found): array {
-    $results = [];
+  public function buildResults(): array {
+    $found = $this->execute();
+
+    $built = [];
     foreach ($found as $item) {
+      /** @var \Drupal\druki_content\Entity\DrukiContentInterface $content */
       $content = $this->contentStorage->load($item->sid)->getTranslation($item->langcode);
       $document = $content->get('document')->view([]);
 
       $text = $this->renderer->renderPlain($document);
-      $results[] = [
-        'link' => $content->toUrl('canonical', ['absolute' => TRUE])->toString(),
-        'type' => $content->label(),
-        'title' => $content->label(),
-        'extra' => '123',
-        'score' => $item->calculated_score,
-        'snippet' => search_excerpt($this->keywords, $text, $item->langcode),
-        'langcode' => $item->langcode,
+      $result = [
+        '#theme' => 'druki_search_result',
+        '#link' => $content->toUrl()->setAbsolute()->toString(),
+        '#title' => $content->label(),
+        '#snippet' => \search_excerpt($this->keywords, $text, $item->langcode),
+        '#drupal_core' => $content->getCore(),
       ];
+
+      $content_document = $content->getContentDocument();
+      $structured_content = $content_document->getContent();
+      $toc = ContentTableOfContentsBuilder::build($structured_content);
+      if ($toc->getIterator()->count()) {
+        $added_headings = 0;
+        $max_headings = 3;
+        /** @var \Drupal\druki\Data\TableOfContentsHeading $toc_heading */
+        foreach ($toc as $toc_heading) {
+          if ($added_headings >= $max_headings) {
+            break;
+          }
+          if ($toc_heading->getLevel() != 2) {
+            continue;
+          }
+          $result['#toc'][] = [
+            'title' => $toc_heading->getText(),
+            'link' => $content->toUrl(options: [
+              'absolute' => TRUE,
+              'fragment' => Anchor::generate($toc_heading->getText(), 'druki_content', Anchor::REUSE),
+            ])->toString(),
+          ];
+          $added_headings++;
+        }
+      }
+
+      $built[] = $result;
     }
-    return $results;
+
+    return $built;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function searchFormAlter(array &$form, FormStateInterface $form_state): void {
-    $form = [];
+  public function execute(): array {
+    if ($this->isSearchExecutable()) {
+      $results =  $this->findResults();
+      if ($results) {
+        return $results->fetchAll();
+      }
+    }
+    return [];
+  }
+
+  /**
+   * Queries to find search results.
+   *
+   * @return \Drupal\Core\Database\StatementInterface|null
+   *   The results from search query execute().
+   */
+  public function findResults(): ?StatementInterface {
+    $keys = $this->getKeywords();
+
+    $query = $this->database
+      ->select('search_index', 'i')
+      ->extend(SearchQuery::class)
+      ->extend(PagerSelectExtender::class);
+
+    $query->searchExpression($keys, $this->getPluginId());
+
+    // Add scoring by relevance.
+    $query->addScore('i.relevance');
+
+    // Add relevance by Drupal Core version.
+    $query->leftJoin('druki_content_field_data', 'cfd', '[i].[sid] = [cfd].[internal_id] AND [i].[type] = :type', [
+      ':type' => $this->getPluginId(),
+    ]);
+    // For some reason we can't use aliased expression here.
+    $query->addScore('(CASE WHEN [cfd].[core] IS NULL THEN 0 ELSE [cfd].[core] END)');
+
+    return $query
+      ->fields('i', ['langcode'])
+      ->groupBy('i.langcode')
+      ->limit(10)
+      ->execute();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildResults() {
-    // @todo
-    return parent::buildResults();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function suggestedTitle() {
-    // @todo
-    return \rand(0, 10000);
+  public function suggestedTitle(): string {
+    if ($this->isSearchExecutable()) {
+      return (string) new TranslatableMarkup('Search results for «:keys»', [
+        ':keys' => $this->getKeywords(),
+      ]);
+    }
+    return (string) new TranslatableMarkup('Search');
   }
 
 }
