@@ -240,7 +240,7 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
    */
   public function execute(): array {
     if ($this->isSearchExecutable()) {
-      $results =  $this->findResults();
+      $results = $this->findResults();
       if ($results) {
         return $results->fetchAll();
       }
