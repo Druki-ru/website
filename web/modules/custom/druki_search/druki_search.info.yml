@@ -1,8 +1,0 @@
-name: Druki - Search
-type: module
-description: Helpers and improvements for search.
-package: druki
-core_version_requirement: ^8 || ^9
-dependencies:
-  - search_api:search_api
-  - search_api:search_api_db

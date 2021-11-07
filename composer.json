@@ -44,7 +44,6 @@
         "druki/druki": "^1.0",
         "druki/druki_content": "^1.0",
         "druki/druki_redirect": "^1.0",
-        "druki/druki_search": "^1.0",
         "druki/loremaster": "^1.0",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",

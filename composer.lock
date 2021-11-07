@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69ec15813fc79049d0a00e0855e80027",
+    "content-hash": "979ff26e0361ffcbd3f19dd228fccfd5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1345,23 +1345,6 @@
             },
             "type": "drupal-custom-module",
             "description": "Provides ability to create redirect entities from external sources.",
-            "keywords": [
-                "Drupal"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "druki/druki_search",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "web/modules/custom/druki_search",
-                "reference": "9f8610c22377599eb0e3416febffebdfe59a5247"
-            },
-            "type": "drupal-custom-module",
-            "description": "Helpers and improvements for search.",
             "keywords": [
                 "Drupal"
             ],
