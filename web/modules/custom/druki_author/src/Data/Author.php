@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\druki_author\Data;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Locale\CountryManager;
 
 /**
@@ -46,6 +47,16 @@ final class Author {
    * The author homepage.
    */
   protected ?string $homepage = NULL;
+
+  /**
+   * An array with descriptions keyed by langcode.
+   */
+  protected array $description = [];
+
+  /**
+   * The realpath for author image.
+   */
+  protected ?string $image = NULL;
 
   /**
    * Builds an instance from an array.
@@ -98,6 +109,30 @@ final class Author {
         throw new \InvalidArgumentException('Homepage must be valid external URL.');
       }
       $instance->homepage = $values['homepage'];
+    }
+
+    if (isset($values['description'])) {
+      if (!\is_array($values['description'])) {
+        throw new \InvalidArgumentException('The description should be an array with descriptions keyed by a language code.');
+      }
+      $allowed_languages = \array_keys(LanguageManager::getStandardLanguageList());
+      $provided_languages = \array_keys($values['description']);
+      if (\array_diff($provided_languages, $allowed_languages)) {
+        throw new \InvalidArgumentException('The descriptions should be keyed by a valid language code.');
+      }
+      foreach ($values['description'] as $langcode => $description) {
+        if (!\is_string($description)) {
+          throw new \InvalidArgumentException('Description should be a string.');
+        }
+        $instance->description[$langcode] = $description;
+      }
+    }
+
+    if (isset($values['image'])) {
+      if (!\file_exists($values['image'])) {
+        throw new \InvalidArgumentException('The image URI is incorrect.');
+      }
+      $instance->image = $values['image'];
     }
 
     return $instance;
@@ -171,6 +206,26 @@ final class Author {
    */
   public function getHomepage(): ?string {
     return $this->homepage;
+  }
+
+  /**
+   * Gets author descriptions.
+   *
+   * @return array
+   *   An array with descriptions keyed by langcode.
+   */
+  public function getDescription(): array {
+    return $this->description;
+  }
+
+  /**
+   * Gets author image.
+   *
+   * @return string|null
+   *   The realpath to image.
+   */
+  public function getImage(): ?string {
+    return $this->image;
   }
 
 }
