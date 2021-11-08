@@ -39,7 +39,8 @@
               "type": "string",
               "description": "The organization unit that author belongs to or position in the organization."
             }
-          }
+          },
+          "required": ["name", "unit"]
         },
         "country": {
           "type": "string",

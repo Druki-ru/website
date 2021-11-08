@@ -1,0 +1,3 @@
+services:
+  druki_author.finder.authors:
+    class: Drupal\druki_author\Finder\AuthorsFileFinder
