@@ -65,8 +65,6 @@ final class Author {
    *   The author ID.
    * @param array $values
    *   The author information.
-   *
-   * @return self
    */
   public static function createFromArray(string $id, array $values): self {
     $instance = new self();
@@ -97,8 +95,8 @@ final class Author {
       if (!\is_array($values['org'])) {
         throw new \InvalidArgumentException('Organization value should be an array.');
       }
-      if (\array_diff(['name', 'unit'], \array_keys($values['name']))) {
-        throw new \InvalidArgumentException("Author name should contains 'given' and 'family' values.");
+      if (\array_diff(['name', 'unit'], \array_keys($values['org']))) {
+        throw new \InvalidArgumentException("Organization should contains 'name' and 'unit' values.");
       }
       $instance->orgName = $values['org']['name'];
       $instance->orgUnit = $values['org']['unit'];

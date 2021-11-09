@@ -16,6 +16,9 @@ trait SourceContentProviderTrait {
   protected function setupFakeSourceDir(): vfsStreamDirectory {
     return vfsStream::setup('content', NULL, [
       'authors' => [
+        'image' => [
+          'dries.jpg' => \file_get_contents(__DIR__ . '/../../../web/core/tests/fixtures/files/image-2.jpg'),
+        ],
         'authors.json' => \file_get_contents(__DIR__ . '/../../fixtures/authors.json'),
       ],
       'docs' => [
