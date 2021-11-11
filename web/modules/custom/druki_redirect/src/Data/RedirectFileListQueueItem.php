@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\druki_redirect\Data;
 
-use Drupal\druki_redirect\Queue\RedirectSyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 
 /**
  * Provides queue item with redirect file list.
  */
-final class RedirectFileListQueueItem implements RedirectSyncQueueItemInterface {
+final class RedirectFileListQueueItem implements EntitySyncQueueItemInterface {
 
   /**
    * The queue item payload.

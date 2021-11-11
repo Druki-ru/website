@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Druki\Tests\ExistingSite\Plugin\QueueWorker;
 
 use Drupal\Core\Queue\QueueWorkerManager;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessorInterface;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueItemInterface;
 use Drupal\druki_redirect\Queue\RedirectSyncQueueItemProcessorInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
@@ -38,7 +38,7 @@ final class DrukiRedirectSyncQueueWorkerTest extends ExistingSiteBase {
     $this->assertFalse($this->chainQueueProcessor->isCalled());
     $plugin->processItem('random data');
     $this->assertFalse($this->chainQueueProcessor->isCalled());
-    $valid_queue_item = $this->prophesize(RedirectSyncQueueItemInterface::class);
+    $valid_queue_item = $this->prophesize(EntitySyncQueueItemInterface::class);
     $plugin->processItem($valid_queue_item->reveal());
     $this->assertTrue($this->chainQueueProcessor->isCalled());
   }
@@ -56,11 +56,11 @@ final class DrukiRedirectSyncQueueWorkerTest extends ExistingSiteBase {
 
       }
 
-      public function isApplicable(RedirectSyncQueueItemInterface $item): bool {
+      public function isApplicable(EntitySyncQueueItemInterface $item): bool {
         return TRUE;
       }
 
-      public function process(RedirectSyncQueueItemInterface $item): array {
+      public function process(EntitySyncQueueItemInterface $item): array {
         $this->called = TRUE;
         return [];
       }

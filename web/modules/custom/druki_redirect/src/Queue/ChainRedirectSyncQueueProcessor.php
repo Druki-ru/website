@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\druki_redirect\Queue;
 
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+
 /**
  * Provides processor for redirect sync queue items.
  */
@@ -34,7 +36,7 @@ final class ChainRedirectSyncQueueProcessor implements ChainRedirectSyncQueuePro
   /**
    * {@inheritdoc}
    */
-  public function process(RedirectSyncQueueItemInterface $item): array {
+  public function process(EntitySyncQueueItemInterface $item): array {
     foreach ($this->processors as $processor) {
       if (!$processor->isApplicable($item)) {
         continue;
@@ -51,7 +53,7 @@ final class ChainRedirectSyncQueueProcessor implements ChainRedirectSyncQueuePro
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(RedirectSyncQueueItemInterface $item): bool {
+  public function isApplicable(EntitySyncQueueItemInterface $item): bool {
     return TRUE;
   }
 

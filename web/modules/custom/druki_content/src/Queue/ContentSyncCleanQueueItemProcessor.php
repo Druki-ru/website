@@ -3,6 +3,7 @@
 namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 
 /**
@@ -41,7 +42,7 @@ final class ContentSyncCleanQueueItemProcessor implements ContentSyncQueueProces
   /**
    * {@inheritdoc}
    */
-  public function process(ContentSyncQueueItemInterface $item): array {
+  public function process(EntitySyncQueueItemInterface $item): array {
     /** @var \Drupal\druki_content\Repository\DrukiContentStorage $druki_content_storage */
     $druki_content_storage = $this->entityTypeManager->getStorage('druki_content');
     $existing_ids = $druki_content_storage->getQuery()
@@ -60,7 +61,7 @@ final class ContentSyncCleanQueueItemProcessor implements ContentSyncQueueProces
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(ContentSyncQueueItemInterface $item): bool {
+  public function isApplicable(EntitySyncQueueItemInterface $item): bool {
     return $item instanceof ContentSyncCleanQueueItem;
   }
 

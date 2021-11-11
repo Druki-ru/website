@@ -6,8 +6,8 @@ namespace Drupal\druki_redirect\Plugin\QueueWorker;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessorInterface;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -38,7 +38,7 @@ final class DrukiRedirectSyncQueueWorker extends QueueWorkerBase implements Cont
    * {@inheritdoc}
    */
   public function processItem(mixed $data): void {
-    if (!$data instanceof RedirectSyncQueueItemInterface) {
+    if (!$data instanceof EntitySyncQueueItemInterface) {
       return;
     }
     $this->chainQueueProcessor->process($data);

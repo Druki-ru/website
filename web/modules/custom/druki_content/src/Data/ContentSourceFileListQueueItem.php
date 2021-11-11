@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\druki_content\Data;
 
-use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 
 /**
  * Provides queue item for content source file list.
  */
-final class ContentSourceFileListQueueItem implements ContentSyncQueueItemInterface {
+final class ContentSourceFileListQueueItem implements EntitySyncQueueItemInterface {
 
   /**
    * The content source file list.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
-use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
@@ -24,7 +24,7 @@ final class ChainContentSyncQueueProcessor extends ExistingSiteBase {
   public function testProcessor(): void {
     /** @var \Drupal\druki_content\Queue\ChainContentSyncQueueProcessor $processor */
     $processor = $this->container->get('druki_content.queue.content_sync_processor');
-    $queue_item = new class() implements ContentSyncQueueItemInterface {
+    $queue_item = new class() implements EntitySyncQueueItemInterface {
 
       public function getPayload(): mixed {
         return 'string';
@@ -36,7 +36,7 @@ final class ChainContentSyncQueueProcessor extends ExistingSiteBase {
 
       protected mixed $value = NULL;
 
-      public function process(ContentSyncQueueItemInterface $item): array {
+      public function process(EntitySyncQueueItemInterface $item): array {
         $this->value = $item->getPayload();
         return [];
       }
@@ -45,7 +45,7 @@ final class ChainContentSyncQueueProcessor extends ExistingSiteBase {
         return $this->value;
       }
 
-      public function isApplicable(ContentSyncQueueItemInterface $item): bool {
+      public function isApplicable(EntitySyncQueueItemInterface $item): bool {
         return $item->getPayload() == 'string';
       }
 

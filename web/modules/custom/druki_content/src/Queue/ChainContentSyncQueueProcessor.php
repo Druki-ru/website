@@ -2,6 +2,8 @@
 
 namespace Drupal\druki_content\Queue;
 
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+
 /**
  * Provides chained processor for content sync queue.
  */
@@ -42,7 +44,7 @@ final class ChainContentSyncQueueProcessor implements ContentSyncQueueProcessorI
   /**
    * {@inheritdoc}
    */
-  public function process(ContentSyncQueueItemInterface $item): array {
+  public function process(EntitySyncQueueItemInterface $item): array {
     foreach ($this->processors as $processor) {
       if ($processor->isApplicable($item)) {
         $ids = $processor->process($item);
@@ -58,7 +60,7 @@ final class ChainContentSyncQueueProcessor implements ContentSyncQueueProcessorI
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(ContentSyncQueueItemInterface $item): bool {
+  public function isApplicable(EntitySyncQueueItemInterface $item): bool {
     return TRUE;
   }
 

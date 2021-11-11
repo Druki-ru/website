@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessor;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueItemInterface;
 use Drupal\druki_redirect\Queue\RedirectSyncQueueItemProcessorInterface;
 use Drupal\druki_redirect\Repository\RedirectSyncQueueState;
 use Prophecy\Argument;
@@ -35,7 +35,7 @@ final class ChainRedirectSyncQueueProcessorTest extends ExistingSiteBase {
   /**
    * {@inheritdoc}
    */
-  public function tearDown() {
+  public function tearDown(): void {
     $this->syncState->delete();
     parent::tearDown();
   }
@@ -44,10 +44,10 @@ final class ChainRedirectSyncQueueProcessorTest extends ExistingSiteBase {
    * Tests that processor works as expected.
    */
   public function testProcessor(): void {
-    $queue_item_1 = $this->prophesize(RedirectSyncQueueItemInterface::class);
+    $queue_item_1 = $this->prophesize(EntitySyncQueueItemInterface::class);
     $queue_item_1->getPayload()->willReturn('First!');
 
-    $queue_item_2 = $this->prophesize(RedirectSyncQueueItemInterface::class);
+    $queue_item_2 = $this->prophesize(EntitySyncQueueItemInterface::class);
     $queue_item_2->getPayload()->willReturn('Second!');
 
     $processor_1 = $this->prophesize(RedirectSyncQueueItemProcessorInterface::class);

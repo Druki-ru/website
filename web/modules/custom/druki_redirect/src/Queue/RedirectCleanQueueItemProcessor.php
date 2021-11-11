@@ -6,6 +6,7 @@ namespace Drupal\druki_redirect\Queue;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 
 /**
@@ -39,14 +40,14 @@ final class RedirectCleanQueueItemProcessor implements RedirectSyncQueueItemProc
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(RedirectSyncQueueItemInterface $item): bool {
+  public function isApplicable(EntitySyncQueueItemInterface $item): bool {
     return $item instanceof RedirectCleanQueueItem;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function process(RedirectSyncQueueItemInterface $item): array {
+  public function process(EntitySyncQueueItemInterface $item): array {
     $existing_ids = $this->redirectStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('druki_redirect', TRUE)
