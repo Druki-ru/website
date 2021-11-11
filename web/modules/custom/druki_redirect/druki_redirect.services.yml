@@ -1,3 +1,6 @@
+parameters:
+  druki_redirect.queue.state_key: 'druki_redirect.redirect_sync_queue_state'
+
 services:
   druki_redirect.event_subscriber.source_content:
     class: Drupal\druki_redirect\EventSubscriber\SourceContentEventSubscriber
@@ -17,13 +20,14 @@ services:
 
   druki_redirect.queue.chain_sync_processor:
     class: Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessor
-    arguments: [ '@druki_redirect.repository.redirect_sync_queue_state' ]
+    arguments: [ '@druki_redirect.queue.sync_manager' ]
     tags:
       - { name: service_collector, tag: druki_redirect_sync_queue_processor, call: addProcessor }
 
   druki_redirect.repository.redirect_sync_queue_state:
-    class: Drupal\druki_redirect\Repository\RedirectSyncQueueState
-    arguments: [ '@state' ]
+    class: Drupal\druki\Repository\EntitySyncQueueStateInterface
+    factory: druki.factory.entity_sync_queue_state:get
+    arguments: [ '%druki_redirect.queue.state_key%' ]
 
   druki_redirect.queue.redirect_file_list_queue_item_processor:
     class: Drupal\druki_redirect\Queue\RedirectFileListQueueItemProcessor

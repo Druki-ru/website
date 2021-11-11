@@ -6,6 +6,7 @@ namespace Druki\Tests\ExistingSite\Queue;
 
 use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
+use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor;
 use Drupal\druki_content\Repository\ContentSyncQueueState;
@@ -35,7 +36,7 @@ final class ContentSyncCleanQueueItemProcessorTest extends ExistingSiteBase {
   /**
    * The content sync queue state.
    */
-  protected ContentSyncQueueState $queueState;
+  protected EntitySyncQueueStateInterface $queueState;
 
   /**
    * {@inheritdoc}

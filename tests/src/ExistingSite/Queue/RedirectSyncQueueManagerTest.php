@@ -39,17 +39,17 @@ final class RedirectSyncQueueManagerTest extends ExistingSiteBase {
     $state = $this->queueManager->getState();
 
     $this->assertEquals(0, $queue->numberOfItems());
-    $this->assertEquals([], $state->getStoredEntityIds());
+    $this->assertEquals([], $state->getEntityIds());
 
     $queue->createItem('test');
     $state->storeEntityIds([123]);
 
     $this->assertEquals(1, $queue->numberOfItems());
-    $this->assertEquals([123], $state->getStoredEntityIds());
+    $this->assertEquals([123], $state->getEntityIds());
 
     $this->queueManager->delete();
     $this->assertEquals(0, $queue->numberOfItems());
-    $this->assertEquals([], $state->getStoredEntityIds());
+    $this->assertEquals([], $state->getEntityIds());
   }
 
   /**

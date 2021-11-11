@@ -7,11 +7,11 @@ namespace Drupal\druki_redirect\Queue;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Site\Settings;
+use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 use Drupal\druki_redirect\Data\RedirectFileList;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
 use Drupal\druki_redirect\Finder\RedirectFileFinder;
-use Drupal\druki_redirect\Repository\RedirectSyncQueueState;
 
 /**
  * Provides redirect sync queue manager.
@@ -36,7 +36,7 @@ final class RedirectSyncQueueManager implements RedirectSyncQueueManagerInterfac
   /**
    * The redirect sync queue state.
    */
-  protected RedirectSyncQueueState $syncState;
+  protected EntitySyncQueueStateInterface $syncState;
 
   /**
    * Constructs a new RedirectSyncQueueManager object.
@@ -45,10 +45,10 @@ final class RedirectSyncQueueManager implements RedirectSyncQueueManagerInterfac
    *   The redirect file finder.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory.
-   * @param \Drupal\druki_redirect\Repository\RedirectSyncQueueState $sync_state
+   * @param \Drupal\druki\Repository\EntitySyncQueueStateInterface $sync_state
    *   The redirect sync queue state.
    */
-  public function __construct(RedirectFileFinder $redirect_file_finder, QueueFactory $queue_factory, RedirectSyncQueueState $sync_state) {
+  public function __construct(RedirectFileFinder $redirect_file_finder, QueueFactory $queue_factory, EntitySyncQueueStateInterface $sync_state) {
     $this->redirectFileFinder = $redirect_file_finder;
     $this->queue = $queue_factory->get(self::QUEUE_NAME);
     $this->syncState = $sync_state;
@@ -67,18 +67,31 @@ final class RedirectSyncQueueManager implements RedirectSyncQueueManagerInterfac
   }
 
   /**
-   * Adds clean operation.
-   */
-  protected function addCleanOperation(): void {
-    $this->getQueue()->createItem(new RedirectCleanQueueItem());
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function delete(): void {
     $this->getQueue()->deleteQueue();
     $this->getState()->delete();
+  }
+
+  /**
+   * Gets queue.
+   *
+   * @return \Drupal\Core\Queue\QueueInterface
+   *   The queue.
+   */
+  public function getQueue(): QueueInterface {
+    return $this->queue;
+  }
+
+  /**
+   * Gets queue state.
+   *
+   * @return \Drupal\druki\Repository\EntitySyncQueueStateInterface
+   *   The queue state storage.
+   */
+  public function getState(): EntitySyncQueueStateInterface {
+    return $this->syncState;
   }
 
   /**
@@ -103,23 +116,10 @@ final class RedirectSyncQueueManager implements RedirectSyncQueueManagerInterfac
   }
 
   /**
-   * Gets queue state.
-   *
-   * @return \Drupal\druki_redirect\Repository\RedirectSyncQueueState
-   *   The queue state storage.
+   * Adds clean operation.
    */
-  public function getState(): RedirectSyncQueueState {
-    return $this->syncState;
-  }
-
-  /**
-   * Gets queue.
-   *
-   * @return \Drupal\Core\Queue\QueueInterface
-   *   The queue.
-   */
-  public function getQueue(): QueueInterface {
-    return $this->queue;
+  protected function addCleanOperation(): void {
+    $this->getQueue()->createItem(new RedirectCleanQueueItem());
   }
 
 }

@@ -2,8 +2,6 @@
 
 namespace Drupal\druki_content\Queue;
 
-use Drupal\druki_content\Repository\ContentSyncQueueState;
-
 /**
  * Provides chained processor for content sync queue.
  */
@@ -17,18 +15,18 @@ final class ChainContentSyncQueueProcessor implements ContentSyncQueueProcessorI
   protected array $processors = [];
 
   /**
-   * The content sync queue state storage.
+   * The sync queue manager.
    */
-  protected ContentSyncQueueState $syncState;
+  protected ContentSyncQueueManagerInterface $queueManager;
 
   /**
    * Constructs a new ChainContentSyncQueueProcessor object.
    *
-   * @param \Drupal\druki_content\Repository\ContentSyncQueueState $sync_state
-   *   The content sync queue state storage.
+   * @param \Drupal\druki_content\Queue\ContentSyncQueueManagerInterface $queue_manager
+   *   The queue manager.
    */
-  public function __construct(ContentSyncQueueState $sync_state) {
-    $this->syncState = $sync_state;
+  public function __construct(ContentSyncQueueManagerInterface $queue_manager) {
+    $this->queueManager = $queue_manager;
   }
 
   /**
@@ -49,7 +47,7 @@ final class ChainContentSyncQueueProcessor implements ContentSyncQueueProcessorI
       if ($processor->isApplicable($item)) {
         $ids = $processor->process($item);
         if (!empty($ids)) {
-          $this->syncState->storeEntityIds($ids);
+          $this->queueManager->getState()->storeEntityIds($ids);
         }
         break;
       }

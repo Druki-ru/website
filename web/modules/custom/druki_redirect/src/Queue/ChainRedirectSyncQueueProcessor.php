@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\druki_redirect\Queue;
 
-use Drupal\druki_redirect\Repository\RedirectSyncQueueState;
-
 /**
  * Provides processor for redirect sync queue items.
  */
@@ -19,18 +17,18 @@ final class ChainRedirectSyncQueueProcessor implements ChainRedirectSyncQueuePro
   protected array $processors = [];
 
   /**
-   * The redirect sync queue state.
+   * The queue manager.
    */
-  protected RedirectSyncQueueState $syncState;
+  protected RedirectSyncQueueManagerInterface $queueManager;
 
   /**
    * Constructs a new RedirectSyncQueueProcessor object.
    *
-   * @param \Drupal\druki_redirect\Repository\RedirectSyncQueueState $sync_state
-   *   The redirect sync queue state.
+   * @param \Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface $queue_manager
+   *   The queue manager.
    */
-  public function __construct(RedirectSyncQueueState $sync_state) {
-    $this->syncState = $sync_state;
+  public function __construct(RedirectSyncQueueManagerInterface $queue_manager) {
+    $this->queueManager = $queue_manager;
   }
 
   /**
@@ -43,7 +41,7 @@ final class ChainRedirectSyncQueueProcessor implements ChainRedirectSyncQueuePro
       }
       $ids = $processor->process($item);
       if (!empty($ids)) {
-        $this->syncState->storeEntityIds($ids);
+        $this->queueManager->getState()->storeEntityIds($ids);
       }
       break;
     }

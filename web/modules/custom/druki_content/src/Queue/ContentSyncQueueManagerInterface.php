@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Queue\QueueInterface;
-use Drupal\druki_content\Repository\ContentSyncQueueState;
+use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 
 /**
  * Provides interface for content sync queue manager.
@@ -37,10 +37,10 @@ interface ContentSyncQueueManagerInterface {
   /**
    * Gets queue state.
    *
-   * @return \Drupal\druki_content\Repository\ContentSyncQueueState
+   * @return \Drupal\druki\Repository\EntitySyncQueueStateInterface
    *   The queue state storage.
    */
-  public function getState(): ContentSyncQueueState;
+  public function getState(): EntitySyncQueueStateInterface;
 
   /**
    * Gets queue.

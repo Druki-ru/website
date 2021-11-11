@@ -6,6 +6,7 @@ namespace Druki\Tests\ExistingSite\Queue;
 
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
+use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 use Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessorInterface;
 use Drupal\druki_redirect\Queue\RedirectCleanQueueItemProcessor;
@@ -34,7 +35,7 @@ final class RedirectCleanQueueItemProcessorTest extends ExistingSiteBase {
   /**
    * The redirect sync queue state.
    */
-  protected RedirectSyncQueueState $queueState;
+  protected EntitySyncQueueStateInterface $queueState;
 
   /**
    * {@inheritdoc}

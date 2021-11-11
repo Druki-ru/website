@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
+use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessor;
 use Drupal\druki_redirect\Queue\RedirectSyncQueueItemInterface;
 use Drupal\druki_redirect\Queue\RedirectSyncQueueItemProcessorInterface;
@@ -29,7 +30,7 @@ final class ChainRedirectSyncQueueProcessorTest extends ExistingSiteBase {
   /**
    * The redirect sync queue state.
    */
-  protected RedirectSyncQueueState $syncState;
+  protected EntitySyncQueueStateInterface $syncState;
 
   /**
    * {@inheritdoc}
@@ -66,11 +67,11 @@ final class ChainRedirectSyncQueueProcessorTest extends ExistingSiteBase {
     $this->assertTrue($this->chainProcessor->isApplicable($queue_item_1->reveal()));
     $this->assertTrue($this->chainProcessor->isApplicable($queue_item_2->reveal()));
 
-    $this->assertEmpty($this->syncState->getStoredEntityIds());
+    $this->assertEmpty($this->syncState->getEntityIds());
     $this->chainProcessor->process($queue_item_1->reveal());
-    $this->assertEquals([10], $this->syncState->getStoredEntityIds());
+    $this->assertEquals([10], $this->syncState->getEntityIds());
     $this->chainProcessor->process($queue_item_2->reveal());
-    $this->assertEquals([10, 20], $this->syncState->getStoredEntityIds());
+    $this->assertEquals([10, 20], $this->syncState->getEntityIds());
   }
 
   /**

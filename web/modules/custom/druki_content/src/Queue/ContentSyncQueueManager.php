@@ -8,11 +8,11 @@ use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Site\Settings;
+use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Finder\ContentSourceFileFinder;
-use Drupal\druki_content\Repository\ContentSyncQueueState;
 
 /**
  * Provides queue manager for synchronization content.
@@ -37,7 +37,7 @@ final class ContentSyncQueueManager implements ContentSyncQueueManagerInterface 
   /**
    * The queue state.
    */
-  protected ContentSyncQueueState $queueState;
+  protected EntitySyncQueueStateInterface $queueState;
 
   /**
    * Constructs a new SynchronizationQueueBuilder object.
@@ -48,10 +48,10 @@ final class ContentSyncQueueManager implements ContentSyncQueueManagerInterface 
    *   The queue factory.
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_worker
    *   The queue manager.
-   * @param \Drupal\druki_content\Repository\ContentSyncQueueState $sync_state
+   * @param \Drupal\druki\Repository\EntitySyncQueueStateInterface $sync_state
    *   The content sync state.
    */
-  public function __construct(ContentSourceFileFinder $content_source_file_finder, QueueFactory $queue_factory, QueueWorkerManagerInterface $queue_worker, ContentSyncQueueState $sync_state) {
+  public function __construct(ContentSourceFileFinder $content_source_file_finder, QueueFactory $queue_factory, QueueWorkerManagerInterface $queue_worker, EntitySyncQueueStateInterface $sync_state) {
     $this->contentSourceFileFinder = $content_source_file_finder;
     $this->queue = $queue_factory->get(self::QUEUE_NAME);
     $this->queueWorker = $queue_worker;
@@ -109,7 +109,7 @@ final class ContentSyncQueueManager implements ContentSyncQueueManagerInterface 
   /**
    * {@inheritdoc}
    */
-  public function getState(): ContentSyncQueueState {
+  public function getState(): EntitySyncQueueStateInterface {
     return $this->queueState;
   }
 

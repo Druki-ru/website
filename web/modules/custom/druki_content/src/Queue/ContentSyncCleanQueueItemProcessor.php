@@ -47,7 +47,7 @@ final class ContentSyncCleanQueueItemProcessor implements ContentSyncQueueProces
     $existing_ids = $druki_content_storage->getQuery()
       ->accessCheck(FALSE)
       ->execute();
-    $synced_ids = $this->queueManager->getState()->getStoredEntityIds();
+    $synced_ids = $this->queueManager->getState()->getEntityIds();
     $removed_content_ids = \array_diff($existing_ids, $synced_ids);
     if (!$removed_content_ids) {
       return [];

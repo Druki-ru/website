@@ -1,3 +1,6 @@
+parameters:
+  druki_content.queue.state_key: 'druki_content.content_sync_queue_state'
+
 services:
   logger.channel.druki_content:
     class: Drupal\Core\Logger\LoggerChannel
@@ -28,7 +31,7 @@ services:
 
   druki_content.queue.content_sync_processor:
     class: Drupal\druki_content\Queue\ChainContentSyncQueueProcessor
-    arguments: ['@druki_content.repository.content_sync_queue_state']
+    arguments: ['@druki_content.queue.content_sync_manager']
     tags:
       - { name: service_collector, tag: druki_content_sync_queue_processor, call: addProcessor }
 
@@ -139,8 +142,9 @@ services:
     class: Drupal\druki_content\Generator\ContentDocumentChecksumGenerator
 
   druki_content.repository.content_sync_queue_state:
-    class: Drupal\druki_content\Repository\ContentSyncQueueState
-    arguments: ['@state']
+    class: Drupal\druki\Repository\EntitySyncQueueStateInterface
+    factory: druki.factory.entity_sync_queue_state:get
+    arguments: [ '%druki_content.queue.state_key%' ]
 
   druki_content.repository.content_source_settings:
     class: Drupal\druki_content\Repository\ContentSourceSettings
