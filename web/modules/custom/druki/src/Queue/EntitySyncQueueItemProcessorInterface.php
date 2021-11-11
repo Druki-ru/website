@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Drupal\druki_redirect\Queue;
-
-use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+namespace Drupal\druki\Queue;
 
 /**
- * Provides interface for redirect sync queue item processors.
+ * Provides an interface for entity synchronization queue item processor.
  */
-interface RedirectSyncQueueItemProcessorInterface {
+interface EntitySyncQueueItemProcessorInterface {
 
   /**
    * Check if current processor is suitable to processes provided queue item.
@@ -29,7 +27,7 @@ interface RedirectSyncQueueItemProcessorInterface {
    *   The queue item object.
    *
    * @return array
-   *   An array with IDs of created or updated redirects. Returns an empty array
+   *   An array with IDs of created or updated entities. Returns an empty array
    *   if not applicable.
    */
   public function process(EntitySyncQueueItemInterface $item): array;

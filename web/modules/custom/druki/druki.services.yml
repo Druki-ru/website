@@ -59,3 +59,8 @@ services:
   druki.factory.entity_sync_queue_state:
     class: Drupal\druki\Factory\EntitySyncQueueStateFactory
     arguments: ['@state']
+
+  druki.queue.chain_entity_sync_processor:
+    class: Drupal\druki\Queue\ChainEntitySyncQueueItemProcessor
+    tags:
+      - { name: service_collector, tag: druki_entity_sync_queue_item_processor, call: addProcessor }

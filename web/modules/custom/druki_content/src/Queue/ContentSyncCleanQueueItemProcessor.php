@@ -4,6 +4,7 @@ namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 
 /**
@@ -14,7 +15,7 @@ use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
  *
  * @see \Drupal\druki_content\Repository\ContentSyncQueueState
  */
-final class ContentSyncCleanQueueItemProcessor implements ContentSyncQueueProcessorInterface {
+final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
   /**
    * The entity type manager.

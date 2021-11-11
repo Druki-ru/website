@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Druki\Tests\ExistingSite\Plugin\QueueWorker;
 
 use Drupal\Core\Queue\QueueWorkerManager;
+use Drupal\druki\Queue\ChainEntitySyncQueueItemProcessorInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
-use Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessorInterface;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueItemProcessorInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
@@ -23,7 +23,7 @@ final class DrukiRedirectSyncQueueWorkerTest extends ExistingSiteBase {
   /**
    * The queue processor.
    */
-  protected ChainRedirectSyncQueueProcessorInterface $chainQueueProcessor;
+  protected ChainEntitySyncQueueItemProcessorInterface $chainQueueProcessor;
 
   /**
    * The queue worker plugin manager.
@@ -48,11 +48,11 @@ final class DrukiRedirectSyncQueueWorkerTest extends ExistingSiteBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $chain_queue_processor = new class() implements ChainRedirectSyncQueueProcessorInterface {
+    $chain_queue_processor = new class() implements ChainEntitySyncQueueItemProcessorInterface {
 
       protected bool $called = FALSE;
 
-      public function addProcessor(RedirectSyncQueueItemProcessorInterface $processor): void {
+      public function addProcessor(EntitySyncQueueItemProcessorInterface $processor): void {
 
       }
 
@@ -71,8 +71,8 @@ final class DrukiRedirectSyncQueueWorkerTest extends ExistingSiteBase {
 
     };
 
-    $this->container->set('druki_redirect.queue.chain_sync_processor', $chain_queue_processor);
-    $this->chainQueueProcessor = $this->container->get('druki_redirect.queue.chain_sync_processor');
+    $this->container->set('druki.queue.chain_entity_sync_processor', $chain_queue_processor);
+    $this->chainQueueProcessor = $this->container->get('druki.queue.chain_entity_sync_processor');
     $this->queueWorkerManager = $this->container->get('plugin.manager.queue_worker');
   }
 

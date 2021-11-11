@@ -7,12 +7,13 @@ namespace Drupal\druki_redirect\Queue;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 
 /**
  * Provides redirect clean queue item processor.
  */
-final class RedirectCleanQueueItemProcessor implements RedirectSyncQueueItemProcessorInterface {
+final class RedirectCleanQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
   /**
    * The redirect storage.

@@ -29,19 +29,13 @@ services:
       - { name: service_collector, tag: druki_content_html_element_parser, call: addElementParser }
       - { name: service_collector, tag: druki_content_html_preprocessor, call: addHtmlPreprocessor }
 
-  druki_content.queue.content_sync_processor:
-    class: Drupal\druki_content\Queue\ChainContentSyncQueueProcessor
-    arguments: ['@druki_content.queue.content_sync_manager']
-    tags:
-      - { name: service_collector, tag: druki_content_sync_queue_processor, call: addProcessor }
-
   druki_content.queue.clean_queue_processor:
     class: Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor
     arguments:
       - '@entity_type.manager'
       - '@druki_content.queue.content_sync_manager'
     tags:
-      - { name: druki_content_sync_queue_processor }
+      - { name: druki_entity_sync_queue_item_processor }
 
   druki_content.druki_content_route_context:
     class: Drupal\druki_content\ContextProvider\DrukiContentRouteContext
@@ -136,7 +130,7 @@ services:
     class: Drupal\druki_content\Queue\ContentSourceFileListQueueItemProcessor
     arguments: ['@entity_type.manager', '@druki_content.parser.content_source_file', '@druki_content.generator.content_document_checksum']
     tags:
-      - { name: druki_content_sync_queue_processor }
+      - { name: druki_entity_sync_queue_item_processor }
 
   druki_content.generator.content_document_checksum:
     class: Drupal\druki_content\Generator\ContentDocumentChecksumGenerator

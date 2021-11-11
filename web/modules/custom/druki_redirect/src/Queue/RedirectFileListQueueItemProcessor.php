@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\druki_redirect\Queue;
 
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki_redirect\Data\Redirect;
 use Drupal\druki_redirect\Data\RedirectFile;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
@@ -13,7 +14,7 @@ use Drupal\druki_redirect\Repository\RedirectRepositoryInterface;
 /**
  * Provides processor for redirect file list queue item.
  */
-final class RedirectFileListQueueItemProcessor implements RedirectSyncQueueItemProcessorInterface {
+final class RedirectFileListQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
   /**
    * The redirect repository.
