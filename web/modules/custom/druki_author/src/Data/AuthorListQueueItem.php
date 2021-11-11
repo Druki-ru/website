@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\druki_author\Data;
 
-use Drupal\druki_author\Queue\AuthorSyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 
 /**
  * Provides queue item with AuthorList.
  */
-final class AuthorListQueueItem implements AuthorSyncQueueItemInterface {
+final class AuthorListQueueItem implements EntitySyncQueueItemInterface {
 
   /**
    * The queue item payload.
