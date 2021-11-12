@@ -6,8 +6,8 @@ namespace Druki\Tests\Unit\EventSubscriber;
 
 use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface;
 use Drupal\druki_redirect\EventSubscriber\SourceContentEventSubscriber;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -51,7 +51,7 @@ final class RedirectSourceContentEventSubscriberTest extends UnitTestCase {
   protected function buildEventSubscriber(): SourceContentEventSubscriber {
     return new SourceContentEventSubscriber(
       $this->buildContentSourceSettings(),
-      $this->buildRedirectSyncQueueManager(),
+      $this->buildRedirectSyncQueueBuilder(),
     );
   }
 
@@ -70,13 +70,13 @@ final class RedirectSourceContentEventSubscriberTest extends UnitTestCase {
   /**
    * Builds redirect sync queue manager mock.
    *
-   * @return \Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface
+   * @return \Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface The mock instance.
    *   The mock instance.
    */
-  protected function buildRedirectSyncQueueManager(): RedirectSyncQueueManagerInterface {
+  protected function buildRedirectSyncQueueBuilder(): RedirectSyncQueueBuilderInterface {
     $this->requestedDirs = [];
     $self = $this;
-    $queue_manager = $this->prophesize(RedirectSyncQueueManagerInterface::class);
+    $queue_manager = $this->prophesize(RedirectSyncQueueBuilderInterface::class);
     $queue_manager->buildFromDirectories(Argument::any())->will(function ($args) use ($self) {
       $self->requestedDirs = $args[0];
     });

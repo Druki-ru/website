@@ -1,11 +1,9 @@
-parameters:
-  druki_author.queue.state_key: 'druki_author.author_sync_queue_state'
-
 services:
   druki_author.finder.authors:
     class: Drupal\druki_author\Finder\AuthorsFileFinder
 
-  druki_author.repository.author_sync_queue_state:
-    class: Drupal\druki\Repository\EntitySyncQueueStateInterface
-    factory: druki.factory.entity_sync_queue_state:get
-    arguments: ['%druki_author.queue.state_key%']
+  druki_author.queue.author_sync_queue_manager:
+    class: Drupal\druki\Queue\EntitySyncQueueManagerInterface
+    factory: druki.factory.entity_sync_queue_manager:get
+    tags:
+      - { name: druki_entity_sync_queue, queue_name: author }

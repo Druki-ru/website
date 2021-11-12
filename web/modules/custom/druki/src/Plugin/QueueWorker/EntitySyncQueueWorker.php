@@ -2,42 +2,43 @@
 
 declare(strict_types=1);
 
-namespace Drupal\druki_redirect\Plugin\QueueWorker;
+namespace Drupal\druki\Plugin\QueueWorker;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\druki\Queue\ChainEntitySyncQueueItemProcessorInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueManager;
+use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides queue worker for 'druki_redirect_sync' queue.
+ * Provides common queue worker for entity sync.
  *
  * @QueueWorker(
- *   id = "druki_redirect_sync",
- *   title = @Translation("Druki Redirect sync queue"),
+ *   id = "druki_entity_sync",
+ *   title = @Translation("Entity sync queue worker"),
+ *   deriver = "Drupal\druki\Plugin\Deriver\EntitySyncQueueWorkerDeriver",
  * )
  */
-final class DrukiRedirectSyncQueueWorker extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+final class EntitySyncQueueWorker extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   /**
    * The chain queue processor.
    */
-  protected ChainEntitySyncQueueItemProcessorInterface $chainQueueProcessor;
+  protected ChainEntitySyncQueueItemProcessorInterface $chainQueueItemProcessor;
 
   /**
-   * The redirect sync queue manager.
+   * The entity sync queue manager.
    */
-  protected RedirectSyncQueueManager $queueManager;
+  protected EntitySyncQueueManagerInterface $queueManager;
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
     $instance = new self($configuration, $plugin_id, $plugin_definition);
-    $instance->chainQueueProcessor = $container->get('druki.queue.chain_entity_sync_processor');
-    $instance->queueManager = $container->get('druki_redirect.queue.sync_manager');
+    $instance->chainQueueItemProcessor = $container->get('druki.queue.chain_entity_sync_processor');
+    $instance->queueManager = $container->get('druki.factory.entity_sync_queue_manager')->get($plugin_id);
     return $instance;
   }
 
@@ -48,7 +49,7 @@ final class DrukiRedirectSyncQueueWorker extends QueueWorkerBase implements Cont
     if (!$data instanceof EntitySyncQueueItemInterface) {
       return;
     }
-    $ids = $this->chainQueueProcessor->process($data);
+    $ids = $this->chainQueueItemProcessor->process($data);
     $this->queueManager->getState()->storeEntityIds($ids);
   }
 

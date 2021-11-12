@@ -8,10 +8,13 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
+use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 
 /**
  * Provides redirect clean queue item processor.
+ *
+ * @see \Drupal\druki\Repository\EntitySyncQueueStateInterface
  */
 final class RedirectCleanQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
@@ -23,17 +26,20 @@ final class RedirectCleanQueueItemProcessor implements EntitySyncQueueItemProces
   /**
    * The redirect sync queue manager.
    */
-  protected RedirectSyncQueueManagerInterface $queueManager;
+  protected EntitySyncQueueManagerInterface $queueManager;
 
   /**
    * Constructs a new RedirectCleanQueueItemProcessor object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface $queue_manager
+   * @param \Drupal\druki\Queue\EntitySyncQueueManagerInterface $queue_manager
    *   The queue manager.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, RedirectSyncQueueManagerInterface $queue_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntitySyncQueueManagerInterface $queue_manager) {
     $this->redirectStorage = $entity_type_manager->getStorage('redirect');
     $this->queueManager = $queue_manager;
   }

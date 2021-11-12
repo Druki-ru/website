@@ -6,11 +6,10 @@ namespace Druki\Tests\ExistingSite\Queue;
 
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
+use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
-use Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessorInterface;
 use Drupal\druki_redirect\Queue\RedirectCleanQueueItemProcessor;
-use Drupal\druki_redirect\Repository\RedirectSyncQueueState;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
@@ -35,14 +34,14 @@ final class RedirectCleanQueueItemProcessorTest extends ExistingSiteBase {
   /**
    * The redirect sync queue state.
    */
-  protected EntitySyncQueueStateInterface $queueState;
+  protected EntitySyncQueueManagerInterface $queueManager;
 
   /**
    * {@inheritdoc}
    */
   public function tearDown(): void {
     $this->cleanupEntities();
-    $this->queueState->delete();
+    $this->queueManager->delete();
     parent::tearDown();
   }
 
@@ -54,7 +53,7 @@ final class RedirectCleanQueueItemProcessorTest extends ExistingSiteBase {
       ->accessCheck(FALSE)
       ->condition('druki_redirect', TRUE)
       ->execute();
-    $this->queueState->storeEntityIds($existing_ids);
+    $this->queueManager->getState()->storeEntityIds($existing_ids);
     $outdated_redirect = $this->redirectStorage->create();
     $outdated_redirect->set('druki_redirect', TRUE);
     $outdated_redirect->save();
@@ -91,7 +90,7 @@ final class RedirectCleanQueueItemProcessorTest extends ExistingSiteBase {
     parent::setUp();
     $this->processor = $this->container->get('druki_redirect.queue.redirect_clean_queue_item_processor');
     $this->redirectStorage = $this->container->get('entity_type.manager')->getStorage('redirect');
-    $this->queueState = $this->container->get('druki_redirect.repository.redirect_sync_queue_state');
+    $this->queueManager = $this->container->get('druki_redirect.queue.sync_manager');
     $this->storeEntityIds(['redirect']);
   }
 

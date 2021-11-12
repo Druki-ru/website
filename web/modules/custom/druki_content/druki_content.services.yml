@@ -8,12 +8,16 @@ services:
     arguments: [ 'druki_content' ]
 
   druki_content.queue.content_sync_manager:
-    class: Drupal\druki_content\Queue\ContentSyncQueueManager
+    class: Drupal\druki\Queue\EntitySyncQueueManagerInterface
+    factory: druki.factory.entity_sync_queue_manager:get
+    tags:
+      - { name: druki_entity_sync_queue, queue_name: content }
+
+  druki_content.builder.content_sync_queue:
+    class: Drupal\druki_content\Builder\ContentSyncQueueBuilder
     arguments:
+      - '@druki_content.queue.content_sync_manager'
       - '@druki_content.finder.content_source_file'
-      - '@queue'
-      - '@plugin.manager.queue_worker'
-      - '@druki_content.repository.content_sync_queue_state'
 
   druki_content.finder.content_source_file:
     class: Drupal\druki_content\Finder\ContentSourceFileFinder
@@ -158,7 +162,7 @@ services:
     class: Drupal\druki_content\EventSubscriber\SourceContentEventSubscriber
     arguments:
       - '@druki_content.repository.content_source_settings'
-      - '@druki_content.queue.content_sync_manager'
+      - '@druki_content.builder.content_sync_queue'
       - '@druki.process.git'
       - '@event_dispatcher'
     tags:

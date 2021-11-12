@@ -5,6 +5,7 @@ namespace Drupal\druki_content\Queue;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
+use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 
 /**
@@ -13,7 +14,7 @@ use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
  * Purpose of this processor remove all content that exists on site but was not
  * found during synchronization — content deleted from source.
  *
- * @see \Drupal\druki_content\Repository\ContentSyncQueueState
+ * @see \Drupal\druki\Repository\EntitySyncQueueStateInterface
  */
 final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
@@ -25,17 +26,17 @@ final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemPro
   /**
    * The queue manager.
    */
-  protected ContentSyncQueueManagerInterface $queueManager;
+  protected EntitySyncQueueManagerInterface $queueManager;
 
   /**
    * ContentSyncCleanQueueItemProcessor constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\druki_content\Queue\ContentSyncQueueManagerInterface $queue_manager
+   * @param \Drupal\druki\Queue\EntitySyncQueueManagerInterface $queue_manager
    *   The queue manager.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ContentSyncQueueManagerInterface $queue_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntitySyncQueueManagerInterface $queue_manager) {
     $this->entityTypeManager = $entity_type_manager;
     $this->queueManager = $queue_manager;
   }

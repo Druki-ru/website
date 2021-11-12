@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\druki_content\EventSubscriber;
 
 use Drupal\druki\Process\GitInterface;
+use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
 use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
-use Drupal\druki_content\Queue\ContentSyncQueueManagerInterface;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -28,9 +28,9 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
   protected ContentSourceSettingsInterface $contentSourceSettings;
 
   /**
-   * The content sync queue manager.
+   * The content sync queue builder.
    */
-  protected ContentSyncQueueManagerInterface $contentSyncQueueManager;
+  protected ContentSyncQueueBuilderInterface $queueBuilder;
 
   /**
    * The event dispatcher.
@@ -42,16 +42,16 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    *
    * @param \Drupal\druki_content\Repository\ContentSourceSettingsInterface $content_source_settings
    *   The content source settings repository.
-   * @param \Drupal\druki_content\Queue\ContentSyncQueueManagerInterface $content_sync_queue_manager
-   *   The content sync queue manager.
+   * @param \Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface $queue_builder
+   *   The queue builder.
    * @param \Drupal\druki\Process\GitInterface $git
    *   The git process.
    * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The event dispatcher.
    */
-  public function __construct(ContentSourceSettingsInterface $content_source_settings, ContentSyncQueueManagerInterface $content_sync_queue_manager, GitInterface $git, EventDispatcherInterface $event_dispatcher) {
+  public function __construct(ContentSourceSettingsInterface $content_source_settings, ContentSyncQueueBuilderInterface $queue_builder, GitInterface $git, EventDispatcherInterface $event_dispatcher) {
     $this->contentSourceSettings = $content_source_settings;
-    $this->contentSyncQueueManager = $content_sync_queue_manager;
+    $this->queueBuilder = $queue_builder;
     $this->git = $git;
     $this->eventDispatcher = $event_dispatcher;
   }
@@ -90,8 +90,8 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    *   The event instance.
    */
   public function onSyncRequest(RequestSourceContentSyncEvent $event): void {
-    $this->contentSyncQueueManager
-      ->buildFromPath($this->contentSourceSettings->getRepositoryUri());
+    $repository_uri = $this->contentSourceSettings->getRepositoryUri();
+    $this->queueBuilder->buildFromPath($repository_uri);
   }
 
 }

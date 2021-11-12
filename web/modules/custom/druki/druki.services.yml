@@ -1,3 +1,6 @@
+parameters:
+  druki.entity_sync_queues: []
+
 services:
   logger.channel.druki:
     class: Drupal\Core\Logger\LoggerChannel
@@ -59,6 +62,10 @@ services:
   druki.factory.entity_sync_queue_state:
     class: Drupal\druki\Factory\EntitySyncQueueStateFactory
     arguments: ['@state']
+
+  druki.factory.entity_sync_queue_manager:
+    class: Drupal\druki\Factory\EntitySyncQueueManagerFactory
+    arguments: [ '@queue', '@druki.factory.entity_sync_queue_state' ]
 
   druki.queue.chain_entity_sync_processor:
     class: Drupal\druki\Queue\ChainEntitySyncQueueItemProcessor

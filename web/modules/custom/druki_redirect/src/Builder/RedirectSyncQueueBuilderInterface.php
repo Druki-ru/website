@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Drupal\druki_redirect\Queue;
+namespace Drupal\druki_redirect\Builder;
 
 /**
- * Provides interface for redirect sync queue manager.
+ * Defines an interface for redirect sync queue builder.
  */
-interface RedirectSyncQueueManagerInterface {
+interface RedirectSyncQueueBuilderInterface {
 
   /**
-   * Builds queue from provided directories.
+   * Builds queue item list from provided directories.
    *
    * @param array $directories
    *   An array with directories where to look for 'redirects.csv' file.
@@ -18,10 +18,5 @@ interface RedirectSyncQueueManagerInterface {
    * @see \Drupal\druki_redirect\Finder\RedirectFileFinder
    */
   public function buildFromDirectories(array $directories): void;
-
-  /**
-   * Deletes everything related to the queue.
-   */
-  public function delete(): void;
 
 }

@@ -6,7 +6,7 @@ namespace Drupal\druki_redirect\EventSubscriber;
 
 use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface;
+use Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -20,21 +20,21 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
   protected ContentSourceSettingsInterface $contentSourceSettings;
 
   /**
-   * The redirect sync queue manager.
+   * The queue builder.
    */
-  protected RedirectSyncQueueManagerInterface $redirectSyncQueueManager;
+  protected RedirectSyncQueueBuilderInterface $queueBuilder;
 
   /**
    * Constructs a new SourceContentEventSubscriber object.
    *
    * @param \Drupal\druki_content\Repository\ContentSourceSettingsInterface $content_source_settings
    *   The content source settings repository.
-   * @param \Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface $redirect_sync_queue_manager
-   *   The redurect sync queue manager.
+   * @param \Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface $queue_builder
+   *   The queue builder.
    */
-  public function __construct(ContentSourceSettingsInterface $content_source_settings, RedirectSyncQueueManagerInterface $redirect_sync_queue_manager) {
+  public function __construct(ContentSourceSettingsInterface $content_source_settings, RedirectSyncQueueBuilderInterface $queue_builder) {
     $this->contentSourceSettings = $content_source_settings;
-    $this->redirectSyncQueueManager = $redirect_sync_queue_manager;
+    $this->queueBuilder = $queue_builder;
   }
 
   /**
@@ -58,7 +58,7 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
       // Only documents expected to have redirects.
       "$repository_path/docs",
     ];
-    $this->redirectSyncQueueManager->buildFromDirectories($directories);
+    $this->queueBuilder->buildFromDirectories($directories);
   }
 
 }
