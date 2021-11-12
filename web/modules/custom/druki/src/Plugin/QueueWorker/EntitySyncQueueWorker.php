@@ -38,7 +38,7 @@ final class EntitySyncQueueWorker extends QueueWorkerBase implements ContainerFa
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
     $instance = new self($configuration, $plugin_id, $plugin_definition);
     $instance->chainQueueItemProcessor = $container->get('druki.queue.chain_entity_sync_processor');
-    $instance->queueManager = $container->get('druki.factory.entity_sync_queue_manager')->get($plugin_id);
+    $instance->queueManager = $container->get('druki.factory.entity_sync_queue_manager')->get($plugin_definition['id']);
     return $instance;
   }
 
