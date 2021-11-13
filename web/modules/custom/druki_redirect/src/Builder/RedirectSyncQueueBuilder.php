@@ -8,7 +8,7 @@ use Drupal\druki\Data\EntitySyncQueueItemList;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
-use Drupal\druki_redirect\Finder\RedirectFileFinder;
+use Drupal\druki_redirect\Finder\RedirectFileFinderInterface;
 
 /**
  * Builds redirect sync queue items.
@@ -18,7 +18,7 @@ final class RedirectSyncQueueBuilder implements RedirectSyncQueueBuilderInterfac
   /**
    * The redirect file finder.
    */
-  protected RedirectFileFinder $redirectFileFinder;
+  protected RedirectFileFinderInterface $redirectFileFinder;
 
   /**
    * The redirect sync queue manager.
@@ -28,12 +28,12 @@ final class RedirectSyncQueueBuilder implements RedirectSyncQueueBuilderInterfac
   /**
    * Constructs a new RedirectSyncQueueBuilder object.
    *
-   * @param \Drupal\druki_redirect\Finder\RedirectFileFinder $redirect_file_finder
+   * @param \Drupal\druki_redirect\Finder\RedirectFileFinderInterface $redirect_file_finder
    *   The redirect file finder.
    * @param \Drupal\druki\Queue\EntitySyncQueueManagerInterface $queue_manager
    *   The queue manager.
    */
-  public function __construct(RedirectFileFinder $redirect_file_finder, EntitySyncQueueManagerInterface $queue_manager) {
+  public function __construct(RedirectFileFinderInterface $redirect_file_finder, EntitySyncQueueManagerInterface $queue_manager) {
     $this->redirectFileFinder = $redirect_file_finder;
     $this->queueManager = $queue_manager;
   }

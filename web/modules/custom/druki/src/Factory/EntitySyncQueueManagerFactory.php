@@ -11,7 +11,7 @@ use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 /**
  * Provides factory for entity sync queue manager.
  */
-final class EntitySyncQueueManagerFactory {
+final class EntitySyncQueueManagerFactory implements EntitySyncQueueManagerFactoryInterface {
 
   /**
    * An array with all currently instantiated queue managers.
@@ -28,29 +28,23 @@ final class EntitySyncQueueManagerFactory {
   /**
    * The entity sync queue state factory.
    */
-  protected EntitySyncQueueStateFactory $queueStateFactory;
+  protected EntitySyncQueueStateFactoryInterface $queueStateFactory;
 
   /**
    * Constructs a new EntitySyncQueueManagerFactory object.
    *
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory.
-   * @param \Drupal\druki\Factory\EntitySyncQueueStateFactory $queue_state_factory
+   * @param \Drupal\druki\Factory\EntitySyncQueueStateFactoryInterface $queue_state_factory
    *   The queue state factory.
    */
-  public function __construct(QueueFactory $queue_factory, EntitySyncQueueStateFactory $queue_state_factory) {
+  public function __construct(QueueFactory $queue_factory, EntitySyncQueueStateFactoryInterface $queue_state_factory) {
     $this->queueFactory = $queue_factory;
     $this->queueStateFactory = $queue_state_factory;
   }
 
   /**
-   * Gets instance of entity sync queue manager.
-   *
-   * @param string $queue_name
-   *   The queue name.
-   *
-   * @return \Drupal\druki\Queue\EntitySyncQueueManagerInterface
-   *   The queue manager instance.
+   * {@inheritdoc}
    */
   public function get(string $queue_name): EntitySyncQueueManagerInterface {
     // Because we process queues using derivatives, we should apply base queue

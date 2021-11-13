@@ -11,7 +11,7 @@ use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 /**
  * Provides factory for building entity sync queue state repositories.
  */
-final class EntitySyncQueueStateFactory {
+final class EntitySyncQueueStateFactory implements EntitySyncQueueStateFactoryInterface {
 
   /**
    * An array with all currently instantiated repositories keyed by store key.
@@ -36,13 +36,7 @@ final class EntitySyncQueueStateFactory {
   }
 
   /**
-   * Gets instance of entity sync queue state repository.
-   *
-   * @param string $storage_key
-   *   The storage key used by a repository.
-   *
-   * @return \Drupal\druki\Repository\EntitySyncQueueStateInterface
-   *   The repository instance.
+   * {@inheritdoc}
    */
   public function get(string $storage_key): EntitySyncQueueStateInterface {
     if (isset($this->repositories[$storage_key])) {
