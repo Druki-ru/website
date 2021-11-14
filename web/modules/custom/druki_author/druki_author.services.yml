@@ -7,3 +7,13 @@ services:
     factory: druki.factory.entity_sync_queue_manager:get
     tags:
       - { name: druki_entity_sync_queue, queue_name: author }
+
+  druki_author.parser.authors_file:
+    class: Drupal\druki_author\Parser\AuthorsFileParser
+
+  druki_author.builder.author_sync_queue:
+    class: Drupal\druki_author\Builder\AuthorSyncQueueBuilder
+    arguments:
+      - '@druki_author.finder.authors'
+      - '@druki_author.parser.authors_file'
+      - '@druki_author.queue.author_sync_queue_manager'

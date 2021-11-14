@@ -21,10 +21,8 @@ interface EntitySyncQueueManagerInterface {
    *
    * @param \Drupal\druki\Data\EntitySyncQueueItemListInterface $queue_items
    *   The queue items to fill queue with.
-   *
-   * @return $this
    */
-  public function fillQueue(EntitySyncQueueItemListInterface $queue_items): self;
+  public function fillQueue(EntitySyncQueueItemListInterface $queue_items): void;
 
   /**
    * Gets queue.

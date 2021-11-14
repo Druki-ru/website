@@ -39,12 +39,11 @@ final class EntitySyncQueueManager implements EntitySyncQueueManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function fillQueue(EntitySyncQueueItemListInterface $queue_items): EntitySyncQueueManagerInterface {
+  public function fillQueue(EntitySyncQueueItemListInterface $queue_items): void {
     $this->delete();
     foreach ($queue_items as $queue_item) {
       $this->getQueue()->createItem($queue_item);
     }
-    return $this;
   }
 
   /**

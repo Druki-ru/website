@@ -12,16 +12,10 @@ use Drupal\druki_author\Data\AuthorsFile;
 /**
  * Provides authors file parser.
  */
-final class AuthorsFileParser {
+final class AuthorsFileParser implements AuthorsFileParserInterface {
 
   /**
-   * Parses file with authors.
-   *
-   * @param \Drupal\druki_author\Data\AuthorsFile $file
-   *   The authors file.
-   *
-   * @return \Drupal\druki_author\Data\AuthorList
-   *   A list with authors.
+   * {@inheritdoc}
    */
   public function parse(AuthorsFile $file): AuthorList {
     $authors = new AuthorList();

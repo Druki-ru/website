@@ -10,19 +10,10 @@ use Symfony\Component\Finder\Finder;
 /**
  * Provides finder for 'authors.json' file.
  */
-final class AuthorsFileFinder {
+final class AuthorsFileFinder implements AuthorsFileFinderInterface {
 
   /**
-   * Search for authors file.
-   *
-   * The 'authors.json' file should be strictly inside provided directory. It
-   * is not language specific file.
-   *
-   * @param string $directory
-   *   The directory URI to search for a file.
-   *
-   * @return \Drupal\druki_author\Data\AuthorsFile|null
-   *   The authors file object if found. NULL if not found.
+   * {@inheritdoc}
    */
   public function find(string $directory): ?AuthorsFile {
     if (!\is_dir($directory)) {
