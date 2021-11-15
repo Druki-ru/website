@@ -1,0 +1,538 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n"
+"%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Nikita Malyshev <niklanrus@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"X-Generator: Poedit 3.0\n"
+
+msgid "Promo"
+msgstr ""
+
+msgid "Promo image"
+msgstr ""
+
+msgid "Media entity that contains a promo image."
+msgstr ""
+
+msgid "Promo image style"
+msgstr ""
+
+msgid "Why Drupal"
+msgstr ""
+
+msgid "Media entity that contains a remote video."
+msgstr ""
+
+msgid "Druki Settings"
+msgstr ""
+
+msgid "Frontpage settings"
+msgstr ""
+
+msgid "Frontpage"
+msgstr ""
+
+msgctxt "short"
+msgid "Frontpage"
+msgstr ""
+
+msgid "Settings for frontpage."
+msgstr ""
+
+msgid "General settings"
+msgstr ""
+
+msgid "Wiki"
+msgstr ""
+
+msgid "Drupal event"
+msgstr ""
+
+msgid "Event image"
+msgstr ""
+
+msgid "Media entity that contains an event promo image"
+msgstr ""
+
+msgid "Official user guide settings"
+msgstr ""
+
+msgid "Official user guide"
+msgstr ""
+
+msgid "Settings for displaying the official user guide."
+msgstr ""
+
+msgctxt "edit content"
+msgid "Edit"
+msgstr ""
+
+msgid "Drupal is a registered trademark of <a href=\"@url\">@name</a>."
+msgstr ""
+
+msgid ""
+"<a href=\"@source_url\">The source code</a> of the site is provided under "
+"the <a href=\"@license_url\">@license_name</a>."
+msgstr ""
+
+msgid ""
+"<a href=\"@source_url\">The content</a> of the site is provided under the <a "
+"href=\"@license_url\">@license_name</a>."
+msgstr ""
+
+msgid "Developed by <a href=\"@url\">@name</a> with love on Drupal."
+msgstr ""
+
+msgid "Read more"
+msgstr ""
+
+msgid "A structured, free, and open source information about Drupal."
+msgstr ""
+
+msgid "Drupal Encyclopedia"
+msgstr ""
+
+msgid "Site search"
+msgstr ""
+
+msgid "What do you want to know today?"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Go to encyclopedia"
+msgstr ""
+
+msgid "What Drupal is?"
+msgstr ""
+
+msgid ""
+"Drupal is the leading OpenSource platform that knows that your web content "
+"should cover more than just websites."
+msgstr ""
+
+msgid ""
+"Drupal is built in such a way that you can deliver the right content to the "
+"right person, at the right time - on any device."
+msgstr ""
+
+msgid "Actual minor release"
+msgstr ""
+
+msgid "from"
+msgstr ""
+
+msgid "Actual patch release"
+msgstr ""
+
+msgid "Next minor release"
+msgstr ""
+
+msgid "Full list of releases"
+msgstr ""
+
+msgid "The best way to try Drupal is to download it."
+msgstr ""
+
+msgid "Choose Drupal"
+msgstr ""
+
+msgid ""
+"If you are just getting started with web development, Drupal will provide "
+"you with invaluable experience in various areas and technologies. You will "
+"always have something to learn and develop your professional skills."
+msgstr ""
+
+msgid ""
+"For an experienced developer - Drupal will open new horizons, tools, "
+"approaches and implementations. Drupal means strict code standards, tens of "
+"thousands of tests, incredible flexibility and scalability for any needs."
+msgstr ""
+
+msgid ""
+"We all have different needs - Drupal allows us to create a unique space in "
+"the world of template solutions."
+msgstr ""
+
+msgid "encyclopedia"
+msgstr ""
+
+msgid "Help & Feedback"
+msgstr ""
+
+msgid "Edit this page"
+msgstr ""
+
+msgid ""
+"If you <strong>spot an error or a need for improvement</strong> and would "
+"like to <strong>fix it yourself</strong> in a Pull Request"
+msgstr ""
+
+msgid ""
+"If you would like to <strong>suggest an improvement to this doc</strong>"
+msgstr ""
+
+msgid "Feedback: @title"
+msgstr ""
+
+msgid "Create an issue"
+msgstr ""
+
+msgid "Describe what is wrong."
+msgstr ""
+
+msgid "Get Help"
+msgstr ""
+
+msgid "Send email"
+msgstr ""
+
+msgid ""
+"If you didn't find what you were looking for, <a href=\"@search_url\">search "
+"the docs</a>."
+msgstr ""
+
+msgid ""
+"If you want help with something specific, <a href=\"@community_resources_url"
+"\">contact the community</a>."
+msgstr ""
+
+msgid "Anchor link"
+msgstr ""
+
+msgid "Download Drupal"
+msgstr ""
+
+msgid "Drupal Wiki"
+msgstr ""
+
+msgid "Drupal wiki"
+msgstr ""
+
+msgid "Optimized remote video"
+msgstr ""
+
+msgid "Thumbnail style"
+msgstr ""
+
+msgid "Thumbnail style: @style"
+msgstr ""
+
+msgid "Project repository"
+msgstr ""
+
+msgid "Get help"
+msgstr ""
+
+msgctxt "color scheme"
+msgid "Light"
+msgstr ""
+
+msgctxt "color scheme"
+msgid "Dark"
+msgstr ""
+
+msgctxt "color scheme"
+msgid "Inherit from the system"
+msgstr ""
+
+msgctxt "content"
+msgid "Previous"
+msgstr ""
+
+msgctxt "content"
+msgid "Next"
+msgstr ""
+
+msgid "Help us to improve these docs!"
+msgstr ""
+
+msgid ""
+"All Druki docs are open source. See something that's wrong or unclear? "
+"Submit a pull request."
+msgstr ""
+
+msgid "Edit this doc"
+msgstr ""
+
+msgid "Discuss an improvement"
+msgstr ""
+
+msgid "Or, <a href=\"@url\">learn how to contribute</a>."
+msgstr ""
+
+msgid "Still need help?"
+msgstr ""
+
+msgid "Ask on GitHub community"
+msgstr ""
+
+msgid "See other community resources"
+msgstr ""
+
+msgid "Settings for elements displayed on frontpage."
+msgstr ""
+
+msgid "Druki content"
+msgstr ""
+
+msgid "Druki content TOC"
+msgstr ""
+
+msgid "Internal links"
+msgstr ""
+
+msgid "Druki content page"
+msgstr ""
+
+msgid "Computed alias"
+msgstr ""
+
+msgid "The computed alias depends on meta data."
+msgstr ""
+
+msgid "Are you sure you want to do this?"
+msgstr ""
+
+msgid "Git Information"
+msgstr ""
+
+msgid "External ID"
+msgstr ""
+
+msgid "Core version"
+msgstr ""
+
+msgid "Relative pathname"
+msgstr ""
+
+msgid "Last commit ID"
+msgstr ""
+
+msgid "New druki content %label has been created."
+msgstr ""
+
+msgid "The druki content %label has been updated."
+msgstr ""
+
+msgid "Total druki contents: @total"
+msgstr ""
+
+msgid "Internal ID"
+msgstr ""
+
+msgid "Convert internal links by content ID to actual links."
+msgstr ""
+
+msgid "Delete all druki content"
+msgstr ""
+
+msgid "Settings for Druki content entity."
+msgstr ""
+
+msgid "Entity settings"
+msgstr ""
+
+msgid "Configure a Druki content entity type."
+msgstr ""
+
+msgid "List of content"
+msgstr ""
+
+msgid "List of druki content."
+msgstr ""
+
+msgid "Contents"
+msgstr ""
+
+msgid "Difficulty"
+msgstr ""
+
+msgid "Update queue"
+msgstr ""
+
+msgid "Current queue items: @count"
+msgstr ""
+
+msgid "Force content processing"
+msgstr ""
+
+msgid "Content will be processed even if it not updated from last queue."
+msgstr ""
+
+msgid "Run queue"
+msgstr ""
+
+msgid "Clear queue"
+msgstr ""
+
+msgid "Druki content sync."
+msgstr ""
+
+msgid ""
+"The required dependency @dependency is missing. Install it and try again."
+msgstr ""
+
+msgid "Druki category"
+msgstr ""
+
+msgid "Category navigation"
+msgstr ""
+
+msgid "Content sync"
+msgstr ""
+
+msgid "Manage queue"
+msgstr ""
+
+msgid "Queue builder"
+msgstr ""
+
+msgid "Build from Git"
+msgstr ""
+
+msgid "Pull from Git"
+msgstr ""
+
+msgid ""
+"The \"git pull\" command will be invoked, which will trigger event and build "
+"queue from it."
+msgstr ""
+
+msgid "Build from folder"
+msgstr ""
+
+msgid "The URI with source content."
+msgstr ""
+
+msgid "You're reading the content for <strong>Drupal @core</strong>."
+msgstr ""
+
+msgid "The content is also available for other versions: @links."
+msgstr ""
+
+msgid ""
+"Git repository not found in provided path. Please, make sure you have actual "
+"repository in the path, or path is correct."
+msgstr ""
+
+msgid "Git status"
+msgstr ""
+
+msgid "Pull from remote repository"
+msgstr ""
+
+msgid ""
+"The Webhook URL which can be used to trigger pull events and all consecutive "
+"operations."
+msgstr ""
+
+msgid "Regenerate key"
+msgstr ""
+
+msgid "Repository path"
+msgstr ""
+
+msgid "The local path to repository cloning."
+msgstr ""
+
+msgid "<strong>Last commit ID:</strong> @value"
+msgstr ""
+
+msgid "Git pull executed successfully."
+msgstr ""
+
+msgid "Git pull end up with error."
+msgstr ""
+
+msgid "Druki Git Settings"
+msgstr ""
+
+msgid "Git settings"
+msgstr ""
+
+msgid "Settings and status"
+msgstr ""
+
+msgid ""
+"Status about last commit, git pull, settings for webhook URL and repository "
+"path."
+msgstr ""
+
+msgid "Repository settings"
+msgstr ""
+
+msgid "Repository URL"
+msgstr ""
+
+msgid "The remote repository URL."
+msgstr ""
+
+msgid "Global search"
+msgstr ""
+
+msgid "Druki content core"
+msgstr ""
+
+msgid "Processed core value."
+msgstr ""
+
+msgid "Druki content difficulty"
+msgstr ""
+
+msgid "Processed difficulty value."
+msgstr ""
+
+msgid "What are we searching for today?"
+msgstr ""
+
+msgid "Apply filters"
+msgstr ""
+
+msgid "Not applicable"
+msgstr ""
+
+msgid "Nothing was found."
+msgstr ""
+
+msgid "Search results for \"%keys\""
+msgstr ""
+
+msgid "No results found for \"%keys\""
+msgstr ""
+
+msgid "No results found."
+msgstr ""
+
+msgid "You didn't enter a search query."
+msgstr ""
+
+msgid "Can't find an answer to your question? Ask the community for help!"
+msgstr ""
+
+msgid "Actual versions"
+msgstr ""
+
+msgid "Minor release"
+msgstr ""
+
+msgid "Patch release"
+msgstr ""
+
+msgid "In development"
+msgstr ""
+
+msgid "security update"
+msgstr ""
+
+msgid "Search results for «:keys»"
+msgstr ""
