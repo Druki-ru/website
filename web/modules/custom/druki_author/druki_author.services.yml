@@ -17,3 +17,15 @@ services:
       - '@druki_author.finder.authors'
       - '@druki_author.parser.authors_file'
       - '@druki_author.queue.author_sync_queue_manager'
+
+  druki_author.queue.author_list_queue_item_processor:
+    class: Drupal\druki_author\Queue\AuthorListQueueItemProcessor
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: druki_entity_sync_queue_item_processor }
+
+  druki_author.queue.author_clean_queue_item_processor:
+    class: Drupal\druki_author\Queue\AuthorCleanQueueItemProcessor
+    arguments: ['@entity_type.manager', '@druki_author.queue.author_sync_queue_manager']
+    tags:
+      - { name: druki_entity_sync_queue_item_processor }
