@@ -218,4 +218,22 @@ interface AuthorInterface extends ContentEntityInterface {
    */
   public function clearImage(): self;
 
+  /**
+   * Sets values checksum.
+   *
+   * @param string $checksum
+   *   The checksum.
+   *
+   * @return $this
+   */
+  public function setChecksum(string $checksum): self;
+
+  /**
+   * Gets checksum of source values.
+   *
+   * @return string
+   *   The checksum.
+   */
+  public function getChecksum(): string;
+
 }

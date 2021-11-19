@@ -34,6 +34,7 @@ final class AuthorTest extends ExistingSiteBase {
     $this->assertEquals($this->getSampleValues()['homepage'], $author->getHomepage());
     $this->assertEquals($this->getSampleValues()['description'], $author->getDescription());
     $this->assertEquals($this->getSampleValues()['image'], $author->getImage());
+    $this->assertEquals($author->checksum(), $author->checksum());
   }
 
   /**

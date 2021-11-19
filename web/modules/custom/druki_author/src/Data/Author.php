@@ -226,4 +226,14 @@ final class Author {
     return $this->image;
   }
 
+  /**
+   * Generates a checksum for current values.
+   *
+   * @return string
+   *   The checksum.
+   */
+  public function checksum(): string {
+    return \md5(\serialize($this));
+  }
+
 }

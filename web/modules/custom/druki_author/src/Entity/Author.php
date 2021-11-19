@@ -69,6 +69,11 @@ final class Author extends ContentEntityBase implements AuthorInterface {
       ->setLabel(new TranslatableMarkup('Image'))
       ->setSetting('target_type', 'media');
 
+    $fields['checksum'] = BaseFieldDefinition::create('string')
+      ->setLabel(new TranslatableMarkup('Checksum'))
+      ->setDescription(new TranslatableMarkup('A checksum of source values used to import or update current entity.'))
+      ->setRequired(TRUE);
+
     return $fields;
   }
 
@@ -271,6 +276,21 @@ final class Author extends ContentEntityBase implements AuthorInterface {
    */
   public function clearImage(): AuthorInterface {
     return $this->set('image', NULL);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setChecksum(string $checksum): AuthorInterface {
+    $this->set('checksum', $checksum);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChecksum(): string {
+    return $this->get('checksum')->first()->getString();
   }
 
 }

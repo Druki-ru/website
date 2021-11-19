@@ -65,14 +65,17 @@ final class AuthorListQueueItemProcessor implements EntitySyncQueueItemProcessor
    */
   protected function processAuthor(Author $author): string {
     if ($author_entity = $this->authorStorage->load($author->getId())) {
-      // @todo Checksum condition.
-      return $author_entity->id();
+      if ($author->checksum() == $author_entity->getChecksum()) {
+        return $author_entity->id();
+      }
     }
     else {
       /** @var \Drupal\druki_author\Entity\AuthorInterface $author_entity */
       $author_entity = $this->authorStorage->create();
       $author_entity->setId($author->getId());
     }
+
+    $author_entity->setChecksum($author->checksum());
 
     $author_entity->setName(
       $author->getNameGiven(),

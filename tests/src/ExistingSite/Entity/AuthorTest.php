@@ -60,6 +60,7 @@ final class AuthorTest extends ExistingSiteBase {
       'homepage' => ['homepage', 'uri'],
       'description' => ['description', 'map'],
       'image' => ['image', 'entity_reference'],
+      'checksum' => ['checksum', 'string'],
     ];
   }
 
@@ -125,6 +126,9 @@ final class AuthorTest extends ExistingSiteBase {
     $this->assertEquals($media->id(), $author->getImageMedia()->id());
     $author->clearImage();
     $this->assertFalse($author->hasImage());
+
+    $author->setChecksum('foo-bar');
+    $this->assertEquals('foo-bar', $author->getChecksum());
   }
 
   /**

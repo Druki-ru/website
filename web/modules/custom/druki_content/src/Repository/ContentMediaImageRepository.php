@@ -27,6 +27,9 @@ use Drupal\media\MediaInterface;
  * because it is possible that same file is used in multiple places, but we
  * don't want to store multiple copies of the same file. This repository also
  * cary about finding already existed duplicates and re-used them.
+ *
+ * @todo Move this into druki module, since this is common module for saving
+ *   local and remote images into website.
  */
 final class ContentMediaImageRepository {
 
