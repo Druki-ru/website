@@ -85,6 +85,8 @@ final class SearchController implements ContainerInjectionInterface {
       '#type' => 'pager',
     ];
 
+    $cache->applyTo($build);
+
     return $build;
   }
 
