@@ -6,13 +6,11 @@ namespace Drupal\druki\Repository;
 
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Component\Uuid\Uuid;
 use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
-use Drupal\Core\File\MimeType\MimeTypeGuesser;
 use Drupal\Core\Utility\Token;
 use Drupal\druki\File\FileTrackerInterface;
 use Drupal\file\FileInterface;
@@ -73,6 +71,8 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
    *   The entity type manager.
    * @param \Drupal\Core\File\FileSystemInterface $file_system
    *   The file system.
+   * @param \Drupal\Component\Uuid\UuidInterface $uuid
+   *   The UUID service.
    */
   public function __construct(
     FileTrackerInterface $file_tracker,

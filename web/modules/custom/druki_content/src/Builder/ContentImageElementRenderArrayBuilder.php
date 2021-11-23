@@ -9,7 +9,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\druki_content\Data\ContentElementInterface;
 use Drupal\druki_content\Data\ContentImageElement;
-use Drupal\druki_content\Repository\ContentMediaImageRepository;
 use Drupal\file\FileStorage;
 
 /**
