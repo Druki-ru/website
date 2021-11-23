@@ -2,36 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Drupal\druki_content\Repository;
+namespace Drupal\druki\Repository;
 
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Component\Uuid\Uuid;
+use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\MimeType\MimeTypeGuesser;
 use Drupal\Core\Utility\Token;
 use Drupal\druki\File\FileTrackerInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 
 /**
- * Provides storage for media image storage from the content.
- *
- * The images in source content can be external and local files. No matter what
- * type is used, we should store them with website, even if source files is
- * located in content source directory.
- *
- * This allows us to manipulate with image, making it responsive or multiple
- * sizes with zoom libraries. Also this allows to reduce duplicates files,
- * because it is possible that same file is used in multiple places, but we
- * don't want to store multiple copies of the same file. This repository also
- * cary about finding already existed duplicates and re-used them.
- *
- * @todo Move this into druki module, since this is common module for saving
- *   local and remote images into website.
+ * Provides a repository for media image storage implementation.
  */
-final class ContentMediaImageRepository {
+final class MediaImageRepository implements MediaImageRepositoryInterface {
 
   /**
    * The file tracker.
@@ -64,7 +54,12 @@ final class ContentMediaImageRepository {
   protected FileSystemInterface $fileSystem;
 
   /**
-   * Constructs a new ContentMediaImageRepository object.
+   * The UUID service.
+   */
+  protected UuidInterface $uuid;
+
+  /**
+   * Constructs a new MediaImageRepository object.
    *
    * @param \Drupal\druki\File\FileTrackerInterface $file_tracker
    *   The file tracker.
@@ -86,6 +81,7 @@ final class ContentMediaImageRepository {
     CacheBackendInterface $cache,
     EntityTypeManagerInterface $entity_type_manager,
     FileSystemInterface $file_system,
+    UuidInterface $uuid,
   ) {
     $this->fileTracker = $file_tracker;
     $this->entityFieldManager = $entity_field_manager;
@@ -93,18 +89,11 @@ final class ContentMediaImageRepository {
     $this->cache = $cache;
     $this->entityTypeManager = $entity_type_manager;
     $this->fileSystem = $file_system;
+    $this->uuid = $uuid;
   }
 
   /**
-   * Saves image file by URI.
-   *
-   * @param string $file_uri
-   *   The file URI.
-   * @param string $image_alt
-   *   The image alt.
-   *
-   * @return \Drupal\media\MediaInterface|null
-   *   The media entity if created. NULL if problem happened.
+   * {@inheritdoc}
    */
   public function saveByUri(string $file_uri, string $image_alt): ?MediaInterface {
     // Do not create duplicates for the same file.
@@ -119,13 +108,7 @@ final class ContentMediaImageRepository {
   }
 
   /**
-   * Loads media file by file URI.
-   *
-   * @param string $file_uri
-   *   The file URI.
-   *
-   * @return \Drupal\media\MediaInterface|null
-   *   The media entity. NULL if not found.
+   * {@inheritdoc}
    */
   public function loadByUri(string $file_uri): ?MediaInterface {
     if (UrlHelper::isExternal($file_uri)) {
@@ -160,7 +143,8 @@ final class ContentMediaImageRepository {
       // The cURL will throw exception, and we softly skip it.
       $uri = NULL;
       try {
-        $destination = $this->fileSystem->tempnam('temporary://', 'druki_content');
+        $filename = $this->uuid->generate() . '.' . \pathinfo($url, \PATHINFO_EXTENSION);
+        $destination = "temporary://$filename";
         $uri = \system_retrieve_file($url, $destination);
         // If result was FASLE, convert it to NULL.
         if (\is_bool($uri) && !$uri) {
@@ -187,7 +171,6 @@ final class ContentMediaImageRepository {
     if (!$this->fileSystem->prepareDirectory($destination_uri, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS)) {
       return NULL;
     }
-    $basename = \basename($file_uri);
     if (UrlHelper::isExternal($file_uri)) {
       $file_uri = $this->fetchRemoteImage($file_uri);
     }
@@ -195,7 +178,8 @@ final class ContentMediaImageRepository {
       return NULL;
     }
     $contents = \file_get_contents($file_uri);
-    $uri = $this->fileSystem->saveData($contents, $destination_uri . '/' . $basename);
+    $filename = \basename($file_uri);
+    $uri = $this->fileSystem->saveData($contents, $destination_uri . '/' . $filename);
     $file_storage = $this->entityTypeManager->getStorage('file');
     $file = $file_storage->create([
       'uri' => $uri,

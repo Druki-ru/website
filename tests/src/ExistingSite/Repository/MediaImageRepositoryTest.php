@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Druki\Tests\ExistingSite\Repository;
 
 use Druki\Tests\Traits\EntityCleanupTrait;
-use Drupal\druki_content\Repository\ContentMediaImageRepository;
+use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 use GuzzleHttp\Client;
@@ -15,11 +15,11 @@ use Psr\Http\Message\ResponseInterface;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
- * Provides test for content media image repository.
+ * Provides test for media image repository.
  *
- * @coversDefaultClass \Drupal\druki_content\Repository\ContentMediaImageRepository
+ * @coversDefaultClass \Drupal\druki\Repository\MediaImageRepository
  */
-final class ContentMediaImageRepositoryTest extends ExistingSiteBase {
+final class MediaImageRepositoryTest extends ExistingSiteBase {
 
   use EntityCleanupTrait;
   use ProphecyTrait;
@@ -27,7 +27,7 @@ final class ContentMediaImageRepositoryTest extends ExistingSiteBase {
   /**
    * The content media image repository.
    */
-  private ContentMediaImageRepository $repository;
+  protected MediaImageRepositoryInterface $repository;
 
   /**
    * {@inheritdoc}
@@ -46,7 +46,7 @@ final class ContentMediaImageRepositoryTest extends ExistingSiteBase {
       ->willThrow(new TransferException());
     $this->container->set('http_client', $http_client_mock->reveal());
 
-    $this->repository = $this->container->get('druki_content.repository.content_media_image');
+    $this->repository = $this->container->get('druki.repository.media_image');
 
     $this->storeEntityIds(['media', 'file']);
   }

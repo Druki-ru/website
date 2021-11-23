@@ -6,6 +6,7 @@ namespace Drupal\druki_content\Builder;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\druki_content\Data\ContentElementInterface;
 use Drupal\druki_content\Data\ContentImageElement;
 use Drupal\druki_content\Repository\ContentMediaImageRepository;
@@ -19,7 +20,7 @@ final class ContentImageElementRenderArrayBuilder extends ContentElementRenderAr
   /**
    * The content media image repository.
    */
-  protected ContentMediaImageRepository $imageRepository;
+  protected MediaImageRepositoryInterface $imageRepository;
 
   /**
    * The file storage.
@@ -29,15 +30,15 @@ final class ContentImageElementRenderArrayBuilder extends ContentElementRenderAr
   /**
    * Constructs a new ContentImageElementRenderArrayBuilder object.
    *
-   * @param \Drupal\druki_content\Repository\ContentMediaImageRepository $image_repository
-   *   The content media image repository.
+   * @param \Drupal\druki\Repository\MediaImageRepositoryInterface $image_repository
+   *   The media image repository.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(ContentMediaImageRepository $image_repository, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(MediaImageRepositoryInterface $image_repository, EntityTypeManagerInterface $entity_type_manager) {
     $this->imageRepository = $image_repository;
     $this->fileStorage = $entity_type_manager->getStorage('file');
   }

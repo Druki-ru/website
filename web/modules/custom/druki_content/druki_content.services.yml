@@ -111,7 +111,7 @@ services:
 
   druki_content.builder.content_image_element_render_array:
     class: Drupal\druki_content\Builder\ContentImageElementRenderArrayBuilder
-    arguments: ['@druki_content.repository.content_media_image', '@entity_type.manager']
+    arguments: ['@druki.repository.media_image', '@entity_type.manager']
     tags:
       - { name: druki_content_element_render_array_builder }
 
@@ -121,14 +121,7 @@ services:
       - { name: stream_wrapper, scheme: druki-content-source }
 
   druki_content.repository.content_media_image:
-    class: Drupal\druki_content\Repository\ContentMediaImageRepository
-    arguments:
-      - '@druki.file_tracker'
-      - '@entity_field.manager'
-      - '@token'
-      - '@cache.static'
-      - '@entity_type.manager'
-      - '@file_system'
+    alias: druki.repository.media_image
 
   druki_content.queue.content_source_file_list_queue_item:
     class: Drupal\druki_content\Queue\ContentSourceFileListQueueItemProcessor

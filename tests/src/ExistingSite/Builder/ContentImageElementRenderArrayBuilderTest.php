@@ -6,6 +6,7 @@ namespace Druki\Tests\ExistingSite\Builder;
 
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\druki_content\Builder\ContentElementRenderArrayBuilderInterface;
 use Drupal\druki_content\Data\ContentElementBase;
 use Drupal\druki_content\Data\ContentImageElement;
@@ -33,7 +34,7 @@ final class ContentImageElementRenderArrayBuilderTest extends ExistingSiteBase {
   /**
    * The image repository.
    */
-  protected ContentMediaImageRepository $repository;
+  protected MediaImageRepositoryInterface $repository;
 
   /**
    * Tests that applicable test works as expected.
@@ -100,7 +101,7 @@ final class ContentImageElementRenderArrayBuilderTest extends ExistingSiteBase {
     $this->container->set('http_client', $http_client_mock->reveal());
 
     $this->builder = $this->container->get('druki_content.builder.content_image_element_render_array');
-    $this->repository = $this->container->get('druki_content.repository.content_media_image');
+    $this->repository = $this->container->get('druki.repository.media_image');
 
     // Image will be fetched and creates media and file entity.
     $this->storeEntityIds(['media', 'file']);

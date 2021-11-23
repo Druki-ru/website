@@ -71,3 +71,14 @@ services:
     class: Drupal\druki\Queue\ChainEntitySyncQueueItemProcessor
     tags:
       - { name: service_collector, tag: druki_entity_sync_queue_item_processor, call: addProcessor }
+
+  druki.repository.media_image:
+    class: Drupal\druki\Repository\MediaImageRepository
+    arguments:
+      - '@druki.file_tracker'
+      - '@entity_field.manager'
+      - '@token'
+      - '@cache.static'
+      - '@entity_type.manager'
+      - '@file_system'
+      - '@uuid'
