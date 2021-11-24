@@ -13,7 +13,10 @@
     "description": {
       "en": "I'm the founder of Drupal and Acquia. I've been working on Open Source and an Open Web for 20+ years. I'm also a blogger, photographer, traveler, investor, husband, and father of two wonderful kids."
     },
-    "image": "image/dries.jpg"
+    "image": "image/dries.jpg",
+    "identification": {
+      "email": ["dries@buytaert.net", "dries@acquia.com"]
+    }
   },
   "zuck": {
     "name": {

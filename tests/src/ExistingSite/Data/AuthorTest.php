@@ -34,6 +34,9 @@ final class AuthorTest extends ExistingSiteBase {
     $this->assertEquals($this->getSampleValues()['homepage'], $author->getHomepage());
     $this->assertEquals($this->getSampleValues()['description'], $author->getDescription());
     $this->assertEquals($this->getSampleValues()['image'], $author->getImage());
+    $this->assertEquals($this->getSampleValues()['identification'], $author->getIdentification());
+    $this->assertEquals($this->getSampleValues()['identification']['email'], $author->getIdentification('email'));
+    $this->assertEquals([], $author->getIdentification('not exist'));
     $this->assertEquals($author->checksum(), $author->checksum());
   }
 
@@ -74,6 +77,9 @@ final class AuthorTest extends ExistingSiteBase {
         'en' => 'Steve Jobs 2.0',
       ],
       'image' => $directory->url() . '/authors/image/dries.jpg',
+      'identification' => [
+        'email' => ['john.doe@example.com', 'jane.doe@example.com'],
+      ],
     ];
   }
 
@@ -152,6 +158,10 @@ final class AuthorTest extends ExistingSiteBase {
     $values_set = $this->getSampleValues();
     $values_set['description'] = 'test';
     $values['invalid description value'] = [$values_set];
+
+    $values_set = $this->getSampleValues();
+    $values_set['identification']['email'] = 'string';
+    $values['invalid identification email type'] = [$values_set];
 
     return $values;
   }

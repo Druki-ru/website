@@ -59,6 +59,11 @@ final class Author {
   protected ?string $image = NULL;
 
   /**
+   * An array with credentials for author identification.
+   */
+  protected array $identification = [];
+
+  /**
    * Builds an instance from an array.
    *
    * @param string $id
@@ -68,7 +73,7 @@ final class Author {
    */
   public static function createFromArray(string $id, array $values): self {
     $instance = new self();
-    if (!\preg_match('/^[a-z0-9]{1,64}$/', $id)) {
+    if (!\preg_match('/^[a-zA-Z0-9_-]{1,64}$/', $id)) {
       throw new \InvalidArgumentException('Author ID contains not allowed characters, please fix it.');
     }
     $instance->id = $id;
@@ -131,6 +136,15 @@ final class Author {
         throw new \InvalidArgumentException('The image URI is incorrect.');
       }
       $instance->image = $values['image'];
+    }
+
+    if (isset($values['identification'])) {
+      if (isset($values['identification']['email'])) {
+        if (!\is_array($values['identification']['email'])) {
+          throw new \InvalidArgumentException('Identification email should be an array.');
+        }
+        $instance->identification['email'] = $values['identification']['email'];
+      }
     }
 
     return $instance;
@@ -234,6 +248,25 @@ final class Author {
    */
   public function checksum(): string {
     return \md5(\serialize($this));
+  }
+
+  /**
+   * Gets an array with identification values.
+   *
+   * @param string|null $type
+   *   The specific type of identification to get.
+   *
+   * @return array
+   *   An array with identifications.
+   */
+  public function getIdentification(?string $type = NULL): array {
+    if ($type) {
+      if (!isset($this->identification[$type])) {
+        return [];
+      }
+      return $this->identification[$type];
+    }
+    return $this->identification;
   }
 
 }

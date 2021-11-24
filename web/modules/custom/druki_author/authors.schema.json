@@ -4,7 +4,7 @@
   "description": "The Druki authors file schema.",
   "type": "object",
   "patternProperties": {
-    "^[a-z0-9]{1,64}$": {"$ref": "#/definitions/author"}
+    "^[a-zA-Z0-9_-]{1,64}$": {"$ref": "#/definitions/author"}
   },
   "additionalProperties": false,
   "definitions": {
@@ -62,6 +62,16 @@
         "image": {
           "type": "string",
           "description": "The user picture URI."
+        },
+        "identification": {
+          "type": "object",
+          "description": "A list of credentials which can be used to identify an author.",
+          "properties": {
+            "email": {
+              "type": "array",
+              "description": "An array of email addresses which can be used for identification, e.g. in Git log."
+            }
+          }
         }
       },
       "required": ["name", "country"]
