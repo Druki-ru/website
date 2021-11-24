@@ -6,8 +6,10 @@ namespace Drupal\druki_author\Queue;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
+use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\druki_author\Data\Author;
 use Drupal\druki_author\Data\AuthorListQueueItem;
 
@@ -22,16 +24,24 @@ final class AuthorListQueueItemProcessor implements EntitySyncQueueItemProcessor
   protected EntityStorageInterface $authorStorage;
 
   /**
+   * The media image repository.
+   */
+  protected MediaImageRepositoryInterface $mediaImageRepository;
+
+  /**
    * Constructs a new AuthorListQueueItemProcessor object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\druki\Repository\MediaImageRepositoryInterface $media_image_repository
+   *   The media image repository.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MediaImageRepositoryInterface $media_image_repository) {
     $this->authorStorage = $entity_type_manager->getStorage('druki_author');
+    $this->mediaImageRepository = $media_image_repository;
   }
 
   /**
@@ -100,7 +110,13 @@ final class AuthorListQueueItemProcessor implements EntitySyncQueueItemProcessor
 
     $author_entity->clearImage();
     if ($author->getImage()) {
-      // @todo Process and download image if necessary.
+      $alt = (string) new TranslatableMarkup('Avatar for author @username', [
+        '@username' => $author->getId(),
+      ]);
+      $author_image_media = $this->mediaImageRepository->saveByUri($author->getImage(), $alt);
+      if ($author_image_media) {
+        $author_entity->setImageMedia($author_image_media);
+      }
     }
 
     $author_entity->save();

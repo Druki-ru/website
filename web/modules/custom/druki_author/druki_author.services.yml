@@ -20,7 +20,9 @@ services:
 
   druki_author.queue.author_list_queue_item_processor:
     class: Drupal\druki_author\Queue\AuthorListQueueItemProcessor
-    arguments: ['@entity_type.manager']
+    arguments:
+      - '@entity_type.manager'
+      - '@druki.repository.media_image'
     tags:
       - { name: druki_entity_sync_queue_item_processor }
 
