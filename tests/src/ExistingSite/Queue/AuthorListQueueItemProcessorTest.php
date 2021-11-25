@@ -12,6 +12,7 @@ use Drupal\druki_author\Data\Author;
 use Drupal\druki_author\Data\AuthorList;
 use Drupal\druki_author\Data\AuthorListQueueItem;
 use Drupal\druki_author\Queue\AuthorListQueueItemProcessor;
+use Drupal\media\MediaInterface;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
@@ -108,6 +109,11 @@ final class AuthorListQueueItemProcessorTest extends ExistingSiteBase {
       ],
       'image' => $directory->url() . '/authors/image/dries.jpg',
       'country' => 'RU',
+      'identification' => [
+        'email' => [
+          'john.doe@example.com',
+        ],
+      ],
     ]);
 
 
@@ -138,7 +144,11 @@ final class AuthorListQueueItemProcessorTest extends ExistingSiteBase {
     $this->assertEquals($author->getOrgUnit(), $author_entity->getOrganizationUnit());
     $this->assertEquals($author->getHomepage(), $author_entity->getHomepage());
     $this->assertEquals($author->getDescription(), $author_entity->getDescription());
-    // @todo Add image assertion when implemented.
+    $this->assertInstanceOf(MediaInterface::class, $author_entity->getImageMedia());
+    $this->assertEquals(
+      [['type' => 'email', 'value' => 'john.doe@example.com']],
+      $author_entity->get('identification')->getValue(),
+    );
   }
 
   /**

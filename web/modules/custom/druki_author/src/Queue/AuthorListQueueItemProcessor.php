@@ -119,6 +119,15 @@ final class AuthorListQueueItemProcessor implements EntitySyncQueueItemProcessor
       }
     }
 
+    $author_entity->clearIdentification();
+    if ($author->getIdentification()) {
+      foreach ($author->getIdentification() as $type => $identifications) {
+        foreach ($identifications as $identification) {
+          $author_entity->addIdentification($type, $identification);
+        }
+      }
+    }
+
     $author_entity->save();
     return $author_entity->id();
   }
