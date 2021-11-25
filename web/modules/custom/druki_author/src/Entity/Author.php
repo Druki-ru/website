@@ -7,6 +7,7 @@ namespace Drupal\druki_author\Entity;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\media\MediaInterface;
 
@@ -68,6 +69,10 @@ final class Author extends ContentEntityBase implements AuthorInterface {
     $fields['image'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(new TranslatableMarkup('Image'))
       ->setSetting('target_type', 'media');
+
+    $fields['identification'] = BaseFieldDefinition::create('druki_identification')
+      ->setLabel(new TranslatableMarkup('Identification'))
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
 
     $fields['checksum'] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Checksum'))
@@ -291,6 +296,39 @@ final class Author extends ContentEntityBase implements AuthorInterface {
    */
   public function getChecksum(): string {
     return $this->get('checksum')->first()->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setIdentification(array $identification): AuthorInterface {
+    $this->clearIdentification();
+    foreach ($identification as $item) {
+      if (!isset($item['type']) || !isset($item['value'])) {
+        continue;
+      }
+      $this->addIdentification($item['type'], $item['value']);
+    }
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function clearIdentification(): AuthorInterface {
+    $this->set('identification', NULL);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addIdentification(string $type, string $value): AuthorInterface {
+    $this->get('identification')->appendItem([
+      'type' => $type,
+      'value' => $value,
+    ]);
+    return $this;
   }
 
 }

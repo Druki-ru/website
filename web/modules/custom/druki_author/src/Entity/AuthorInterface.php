@@ -236,4 +236,34 @@ interface AuthorInterface extends ContentEntityInterface {
    */
   public function getChecksum(): string;
 
+  /**
+   * Sets identifications.
+   *
+   * @param array $identification
+   *   An array with identification. Each array should contain 'type' and
+   *   'value' values.
+   *
+   * @return $this
+   */
+  public function setIdentification(array $identification): self;
+
+  /**
+   * Adds identification value.
+   *
+   * @param string $type
+   *   The identification type.
+   * @param string $value
+   *   The identification value.
+   *
+   * @return $this
+   */
+  public function addIdentification(string $type, string $value): self;
+
+  /**
+   * Clears identification values.
+   *
+   * @return $this
+   */
+  public function clearIdentification(): self;
+
 }

@@ -61,6 +61,7 @@ final class AuthorTest extends ExistingSiteBase {
       'description' => ['description', 'map'],
       'image' => ['image', 'entity_reference'],
       'checksum' => ['checksum', 'string'],
+      'identification' => ['identification', 'druki_identification'],
     ];
   }
 
@@ -126,6 +127,17 @@ final class AuthorTest extends ExistingSiteBase {
     $this->assertEquals($media->id(), $author->getImageMedia()->id());
     $author->clearImage();
     $this->assertFalse($author->hasImage());
+
+    $this->assertTrue($author->get('identification')->isEmpty());
+    $author->addIdentification('email', 'john.doe@example.com');
+    $this->assertFalse($author->get('identification')->isEmpty());
+    $author->setIdentification([
+      ['type' => 'email', 'value' => 'jane.doe@example.com'],
+      ['invalid'],
+    ]);
+    $this->assertEquals(['type' => 'email', 'value' => 'jane.doe@example.com'], $author->get('identification')->first()->getValue());
+    $author->clearIdentification();
+    $this->assertTrue($author->get('identification')->isEmpty());
 
     $author->setChecksum('foo-bar');
     $this->assertEquals('foo-bar', $author->getChecksum());
