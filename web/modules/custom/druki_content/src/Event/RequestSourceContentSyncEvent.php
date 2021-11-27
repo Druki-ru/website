@@ -8,6 +8,8 @@ use Drupal\Component\EventDispatcher\Event;
 
 /**
  * Provides an event for requesting source content synchronization.
+ *
+ * @todo Pass 'druki_content.repository.content_source_settings' with event.
  */
 final class RequestSourceContentSyncEvent extends Event {
 

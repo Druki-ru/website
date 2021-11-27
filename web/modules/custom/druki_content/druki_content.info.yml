@@ -8,6 +8,7 @@ configure: entity.druki_content.settings
 
 dependencies:
   - druki:druki
+  - druki:druki_author
   - drupal:text
   - drupal:options
   - drupal:media
