@@ -6,8 +6,9 @@ namespace Druki\Tests\Unit\EventSubscriber;
 
 use Drupal\druki_author\Builder\AuthorSyncQueueBuilderInterface;
 use Drupal\druki_author\EventSubscriber\SourceContentEventSubscriber;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\Tests\UnitTestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -23,22 +24,10 @@ final class AuthorSourceContentEventSubscriberTest extends UnitTestCase {
    * Tests content sync request subscriber.
    */
   public function testOnSyncRequest(): void {
-    $settings = $this->buildContentSourceSettings();
+    $event = new RequestSourceContentSyncEvent('/foo/bar');
     $queue_builder = $this->buildAuthorSyncQueueBuilder();
-    $subscriber = new SourceContentEventSubscriber($settings, $queue_builder);
-    $this->markTestIncomplete('Complete after refactoring RequestSourceContentSyncEvent');
-  }
-
-  /**
-   * Builds a mock for content source settings.
-   *
-   * @return \Drupal\druki_content\Repository\ContentSourceSettingsInterface
-   *   A mock of content source settings.
-   */
-  protected function buildContentSourceSettings(): ContentSourceSettingsInterface {
-    $settings = $this->prophesize(ContentSourceSettingsInterface::class);
-
-    return $settings->reveal();
+    $subscriber = new SourceContentEventSubscriber($queue_builder);
+    $subscriber->onSyncRequest($event);
   }
 
   /**
@@ -49,8 +38,16 @@ final class AuthorSourceContentEventSubscriberTest extends UnitTestCase {
    */
   protected function buildAuthorSyncQueueBuilder(): AuthorSyncQueueBuilderInterface {
     $queue_builder = $this->prophesize(AuthorSyncQueueBuilderInterface::class);
-
+    $queue_builder->buildFromDirectory(Argument::type('string'))->shouldBeCalled();
     return $queue_builder->reveal();
+  }
+
+  /**
+   * Tests that subscribed to all required events.
+   */
+  public function testGetSubscribedEvents(): void {
+    $subscribed_events = \array_keys(SourceContentEventSubscriber::getSubscribedEvents());
+    $this->assertContains(RequestSourceContentSyncEvent::class, $subscribed_events);
   }
 
 }

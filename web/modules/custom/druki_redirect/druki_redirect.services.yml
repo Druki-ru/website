@@ -2,7 +2,6 @@ services:
   druki_redirect.event_subscriber.source_content:
     class: Drupal\druki_redirect\EventSubscriber\SourceContentEventSubscriber
     arguments:
-      - '@druki_content.repository.content_source_settings'
       - '@druki_redirect.builder.redirect_sync_queue'
     tags:
       - { name: event_subscriber }

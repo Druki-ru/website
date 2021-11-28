@@ -33,7 +33,7 @@ final class RedirectSourceContentEventSubscriberTest extends UnitTestCase {
     $event_subscriber = $this->buildEventSubscriber();
 
     $this->assertArrayHasKey(RequestSourceContentSyncEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
-    $event = new RequestSourceContentSyncEvent();
+    $event = new RequestSourceContentSyncEvent('/foo/bar');
     $this->assertEmpty($this->requestedDirs);
     $event_subscriber->onSyncRequest($event);
     $expected = [
@@ -50,21 +50,8 @@ final class RedirectSourceContentEventSubscriberTest extends UnitTestCase {
    */
   protected function buildEventSubscriber(): SourceContentEventSubscriber {
     return new SourceContentEventSubscriber(
-      $this->buildContentSourceSettings(),
       $this->buildRedirectSyncQueueBuilder(),
     );
-  }
-
-  /**
-   * Builds content source settings mock.
-   *
-   * @return \Drupal\druki_content\Repository\ContentSourceSettingsInterface
-   *   The mock instance.
-   */
-  protected function buildContentSourceSettings(): ContentSourceSettingsInterface {
-    $source_settings = $this->prophesize(ContentSourceSettingsInterface::class);
-    $source_settings->getRepositoryUri()->willReturn('/foo/bar');
-    return $source_settings->reveal();
   }
 
   /**

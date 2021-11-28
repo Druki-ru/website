@@ -73,13 +73,14 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    *   The event instance.
    */
   public function onUpdateRequest(RequestSourceContentUpdateEvent $event): void {
-    $process = $this->git->pull($this->contentSourceSettings->getRepositoryUri());
+    $content_source_uri = $this->contentSourceSettings->getRepositoryUri();
+    $process = $this->git->pull($content_source_uri);
     $process->run();
     if (!$process->isSuccessful()) {
       return;
     }
     // If pull successful, immediately request synchronization.
-    $sync_event = new RequestSourceContentSyncEvent();
+    $sync_event = new RequestSourceContentSyncEvent($content_source_uri);
     $this->eventDispatcher->dispatch($sync_event);
   }
 
@@ -90,8 +91,7 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    *   The event instance.
    */
   public function onSyncRequest(RequestSourceContentSyncEvent $event): void {
-    $repository_uri = $this->contentSourceSettings->getRepositoryUri();
-    $this->queueBuilder->buildFromPath($repository_uri);
+    $this->queueBuilder->buildFromPath($event->getSourceContentUri());
   }
 
 }

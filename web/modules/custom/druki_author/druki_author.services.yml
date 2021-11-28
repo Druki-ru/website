@@ -31,3 +31,7 @@ services:
     arguments: ['@entity_type.manager', '@druki_author.queue.author_sync_queue_manager']
     tags:
       - { name: druki_entity_sync_queue_item_processor }
+
+  druki_author.event_subscriber.source_content:
+    class: Drupal\druki_author\EventSubscriber\SourceContentEventSubscriber
+    arguments: ['@druki_author.builder.author_sync_queue']

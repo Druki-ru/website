@@ -136,7 +136,7 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
     $event_subscriber = $this->buildEventSubscriber();
 
     $this->assertArrayHasKey(RequestSourceContentSyncEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
-    $event = new RequestSourceContentSyncEvent();
+    $event = new RequestSourceContentSyncEvent('foo/bar');
     $this->assertFalse($this->isSyncQueueBuilt);
     $event_subscriber->onSyncRequest($event);
     $this->assertTrue($this->isSyncQueueBuilt);
