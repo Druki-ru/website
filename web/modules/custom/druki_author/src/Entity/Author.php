@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\druki_author\Entity;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -329,6 +330,23 @@ final class Author extends ContentEntityBase implements AuthorInterface {
       'value' => $value,
     ]);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTagsToInvalidate(): array {
+    $cache_tags = [];
+    if (!$this->get('identification')->isEmpty()) {
+      /** @var \Drupal\druki_author\Plugin\Field\FieldType\IdentificationItem $item */
+      foreach ($this->get('identification') as $item) {
+        $type = $item->getIdentificationType();
+        $value = $item->getIdentificationValue();
+        $cache_tags[] = "$this->entityTypeId:identification:$type:$value";
+      }
+    }
+
+    return Cache::mergeTags(parent::getCacheTagsToInvalidate(), $cache_tags);
   }
 
 }

@@ -75,6 +75,25 @@ final class AuthorTest extends ExistingSiteBase {
   }
 
   /**
+   * Tests that entity provides expected cache tags.
+   */
+  public function testCacheTags(): void {
+    /** @var \Drupal\druki_author\Entity\AuthorInterface $author */
+    $author = $this->authorStorage->create();
+    $author->setId('test');
+    $author->enforceIsNew(FALSE);
+
+    $cache_tags = [
+      'druki_author:test',
+    ];
+    $this->assertEquals($cache_tags, $author->getCacheTags());
+
+    $author->addIdentification('email', 'john.doe@example.com');
+    \array_unshift($cache_tags, 'druki_author:identification:email:john.doe@example.com');
+    $this->assertSame($cache_tags, $author->getCacheTags());
+  }
+
+  /**
    * Tests custom methods for entity.
    */
   public function testEntityMethods(): void {
