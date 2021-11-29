@@ -1,10 +1,10 @@
 services:
-  #druki_content.sync.commands:
-  #  class: Drupal\druki_content\Command\DrukiContentSyncCommand
-  #  tags:
-  #    - { name: drush.command }
-  #  arguments:
-  #    - '@druki_content.repository.content_source_settings'
-  #    - '@language_manager'
-  #    - '@druki_content.queue.content_sync_processor'
+  druki_content.sync.commands:
+    class: Drupal\druki_content\Command\DrukiContentSyncCommand
+    tags:
+      - { name: drush.command }
+    arguments:
+      - '@druki_content.repository.content_source_settings'
+      - '@language_manager'
+      - '@druki.queue.chain_entity_sync_processor'
 
