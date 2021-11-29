@@ -35,25 +35,22 @@ final class AuthorRouteProvider implements EntityRouteProviderInterface {
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type.
    *
-   * @return \Symfony\Component\Routing\Route|null
-   *   The generated route, if available.
+   * @return \Symfony\Component\Routing\Route
+   *   The generated route.
    */
-  protected function getCanonicalRoute(EntityTypeInterface $entity_type): ?Route {
-    if ($entity_type->hasLinkTemplate('canonical') && $entity_type->hasViewBuilderClass()) {
-      $entity_type_id = $entity_type->id();
-      $route = new Route($entity_type->getLinkTemplate('canonical'));
-      $route
-        ->addDefaults([
-          '_entity_view' => "{$entity_type_id}.full",
-          '_title_callback' => '\Drupal\Core\Entity\Controller\EntityController::title',
-        ])
-        ->setRequirement('_access', 'TRUE')
-        ->setOption('parameters', [
-          $entity_type_id => ['type' => 'entity:' . $entity_type_id],
-        ]);
-      return $route;
-    }
-    return NULL;
+  protected function getCanonicalRoute(EntityTypeInterface $entity_type): Route {
+    $entity_type_id = $entity_type->id();
+    $route = new Route($entity_type->getLinkTemplate('canonical'));
+    $route
+      ->addDefaults([
+        '_entity_view' => "{$entity_type_id}.full",
+        '_title_callback' => '\Drupal\Core\Entity\Controller\EntityController::title',
+      ])
+      ->setRequirement('_access', 'TRUE')
+      ->setOption('parameters', [
+        $entity_type_id => ['type' => 'entity:' . $entity_type_id],
+      ]);
+    return $route;
   }
 
 }

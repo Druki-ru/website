@@ -106,6 +106,8 @@ final class AuthorTest extends ExistingSiteBase {
     $this->assertEquals('Foo', $author->getNameGiven());
     $this->assertEquals('Bar', $author->getNameFamily());
 
+    $this->assertIsString($author->label());
+
     $author->setCountry('RU');
     $this->assertEquals('RU', $author->getCountry());
 
