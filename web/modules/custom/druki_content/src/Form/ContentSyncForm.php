@@ -7,6 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
+use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -118,6 +119,19 @@ final class ContentSyncForm extends FormBase {
       '#submit' => [[$this, 'createQueueFromFolder']],
     ];
 
+    $form['queue_builder']['event'] = [
+      '#type' => 'fieldset',
+      '#title' => new TranslatableMarkup('Dispatch event'),
+      '#description' =>  new TranslatableMarkup('Dispatch source content synchronization event. All subscribers will be notified and fill their queues and process tasks.'),
+    ];
+
+    $form['queue_builder']['event']['dispatch'] = [
+      '#type' => 'submit',
+      '#button_type' => 'primary',
+      '#value' => new TranslatableMarkup('Dispatch'),
+      '#submit' => [[$this, 'dispatchSyncEvent']],
+    ];
+
     return $form;
   }
 
@@ -185,6 +199,20 @@ final class ContentSyncForm extends FormBase {
     }
 
     $this->queueBuilder->buildFromPath($uri);
+  }
+
+  /**
+   * Dispatch content sync event.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   */
+  public function dispatchSyncEvent(array $form, FormStateInterface $form_state): void {
+    $content_source_uri = $this->contentSourceSettings->getRepositoryUri();
+    $event = new RequestSourceContentSyncEvent($content_source_uri);
+    $this->eventDispatcher->dispatch($event);
   }
 
   /**

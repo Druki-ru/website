@@ -45,7 +45,7 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    */
   public function onSyncRequest(RequestSourceContentSyncEvent $event): void {
     $source_content_uri = $event->getSourceContentUri();
-    $this->queueBuilder->buildFromDirectory("$source_content_uri/author");
+    $this->queueBuilder->buildFromDirectory("$source_content_uri/authors");
   }
 
 }

@@ -35,3 +35,5 @@ services:
   druki_author.event_subscriber.source_content:
     class: Drupal\druki_author\EventSubscriber\SourceContentEventSubscriber
     arguments: ['@druki_author.builder.author_sync_queue']
+    tags:
+      - { name: event_subscriber }

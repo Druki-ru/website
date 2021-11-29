@@ -575,3 +575,9 @@ msgstr "обновление безопасности"
 
 msgid "Search results for «:keys»"
 msgstr "Результаты поиска для «:keys»"
+
+msgid "Dispatch event"
+msgstr "Вызвать событие"
+
+msgid "Dispatch source content synchronization event. All subscribers will be notified and fill their queues and process tasks."
+msgstr "Отправка события синхронизации содержимого источника. Все подписчики будут уведомлены, заполнят свои очереди и обработают задания."
