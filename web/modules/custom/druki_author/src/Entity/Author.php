@@ -100,7 +100,7 @@ final class Author extends ContentEntityBase implements AuthorInterface {
    * {@inheritdoc}
    */
   public function label(): string {
-    return $this->getNameGiven() . ' «'. $this->id() . '» ' . $this->getNameFamily();
+    return $this->getNameGiven() . ' «' . $this->id() . '» ' . $this->getNameFamily();
   }
 
   /**

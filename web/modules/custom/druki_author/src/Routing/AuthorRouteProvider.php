@@ -53,6 +53,7 @@ final class AuthorRouteProvider implements EntityRouteProviderInterface {
         ]);
       return $route;
     }
+    return NULL;
   }
 
 }

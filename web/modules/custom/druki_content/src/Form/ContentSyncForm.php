@@ -122,7 +122,7 @@ final class ContentSyncForm extends FormBase {
     $form['queue_builder']['event'] = [
       '#type' => 'fieldset',
       '#title' => new TranslatableMarkup('Dispatch event'),
-      '#description' =>  new TranslatableMarkup('Dispatch source content synchronization event. All subscribers will be notified and fill their queues and process tasks.'),
+      '#description' => new TranslatableMarkup('Dispatch source content synchronization event. All subscribers will be notified and fill their queues and process tasks.'),
     ];
 
     $form['queue_builder']['event']['dispatch'] = [
