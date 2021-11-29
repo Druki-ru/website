@@ -25,7 +25,12 @@ use Drupal\media\MediaInterface;
  *   },
  *   links = {
  *     "canonical" = "/author/{druki_author}",
- *   }
+ *   },
+ *   handlers = {
+ *     "route_provider" = {
+ *       "html" = "Drupal\druki_author\Routing\AuthorRouteProvider",
+ *     },
+ *   },
  * )
  */
 final class Author extends ContentEntityBase implements AuthorInterface {
@@ -89,6 +94,13 @@ final class Author extends ContentEntityBase implements AuthorInterface {
   public function setId(string $id): self {
     $this->set('id', $id);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function label(): string {
+    return $this->getNameGiven() . ' «'. $this->id() . '» ' . $this->getNameFamily();
   }
 
   /**
