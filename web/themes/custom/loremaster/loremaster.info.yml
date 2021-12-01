@@ -22,6 +22,7 @@ libraries:
   - loremaster/global.style.utilities
   - loremaster/keyboard-focus
   - loremaster/page
+  - druki/quicklink
 
 # Disable system libraries.
 libraries-override:

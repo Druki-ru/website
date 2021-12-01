@@ -1,0 +1,30 @@
+{% extends "druki-author.html.twig" %}
+
+{% block content %}
+  {% set name_given = drupal_field('name_given', 'druki_author', entity_id, {
+    type: 'string',
+    label: 'hidden',
+  }) %}
+  {% set name_family = drupal_field('name_family', 'druki_author', entity_id, {
+    type: 'string',
+    label: 'hidden',
+  }) %}
+  {% if druki_author.hasImage() %}
+    {% set avatar = 'test' %}
+  {% else %}
+    {% set avatar = content.extra_field_color_avatar %}
+  {% endif %}
+
+  <header class="{{ bem(block, 'header') }}">
+    <div class="{{ bem(block, 'avatar') }}">
+      {{ avatar }}
+    </div>
+
+    <div class="{{ bem(block, 'meta') }}">
+      <h1 class="{{ bem(block, 'username') }}">{{ entity_id }}</h1>
+      <div class="{{ bem(block, 'name') }}">
+        {{- name_given -}} {{- name_family -}}
+      </div>
+    </div>
+  </header>
+{% endblock %}

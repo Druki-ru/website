@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\druki_author\Entity;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\media\MediaInterface;
 
@@ -359,6 +361,14 @@ final class Author extends ContentEntityBase implements AuthorInterface {
     }
 
     return Cache::mergeTags(parent::getCacheTagsToInvalidate(), $cache_tags);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function access($operation, AccountInterface $account = NULL, $return_as_object = FALSE) {
+    $result = $operation == 'view' ? AccessResult::allowed() : AccessResult::neutral();
+    return $return_as_object ? $result : $result->isAllowed();
   }
 
 }

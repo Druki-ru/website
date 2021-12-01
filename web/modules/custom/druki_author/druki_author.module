@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Provides custom hooks implementations and functions.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_theme().
+ */
+function druki_author_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'druki_author' => [
+      'render element' => 'elements',
+      'file' => 'druki_author.theme.inc',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function druki_author_theme_suggestions_druki_author(array $variables): array {
+  $suggestions = [];
+  $sanitized_view_mode = \strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'druki_author__' . $sanitized_view_mode;
+
+  return $suggestions;
+}

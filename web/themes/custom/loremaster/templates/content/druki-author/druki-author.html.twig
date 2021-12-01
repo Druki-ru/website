@@ -1,0 +1,21 @@
+{#
+/**
+ * Theme implementation to display Author entity.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - druki_author: The author entity.
+ * - view_mode: The currently rendered view mode.
+ * - content: The contents of view mode.
+ */
+#}
+{% set entity_id = druki_author.id() %}
+{% set block = 'author-' ~ view_mode|clean_class %}
+{% set classes = [
+  block,
+] %}
+<article{{ attributes.addClass(classes) }}>
+  {% block content %}
+    {{- content -}}
+  {% endblock %}
+</article>
