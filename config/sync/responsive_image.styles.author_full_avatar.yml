@@ -1,0 +1,18 @@
+uuid: 4ef316f5-72a0-4ccd-bf3d-d8294a78921b
+langcode: ru
+status: true
+dependencies:
+  config:
+    - image.style.140_140
+  theme:
+    - loremaster
+id: author_full_avatar
+label: 'Author / Full / Avatar'
+image_style_mappings:
+  -
+    breakpoint_id: loremaster.xs
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: '140_140'
+breakpoint_group: loremaster
+fallback_image_style: '140_140'
