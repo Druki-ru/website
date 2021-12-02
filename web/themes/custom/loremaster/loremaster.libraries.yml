@@ -143,6 +143,11 @@ component.druki-content.element.aside:
     theme:
       assets/css/04-components/druki-content/element-aside.css: { }
 
+component.druki-author.full:
+  css:
+    theme:
+      assets/css/04-components/druki-author/author-full.css: { }
+
 component.theme.druki-wiki:
   css:
     theme:

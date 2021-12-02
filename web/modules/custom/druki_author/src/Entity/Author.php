@@ -108,15 +108,6 @@ final class Author extends ContentEntityBase implements AuthorInterface {
   /**
    * {@inheritdoc}
    */
-  public function setName(string $given, string $family): AuthorInterface {
-    $this->set('name_given', $given);
-    $this->set('name_family', $family);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getNameGiven(): string {
     return $this->get('name_given')->getString();
   }
@@ -126,6 +117,15 @@ final class Author extends ContentEntityBase implements AuthorInterface {
    */
   public function getNameFamily(): string {
     return $this->get('name_family')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setName(string $given, string $family): AuthorInterface {
+    $this->set('name_given', $given);
+    $this->set('name_family', $family);
+    return $this;
   }
 
   /**
@@ -366,7 +366,7 @@ final class Author extends ContentEntityBase implements AuthorInterface {
   /**
    * {@inheritdoc}
    */
-  public function access($operation, AccountInterface $account = NULL, $return_as_object = FALSE) {
+  public function access($operation, ?AccountInterface $account = NULL, $return_as_object = FALSE) {
     $result = $operation == 'view' ? AccessResult::allowed() : AccessResult::neutral();
     return $return_as_object ? $result : $result->isAllowed();
   }

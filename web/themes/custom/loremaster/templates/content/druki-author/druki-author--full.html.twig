@@ -1,6 +1,7 @@
 {% extends "druki-author.html.twig" %}
 
 {% block content %}
+  {{ attach_library('loremaster/component.druki-author.full') }}
   {% set name_given = drupal_field('name_given', 'druki_author', entity_id, {
     type: 'string',
     label: 'hidden',
@@ -9,22 +10,57 @@
     type: 'string',
     label: 'hidden',
   }) %}
-  {% if druki_author.hasImage() %}
-    {% set avatar = 'test' %}
+  {% set org_name = drupal_field('org_name', 'druki_author', entity_id, {
+    type: 'string',
+    label: 'hidden',
+  }) %}
+  {% set org_unit = drupal_field('org_unit', 'druki_author', entity_id, {
+    type: 'string',
+    label: 'hidden',
+  }) %}
+  {% if avatar_image_id %}
+    {% set avatar %}
+      <div class="{{ bem(block, 'image') }}">
+        {{ drupal_image(avatar_image_id, 'author_full_avatar', responsive=true) }}
+      </div>
+    {% endset %}
   {% else %}
     {% set avatar = content.extra_field_color_avatar %}
   {% endif %}
 
-  <header class="{{ bem(block, 'header') }}">
+  <div class="{{ bem(block, 'header') }}">
     <div class="{{ bem(block, 'avatar') }}">
       {{ avatar }}
     </div>
 
     <div class="{{ bem(block, 'meta') }}">
-      <h1 class="{{ bem(block, 'username') }}">{{ entity_id }}</h1>
-      <div class="{{ bem(block, 'name') }}">
+      <h2 class="{{ bem(block, 'name') }}">
         {{- name_given -}} {{- name_family -}}
-      </div>
+      </h2>
+      <h1 class="{{ bem(block, 'username') }}">{{ entity_id }}</h1>
+
+      {% if druki_author.hasOrganization() %}
+        <div class="{{ bem(block, 'org') }} {{ bem(block, 'icon', ['org']) }}">
+          {{- org_unit -}}, {{- org_name -}}
+        </div>
+      {% endif %}
+
+      {% if druki_author.hasHomepage() %}
+        <div class="{{ bem(block, 'homepage') }} {{ bem(block, 'icon', ['homepage']) }}">
+          <a href="{{ druki_author.getHomepage() }}"
+             class="{{ bem(block, 'url') }}"
+             target="_blank"
+             rel="nofollow noopener">
+            {{ 'Homepage'|t }}
+          </a>
+        </div>
+      {% endif %}
+
+      {% if description %}
+        <div class="{{ bem(block, 'description') }}">
+          <p>{{ description }}</p>
+        </div>
+      {% endif %}
     </div>
-  </header>
+  </div>
 {% endblock %}
