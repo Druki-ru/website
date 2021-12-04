@@ -7,7 +7,7 @@ use Drupal\Component\Utility\Color as CoreColor;
 /**
  * Provides an object with color utilities.
  */
-final class Color extends CoreColor{
+final class Color extends CoreColor {
 
   /**
    * Converts text to color.
@@ -85,13 +85,16 @@ final class Color extends CoreColor{
 
     // Do nothing if chroma is 0.
     if (!$chroma) {
-      $saturation = ($chroma / $max) * 100;
+      $saturation = $chroma / $max * 100;
 
       $hue = match ($min) {
         $red => 3 - (($green - $blue) / $chroma),
         $green => 5 - (($blue - $red) / $chroma),
         default => 1 - (($red - $green) / $chroma),
+      // @codingStandardsIgnoreStart
+      // Drupal Coding Standards fails to validate 'match' statement.
       };
+      // @codingStandardsIgnoreEnd
 
       $hue *= 60;
     }
@@ -122,7 +125,7 @@ final class Color extends CoreColor{
     $saturation /= 100;
     $lightness /= 100;
     $a = $saturation * \min($lightness, 1 - $lightness);
-    $convert = function ($n) use ($a, $hue, $lightness) {
+    $convert = static function ($n) use ($a, $hue, $lightness) {
       $k = ($n + $hue / 30) % 12;
       return $lightness - $a * \max(\min($k - 3, 9 - $k, 1), -1);
     };
