@@ -21,7 +21,7 @@
   {% if avatar_image_id %}
     {% set avatar %}
       <div class="{{ bem(block, 'image') }}">
-        {{ drupal_image(avatar_image_id, 'author_full_avatar', responsive=true) }}
+        {{ drupal_image(avatar_image_id, '140_140') }}
       </div>
     {% endset %}
   {% else %}

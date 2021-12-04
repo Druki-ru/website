@@ -94,6 +94,15 @@ final class AuthorTest extends ExistingSiteBase {
   }
 
   /**
+   * Tests that entity has proper access.
+   */
+  public function testAccess(): void {
+    $author = $this->authorStorage->create();
+    $this->assertFalse($author->access('edit'));
+    $this->assertTrue($author->access('view'));
+  }
+
+  /**
    * Tests custom methods for entity.
    */
   public function testEntityMethods(): void {

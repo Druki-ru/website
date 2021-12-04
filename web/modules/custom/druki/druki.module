@@ -90,6 +90,13 @@ function druki_theme(): array {
         'drupal_core' => NULL,
       ],
     ],
+    'druki_avatar_placeholder' => [
+      'variables' => [
+        'initials' => NULL,
+        'initials_color' => 'transparent',
+        'background_color' => 'transparent',
+      ],
+    ],
   ];
 }
 

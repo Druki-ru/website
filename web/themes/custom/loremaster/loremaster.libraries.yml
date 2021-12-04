@@ -227,6 +227,11 @@ component.theme.search-result:
     theme:
       assets/css/04-components/theme/search-result.css: { }
 
+component.theme.avatar-placeholder:
+  css:
+    theme:
+      assets/css/04-components/theme/avatar-placeholder.css: { }
+
 code-highlight:
   js:
     assets/js/code-highlight.js: { minified: true }
