@@ -23,6 +23,10 @@ final class AuthorsFileParser implements AuthorsFileParserInterface {
     $json_data = Json::decode($json);
     $directory = \dirname($file->getPathname());
     foreach ($json_data as $id => $values) {
+      // If values is not an array, just skip. It can be `$schema` value.
+      if (!\is_array($values)) {
+        continue;
+      }
       if (isset($values['image'])) {
         $values['image'] = $directory . '/' . $values['image'];
       }

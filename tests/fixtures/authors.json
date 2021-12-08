@@ -1,4 +1,5 @@
 {
+  "$schema": "https://druki.ru/modules/custom/druki_author/authors.schema.json",
   "dries": {
     "name": {
       "given": "Dries",
