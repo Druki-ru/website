@@ -12,7 +12,11 @@ parameters:
     # directs to directory with phpstan.neon (current) file, which is in
     # Drupal project docroot.
     drupal_root: %rootDir%/../../../
-    entityTypeStorageMapping:
-      druki_content: Drupal\druki_content\Entity\Handler\DrukiContentStorage
+    entityMapping:
+      druki_content:
+        class: Drupal\druki_content\Entity\DrukiContent
+        storage: Drupal\druki_content\Repository\DrukiContentStorage
+      druki_author:
+        class: Drupal\druki_author\Entity\Author
 includes:
   - vendor/mglaman/phpstan-drupal/extension.neon
