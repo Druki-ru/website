@@ -13,7 +13,7 @@ _core:
 id: media
 label: Мультимедиа
 module: views
-description: 'Найти и управлять медиа.'
+description: ''
 tag: ''
 base_table: media_field_data
 base_field: mid

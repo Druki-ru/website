@@ -18,7 +18,7 @@ _core:
 id: media_library
 label: Медиа-библиотека
 module: views
-description: 'Найти и управлять медиа.'
+description: ''
 tag: ''
 base_table: media_field_data
 base_field: mid
@@ -639,7 +639,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: 'Редактировать {{ name }}'
+            text: 'Edit {{ name }}'
             make_link: true
             path: ''
             absolute: false
@@ -647,7 +647,7 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: 'Редактировать {{ name }}'
+            alt: 'Edit {{ name }}'
             rel: ''
             link_class: media-library-item__edit
             prefix: ''
@@ -692,7 +692,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: 'Удалить {{ name }}'
+            text: 'Delete {{ name }}'
             make_link: true
             path: ''
             absolute: false
@@ -700,7 +700,7 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: 'Удалить {{ name }}'
+            alt: 'Delete {{ name }}'
             rel: ''
             link_class: media-library-item__remove
             prefix: ''
@@ -1141,7 +1141,7 @@ display:
   widget_table:
     display_plugin: page
     id: widget_table
-    display_title: 'Виджет (таблица)'
+    display_title: 'Widget (table)'
     position: 3
     display_options:
       display_extenders: {  }
