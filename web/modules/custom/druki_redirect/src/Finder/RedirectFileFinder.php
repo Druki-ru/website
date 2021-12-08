@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * Provides finder for redirect files.
  */
-final class RedirectFileFinder {
+final class RedirectFileFinder implements RedirectFileFinderInterface {
 
   /**
    * The language manager.
@@ -28,15 +28,13 @@ final class RedirectFileFinder {
   }
 
   /**
-   * Search for redirect files.
-   *
-   * @param array $directories
-   *   An array with directories to looking for redirects.
-   *
-   * @return \Drupal\druki_redirect\Data\RedirectFileList
-   *   The list with redirect files.
+   * {@inheritdoc}
    */
   public function findAll(array $directories): RedirectFileList {
+    if (empty($directories)) {
+      throw new \InvalidArgumentException('At lest one directory should be provided for redirects finder.');
+    }
+
     $finder = new Finder();
     $finder->name('redirects.csv');
     // Look only at specific directory without hierarchy.

@@ -19,7 +19,7 @@ final class RequestSourceContentSyncEventTest extends UnitTestCase {
    * Tests that event object works as expected.
    */
   public function testObject(): void {
-    $event = new RequestSourceContentSyncEvent();
+    $event = new RequestSourceContentSyncEvent('foo/bar');
     // This is very basic event without any behaviors. We just expect that it
     // extends Drupal's Event class.
     $this->assertInstanceOf(Event::class, $event);

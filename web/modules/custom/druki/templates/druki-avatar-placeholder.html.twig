@@ -1,0 +1,26 @@
+{#
+/**
+ * Theme implementation to display avatar placeholder.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - initials: The initials to display.
+ * - background_color: The background color.
+ * - initials_color: The initials color.
+ */
+#}
+{%
+  set classes = [
+    'avatar-placeholder',
+  ]
+%}
+{%
+  set style = [
+    '--avatar-placeholder-background-color:' ~ background_color,
+    '--avatar-placeholder-initials-color:' ~ initials_color,
+  ]|join(';')
+%}
+{% do attributes.setAttribute('style', style) %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="avatar-placeholder__initials">{{ initials }}</div>
+</div>

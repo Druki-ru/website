@@ -3,10 +3,10 @@
 namespace Drupal\druki_content\Command;
 
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\druki\Queue\ChainEntitySyncQueueItemProcessorInterface;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
-use Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Drush\Commands\DrushCommands;
 
@@ -23,7 +23,7 @@ final class DrukiContentSyncCommand extends DrushCommands {
   /**
    * The queue item processors.
    */
-  protected ContentSyncQueueProcessorInterface $queueProcessor;
+  protected ChainEntitySyncQueueItemProcessorInterface $queueProcessor;
 
   /**
    * The content source settings.
@@ -37,10 +37,10 @@ final class DrukiContentSyncCommand extends DrushCommands {
    *   The content source settings.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
-   * @param \Drupal\druki_content\Queue\ContentSyncQueueProcessorInterface $queue_processor
+   * @param \Drupal\druki\Queue\ChainEntitySyncQueueItemProcessorInterface $queue_processor
    *   The queue processor.
    */
-  public function __construct(ContentSourceSettingsInterface $content_source_settings, LanguageManagerInterface $language_manager, ContentSyncQueueProcessorInterface $queue_processor) {
+  public function __construct(ContentSourceSettingsInterface $content_source_settings, LanguageManagerInterface $language_manager, ChainEntitySyncQueueItemProcessorInterface $queue_processor) {
     parent::__construct();
     $this->contentSourceSettings = $content_source_settings;
     $this->languageManager = $language_manager;

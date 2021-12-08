@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Druki\Tests\Unit\EventSubscriber;
 
 use Drupal\druki\Process\GitInterface;
+use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
 use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
 use Drupal\druki_content\EventSubscriber\SourceContentEventSubscriber;
-use Drupal\druki_content\Queue\ContentSyncQueueManagerInterface;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
@@ -52,19 +52,6 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
   }
 
   /**
-   * Tests that sync request works as expected.
-   */
-  public function testOnSyncRequest(): void {
-    $event_subscriber = $this->buildEventSubscriber();
-
-    $this->assertArrayHasKey(RequestSourceContentSyncEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
-    $event = new RequestSourceContentSyncEvent();
-    $this->assertFalse($this->isSyncQueueBuilt);
-    $event_subscriber->onSyncRequest($event);
-    $this->assertTrue($this->isSyncQueueBuilt);
-  }
-
-  /**
    * Builds event subscriber with mocked dependencies.
    *
    * @return \Drupal\druki_content\EventSubscriber\SourceContentEventSubscriber
@@ -73,7 +60,7 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
   protected function buildEventSubscriber(): SourceContentEventSubscriber {
     return new SourceContentEventSubscriber(
       $this->buildContentSourceSettings(),
-      $this->buildContentSyncQueueManager(),
+      $this->buildContentSyncQueueBuilder(),
       $this->buildGit(),
       $this->buildEventDispatcher(),
     );
@@ -94,13 +81,13 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
   /**
    * Builds content sync queue manager mock.
    *
-   * @return \Drupal\druki_content\Queue\ContentSyncQueueManagerInterface
+   * @return \Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface
    *   The mock instance.
    */
-  protected function buildContentSyncQueueManager(): ContentSyncQueueManagerInterface {
+  protected function buildContentSyncQueueBuilder(): ContentSyncQueueBuilderInterface {
     $this->isSyncQueueBuilt = FALSE;
     $self = $this;
-    $queue_manager = $this->prophesize(ContentSyncQueueManagerInterface::class);
+    $queue_manager = $this->prophesize(ContentSyncQueueBuilderInterface::class);
     $queue_manager->buildFromPath(Argument::any())->will(function () use ($self) {
       $self->isSyncQueueBuilt = TRUE;
     });
@@ -140,6 +127,19 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
       $self->dispatchedEvents[] = $args[0]::class;
     });
     return $event_dispatcher->reveal();
+  }
+
+  /**
+   * Tests that sync request works as expected.
+   */
+  public function testOnSyncRequest(): void {
+    $event_subscriber = $this->buildEventSubscriber();
+
+    $this->assertArrayHasKey(RequestSourceContentSyncEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
+    $event = new RequestSourceContentSyncEvent('foo/bar');
+    $this->assertFalse($this->isSyncQueueBuilt);
+    $event_subscriber->onSyncRequest($event);
+    $this->assertTrue($this->isSyncQueueBuilt);
   }
 
 }

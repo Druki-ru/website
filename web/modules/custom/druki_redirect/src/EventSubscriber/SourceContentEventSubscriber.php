@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Drupal\druki_redirect\EventSubscriber;
 
 use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
-use Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface;
+use Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -15,26 +14,18 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 final class SourceContentEventSubscriber implements EventSubscriberInterface {
 
   /**
-   * The content source settings repository.
+   * The queue builder.
    */
-  protected ContentSourceSettingsInterface $contentSourceSettings;
-
-  /**
-   * The redirect sync queue manager.
-   */
-  protected RedirectSyncQueueManagerInterface $redirectSyncQueueManager;
+  protected RedirectSyncQueueBuilderInterface $queueBuilder;
 
   /**
    * Constructs a new SourceContentEventSubscriber object.
    *
-   * @param \Drupal\druki_content\Repository\ContentSourceSettingsInterface $content_source_settings
-   *   The content source settings repository.
-   * @param \Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface $redirect_sync_queue_manager
-   *   The redurect sync queue manager.
+   * @param \Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface $queue_builder
+   *   The queue builder.
    */
-  public function __construct(ContentSourceSettingsInterface $content_source_settings, RedirectSyncQueueManagerInterface $redirect_sync_queue_manager) {
-    $this->contentSourceSettings = $content_source_settings;
-    $this->redirectSyncQueueManager = $redirect_sync_queue_manager;
+  public function __construct(RedirectSyncQueueBuilderInterface $queue_builder) {
+    $this->queueBuilder = $queue_builder;
   }
 
   /**
@@ -53,12 +44,12 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    *   The event instance.
    */
   public function onSyncRequest(RequestSourceContentSyncEvent $event): void {
-    $repository_path = $this->contentSourceSettings->getRepositoryUri();
+    $repository_path = $event->getSourceContentUri();
     $directories = [
       // Only documents expected to have redirects.
       "$repository_path/docs",
     ];
-    $this->redirectSyncQueueManager->buildFromDirectories($directories);
+    $this->queueBuilder->buildFromDirectories($directories);
   }
 
 }

@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Druki Authors",
+  "description": "The Druki authors file schema.",
+  "type": "object",
+  "patternProperties": {
+    "^[a-zA-Z0-9_-]{1,64}$": {"$ref": "#/definitions/author"}
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "author": {
+      "type": "object",
+      "description": "The author unique machine name.",
+      "properties": {
+        "name": {
+          "type": "object",
+          "description": "The authors name.",
+          "properties": {
+            "given": {
+              "type": "string",
+              "description": "The given name."
+            },
+            "family": {
+              "type": "string",
+              "description": "The family name."
+            }
+          },
+          "required": ["given", "family"]
+        },
+        "org": {
+          "type": "object",
+          "description": "The author organization information.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The organization name."
+            },
+            "unit": {
+              "type": "string",
+              "description": "The organization unit that author belongs to or position in the organization."
+            }
+          },
+          "required": ["name", "unit"]
+        },
+        "country": {
+          "type": "string",
+          "description": "The author country in ISO 3166-1 alpha-2 format (2 letters)."
+        },
+        "homepage": {
+          "type": "string",
+          "description": "The absolute URL to authors homepage."
+        },
+        "descriptions": {
+          "type": "object",
+          "description": "The author short bio.",
+          "properties": {
+            "langcode": {
+              "type": "string"
+            }
+          }
+        },
+        "image": {
+          "type": "string",
+          "description": "The user picture URI."
+        },
+        "identification": {
+          "type": "object",
+          "description": "A list of credentials which can be used to identify an author.",
+          "properties": {
+            "email": {
+              "type": "array",
+              "description": "An array of email addresses which can be used for identification, e.g. in Git log."
+            }
+          }
+        }
+      },
+      "required": ["name", "country"]
+    }
+  }
+}

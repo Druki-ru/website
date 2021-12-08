@@ -6,6 +6,7 @@ module:
   ctools: 0
   dblog: 0
   druki: 0
+  druki_author: 0
   druki_content: 0
   druki_redirect: 0
   dynamic_page_cache: 0

@@ -2,7 +2,7 @@
 
 namespace Drupal\druki_content\Data;
 
-use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 
 /**
  * Provides queue item for clean up missing content.
@@ -11,13 +11,13 @@ use Drupal\druki_content\Queue\ContentSyncQueueItemInterface;
  * any payload, because it just utility queue item used to clean up deleted
  * entities during synchronization.
  */
-final class ContentSyncCleanQueueItem implements ContentSyncQueueItemInterface {
+final class ContentSyncCleanQueueItem implements EntitySyncQueueItemInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function getPayload(): int {
-    return 0;
+  public function getPayload(): mixed {
+    return NULL;
   }
 
 }

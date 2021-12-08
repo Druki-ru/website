@@ -90,14 +90,14 @@ function druki_theme(): array {
         'drupal_core' => NULL,
       ],
     ],
+    'druki_avatar_placeholder' => [
+      'variables' => [
+        'initials' => NULL,
+        'initials_color' => 'transparent',
+        'background_color' => 'transparent',
+      ],
+    ],
   ];
-}
-
-/**
- * Implements hook_preprocess_HOOK() for 'html.html.twig'.
- */
-function druki_preprocess_html(array &$variables): void {
-  $variables['#attached']['library'][] = 'druki/quicklink';
 }
 
 /**

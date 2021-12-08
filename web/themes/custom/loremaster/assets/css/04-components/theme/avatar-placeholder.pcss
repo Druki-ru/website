@@ -1,0 +1,15 @@
+.avatar-placeholder {
+  --avatar-placeholder-width: 2rem;
+  --avatar-placeholder-height: var(--avatar-placeholder-width);
+  --avatar-placeholder-initials-size: var(--font-size-base);
+  width: var(--avatar-placeholder-width);
+  height: var(--avatar-placeholder-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--avatar-placeholder-background-color, transparent);
+  color: var(--avatar-placeholder-initials-color, black);
+  font-size: var(--avatar-placeholder-initials-size);
+  line-height: 1;
+  user-select: none;
+}

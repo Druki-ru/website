@@ -4,10 +4,11 @@ namespace Drupal\druki_content\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
+use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
+use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
-use Drupal\druki_content\Queue\ContentSyncQueueManagerInterface;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -18,14 +19,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 final class ContentSyncForm extends FormBase {
 
   /**
-   * The queue.
-   */
-  protected QueueInterface $queue;
-
-  /**
    * The queue manager.
    */
-  protected ContentSyncQueueManagerInterface $queueManager;
+  protected EntitySyncQueueManagerInterface $queueManager;
 
   /**
    * The event dispatcher.
@@ -38,12 +34,17 @@ final class ContentSyncForm extends FormBase {
   protected ContentSourceSettingsInterface $contentSourceSettings;
 
   /**
+   * The queue builder.
+   */
+  protected ContentSyncQueueBuilderInterface $queueBuilder;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     $instance = new static();
-    $instance->queue = $container->get('queue')->get(ContentSyncQueueManagerInterface::QUEUE_NAME);
     $instance->queueManager = $container->get('druki_content.queue.content_sync_manager');
+    $instance->queueBuilder = $container->get('druki_content.builder.content_sync_queue');
     $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
     $instance->eventDispatcher = $container->get('event_dispatcher');
     return $instance;
@@ -118,6 +119,19 @@ final class ContentSyncForm extends FormBase {
       '#submit' => [[$this, 'createQueueFromFolder']],
     ];
 
+    $form['queue_builder']['event'] = [
+      '#type' => 'fieldset',
+      '#title' => new TranslatableMarkup('Dispatch event'),
+      '#description' => new TranslatableMarkup('Dispatch source content synchronization event. All subscribers will be notified and fill their queues and process tasks.'),
+    ];
+
+    $form['queue_builder']['event']['dispatch'] = [
+      '#type' => 'submit',
+      '#button_type' => 'primary',
+      '#value' => new TranslatableMarkup('Dispatch'),
+      '#submit' => [[$this, 'dispatchSyncEvent']],
+    ];
+
     return $form;
   }
 
@@ -139,18 +153,12 @@ final class ContentSyncForm extends FormBase {
     ];
 
     $form['queue_manager']['total'] = [
-      '#markup' => '<p>' . new TranslatableMarkup('Current queue items: @count', ['@count' => $this->queue->numberOfItems()]) . '</p>',
+      '#markup' => '<p>' . new TranslatableMarkup('Current queue items: @count', ['@count' => $this->queueManager->getQueue()->numberOfItems()]) . '</p>',
     ];
 
     $form['queue_manager']['actions'] = [
       '#type' => 'actions',
-      '#access' => (bool) $this->queue->numberOfItems(),
-    ];
-    $form['queue_manager']['actions']['run'] = [
-      '#type' => 'submit',
-      '#button_type' => 'primary',
-      '#value' => new TranslatableMarkup('Run queue'),
-      '#submit' => [[$this, 'runQueue']],
+      '#access' => (bool) $this->queueManager->getQueue()->numberOfItems(),
     ];
     $form['queue_manager']['actions']['clear'] = [
       '#type' => 'submit',
@@ -160,15 +168,6 @@ final class ContentSyncForm extends FormBase {
     ];
 
     return $form;
-  }
-
-  /**
-   * Runs queue worker.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\PluginException
-   */
-  public function runQueue(): void {
-    $this->queueManager->run();
   }
 
   /**
@@ -199,7 +198,21 @@ final class ContentSyncForm extends FormBase {
       return;
     }
 
-    $this->queueManager->buildFromPath($uri);
+    $this->queueBuilder->buildFromPath($uri);
+  }
+
+  /**
+   * Dispatch content sync event.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   */
+  public function dispatchSyncEvent(array $form, FormStateInterface $form_state): void {
+    $content_source_uri = $this->contentSourceSettings->getRepositoryUri();
+    $event = new RequestSourceContentSyncEvent($content_source_uri);
+    $this->eventDispatcher->dispatch($event);
   }
 
   /**

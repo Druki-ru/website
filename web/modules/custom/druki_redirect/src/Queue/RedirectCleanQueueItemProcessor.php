@@ -6,12 +6,17 @@ namespace Drupal\druki_redirect\Queue;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
+use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 
 /**
  * Provides redirect clean queue item processor.
+ *
+ * @see \Drupal\druki\Repository\EntitySyncQueueStateInterface
  */
-final class RedirectCleanQueueItemProcessor implements RedirectSyncQueueItemProcessorInterface {
+final class RedirectCleanQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
   /**
    * The redirect storage.
@@ -21,17 +26,20 @@ final class RedirectCleanQueueItemProcessor implements RedirectSyncQueueItemProc
   /**
    * The redirect sync queue manager.
    */
-  protected RedirectSyncQueueManagerInterface $queueManager;
+  protected EntitySyncQueueManagerInterface $queueManager;
 
   /**
    * Constructs a new RedirectCleanQueueItemProcessor object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\druki_redirect\Queue\RedirectSyncQueueManagerInterface $queue_manager
+   * @param \Drupal\druki\Queue\EntitySyncQueueManagerInterface $queue_manager
    *   The queue manager.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, RedirectSyncQueueManagerInterface $queue_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntitySyncQueueManagerInterface $queue_manager) {
     $this->redirectStorage = $entity_type_manager->getStorage('redirect');
     $this->queueManager = $queue_manager;
   }
@@ -39,19 +47,19 @@ final class RedirectCleanQueueItemProcessor implements RedirectSyncQueueItemProc
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(RedirectSyncQueueItemInterface $item): bool {
+  public function isApplicable(EntitySyncQueueItemInterface $item): bool {
     return $item instanceof RedirectCleanQueueItem;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function process(RedirectSyncQueueItemInterface $item): array {
+  public function process(EntitySyncQueueItemInterface $item): array {
     $existing_ids = $this->redirectStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('druki_redirect', TRUE)
       ->execute();
-    $synced_ids = $this->queueManager->getState()->getStoredEntityIds();
+    $synced_ids = $this->queueManager->getState()->getEntityIds();
     $removed_redirect_ids = \array_diff($existing_ids, $synced_ids);
     if (!$removed_redirect_ids) {
       return [];

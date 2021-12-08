@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "979ff26e0361ffcbd3f19dd228fccfd5",
+    "content-hash": "67796df0eeabbe880c3d343465b52256",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1301,6 +1301,26 @@
             },
             "type": "drupal-custom-module",
             "description": "The main module for common code.",
+            "keywords": [
+                "Drupal"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "druki/druki_author",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "web/modules/custom/druki_author",
+                "reference": "74c89d8adcfa6ebe65c34201df324f2c75f6c3e3"
+            },
+            "require": {
+                "symfony/finder": "~4.0"
+            },
+            "type": "drupal-custom-module",
+            "description": "Provides ability to create authors from external sources.",
             "keywords": [
                 "Drupal"
             ],

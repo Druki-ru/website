@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki_content\Data\ContentDocument;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
@@ -16,7 +18,7 @@ use Drupal\druki_content\Repository\DrukiContentStorage;
 /**
  * Provides queue item processor for content source file list.
  */
-final class ContentSourceFileListQueueItemProcessor implements ContentSyncQueueProcessorInterface {
+final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
   /**
    * The druki content storage.
@@ -55,7 +57,7 @@ final class ContentSourceFileListQueueItemProcessor implements ContentSyncQueueP
   /**
    * {@inheritdoc}
    */
-  public function process(ContentSyncQueueItemInterface $item): array {
+  public function process(EntitySyncQueueItemInterface $item): array {
     \assert($item instanceof ContentSourceFileListQueueItem);
     $content_source_file_list = $item->getPayload();
     $ids = [];
@@ -145,7 +147,7 @@ final class ContentSourceFileListQueueItemProcessor implements ContentSyncQueueP
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(ContentSyncQueueItemInterface $item): bool {
+  public function isApplicable(EntitySyncQueueItemInterface $item): bool {
     return $item instanceof ContentSourceFileListQueueItem;
   }
 

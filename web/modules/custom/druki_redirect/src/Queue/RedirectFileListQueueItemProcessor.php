@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\druki_redirect\Queue;
 
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
+use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki_redirect\Data\Redirect;
 use Drupal\druki_redirect\Data\RedirectFile;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
@@ -12,7 +14,7 @@ use Drupal\druki_redirect\Repository\RedirectRepositoryInterface;
 /**
  * Provides processor for redirect file list queue item.
  */
-final class RedirectFileListQueueItemProcessor implements RedirectSyncQueueItemProcessorInterface {
+final class RedirectFileListQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
   /**
    * The redirect repository.
@@ -32,14 +34,14 @@ final class RedirectFileListQueueItemProcessor implements RedirectSyncQueueItemP
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(RedirectSyncQueueItemInterface $item): bool {
+  public function isApplicable(EntitySyncQueueItemInterface $item): bool {
     return $item instanceof RedirectFileListQueueItem;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function process(RedirectSyncQueueItemInterface $item): array {
+  public function process(EntitySyncQueueItemInterface $item): array {
     \assert($item instanceof RedirectFileListQueueItem);
     $ids = [];
     /** @var \Drupal\druki_redirect\Data\RedirectFile $redirect_file */

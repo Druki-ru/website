@@ -42,6 +42,7 @@
         "ext-simplexml": "*",
         "cweagans/composer-patches": "^1.6.5",
         "druki/druki": "^1.0",
+        "druki/druki_author": "^1.0",
         "druki/druki_content": "^1.0",
         "druki/druki_redirect": "^1.0",
         "druki/loremaster": "^1.0",

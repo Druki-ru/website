@@ -6,5 +6,5 @@ services:
     arguments:
       - '@druki_content.repository.content_source_settings'
       - '@language_manager'
-      - '@druki_content.queue.content_sync_processor'
+      - '@druki.queue.chain_entity_sync_processor'
 

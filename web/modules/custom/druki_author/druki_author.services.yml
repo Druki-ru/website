@@ -1,0 +1,39 @@
+services:
+  druki_author.finder.authors:
+    class: Drupal\druki_author\Finder\AuthorsFileFinder
+
+  druki_author.queue.author_sync_queue_manager:
+    class: Drupal\druki\Queue\EntitySyncQueueManagerInterface
+    factory: druki.factory.entity_sync_queue_manager:get
+    tags:
+      - { name: druki_entity_sync_queue, queue_name: author }
+
+  druki_author.parser.authors_file:
+    class: Drupal\druki_author\Parser\AuthorsFileParser
+
+  druki_author.builder.author_sync_queue:
+    class: Drupal\druki_author\Builder\AuthorSyncQueueBuilder
+    arguments:
+      - '@druki_author.finder.authors'
+      - '@druki_author.parser.authors_file'
+      - '@druki_author.queue.author_sync_queue_manager'
+
+  druki_author.queue.author_list_queue_item_processor:
+    class: Drupal\druki_author\Queue\AuthorListQueueItemProcessor
+    arguments:
+      - '@entity_type.manager'
+      - '@druki.repository.media_image'
+    tags:
+      - { name: druki_entity_sync_queue_item_processor }
+
+  druki_author.queue.author_clean_queue_item_processor:
+    class: Drupal\druki_author\Queue\AuthorCleanQueueItemProcessor
+    arguments: ['@entity_type.manager', '@druki_author.queue.author_sync_queue_manager']
+    tags:
+      - { name: druki_entity_sync_queue_item_processor }
+
+  druki_author.event_subscriber.source_content:
+    class: Drupal\druki_author\EventSubscriber\SourceContentEventSubscriber
+    arguments: ['@druki_author.builder.author_sync_queue']
+    tags:
+      - { name: event_subscriber }

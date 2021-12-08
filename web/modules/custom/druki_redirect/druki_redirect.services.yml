@@ -2,8 +2,7 @@ services:
   druki_redirect.event_subscriber.source_content:
     class: Drupal\druki_redirect\EventSubscriber\SourceContentEventSubscriber
     arguments:
-      - '@druki_content.repository.content_source_settings'
-      - '@druki_redirect.queue.sync_manager'
+      - '@druki_redirect.builder.redirect_sync_queue'
     tags:
       - { name: event_subscriber }
 
@@ -12,31 +11,29 @@ services:
     arguments: [ '@language_manager' ]
 
   druki_redirect.queue.sync_manager:
-    class: Drupal\druki_redirect\Queue\RedirectSyncQueueManager
-    arguments: [ '@druki_redirect.finder.redirect_file', '@queue', '@druki_redirect.repository.redirect_sync_queue_state' ]
-
-  druki_redirect.queue.chain_sync_processor:
-    class: Drupal\druki_redirect\Queue\ChainRedirectSyncQueueProcessor
-    arguments: [ '@druki_redirect.repository.redirect_sync_queue_state' ]
+    class: Drupal\druki\Queue\EntitySyncQueueManagerInterface
+    factory: druki.factory.entity_sync_queue_manager:get
     tags:
-      - { name: service_collector, tag: druki_redirect_sync_queue_processor, call: addProcessor }
-
-  druki_redirect.repository.redirect_sync_queue_state:
-    class: Drupal\druki_redirect\Repository\RedirectSyncQueueState
-    arguments: [ '@state' ]
+      - { name: druki_entity_sync_queue, queue_name: redirect }
 
   druki_redirect.queue.redirect_file_list_queue_item_processor:
     class: Drupal\druki_redirect\Queue\RedirectFileListQueueItemProcessor
     arguments: [ '@druki_redirect.repository.redirect' ]
     tags:
-      - { name: druki_redirect_sync_queue_processor }
+      - { name: druki_entity_sync_queue_item_processor }
 
   druki_redirect.queue.redirect_clean_queue_item_processor:
     class: Drupal\druki_redirect\Queue\RedirectCleanQueueItemProcessor
     arguments: [ '@entity_type.manager', '@druki_redirect.queue.sync_manager' ]
     tags:
-      - { name: druki_redirect_sync_queue_processor }
+      - { name: druki_entity_sync_queue_item_processor }
 
   druki_redirect.repository.redirect:
     class: Drupal\druki_redirect\Repository\RedirectRepository
     arguments: [ '@entity_type.manager' ]
+
+  druki_redirect.builder.redirect_sync_queue:
+    class: Drupal\druki_redirect\Builder\RedirectSyncQueueBuilder
+    arguments:
+      - '@druki_redirect.finder.redirect_file'
+      - '@druki_redirect.queue.sync_manager'

@@ -1,3 +1,6 @@
+parameters:
+  druki.entity_sync_queues: []
+
 services:
   logger.channel.druki:
     class: Drupal\Core\Logger\LoggerChannel
@@ -55,3 +58,27 @@ services:
     arguments: ['@search.search_page_repository']
     tags:
       - { name: event_subscriber }
+
+  druki.factory.entity_sync_queue_state:
+    class: Drupal\druki\Factory\EntitySyncQueueStateFactory
+    arguments: ['@state']
+
+  druki.factory.entity_sync_queue_manager:
+    class: Drupal\druki\Factory\EntitySyncQueueManagerFactory
+    arguments: [ '@queue', '@druki.factory.entity_sync_queue_state' ]
+
+  druki.queue.chain_entity_sync_processor:
+    class: Drupal\druki\Queue\ChainEntitySyncQueueItemProcessor
+    tags:
+      - { name: service_collector, tag: druki_entity_sync_queue_item_processor, call: addProcessor }
+
+  druki.repository.media_image:
+    class: Drupal\druki\Repository\MediaImageRepository
+    arguments:
+      - '@druki.file_tracker'
+      - '@entity_field.manager'
+      - '@token'
+      - '@cache.static'
+      - '@entity_type.manager'
+      - '@file_system'
+      - '@uuid'

@@ -29,6 +29,9 @@ final class RedirectFileFinderTest extends ExistingSiteBase {
 
     $redirect_files = $finder->findAll([$dir->url() . '/docs']);
     $this->assertCount(1, $redirect_files->getIterator());
+
+    $this->expectException(\InvalidArgumentException::class);
+    $finder->findAll([]);
   }
 
 }
