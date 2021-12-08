@@ -50,7 +50,7 @@
           "type": "string",
           "description": "The absolute URL to authors homepage."
         },
-        "descriptions": {
+        "description": {
           "type": "object",
           "description": "The author short bio.",
           "properties": {
