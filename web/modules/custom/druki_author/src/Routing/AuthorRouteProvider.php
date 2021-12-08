@@ -41,7 +41,8 @@ final class AuthorRouteProvider implements EntityRouteProviderInterface {
   protected function getCanonicalRoute(EntityTypeInterface $entity_type): Route {
     $entity_type_id = $entity_type->id();
     $route = new Route($entity_type->getLinkTemplate('canonical'));
-    $route->addDefaults([
+    $route
+      ->addDefaults([
         '_entity_view' => "{$entity_type_id}.full",
         '_title_callback' => '\Drupal\Core\Entity\Controller\EntityController::title',
       ])
