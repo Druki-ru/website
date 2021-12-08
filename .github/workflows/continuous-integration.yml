@@ -59,6 +59,9 @@ jobs:
       - name: 'Rebuild cache'
         run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN cache:rebuild -y"
 
+      - name: 'Clear PHP cache'
+        run: ssh production "cd $PROJECT_ROOT && docker compose restart php"
+
       - name: 'Import custom translations'
         run: ssh production "cd $PROJECT_ROOT && $DRUSH_BIN locale:import --type=customized --override=all ru ../translations/ru.po"
 
