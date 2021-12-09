@@ -16,7 +16,7 @@ final class DrukiContentComputesAliasTokenTest extends ExistingSiteBase {
    * Tests behavior for common content entity.
    */
   public function testAlias(): void {
-    $entity = $this->createDrukiContent();
+    $entity = $this->createDrukiContent(['slug' => 'wiki/Test.dot']);
     $expected = \mb_strtolower('/' . $entity->getSlug());
     $this->assertEquals($expected, $entity->toUrl()->toString());
   }
