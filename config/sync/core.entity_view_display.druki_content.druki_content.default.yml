@@ -22,6 +22,11 @@ content:
     third_party_settings: {  }
     weight: -4
     region: content
+  extra_field_druki_content_edit_remote:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   extra_field_next_prev:
     settings: {  }
     third_party_settings: {  }

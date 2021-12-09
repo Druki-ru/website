@@ -29,3 +29,29 @@
 .druki-content-full .content-next-prev {
   margin: var(--spacing-xl) 0;
 }
+
+.druki-content-full__actions {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.druki-content-full__action a {
+  --icon: none;
+  background: rgb(var(--color-white--variant-1)) var(--icon) var(--spacing-sm) center no-repeat;
+  background-size: 1rem;
+  --link-color: var(--text-color);
+  display: inline-flex;
+  padding: var(--spacing-xxs) var(--spacing-sm);
+  padding-left: calc(var(--spacing-sm) + 1rem + var(--spacing-xs));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+}
+
+.druki-content-full__action a:hover {
+  background-color: rgb(var(--color-white));
+  text-decoration: none;
+}
+
+.druki-content-full__action .content-edit-remote {
+  --icon: url('../../../icons/333333/pencil-outline.svg');
+}
