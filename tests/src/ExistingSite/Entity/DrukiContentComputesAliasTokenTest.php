@@ -17,7 +17,7 @@ final class DrukiContentComputesAliasTokenTest extends ExistingSiteBase {
    */
   public function testAlias(): void {
     $entity = $this->createDrukiContent();
-    $expected = '/wiki/' . $entity->getSlug();
+    $expected = \mb_strtolower('/' . $entity->getSlug());
     $this->assertEquals($expected, $entity->toUrl()->toString());
   }
 

@@ -648,3 +648,12 @@ function druki_content_update_9219(array &$sandbox): void {
 function druki_content_update_9220(array &$sandbox): void {
   \Drupal::state()->delete('druki_content.settings.force_update');
 }
+
+/**
+ * Delete all content to update it with the new slugs and path aliases.
+ */
+function druki_content_update_9300(array &$sandbox): void {
+  $content_storage = \Drupal::entityTypeManager()->getStorage('druki_content');
+  $entities = $content_storage->loadMultiple();
+  $content_storage->delete($entities);
+}

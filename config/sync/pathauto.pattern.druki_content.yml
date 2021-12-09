@@ -9,7 +9,7 @@ _core:
 id: druki_content
 label: 'Druki Content'
 type: 'canonical_entities:druki_content'
-pattern: '[druki_content:computed-alias]'
+pattern: '[druki_content:slug]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0
