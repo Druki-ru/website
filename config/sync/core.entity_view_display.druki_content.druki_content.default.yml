@@ -16,17 +16,17 @@ bundle: druki_content
 mode: default
 content:
   document:
-    label: hidden
     type: druki_content_document_render_array
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: -4
     region: content
+  extra_field_next_prev:
     settings: {  }
     third_party_settings: {  }
-  extra_field_next_prev:
     weight: 1
     region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   category: true
   filename: true

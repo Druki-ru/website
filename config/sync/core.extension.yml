@@ -1,3 +1,6 @@
+_core:
+  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
+langcode: ru
 module:
   block: 0
   breakpoint: 0
@@ -68,6 +71,3 @@ theme:
   claro: 0
   stable9: 0
 profile: druki_installer
-_core:
-  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
-langcode: ru

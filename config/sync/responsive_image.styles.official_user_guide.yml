@@ -13,24 +13,24 @@ id: official_user_guide
 label: 'Official User Guide'
 image_style_mappings:
   -
-    breakpoint_id: loremaster.xl
-    multiplier: 1x
     image_mapping_type: image_style
     image_mapping: official_user_guide_magazine_xl
-  -
-    breakpoint_id: loremaster.md
+    breakpoint_id: loremaster.xl
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: official_user_guide_magazine_md
-  -
-    breakpoint_id: loremaster.sm
+    breakpoint_id: loremaster.md
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: official_user_guide_magazine_sm
-  -
-    breakpoint_id: loremaster.xs
+    breakpoint_id: loremaster.sm
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: official_user_guide_magazine_xs
+    breakpoint_id: loremaster.xs
+    multiplier: 1x
 breakpoint_group: loremaster
 fallback_image_style: official_user_guide_magazine_xs

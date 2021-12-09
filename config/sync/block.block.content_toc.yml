@@ -15,8 +15,8 @@ plugin: druki_content_toc
 settings:
   id: druki_content_toc
   label: Содержание
-  provider: druki_content
   label_display: visible
+  provider: druki_content
   context_mapping:
     druki_content: '@druki_content.druki_content_route_context:druki_content'
 visibility: {  }

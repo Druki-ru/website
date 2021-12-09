@@ -17,6 +17,6 @@ plugin: system_messages_block
 settings:
   id: system_messages_block
   label: 'Системные сообщения'
-  provider: system
   label_display: '0'
+  provider: system
 visibility: {  }

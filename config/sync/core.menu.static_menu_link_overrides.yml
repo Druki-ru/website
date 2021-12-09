@@ -1,46 +1,46 @@
+_core:
+  default_config_hash: jdY7AU0tU-QsjmiOw3W8vwpYMb-By--_MSFgbqKUTYM
+langcode: ru
 definitions:
   contact__site_page:
-    enabled: true
     menu_name: footer
     parent: ''
     weight: 0
     expanded: false
-  'druki__static_menu_links:druki__frontpage__main':
-    weight: -50
-    menu_name: main
-    parent: ''
     enabled: true
-    expanded: false
-  'druki__static_menu_links:druki__wiki__main':
-    weight: -49
+  'druki__static_menu_links:druki__frontpage__main':
     menu_name: main
     parent: ''
+    weight: -50
+    expanded: false
+    enabled: true
+  'druki__static_menu_links:druki__wiki__main':
+    menu_name: main
+    parent: ''
+    weight: -49
     expanded: false
     enabled: true
   'druki__static_menu_links:druki__download__main':
-    weight: -47
     menu_name: main
     parent: ''
+    weight: -47
     expanded: false
     enabled: true
   'druki__static_menu_links:druki__frontpage__mobile':
+    menu_name: mobile
+    parent: ''
     weight: -50
-    menu_name: mobile
-    parent: ''
-    enabled: true
     expanded: false
+    enabled: true
   'druki__static_menu_links:druki__wiki__mobile':
-    weight: -49
     menu_name: mobile
     parent: ''
+    weight: -49
     expanded: false
     enabled: true
   'druki__static_menu_links:druki__download__mobile':
-    weight: -47
     menu_name: mobile
     parent: ''
+    weight: -47
     expanded: false
     enabled: true
-_core:
-  default_config_hash: jdY7AU0tU-QsjmiOw3W8vwpYMb-By--_MSFgbqKUTYM
-langcode: ru

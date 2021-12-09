@@ -14,29 +14,29 @@ id: paragraph_druki_image_thumbnail
 label: 'Paragraph / Druki Image / Thumbnail'
 image_style_mappings:
   -
-    breakpoint_id: loremaster.xl
-    multiplier: 1x
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xl
-  -
-    breakpoint_id: loremaster.lg
+    breakpoint_id: loremaster.xl
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_lg
-  -
-    breakpoint_id: loremaster.md
+    breakpoint_id: loremaster.lg
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_md
-  -
-    breakpoint_id: loremaster.sm
+    breakpoint_id: loremaster.md
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_sm
-  -
-    breakpoint_id: loremaster.xs
+    breakpoint_id: loremaster.sm
     multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: paragraph_druki_image_thumbnail_xs
+    breakpoint_id: loremaster.xs
+    multiplier: 1x
 breakpoint_group: loremaster
 fallback_image_style: paragraph_druki_image_thumbnail_xl

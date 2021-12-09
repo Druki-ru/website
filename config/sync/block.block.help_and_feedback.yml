@@ -15,8 +15,8 @@ plugin: druki_content_help_and_feedback
 settings:
   id: druki_content_help_and_feedback
   label: 'Help and Feedback'
-  provider: druki_content
   label_display: '0'
+  provider: druki_content
   context_mapping:
     druki_content: '@druki_content.druki_content_route_context:druki_content'
 visibility: {  }

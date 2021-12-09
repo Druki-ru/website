@@ -15,7 +15,7 @@ plugin: druki_header_dark_mode_switcher
 settings:
   id: druki_header_dark_mode_switcher
   label: 'Header dark mode switcher'
-  provider: druki
   label_display: '0'
+  provider: druki
   class: header-dark-mode-switcher
 visibility: {  }

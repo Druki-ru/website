@@ -15,6 +15,6 @@ plugin: druki_mobile_sidebar_button
 settings:
   id: druki_mobile_sidebar_button
   label: 'Mobile sidebar button'
-  provider: druki
   label_display: '0'
+  provider: druki
 visibility: {  }

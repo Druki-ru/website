@@ -12,8 +12,8 @@ entity_type: druki_content
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: true
 cardinality: -1

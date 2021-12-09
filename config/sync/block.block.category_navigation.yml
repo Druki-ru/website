@@ -15,8 +15,8 @@ plugin: druki_category_navigation
 settings:
   id: druki_category_navigation
   label: 'Навигация по категории'
-  provider: druki_content
   label_display: visible
+  provider: druki_content
   context_mapping:
     druki_content: '@druki_content.druki_content_route_context:druki_content'
 visibility: {  }

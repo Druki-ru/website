@@ -1,7 +1,15 @@
 uuid: 3dfac517-c042-4461-9555-b09cf40f6992
 langcode: ru
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - druki_content
+    - filter
+    - media
+    - search
+    - system
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
 id: anonymous
@@ -9,12 +17,8 @@ label: 'Анонимный пользователь'
 weight: 0
 is_admin: false
 permissions:
-  - 'access comments'
   - 'access content'
-  - 'access site-wide contact form'
-  - 'restful get druki_search_global'
   - 'search content'
   - 'use text format basic_html'
-  - 'use text format restricted_html'
   - 'view druki_content'
   - 'view media'

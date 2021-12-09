@@ -15,6 +15,6 @@ plugin: druki_header_search
 settings:
   id: druki_header_search
   label: 'Header search'
-  provider: druki
   label_display: '0'
+  provider: druki
 visibility: {  }

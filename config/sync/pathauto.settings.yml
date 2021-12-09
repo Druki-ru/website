@@ -1,3 +1,6 @@
+_core:
+  default_config_hash: SwvLp8snyPEExF41CaJJYdPUVomofLqtXvwciHc4cPg
+langcode: ru
 enabled_entity_types:
   - druki_content
   - user
@@ -51,6 +54,3 @@ safe_tokens:
   - url
   - url-brief
   - computed-alias
-_core:
-  default_config_hash: SwvLp8snyPEExF41CaJJYdPUVomofLqtXvwciHc4cPg
-langcode: ru
