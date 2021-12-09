@@ -89,7 +89,7 @@ final class AuthorTest extends ExistingSiteBase {
     $this->assertEquals($cache_tags, $author->getCacheTags());
 
     $author->addIdentification('email', 'john.doe@example.com');
-    \array_unshift($cache_tags, 'druki_author:identification:email:john.doe@example.com');
+    $cache_tags[] = 'druki_author:identification:email:john.doe@example.com';
     $this->assertSame($cache_tags, $author->getCacheTags());
   }
 
