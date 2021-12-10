@@ -9,8 +9,8 @@ punctuation:
   quotes: 0
   backtick: 0
   comma: 0
-  period: 2
-  hyphen: 1
+  period: 0
+  hyphen: 0
   underscore: 0
   colon: 0
   semicolon: 0
@@ -35,7 +35,7 @@ punctuation:
   question_mark: 0
   less_than: 0
   greater_than: 0
-  slash: 2
+  slash: 0
   back_slash: 0
 verbose: false
 separator: '-'
@@ -53,4 +53,4 @@ safe_tokens:
   - login-url
   - url
   - url-brief
-  - computed-alias
+  - slug
