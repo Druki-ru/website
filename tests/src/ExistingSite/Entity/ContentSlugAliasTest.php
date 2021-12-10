@@ -8,7 +8,7 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 /**
  * Provides tests for [druki_content:computed-alias] token.
  */
-final class DrukiContentComputesAliasTokenTest extends ExistingSiteBase {
+final class ContentSlugAliasTest extends ExistingSiteBase {
 
   use DrukiContentCreationTrait;
 
@@ -17,7 +17,7 @@ final class DrukiContentComputesAliasTokenTest extends ExistingSiteBase {
    */
   public function testAlias(): void {
     $entity = $this->createDrukiContent(['slug' => 'wiki/Test.dot']);
-    $expected = \mb_strtolower('/' . $entity->getSlug());
+    $expected = '/' . $entity->getSlug();
     $this->assertEquals($expected, $entity->toUrl()->toString());
   }
 
