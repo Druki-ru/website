@@ -47,6 +47,11 @@
   border-radius: var(--radius-xs);
 }
 
+[data-theme="dark"] .druki-content-full__action a {
+  background: rgb(var(--color-eerie-black)) var(--icon) var(--spacing-sm) center no-repeat;
+  background-size: 1rem;
+}
+
 .druki-content-full__action a:hover {
   background-color: rgb(var(--color-white));
   text-decoration: none;
@@ -54,4 +59,8 @@
 
 .druki-content-full__action .content-edit-remote {
   --icon: url('../../../icons/333333/pencil-outline.svg');
+}
+
+[data-theme="dark"] .druki-content-full__action .content-edit-remote {
+  --icon: url('../../../icons/ffffff/pencil-outline.svg');
 }
