@@ -65,6 +65,7 @@ final class Git implements GitInterface {
     $command = [
       'git',
       'shortlog',
+      'HEAD',
       '--summary',
       '--email',
       '--numbered',
