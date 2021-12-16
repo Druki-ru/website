@@ -6,7 +6,10 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\druki\Data\Contributor;
+use Drupal\druki\Data\ContributorList;
 use Drupal\druki_content\Data\ContentDocument;
 use Drupal\entity\BundleFieldDefinition;
 
@@ -124,6 +127,10 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
         'weight' => -4,
       ])
       ->setDisplayConfigurable('view', TRUE);
+
+    $fields['contributors'] = BaseFieldDefinition::create('druki_contributor')
+      ->setLabel(new TranslatableMarkup('The content contributors.'))
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
 
     return $fields;
   }
@@ -271,6 +278,47 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
       return NULL;
     }
     return $this->get('document')->first()->getContentDocument();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setContributors(ContributorList $contributors): self {
+    $this->unsetContributors();
+    foreach ($contributors->getIterator() as $contributor) {
+      $this->addContributor($contributor);
+    }
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function unsetContributors(): void {
+    $this->set('contributors', NULL);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addContributor(Contributor $contributor): self {
+    $this->get('contributors')->appendItem([
+      'name' => $contributor->getUsername(),
+      'email' => $contributor->getEmail(),
+    ]);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContributors(): ContributorList {
+    $contributors = new ContributorList();
+    /** @var \Drupal\druki\Plugin\Field\FieldType\ContributorItem $contributor_field_item */
+    foreach ($this->get('contributors') as $contributor_field_item) {
+      $contributors->addContributor($contributor_field_item->toContributor());
+    }
+    return $contributors;
   }
 
 }

@@ -6,6 +6,7 @@ use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\DataDefinition;
+use Drupal\druki\Data\Contributor;
 
 /**
  * Defines the 'druki_contributors' field type.
@@ -97,6 +98,18 @@ final class ContributorItem extends FieldItemBase {
    */
   public function getContributorEmail(): string {
     return $this->get('email')->getValue();
+  }
+
+  /**
+   * Gets value as Contributor value object.
+   *
+   * @return \Drupal\druki\Data\Contributor
+   *   The value object with values.
+   *
+   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   */
+  public function toContributor(): Contributor {
+    return new Contributor($this->getContributorName(), $this->getContributorEmail());
   }
 
 }

@@ -9,6 +9,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -656,4 +657,16 @@ function druki_content_update_9300(array &$sandbox): void {
   $content_storage = \Drupal::entityTypeManager()->getStorage('druki_content');
   $entities = $content_storage->loadMultiple();
   $content_storage->delete($entities);
+}
+
+/**
+ * Install 'contributors' field for druki_content entity.
+ */
+function druki_content_update_9301(array &$sandbox): void {
+  $field_storage_definition = BaseFieldDefinition::create('druki_contributor')
+    ->setLabel(new TranslatableMarkup('The content contributors.'))
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('contributors', 'druki_content', 'druki_content', $field_storage_definition);
 }

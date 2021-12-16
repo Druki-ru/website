@@ -6,6 +6,7 @@ namespace Druki\Tests\ExistingSite\Plugin\Field\FieldType;
 
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
+use Drupal\druki\Data\Contributor;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
@@ -78,6 +79,11 @@ final class ContributorItemTest extends ExistingSiteBase {
     $this->assertEquals('John Doe', $field->first()->getContributorName());
     $this->assertEquals('john.doe@example.com', $field->first()->getContributorEmail());
     $this->assertEquals(1, $field->count());
+
+    $contributor = $field->first()->toContributor();
+    $this->assertInstanceOf(Contributor::class, $contributor);
+    $this->assertEquals('John Doe', $contributor->getUsername());
+    $this->assertEquals('john.doe@example.com', $contributor->getEmail());
   }
 
 }

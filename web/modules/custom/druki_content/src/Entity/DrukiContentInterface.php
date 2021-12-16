@@ -3,6 +3,8 @@
 namespace Drupal\druki_content\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\druki\Data\Contributor;
+use Drupal\druki\Data\ContributorList;
 use Drupal\druki_content\Data\ContentDocument;
 
 /**
@@ -138,5 +140,38 @@ interface DrukiContentInterface extends ContentEntityInterface {
    *   The content document.
    */
   public function getContentDocument(): ?ContentDocument;
+
+  /**
+   * Resets contributors field values.
+   */
+  public function unsetContributors(): void;
+
+  /**
+   * Adds contributor.
+   *
+   * @param \Drupal\druki\Data\Contributor $contributor
+   *   The contributor object.
+   *
+   * @return $this
+   */
+  public function addContributor(Contributor $contributor): self;
+
+  /**
+   * Sets contributors field value.
+   *
+   * @param \Drupal\druki\Data\ContributorList $contributors
+   *   The contributors list.
+   *
+   * @return $this
+   */
+  public function setContributors(ContributorList $contributors): self;
+
+  /**
+   * Gets content contributors.
+   *
+   * @return \Drupal\druki\Data\ContributorList
+   *   An object with contributors.
+   */
+  public function getContributors(): ContributorList;
 
 }

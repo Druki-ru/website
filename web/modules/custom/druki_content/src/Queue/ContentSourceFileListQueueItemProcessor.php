@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\druki\Parser\GitOutputParser;
+use Drupal\druki\Process\GitInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki_content\Data\ContentDocument;
@@ -36,6 +38,11 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
   protected ContentDocumentChecksumGenerator $checksumGenerator;
 
   /**
+   * The git process.
+   */
+  protected GitInterface $git;
+
+  /**
    * Constructs a new ContentSourceFileListQueueItemProcessor object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -44,14 +51,17 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
    *   The content source file parser.
    * @param \Drupal\druki_content\Generator\ContentDocumentChecksumGenerator $checksum_generator
    *   The checksum generator.
+   * @param \Drupal\druki\Process\GitInterface $git
+   *   The git process.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ContentSourceFileParser $content_source_file_parser, ContentDocumentChecksumGenerator $checksum_generator) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ContentSourceFileParser $content_source_file_parser, ContentDocumentChecksumGenerator $checksum_generator, GitInterface $git) {
     $this->contentStorage = $entity_type_manager->getStorage('druki_content');
     $this->contentSourceFileParser = $content_source_file_parser;
     $this->checksumGenerator = $checksum_generator;
+    $this->git = $git;
   }
 
   /**
@@ -115,6 +125,23 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
       if ($content_metadata->hasMetatags()) {
         $content_entity->set('metatags', \serialize($content_metadata->getMetatags()));
       }
+    }
+
+    $content_entity->unsetContributors();
+    // Get directory of git root. We don't need here to request settings with
+    // git root, because it can be simple evaluated by removing relative
+    // pathname from realpath.
+    //
+    // E.g.:
+    // - realpath: '/path/to/content/git/folder/content/index.md'.
+    // - relative pathname: '/content/index.md'.
+    // - $directory: '/path/to/content/git/folder'.
+    $directory = \str_replace($content_source_file->getRelativePathname(), '', $content_source_file->getRealpath());
+    $contributors_process = $this->git->getFileContributors($directory, $content_source_file->getRelativePathname());
+    $contributors_process->run();
+    if ($contributors_process->isSuccessful()) {
+      $contributors = GitOutputParser::parseContributorsLog($contributors_process->getOutput());
+      $content_entity->setContributors($contributors);
     }
 
     $content_entity->save();
