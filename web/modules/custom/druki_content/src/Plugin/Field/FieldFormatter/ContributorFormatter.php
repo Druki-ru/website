@@ -51,7 +51,7 @@ final class ContributorFormatter extends FormatterBase {
    */
   public static function defaultSettings(): array {
     return [
-      'view_mode' => 'default',
+      'author_view_mode' => 'default',
     ] + parent::defaultSettings();
   }
 
@@ -96,7 +96,7 @@ final class ContributorFormatter extends FormatterBase {
    *   A render array with author.
    */
   protected function buildAuthorItem(AuthorInterface $author): array {
-    return $this->authorViewBuilder->view($author, $this->getSetting('view_mode'));
+    return $this->authorViewBuilder->view($author, $this->getSetting('author_view_mode'));
   }
 
   /**
@@ -109,10 +109,10 @@ final class ContributorFormatter extends FormatterBase {
    *   A contributor element render array.
    */
   protected function buildContributorItem(Contributor $contributor): array {
-    // @todo Add render element 'druki_avatar_placeholder'. Migrate logic from
-    //   \Drupal\druki_author\Plugin\ExtraField\Display\ColorAvatar::view and
-    //   use it here to reduce code duplicates.
-    return [];
+    return [
+      '#type' => 'druki_avatar_placeholder',
+      '#username' => $contributor->getUsername(),
+    ];
   }
 
   /**

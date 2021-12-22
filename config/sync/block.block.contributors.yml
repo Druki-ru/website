@@ -1,4 +1,4 @@
-uuid: 44e1d7f4-f0d3-451b-8c04-eaf29244c474
+uuid: ca505b67-03c4-4e61-9826-1b738a9867dd
 langcode: ru
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     - druki_content
   theme:
     - loremaster
-id: category_navigation
+id: contributors
 theme: loremaster
 region: content_sidebar
-weight: -8
+weight: -7
 provider: null
-plugin: druki_category_navigation
+plugin: druki_content_contributors
 settings:
-  id: druki_category_navigation
-  label: 'Навигация по категории'
+  id: druki_content_contributors
+  label: Участники
   label_display: visible
   provider: druki_content
   context_mapping:
