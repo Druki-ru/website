@@ -21,15 +21,18 @@ final class GitOutputParserTest extends UnitTestCase {
    */
   public function testParseContributorsLog(): void {
     $log = <<<'TEXT'
+      20 John Wick <john.wick@example.com>
       2 John Doe <john.doe@example.com>
       1 Jane Doe <jane.doe@example.com>
     TEXT;
 
     $result = GitOutputParser::parseContributorsLog($log);
-    $this->assertEquals('John Doe', $result->getIterator()->offsetGet(0)->getUsername());
-    $this->assertEquals('john.doe@example.com', $result->getIterator()->offsetGet(0)->getEmail());
-    $this->assertEquals('Jane Doe', $result->getIterator()->offsetGet(1)->getUsername());
-    $this->assertEquals('jane.doe@example.com', $result->getIterator()->offsetGet(1)->getEmail());
+    $this->assertEquals('John Wick', $result->getIterator()->offsetGet(0)->getUsername());
+    $this->assertEquals('john.wick@example.com', $result->getIterator()->offsetGet(0)->getEmail());
+    $this->assertEquals('John Doe', $result->getIterator()->offsetGet(1)->getUsername());
+    $this->assertEquals('john.doe@example.com', $result->getIterator()->offsetGet(1)->getEmail());
+    $this->assertEquals('Jane Doe', $result->getIterator()->offsetGet(2)->getUsername());
+    $this->assertEquals('jane.doe@example.com', $result->getIterator()->offsetGet(2)->getEmail());
   }
 
 }

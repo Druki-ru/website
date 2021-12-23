@@ -50,9 +50,7 @@ final class AvatarPlaceholder extends RenderElement {
 
     $initial_parts = \explode(' ', $username);
     $initial_parts = \array_splice($initial_parts, 0, 2);
-    $initial_parts = \array_map(static function ($initial_part) {
-      return $initial_part[0];
-    }, $initial_parts);
+    $initial_parts = \array_map(static fn ($initial_part) => $initial_part[0], $initial_parts);
 
     $element['#background_color'] = $background_color_hsl;
     $element['#initials_color'] = $initials_color;

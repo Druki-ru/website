@@ -25,7 +25,7 @@ final class GitOutputParser {
     $contributors = new ContributorList();
     $lines = \explode(\PHP_EOL, $log);
     foreach ($lines as $line) {
-      \preg_match('/\s*[0-9]\s*(.*)\s<(.*)>/m', $line, $matches);
+      \preg_match('/\s*[0-9]+\s(.*)\s<(.*)>/m', $line, $matches);
       if (\count($matches) != 3) {
         continue;
       }

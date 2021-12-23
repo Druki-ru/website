@@ -3,7 +3,6 @@
 namespace Drupal\druki_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Provides a druki content contributors list.
@@ -44,7 +43,7 @@ final class ContributorsBlock extends BlockBase {
         'settings' => [
           'author_view_mode' => 'content_contributor',
         ],
-      ])
+      ]),
     ];
   }
 
