@@ -127,6 +127,7 @@ component.druki-content:
     theme:
       assets/css/04-components/druki-content/druki-content-full.css: { }
       assets/css/04-components/druki-content/druki-content-content.css: { }
+      assets/css/04-components/druki-content/druki-content-contributors.css: { }
 
 component.druki-content.element.heading:
   css:
@@ -147,6 +148,11 @@ component.druki-author.full:
   css:
     theme:
       assets/css/04-components/druki-author/author-full.css: { }
+
+component.druki-author.content-contributor:
+  css:
+    theme:
+      assets/css/04-components/druki-author/author-content-contributor.css: { }
 
 component.theme.druki-wiki:
   css:

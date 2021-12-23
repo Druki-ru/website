@@ -105,4 +105,6 @@ function loremaster_preprocess_druki_author(array &$variables): void {
       $variables['description'] = $descriptions[$current_language];
     }
   }
+
+  $variables['url'] = $author->toUrl();
 }

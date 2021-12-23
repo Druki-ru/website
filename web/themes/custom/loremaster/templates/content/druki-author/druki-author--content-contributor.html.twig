@@ -1,0 +1,18 @@
+{% extends "druki-author.html.twig" %}
+
+{% block content %}
+  {{ attach_library('loremaster/component.druki-author.content-contributor') }}
+  {% if avatar_image_id %}
+    {% set avatar %}
+      <div class="{{ bem(block, 'image') }}">
+        {{ drupal_image(avatar_image_id, '38_38') }}
+      </div>
+    {% endset %}
+  {% else %}
+    {% set avatar = content.extra_field_color_avatar %}
+  {% endif %}
+
+  <a href="{{ url }}" class="{{ bem(block, 'avatar') }}">
+    {{ avatar }}
+  </a>
+{% endblock %}
