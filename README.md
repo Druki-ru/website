@@ -29,6 +29,8 @@ Add this line `$config['config_split.config_split.dev']['status'] = TRUE;` to **
 
 This is required for correct configuration split process.
 
+If the content synchronization not working properly, set the path of your local Git binary to **settings.php** (e.g. `$settings['druki_git_binary'] = '/usr/local/bin/git;'`).
+
 ### Install a local copy
 
 **Warning!** Currently, Drupal core has a bug [#3176625](https://www.drupal.org/project/drupal/issues/3176625). Before it resolved, you must patch core before running installation process, otherwise it will fail during config imports. Nothing can be done from our site. _The current versions of codebase include that patch._
