@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\druki\Process;
 
-use Symfony\Component\Process\Process;
 use Drupal\Core\Site\Settings;
+use Symfony\Component\Process\Process;
 
 /**
  * Provides object to work with Git repositories.
