@@ -192,7 +192,11 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
     $built = [];
     foreach ($found as $item) {
       /** @var \Drupal\druki_content\Entity\DrukiContentInterface $content */
-      $content = $this->contentStorage->load($item->sid)->getTranslation($item->langcode);
+      $content = $this->contentStorage->load($item->sid);
+      if (!$content) {
+        continue;
+      }
+      $content = $content->getTranslation($item->langcode);
       $document = $content->get('document')->view([]);
 
       $text = $this->renderer->renderPlain($document);
