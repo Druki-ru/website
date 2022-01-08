@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present contributor hovercard.
+ *
+ * Available variables:
+ * - attributes: The main wrapper element attributes.
+ * - avatar: The contributor avatar.
+ * - display_name: The contributor display name.
+ * - username: The contributor username.
+ * - description: The contributor description.
+ * - is_author: Indicates is current hovercard presents real author entity.
+ */
+#}
+{% if not is_author %}
+  {% set description %}
+    <strong>{{ 'Is that you?' }}</strong> <a href="#">Tell us</a> about yourself!
+  {% endset %}
+{% endif %}
+<div{{ attributes.addClass('contributor-hovercard') }}>
+  <div class="contributor-hovercard__arrow" data-popper-arrow></div>
+  <div class="contributor-hovercard__head">
+    <div class="contributor-hovercard__avatar">{{ avatar }}</div>
+    <div class="contributor-hovercard__info">
+      <div class="contributor-hovercard__name">
+        {{ display_name }}
+        {% if username %}
+          <span class="contributor-hovercard__username">{{ username }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if description %}
+    <div class="contributor-hovercard__body">
+      {{ description }}
+    </div>
+  {% endif %}
+</div>

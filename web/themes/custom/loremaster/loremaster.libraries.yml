@@ -238,6 +238,11 @@ component.theme.avatar-placeholder:
     theme:
       assets/css/04-components/theme/avatar-placeholder.css: { }
 
+component.theme.contributor-hovercard:
+  css:
+    theme:
+      assets/css/04-components/theme/contributor-hovercard.css: { }
+
 code-highlight:
   js:
     assets/js/code-highlight.js: { minified: true }

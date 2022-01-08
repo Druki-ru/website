@@ -2,14 +2,14 @@ uuid: 9ceb1996-2536-4ee6-bb6e-4690c43b6e3a
 langcode: ru
 status: true
 dependencies: {  }
-name: '38_38'
-label: 38×38
+name: '32_32'
+label: 32×32
 effects:
   3c627e37-bd40-4e62-9cc3-1a68a6842d0e:
     uuid: 3c627e37-bd40-4e62-9cc3-1a68a6842d0e
     id: image_scale_and_crop
     weight: 1
     data:
-      width: 38
-      height: 38
+      width: 32
+      height: 32
       anchor: center-center

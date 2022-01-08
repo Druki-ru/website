@@ -1,11 +1,15 @@
 {% extends "druki-author.html.twig" %}
 
+{% do attributes.setAttribute('data-druki-selector', 'contributor-hovercard') %}
+{% do attributes.setAttribute('data-hovercard-author', druki_author.id()) %}
+
 {% block content %}
+  {{ attach_library('druki_content/contributor-hovercard') }}
   {{ attach_library('loremaster/component.druki-author.content-contributor') }}
   {% if avatar_image_id %}
     {% set avatar %}
       <div class="{{ bem(block, 'image') }}">
-        {{ drupal_image(avatar_image_id, '38_38') }}
+        {{ drupal_image(avatar_image_id, '32_32') }}
       </div>
     {% endset %}
   {% else %}

@@ -112,6 +112,15 @@ final class ContributorFormatter extends FormatterBase {
     return [
       '#type' => 'druki_avatar_placeholder',
       '#username' => $contributor->getUsername(),
+      '#attributes' => [
+        'data-druki-selector' => 'contributor-hovercard',
+        'data-hovercard-username' => $contributor->getUsername(),
+      ],
+      '#attached' => [
+        'library' => [
+          'druki_content/contributor-hovercard',
+        ],
+      ],
     ];
   }
 

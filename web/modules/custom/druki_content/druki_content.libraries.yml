@@ -17,3 +17,11 @@ form:
   css:
     layout:
       assets/css/druki_content.form.css: { minified: true }
+
+contributor-hovercard:
+  js:
+    assets/js/ContributorHovercard.js: { minified: true }
+  dependencies:
+    - core/popperjs
+    - core/drupal
+    - core/once

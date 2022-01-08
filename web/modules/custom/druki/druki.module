@@ -92,6 +92,7 @@ function druki_theme(): array {
     ],
     'druki_avatar_placeholder' => [
       'variables' => [
+        'attributes' => [],
         'initials' => NULL,
         'initials_color' => 'transparent',
         'background_color' => 'transparent',
