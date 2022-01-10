@@ -99,7 +99,6 @@
         }
         let currentlyHoveredElement = [].slice.call(document.querySelectorAll(':hover')).pop();
         let isTargetingTooltip = currentlyHoveredElement === hovercardElement || hovercardElement.contains(currentlyHoveredElement);
-        console.log(isTargetingTooltip);
         if (!isTargetingTooltip) {
           deleteHovercard();
         } else {

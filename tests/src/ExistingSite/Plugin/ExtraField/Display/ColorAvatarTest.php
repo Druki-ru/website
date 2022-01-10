@@ -43,10 +43,8 @@ final class ColorAvatarTest extends ExistingSiteBase {
     $plugin = $this->extraFieldManager->createInstance('color_avatar');
     $result = $plugin->view($author);
 
-    $this->assertEquals('druki_avatar_placeholder', $result['#theme']);
-    $this->assertEquals('DB', $result['#initials']);
-    $this->assertStringContainsString('hsl', $result['#background_color']);
-    $this->assertStringContainsString('hsl', $result['#initials_color']);
+    $this->assertEquals('druki_avatar_placeholder', $result['#type']);
+    $this->assertEquals($author->id(), $result['#username']);
   }
 
 }
