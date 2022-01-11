@@ -25,6 +25,10 @@
       'image_style': '140_140',
     }
   }) %}
+  {% set description = drupal_field('description', 'druki_author', entity_id, {
+    type: 'druki_author_description',
+    label: 'hidden',
+  }) %}
 
   <div class="{{ bem(block, 'header') }}">
     <div class="{{ bem(block, 'avatar') }}">

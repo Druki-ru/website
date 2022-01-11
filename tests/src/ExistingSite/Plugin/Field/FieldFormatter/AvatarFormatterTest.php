@@ -8,7 +8,6 @@ use Druki\Tests\Traits\AuthorCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Component\Utility\Crypt;
 use Drupal\file\Entity\File;
-use Drupal\Tests\TestFileCreationTrait;
 use weitzman\DrupalTestTraits\Entity\MediaCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
@@ -47,7 +46,6 @@ final class AvatarFormatterTest extends ExistingSiteBase {
 
     $display_options = [
       'type' => 'druki_author_avatar',
-      'label' => 'hidden',
       'settings' => [
         'image_style' => '60_60',
       ],

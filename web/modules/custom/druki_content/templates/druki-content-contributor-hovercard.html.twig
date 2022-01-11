@@ -8,7 +8,7 @@
  * - avatar: The contributor avatar.
  * - display_name: The contributor display name.
  * - username: The contributor username.
- * - description: The contributor description.
+ * - about: The contributor description.
  * - is_author: Indicates is current hovercard presents real author entity.
  */
 #}
@@ -34,9 +34,9 @@
     </div>
   </div>
 
-  {% if description %}
+  {% if about %}
     <div class="contributor-hovercard__body">
-      {{ description }}
+      {{ about }}
     </div>
   {% endif %}
 </div>

@@ -136,8 +136,10 @@ final class ContributorHovercardResource extends ResourceBase {
       '#is_author' => TRUE,
       '#display_name' => \implode(' ', $display_name_parts),
       '#username' => $author->id(),
-      // @todo User real description.
-      '#about' => 'Hello, World!',
+      '#about' => $author->get('description')->view([
+        'type' => 'druki_author_description',
+        'label' => 'hidden',
+      ]),
       '#avatar' => $author->get('image')->view([
         'type' => 'druki_author_avatar',
         'label' => 'hidden',
