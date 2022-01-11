@@ -60,10 +60,24 @@ final class ContributorFormatter extends FormatterBase {
    */
   public function viewElements(FieldItemListInterface $items, $langcode): array {
     $elements = [];
+
+    // This array holds all author entities that already processed.
+    // E.g. there is three commit for a content:
+    // - John Doe <john.doe@example.com>
+    // - J.Doe <john.doe@example.com>
+    // - John Doe <j.doe@example.com>
+    // We assume that John Doe provided both addresses for detection. This is
+    // expected but this will generate 3 same contributor 'cards'. To avoid that
+    // we store all already processed authors and only process them once.
+    // It doesn't matter if this happens for 'anonymous' contributors.
+    $processed_authors = [];
     /** @var \Drupal\druki\Plugin\Field\FieldType\ContributorItem $item */
     foreach ($items as $item) {
       $contributor = $item->toContributor();
-      $elements[] = $this->prepareContributor($contributor);
+      $contributor_card = $this->prepareContributor($contributor, $processed_authors);
+      if ($contributor_card) {
+        $elements[] = $contributor_card;
+      }
     }
     return $elements;
   }
@@ -73,12 +87,18 @@ final class ContributorFormatter extends FormatterBase {
    *
    * @param \Drupal\druki\Data\Contributor $contributor
    *   The contributor value object.
+   * @param array $processed_authors
+   *   An array with processed authors.
    *
-   * @return array
+   * @return array|null
    *   A render array with a contributor to display.
    */
-  protected function prepareContributor(Contributor $contributor): array {
+  protected function prepareContributor(Contributor $contributor, array &$processed_authors): ?array {
     if ($author = $this->findAuthorForContributor($contributor)) {
+      if (\in_array($author->id(), $processed_authors)) {
+        return NULL;
+      }
+      $processed_authors[] = $author->id();
       return $this->buildAuthorItem($author);
     }
     else {
