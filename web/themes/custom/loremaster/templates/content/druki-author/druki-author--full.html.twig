@@ -18,15 +18,17 @@
     type: 'string',
     label: 'hidden',
   }) %}
-  {% if avatar_image_id %}
-    {% set avatar %}
-      <div class="{{ bem(block, 'image') }}">
-        {{ drupal_image(avatar_image_id, '140_140') }}
-      </div>
-    {% endset %}
-  {% else %}
-    {% set avatar = content.extra_field_color_avatar %}
-  {% endif %}
+  {% set avatar = drupal_field('image', 'druki_author', entity_id, {
+    type: 'druki_author_avatar',
+    label: 'hidden',
+    settings: {
+      'image_style': '140_140',
+    }
+  }) %}
+  {% set description = drupal_field('description', 'druki_author', entity_id, {
+    type: 'druki_author_description',
+    label: 'hidden',
+  }) %}
 
   <div class="{{ bem(block, 'header') }}">
     <div class="{{ bem(block, 'avatar') }}">

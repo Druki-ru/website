@@ -53,7 +53,7 @@ final class IdentificationItemTest extends ExistingSiteBase {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritdoc}
    */
   public function tearDown(): void {
     $this->cleanupEntities();

@@ -1,0 +1,21 @@
+{% extends "druki-author.html.twig" %}
+
+{% do attributes.setAttribute('data-druki-selector', 'contributor-hovercard') %}
+{% do attributes.setAttribute('data-hovercard-author', druki_author.id()) %}
+
+{% block content %}
+  {{ attach_library('druki_content/contributor-hovercard') }}
+  {{ attach_library('loremaster/component.druki-author.content-contributor') }}
+
+  {% set avatar = drupal_field('image', 'druki_author', entity_id, {
+    type: 'druki_author_avatar',
+    label: 'hidden',
+    settings: {
+      'image_style': '32_32',
+    }
+  }) %}
+
+  <a href="{{ url }}" class="{{ bem(block, 'avatar') }}">
+    {{ avatar }}
+  </a>
+{% endblock %}

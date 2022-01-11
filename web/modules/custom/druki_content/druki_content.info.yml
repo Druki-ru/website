@@ -14,6 +14,7 @@ dependencies:
   - drupal:media
   - drupal:media_library
   - drupal:responsive_image
+  - drupal:rest
   - pathauto:pathauto
   - metatag:metatag
   - redirect:redirect

@@ -87,22 +87,5 @@ function loremaster_preprocess_block__druki_content_toc_mobile(array &$variables
 function loremaster_preprocess_druki_author(array &$variables): void {
   /** @var \Drupal\druki_author\Entity\Author $author */
   $author = $variables['druki_author'];
-  $variables['avatar_image_id'] = NULL;
-  if ($author->hasImage()) {
-    $avatar_media = $author->getImageMedia();
-    $source_field = $avatar_media->getSource()->getConfiguration()['source_field'];
-    $variables['avatar_image_id'] = $avatar_media->get($source_field)
-      ->first()
-      ->get('target_id')
-      ->getValue();
-  }
-
-  $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $variables['description'] = NULL;
-  if ($author->hasDescription()) {
-    $descriptions = $author->getDescription();
-    if (isset($descriptions[$current_language])) {
-      $variables['description'] = $descriptions[$current_language];
-    }
-  }
+  $variables['url'] = $author->toUrl();
 }

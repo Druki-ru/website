@@ -37,3 +37,5 @@ libraries-extend:
     - loremaster/component.theme.druki-content-toc
   druki_content/mobile-toc:
     - loremaster/component.theme.druki-mobile-toc
+  druki_content/contributor-hovercard:
+    - loremaster/component.theme.contributor-hovercard

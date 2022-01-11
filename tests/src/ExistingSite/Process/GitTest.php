@@ -59,7 +59,7 @@ final class GitTest extends ExistingSiteBase {
    */
   public function testGetFileContributors(): void {
     $process = $this->git->getFileContributors('/foo/bar', 'baz/index.md');
-    $this->assertEquals("'git' 'shortlog' '--summary' '--email' '--numbered' '--' 'baz/index.md'", $process->getCommandLine());
+    $this->assertEquals("'git' 'shortlog' 'HEAD' '--summary' '--email' '--numbered' '--' 'baz/index.md'", $process->getCommandLine());
     $this->assertEquals('/foo/bar', $process->getWorkingDirectory());
   }
 

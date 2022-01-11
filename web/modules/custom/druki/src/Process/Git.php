@@ -72,6 +72,7 @@ final class Git implements GitInterface {
     $command = [
       $this->gitBinary,
       'shortlog',
+      'HEAD',
       '--summary',
       '--email',
       '--numbered',

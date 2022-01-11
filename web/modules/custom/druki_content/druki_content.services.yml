@@ -125,7 +125,11 @@ services:
 
   druki_content.queue.content_source_file_list_queue_item:
     class: Drupal\druki_content\Queue\ContentSourceFileListQueueItemProcessor
-    arguments: ['@entity_type.manager', '@druki_content.parser.content_source_file', '@druki_content.generator.content_document_checksum']
+    arguments:
+      - '@entity_type.manager'
+      - '@druki_content.parser.content_source_file'
+      - '@druki_content.generator.content_document_checksum'
+      - '@druki.process.git'
     tags:
       - { name: druki_entity_sync_queue_item_processor }
 

@@ -1,0 +1,18 @@
+uuid: ccb3551b-5a83-4b8e-b18e-118e31fdc4e3
+langcode: ru
+status: true
+dependencies:
+  module:
+    - druki_content
+    - serialization
+    - user
+id: druki_content_contributor_hovercard
+plugin_id: druki_content_contributor_hovercard
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie
