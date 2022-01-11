@@ -49,6 +49,7 @@
     document.body.append(tooltipElement);
 
     Popper.createPopper(referenceElement, tooltipElement, {
+      placement: 'top',
       modifiers: [
         {
           name: 'offset',

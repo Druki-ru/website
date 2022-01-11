@@ -581,3 +581,9 @@ msgstr "Вызвать событие"
 
 msgid "Dispatch source content synchronization event. All subscribers will be notified and fill their queues and process tasks."
 msgstr "Отправка события синхронизации содержимого источника. Все подписчики будут уведомлены, заполнят свои очереди и обработают задания."
+
+msgid "Avatar of the author @author"
+msgstr "Аватар автора @author"
+
+msgid "<strong>Is that you?</strong> <a href=\"@url\">Tell us</a> more about yourself!"
+msgstr "<strong>Это вы?</strong> <a href=\"@url\">Расскажите о себе</a> больше!"

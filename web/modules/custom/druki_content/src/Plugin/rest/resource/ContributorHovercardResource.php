@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\druki_content\Plugin\rest\resource;
 
-use Drupal\Component\Serialization\Json;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Template\TwigEnvironment;
 use Drupal\rest\Plugin\ResourceBase;
@@ -139,12 +137,14 @@ final class ContributorHovercardResource extends ResourceBase {
       '#display_name' => \implode(' ', $display_name_parts),
       '#username' => $author->id(),
       // @todo User real description.
-      '#description' => 'Hello, World!',
-      // @todo Use picture.
-      '#avatar' => [
-        '#type' => 'druki_avatar_placeholder',
-        '#username' => $author->id(),
-      ],
+      '#about' => 'Hello, World!',
+      '#avatar' => $author->get('image')->view([
+        'type' => 'druki_author_avatar',
+        'label' => 'hidden',
+        'settings' => [
+          'image_style' => '60_60',
+        ],
+      ]),
     ];
 
     $cacheable_metadata = new CacheableMetadata();
