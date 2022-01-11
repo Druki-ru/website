@@ -74,6 +74,8 @@ function druki_content_theme(): array {
         'display_name' => NULL,
         'username' => NULL,
         'about' => NULL,
+        'org' => NULL,
+        'homepage' => NULL,
         'is_author' => FALSE,
       ],
     ],

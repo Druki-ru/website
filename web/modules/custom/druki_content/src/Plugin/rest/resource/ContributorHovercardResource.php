@@ -90,10 +90,14 @@ final class ContributorHovercardResource extends ResourceBase {
     }
 
     if (!$build) {
-      return new ResourceResponse(['@todo wrong request status']);
+      return new ResourceResponse(['Something goes wrong!'], 400);
     }
 
     $cacheable_metadata = CacheableMetadata::createFromRenderArray($build);
+    $cacheable_metadata->addCacheContexts([
+      'url.query_args:author-id',
+      'url.query_args:username',
+    ]);
 
     // We suppress Twig debugging for rest response.
     if ($this->twig->isDebug()) {
@@ -131,6 +135,20 @@ final class ContributorHovercardResource extends ResourceBase {
       $author->getNameGiven(),
       $author->getNameFamily(),
     ];
+
+    $org = NULL;
+    if ($author->hasOrganization()) {
+      $org = \implode(', ', [
+        $author->getOrganizationUnit(),
+        $author->getOrganizationName(),
+      ]);
+    }
+
+    $homepage = NULL;
+    if ($author->hasHomepage()) {
+      $homepage = $author->getHomepage();
+    }
+
     $build = [
       '#theme' => 'druki_content_contributor_hovercard',
       '#is_author' => TRUE,
@@ -147,6 +165,8 @@ final class ContributorHovercardResource extends ResourceBase {
           'image_style' => '60_60',
         ],
       ]),
+      '#org' => $org,
+      '#homepage' => $homepage,
     ];
 
     $cacheable_metadata = new CacheableMetadata();
