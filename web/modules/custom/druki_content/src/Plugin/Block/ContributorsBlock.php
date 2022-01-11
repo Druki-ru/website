@@ -35,7 +35,9 @@ final class ContributorsBlock extends BlockBase {
   public function build(): array {
     /** @var \Drupal\druki_content\Entity\DrukiContentInterface $content */
     $content = $this->getContextValue('druki_content');
-
+    if ($content->get('contributors')->isEmpty()) {
+      return [];
+    }
     return [
       $content->get('contributors')->view([
         'type' => 'druki_content_contributor',
