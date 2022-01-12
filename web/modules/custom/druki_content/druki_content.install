@@ -14,6 +14,7 @@ use Drupal\Core\Site\Settings;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\entity\BundleFieldDefinition;
 
 /**
@@ -669,4 +670,27 @@ function druki_content_update_9301(array &$sandbox): void {
 
   \Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('contributors', 'druki_content', 'druki_content', $field_storage_definition);
+}
+
+/**
+ * Added entity bundle field and update entity schema.
+ */
+function druki_content_update_9302(array &$sandbox): void {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  $bundle_label = new TranslatableMarkup('Druki content bundle');
+  $bundle_field_name = 'type';
+
+  $storage_definition = BaseFieldDefinition::create('string')
+    ->setLabel($bundle_label)
+    ->setRequired(TRUE)
+    ->setReadOnly(TRUE);
+  $update_manager->installFieldStorageDefinition($bundle_field_name, 'druki_content', 'druki_content', $storage_definition);
+
+  $entity_type = $update_manager->getEntityType('druki_content');
+  $entity_keys = $entity_type->getKeys();
+  $entity_keys['bundle'] = $bundle_field_name;
+  $entity_type->set('entity_keys', $entity_keys);
+  $entity_type->set('bundle_plugin_type', 'druki_content_bundle');
+  $entity_type->set('bundle_label', $bundle_label);
+  $update_manager->updateEntityType($entity_type);
 }

@@ -20,6 +20,7 @@ use Drupal\entity\BundleFieldDefinition;
  *   id = "druki_content",
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki content"),
+ *   bundle_label = @Translation("Druki content bundle"),
  *   handlers = {
  *     "storage" = "Drupal\druki_content\Repository\DrukiContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
@@ -40,13 +41,15 @@ use Drupal\entity\BundleFieldDefinition;
  *   },
  *   base_table = "druki_content",
  *   data_table = "druki_content_field_data",
+ *   bundle_plugin_type = "druki_content_bundle",
  *   translatable = TRUE,
  *   admin_permission = "administer druki content",
  *   entity_keys = {
  *     "id" = "internal_id",
  *     "langcode" = "langcode",
  *     "label" = "title",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "bundle" = "type",
  *   },
  *   links = {
  *     "canonical" = "/druki_content/{druki_content}",

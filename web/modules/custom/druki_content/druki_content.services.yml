@@ -164,3 +164,7 @@ services:
       - '@event_dispatcher'
     tags:
       - { name: event_subscriber }
+
+  plugin.manager.druki_content_bundle:
+    class: Drupal\druki_content\Plugin\DrukiContentBundle\DrukiContentBundlePluginManager
+    parent: default_plugin_manager
