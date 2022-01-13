@@ -16,6 +16,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\entity\BundleFieldDefinition;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Implements hook_requirements().
@@ -683,7 +684,9 @@ function druki_content_update_9302(array &$sandbox): void {
   $storage_definition = BaseFieldDefinition::create('string')
     ->setLabel($bundle_label)
     ->setRequired(TRUE)
-    ->setReadOnly(TRUE);
+    ->setReadOnly(TRUE)
+    ->setInitialValue('document')
+    ->setDefaultValue('document');
   $update_manager->installFieldStorageDefinition($bundle_field_name, 'druki_content', 'druki_content', $storage_definition);
   $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('druki_content');
 
@@ -694,5 +697,20 @@ function druki_content_update_9302(array &$sandbox): void {
   $entity_type->set('entity_keys', $entity_keys);
   $entity_type->set('bundle_plugin_type', 'druki_content_bundle');
   $entity_type->set('bundle_label', $bundle_label);
-  $update_manager->updateFieldableEntityType($entity_type, $field_storage_definitions);
+  $update_manager->updateFieldableEntityType($entity_type, $field_storage_definitions, $sandbox);
+}
+
+/**
+ * Remove initial and default value from 'type' field.
+ */
+function druki_content_update_9303(array &$sandbox): void {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  /** @var \Drupal\Core\Field\BaseFieldDefinition $field_definition */
+  $field_definition = $update_manager->getFieldStorageDefinition('type', 'druki_content');
+  // These values used to migrate entity into bundle-based entity. Without them
+  // schema update fails because 'type' will be '' (empty string) by default,
+  // but bundle field can't be NULL (empty).
+  $field_definition->setInitialValue([])
+    ->setDefaultValue([]);
+  $update_manager->updateFieldStorageDefinition($field_definition);
 }
