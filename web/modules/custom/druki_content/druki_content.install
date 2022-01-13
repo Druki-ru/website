@@ -685,12 +685,14 @@ function druki_content_update_9302(array &$sandbox): void {
     ->setRequired(TRUE)
     ->setReadOnly(TRUE);
   $update_manager->installFieldStorageDefinition($bundle_field_name, 'druki_content', 'druki_content', $storage_definition);
+  $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('druki_content');
 
+  /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
   $entity_type = $update_manager->getEntityType('druki_content');
   $entity_keys = $entity_type->getKeys();
   $entity_keys['bundle'] = $bundle_field_name;
   $entity_type->set('entity_keys', $entity_keys);
   $entity_type->set('bundle_plugin_type', 'druki_content_bundle');
   $entity_type->set('bundle_label', $bundle_label);
-  $update_manager->updateEntityType($entity_type);
+  $update_manager->updateFieldableEntityType($entity_type, $field_storage_definitions);
 }
