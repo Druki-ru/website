@@ -17,6 +17,7 @@ use Drupal\druki_content\Entity\DrukiContentInterface;
 use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
 use Drupal\entity\BundleFieldDefinition;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Implements hook_requirements().
@@ -685,8 +686,8 @@ function druki_content_update_9302(array &$sandbox): void {
     ->setLabel($bundle_label)
     ->setRequired(TRUE)
     ->setReadOnly(TRUE)
-    ->setInitialValue('document')
-    ->setDefaultValue('document');
+    ->setInitialValue('druki_content')
+    ->setDefaultValue('druki_content');
   $update_manager->installFieldStorageDefinition($bundle_field_name, 'druki_content', 'druki_content', $storage_definition);
   $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('druki_content');
 
