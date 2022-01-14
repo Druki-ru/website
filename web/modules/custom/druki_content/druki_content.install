@@ -715,3 +715,22 @@ function druki_content_update_9303(array &$sandbox): void {
     ->setDefaultValue([]);
   $update_manager->updateFieldStorageDefinition($field_definition);
 }
+
+/**
+ * Delete all content to update it with the new bundle.
+ */
+function druki_content_update_9304(array &$sandbox): void {
+  $content_storage = \Drupal::entityTypeManager()->getStorage('druki_content');
+  $entities = $content_storage->loadMultiple();
+  $content_storage->delete($entities);
+}
+
+/**
+ * Delete all content to update it with the new bundle.
+ */
+function druki_content_update_9305(array &$sandbox): void {
+  $content_source_settings = \Drupal::service('druki_content.repository.content_source_settings');
+  $content_source_uri = $content_source_settings->getRepositoryUri();
+  $event = new RequestSourceContentSyncEvent($content_source_uri);
+  \Drupal::service('event_dispatcher')->dispatch($event);
+}

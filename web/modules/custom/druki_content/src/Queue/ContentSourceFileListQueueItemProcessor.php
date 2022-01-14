@@ -166,6 +166,7 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
       return $content;
     }
     return $this->contentStorage->create([
+      'type' => 'document',
       'langcode' => $content_document->getLanguage(),
       'slug' => $content_document->getMetadata()->getSlug(),
     ]);
