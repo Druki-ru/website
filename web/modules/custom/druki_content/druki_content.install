@@ -17,6 +17,7 @@ use Drupal\druki_content\Entity\Content;
 use Drupal\druki_content\Entity\ContentInterface;
 use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
 use Drupal\entity\BundleFieldDefinition;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Implements hook_requirements().
@@ -750,9 +751,40 @@ function druki_content_update_9305(array &$sandbox): void {
 }
 
 /**
- * Delete all content to update it with the new bundle.
+ * Replace config-bases fields via code-based.
  */
 function druki_content_update_9306(array &$sandbox): void {
+  // These fields was previously created using Field UI. After implementing
+  // bundles, they will define their fields in appropriate method, so it will be
+  // in one place to control.
+  // We delete them right after we deleted all content with values for them.
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  $category_field_storage = FieldStorageConfig::load('druki_content.category');
+  $category_field_storage->delete();
+  $category_field_definition = BundleFieldDefinition::create('druki_category')
+    ->setLabel(new TranslatableMarkup('Documentation category'));
+  $update_manager->installFieldStorageDefinition('category', 'druki_content', 'druki_content', $category_field_definition);
+
+  $metatags_field_storage = FieldStorageConfig::load('druki_content.metatags');
+  $metatags_field_storage->delete();
+  $metatags_field_definition = BundleFieldDefinition::create('metatag')
+    ->setLabel(new TranslatableMarkup('Metatags'))
+    ->setDescription(new TranslatableMarkup('An addition meta-information for content used by search engines and social media.'));
+  $update_manager->installFieldStorageDefinition('metatags', 'druki_content', 'druki_content', $metatags_field_definition);
+
+  $search_keywords_field_storage = FieldStorageConfig::load('druki_content.search_keywords');
+  $search_keywords_field_storage->delete();
+  $search_keywords_field_definition = BundleFieldDefinition::create('string')
+    ->setLabel(new TranslatableMarkup('Search keywords'))
+    ->setDescription(new TranslatableMarkup('The additional or special search keywords which will boost content in search.'));
+  $update_manager->installFieldStorageDefinition('search_keywords', 'druki_content', 'druki_content', $search_keywords_field_definition);
+}
+
+/**
+ * Delete all content to update it with the new bundle.
+ */
+function druki_content_update_9307(array &$sandbox): void {
   $content_source_settings = \Drupal::service('druki_content.repository.content_source_settings');
   $content_source_uri = $content_source_settings->getRepositoryUri();
   $event = new ContentSourceSyncRequestEvent($content_source_uri);

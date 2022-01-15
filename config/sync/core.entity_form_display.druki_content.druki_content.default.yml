@@ -2,13 +2,8 @@ uuid: 68a301d7-9ace-49dd-b395-2da921ac8a6a
 langcode: ru
 status: true
 dependencies:
-  config:
-    - field.field.druki_content.druki_content.category
-    - field.field.druki_content.druki_content.metatags
-    - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
-    - metatag
     - path
 _core:
   default_config_hash: hmafrFXZaqwXMsgQq_VUYKRnbahW7oysQ7pM_LnPSQk
@@ -24,25 +19,11 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  metatags:
-    type: metatag_firehose
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   path:
     type: path
     weight: 6
     region: content
     settings: {  }
-    third_party_settings: {  }
-  search_keywords:
-    type: string_textfield
-    weight: 5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -53,5 +34,4 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
-  category: true
   sync_timestamp: true

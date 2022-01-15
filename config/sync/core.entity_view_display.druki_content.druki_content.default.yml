@@ -2,10 +2,6 @@ uuid: 0fa305d3-b1d4-4e94-8a7a-09d6cf2cd203
 langcode: ru
 status: true
 dependencies:
-  config:
-    - field.field.druki_content.druki_content.category
-    - field.field.druki_content.druki_content.metatags
-    - field.field.druki_content.druki_content.search_keywords
   module:
     - druki_content
 _core:
@@ -33,12 +29,9 @@ content:
     weight: 1
     region: content
 hidden:
-  category: true
   filename: true
   langcode: true
   last_commit_id: true
-  metatags: true
   relative_pathname: true
   search_api_excerpt: true
-  search_keywords: true
   title: true
