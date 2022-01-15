@@ -20,12 +20,21 @@
 ] %}
 {{ attach_library('loremaster/component.druki-content') }}
 <article{{ attributes.addClass(bem_block) }}>
-  <div class="{{ bem(bem_block, 'actions') }}">
-    <div class="{{ bem(bem_block, 'action') }}">
-      {{ content.extra_field_druki_content_edit_remote }}
-    </div>
-  </div>
-  {% if content %}
-    {{- content|without('extra_field_druki_content_edit_remote') -}}
-  {% endif %}
+  {% block content %}
+    {% if content.extra_field_edit_remote %}
+      <div class="{{ bem(bem_block, 'actions') }}">
+        <div class="{{ bem(bem_block, 'action') }}">
+          {{ content.extra_field_edit_remote }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if content %}
+      {{- content.document -}}
+    {% endif %}
+
+    {% if content.extra_field_next_prev %}
+      {{ content.extra_field_next_prev }}
+    {% endif %}
+  {% endblock %}
 </article>

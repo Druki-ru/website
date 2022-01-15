@@ -88,3 +88,21 @@ function druki_content_theme(): array {
 function druki_content_block_view_druki_category_navigation_alter(array &$build, BlockPluginInterface $block): void {
   $build['#configuration']['label'] = $block->label();
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function druki_content_theme_suggestions_node(array $variables): array {
+  $suggestions = [];
+  /** @var \Drupal\druki_content\Entity\ContentInterface $content */
+  $content = $variables['elements']['#druki_content'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'druki_content__' . $sanitized_view_mode;
+  $suggestions[] = 'druki_content__' . $content->bundle();
+  $suggestions[] = 'druki_content__' . $content->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'druki_content__' . $content->id();
+  $suggestions[] = 'druki_content__' . $content->id() . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}

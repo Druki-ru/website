@@ -16,8 +16,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @ExtraFieldDisplay(
  *   id = "next_prev",
  *   label = @Translation("Next and previous links"),
+ *   visible = TRUE,
  *   bundles = {
- *     "druki_content.druki_content",
+ *     "druki_content.documentation",
  *   }
  * )
  */
