@@ -6,7 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\ContentInterface;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -56,10 +56,10 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
   /**
    * Gets entity from context.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The content entity.
    */
-  private function getEntityFromContext(): DrukiContentInterface {
+  private function getEntityFromContext(): ContentInterface {
     return $this->getContextValue('druki_content');
   }
 

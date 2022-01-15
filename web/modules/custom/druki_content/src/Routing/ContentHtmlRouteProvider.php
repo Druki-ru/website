@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Route;
 /**
  * Provides HTML routes for druki content pages.
  */
-final class DrukiContentHtmlRouteProvider extends AdminHtmlRouteProvider {
+final class ContentHtmlRouteProvider extends AdminHtmlRouteProvider {
 
   /**
    * {@inheritdoc}

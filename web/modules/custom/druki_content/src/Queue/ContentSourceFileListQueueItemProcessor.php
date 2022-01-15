@@ -12,10 +12,10 @@ use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki_content\Data\ContentDocument;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\ContentInterface;
 use Drupal\druki_content\Generator\ContentDocumentChecksumGenerator;
 use Drupal\druki_content\Parser\ContentSourceFileParser;
-use Drupal\druki_content\Repository\DrukiContentStorage;
+use Drupal\druki_content\Repository\ContentStorage;
 
 /**
  * Provides queue item processor for content source file list.
@@ -25,7 +25,7 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
   /**
    * The druki content storage.
    */
-  protected DrukiContentStorage $contentStorage;
+  protected ContentStorage $contentStorage;
 
   /**
    * The content source file parser.
@@ -154,10 +154,10 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
    * @param \Drupal\druki_content\Data\ContentDocument $content_document
    *   The content document.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The content entity.
    */
-  protected function prepareContentEntity(ContentDocument $content_document): DrukiContentInterface {
+  protected function prepareContentEntity(ContentDocument $content_document): ContentInterface {
     $content = $this->contentStorage->loadBySlug(
       $content_document->getMetadata()->getSlug(),
       $content_document->getLanguage(),
@@ -166,6 +166,7 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
       return $content;
     }
     return $this->contentStorage->create([
+      'type' => 'documentation',
       'langcode' => $content_document->getLanguage(),
       'slug' => $content_document->getMetadata()->getSlug(),
     ]);

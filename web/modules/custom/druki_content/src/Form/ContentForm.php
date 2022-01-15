@@ -7,14 +7,17 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Form controller for the druki content entity edit forms.
+ *
+ * @todo Consider remove it. Serve no purposes when everything should be edited
+ *   on external resources.
  */
-final class DrukiContentForm extends ContentEntityForm {
+final class ContentForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
    */
   public function form(array $form, FormStateInterface $form_state): array {
-    /** @var \Drupal\druki_content\Entity\DrukiContentInterface $druki_content */
+    /** @var \Drupal\druki_content\Entity\ContentInterface $druki_content */
     $druki_content = $this->entity;
 
     // Force advanced to be presented and change type to container.

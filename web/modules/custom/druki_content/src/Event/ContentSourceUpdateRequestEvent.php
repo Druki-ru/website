@@ -9,6 +9,6 @@ use Drupal\Component\EventDispatcher\Event;
 /**
  * Provides an event for requesting source content update.
  */
-final class RequestSourceContentUpdateEvent extends Event {
+final class ContentSourceUpdateRequestEvent extends Event {
 
 }

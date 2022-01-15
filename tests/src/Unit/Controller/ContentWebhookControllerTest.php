@@ -6,7 +6,7 @@ namespace Druki\Tests\Unit\Controller;
 
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\druki_content\Controller\ContentWebhookController;
-use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
+use Drupal\druki_content\Event\ContentSourceUpdateRequestEvent;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -37,7 +37,7 @@ final class ContentWebhookControllerTest extends UnitTestCase {
     $response = $controller->update();
     $this->assertInstanceOf(JsonResponse::class, $response);
     $this->assertEquals('{"message":"Ok."}', $response->getContent());
-    $this->assertContains(RequestSourceContentUpdateEvent::class, $this->dispatchedEvents);
+    $this->assertContains(ContentSourceUpdateRequestEvent::class, $this->dispatchedEvents);
   }
 
   /**

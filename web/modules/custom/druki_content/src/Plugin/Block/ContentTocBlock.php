@@ -5,7 +5,7 @@ namespace Drupal\druki_content\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\druki_content\Builder\ContentTableOfContentsBuilder;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\ContentInterface;
 
 /**
  * Provides a druki content toc block.
@@ -19,7 +19,7 @@ use Drupal\druki_content\Entity\DrukiContentInterface;
  *   }
  * )
  */
-class DrukiContentTocBlock extends BlockBase {
+class ContentTocBlock extends BlockBase {
 
   /**
    * {@inheritdoc}
@@ -59,10 +59,10 @@ class DrukiContentTocBlock extends BlockBase {
   /**
    * Gets content from context.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The content entity.
    */
-  protected function getDrukiContentFromContext(): DrukiContentInterface {
+  protected function getDrukiContentFromContext(): ContentInterface {
     return $this->getContextValue('druki_content');
   }
 

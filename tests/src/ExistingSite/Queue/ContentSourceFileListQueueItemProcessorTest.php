@@ -10,7 +10,7 @@ use Drupal\druki_content\Data\ContentDocument;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\ContentInterface;
 use org\bovigo\vfs\vfsStream;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
@@ -41,7 +41,7 @@ final class ContentSourceFileListQueueItemProcessorTest extends ExistingSiteBase
     $files_root = $this->setupFakeSourceDir();
     /** @var \Drupal\druki_content\Queue\ContentSourceFileListQueueItemProcessor $processor */
     $processor = $this->container->get('druki_content.queue.content_source_file_list_queue_item');
-    /** @var \Drupal\druki_content\Repository\DrukiContentStorage $content_storage */
+    /** @var \Drupal\druki_content\Repository\ContentStorage $content_storage */
     $content_storage = $this->container->get('entity_type.manager')->getStorage('druki_content');
 
     $content_source_file_list = new ContentSourceFileList();
@@ -54,7 +54,7 @@ final class ContentSourceFileListQueueItemProcessorTest extends ExistingSiteBase
     $processor->process($queue_item);
 
     $content_entity = $content_storage->loadBySlug('test/example');
-    $this->assertInstanceOf(DrukiContentInterface::class, $content_entity);
+    $this->assertInstanceOf(ContentInterface::class, $content_entity);
     $this->assertEquals('The title', $content_entity->getTitle());
     $this->assertEquals('index.md', $content_entity->getRelativePathname());
     $content_document = $content_entity->getContentDocument();

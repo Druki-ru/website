@@ -16,7 +16,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   }
  * )
  */
-final class MobileDrukiContentTocBlock extends DrukiContentTocBlock {
+final class MobileContentTocBlock extends ContentTocBlock {
 
   /**
    * {@inheritdoc}

@@ -10,8 +10,8 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Repository\DrukiContentStorage;
+use Drupal\druki_content\Entity\ContentInterface;
+use Drupal\druki_content\Repository\ContentStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -31,7 +31,7 @@ final class CategoryNavigationBlock extends BlockBase implements ContainerFactor
   /**
    * The druki content storage.
    */
-  protected DrukiContentStorage $contentStorage;
+  protected ContentStorage $contentStorage;
 
   /**
    * The static cache.
@@ -59,10 +59,10 @@ final class CategoryNavigationBlock extends BlockBase implements ContainerFactor
   /**
    * Gets druki content to work with.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The druki content entity.
    */
-  protected function getDrukiContent(): DrukiContentInterface {
+  protected function getDrukiContent(): ContentInterface {
     return $this->getContextValue('druki_content');
   }
 
@@ -161,7 +161,7 @@ final class CategoryNavigationBlock extends BlockBase implements ContainerFactor
   /**
    * Search for content of the same category.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface[]
+   * @return \Drupal\druki_content\Entity\ContentInterface[]
    *   An array with content entities.
    */
   protected function findContentForCategory(): array {

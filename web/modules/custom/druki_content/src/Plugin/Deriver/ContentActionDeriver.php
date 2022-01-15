@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides a deriver for Druki Content actions.
  */
-final class DrukiContentActionDeriver extends DeriverBase implements ContainerDeriverInterface {
+final class ContentActionDeriver extends DeriverBase implements ContainerDeriverInterface {
 
   /**
    * The entity type manager.

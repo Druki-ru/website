@@ -9,7 +9,7 @@ use Drupal\Component\EventDispatcher\Event;
 /**
  * Provides an event for requesting source content synchronization.
  */
-final class RequestSourceContentSyncEvent extends Event {
+final class ContentSourceSyncRequestEvent extends Event {
 
   /**
    * The source content URI.
@@ -17,7 +17,7 @@ final class RequestSourceContentSyncEvent extends Event {
   protected string $sourceContentUri;
 
   /**
-   * Constructs a new RequestSourceContentSyncEvent object.
+   * Constructs a new ContentSourceSyncRequestEvent object.
    *
    * @param string $source_content_uri
    *   The source content URI.

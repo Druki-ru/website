@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Plugin\Field\FieldType;
 
+use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\druki\Data\Contributor;
@@ -19,6 +20,7 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 final class ContributorItemTest extends ExistingSiteBase {
 
   use EntityCleanupTrait;
+  use DrukiContentCreationTrait;
 
   /**
    * The content storage.
@@ -29,29 +31,6 @@ final class ContributorItemTest extends ExistingSiteBase {
    * The field name used to install field.
    */
   protected string $fieldName;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-    $this->storeEntityIds(['field_storage_config', 'field_config', 'druki_content']);
-
-    $this->fieldName = 'field_druki_contributor';
-    FieldStorageConfig::create([
-      'entity_type' => 'druki_content',
-      'field_name' => $this->fieldName,
-      'type' => 'druki_contributor',
-    ])->save();
-    FieldConfig::create([
-      'entity_type' => 'druki_content',
-      'field_name' => $this->fieldName,
-      'bundle' => 'druki_content',
-    ])->save();
-
-    $this->contentStorage = $this->container->get('entity_type.manager')
-      ->getStorage('druki_content');
-  }
 
   /**
    * @inheritDoc
@@ -65,7 +44,7 @@ final class ContributorItemTest extends ExistingSiteBase {
    * Tests that field works as expected.
    */
   public function testField(): void {
-    $content = $this->contentStorage->create();
+    $content = $this->createDrukiContent(['type' => 'documentation']);
     /** @var \Drupal\Core\Field\FieldItemListInterface $field */
     $field = $content->get($this->fieldName);
     $this->assertTrue($field->isEmpty());
@@ -84,6 +63,29 @@ final class ContributorItemTest extends ExistingSiteBase {
     $this->assertInstanceOf(Contributor::class, $contributor);
     $this->assertEquals('John Doe', $contributor->getUsername());
     $this->assertEquals('john.doe@example.com', $contributor->getEmail());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+    $this->storeEntityIds(['field_storage_config', 'field_config', 'druki_content']);
+
+    $this->fieldName = 'field_druki_contributor';
+    FieldStorageConfig::create([
+      'entity_type' => 'druki_content',
+      'field_name' => $this->fieldName,
+      'type' => 'druki_contributor',
+    ])->save();
+    FieldConfig::create([
+      'entity_type' => 'druki_content',
+      'bundle' => 'documentation',
+      'field_name' => $this->fieldName,
+    ])->save();
+
+    $this->contentStorage = $this->container->get('entity_type.manager')
+      ->getStorage('druki_content');
   }
 
 }

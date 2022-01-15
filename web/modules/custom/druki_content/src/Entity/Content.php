@@ -20,33 +20,36 @@ use Drupal\entity\BundleFieldDefinition;
  *   id = "druki_content",
  *   label = @Translation("Druki content"),
  *   label_collection = @Translation("Druki content"),
+ *   bundle_label = @Translation("Druki content bundle"),
  *   handlers = {
- *     "storage" = "Drupal\druki_content\Repository\DrukiContentStorage",
+ *     "storage" = "Drupal\druki_content\Repository\ContentStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\druki_content\Controller\DrukiContentListBuilder",
+ *     "list_builder" = "Drupal\druki_content\Controller\ContentListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *     "access" = "Drupal\druki_content\Access\DrukiContentAccessControlHandler",
+ *     "access" = "Drupal\druki_content\Access\ContentAccessControlHandler",
+ *     "redirect_controller" = "Drupal\druki_content\Routing\ContentRedirectController",
  *     "form" = {
- *       "edit" = "Drupal\druki_content\Form\DrukiContentForm",
+ *       "edit" = "Drupal\druki_content\Form\ContentForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
- *       "delete-all" = "Drupal\druki_content\Form\DrukiContentDeleteAllForm",
- *       "settings" = "Drupal\druki_content\Form\DrukiContentSettingsForm",
+ *       "delete-all" = "Drupal\druki_content\Form\ContentDeleteAllForm",
+ *       "settings" = "Drupal\druki_content\Form\ContentSettingsForm",
  *       "sync" = "\Drupal\druki_content\Form\ContentSyncForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\druki_content\Routing\DrukiContentHtmlRouteProvider",
+ *       "html" = "Drupal\druki_content\Routing\ContentHtmlRouteProvider",
  *     },
- *     "redirect_controller" = "Drupal\druki_content\Routing\DrukiContentRedirectController",
  *   },
  *   base_table = "druki_content",
  *   data_table = "druki_content_field_data",
+ *   bundle_plugin_type = "druki_content_type",
  *   translatable = TRUE,
  *   admin_permission = "administer druki content",
  *   entity_keys = {
  *     "id" = "internal_id",
  *     "langcode" = "langcode",
  *     "label" = "title",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "bundle" = "type",
  *   },
  *   links = {
  *     "canonical" = "/druki_content/{druki_content}",
@@ -59,10 +62,9 @@ use Drupal\entity\BundleFieldDefinition;
  *     "settings" = "/admin/structure/druki-content",
  *     "sync" = "/admin/druki/content/sync"
  *   },
- *   field_ui_base_route = "entity.druki_content.settings"
  * )
  */
-final class DrukiContent extends ContentEntityBase implements DrukiContentInterface {
+final class Content extends ContentEntityBase implements ContentInterface {
 
   /**
    * {@inheritdoc}
@@ -186,7 +188,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setTitle(string $title): DrukiContentInterface {
+  public function setTitle(string $title): ContentInterface {
     $this->set('title', $title);
 
     return $this;
@@ -195,7 +197,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setRelativePathname(string $relative_pathname): DrukiContentInterface {
+  public function setRelativePathname(string $relative_pathname): ContentInterface {
     $this->set('relative_pathname', $relative_pathname);
 
     return $this;
@@ -204,7 +206,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setCore(?int $core): DrukiContentInterface {
+  public function setCore(?int $core): ContentInterface {
     $this->set('core', $core);
 
     return $this;
@@ -220,7 +222,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setCategory(string $area, int $order = 0, ?string $title = NULL): DrukiContentInterface {
+  public function setCategory(string $area, int $order = 0, ?string $title = NULL): ContentInterface {
     $this->set('category', [
       'area' => $area,
       'order' => $order,
@@ -257,7 +259,7 @@ final class DrukiContent extends ContentEntityBase implements DrukiContentInterf
   /**
    * {@inheritdoc}
    */
-  public function setSourceHash(string $hash): DrukiContentInterface {
+  public function setSourceHash(string $hash): ContentInterface {
     $this->set('source_hash', $hash);
     return $this;
   }

@@ -55,7 +55,7 @@ final class InternalLinksTest extends ExistingSiteBase {
     // such link to be just hash-link.
     $this->assertSame('<a href="#">Drupal 100</a>', $filtered_text->getProcessedText());
 
-    $content = $this->createDrukiContent();
+    $content = $this->createDrukiContent(['type' => 'documentation']);
     $content->set('relative_pathname', 'docs/ru/drupal/100/index.md');
     $content->save();
 

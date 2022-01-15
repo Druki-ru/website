@@ -45,7 +45,7 @@ final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemPro
    * {@inheritdoc}
    */
   public function process(EntitySyncQueueItemInterface $item): array {
-    /** @var \Drupal\druki_content\Repository\DrukiContentStorage $druki_content_storage */
+    /** @var \Drupal\druki_content\Repository\ContentStorage $druki_content_storage */
     $druki_content_storage = $this->entityTypeManager->getStorage('druki_content');
     $existing_ids = $druki_content_storage->getQuery()
       ->accessCheck(FALSE)

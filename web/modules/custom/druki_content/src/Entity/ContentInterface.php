@@ -10,7 +10,7 @@ use Drupal\druki_content\Data\ContentDocument;
 /**
  * Provides an interface defining a druki content entity type.
  */
-interface DrukiContentInterface extends ContentEntityInterface {
+interface ContentInterface extends ContentEntityInterface {
 
   /**
    * Gets the druki content title.
@@ -26,10 +26,10 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @param string $title
    *   The druki content title.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The called druki content entity.
    */
-  public function setTitle(string $title): DrukiContentInterface;
+  public function setTitle(string $title): ContentInterface;
 
   /**
    * Gets relative pathname of source file.
@@ -45,10 +45,10 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @param string $relative_pathname
    *   The relative pathname.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The called druki content entity.
    */
-  public function setRelativePathname(string $relative_pathname): DrukiContentInterface;
+  public function setRelativePathname(string $relative_pathname): ContentInterface;
 
   /**
    * Sets core version.
@@ -56,10 +56,10 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @param int|null $core
    *   The core version.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The called druki content entity.
    */
-  public function setCore(?int $core): DrukiContentInterface;
+  public function setCore(?int $core): ContentInterface;
 
   /**
    * Gets core version.
@@ -79,10 +79,10 @@ interface DrukiContentInterface extends ContentEntityInterface {
    * @param string|null $title
    *   The custom title for category.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The called druki content entity.
    */
-  public function setCategory(string $area, int $order = 0, ?string $title = NULL): DrukiContentInterface;
+  public function setCategory(string $area, int $order = 0, ?string $title = NULL): ContentInterface;
 
   /**
    * Reset category value.
@@ -113,7 +113,7 @@ interface DrukiContentInterface extends ContentEntityInterface {
    *
    * @return $this
    */
-  public function setSourceHash(string $hash): DrukiContentInterface;
+  public function setSourceHash(string $hash): ContentInterface;
 
   /**
    * Gets content slug.

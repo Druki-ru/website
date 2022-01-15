@@ -6,21 +6,21 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\druki_content\Repository\DrukiContentStorage;
+use Drupal\druki_content\Repository\ContentStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a confirmation form before clearing out the examples.
  */
-final class DrukiContentDeleteAllForm extends ConfirmFormBase {
+final class ContentDeleteAllForm extends ConfirmFormBase {
 
   /**
    * The druki content storage.
    */
-  protected DrukiContentStorage $drukiContentStorage;
+  protected ContentStorage $drukiContentStorage;
 
   /**
-   * DrukiContentDeleteAllForm constructor.
+   * ContentDeleteAllForm constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.

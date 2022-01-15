@@ -11,7 +11,7 @@ use Drupal\Core\Session\AccountInterface;
 /**
  * Defines the access control handler for the druki_content entity type.
  */
-final class DrukiContentAccessControlHandler extends EntityAccessControlHandler {
+final class ContentAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritdoc}

@@ -2,8 +2,8 @@
 
 namespace Druki\Tests\Traits;
 
-use Drupal\druki_content\Entity\DrukiContent;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\Content;
+use Drupal\druki_content\Entity\ContentInterface;
 use Drupal\Tests\RandomGeneratorTrait;
 use weitzman\DrupalTestTraits\DrupalTrait;
 
@@ -21,12 +21,12 @@ trait DrukiContentCreationTrait {
    * @param array $values
    *   An associative array with values for entity.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface
+   * @return \Drupal\druki_content\Entity\ContentInterface
    *   The created entity.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createDrukiContent(array $values = []): DrukiContentInterface {
+  protected function createDrukiContent(array $values = []): ContentInterface {
     $values += [
       'title' => $this->randomMachineName(32),
       'slug' => $this->randomMachineName(32),
@@ -37,7 +37,7 @@ trait DrukiContentCreationTrait {
       ],
     ];
 
-    $content = DrukiContent::create($values);
+    $content = Content::create($values);
     $content->save();
 
     $this->markEntityForCleanup($content);

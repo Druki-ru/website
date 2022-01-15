@@ -6,9 +6,9 @@ namespace Druki\Tests\Unit\EventSubscriber;
 
 use Drupal\druki\Process\GitInterface;
 use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
-use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
-use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
-use Drupal\druki_content\EventSubscriber\SourceContentEventSubscriber;
+use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
+use Drupal\druki_content\Event\ContentSourceUpdateRequestEvent;
+use Drupal\druki_content\EventSubscriber\ContentSourceEventSubscriber;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
@@ -19,7 +19,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 /**
  * Provides test for source content events subscriber.
  *
- * @coversDefaultClass \Drupal\druki_content\EventSubscriber\SourceContentEventSubscriber
+ * @coversDefaultClass \Drupal\druki_content\EventSubscriber\ContentSourceEventSubscriber
  */
 final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
 
@@ -41,24 +41,24 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
   public function testOnUpdateRequest(): void {
     $event_subscriber = $this->buildEventSubscriber();
 
-    $this->assertArrayHasKey(RequestSourceContentUpdateEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
-    $event = new RequestSourceContentUpdateEvent();
+    $this->assertArrayHasKey(ContentSourceUpdateRequestEvent::class, ContentSourceEventSubscriber::getSubscribedEvents());
+    $event = new ContentSourceUpdateRequestEvent();
     // First call should fail on git pull and doesn't call dispatcher for sync.
     $event_subscriber->onUpdateRequest($event);
     $this->assertEmpty($this->dispatchedEvents);
 
     $event_subscriber->onUpdateRequest($event);
-    $this->assertContains(RequestSourceContentSyncEvent::class, $this->dispatchedEvents);
+    $this->assertContains(ContentSourceSyncRequestEvent::class, $this->dispatchedEvents);
   }
 
   /**
    * Builds event subscriber with mocked dependencies.
    *
-   * @return \Drupal\druki_content\EventSubscriber\SourceContentEventSubscriber
+   * @return \Drupal\druki_content\EventSubscriber\ContentSourceEventSubscriber
    *   The subscriber instance.
    */
-  protected function buildEventSubscriber(): SourceContentEventSubscriber {
-    return new SourceContentEventSubscriber(
+  protected function buildEventSubscriber(): ContentSourceEventSubscriber {
+    return new ContentSourceEventSubscriber(
       $this->buildContentSourceSettings(),
       $this->buildContentSyncQueueBuilder(),
       $this->buildGit(),
@@ -135,8 +135,8 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
   public function testOnSyncRequest(): void {
     $event_subscriber = $this->buildEventSubscriber();
 
-    $this->assertArrayHasKey(RequestSourceContentSyncEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
-    $event = new RequestSourceContentSyncEvent('foo/bar');
+    $this->assertArrayHasKey(ContentSourceSyncRequestEvent::class, ContentSourceEventSubscriber::getSubscribedEvents());
+    $event = new ContentSourceSyncRequestEvent('foo/bar');
     $this->assertFalse($this->isSyncQueueBuilt);
     $event_subscriber->onSyncRequest($event);
     $this->assertTrue($this->isSyncQueueBuilt);

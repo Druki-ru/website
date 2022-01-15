@@ -10,12 +10,12 @@ use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
  * Provides an extra field to display 'Edit this page' button.
  *
  * @ExtraFieldDisplay(
- *   id = "druki_content_edit_remote",
+ *   id = "edit_remote",
  *   label = @Translation("Edit this page (remote)"),
- *   bundles = {
- *     "druki_content.*",
- *   },
  *   visible = TRUE,
+ *   bundles = {
+ *     "druki_content.documentation",
+ *   },
  * )
  */
 final class EditRemote extends ExtraFieldDisplayBase {

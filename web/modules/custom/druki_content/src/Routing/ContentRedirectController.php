@@ -4,7 +4,7 @@ namespace Drupal\druki_content\Routing;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\ContentInterface;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Class to redirect from entity to remote resources.
  */
-final class DrukiContentRedirectController extends ControllerBase {
+final class ContentRedirectController extends ControllerBase {
 
   /**
    * The content source settings.
@@ -32,7 +32,7 @@ final class DrukiContentRedirectController extends ControllerBase {
   /**
    * Redirects to remote url.
    *
-   * @param \Drupal\druki_content\Entity\DrukiContentInterface $druki_content
+   * @param \Drupal\druki_content\Entity\ContentInterface $druki_content
    *   The druki content entity.
    * @param string $redirect_to
    *   The requested redirect.
@@ -40,7 +40,7 @@ final class DrukiContentRedirectController extends ControllerBase {
    * @return \Symfony\Component\HttpFoundation\Response
    *   The redirect response.
    */
-  public function build(DrukiContentInterface $druki_content, string $redirect_to): Response {
+  public function build(ContentInterface $druki_content, string $redirect_to): Response {
     $repository_url = $this->contentSourceSettings->getRepositoryUrl();
     $relative_pathname = $druki_content->getRelativePathname();
 

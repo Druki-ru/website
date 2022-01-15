@@ -3,12 +3,12 @@
 namespace Drupal\druki_content\Repository;
 
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\ContentInterface;
 
 /**
  * Provides storage handler for "druki_content" entity.
  */
-final class DrukiContentStorage extends SqlContentEntityStorage {
+final class ContentStorage extends SqlContentEntityStorage {
 
   /**
    * Loads content by slug.
@@ -18,10 +18,10 @@ final class DrukiContentStorage extends SqlContentEntityStorage {
    * @param string|null $langcode
    *   The langcode of content. Defaults to site language.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
+   * @return \Drupal\druki_content\Entity\ContentInterface|null
    *   The content.
    */
-  public function loadBySlug(string $slug, ?string $langcode = NULL): ?DrukiContentInterface {
+  public function loadBySlug(string $slug, ?string $langcode = NULL): ?ContentInterface {
     if (!$langcode) {
       $langcode = $this->languageManager->getCurrentLanguage()->getId();
     }

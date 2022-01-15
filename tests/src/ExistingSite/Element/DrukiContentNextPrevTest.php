@@ -9,7 +9,7 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
 /**
  * Provides test for druki content next and previous links.
  *
- * @covers \Drupal\druki_content\Element\DrukiContentNextPrev
+ * @covers \Drupal\druki_content\Element\ContentNextPrev
  */
 final class DrukiContentNextPrevTest extends ExistingSiteBase {
 

@@ -21,7 +21,10 @@ final class PathBasedBreadcrumbDecoratorTest extends ExistingSiteBase {
    * @covers ::build
    */
   public function testDecorator(): void {
-    $content = $this->createDrukiContent(['slug' => 'wiki/test/abcd']);
+    $content = $this->createDrukiContent([
+      'type' => 'documentation',
+      'slug' => 'wiki/test/abcd',
+    ]);
     $this->drupalGet($content->toUrl());
     $this->assertSession()->elementExists('css', '.breadcrumb__item-link--current');
     $this->assertSession()->elementTextContains('css', '.breadcrumb__item-link--current', new TranslatableMarkup('Wiki'));

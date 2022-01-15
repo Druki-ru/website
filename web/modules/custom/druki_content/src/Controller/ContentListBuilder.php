@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides a list controller for the druki content entity type.
  */
-final class DrukiContentListBuilder extends EntityListBuilder {
+final class ContentListBuilder extends EntityListBuilder {
 
   /**
    * The date formatter service.
@@ -68,7 +68,7 @@ final class DrukiContentListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity): array {
-    /** @var \Drupal\druki_content\Entity\DrukiContentInterface $entity */
+    /** @var \Drupal\druki_content\Entity\ContentInterface $entity */
     $row['internal_id'] = $entity->id();
     $row['slug'] = $entity->getSlug();
     $row['langcode'] = $entity->get('langcode')->value;

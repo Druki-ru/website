@@ -24,7 +24,7 @@ use Drupal\Core\Render\Element\RenderElement;
  *
  * @RenderElement("druki_content_next_prev")
  */
-class DrukiContentNextPrev extends RenderElement {
+class ContentNextPrev extends RenderElement {
 
   /**
    * Entity element pre render callback.

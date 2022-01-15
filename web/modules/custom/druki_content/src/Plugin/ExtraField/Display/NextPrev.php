@@ -5,8 +5,8 @@ namespace Drupal\druki_content\Plugin\ExtraField\Display;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Repository\DrukiContentStorage;
+use Drupal\druki_content\Entity\ContentInterface;
+use Drupal\druki_content\Repository\ContentStorage;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,8 +16,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @ExtraFieldDisplay(
  *   id = "next_prev",
  *   label = @Translation("Next and previous links"),
+ *   visible = TRUE,
  *   bundles = {
- *     "druki_content.druki_content",
+ *     "druki_content.documentation",
  *   }
  * )
  */
@@ -26,7 +27,7 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
   /**
    * The druki content storage.
    */
-  private DrukiContentStorage $contentStorage;
+  private ContentStorage $contentStorage;
 
   /**
    * Constructs a new NextPrev object.
@@ -37,10 +38,10 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
    *   The plugin ID.
    * @param array $plugin_definition
    *   The plugin definition.
-   * @param \Drupal\druki_content\Repository\DrukiContentStorage $content_storage
+   * @param \Drupal\druki_content\Repository\ContentStorage $content_storage
    *   The druki content storage.
    */
-  public function __construct(array $configuration, string $plugin_id, array $plugin_definition, DrukiContentStorage $content_storage) {
+  public function __construct(array $configuration, string $plugin_id, array $plugin_definition, ContentStorage $content_storage) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->contentStorage = $content_storage;
@@ -83,7 +84,7 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
   /**
    * Gets link to next or previous content.
    *
-   * @param \Drupal\druki_content\Entity\DrukiContentInterface $entity
+   * @param \Drupal\druki_content\Entity\ContentInterface $entity
    *   The entity for relative search.
    * @param string $direction
    *   The link direction. Can be: "next" or "prev".
@@ -93,7 +94,7 @@ final class NextPrev extends ExtraFieldDisplayBase implements ContainerFactoryPl
    *
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
-  protected function getLink(DrukiContentInterface $entity, string $direction): ?Link {
+  protected function getLink(ContentInterface $entity, string $direction): ?Link {
     if (!\in_array($direction, ['next', 'prev'])) {
       return NULL;
     }
