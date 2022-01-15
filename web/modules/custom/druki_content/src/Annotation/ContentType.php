@@ -7,11 +7,11 @@ namespace Drupal\druki_content\Annotation;
 use Drupal\Component\Annotation\Plugin;
 
 /**
- * Defines the DrukiContentBundle plugin annotation.
+ * Defines the Content plugin annotation.
  *
  * @Annotation
  */
-final class DrukiContentBundle extends Plugin {
+final class ContentType extends Plugin {
 
   /**
    * The bundle ID (type).

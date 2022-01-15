@@ -13,7 +13,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 /**
  * Sets the current druki content as context on content routes.
  */
-final class DrukiContentRouteContext implements ContextProviderInterface {
+final class ContentRouteContext implements ContextProviderInterface {
 
   /**
    * The route match.

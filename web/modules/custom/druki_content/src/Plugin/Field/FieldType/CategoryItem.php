@@ -18,13 +18,12 @@ use Drupal\Core\TypedData\DataDefinition;
  *   no_ui = TRUE,
  * )
  */
-class DrukiCategoryItem extends FieldItemBase {
+class CategoryItem extends FieldItemBase {
 
   /**
    * {@inheritdoc}
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition): array {
-
     $properties['area'] = DataDefinition::create('string')
       ->setLabel(\t('Area'))
       ->setRequired(TRUE);

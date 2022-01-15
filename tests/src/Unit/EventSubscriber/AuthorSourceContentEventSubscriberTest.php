@@ -6,7 +6,7 @@ namespace Druki\Tests\Unit\EventSubscriber;
 
 use Drupal\druki_author\Builder\AuthorSyncQueueBuilderInterface;
 use Drupal\druki_author\EventSubscriber\SourceContentEventSubscriber;
-use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
+use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -24,7 +24,7 @@ final class AuthorSourceContentEventSubscriberTest extends UnitTestCase {
    * Tests content sync request subscriber.
    */
   public function testOnSyncRequest(): void {
-    $event = new RequestSourceContentSyncEvent('/foo/bar');
+    $event = new ContentSourceSyncRequestEvent('/foo/bar');
     $queue_builder = $this->buildAuthorSyncQueueBuilder();
     $subscriber = new SourceContentEventSubscriber($queue_builder);
     $subscriber->onSyncRequest($event);
@@ -47,7 +47,7 @@ final class AuthorSourceContentEventSubscriberTest extends UnitTestCase {
    */
   public function testGetSubscribedEvents(): void {
     $subscribed_events = \array_keys(SourceContentEventSubscriber::getSubscribedEvents());
-    $this->assertContains(RequestSourceContentSyncEvent::class, $subscribed_events);
+    $this->assertContains(ContentSourceSyncRequestEvent::class, $subscribed_events);
   }
 
 }

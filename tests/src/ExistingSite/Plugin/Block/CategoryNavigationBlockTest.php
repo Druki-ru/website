@@ -18,7 +18,7 @@ final class CategoryNavigationBlockTest extends ExistingSiteBase {
    * Tests that nothing is shown on page if no category set.
    */
   public function testNoCategorySet(): void {
-    $content = $this->createDrukiContent();
+    $content = $this->createDrukiContent(['type' => 'documentation']);
     $this->drupalGet($content->toUrl());
     $this->assertSession()->elementNotExists('css', '.block--category-navigation');
   }
@@ -28,19 +28,28 @@ final class CategoryNavigationBlockTest extends ExistingSiteBase {
    */
   public function testCategorySet(): void {
     $category_name = 'flugegeheimen';
-    $content_1 = $this->createDrukiContent(['category' => [
-      'area' => $category_name,
-      'order' => 1,
-    ]]);
-    $content_2 = $this->createDrukiContent(['category' => [
-      'area' => $category_name,
-      'order' => 2,
-    ]]);
-    $content_3 = $this->createDrukiContent(['category' => [
-      'area' => $category_name,
-      'order' => 3,
-      'title' => 'foo-bar',
-    ]]);
+    $content_1 = $this->createDrukiContent([
+      'type' => 'documentation',
+      'category' => [
+        'area' => $category_name,
+        'order' => 1,
+      ],
+    ]);
+    $content_2 = $this->createDrukiContent([
+      'type' => 'documentation',
+      'category' => [
+        'area' => $category_name,
+        'order' => 2,
+      ],
+    ]);
+    $content_3 = $this->createDrukiContent([
+      'type' => 'documentation',
+      'category' => [
+        'area' => $category_name,
+        'order' => 3,
+        'title' => 'foo-bar',
+      ],
+    ]);
 
     $this->drupalGet($content_1->toUrl());
 

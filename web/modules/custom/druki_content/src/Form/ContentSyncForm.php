@@ -7,8 +7,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
-use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
-use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
+use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
+use Drupal\druki_content\Event\ContentSourceUpdateRequestEvent;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -181,7 +181,7 @@ final class ContentSyncForm extends FormBase {
    * Builds new queue via Git pull.
    */
   public function createQueueFromGit(): void {
-    $this->eventDispatcher->dispatch(new RequestSourceContentUpdateEvent());
+    $this->eventDispatcher->dispatch(new ContentSourceUpdateRequestEvent());
   }
 
   /**
@@ -211,7 +211,7 @@ final class ContentSyncForm extends FormBase {
    */
   public function dispatchSyncEvent(array $form, FormStateInterface $form_state): void {
     $content_source_uri = $this->contentSourceSettings->getRepositoryUri();
-    $event = new RequestSourceContentSyncEvent($content_source_uri);
+    $event = new ContentSourceSyncRequestEvent($content_source_uri);
     $this->eventDispatcher->dispatch($event);
   }
 

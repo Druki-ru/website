@@ -16,7 +16,10 @@ final class ContentSlugAliasTest extends ExistingSiteBase {
    * Tests behavior for common content entity.
    */
   public function testAlias(): void {
-    $entity = $this->createDrukiContent(['slug' => 'wiki/Test.dot']);
+    $entity = $this->createDrukiContent([
+      'type' => 'documentation',
+      'slug' => 'wiki/Test.dot',
+    ]);
     $expected = '/' . $entity->getSlug();
     $this->assertEquals($expected, $entity->toUrl()->toString());
   }

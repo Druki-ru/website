@@ -6,8 +6,8 @@ namespace Drupal\druki_content\EventSubscriber;
 
 use Drupal\druki\Process\GitInterface;
 use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
-use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
-use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
+use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
+use Drupal\druki_content\Event\ContentSourceUpdateRequestEvent;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -15,7 +15,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 /**
  * Provides event subscriber for source content events.
  */
-final class SourceContentEventSubscriber implements EventSubscriberInterface {
+final class ContentSourceEventSubscriber implements EventSubscriberInterface {
 
   /**
    * The git process.
@@ -38,7 +38,7 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
   protected EventDispatcherInterface $eventDispatcher;
 
   /**
-   * Constructs a new SourceContentEventSubscriber object.
+   * Constructs a new ContentSourceEventSubscriber object.
    *
    * @param \Drupal\druki_content\Repository\ContentSourceSettingsInterface $content_source_settings
    *   The content source settings repository.
@@ -61,18 +61,18 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents(): array {
     return [
-      RequestSourceContentUpdateEvent::class => ['onUpdateRequest'],
-      RequestSourceContentSyncEvent::class => ['onSyncRequest'],
+      ContentSourceUpdateRequestEvent::class => ['onUpdateRequest'],
+      ContentSourceSyncRequestEvent::class => ['onSyncRequest'],
     ];
   }
 
   /**
    * Reacts on request for the source content update.
    *
-   * @param \Drupal\druki_content\Event\RequestSourceContentUpdateEvent $event
+   * @param \Drupal\druki_content\Event\ContentSourceUpdateRequestEvent $event
    *   The event instance.
    */
-  public function onUpdateRequest(RequestSourceContentUpdateEvent $event): void {
+  public function onUpdateRequest(ContentSourceUpdateRequestEvent $event): void {
     $content_source_uri = $this->contentSourceSettings->getRepositoryUri();
     $process = $this->git->pull($content_source_uri);
     $process->run();
@@ -80,17 +80,17 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
       return;
     }
     // If pull successful, immediately request synchronization.
-    $sync_event = new RequestSourceContentSyncEvent($content_source_uri);
+    $sync_event = new ContentSourceSyncRequestEvent($content_source_uri);
     $this->eventDispatcher->dispatch($sync_event);
   }
 
   /**
    * Reacts on request for the source content synchronization.
    *
-   * @param \Drupal\druki_content\Event\RequestSourceContentSyncEvent $event
+   * @param \Drupal\druki_content\Event\ContentSourceSyncRequestEvent $event
    *   The event instance.
    */
-  public function onSyncRequest(RequestSourceContentSyncEvent $event): void {
+  public function onSyncRequest(ContentSourceSyncRequestEvent $event): void {
     $this->queueBuilder->buildFromPath($event->getSourceContentUri());
   }
 

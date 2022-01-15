@@ -8,8 +8,12 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Configuration form for a druki content entity type.
+ *
+ * @todo Consider remove it and all th rest UI responsible for configuring an
+ *   entity. Or think about using it for set up Git information for content
+ *   source.
  */
-final class DrukiContentSettingsForm extends FormBase {
+final class ContentSettingsForm extends FormBase {
 
   /**
    * {@inheritdoc}

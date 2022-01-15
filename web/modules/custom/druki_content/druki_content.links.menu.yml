@@ -1,2 +1,2 @@
 entity.druki_content.menu:
-  deriver: \Drupal\druki_content\Plugin\Deriver\DrukiContentMenuLinkDeriver
+  deriver: \Drupal\druki_content\Plugin\Deriver\ContentMenuLinkDeriver

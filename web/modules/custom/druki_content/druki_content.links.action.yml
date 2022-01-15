@@ -1,2 +1,2 @@
 entity.druki_content.actions:
-  deriver: \Drupal\druki_content\Plugin\Deriver\DrukiContentActionDeriver
+  deriver: \Drupal\druki_content\Plugin\Deriver\ContentActionDeriver

@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides a deriver for Druki Content menu links.
  */
-final class DrukiContentMenuLinkDeriver extends DeriverBase implements ContainerDeriverInterface {
+final class ContentMenuLinkDeriver extends DeriverBase implements ContainerDeriverInterface {
 
   /**
    * The entity type manager.

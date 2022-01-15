@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Druki\Tests\Unit\EventSubscriber;
 
-use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
+use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
 use Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface;
 use Drupal\druki_redirect\EventSubscriber\SourceContentEventSubscriber;
@@ -32,8 +32,8 @@ final class RedirectSourceContentEventSubscriberTest extends UnitTestCase {
   public function testOnSyncRequest(): void {
     $event_subscriber = $this->buildEventSubscriber();
 
-    $this->assertArrayHasKey(RequestSourceContentSyncEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
-    $event = new RequestSourceContentSyncEvent('/foo/bar');
+    $this->assertArrayHasKey(ContentSourceSyncRequestEvent::class, SourceContentEventSubscriber::getSubscribedEvents());
+    $event = new ContentSourceSyncRequestEvent('/foo/bar');
     $this->assertEmpty($this->requestedDirs);
     $event_subscriber->onSyncRequest($event);
     $expected = [

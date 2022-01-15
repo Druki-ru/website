@@ -13,7 +13,7 @@ use Drush\Commands\DrushCommands;
 /**
  * Provides drush commands for synchronization "druki_content" entity.
  */
-final class DrukiContentSyncCommand extends DrushCommands {
+final class ContentSyncCommand extends DrushCommands {
 
   /**
    * The language manager service.

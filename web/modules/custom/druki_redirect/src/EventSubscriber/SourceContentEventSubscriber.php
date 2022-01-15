@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\druki_redirect\EventSubscriber;
 
-use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
+use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
 use Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -19,7 +19,7 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
   protected RedirectSyncQueueBuilderInterface $queueBuilder;
 
   /**
-   * Constructs a new SourceContentEventSubscriber object.
+   * Constructs a new ContentSourceEventSubscriber object.
    *
    * @param \Drupal\druki_redirect\Builder\RedirectSyncQueueBuilderInterface $queue_builder
    *   The queue builder.
@@ -33,17 +33,17 @@ final class SourceContentEventSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents(): array {
     return [
-      RequestSourceContentSyncEvent::class => ['onSyncRequest'],
+      ContentSourceSyncRequestEvent::class => ['onSyncRequest'],
     ];
   }
 
   /**
    * Reacts on request for the source content synchronization.
    *
-   * @param \Drupal\druki_content\Event\RequestSourceContentSyncEvent $event
+   * @param \Drupal\druki_content\Event\ContentSourceSyncRequestEvent $event
    *   The event instance.
    */
-  public function onSyncRequest(RequestSourceContentSyncEvent $event): void {
+  public function onSyncRequest(ContentSourceSyncRequestEvent $event): void {
     $repository_path = $event->getSourceContentUri();
     $directories = [
       // Only documents expected to have redirects.

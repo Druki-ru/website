@@ -12,8 +12,8 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki\Utility\Anchor;
 use Drupal\druki_content\Builder\ContentTableOfContentsBuilder;
-use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Repository\DrukiContentStorage;
+use Drupal\druki_content\Entity\ContentInterface;
+use Drupal\druki_content\Repository\ContentStorage;
 use Drupal\search\Plugin\SearchIndexingInterface;
 use Drupal\search\Plugin\SearchPluginBase;
 use Drupal\search\SearchIndexInterface;
@@ -48,7 +48,7 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
   /**
    * The content storage.
    */
-  protected DrukiContentStorage $contentStorage;
+  protected ContentStorage $contentStorage;
 
   /**
    * The renderer.
@@ -116,13 +116,13 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
   /**
    * Indexes a single content.
    *
-   * @param \Drupal\druki_content\Entity\DrukiContentInterface $content
+   * @param \Drupal\druki_content\Entity\ContentInterface $content
    *   The content to index.
    *
    * @return array
    *   An array of words to update after indexing.
    */
-  protected function indexContent(DrukiContentInterface $content): array {
+  protected function indexContent(ContentInterface $content): array {
     $words = [];
     $languages = $content->getTranslationLanguages();
 
@@ -191,7 +191,7 @@ final class ContentSearch extends SearchPluginBase implements SearchIndexingInte
 
     $built = [];
     foreach ($found as $item) {
-      /** @var \Drupal\druki_content\Entity\DrukiContentInterface $content */
+      /** @var \Drupal\druki_content\Entity\ContentInterface $content */
       $content = $this->contentStorage->load($item->sid);
       if (!$content) {
         continue;

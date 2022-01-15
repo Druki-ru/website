@@ -9,8 +9,7 @@ use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor;
-use Drupal\druki_content\Repository\ContentSyncQueueState;
-use Drupal\druki_content\Repository\DrukiContentStorage;
+use Drupal\druki_content\Repository\ContentStorage;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
@@ -31,7 +30,7 @@ final class ContentSyncCleanQueueItemProcessorTest extends ExistingSiteBase {
   /**
    * The content storage.
    */
-  protected DrukiContentStorage $contentStorage;
+  protected ContentStorage $contentStorage;
 
   /**
    * The content sync queue state.
@@ -57,7 +56,7 @@ final class ContentSyncCleanQueueItemProcessorTest extends ExistingSiteBase {
     // Save currently existed content IDs emulating that all created content
     // after this process will be consider as outdated and missing in source.
     $this->queueState->storeEntityIds($existing_ids);
-    $outdated_content = $this->createDrukiContent();
+    $outdated_content = $this->createDrukiContent(['type' => 'documentation']);
     $outdated_content_id = $outdated_content->id();
 
     $count = $this->contentStorage->getQuery()

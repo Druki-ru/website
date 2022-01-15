@@ -7,9 +7,9 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki\Utility\PathUtils;
-use Drupal\druki_content\Entity\DrukiContentInterface;
+use Drupal\druki_content\Entity\ContentInterface;
 use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
-use Drupal\druki_content\Repository\DrukiContentStorage;
+use Drupal\druki_content\Repository\ContentStorage;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -54,7 +54,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   /**
    * The druki content storage.
    */
-  protected DrukiContentStorage $contentStorage;
+  protected ContentStorage $contentStorage;
 
   /**
    * The content source settings.
@@ -78,7 +78,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
     $instance = new self($configuration, $plugin_id, $plugin_definition);
     $druki_content_storage = $container->get('entity_type.manager')
       ->getStorage('druki_content');
-    \assert($druki_content_storage instanceof DrukiContentStorage);
+    \assert($druki_content_storage instanceof ContentStorage);
     $instance->contentStorage = $druki_content_storage;
     $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
     $instance->fileSystem = $container->get('file_system');
@@ -129,14 +129,14 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
         $destination_relative_pathname = \str_replace($repository_realpath . '/', '', $destination_realpath);
 
         $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
-        if ($druki_content instanceof DrukiContentInterface) {
+        if ($druki_content instanceof ContentInterface) {
           $destination_href = $druki_content
             ->toUrl()
             ->toString(TRUE)
             ->getGeneratedUrl();
         }
 
-        // @see Drupal\druki_content\Entity\DrukiContent::getCacheTagsToInvalidate();
+        // @see Drupal\druki_content\Entity\Content::getCacheTagsToInvalidate();
         $relative_pathname_hash = Crypt::hashBase64($destination_relative_pathname);
         $this->addLazyCacheTag('druki_content:relative_pathname:' . $relative_pathname_hash);
       }
@@ -169,10 +169,10 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
    * @param string $relative_pathname
    *   The value for relative_pathname property.
    *
-   * @return \Drupal\druki_content\Entity\DrukiContentInterface|null
+   * @return \Drupal\druki_content\Entity\ContentInterface|null
    *   The content entity.
    */
-  protected function loadDrukiContentByRelativePathname(string $relative_pathname): ?DrukiContentInterface {
+  protected function loadDrukiContentByRelativePathname(string $relative_pathname): ?ContentInterface {
     $cid = self::class . ':' . __METHOD__ . ':' . $relative_pathname;
     if ($cache = $this->cache->get($cid)) {
       return $cache->data;

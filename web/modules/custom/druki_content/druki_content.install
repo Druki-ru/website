@@ -13,11 +13,10 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki_content\Entity\DrukiContentInterface;
-use Drupal\druki_content\Event\RequestSourceContentSyncEvent;
+use Drupal\druki_content\Entity\Content;
+use Drupal\druki_content\Entity\ContentInterface;
+use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
 use Drupal\entity\BundleFieldDefinition;
-use Drupal\field\Entity\FieldConfig;
-use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Implements hook_requirements().
@@ -142,7 +141,7 @@ function druki_content_update_8601(array &$sandbox): string {
     foreach ($results as $result) {
       $druki_content = $druki_content_storage->load($result->entity_id);
 
-      if ($druki_content instanceof DrukiContentInterface) {
+      if ($druki_content instanceof ContentInterface) {
         $druki_content->set('forced_path', $result->forced_path_value);
         $druki_content->save();
       }
@@ -160,7 +159,7 @@ function druki_content_update_8601(array &$sandbox): string {
     foreach ($results as $result) {
       $druki_content = $druki_content_storage->load($result->entity_id);
 
-      if ($druki_content instanceof DrukiContentInterface) {
+      if ($druki_content instanceof ContentInterface) {
         $druki_content->set('category', [
           'area' => $result->category_area,
           'order' => $result->category_order,
@@ -422,10 +421,10 @@ function druki_content_update_9202(array &$sandbox): void {
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
   $form_handlers = [
-    'edit' => 'Drupal\druki_content\Form\DrukiContentForm',
+    'edit' => 'Drupal\druki_content\Form\ContentForm',
     'delete' => 'Drupal\Core\Entity\ContentEntityDeleteForm',
-    'delete-all' => 'Drupal\druki_content\Form\DrukiContentDeleteAllForm',
-    'settings' => 'Drupal\druki_content\Form\DrukiContentSettingsForm',
+    'delete-all' => 'Drupal\druki_content\Form\ContentDeleteAllForm',
+    'settings' => 'Drupal\druki_content\Form\ContentSettingsForm',
     'sync' => 'Drupal\druki_content\Form\DrukiContentSyncForm',
   ];
   $druki_content_definition->setHandlerClass('form', $form_handlers);
@@ -439,7 +438,7 @@ function druki_content_update_9203(array &$sandbox): void {
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
-  $druki_content_definition->setHandlerClass('list_builder', 'Drupal\druki_content\Controller\DrukiContentListBuilder');
+  $druki_content_definition->setHandlerClass('list_builder', 'Drupal\druki_content\Controller\ContentListBuilder');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
 
@@ -451,7 +450,7 @@ function druki_content_update_9204(array &$sandbox): void {
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
   $route_providers = [
-    'html' => 'Drupal\druki_content\Routing\DrukiContentHtmlRouteProvider',
+    'html' => 'Drupal\druki_content\Routing\ContentHtmlRouteProvider',
   ];
   $druki_content_definition->setHandlerClass('route_provider', $route_providers);
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
@@ -464,7 +463,7 @@ function druki_content_update_9205(array &$sandbox): void {
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
-  $druki_content_definition->setHandlerClass('redirect_controller', 'Drupal\druki_content\Routing\DrukiContentRedirectController');
+  $druki_content_definition->setHandlerClass('redirect_controller', 'Drupal\druki_content\Routing\ContentRedirectController');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
 
@@ -486,7 +485,7 @@ function druki_content_update_9207(array &$sandbox): void {
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $last_installed_schema_repository */
   $last_installed_schema_repository = \Drupal::service('entity.last_installed_schema.repository');
   $druki_content_definition = $last_installed_schema_repository->getLastInstalledDefinition('druki_content');
-  $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Repository\DrukiContentStorage');
+  $druki_content_definition->setHandlerClass('storage', 'Drupal\druki_content\Repository\ContentStorage');
   $last_installed_schema_repository->setLastInstalledDefinition($druki_content_definition);
 }
 
@@ -675,9 +674,32 @@ function druki_content_update_9301(array &$sandbox): void {
 }
 
 /**
- * Added entity bundle field and update entity schema.
+ * Update 'druki_content' entity to reflect naming changes.
  */
 function druki_content_update_9302(array &$sandbox): void {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
+  $entity_type = $update_manager->getEntityType('druki_content');
+
+  $entity_type->setClass(Content::class);
+  $entity_type->setHandlerClass('storage', 'Drupal\druki_content\Repository\ContentStorage');
+  $entity_type->setHandlerClass('list_builder', 'Drupal\druki_content\Controller\ContentListBuilder');
+  $entity_type->setHandlerClass('access', 'Drupal\druki_content\Access\ContentAccessControlHandler');
+  $entity_type->setHandlerClass('redirect_controller', 'Drupal\druki_content\Routing\ContentRedirectController');
+  $entity_type->setFormClass('edit', 'Drupal\druki_content\Form\ContentForm');
+  $entity_type->setFormClass('delete-all', 'Drupal\druki_content\Form\ContentDeleteAllForm');
+  $entity_type->setFormClass('settings', 'Drupal\druki_content\Form\ContentSettingsForm');
+  $router_provider = $entity_type->getRouteProviderClasses();
+  $router_provider['html'] = 'Drupal\druki_content\Routing\ContentHtmlRouteProvider';
+  $entity_type->setHandlerClass('route_provider', $router_provider);
+
+  $update_manager->updateEntityType($entity_type);
+}
+
+/**
+ * Added entity bundle field and update entity schema.
+ */
+function druki_content_update_9303(array &$sandbox): void {
   $update_manager = \Drupal::entityDefinitionUpdateManager();
   $bundle_label = new TranslatableMarkup('Druki content bundle');
   $bundle_field_name = 'type';
@@ -693,18 +715,20 @@ function druki_content_update_9302(array &$sandbox): void {
 
   /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
   $entity_type = $update_manager->getEntityType('druki_content');
+
   $entity_keys = $entity_type->getKeys();
   $entity_keys['bundle'] = $bundle_field_name;
   $entity_type->set('entity_keys', $entity_keys);
-  $entity_type->set('bundle_plugin_type', 'druki_content_bundle');
+  $entity_type->set('bundle_plugin_type', 'druki_content_type');
   $entity_type->set('bundle_label', $bundle_label);
+
   $update_manager->updateFieldableEntityType($entity_type, $field_storage_definitions, $sandbox);
 }
 
 /**
  * Remove initial and default value from 'type' field.
  */
-function druki_content_update_9303(array &$sandbox): void {
+function druki_content_update_9304(array &$sandbox): void {
   $update_manager = \Drupal::entityDefinitionUpdateManager();
   /** @var \Drupal\Core\Field\BaseFieldDefinition $field_definition */
   $field_definition = $update_manager->getFieldStorageDefinition('type', 'druki_content');
@@ -719,7 +743,7 @@ function druki_content_update_9303(array &$sandbox): void {
 /**
  * Delete all content to update it with the new bundle.
  */
-function druki_content_update_9304(array &$sandbox): void {
+function druki_content_update_9305(array &$sandbox): void {
   $content_storage = \Drupal::entityTypeManager()->getStorage('druki_content');
   $entities = $content_storage->loadMultiple();
   $content_storage->delete($entities);
@@ -728,9 +752,9 @@ function druki_content_update_9304(array &$sandbox): void {
 /**
  * Delete all content to update it with the new bundle.
  */
-function druki_content_update_9305(array &$sandbox): void {
+function druki_content_update_9306(array &$sandbox): void {
   $content_source_settings = \Drupal::service('druki_content.repository.content_source_settings');
   $content_source_uri = $content_source_settings->getRepositoryUri();
-  $event = new RequestSourceContentSyncEvent($content_source_uri);
+  $event = new ContentSourceSyncRequestEvent($content_source_uri);
   \Drupal::service('event_dispatcher')->dispatch($event);
 }

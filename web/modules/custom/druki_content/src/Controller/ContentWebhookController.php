@@ -4,7 +4,7 @@ namespace Drupal\druki_content\Controller;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
-use Drupal\druki_content\Event\RequestSourceContentUpdateEvent;
+use Drupal\druki_content\Event\ContentSourceUpdateRequestEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -42,7 +42,7 @@ final class ContentWebhookController implements ContainerInjectionInterface {
    */
   public function update(): JsonResponse {
     $this->logger->info('Content update webhook successfully triggered.');
-    $this->eventDispatcher->dispatch(new RequestSourceContentUpdateEvent());
+    $this->eventDispatcher->dispatch(new ContentSourceUpdateRequestEvent());
     return new JsonResponse(['message' => 'Ok.']);
   }
 
