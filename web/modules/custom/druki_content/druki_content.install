@@ -779,6 +779,12 @@ function druki_content_update_9306(array &$sandbox): void {
     ->setLabel(new TranslatableMarkup('Search keywords'))
     ->setDescription(new TranslatableMarkup('The additional or special search keywords which will boost content in search.'));
   $update_manager->installFieldStorageDefinition('search_keywords', 'druki_content', 'druki_content', $search_keywords_field_definition);
+
+  // Disable field UI, it's not configured for bundle-specific fields and not
+  // needed anymore.
+  $entity_type = $update_manager->getEntityType('druki_content');
+  $entity_type->set('field_ui_base_route', NULL);
+  $update_manager->updateEntityType($entity_type);
 }
 
 /**

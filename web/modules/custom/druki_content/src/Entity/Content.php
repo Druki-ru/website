@@ -62,7 +62,6 @@ use Drupal\entity\BundleFieldDefinition;
  *     "settings" = "/admin/structure/druki-content",
  *     "sync" = "/admin/druki/content/sync"
  *   },
- *   field_ui_base_route = "entity.druki_content.settings"
  * )
  */
 final class Content extends ContentEntityBase implements ContentInterface {
