@@ -49,6 +49,7 @@ final class AvatarPlaceholder extends RenderElement {
     $initials_color = Color::colorContrast($background_color_hex, $initials_color_light, $initials_color_dark);
 
     $initial_parts = \explode(' ', $username);
+    $initial_parts = \array_filter($initial_parts, static fn ($initial_part) => \preg_match('/[a-zA-Z0-9]/', $initial_part));
     $initial_parts = \array_splice($initial_parts, 0, 2);
     $initial_parts = \array_map(static fn ($initial_part) => $initial_part[0], $initial_parts);
 
