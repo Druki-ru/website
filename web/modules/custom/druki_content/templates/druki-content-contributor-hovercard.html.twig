@@ -46,9 +46,11 @@
     </div>
   </div>
 
-  {% if about %}
+  {# This can be an array with just cache metadata. #}
+  {% set about_content = about|render %}
+  {% if about_content %}
     <div class="contributor-hovercard__body">
-      {{ about }}
+      {{ about_content }}
     </div>
   {% endif %}
 </div>
