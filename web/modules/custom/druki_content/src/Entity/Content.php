@@ -29,7 +29,6 @@ use Drupal\entity\BundleFieldDefinition;
  *     "access" = "Drupal\druki_content\Access\ContentAccessControlHandler",
  *     "redirect_controller" = "Drupal\druki_content\Routing\ContentRedirectController",
  *     "form" = {
- *       "edit" = "Drupal\druki_content\Form\ContentForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *       "delete-all" = "Drupal\druki_content\Form\ContentDeleteAllForm",
  *       "settings" = "Drupal\druki_content\Form\ContentSettingsForm",
@@ -53,7 +52,6 @@ use Drupal\entity\BundleFieldDefinition;
  *   },
  *   links = {
  *     "canonical" = "/druki_content/{druki_content}",
- *     "edit-form" = "/admin/druki/content/{druki_content}/edit",
  *     "delete-form" = "/admin/druki/content/{druki_content}/delete",
  *     "delete-all-form" = "/admin/druki/content/delete-all",
  *     "collection" = "/admin/content/druki-content",

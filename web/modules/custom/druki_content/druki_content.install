@@ -796,3 +796,22 @@ function druki_content_update_9307(array &$sandbox): void {
   $event = new ContentSourceSyncRequestEvent($content_source_uri);
   \Drupal::service('event_dispatcher')->dispatch($event);
 }
+
+/**
+ * Remove edit functionality from an entity.
+ */
+function druki_content_update_9308(array &$sandbox): void {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
+  $entity_type = $update_manager->getEntityType('druki_content');
+
+  // Links can't be unset.
+  // @see https://www.drupal.org/project/drupal/issues/3124206
+  // We don't have to worry about that much, because it won't work without
+  // 'edit' form class.
+  // @see \Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider::getEditFormRoute
+  // $entity_type->setLinkTemplate('edit-form', NULL);
+  $entity_type->setFormClass('edit', NULL);
+
+  $update_manager->updateEntityType($entity_type);
+}

@@ -7,10 +7,6 @@ entity.druki_content.view:
   title: View
   route_name: entity.druki_content.canonical
   base_route: entity.druki_content.canonical
-entity.druki_content.edit_form:
-  title: Edit
-  route_name: entity.druki_content.edit_form
-  base_route: entity.druki_content.canonical
 entity.druki_content.delete_form:
   title: Delete
   route_name: entity.druki_content.delete_form
