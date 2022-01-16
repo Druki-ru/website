@@ -50,6 +50,16 @@ final class ContentActionDeriver extends DeriverBase implements ContainerDeriver
       ];
     }
 
+    if ($druki_entity_type->hasLinkTemplate('invalidate-all-form') && $druki_entity_type->hasHandlerClass('form', 'invalidate-all')) {
+      $this->derivatives['invalidate_all'] = [
+        'title' => new TranslatableMarkup('Invalidate all content'),
+        'route_name' => 'entity.druki_content.invalidate_all_form',
+        'appears_on' => [
+          'entity.druki_content.collection',
+        ],
+      ];
+    }
+
     return $this->derivatives;
   }
 

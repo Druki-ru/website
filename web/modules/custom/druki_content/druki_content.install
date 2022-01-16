@@ -815,3 +815,21 @@ function druki_content_update_9308(array &$sandbox): void {
 
   $update_manager->updateEntityType($entity_type);
 }
+
+/**
+ * Add invalidate forms to the entity.
+ */
+function druki_content_update_9309(array &$sandbox): void {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
+  $entity_type = $update_manager->getEntityType('druki_content');
+  // Add new links for invalidation.
+  $entity_type->setLinkTemplate('invalidate-form', '/admin/druki/content/{druki_content}/invalidate');
+  $entity_type->setLinkTemplate('invalidate-form-all', '/admin/druki/content/invalidate-all');
+  // Add new form classes for invalidation.
+  $entity_type->setFormClass('invalidate', 'Drupal\druki_content\Form\ContentInvalidateForm');
+  $entity_type->setFormClass('invalidate-all', 'Drupal\druki_content\Form\ContentInvalidateAllForm');
+
+  $update_manager->updateEntityType($entity_type);
+}

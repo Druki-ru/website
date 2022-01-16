@@ -31,6 +31,8 @@ use Drupal\entity\BundleFieldDefinition;
  *     "form" = {
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *       "delete-all" = "Drupal\druki_content\Form\ContentDeleteAllForm",
+ *       "invalidate" = "Drupal\druki_content\Form\ContentInvalidateForm",
+ *       "invalidate-all" = "Drupal\druki_content\Form\ContentInvalidateAllForm",
  *       "settings" = "Drupal\druki_content\Form\ContentSettingsForm",
  *       "sync" = "\Drupal\druki_content\Form\ContentSyncForm",
  *     },
@@ -54,11 +56,13 @@ use Drupal\entity\BundleFieldDefinition;
  *     "canonical" = "/druki_content/{druki_content}",
  *     "delete-form" = "/admin/druki/content/{druki_content}/delete",
  *     "delete-all-form" = "/admin/druki/content/delete-all",
+ *     "invalidate-form" = "/admin/druki/content/{druki_content}/invalidate",
+ *     "invalidate-all-form" = "/admin/druki/content/invalidate-all",
  *     "collection" = "/admin/content/druki-content",
  *     "edit-remote" = "/druki_content/{druki_content}/edit-remote",
  *     "history-remote" = "/druki_content/{druki_content}/history-remote",
  *     "settings" = "/admin/structure/druki-content",
- *     "sync" = "/admin/druki/content/sync"
+ *     "sync" = "/admin/druki/content/sync",
  *   },
  * )
  */
