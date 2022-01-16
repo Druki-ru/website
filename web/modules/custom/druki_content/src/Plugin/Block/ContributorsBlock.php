@@ -12,7 +12,8 @@ use Drupal\Core\Block\BlockBase;
  *   admin_label = @Translation("Contributors"),
  *   category = @Translation("Druki content"),
  *   context_definitions = {
- *     "druki_content" = @ContextDefinition("entity:druki_content", label = @Translation("Druki Content"), required = TRUE)
+ *     "druki_content" = @ContextDefinition("entity:druki_content", label = @Translation("Druki Content"), required =
+ *   TRUE)
  *   }
  * )
  */
@@ -33,20 +34,26 @@ final class ContributorsBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build(): array {
+    $build = [
+      '#cache' => [
+        'tags' => ['druki_author_list'],
+      ],
+    ];
     /** @var \Drupal\druki_content\Entity\ContentInterface $content */
     $content = $this->getContextValue('druki_content');
     if ($content->get('contributors')->isEmpty()) {
-      return [];
+      return $build;
     }
-    return [
-      $content->get('contributors')->view([
-        'type' => 'druki_content_contributor',
-        'label' => 'hidden',
-        'settings' => [
-          'author_view_mode' => 'content_contributor',
-        ],
-      ]),
-    ];
+
+    $build['content'] = $content->get('contributors')->view([
+      'type' => 'druki_content_contributor',
+      'label' => 'hidden',
+      'settings' => [
+        'author_view_mode' => 'content_contributor',
+      ],
+    ]);
+
+    return $build;
   }
 
 }
