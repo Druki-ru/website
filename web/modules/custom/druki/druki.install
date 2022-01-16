@@ -99,3 +99,16 @@ function druki_update_9001(array &$sandbox): void {
   \Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('druki_file_hash', 'file', 'druki', $druki_file_hash);
 }
+
+/**
+ * Delete orphan values from previously used modules.
+ */
+function druki_update_9300(array &$sandbox): void {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $system_schema = $key_value_factory->get('system.schema');
+  $system_schema->delete('config_filter');
+  $system_schema->delete('druki_paragraph');
+  $system_schema->delete('markdown');
+  $system_schema->delete('minimal');
+}
