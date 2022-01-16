@@ -118,7 +118,7 @@ services:
   stream_wrapper.druki_content_source:
     class: Drupal\druki_content\StreamWrapper\ContentSourceStream
     tags:
-      - { name: stream_wrapper, scheme: druki-content-source }
+      - { name: stream_wrapper, scheme: content-source }
 
   druki_content.repository.content_media_image:
     alias: druki.repository.media_image
