@@ -118,7 +118,7 @@ services:
   stream_wrapper.druki_content_source:
     class: Drupal\druki_content\StreamWrapper\ContentSourceStream
     tags:
-      - { name: stream_wrapper, scheme: druki-content-source }
+      - { name: stream_wrapper, scheme: content-source }
 
   druki_content.repository.content_media_image:
     alias: druki.repository.media_image
@@ -141,24 +141,20 @@ services:
     factory: druki.factory.entity_sync_queue_state:get
     arguments: [ '%druki_content.queue.state_key%' ]
 
-  druki_content.repository.content_source_settings:
-    class: Drupal\druki_content\Repository\ContentSourceSettings
-    arguments: ['@config.factory']
-
-  druki_content.repository.content_webhook_settings:
-    class: Drupal\druki_content\Repository\ContentWebhookSettings
+  druki_content.repository.content_settings:
+    class: Drupal\druki_content\Repository\ContentSettings
     arguments: ['@keyvalue']
 
   access_check.druki_content_webook:
     class: Drupal\druki_content\Access\ContentWebhookAccess
-    arguments: [ '@druki_content.repository.content_webhook_settings', '@state' ]
+    arguments: [ '@druki_content.repository.content_settings', '@state' ]
     tags:
       - { name: access_check, applies_to: _druki_content_webhook_access_key }
 
   druki_content.event_subscriber.source_content:
     class: Drupal\druki_content\EventSubscriber\ContentSourceEventSubscriber
     arguments:
-      - '@druki_content.repository.content_source_settings'
+      - '@druki_content.repository.content_settings'
       - '@druki_content.builder.content_sync_queue'
       - '@druki.process.git'
       - '@event_dispatcher'

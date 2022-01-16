@@ -9,12 +9,10 @@ use Drupal\Core\StreamWrapper\StreamWrapperInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
- * Defines a Druki content source (druki-content-source://) stream wrapper.
+ * Defines a Druki content source (content-source://) stream wrapper.
  *
  * Provides support to accessing files from content source directory without
  * needs of knowing where it's located.
- *
- * @todo Think about rename to 'content-source://'.
  */
 final class ContentSourceStream extends PublicStream {
 
@@ -45,9 +43,9 @@ final class ContentSourceStream extends PublicStream {
    * {@inheritdoc}
    */
   public static function basePath($site_path = NULL): string {
-    /** @var \Drupal\druki_content\Repository\ContentSourceSettingsInterface $source_content_settings */
-    $source_content_settings = \Drupal::service('druki_content.repository.content_source_settings');
-    $repository_uri = $source_content_settings->getRepositoryUri();
+    /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+    $content_settings = \Drupal::service('druki_content.repository.content_settings');
+    $repository_uri = $content_settings->getContentSourceUri();
     if ($repository_uri) {
       return $repository_uri;
     }

@@ -50,9 +50,9 @@ function druki_content_requirements(string $phase): array {
  * Implements hook_install().
  */
 function druki_content_install(bool $is_syncing): void {
-  /** @var \Drupal\druki_content\Repository\ContentWebhookSettingsInterface $webhook_settings */
-  $webhook_settings = \Drupal::service('druki_content.repository.content_webhook_settings');
-  $webhook_settings->setContentUpdateWebhookAccessKey(Crypt::randomBytesBase64(55));
+  /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+  $content_settings = \Drupal::service('druki_content.repository.content_settings');
+  $content_settings->setContentUpdateWebhookAccessKey(Crypt::randomBytesBase64(55));
 }
 
 /**
@@ -60,7 +60,7 @@ function druki_content_install(bool $is_syncing): void {
  */
 function druki_content_uninstall(): void {
   // Remove state settings.
-  \Drupal::keyValue('druki_content.webhook_settings')->deleteAll();
+  \Drupal::keyValue('druki_content_settings')->deleteAll();
 }
 
 /**
@@ -795,4 +795,61 @@ function druki_content_update_9307(array &$sandbox): void {
   $content_source_uri = $content_source_settings->getRepositoryUri();
   $event = new ContentSourceSyncRequestEvent($content_source_uri);
   \Drupal::service('event_dispatcher')->dispatch($event);
+}
+
+/**
+ * Remove edit functionality from an entity.
+ */
+function druki_content_update_9308(array &$sandbox): void {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
+  $entity_type = $update_manager->getEntityType('druki_content');
+
+  // Links can't be unset.
+  // @see https://www.drupal.org/project/drupal/issues/3124206
+  // We don't have to worry about that much, because it won't work without
+  // 'edit' form class.
+  // @see \Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider::getEditFormRoute
+  // $entity_type->setLinkTemplate('edit-form', NULL);
+  $entity_type->setFormClass('edit', NULL);
+
+  $update_manager->updateEntityType($entity_type);
+}
+
+/**
+ * Add invalidate forms to the entity.
+ */
+function druki_content_update_9309(array &$sandbox): void {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
+  $entity_type = $update_manager->getEntityType('druki_content');
+  // Add new links for invalidation.
+  $entity_type->setLinkTemplate('invalidate-form', '/admin/druki/content/{druki_content}/invalidate');
+  $entity_type->setLinkTemplate('invalidate-form-all', '/admin/druki/content/invalidate-all');
+  // Add new form classes for invalidation.
+  $entity_type->setFormClass('invalidate', 'Drupal\druki_content\Form\ContentInvalidateForm');
+  $entity_type->setFormClass('invalidate-all', 'Drupal\druki_content\Form\ContentInvalidateAllForm');
+
+  $update_manager->updateEntityType($entity_type);
+}
+
+/**
+ * Migrate content entity settings into new storage and delete old ones.
+ */
+function druki_content_update_9310(array &$sandbox): void {
+  /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+  $content_settings = \Drupal::service('druki_content.repository.content_settings');
+
+  /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
+  $config_factory = \Drupal::service('config.factory');
+  $content_source_settings = $config_factory->getEditable('druki_content.content_source_settings');
+  $content_settings->setContentSourceUri($content_source_settings->get('repository_uri'));
+  $content_settings->setRepositoryUrl($content_source_settings->get('repository_url'));
+  $content_source_settings->delete();
+
+  /** @var \Drupal\Core\KeyValueStore\KeyValueStoreInterface $key_value_store */
+  $key_value_store = \Drupal::keyValue('druki_content.webhook_settings');
+  $content_settings->setContentUpdateWebhookAccessKey($key_value_store->get('content_update_access_key'));
+  $key_value_store->deleteAll();
 }

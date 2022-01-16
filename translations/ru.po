@@ -587,3 +587,18 @@ msgstr "Аватар автора @author"
 
 msgid "<strong>Is that you?</strong> <a href=\"@url\">Tell us</a> more about yourself!"
 msgstr "<strong>Это вы?</strong> <a href=\"@url\">Расскажите о себе</a> больше!"
+
+msgid "Invalidate"
+msgstr "Аннулировать"
+
+msgid "Invalidate %title?"
+msgstr "Аннулировать %title?"
+
+msgid "Invalidate all content?"
+msgstr "Аннулировать всё содержимое?"
+
+msgid "Invalidate all content"
+msgstr "Аннулировать всё содержимое"
+
+msgid "Invalidates content nad guarantees that content will be fully updated on next sync."
+msgstr "Аннулирует содержимое и гарантирует, что содержимое будет полностью обновлено при следующей синхронизации."

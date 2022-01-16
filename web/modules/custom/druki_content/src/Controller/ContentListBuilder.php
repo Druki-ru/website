@@ -7,6 +7,7 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -83,9 +84,13 @@ final class ContentListBuilder extends EntityListBuilder {
    */
   protected function getDefaultOperations(EntityInterface $entity): array {
     $operations = parent::getDefaultOperations($entity);
-    $destination = $this->redirectDestination->getAsArray();
-    foreach ($operations as $key => $operation) {
-      $operations[$key]['query'] = $destination;
+
+    if ($entity->access('invalidate') && $entity->hasLinkTemplate('invalidate-form')) {
+      $operations['invalidate'] = [
+        'title' => new TranslatableMarkup('Invalidate'),
+        'weight' => 100,
+        'url' => $this->ensureDestination($entity->toUrl('invalidate-form')),
+      ];
     }
 
     return $operations;

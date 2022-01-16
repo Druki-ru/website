@@ -4,7 +4,7 @@ services:
     tags:
       - { name: drush.command }
     arguments:
-      - '@druki_content.repository.content_source_settings'
+      - '@druki_content.repository.content_settings'
       - '@language_manager'
       - '@druki.queue.chain_entity_sync_processor'
 

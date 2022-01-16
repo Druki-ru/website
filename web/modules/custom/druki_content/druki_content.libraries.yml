@@ -12,12 +12,6 @@ mobile-toc:
   dependencies:
     - core/drupal
 
-form:
-  version: VERSION
-  css:
-    layout:
-      assets/css/druki_content.form.css: { minified: true }
-
 contributor-hovercard:
   js:
     assets/js/ContributorHovercard.js: { minified: true }

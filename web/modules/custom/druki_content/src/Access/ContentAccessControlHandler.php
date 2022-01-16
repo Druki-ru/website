@@ -22,9 +22,9 @@ final class ContentAccessControlHandler extends EntityAccessControlHandler {
       case 'view':
         return AccessResult::allowedIfHasPermission($account, 'view druki_content');
 
-      case 'update':
+      case 'invalidate':
         return AccessResult::allowedIfHasPermissions($account, [
-          'edit druki_content',
+          'invalidate druki_content',
           'administer druki_content',
         ], 'OR');
 

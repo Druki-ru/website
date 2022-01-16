@@ -15,14 +15,3 @@ field.value.druki_category:
     title:
       type: string
       label: Category title
-
-druki_content.content_source_settings:
-  type: config_object
-  label: 'Druki content source Settings'
-  mapping:
-    repository_uri:
-      type: string
-      label: 'Repository local URI'
-    repository_url:
-      type: string
-      label: 'Repository remote URL'

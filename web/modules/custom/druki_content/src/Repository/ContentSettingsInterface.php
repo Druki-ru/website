@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Repository;
 
 /**
- * Provides an interface for content source settings repository.
+ * Provides an interface for content entity settings storage.
  */
-interface ContentSourceSettingsInterface {
+interface ContentSettingsInterface {
 
   /**
    * Gets repository local URI.
@@ -15,17 +15,17 @@ interface ContentSourceSettingsInterface {
    * @return string|null
    *   The repository URI.
    */
-  public function getRepositoryUri(): ?string;
+  public function getContentSourceUri(): ?string;
 
   /**
    * Sets repository local URI.
    *
-   * @param string $path
+   * @param string $uri
    *   The repository local URI.
    *
    * @return $this
    */
-  public function setRepositoryUri(string $path): self;
+  public function setContentSourceUri(string $uri): self;
 
   /**
    * Gets repository public URL.
@@ -44,5 +44,23 @@ interface ContentSourceSettingsInterface {
    * @return $this
    */
   public function setRepositoryUrl(string $url): self;
+
+  /**
+   * Gets git webhook access key.
+   *
+   * @return string|null
+   *   The webhook access key.
+   */
+  public function getContentUpdateWebhookAccessKey(): ?string;
+
+  /**
+   * Sets webhook access key.
+   *
+   * @param string $access_key
+   *   The access key.
+   *
+   * @return $this
+   */
+  public function setContentUpdateWebhookAccessKey(string $access_key): self;
 
 }

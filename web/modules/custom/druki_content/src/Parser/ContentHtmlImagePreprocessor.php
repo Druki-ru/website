@@ -16,7 +16,7 @@ use Symfony\Component\DomCrawler\Crawler;
  * information, the relative path is replaced by internal uri. For example,
  *
  * @code
- *   <img src="druki-content-source://drupal/logo.png" alt="Drupal Logo!">
+ *   <img src="content-source://drupal/logo.png" alt="Drupal Logo!">
  * @endcode
  *
  * This helps to understand where is that image and avoid hold where is that
@@ -45,7 +45,7 @@ final class ContentHtmlImagePreprocessor implements ContentHtmlPreprocessorInter
       }
       $src = \ltrim($src, '/');
       $uri_parts = [
-        'druki-content-source:/',
+        'content-source:/',
         \pathinfo($source_content_file->getRealpath(), \PATHINFO_DIRNAME),
         $src,
       ];

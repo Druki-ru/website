@@ -44,77 +44,15 @@ final class ContentHtmlRouteProvider extends AdminHtmlRouteProvider {
       $collection->add("entity.{$entity_type_id}.sync", $sync_route);
     }
 
+    if ($invalidate_route = $this->getInvalidateRoute($entity_type)) {
+      $collection->add("entity.{$entity_type_id}.invalidate_form", $invalidate_route);
+    }
+
+    if ($invalidate_all_route = $this->getInvalidateAllRoute($entity_type)) {
+      $collection->add("entity.{$entity_type_id}.invalidate_all_form", $invalidate_all_route);
+    }
+
     return $collection;
-  }
-
-  /**
-   * Gets synchronization form route.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
-   *   The entity type.
-   *
-   * @return \Symfony\Component\Routing\Route|null
-   *   The generated route.
-   */
-  protected function getSyncRoute(EntityTypeInterface $entity_type): ?Route {
-    if ($entity_type->hasLinkTemplate('sync') && $entity_type->hasHandlerClass('form', 'sync')) {
-      $entity_type_id = $entity_type->id();
-      $route = new Route($entity_type->getLinkTemplate('sync'));
-      $route
-        ->setDefault('_title', (string) new TranslatableMarkup('Content synchronization'))
-        ->setDefault('_form', $entity_type->getFormClass('sync'))
-        ->setRequirement('_permission', "administer {$entity_type_id}");
-
-      return $route;
-    }
-
-    return NULL;
-  }
-
-  /**
-   * Gets settings form route.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
-   *   The entity type.
-   *
-   * @return \Symfony\Component\Routing\Route|null
-   *   The generated route.
-   */
-  protected function getSettingsRoute(EntityTypeInterface $entity_type): ?Route {
-    if ($entity_type->hasLinkTemplate('settings') && $entity_type->hasHandlerClass('form', 'settings')) {
-      $entity_type_id = $entity_type->id();
-      $route = new Route($entity_type->getLinkTemplate('settings'));
-      $route
-        ->setDefault('_form', $entity_type->getFormClass('settings'))
-        ->setRequirement('_permission', "administer {$entity_type_id}");
-
-      return $route;
-    }
-
-    return NULL;
-  }
-
-  /**
-   * Gets delete all form route.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
-   *   The entity type.
-   *
-   * @return \Symfony\Component\Routing\Route|null
-   *   The generated route.
-   */
-  protected function getDeleteAllRoute(EntityTypeInterface $entity_type): ?Route {
-    if ($entity_type->hasLinkTemplate('delete-all-form') && $entity_type->hasHandlerClass('form', 'delete-all')) {
-      $entity_type_id = $entity_type->id();
-      $route = new Route($entity_type->getLinkTemplate('delete-all-form'));
-      $route
-        ->setDefault('_form', $entity_type->getFormClass('delete-all'))
-        ->setRequirement('_permission', "delete {$entity_type_id}");
-
-      return $route;
-    }
-
-    return NULL;
   }
 
   /**
@@ -192,6 +130,132 @@ final class ContentHtmlRouteProvider extends AdminHtmlRouteProvider {
     }
 
     return NULL;
+  }
+
+  /**
+   * Gets delete all form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getDeleteAllRoute(EntityTypeInterface $entity_type): ?Route {
+    if ($entity_type->hasLinkTemplate('delete-all-form') && $entity_type->hasHandlerClass('form', 'delete-all')) {
+      $entity_type_id = $entity_type->id();
+      $route = new Route($entity_type->getLinkTemplate('delete-all-form'));
+      $route
+        ->setDefault('_form', $entity_type->getFormClass('delete-all'))
+        ->setRequirement('_permission', "delete {$entity_type_id}");
+
+      return $route;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * Gets settings form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getSettingsRoute(EntityTypeInterface $entity_type): ?Route {
+    if ($entity_type->hasLinkTemplate('settings') && $entity_type->hasHandlerClass('form', 'settings')) {
+      $entity_type_id = $entity_type->id();
+      $route = new Route($entity_type->getLinkTemplate('settings'));
+      $route
+        ->setDefault('_form', $entity_type->getFormClass('settings'))
+        ->setRequirement('_permission', "administer {$entity_type_id}");
+
+      return $route;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * Gets synchronization form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getSyncRoute(EntityTypeInterface $entity_type): ?Route {
+    if ($entity_type->hasLinkTemplate('sync') && $entity_type->hasHandlerClass('form', 'sync')) {
+      $entity_type_id = $entity_type->id();
+      $route = new Route($entity_type->getLinkTemplate('sync'));
+      $route
+        ->setDefault('_title', (string) new TranslatableMarkup('Content synchronization'))
+        ->setDefault('_form', $entity_type->getFormClass('sync'))
+        ->setRequirement('_permission', "administer {$entity_type_id}");
+
+      return $route;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * Gets invalidate form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getInvalidateRoute(EntityTypeInterface $entity_type): ?Route {
+    if (!$entity_type->hasLinkTemplate('invalidate-form') || !$entity_type->hasHandlerClass('form', 'invalidate')) {
+      return NULL;
+    }
+
+    $entity_type_id = $entity_type->id();
+    $route = new Route($entity_type->getLinkTemplate('invalidate-form'));
+    $route
+      ->setDefault('_form', $entity_type->getFormClass('invalidate'))
+      ->setRequirement('_permission', "invalidate {$entity_type_id}")
+      ->setOption('parameters', [
+        'druki_content' => [
+          'type' => 'entity:druki_content',
+        ],
+      ]);
+
+    return $route;
+  }
+
+  /**
+   * Gets invalidate all form route.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+   *   The entity type.
+   *
+   * @return \Symfony\Component\Routing\Route|null
+   *   The generated route.
+   */
+  protected function getInvalidateAllRoute(EntityTypeInterface $entity_type): ?Route {
+    if (!$entity_type->hasLinkTemplate('invalidate-all-form') || !$entity_type->hasHandlerClass('form', 'invalidate-all')) {
+      return NULL;
+    }
+
+    $entity_type_id = $entity_type->id();
+    $route = new Route($entity_type->getLinkTemplate('invalidate-all-form'));
+    $route
+      ->setDefault('_form', $entity_type->getFormClass('invalidate-all'))
+      ->setRequirement('_permission', "invalidate {$entity_type_id}")
+      ->setOption('parameters', [
+        'druki_content' => [
+          'type' => 'entity:druki_content',
+        ],
+      ]);
+
+    return $route;
   }
 
 }

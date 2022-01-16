@@ -8,7 +8,7 @@ use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultForbidden;
 use Drupal\Core\State\StateInterface;
 use Drupal\druki_content\Access\ContentWebhookAccess;
-use Drupal\druki_content\Repository\ContentWebhookSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -26,11 +26,11 @@ final class ContentWebhookAccessTest extends UnitTestCase {
   /**
    * Builds mock for content webhook settings.
    *
-   * @return \Drupal\druki_content\Repository\ContentWebhookSettingsInterface
+   * @return \Drupal\druki_content\Repository\ContentSettingsInterface The mock instance.
    *   The mock instance.
    */
-  public function buildContentWebhookSettings(): ContentWebhookSettingsInterface {
-    $webhook_settings = $this->prophesize(ContentWebhookSettingsInterface::class);
+  public function buildContentWebhookSettings(): ContentSettingsInterface {
+    $webhook_settings = $this->prophesize(ContentSettingsInterface::class);
     $webhook_settings->getContentUpdateWebhookAccessKey()->willReturn('allowed');
     return $webhook_settings->reveal();
   }
