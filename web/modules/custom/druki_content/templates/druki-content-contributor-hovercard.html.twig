@@ -50,7 +50,7 @@
   {% set about_content = about|render %}
   {% if about_content %}
     <div class="contributor-hovercard__body">
-      {{ about_content }}
+      {{ about_content|raw }}
     </div>
   {% endif %}
 </div>
