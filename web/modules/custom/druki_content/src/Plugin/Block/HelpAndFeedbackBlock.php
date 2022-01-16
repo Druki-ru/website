@@ -68,6 +68,9 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
    */
   public function build(): array {
     $repository_url = $this->contentSettings->getRepositoryUrl();
+    if (!$repository_url) {
+      return [];
+    }
     $improve_title = new TranslatableMarkup('Feedback: @title', [
       '@title' => $this->getEntityFromContext()->label(),
     ]);
