@@ -50,9 +50,9 @@ function druki_content_requirements(string $phase): array {
  * Implements hook_install().
  */
 function druki_content_install(bool $is_syncing): void {
-  /** @var \Drupal\druki_content\Repository\ContentWebhookSettingsInterface $webhook_settings */
-  $webhook_settings = \Drupal::service('druki_content.repository.content_webhook_settings');
-  $webhook_settings->setContentUpdateWebhookAccessKey(Crypt::randomBytesBase64(55));
+  /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+  $content_settings = \Drupal::service('druki_content.repository.content_settings');
+  $content_settings->setContentUpdateWebhookAccessKey(Crypt::randomBytesBase64(55));
 }
 
 /**
@@ -60,7 +60,7 @@ function druki_content_install(bool $is_syncing): void {
  */
 function druki_content_uninstall(): void {
   // Remove state settings.
-  \Drupal::keyValue('druki_content.webhook_settings')->deleteAll();
+  \Drupal::keyValue('druki_content_settings')->deleteAll();
 }
 
 /**
@@ -832,4 +832,24 @@ function druki_content_update_9309(array &$sandbox): void {
   $entity_type->setFormClass('invalidate-all', 'Drupal\druki_content\Form\ContentInvalidateAllForm');
 
   $update_manager->updateEntityType($entity_type);
+}
+
+/**
+ * Migrate content entity settings into new storage and delete old ones.
+ */
+function druki_content_update_9310(array &$sandbox): void {
+  /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+  $content_settings = \Drupal::service('druki_content.repository.content_settings');
+
+  /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
+  $config_factory = \Drupal::service('config.factory');
+  $content_source_settings = $config_factory->getEditable('druki_content.content_source_settings');
+  $content_settings->setContentSourceUri($content_source_settings->get('repository_uri'));
+  $content_settings->setRepositoryUrl($content_source_settings->get('repository_url'));
+  $content_source_settings->delete();
+
+  /** @var \Drupal\Core\KeyValueStore\KeyValueStoreInterface $key_value_store */
+  $key_value_store = \Drupal::keyValue('druki_content.webhook_settings');
+  $content_settings->setContentUpdateWebhookAccessKey($key_value_store->get('content_update_access_key'));
+  $key_value_store->deleteAll();
 }

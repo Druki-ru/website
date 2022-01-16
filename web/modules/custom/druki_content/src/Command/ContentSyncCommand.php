@@ -7,7 +7,7 @@ use Drupal\druki\Queue\ChainEntitySyncQueueItemProcessorInterface;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Drush\Commands\DrushCommands;
 
 /**
@@ -26,23 +26,23 @@ final class ContentSyncCommand extends DrushCommands {
   protected ChainEntitySyncQueueItemProcessorInterface $queueProcessor;
 
   /**
-   * The content source settings.
+   * The content settings.
    */
-  protected ContentSourceSettingsInterface $contentSourceSettings;
+  protected ContentSettingsInterface $contentSettings;
 
   /**
-   * Constructs a new DrukiContentSyncCommand object.
+   * Constructs a new ContentSyncCommand object.
    *
-   * @param \Drupal\druki_content\Repository\ContentSourceSettingsInterface $content_source_settings
-   *   The content source settings.
+   * @param \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings
+   *   The content settings.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
    * @param \Drupal\druki\Queue\ChainEntitySyncQueueItemProcessorInterface $queue_processor
    *   The queue processor.
    */
-  public function __construct(ContentSourceSettingsInterface $content_source_settings, LanguageManagerInterface $language_manager, ChainEntitySyncQueueItemProcessorInterface $queue_processor) {
+  public function __construct(ContentSettingsInterface $content_settings, LanguageManagerInterface $language_manager, ChainEntitySyncQueueItemProcessorInterface $queue_processor) {
     parent::__construct();
-    $this->contentSourceSettings = $content_source_settings;
+    $this->contentSettings = $content_settings;
     $this->languageManager = $language_manager;
     $this->queueProcessor = $queue_processor;
   }
@@ -62,7 +62,7 @@ final class ContentSyncCommand extends DrushCommands {
    *   Create/Update entity URI to source file.
    */
   public function syncFile(string $uri, array $options = ['locale' => NULL]): void {
-    $realpath = \rtrim($this->contentSourceSettings->getRepositoryUri(), "/");
+    $realpath = \rtrim($this->contentSettings->getContentSourceUri(), "/");
     $realpath .= '/' . \ltrim($uri, "/");
     $locale = $options['locale'];
     if (empty($locale)) {

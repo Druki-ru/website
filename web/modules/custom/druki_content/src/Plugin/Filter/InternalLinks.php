@@ -8,7 +8,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\druki\Utility\PathUtils;
 use Drupal\druki_content\Entity\ContentInterface;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Drupal\druki_content\Repository\ContentStorage;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
@@ -57,9 +57,9 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
   protected ContentStorage $contentStorage;
 
   /**
-   * The content source settings.
+   * The content settings.
    */
-  protected ContentSourceSettingsInterface $contentSourceSettings;
+  protected ContentSettingsInterface $contentSettings;
 
   /**
    * The file system.
@@ -80,7 +80,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       ->getStorage('druki_content');
     \assert($druki_content_storage instanceof ContentStorage);
     $instance->contentStorage = $druki_content_storage;
-    $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
+    $instance->contentSettings = $container->get('druki_content.repository.content_settings');
     $instance->fileSystem = $container->get('file_system');
     $instance->cache = $container->get('cache.static');
     return $instance;
@@ -97,7 +97,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       return $result;
     }
 
-    $repository_realpath = $this->fileSystem->realpath($this->contentSourceSettings->getRepositoryUri());
+    $repository_realpath = $this->fileSystem->realpath($this->contentSettings->getContentSourceUri());
 
     $crawler = new Crawler($text);
     $internal_links = $crawler->filter('a[data-druki-internal-link-filepath]');

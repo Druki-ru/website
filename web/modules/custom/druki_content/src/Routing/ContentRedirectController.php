@@ -5,7 +5,7 @@ namespace Drupal\druki_content\Routing;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\druki_content\Entity\ContentInterface;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -16,16 +16,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class ContentRedirectController extends ControllerBase {
 
   /**
-   * The content source settings.
+   * The content settings.
    */
-  protected ContentSourceSettingsInterface $contentSourceSettings;
+  protected ContentSettingsInterface $contentSettings;
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): self {
     $instance = new self();
-    $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
+    $instance->contentSettings = $container->get('druki_content.repository.content_settings');
     return $instance;
   }
 
@@ -41,7 +41,7 @@ final class ContentRedirectController extends ControllerBase {
    *   The redirect response.
    */
   public function build(ContentInterface $druki_content, string $redirect_to): Response {
-    $repository_url = $this->contentSourceSettings->getRepositoryUrl();
+    $repository_url = $this->contentSettings->getRepositoryUrl();
     $relative_pathname = $druki_content->getRelativePathname();
 
     switch ($redirect_to) {

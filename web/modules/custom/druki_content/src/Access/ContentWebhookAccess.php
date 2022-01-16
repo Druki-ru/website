@@ -6,7 +6,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Routing\Access\AccessInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\druki_content\Repository\ContentWebhookSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -15,9 +15,9 @@ use Symfony\Component\Routing\Route;
 class ContentWebhookAccess implements AccessInterface {
 
   /**
-   * The webhook settings.
+   * The content settings.
    */
-  protected ContentWebhookSettingsInterface $webhookSettings;
+  protected ContentSettingsInterface $contentSettings;
 
   /**
    * The state storage.
@@ -27,13 +27,13 @@ class ContentWebhookAccess implements AccessInterface {
   /**
    * Constructs a new ContentWebhookAccess object.
    *
-   * @param \Drupal\druki_content\Repository\ContentWebhookSettingsInterface $webhook_settings
-   *   The webhook settings.
+   * @param \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings
+   *   The content settings.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state storage.
    */
-  public function __construct(ContentWebhookSettingsInterface $webhook_settings, StateInterface $state) {
-    $this->webhookSettings = $webhook_settings;
+  public function __construct(ContentSettingsInterface $content_settings, StateInterface $state) {
+    $this->contentSettings = $content_settings;
     $this->state = $state;
   }
 
@@ -56,7 +56,7 @@ class ContentWebhookAccess implements AccessInterface {
     $webhook_type = $route->getRequirement('_druki_content_webhook_access_key');
     $expected_access_key = NULL;
     if ($webhook_type == 'content_update') {
-      $expected_access_key = $this->webhookSettings->getContentUpdateWebhookAccessKey();
+      $expected_access_key = $this->contentSettings->getContentUpdateWebhookAccessKey();
     }
 
     if (!$expected_access_key) {

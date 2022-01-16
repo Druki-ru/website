@@ -7,7 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\druki_content\Entity\ContentInterface;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -29,16 +29,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The content source settings.
+   * The content settings.
    */
-  protected ContentSourceSettingsInterface $contentSourceSettings;
+  protected ContentSettingsInterface $contentSettings;
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
     $instance = new self($configuration, $plugin_id, $plugin_definition);
-    $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
+    $instance->contentSettings = $container->get('druki_content.repository.content_settings');
     return $instance;
   }
 
@@ -67,7 +67,7 @@ final class HelpAndFeedbackBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build(): array {
-    $repository_url = $this->contentSourceSettings->getRepositoryUrl();
+    $repository_url = $this->contentSettings->getRepositoryUrl();
     $improve_title = new TranslatableMarkup('Feedback: @title', [
       '@title' => $this->getEntityFromContext()->label(),
     ]);

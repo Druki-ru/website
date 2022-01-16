@@ -9,7 +9,7 @@ use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
 use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
 use Drupal\druki_content\Event\ContentSourceUpdateRequestEvent;
 use Drupal\druki_content\EventSubscriber\ContentSourceEventSubscriber;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -59,7 +59,7 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
    */
   protected function buildEventSubscriber(): ContentSourceEventSubscriber {
     return new ContentSourceEventSubscriber(
-      $this->buildContentSourceSettings(),
+      $this->buildContentSettings(),
       $this->buildContentSyncQueueBuilder(),
       $this->buildGit(),
       $this->buildEventDispatcher(),
@@ -69,12 +69,12 @@ final class ContentSourceContentEventSubscriberTest extends UnitTestCase {
   /**
    * Builds content source settings mock.
    *
-   * @return \Drupal\druki_content\Repository\ContentSourceSettingsInterface
+   * @return \Drupal\druki_content\Repository\ContentSettingsInterface
    *   The mock instance.
    */
-  protected function buildContentSourceSettings(): ContentSourceSettingsInterface {
-    $source_settings = $this->prophesize(ContentSourceSettingsInterface::class);
-    $source_settings->getRepositoryUri()->willReturn('/foo/bar');
+  protected function buildContentSettings(): ContentSettingsInterface {
+    $source_settings = $this->prophesize(ContentSettingsInterface::class);
+    $source_settings->getContentSourceUri()->willReturn('/foo/bar');
     return $source_settings->reveal();
   }
 

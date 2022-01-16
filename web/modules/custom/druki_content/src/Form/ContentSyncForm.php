@@ -9,7 +9,7 @@ use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_content\Builder\ContentSyncQueueBuilderInterface;
 use Drupal\druki_content\Event\ContentSourceSyncRequestEvent;
 use Drupal\druki_content\Event\ContentSourceUpdateRequestEvent;
-use Drupal\druki_content\Repository\ContentSourceSettingsInterface;
+use Drupal\druki_content\Repository\ContentSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -29,9 +29,9 @@ final class ContentSyncForm extends FormBase {
   protected EventDispatcherInterface $eventDispatcher;
 
   /**
-   * The content source settings.
+   * The content settings.
    */
-  protected ContentSourceSettingsInterface $contentSourceSettings;
+  protected ContentSettingsInterface $contentSettings;
 
   /**
    * The queue builder.
@@ -45,7 +45,7 @@ final class ContentSyncForm extends FormBase {
     $instance = new static();
     $instance->queueManager = $container->get('druki_content.queue.content_sync_manager');
     $instance->queueBuilder = $container->get('druki_content.builder.content_sync_queue');
-    $instance->contentSourceSettings = $container->get('druki_content.repository.content_source_settings');
+    $instance->contentSettings = $container->get('druki_content.repository.content_settings');
     $instance->eventDispatcher = $container->get('event_dispatcher');
     return $instance;
   }
@@ -109,7 +109,7 @@ final class ContentSyncForm extends FormBase {
       '#title' => new TranslatableMarkup('URI'),
       '#description' => new TranslatableMarkup('The URI with source content.'),
       '#required' => TRUE,
-      '#default_value' => $this->contentSourceSettings->getRepositoryUri(),
+      '#default_value' => $this->contentSettings->getContentSourceUri(),
     ];
 
     $form['queue_builder']['folder']['build'] = [
@@ -210,7 +210,7 @@ final class ContentSyncForm extends FormBase {
    *   The form state.
    */
   public function dispatchSyncEvent(array $form, FormStateInterface $form_state): void {
-    $content_source_uri = $this->contentSourceSettings->getRepositoryUri();
+    $content_source_uri = $this->contentSettings->getContentSourceUri();
     $event = new ContentSourceSyncRequestEvent($content_source_uri);
     $this->eventDispatcher->dispatch($event);
   }
