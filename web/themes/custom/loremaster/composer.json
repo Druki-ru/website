@@ -5,8 +5,5 @@
     "version": "1.0.0",
     "keywords": [
         "Drupal"
-    ],
-    "require": {
-        "npm-asset/asciinema-player": "^2.6.0"
-    }
+    ]
 }
