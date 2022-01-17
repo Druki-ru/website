@@ -9,13 +9,15 @@ use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
+use Drupal\druki\Batch\BatchBase;
 use Drupal\druki_content\Repository\ContentStorage;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Provides content invalidation batch.
  */
-final class ContentInvalidateAllBatch {
+final class ContentInvalidateAllBatch extends BatchBase {
 
   /**
    * The content storage.
@@ -28,75 +30,31 @@ final class ContentInvalidateAllBatch {
   protected MessengerInterface $messenger;
 
   /**
-   * Builds a batch.
-   *
-   * @return \Drupal\Core\Batch\BatchBuilder
-   *   The batch builder.
+   * {@inheritdoc}
    */
-  public static function build(): BatchBuilder {
-    $callable_operation = [self::class, 'processOperation'];
-
+  public static function build(array ...$args): BatchBuilder {
     $builder = new BatchBuilder();
     $builder->setTitle(new TranslatableMarkup('Invalidate content'));
-    $builder->addOperation($callable_operation, ['findContentIds']);
-    $builder->addOperation($callable_operation, ['invalidateContent']);
-    $builder->setFinishCallback([self::class, 'processFinishCallback']);
+    $builder->addOperation(
+      self::getProcessCallable(),
+      ['findContentIds', $args],
+    );
+    $builder->addOperation(
+      self::getProcessCallable(),
+      ['invalidateContent', $args],
+    );
+    $builder->setFinishCallback(self::getProcessFinishCallable('finishCallback'));
     return $builder;
   }
 
   /**
-   * Prepare and process a single batch operation.
-   *
-   * @param string $method
-   *   The method to call for processing.
-   * @param array $context
-   *   An array with batch context.
+   * {@inheritdoc}
    */
-  public static function processOperation(string $method, array &$context = []): void {
-    $instance = self::createInstance();
-    if (!\method_exists($instance, $method)) {
-      return;
-    }
-    \call_user_func_array([$instance, $method], [&$context]);
-  }
-
-  /**
-   * Creates an instance of current batch processor.
-   *
-   * @return $this
-   */
-  public static function createInstance(): self {
-    $container = \Drupal::getContainer();
+  public static function createInstance(ContainerInterface $container): static {
     $instance = new self();
     $instance->contentStorage = $container->get('entity_type.manager')->getStorage('druki_content');
     $instance->messenger = $container->get('messenger');
     return $instance;
-  }
-
-  /**
-   * Process batch finish callback.
-   *
-   * @param bool $success
-   *   Indicates batch processing result.
-   * @param array $results
-   *   An array with results.
-   * @param array $operations
-   *   An array with batch operations.
-   * @param string $duration
-   *   A batch duration formatted result.
-   *
-   * @return \Symfony\Component\HttpFoundation\RedirectResponse|null
-   *   The redirect response for batch, NULL otherwise.
-   */
-  public static function processFinishCallback(bool $success, array $results, array $operations, string $duration): ?RedirectResponse {
-    $instance = self::createInstance();
-    if (!\method_exists($instance, 'finishCallback')) {
-      return NULL;
-    }
-    return \call_user_func_array(
-      [$instance, 'finishCallback'],
-      [$success, $results, $operations, $duration],
-    );
   }
 
   /**
