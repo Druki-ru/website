@@ -853,3 +853,23 @@ function druki_content_update_9310(array &$sandbox): void {
   $content_settings->setContentUpdateWebhookAccessKey($key_value_store->get('content_update_access_key'));
   $key_value_store->deleteAll();
 }
+
+/**
+ * Delete all content to update it with the new metadata.
+ */
+function druki_content_update_9311(array &$sandbox): void {
+  $content_storage = \Drupal::entityTypeManager()->getStorage('druki_content');
+  $entities = $content_storage->loadMultiple();
+  $content_storage->delete($entities);
+}
+
+/**
+ * Request content sync.
+ */
+function druki_content_update_9312(array &$sandbox): void {
+  /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+  $content_settings = \Drupal::service('druki_content.repository.content_settings');
+  $content_source_uri = $content_settings->getContentSourceUri();
+  $event = new ContentSourceSyncRequestEvent($content_source_uri);
+  \Drupal::service('event_dispatcher')->dispatch($event);
+}

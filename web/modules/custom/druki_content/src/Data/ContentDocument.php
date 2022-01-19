@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\druki_content\Data;
 
+use Drupal\druki_content\Plugin\DataType\DocumentationMetadata;
+
 /**
  * Provides structured content document.
  */
@@ -17,7 +19,7 @@ final class ContentDocument {
   /**
    * The content metadata.
    */
-  protected ContentMetadata $metadata;
+  protected DocumentationMetadata $metadata;
 
   /**
    * The structured content.
@@ -29,12 +31,12 @@ final class ContentDocument {
    *
    * @param string $language
    *   The content language.
-   * @param \Drupal\druki_content\Data\ContentMetadata $metadata
+   * @param \Drupal\druki_content\Plugin\DataType\DocumentationMetadata $metadata
    *   The content metadata.
    * @param \Drupal\druki_content\Data\Content $content
    *   The structured content.
    */
-  public function __construct(string $language, ContentMetadata $metadata, Content $content) {
+  public function __construct(string $language, DocumentationMetadata $metadata, Content $content) {
     $this->language = $language;
     $this->metadata = $metadata;
     $this->content = $content;
@@ -43,10 +45,10 @@ final class ContentDocument {
   /**
    * Gets content metadata.
    *
-   * @return \Drupal\druki_content\Data\ContentMetadata
+   * @return \Drupal\druki_content\Plugin\DataType\DocumentationMetadata
    *   The content metadata.
    */
-  public function getMetadata(): ContentMetadata {
+  public function getMetadata(): DocumentationMetadata {
     return $this->metadata;
   }
 

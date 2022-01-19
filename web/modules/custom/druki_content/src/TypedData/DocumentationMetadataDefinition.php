@@ -11,6 +11,8 @@ use Drupal\Core\TypedData\MapDataDefinition;
 
 /**
  * A typed data definition for content metadata data.
+ *
+ * @see \Drupal\druki_content\Plugin\DataType\DocumentationMetadata
  */
 final class DocumentationMetadataDefinition extends MapDataDefinition {
 
@@ -23,8 +25,20 @@ final class DocumentationMetadataDefinition extends MapDataDefinition {
     $this->setPropertyDefinition('core', $this->getCoreDefinition());
     $this->setPropertyDefinition('category', $this->getCategoryDefinition());
     $this->setPropertyDefinition('search-keywords', ListDataDefinition::create('string'));
-    // @todo metatags.
+    $this->setPropertyDefinition('metatags', $this->getMetatagsDefinition());
     return parent::getPropertyDefinitions();
+  }
+
+  /**
+   * Gets definition for metatags.
+   *
+   * @return \Drupal\Core\TypedData\DataDefinitionInterface
+   *   A metatags values definition.
+   */
+  protected function getMetatagsDefinition(): DataDefinitionInterface {
+    return MapDataDefinition::create()
+      ->setPropertyDefinition('title', DataDefinition::create('string'))
+      ->setPropertyDefinition('description', DataDefinition::create('string'));
   }
 
   /**
