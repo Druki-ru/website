@@ -9,43 +9,13 @@ use Drupal\Core\TypedData\Plugin\DataType\Map;
 /**
  * Provides data type representing documentation metadata.
  *
- * Can contain this metadata:
- * - title: (required) The content title. This will be used in <h1> and <title>.
- * - slug: (required) The unique slug of the document. This will be used as URL
- *   suffix. E.g., if the current prefix is 'wiki/' and slug is 'drupal/about'
- *   that means that content will be available by
- *   https://example.com/wiki/drupal/about URL.
- *   The slug also used to find out previously created content for update
- *   instead of creating new one, this means, that value is also serves as ID
- *   and because of that should be unique across all content in single language.
- * - core: (optional) The Drupal core major version.
- * - category: (optional) The category allows grouping several contents into one
- *   group of content with navigation between them. The category definition is
- *   an array, which contains:
- *   - area: (required) The category area. The content with same category area
- *     set will be grouped.
- *   - order: (optional) The position of the current content in the group. By
- *     default all have order = 0. Sort is ascending — the lower order will be
- *     showed first.
- *   - title: (optional) The override for content title in the grouped list.
- * - search-keywords: (optional) An array with search keywords that can be used
- *   for search that content and not the part of the content or should be
- *   boosted is search rankings. E.g., content about Libraries API can contain
- *   such keywords: 'how to add javascript css', 'how to add script on the
- *   page'. These keywords have extra priority over content.
- * - metatags: (optional) An array with content metatags:
- *   - title: (optional) Allows overriding <title> value for the page as well as
- *     related metatags <meta name='title'>, <meta name='twitter:title'>,
- *     <meta property='og:title'>. This value does not change <h1> of the page.
- *   - description: (optional) Allows providing specific content description.
- *     This value will be used for <meta name='description'> and
- *     <meta property='og:description'>.
- *
  * @DataType(
  *   id = "druki_content_documentation_metadata",
  *   label = @Translation("Documentation metadata"),
  *   definition_class = "\Drupal\druki_content\TypedData\DocumentationMetadataDefinition"
  * )
+ *
+ * @see \Drupal\druki_content\TypedData\DocumentationMetadataDefinition
  */
 final class DocumentationMetadata extends Map {
 
@@ -158,6 +128,19 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
+   * Checks is metatag with a specific name is set.
+   *
+   * @param string $name
+   *   A metatag name.
+   *
+   * @return bool
+   *   TRUE if value for request metatag is set.
+   */
+  public function hasMetatag(string $name): bool {
+    return isset($this->get('metatags')->getValue()[$name]);
+  }
+
+  /**
    * Gets a value for specific metatag.
    *
    * @param string $name
@@ -174,16 +157,16 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Checks is metatag with a specific name is set.
+   * Gets search keywords.
    *
-   * @param string $name
-   *   A metatag name.
-   *
-   * @return bool
-   *   TRUE if value for request metatag is set.
+   * @return array|null
+   *   An array with search keywords.
    */
-  public function hasMetatag(string $name): bool {
-    return isset($this->get('metatags')->getValue()[$name]);
+  public function getSearchKeywords(): ?array {
+    if (!$this->hasSearchKeywords()) {
+      return NULL;
+    }
+    return $this->get('search-keywords')->getValue();
   }
 
   /**
@@ -197,16 +180,26 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Gets search keywords.
+   * Gets authors of a content.
    *
    * @return array|null
-   *   An array with search keywords.
+   *   An array with author IDs.
    */
-  public function getSearchKeywords(): ?array {
-    if (!$this->hasSearchKeywords()) {
+  public function getAuthors(): ?array {
+    if (!$this->hasAuthors()) {
       return NULL;
     }
-    return $this->get('search-keywords')->getValue();
+    return $this->get('authors')->getValue();
+  }
+
+  /**
+   * Checks is authors are set.
+   *
+   * @return bool
+   *   TRUE if authors are set.
+   */
+  public function hasAuthors(): bool {
+    return !empty($this->get('authors')->getValue());
   }
 
 }

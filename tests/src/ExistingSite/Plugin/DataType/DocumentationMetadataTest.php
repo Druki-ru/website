@@ -55,6 +55,8 @@ final class DocumentationMetadataTest extends ExistingSiteBase {
     $this->assertNull($data_type->getMetatags());
     $this->assertFalse($data_type->hasSearchKeywords());
     $this->assertNull($data_type->getSearchKeywords());
+    $this->assertFalse($data_type->hasAuthors());
+    $this->assertNull($data_type->getAuthors());
 
     $metadata['core'] = 1;
     $data_type = $typed_data_manager->create($definition, $metadata);
@@ -116,6 +118,12 @@ final class DocumentationMetadataTest extends ExistingSiteBase {
     $this->assertEquals(0, $data_type->validate()->count());
     $this->assertTrue($data_type->hasSearchKeywords());
     $this->assertEquals($metadata['search-keywords'], $data_type->getSearchKeywords());
+
+    $metadata['authors'] = ['Dries', 'zuck'];
+    $data_type = $typed_data_manager->create($definition, $metadata);
+    $this->assertEquals(0, $data_type->validate()->count());
+    $this->assertTrue($data_type->hasAuthors());
+    $this->assertEquals($metadata['authors'], $data_type->getAuthors());
   }
 
 }

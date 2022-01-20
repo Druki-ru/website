@@ -174,4 +174,27 @@ interface ContentInterface extends ContentEntityInterface {
    */
   public function getContributors(): ContributorList;
 
+  /**
+   * Rests authors field values.
+   */
+  public function unsetAuthors(): void;
+
+  /**
+   * Adds author reference.
+   *
+   * @param string $author_id
+   *   An author ID.
+   *
+   * @return $this
+   */
+  public function addAuthor(string $author_id): self;
+
+  /**
+   * Gets author entities.
+   *
+   * @return array
+   *   An array with authors.
+   */
+  public function getAuthors(): array;
+
 }

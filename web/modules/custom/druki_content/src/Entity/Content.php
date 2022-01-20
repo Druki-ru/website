@@ -325,4 +325,29 @@ final class Content extends ContentEntityBase implements ContentInterface {
     return $contributors;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function unsetAuthors(): void {
+    $this->set('authors', NULL);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addAuthor(string $author_id): ContentInterface {
+    $this->get('authors')->appendItem(['target_id' => $author_id]);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAuthors(): array {
+    if ($this->get('authors')->isEmpty()) {
+      return [];
+    }
+    return $this->get('authors')->referencedEntities();
+  }
+
 }

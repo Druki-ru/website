@@ -37,6 +37,12 @@ final class Documentation extends PluginBase implements ContentTypeInterface {
       ->setLabel(new TranslatableMarkup('Metatags'))
       ->setDescription(new TranslatableMarkup('An addition meta-information for content used by search engines and social media.'));
 
+    $fields['authors'] = BundleFieldDefinition::create('entity_reference')
+      ->setLabel(new TranslatableMarkup('Authors'))
+      ->setDescription(new TranslatableMarkup('A list of authors credited for contributing into content.'))
+      ->setCardinality(-1)
+      ->setSetting('target_type', 'druki_author');
+
     return $fields;
   }
 
