@@ -23,6 +23,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "druki_contributor",
  *   },
  * )
+ *
+ * @todo Remove after ContributorsAndAuthors extra field is complete.
  */
 final class ContributorFormatter extends FormatterBase {
 

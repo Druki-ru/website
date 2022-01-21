@@ -3,6 +3,9 @@
 namespace Drupal\druki_content\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\extra_field\Plugin\ExtraFieldDisplayManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a druki content contributors list.
@@ -17,7 +20,21 @@ use Drupal\Core\Block\BlockBase;
  *   }
  * )
  */
-final class ContributorsBlock extends BlockBase {
+final class ContributorsBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * An extra field display plugin manager.
+   */
+  protected ExtraFieldDisplayManagerInterface $extraFieldDisplayManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
+    $instance = new self($configuration, $plugin_id, $plugin_definition);
+    $instance->extraFieldDisplayManager = $container->get('plugin.manager.extra_field_display');
+    return $instance;
+  }
 
   /**
    * {@inheritdoc}
@@ -34,24 +51,25 @@ final class ContributorsBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build(): array {
+    if (!$this->extraFieldDisplayManager->hasDefinition('contributors_and_authors')) {
+      return [];
+    }
+
     $build = [
       '#cache' => [
         'tags' => ['druki_author_list'],
       ],
     ];
+
     /** @var \Drupal\druki_content\Entity\ContentInterface $content */
     $content = $this->getContextValue('druki_content');
-    if ($content->get('contributors')->isEmpty()) {
-      return $build;
+    /** @var \Drupal\extra_field\Plugin\ExtraFieldDisplayInterface $extra_field */
+    $extra_field = $this->extraFieldDisplayManager->createInstance('contributors_and_authors');
+    $extra_field->setEntity($content);
+    $elements = $extra_field->view($content);
+    if (!empty($elements)) {
+      $build['content'] = $elements;
     }
-
-    $build['content'] = $content->get('contributors')->view([
-      'type' => 'druki_content_contributor',
-      'label' => 'hidden',
-      'settings' => [
-        'author_view_mode' => 'content_contributor',
-      ],
-    ]);
 
     return $build;
   }
