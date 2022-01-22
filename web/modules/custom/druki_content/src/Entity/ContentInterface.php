@@ -175,6 +175,14 @@ interface ContentInterface extends ContentEntityInterface {
   public function getContributors(): ContributorList;
 
   /**
+   * Checks contributors field has a value.
+   *
+   * @return bool
+   *   TRUE if contributors are set.
+   */
+  public function hasContributors(): bool;
+
+  /**
    * Rests authors field values.
    */
   public function unsetAuthors(): void;
@@ -196,5 +204,13 @@ interface ContentInterface extends ContentEntityInterface {
    *   An array with authors.
    */
   public function getAuthors(): array;
+
+  /**
+   * Checks authors field has a value.
+   *
+   * @return bool
+   *   TRUE if contributors are set.
+   */
+  public function hasAuthors(): bool;
 
 }

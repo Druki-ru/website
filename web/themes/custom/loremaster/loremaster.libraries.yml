@@ -122,12 +122,16 @@ component.block.druki-content-variations:
     theme:
       assets/css/04-components/block/druki-content-variations.css: { }
 
+component.block.contributors:
+  css:
+    theme:
+      assets/css/04-components/block/contributors.css: { }
+
 component.druki-content:
   css:
     theme:
       assets/css/04-components/druki-content/druki-content-full.css: { }
       assets/css/04-components/druki-content/druki-content-content.css: { }
-      assets/css/04-components/druki-content/druki-content-contributors.css: { }
 
 component.druki-content.element.heading:
   css:

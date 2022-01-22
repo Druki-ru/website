@@ -344,10 +344,24 @@ final class Content extends ContentEntityBase implements ContentInterface {
    * {@inheritdoc}
    */
   public function getAuthors(): array {
-    if ($this->get('authors')->isEmpty()) {
+    if (!$this->hasAuthors()) {
       return [];
     }
     return $this->get('authors')->referencedEntities();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function hasAuthors(): bool {
+    return !$this->get('authors')->isEmpty();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function hasContributors(): bool {
+    return !$this->get('contributors')->isEmpty();
   }
 
 }
