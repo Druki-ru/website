@@ -5,6 +5,9 @@
 <p align="center">
   <img src="https://github.com/Druki-ru/website/workflows/Continuous%20Integration/badge.svg?branch=9.x" alt="Continuous Integration">
   <img src="https://github.com/Druki-ru/website/workflows/Tests/badge.svg" alt="Tests">
+  <a href="https://codecov.io/gh/Druki-ru/website">
+    <img src="https://codecov.io/gh/Druki-ru/website/branch/develop/graph/badge.svg?token=66TZYNHOCG"/>
+  </a>
   <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdruki.ru%2Fshields%2Fdrupal-core" alt="Website Drupal Core version">
 </p>
 

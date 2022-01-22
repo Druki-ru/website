@@ -4,6 +4,9 @@ slug: test/example
 metatags:
   title: This is metatag title.
   description: This is metatag description.
+authors:
+  - Dries
+  - zuck
 ---
 
 Hello world!

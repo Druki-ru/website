@@ -63,6 +63,8 @@ final class ContentSourceFileListQueueItemProcessorTest extends ExistingSiteBase
     $this->assertTrue($content_entity->get('search_keywords')->isEmpty());
     $this->assertFalse($content_entity->get('metatags')->isEmpty());
     $this->assertNull($content_entity->getCategory());
+    $this->assertEquals('Dries', $content_entity->get('authors')->first()->get('target_id')->getValue());
+    $this->assertEquals('zuck', $content_entity->get('authors')->offsetGet(1)->get('target_id')->getValue());
 
     // Process it second time.
     $processor->process($queue_item);

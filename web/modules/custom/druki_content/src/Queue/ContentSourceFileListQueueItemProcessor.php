@@ -144,6 +144,13 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
       $content_entity->setContributors($contributors);
     }
 
+    $content_entity->unsetAuthors();
+    if ($authors = $content_metadata->getAuthors()) {
+      foreach ($authors as $author_id) {
+        $content_entity->addAuthor($author_id);
+      }
+    }
+
     $content_entity->save();
     return (int) $content_entity->id();
   }

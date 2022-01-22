@@ -8,6 +8,7 @@ on:
 
 env:
   COMPOSER_FLAGS: '--ansi --no-interaction --no-progress --no-suggest --prefer-dist'
+  CODECOV_TOKEN: ${{ secrets.ci_codecov_token }}
 
 jobs:
   phpcs:
@@ -111,4 +112,7 @@ jobs:
         run: 'docker-compose exec -T php drush site:install druki_installer'
 
       - name: 'Run tests'
-        run: 'docker-compose exec -T php composer run-script phpunit'
+        run: 'docker-compose exec -T php ./vendor/bin/phpunit --coverage-clover coverage.xml --coverage-text'
+
+      - name: 'Upload code coverage'
+        run: 'bash <(curl -s https://codecov.io/bash)'

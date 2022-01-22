@@ -9,7 +9,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\druki_content\Data\Content;
 use Drupal\druki_content\Data\ContentDocument;
-use Drupal\druki_content\Data\ContentMetadata;
 
 /**
  * Defines the 'druki_content_document' field type.
@@ -65,8 +64,11 @@ class ContentDocumentItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public static function generateSampleValue(FieldDefinitionInterface $field_definition): array {
+    $typed_data_manager = \Drupal::typedDataManager();
+    $content_metadata_definition = $typed_data_manager->createDataDefinition('druki_content_documentation_metadata');
+    $content_metadata = $typed_data_manager->create($content_metadata_definition);
     return [
-      'document' => new ContentDocument('ru', new ContentMetadata(), new Content()),
+      'document' => new ContentDocument('ru', $content_metadata, new Content()),
     ];
   }
 

@@ -25,7 +25,7 @@ services:
 
   druki_content.parser.content_source_file:
     class: Drupal\druki_content\Parser\ContentSourceFileParser
-    arguments: [ '@druki.markdown_parser', '@druki_content.parser.content_html_parser' ]
+    arguments: [ '@druki.markdown_parser', '@druki_content.parser.content_html_parser', '@typed_data_manager' ]
 
   druki_content.parser.content_html_parser:
     class: Drupal\druki_content\Parser\ContentHtmlParser
