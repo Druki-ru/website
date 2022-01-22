@@ -202,4 +202,15 @@ final class DocumentationMetadata extends Map {
     return !empty($this->get('authors')->getValue());
   }
 
+  /**
+   * Gets checksum for current documentation metadata values.
+   *
+   * @return string
+   *   A checksum for instance.
+   */
+  public function checksum(): string {
+    $checksum_parts = $this->toArray();
+    return \md5(\serialize($checksum_parts));
+  }
+
 }

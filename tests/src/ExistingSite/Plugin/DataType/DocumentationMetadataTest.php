@@ -126,4 +126,37 @@ final class DocumentationMetadataTest extends ExistingSiteBase {
     $this->assertEquals($metadata['authors'], $data_type->getAuthors());
   }
 
+  /**
+   * Tests that checksum generator works as expected.
+   */
+  public function testChecksum(): void {
+    /** @var \Drupal\Core\TypedData\TypedDataManagerInterface $typed_data_manager */
+    $typed_data_manager = $this->container->get('typed_data_manager');
+    /** @var \Drupal\druki_content\TypedData\DocumentationMetadataDefinition $definition */
+    $definition = $typed_data_manager->createDataDefinition('druki_content_documentation_metadata');
+    $definition->setRequired(TRUE);
+
+    /** @var \Drupal\druki_content\Plugin\DataType\DocumentationMetadata $data_type */
+    $data_type = $typed_data_manager->create($definition, [
+      'title' => 'Foo',
+      'slug' => 'bar',
+    ]);
+    $checksum_first = $data_type->checksum();
+    // Ensure that it always returns the same result for the same data.
+    $this->assertEquals($checksum_first, $data_type->checksum());
+
+    $data_type = $typed_data_manager->create($definition, [
+      'slug' => 'bar',
+      'title' => 'Foo',
+    ]);
+    // Order of values shouldn't affect result.
+    $this->assertEquals($checksum_first, $data_type->checksum());
+
+    $data_type = $typed_data_manager->create($definition, [
+      'slug' => 'bar',
+      'title' => 'foo',
+    ]);
+    $this->assertNotEquals($checksum_first, $data_type->checksum());
+  }
+
 }
