@@ -14,8 +14,8 @@ env:
   # The App located inside project root. Mainly the product root is the folder
   # with docker-compose.yml.
   PROJECT_ROOT: ${{ secrets.ci_project_root }}
-  COMPOSER_BIN: 'docker compose exec php composer'
-  DRUSH_BIN: 'docker compose exec php drush'
+  COMPOSER_BIN: 'docker compose exec -T php composer'
+  DRUSH_BIN: 'docker compose exec -T php drush'
   DRUSH_URI: 'https://druki.ru'
 
 jobs:
