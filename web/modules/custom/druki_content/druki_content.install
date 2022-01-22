@@ -855,18 +855,9 @@ function druki_content_update_9310(array &$sandbox): void {
 }
 
 /**
- * Delete all content to update it with the new metadata.
- */
-function druki_content_update_9311(array &$sandbox): void {
-  $content_storage = \Drupal::entityTypeManager()->getStorage('druki_content');
-  $entities = $content_storage->loadMultiple();
-  $content_storage->delete($entities);
-}
-
-/**
  * Install 'authors' field.
  */
-function druki_content_update_9312(array &$sandbox): void {
+function druki_content_update_9311(array &$sandbox): void {
   $update_manager = \Drupal::entityDefinitionUpdateManager();
   $authors_definition = BundleFieldDefinition::create('entity_reference')
     ->setLabel(new TranslatableMarkup('Authors'))
@@ -874,6 +865,15 @@ function druki_content_update_9312(array &$sandbox): void {
     ->setCardinality(-1)
     ->setSetting('target_type', 'druki_author');
   $update_manager->installFieldStorageDefinition('authors', 'druki_content', 'druki_content', $authors_definition);
+}
+
+/**
+ * Delete all content to update it with the new metadata.
+ */
+function druki_content_update_9312(array &$sandbox): void {
+  $content_storage = \Drupal::entityTypeManager()->getStorage('druki_content');
+  $entities = $content_storage->loadMultiple();
+  $content_storage->delete($entities);
 }
 
 /**
