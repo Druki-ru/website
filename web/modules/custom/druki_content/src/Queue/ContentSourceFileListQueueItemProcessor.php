@@ -90,15 +90,19 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
   protected function processContentSourceFile(ContentSourceFile $content_source_file): int {
     $content_document = $this->contentSourceFileParser->parse($content_source_file);
     $content_metadata = $content_document->getMetadata();
-    $content_entity = $this->prepareContentEntity($content_document);
-
-    $destination_checksum = $content_entity->getSourceHash();
     $source_checksum = $this->checksumGenerator->generate($content_document);
-    if ($destination_checksum == $source_checksum) {
+
+    $content_entity = $this->prepareContentEntity($content_document);
+    $content_entity_metadata = $content_entity->getContentDocument()->getMetadata();
+
+    $metadata_not_changed = $content_entity_metadata->checksum() == $content_metadata->checksum();
+    $content_not_changed = $content_entity->getSourceHash() == $source_checksum;
+    // If metadata or content not changed, we don't want to process further.
+    if ($metadata_not_changed && $content_not_changed && !$content_entity->isNew()) {
       return (int) $content_entity->id();
     }
-    $content_entity->setSourceHash($source_checksum);
 
+    $content_entity->setSourceHash($source_checksum);
     $content_entity->setTitle($content_metadata->getTitle());
     $content_entity->setRelativePathname($content_source_file->getRelativePathname());
     $content_entity->setContentDocument($content_document);
@@ -172,11 +176,14 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
     if ($content) {
       return $content;
     }
-    return $this->contentStorage->create([
+    /** @var \Drupal\druki_content\Entity\ContentInterface $content */
+    $content = $this->contentStorage->create([
       'type' => 'documentation',
       'langcode' => $content_document->getLanguage(),
       'slug' => $content_document->getMetadata()->getSlug(),
     ]);
+    $content->setContentDocument($content_document);
+    return $content;
   }
 
   /**

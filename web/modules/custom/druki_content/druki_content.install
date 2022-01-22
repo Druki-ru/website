@@ -886,3 +886,14 @@ function druki_content_update_9313(array &$sandbox): void {
   $event = new ContentSourceSyncRequestEvent($content_source_uri);
   \Drupal::service('event_dispatcher')->dispatch($event);
 }
+
+/**
+ * Content checksum generator has been changed, content should be updated.
+ */
+function druki_content_update_9314(array &$sandbox): void {
+  /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+  $content_settings = \Drupal::service('druki_content.repository.content_settings');
+  $content_source_uri = $content_settings->getContentSourceUri();
+  $event = new ContentSourceSyncRequestEvent($content_source_uri);
+  \Drupal::service('event_dispatcher')->dispatch($event);
+}
