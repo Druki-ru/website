@@ -1,5 +1,6 @@
 .author-full {
   --avatar-width: 140px;
+  --avatar-height: var(--avatar-width);
 }
 
 .author-full__header {
@@ -11,6 +12,7 @@
   display: flex;
   justify-content: center;
   align-self: flex-start;
+  height: var(--avatar-height);
 }
 
 .author-full__avatar > img {
@@ -68,7 +70,9 @@
 
 .author-full .avatar-placeholder {
   border-radius: 50%;
+  font-size: 3.5rem;
   --avatar-placeholder-width: var(--avatar-width);
+  --avatar-placeholder-height: var(--avatar-height);
   --avatar-placeholder-initials-size: var(--font-size-h1);
 }
 
