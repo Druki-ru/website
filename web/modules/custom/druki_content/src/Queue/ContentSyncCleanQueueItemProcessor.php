@@ -8,7 +8,6 @@ use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Repository\ContentStorage;
-use Drupal\search\SearchIndexInterface;
 
 /**
  * Provides synchronization clean queue processor.
@@ -26,11 +25,6 @@ final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemPro
   protected EntitySyncQueueManagerInterface $queueManager;
 
   /**
-   * A search index.
-   */
-  protected SearchIndexInterface $searchIndex;
-
-  /**
    * A content entity storage.
    */
   protected ContentStorage $contentStorage;
@@ -42,13 +36,10 @@ final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemPro
    *   The entity type manager.
    * @param \Drupal\druki\Queue\EntitySyncQueueManagerInterface $queue_manager
    *   The queue manager.
-   * @param \Drupal\search\SearchIndexInterface $search_index
-   *   A search indexes.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntitySyncQueueManagerInterface $queue_manager, SearchIndexInterface $search_index) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntitySyncQueueManagerInterface $queue_manager) {
     $this->contentStorage = $entity_type_manager->getStorage('druki_content');
     $this->queueManager = $queue_manager;
-    $this->searchIndex = $search_index;
   }
 
   /**
