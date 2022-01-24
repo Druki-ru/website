@@ -6,6 +6,7 @@ namespace Druki\Tests\ExistingSite\Queue;
 
 use Druki\Tests\Traits\DrukiContentCreationTrait;
 use Druki\Tests\Traits\EntityCleanupTrait;
+use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor;
@@ -47,6 +48,17 @@ final class ContentSyncCleanQueueItemProcessorTest extends ExistingSiteBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+    $this->processor = $this->container->get('druki_content.queue.clean_queue_processor');
+    $this->contentStorage = $this->container->get('entity_type.manager')->getStorage('druki_content');
+    $this->queueState = $this->container->get('druki_content.repository.content_sync_queue_state');
+    $this->storeEntityIds(['druki_content']);
+  }
+
+  /**
    * Tests that processor works as expected.
    */
   public function testProcessor(): void {
@@ -84,14 +96,19 @@ final class ContentSyncCleanQueueItemProcessorTest extends ExistingSiteBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Tests that method works as expected.
+   *
+   * @covers ::isApplicable
    */
-  protected function setUp(): void {
-    parent::setUp();
-    $this->processor = $this->container->get('druki_content.queue.clean_queue_processor');
-    $this->contentStorage = $this->container->get('entity_type.manager')->getStorage('druki_content');
-    $this->queueState = $this->container->get('druki_content.repository.content_sync_queue_state');
-    $this->storeEntityIds(['druki_content']);
+  public function testIsApplicable(): void {
+    $invalid_item = new class() implements EntitySyncQueueItemInterface {
+      public function getPayload(): mixed { }
+    };
+
+    $this->assertFalse($this->processor->isApplicable($invalid_item));
+
+    $valid_item = new ContentSyncCleanQueueItem();
+    $this->assertTrue($this->processor->isApplicable($valid_item));
   }
 
 }

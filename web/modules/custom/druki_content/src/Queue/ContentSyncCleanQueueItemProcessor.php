@@ -7,6 +7,8 @@ use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemProcessorInterface;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
+use Drupal\druki_content\Repository\ContentStorage;
+use Drupal\search\SearchIndexInterface;
 
 /**
  * Provides synchronization clean queue processor.
@@ -19,14 +21,19 @@ use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemProcessorInterface {
 
   /**
-   * The entity type manager.
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
    * The queue manager.
    */
   protected EntitySyncQueueManagerInterface $queueManager;
+
+  /**
+   * A search index.
+   */
+  protected SearchIndexInterface $searchIndex;
+
+  /**
+   * A content entity storage.
+   */
+  protected ContentStorage $contentStorage;
 
   /**
    * ContentSyncCleanQueueItemProcessor constructor.
@@ -35,29 +42,40 @@ final class ContentSyncCleanQueueItemProcessor implements EntitySyncQueueItemPro
    *   The entity type manager.
    * @param \Drupal\druki\Queue\EntitySyncQueueManagerInterface $queue_manager
    *   The queue manager.
+   * @param \Drupal\search\SearchIndexInterface $search_index
+   *   A search indexes.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntitySyncQueueManagerInterface $queue_manager) {
-    $this->entityTypeManager = $entity_type_manager;
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntitySyncQueueManagerInterface $queue_manager, SearchIndexInterface $search_index) {
+    $this->contentStorage = $entity_type_manager->getStorage('druki_content');
     $this->queueManager = $queue_manager;
+    $this->searchIndex = $search_index;
   }
 
   /**
    * {@inheritdoc}
    */
   public function process(EntitySyncQueueItemInterface $item): array {
-    /** @var \Drupal\druki_content\Repository\ContentStorage $druki_content_storage */
-    $druki_content_storage = $this->entityTypeManager->getStorage('druki_content');
-    $existing_ids = $druki_content_storage->getQuery()
+    $existing_ids = $this->contentStorage->getQuery()
       ->accessCheck(FALSE)
       ->execute();
     $synced_ids = $this->queueManager->getState()->getEntityIds();
     $removed_content_ids = \array_diff($existing_ids, $synced_ids);
-    if (!$removed_content_ids) {
-      return [];
+    if ($removed_content_ids) {
+      $this->cleanEntities($removed_content_ids);
     }
-    $content_entities = $druki_content_storage->loadMultiple($removed_content_ids);
-    $druki_content_storage->delete($content_entities);
+
     return [];
+  }
+
+  /**
+   * Deletes entities that not in the sync.
+   *
+   * @param array $content_ids
+   *   An array with content entity IDs to delete.
+   */
+  protected function cleanEntities(array $content_ids): void {
+    $content_entities = $this->contentStorage->loadMultiple($content_ids);
+    $this->contentStorage->delete($content_entities);
   }
 
   /**

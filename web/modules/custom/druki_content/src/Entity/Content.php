@@ -4,6 +4,7 @@ namespace Drupal\druki_content\Entity;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
@@ -272,6 +273,21 @@ final class Content extends ContentEntityBase implements ContentInterface {
   public function setContentDocument(ContentDocument $content_document): self {
     $this->set('document', $content_document);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function preDelete(EntityStorageInterface $storage, array $entities): void {
+    parent::preDelete($storage, $entities);
+
+    if (\Drupal::hasService('search.index')) {
+      /** @var \Drupal\search\SearchIndexInterface $search_index */
+      $search_index = \Drupal::service('search.index');
+      foreach ($entities as $entity) {
+        $search_index->clear('druki_content', $entity->id());
+      }
+    }
   }
 
   /**
