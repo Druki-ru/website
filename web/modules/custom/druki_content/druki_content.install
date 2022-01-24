@@ -897,3 +897,13 @@ function druki_content_update_9314(array &$sandbox): void {
   $event = new ContentSourceSyncRequestEvent($content_source_uri);
   \Drupal::service('event_dispatcher')->dispatch($event);
 }
+
+/**
+ * Force reindex content.
+ */
+function druki_content_update_9315(array &$sandbox): void {
+  /** @var \Drupal\search\SearchIndexInterface $search_index */
+  $search_index = \Drupal::service('search.index');
+  $search_index->clear('druki_content');
+  $search_index->markForReindex('druki_content');
+}

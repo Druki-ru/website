@@ -38,6 +38,7 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@druki_content.queue.content_sync_manager'
+      - '@search.index'
     tags:
       - { name: druki_entity_sync_queue_item_processor }
 
