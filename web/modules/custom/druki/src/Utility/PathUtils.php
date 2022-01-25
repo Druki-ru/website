@@ -26,9 +26,9 @@ final class PathUtils {
    * @see https://stackoverflow.com/a/10067975/4751623
    */
   public static function normalizePath(string $path): string {
-    $root = $path[0] === DIRECTORY_SEPARATOR ? DIRECTORY_SEPARATOR : '';
+    $root = $path[0] === \DIRECTORY_SEPARATOR ? \DIRECTORY_SEPARATOR : '';
 
-    $segments = \explode(DIRECTORY_SEPARATOR, \trim($path, DIRECTORY_SEPARATOR));
+    $segments = \explode(\DIRECTORY_SEPARATOR, \trim($path, \DIRECTORY_SEPARATOR));
     $ret = [];
     foreach ($segments as $segment) {
       if (($segment == '.') || \strlen($segment) === 0) {
@@ -42,7 +42,7 @@ final class PathUtils {
       }
     }
 
-    return $root . \implode(DIRECTORY_SEPARATOR, $ret);
+    return $root . \implode(\DIRECTORY_SEPARATOR, $ret);
   }
 
 }

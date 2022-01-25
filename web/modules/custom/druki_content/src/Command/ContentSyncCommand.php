@@ -62,8 +62,8 @@ final class ContentSyncCommand extends DrushCommands {
    *   Create/Update entity URI to source file.
    */
   public function syncFile(string $uri, array $options = ['locale' => NULL]): void {
-    $realpath = \rtrim($this->contentSettings->getContentSourceUri(), DIRECTORY_SEPARATOR);
-    $realpath .= DIRECTORY_SEPARATOR . \ltrim($uri, DIRECTORY_SEPARATOR);
+    $realpath = \rtrim($this->contentSettings->getContentSourceUri(), \DIRECTORY_SEPARATOR);
+    $realpath .= \DIRECTORY_SEPARATOR . \ltrim($uri, \DIRECTORY_SEPARATOR);
     $locale = $options['locale'];
     if (empty($locale)) {
       $default_language = $this->languageManager->getDefaultLanguage();

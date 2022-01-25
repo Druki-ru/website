@@ -43,7 +43,7 @@ final class ContentSettings implements ContentSettingsInterface {
    * {@inheritdoc}
    */
   public function setContentSourceUri(string $uri): ContentSettingsInterface {
-    $uri = \rtrim($uri, DIRECTORY_SEPARATOR);
+    $uri = \rtrim($uri, \DIRECTORY_SEPARATOR);
     $this->keyValueStore->set('content_source_uri', $uri);
     return $this;
   }

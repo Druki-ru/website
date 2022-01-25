@@ -43,13 +43,13 @@ final class ContentHtmlImagePreprocessor implements ContentHtmlPreprocessorInter
       if (UrlHelper::isExternal($src)) {
         continue;
       }
-      $src = \ltrim($src, DIRECTORY_SEPARATOR);
+      $src = \ltrim($src, \DIRECTORY_SEPARATOR);
       $uri_parts = [
         'content-source:/',
         \pathinfo($source_content_file->getRealpath(), \PATHINFO_DIRNAME),
         $src,
       ];
-      $image->setAttribute('src', \implode(DIRECTORY_SEPARATOR, $uri_parts));
+      $image->setAttribute('src', \implode(\DIRECTORY_SEPARATOR, $uri_parts));
     }
     return $crawler->filter('body')->html();
   }

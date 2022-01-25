@@ -179,7 +179,7 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
     }
     $contents = \file_get_contents($file_uri);
     $filename = \basename($file_uri);
-    $uri = $this->fileSystem->saveData($contents, $destination_uri . DIRECTORY_SEPARATOR . $filename);
+    $uri = $this->fileSystem->saveData($contents, $destination_uri . \DIRECTORY_SEPARATOR . $filename);
     $file_storage = $this->entityTypeManager->getStorage('file');
     $file = $file_storage->create([
       'uri' => $uri,
@@ -207,7 +207,7 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
     }
     else {
       $media_image = $this->entityFieldManager->getFieldDefinitions('media', 'image');
-      $file_directory = \trim($media_image['field_media_image']->getSetting('file_directory'), DIRECTORY_SEPARATOR);
+      $file_directory = \trim($media_image['field_media_image']->getSetting('file_directory'), \DIRECTORY_SEPARATOR);
       $uri_scheme = $media_image['field_media_image']->getSetting('uri_scheme');
       // Since this setting can, and will be contain tokens by default. We must
       // handle it too. Also, tokens can contain html, so we strip it.
