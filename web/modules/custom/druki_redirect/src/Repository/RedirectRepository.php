@@ -39,7 +39,7 @@ final class RedirectRepository implements RedirectRepositoryInterface {
   public function findRedirect(Redirect $redirect, string $language = LanguageInterface::LANGCODE_NOT_SPECIFIED): ?int {
     $hash = RedirectEntity::generateHash(
     // @see \Drupal\redirect\Entity\Redirect::setSource().
-      \ltrim($redirect->getSource()->getPath(), '/'),
+      \ltrim($redirect->getSource()->getPath(), DIRECTORY_SEPARATOR),
       $redirect->getSource()->getQuery(),
       $language,
     );

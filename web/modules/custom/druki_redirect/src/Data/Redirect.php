@@ -85,10 +85,10 @@ final class Redirect {
     \ksort($redirect_query);
 
     $checksum_parts = [
-      \ltrim($this->getSource()->getPath(), '/'),
+      \ltrim($this->getSource()->getPath(), DIRECTORY_SEPARATOR),
       \serialize($source_query),
       $this->getSource()->getFragment(),
-      \ltrim($this->getRedirect()->getPath(), '/'),
+      \ltrim($this->getRedirect()->getPath(), DIRECTORY_SEPARATOR),
       \serialize($redirect_query),
       $this->getRedirect()->getFragment(),
     ];

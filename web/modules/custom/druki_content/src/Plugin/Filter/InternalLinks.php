@@ -116,7 +116,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
       // valid path.
       if ($source_realpath) {
         $source_dirname = \dirname($source_realpath);
-        $destination_realpath = PathUtils::normalizePath($source_dirname . '/' . $original_href);
+        $destination_realpath = PathUtils::normalizePath($source_dirname . DIRECTORY_SEPARATOR . $original_href);
         // Find "relative_pathname" for this file, related to repository root.
         //
         // E.g:
@@ -126,7 +126,7 @@ final class InternalLinks extends FilterBase implements ContainerFactoryPluginIn
         //
         // We also remove leading slash (/) from repository path. This is needed
         // because "relative_pathname" stored in entity without it.
-        $destination_relative_pathname = \str_replace($repository_realpath . '/', '', $destination_realpath);
+        $destination_relative_pathname = \str_replace($repository_realpath . DIRECTORY_SEPARATOR, '', $destination_realpath);
 
         $druki_content = $this->loadDrukiContentByRelativePathname($destination_relative_pathname);
         if ($druki_content instanceof ContentInterface) {

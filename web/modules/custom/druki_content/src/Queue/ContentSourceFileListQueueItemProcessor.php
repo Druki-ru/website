@@ -98,9 +98,9 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
     $metadata_not_changed = $content_entity_metadata->checksum() == $content_metadata->checksum();
     $content_not_changed = $content_entity->getSourceHash() == $source_checksum;
     // If metadata or content not changed, we don't want to process further.
-    if ($metadata_not_changed && $content_not_changed && !$content_entity->isNew()) {
-      return (int) $content_entity->id();
-    }
+//    if ($metadata_not_changed && $content_not_changed && !$content_entity->isNew()) {
+//      return (int) $content_entity->id();
+//    }
 
     $content_entity->setSourceHash($source_checksum);
     $content_entity->setTitle($content_metadata->getTitle());
@@ -141,6 +141,7 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
     // - relative pathname: '/content/index.md'.
     // - $directory: '/path/to/content/git/folder'.
     $directory = \str_replace($content_source_file->getRelativePathname(), '', $content_source_file->getRealpath());
+    dump('---', $directory, $content_source_file->getRelativePathname(), $content_source_file->getRealpath());
     $contributors_process = $this->git->getFileContributors($directory, $content_source_file->getRelativePathname());
     $contributors_process->run();
     if ($contributors_process->isSuccessful()) {

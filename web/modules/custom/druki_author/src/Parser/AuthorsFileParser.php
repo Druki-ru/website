@@ -28,7 +28,7 @@ final class AuthorsFileParser implements AuthorsFileParserInterface {
         continue;
       }
       if (isset($values['image'])) {
-        $values['image'] = $directory . '/' . $values['image'];
+        $values['image'] = $directory . DIRECTORY_SEPARATOR . $values['image'];
       }
       $author = Author::createFromArray($id, $values);
       $authors->addAuthor($author);
