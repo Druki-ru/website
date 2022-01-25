@@ -907,3 +907,14 @@ function druki_content_update_9315(array &$sandbox): void {
   $search_index->clear('druki_content');
   $search_index->markForReindex('druki_content');
 }
+
+/**
+ * Update content source URI.
+ */
+function druki_content_update_9316(array &$sandbox): void {
+  /** @var \Drupal\druki_content\Repository\ContentSettingsInterface $content_settings */
+  $content_settings = \Drupal::service('druki_content.repository.content_settings');
+  $content_source_uri = $content_settings->getContentSourceUri();
+  // Just resave it to remove possible trailing slash.
+  $content_settings->setContentSourceUri($content_source_uri);
+}

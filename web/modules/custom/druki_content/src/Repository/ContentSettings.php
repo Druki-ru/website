@@ -43,6 +43,9 @@ final class ContentSettings implements ContentSettingsInterface {
    * {@inheritdoc}
    */
   public function setContentSourceUri(string $uri): ContentSettingsInterface {
+    // Remove trailing slash. It possibly can help a bit on Windows systems to
+    // fix some errors.
+    $uri = \rtrim('/', $uri);
     $this->keyValueStore->set('content_source_uri', $uri);
     return $this;
   }
