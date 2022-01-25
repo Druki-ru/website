@@ -47,7 +47,7 @@ final class RedirectFileFinder implements RedirectFileFinderInterface {
     foreach ($directories as $directory) {
       foreach ($active_langcodes as $langcode) {
         // The file must be in the root of language source content.
-        $look_at = "{$directory}/{$langcode}";
+        $look_at = \implode(\DIRECTORY_SEPARATOR, [$directory, $langcode]);
         if (!\is_dir($look_at)) {
           continue;
         }

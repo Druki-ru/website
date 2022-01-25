@@ -101,7 +101,6 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
     if ($metadata_not_changed && $content_not_changed && !$content_entity->isNew()) {
       return (int) $content_entity->id();
     }
-
     $content_entity->setSourceHash($source_checksum);
     $content_entity->setTitle($content_metadata->getTitle());
     $content_entity->setRelativePathname($content_source_file->getRelativePathname());
