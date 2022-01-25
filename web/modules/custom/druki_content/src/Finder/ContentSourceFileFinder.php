@@ -61,9 +61,10 @@ final class ContentSourceFileFinder {
 
     // Find all source content grouped by langcode.
     foreach ($active_langcodes as $langcode) {
-      $finder = new MarkdownDirectoryFinder(["{$directory}/{$docs_folder}/{$langcode}"]);
+      $dir_path = \implode(\DIRECTORY_SEPARATOR, [$directory, $docs_folder, $langcode]);
+      $finder = new MarkdownDirectoryFinder([$dir_path]);
       foreach ($finder->findAll() as $file) {
-        $relative_pathname = "{$docs_folder}/{$langcode}/{$file->getRelativePathname()}";
+        $relative_pathname = \implode(\DIRECTORY_SEPARATOR, [$docs_folder, $langcode, $file->getRelativePathname()]);
         $all->addFile(new ContentSourceFile($file->getPathname(), $relative_pathname, $langcode));
       }
     }
