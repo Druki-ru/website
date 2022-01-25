@@ -120,9 +120,6 @@ services:
     tags:
       - { name: stream_wrapper, scheme: content-source }
 
-  druki_content.repository.content_media_image:
-    alias: druki.repository.media_image
-
   druki_content.queue.content_source_file_list_queue_item:
     class: Drupal\druki_content\Queue\ContentSourceFileListQueueItemProcessor
     arguments:

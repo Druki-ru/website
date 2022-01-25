@@ -15,6 +15,7 @@ use Drupal\Core\Utility\Token;
 use Drupal\druki\File\FileTrackerInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
+use Symfony\Component\Mime\MimeTypeGuesserInterface;
 
 /**
  * Provides a repository for media image storage implementation.
@@ -57,22 +58,29 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
   protected UuidInterface $uuid;
 
   /**
+   * A mime type guesser.
+   */
+  protected MimeTypeGuesserInterface $mimeTypeGuesser;
+
+  /**
    * Constructs a new MediaImageRepository object.
    *
    * @param \Drupal\druki\File\FileTrackerInterface $file_tracker
-   *   The file tracker.
+   *   A file tracker.
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
-   *   The entity field manager.
+   *   A entity field manager.
    * @param \Drupal\token\Token $token
-   *   The token.
+   *   A token.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
-   *   The cache backend.
+   *   A cache backend.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
+   *   A entity type manager.
    * @param \Drupal\Core\File\FileSystemInterface $file_system
-   *   The file system.
+   *   A file system.
    * @param \Drupal\Component\Uuid\UuidInterface $uuid
-   *   The UUID service.
+   *   A UUID service.
+   * @param \Symfony\Component\Mime\MimeTypeGuesserInterface $mime_type_guesser
+   *   A mime type guesser.
    */
   public function __construct(
     FileTrackerInterface $file_tracker,
@@ -82,6 +90,7 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
     EntityTypeManagerInterface $entity_type_manager,
     FileSystemInterface $file_system,
     UuidInterface $uuid,
+    MimeTypeGuesserInterface $mime_type_guesser,
   ) {
     $this->fileTracker = $file_tracker;
     $this->entityFieldManager = $entity_field_manager;
@@ -90,6 +99,7 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
     $this->entityTypeManager = $entity_type_manager;
     $this->fileSystem = $file_system;
     $this->uuid = $uuid;
+    $this->mimeTypeGuesser = $mime_type_guesser;
   }
 
   /**
@@ -141,20 +151,40 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
     else {
       // Sometimes url can be broken, slow or not accessible at this time.
       // The cURL will throw exception, and we softly skip it.
-      $uri = NULL;
+      $file_uri = NULL;
       try {
-        $filename = $this->uuid->generate() . '.' . \pathinfo($url, \PATHINFO_EXTENSION);
+        // Download file first, this is needed to detect file mime type if its
+        // missing in the URL. E.g.: http://example.com/image.
+        // In that case we can only get proper MIME type and extension from
+        // file headers.
+        $file_uri = \system_retrieve_file($url, 'temporary://');
+        $filename = $this->prepareFilename($file_uri);
         $destination = "temporary://$filename";
-        $uri = \system_retrieve_file($url, $destination);
+        $file_uri = $this->fileSystem->move($file_uri, $destination);
         // If result was FASLE, convert it to NULL.
-        if (\is_bool($uri) && !$uri) {
-          $uri = NULL;
+        if (\is_bool($file_uri) && !$file_uri) {
+          $file_uri = NULL;
         }
-        $this->cache->set($cid, $uri);
+        $this->cache->set($cid, $file_uri);
       } finally {
-        return $uri;
+        return NULL;
       }
     }
+  }
+
+  /**
+   * Prepares result filename.
+   *
+   * To obscure real filename and avoid files like foo.jpg, foo_1.jpg etc,
+   * replace name with UUID.
+   *
+   * @return string
+   *   A filename.
+   */
+  protected function prepareFilename(string $file_uri): string {
+    $mime_type = $this->mimeTypeGuesser->guessMimeType($file_uri);
+    $mime_parts = \explode('/', $mime_type);
+    return $this->uuid->generate() . '.' . $mime_parts[1];
   }
 
   /**
@@ -178,7 +208,7 @@ final class MediaImageRepository implements MediaImageRepositoryInterface {
       return NULL;
     }
     $contents = \file_get_contents($file_uri);
-    $filename = \basename($file_uri);
+    $filename = $this->prepareFilename($file_uri);
     $uri = $this->fileSystem->saveData($contents, $destination_uri . \DIRECTORY_SEPARATOR . $filename);
     $file_storage = $this->entityTypeManager->getStorage('file');
     $file = $file_storage->create([
