@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
-use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 use Drupal\druki_redirect\Queue\RedirectCleanQueueItemProcessor;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

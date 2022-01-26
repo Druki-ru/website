@@ -2,7 +2,7 @@
 
 namespace Druki\Tests\ExistingSite\Entity;
 
-use Druki\Tests\Traits\DrukiContentCreationTrait;
+use Drupal\Tests\druki_content\Traits\DrukiContentCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

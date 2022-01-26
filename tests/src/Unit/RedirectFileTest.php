@@ -2,8 +2,8 @@
 
 namespace Druki\Tests\Unit;
 
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\druki_redirect\Data\RedirectFile;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use Drupal\Tests\UnitTestCase;
 
 /**

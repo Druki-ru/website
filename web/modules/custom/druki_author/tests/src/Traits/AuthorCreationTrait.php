@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Traits;
+namespace Drupal\Tests\druki_author\Traits;
 
 use Drupal\druki_author\Entity\Author;
 use Drupal\druki_author\Entity\AuthorInterface;
@@ -21,8 +21,8 @@ trait AuthorCreationTrait {
    * @param array $values
    *   An associative array with values for entity.
    *
-   * @return \Drupal\druki_author\Entity\AuthorInterface The created entity.
-   *   The created entity.
+   * @return \Drupal\druki_author\Entity\AuthorInterface
+   *   A created entity.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */

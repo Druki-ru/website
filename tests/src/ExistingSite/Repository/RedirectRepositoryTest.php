@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Repository;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
-use Drupal\Core\DrupalKernel;
-use Drupal\Core\Url;
 use Drupal\druki_redirect\Data\Redirect;
 use Drupal\druki_redirect\Repository\RedirectRepository;
 use Drupal\redirect\Entity\Redirect as RedirectEntity;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use Symfony\Component\HttpFoundation\Request;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

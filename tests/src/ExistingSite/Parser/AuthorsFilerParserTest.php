@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Parser;
 
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\druki_author\Data\AuthorList;
 use Drupal\druki_author\Data\AuthorsFile;
 use Drupal\druki_author\Parser\AuthorsFileParser;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

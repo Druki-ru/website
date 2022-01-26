@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki_author\Data\Author;
@@ -13,6 +11,8 @@ use Drupal\druki_author\Data\AuthorList;
 use Drupal\druki_author\Data\AuthorListQueueItem;
 use Drupal\druki_author\Queue\AuthorListQueueItemProcessor;
 use Drupal\media\MediaInterface;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

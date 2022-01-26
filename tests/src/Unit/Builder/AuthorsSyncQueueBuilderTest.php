@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Druki\Tests\Unit\Builder;
 
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\druki\Data\EntitySyncQueueItemListInterface;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
@@ -14,6 +13,7 @@ use Drupal\druki_author\Data\AuthorList;
 use Drupal\druki_author\Data\AuthorsFile;
 use Drupal\druki_author\Finder\AuthorsFileFinderInterface;
 use Drupal\druki_author\Parser\AuthorsFileParserInterface;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Druki\Tests\Unit\Access;
+namespace Drupal\Tests\druki_content\Unit\Access;
 
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultForbidden;
@@ -24,10 +24,10 @@ final class ContentWebhookAccessTest extends UnitTestCase {
   use ProphecyTrait;
 
   /**
-   * Builds mock for content webhook settings.
+   * Builds a mock for content webhook settings.
    *
-   * @return \Drupal\druki_content\Repository\ContentSettingsInterface The mock instance.
-   *   The mock instance.
+   * @return \Drupal\druki_content\Repository\ContentSettingsInterface
+   *   A mock instance.
    */
   public function buildContentWebhookSettings(): ContentSettingsInterface {
     $webhook_settings = $this->prophesize(ContentSettingsInterface::class);
@@ -44,7 +44,7 @@ final class ContentWebhookAccessTest extends UnitTestCase {
   public function buildState(): StateInterface {
     $state = $this->prophesize(StateInterface::class);
     $state->get('system.maintenance_mode')->willReturn(FALSE);
-    $state->set('system.maintenance_mode', Argument::any())->will(function ($args) use ($state) {
+    $state->set('system.maintenance_mode', Argument::any())->will(static function ($args) use ($state): void {
       $state->get('system.maintenance_mode')->willReturn($args[1]);
     });
     return $state->reveal();
@@ -59,7 +59,7 @@ final class ContentWebhookAccessTest extends UnitTestCase {
   public function buildRoute(): Route {
     $route = $this->prophesize(Route::class);
     $route->getRequirement('_druki_content_webhook_access_key')->willReturn('content_update');
-    $route->setRequirement('_druki_content_webhook_access_key', Argument::any())->will(function ($args) use ($route) {
+    $route->setRequirement('_druki_content_webhook_access_key', Argument::any())->will(static function ($args) use ($route): void {
       $route->getRequirement('_druki_content_webhook_access_key')->willReturn($args[1]);
     });
     return $route->reveal();

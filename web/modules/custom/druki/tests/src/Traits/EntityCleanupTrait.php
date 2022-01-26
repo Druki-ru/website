@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Traits;
+namespace Drupal\Tests\druki\Traits;
 
 /**
  * A helper to clean up created entities.
@@ -14,14 +14,14 @@ trait EntityCleanupTrait {
    *
    * @var array
    */
-  private $entityTypeIds = [];
+  private array $entityTypeIds = [];
 
   /**
    * Array of entity IDs keyed by entity type.
    *
    * @var array
    */
-  private $entityIds = [];
+  private array $entityIds = [];
 
   /**
    * Store entity IDs.
@@ -39,7 +39,7 @@ trait EntityCleanupTrait {
   protected function cleanupEntities(): void {
     foreach ($this->entityTypeIds as $entity_type_id) {
       $ids = self::getEntityIds($entity_type_id);
-      $new_ids = array_diff($ids, $this->entityIds[$entity_type_id]);
+      $new_ids = \array_diff($ids, $this->entityIds[$entity_type_id]);
       self::removeEntities($entity_type_id, $new_ids);
     }
   }
@@ -61,7 +61,7 @@ trait EntityCleanupTrait {
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type_id);
     foreach ($storage->loadMultiple($ids) as $entity) {
       $entity->delete();
-    };
+    }
   }
 
 }

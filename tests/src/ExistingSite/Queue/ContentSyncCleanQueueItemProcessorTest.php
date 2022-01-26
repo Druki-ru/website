@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
-use Druki\Tests\Traits\DrukiContentCreationTrait;
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
 use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor;
 use Drupal\druki_content\Repository\ContentStorage;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Traits\DrukiContentCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

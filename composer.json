@@ -67,11 +67,6 @@
         "phpspec/prophecy-phpunit": "^2",
         "weitzman/drupal-test-traits": "^1.5"
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Druki\\Tests\\": "tests/src"
-        }
-    },
     "conflict": {
         "drupal/drupal": "*"
     },
@@ -84,7 +79,7 @@
         "phpcs": "vendor/bin/phpcs",
         "phpcbf": "vendor/bin/phpcbf",
         "phpstan": "vendor/bin/phpstan analyse",
-        "phpunit": "vendor/bin/phpunit --coverage-text"
+        "phpunit": "vendor/bin/phpunit"
     },
     "extra": {
         "patches": {

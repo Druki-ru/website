@@ -2,8 +2,8 @@
 
 namespace Druki\Tests\Functional\Finder;
 
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\druki\Finder\MarkdownDirectoryFinder;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use Drupal\Tests\UnitTestCase;
 use org\bovigo\vfs\vfsStream;
 

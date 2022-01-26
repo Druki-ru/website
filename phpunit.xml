@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="web/core/tests/bootstrap.php"
+<phpunit bootstrap="scripts/bootstrap.php"
          colors="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutOutputDuringTests="true"
@@ -21,16 +21,16 @@
   </php>
   <testsuites>
     <testsuite name="unit">
-      <directory>./tests/src/Unit</directory>
+      <directory>./web/modules/custom/*/tests/src/Unit</directory>
     </testsuite>
-    <testsuite name="functional">
-      <directory>./tests/src/Functional</directory>
+    <testsuite name="kernel">
+      <directory>./web/modules/custom/*/tests/src/Kernel</directory>
     </testsuite>
     <testsuite name="existing-site">
-      <directory>./tests/src/ExistingSite</directory>
+      <directory>./web/modules/custom/*/tests/src/ExistingSite</directory>
     </testsuite>
     <testsuite name="existing-site-javascript">
-      <directory>./tests/src/ExistingSiteJavascript</directory>
+      <directory>./web/modules/custom/*/tests/src/ExistingSiteJavascript</directory>
     </testsuite>
   </testsuites>
   <listeners>

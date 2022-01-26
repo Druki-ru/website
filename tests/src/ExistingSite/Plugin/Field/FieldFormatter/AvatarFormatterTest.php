@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Plugin\Field\FieldFormatter;
 
-use Druki\Tests\Traits\AuthorCreationTrait;
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Component\Utility\Crypt;
 use Drupal\file\Entity\File;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki_author\Traits\AuthorCreationTrait;
 use weitzman\DrupalTestTraits\Entity\MediaCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

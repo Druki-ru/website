@@ -2,8 +2,8 @@
 
 namespace Druki\Tests\ExistingSite\Sync;
 
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

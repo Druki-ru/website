@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Entity;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Sql\SqlEntityStorageInterface;
 use Drupal\druki_author\Entity\Author;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

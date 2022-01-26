@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Repository;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use Prophecy\PhpUnit\ProphecyTrait;

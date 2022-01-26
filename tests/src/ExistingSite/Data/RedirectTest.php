@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Data;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\druki_redirect\Data\Redirect;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

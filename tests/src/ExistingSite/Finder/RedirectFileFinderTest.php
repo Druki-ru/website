@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Finder;
 
-use Druki\Tests\Traits\SourceContentProviderTrait;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

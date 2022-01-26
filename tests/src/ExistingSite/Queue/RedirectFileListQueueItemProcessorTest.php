@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\druki_redirect\Data\Redirect;
 use Drupal\druki_redirect\Data\RedirectFile;
 use Drupal\druki_redirect\Data\RedirectFileList;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
 use Drupal\druki_redirect\Queue\RedirectFileListQueueItemProcessor;
 use Drupal\druki_redirect\Repository\RedirectRepositoryInterface;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Plugin\Field\FieldFormatter;
 
-use Druki\Tests\Traits\AuthorCreationTrait;
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki_author\Traits\AuthorCreationTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;

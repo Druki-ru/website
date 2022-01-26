@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Queue;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\druki_content\Data\ContentDocument;
 use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Entity\ContentInterface;
-use org\bovigo\vfs\vfsStream;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

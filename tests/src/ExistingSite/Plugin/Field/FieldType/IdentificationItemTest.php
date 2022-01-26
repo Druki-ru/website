@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Plugin\Field\FieldType;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

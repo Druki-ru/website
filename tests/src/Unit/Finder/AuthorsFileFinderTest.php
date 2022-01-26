@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Druki\Tests\Unit\Finder;
 
-use Druki\Tests\Traits\SourceContentProviderTrait;
 use Drupal\druki_author\Data\AuthorsFile;
 use Drupal\druki_author\Finder\AuthorsFileFinder;
+use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
 use Drupal\Tests\UnitTestCase;
 
 /**

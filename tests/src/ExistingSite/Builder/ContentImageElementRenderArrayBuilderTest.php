@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Druki\Tests\ExistingSite\Builder;
 
-use Druki\Tests\Traits\EntityCleanupTrait;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\druki_content\Builder\ContentElementRenderArrayBuilderInterface;
 use Drupal\druki_content\Data\ContentElementBase;
 use Drupal\druki_content\Data\ContentImageElement;
 use Drupal\druki_content\Repository\ContentMediaImageRepository;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use GuzzleHttp\Client;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ResponseInterface;

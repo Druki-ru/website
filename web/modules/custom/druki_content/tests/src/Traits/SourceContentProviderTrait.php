@@ -1,6 +1,6 @@
 <?php
 
-namespace Druki\Tests\Traits;
+namespace Drupal\Tests\druki_content\Traits;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
