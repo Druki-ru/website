@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\druki\Drupal;
+namespace Drupal\druki\Aggregator;
 
 use Drupal\update\UpdateFetcherInterface;
 
 /**
  * Fetches information about drupal projects.
  */
-final class DrupalProjects implements DrupalProjectsInterface {
+final class DrupalCoreVersionAggregator implements DrupalCoreVersionAggregatorInterface {
 
   /**
    * The update fetcher.

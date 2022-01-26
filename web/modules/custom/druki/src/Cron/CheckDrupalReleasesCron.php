@@ -5,8 +5,8 @@ namespace Drupal\druki\Cron;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\druki\Drupal\DrupalProjectsInterface;
-use Drupal\druki\Drupal\DrupalReleasesInterface;
+use Drupal\druki\Aggregator\DrupalCoreVersionAggregatorInterface;
+use Drupal\druki\Repository\DrupalCoreVersionInterface;
 
 /**
  * Provides cron processor to check Drupal releases.
@@ -26,12 +26,12 @@ final class CheckDrupalReleasesCron implements CronProcessorInterface {
   /**
    * The Drupal projects.
    */
-  protected DrupalProjectsInterface $drupalProjects;
+  protected DrupalCoreVersionAggregatorInterface $drupalProjects;
 
   /**
    * The Drupal releases.
    */
-  protected DrupalReleasesInterface $drupalReleases;
+  protected DrupalCoreVersionInterface $drupalReleases;
 
   /**
    * Constructs a new CheckDrupalReleasesCron object.
@@ -40,12 +40,12 @@ final class CheckDrupalReleasesCron implements CronProcessorInterface {
    *   The datetime.
    * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator
    *   The cache tags invalidator.
-   * @param \Drupal\druki\Drupal\DrupalReleasesInterface $drupal_releases
+   * @param \Drupal\druki\Repository\DrupalCoreVersionInterface $drupal_releases
    *   The Drupal releases.
-   * @param \Drupal\druki\Drupal\DrupalProjectsInterface $drupal_projects
+   * @param \Drupal\druki\Aggregator\DrupalCoreVersionAggregatorInterface $drupal_projects
    *   The Drupal projects.
    */
-  public function __construct(TimeInterface $time, CacheTagsInvalidatorInterface $cache_tags_invalidator, DrupalReleasesInterface $drupal_releases, DrupalProjectsInterface $drupal_projects) {
+  public function __construct(TimeInterface $time, CacheTagsInvalidatorInterface $cache_tags_invalidator, DrupalCoreVersionInterface $drupal_releases, DrupalCoreVersionAggregatorInterface $drupal_projects) {
     $this->time = $time;
     $this->cacheTagsInvalidator = $cache_tags_invalidator;
     $this->drupalReleases = $drupal_releases;
@@ -96,7 +96,7 @@ final class CheckDrupalReleasesCron implements CronProcessorInterface {
 
     $this->drupalReleases->set($drupal_releases);
     // Invalidate all caches which uses last stable release value.
-    $this->cacheTagsInvalidator->invalidateTags([DrupalReleasesInterface::CACHE_TAG]);
+    $this->cacheTagsInvalidator->invalidateTags([DrupalCoreVersionInterface::CACHE_TAG]);
   }
 
 }

@@ -1,13 +1,15 @@
 <?php
 
-namespace Drupal\druki\Drupal;
+namespace Drupal\druki\Repository;
 
 use Drupal\Core\State\StateInterface;
 
 /**
  * Provides class that store information about Drupal releases.
+ *
+ * @todo Improve that class. Add dedicated methods.
  */
-final class DrupalReleases implements DrupalReleasesInterface {
+final class DrupalCoreVersion implements DrupalCoreVersionInterface {
 
   /**
    * The state key with stored information about releases.

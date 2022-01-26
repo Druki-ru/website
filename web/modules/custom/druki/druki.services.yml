@@ -7,8 +7,8 @@ services:
     factory: logger.factory:get
     arguments: [ 'druki' ]
 
-  druki.drupal_projects:
-    class: Drupal\druki\Drupal\DrupalProjects
+  druki.aggregator.drupal_core_version:
+    class: Drupal\druki\Aggregator\DrupalCoreVersionAggregator
     arguments: ['@update.fetcher']
 
   druki.path_based_breadcrumb_decorator:
@@ -16,13 +16,13 @@ services:
     decorates: system.breadcrumb.default
     arguments: ['@router.request_context', '@access_manager', '@router', '@path_processor_manager', '@config.factory',  '@title_resolver', '@current_user', '@path.current', '@path.matcher']
 
-  druki.drupal_releases:
-    class: Drupal\druki\Drupal\DrupalReleases
+  druki.repository.drupal_core_version:
+    class: Drupal\druki\Repository\DrupalCoreVersion
     arguments: ['@state']
 
   druki.cron.check_drupal_releases:
     class: Drupal\druki\Cron\CheckDrupalReleasesCron
-    arguments: ['@datetime.time', '@cache_tags.invalidator', '@druki.drupal_releases', '@druki.drupal_projects']
+    arguments: ['@datetime.time', '@cache_tags.invalidator', '@druki.repository.drupal_core_version', '@druki.aggregator.drupal_core_version']
 
   druki.markdown_parser:
     class: Drupal\druki\Markdown\Parser\MarkdownParser

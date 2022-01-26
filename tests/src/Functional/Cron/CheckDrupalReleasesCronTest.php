@@ -8,9 +8,9 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\DependencyInjection\Container;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\druki\Aggregator\DrupalCoreVersionAggregatorInterface;
 use Drupal\druki\Cron\CheckDrupalReleasesCron;
-use Drupal\druki\Drupal\DrupalProjectsInterface;
-use Drupal\druki\Drupal\DrupalReleasesInterface;
+use Drupal\druki\Repository\DrupalCoreVersionInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -72,15 +72,16 @@ final class CheckDrupalReleasesCronTest extends UnitTestCase {
   }
 
   /**
-   * Builds mock for 'druki.drupal_releases' service.
+   * Builds mock for 'druki.repository.drupal_core_version' service.
    *
    * @param array $inital_values
    *   The storage initial values.
    *
-   * @return \Drupal\druki\Drupal\DrupalReleasesInterface
+   * @return \Drupal\druki\Repository\DrupalCoreVersionInterface
+   *   A mock with repository.
    */
-  protected function buildDrukiDrupalReleases(array $initial_values): DrupalReleasesInterface {
-    $drupal_releases = $this->prophesize(DrupalReleasesInterface::class);
+  protected function buildDrukiDrupalReleases(array $initial_values): DrupalCoreVersionInterface {
+    $drupal_releases = $this->prophesize(DrupalCoreVersionInterface::class);
     $drupal_releases->get()->willReturn($initial_values);
     $drupal_releases->set(Argument::type('array'))->will(function ($args) use ($drupal_releases): void {
       $drupal_releases->get()->willReturn($args[0]);
@@ -89,17 +90,18 @@ final class CheckDrupalReleasesCronTest extends UnitTestCase {
   }
 
   /**
-   * Builds mock for 'druki.drupal_projects' service.
+   * Builds mock for 'druki.aggregator.drupal_core_version' service.
    *
    * @param array|null $stable_version
    *   The stable version info.
    * @param array|null $minor_version
    *   The minor version info.
    *
-   * @return \Drupal\druki\Drupal\DrupalProjectsInterface
+   * @return \Drupal\druki\Aggregator\DrupalCoreVersionAggregatorInterface
+   *   An aggregator mock.
    */
-  protected function buildDrukiDrupalProjects(?array $stable_version = NULL, ?array $minor_version = NULL): DrupalProjectsInterface {
-    $drupal_projects = $this->prophesize(DrupalProjectsInterface::class);
+  protected function buildDrukiDrupalProjects(?array $stable_version = NULL, ?array $minor_version = NULL): DrupalCoreVersionAggregatorInterface {
+    $drupal_projects = $this->prophesize(DrupalCoreVersionAggregatorInterface::class);
     $drupal_projects->getCoreLastStableVersion()->willReturn($stable_version);
     $drupal_projects->getCoreLastMinorVersion()->willReturn($minor_version);
     return $drupal_projects->reveal();

@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\druki\Drupal;
+namespace Drupal\druki\Aggregator;
 
 /**
- * Provides interface for drupal projects service.
+ * Provides an interface for Drupal core version aggregator.
  */
-interface DrupalProjectsInterface {
+interface DrupalCoreVersionAggregatorInterface {
 
   /**
    * Gets last minor version info for Drupal core.

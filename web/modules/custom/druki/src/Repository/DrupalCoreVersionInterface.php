@@ -1,14 +1,16 @@
 <?php
 
-namespace Drupal\druki\Drupal;
+namespace Drupal\druki\Repository;
 
 /**
- * Provides interface for classes that store information about Drupal releases.
+ * Provides an interface for Drupal core release info storage.
  */
-interface DrupalReleasesInterface {
+interface DrupalCoreVersionInterface {
 
   /**
    * The cache tag used to update last stable release information.
+   *
+   * @todo Make DrupalCoreVersion cacheable dependency and move it here.
    */
   public const CACHE_TAG = 'druki_last_stable_release';
 

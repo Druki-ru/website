@@ -24,7 +24,7 @@ function druki_uninstall(): void {
  * Implements hook_update_N().
  */
 function druki_update_8801(array &$sandbox): void {
-  $drupal_releases = \Drupal::state()->get('druki.drupal_releases');
+  $drupal_releases = \Drupal::state()->get('druki.repository.drupal_core_version');
   // Reset last request to force get fresh info about Drupal 9 which release was
   // delayed.
   $drupal_releases['expires'] = 0;

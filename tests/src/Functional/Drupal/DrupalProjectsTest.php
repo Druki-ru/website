@@ -2,31 +2,29 @@
 
 namespace Druki\Tests\Functional\Drupal;
 
-use Drupal\druki\Drupal\DrupalProjects;
+use Drupal\druki\Aggregator\DrupalCoreVersionAggregator;
 use Drupal\Tests\UnitTestCase;
 use Drupal\update\UpdateFetcherInterface;
 use Prophecy\Prophecy\MethodProphecy;
 
 /**
- * Test druki.drupal_projects service.
+ * Test druki.aggregator.drupal_core_version service.
  *
- * @coversDefaultClass \Drupal\druki\Drupal\DrupalProjects
+ * @coversDefaultClass \Drupal\druki\Aggregator\DrupalCoreVersionAggregator
  */
 class DrupalProjectsTest extends UnitTestCase {
 
   /**
-   * The drupal projects service.
-   *
-   * @var \Drupal\druki\Drupal\DrupalProjects
+   * A drupal projects service.
    */
-  protected $drupalProjects;
+  protected DrupalCoreVersionAggregator $drupalProjects;
 
   /**
    * {@inheritdoc}
    */
   public function setUp(): void {
     parent::setUp();
-    $this->drupalProjects = new DrupalProjects($this->buildUpdateFetcher());
+    $this->drupalProjects = new DrupalCoreVersionAggregator($this->buildUpdateFetcher());
   }
 
   /**

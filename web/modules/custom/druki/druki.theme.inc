@@ -7,19 +7,19 @@
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\druki\Drupal\DrupalReleases;
 use Drupal\druki\Form\FrontpageSettings;
 use Drupal\druki\Form\OfficialUserGuideSettingsForm;
+use Drupal\druki\Repository\DrupalCoreVersionInterface;
 
 /**
  * Implements hook_preprocess_HOOK() for druki-drupal-versions.html.twig.
  */
 function template_preprocess_druki_drupal_versions(array &$variables): void {
-  $drupal_releases = \Drupal::service('druki.drupal_releases')->get();
+  $drupal_releases = \Drupal::service('druki.repository.drupal_core_version')->get();
   $variables['last_stable_release'] = $drupal_releases['last_stable_release'];
   $variables['last_minor_release'] = $drupal_releases['last_minor_release'];
   $variables['#cache'] = [
-    'tags' => [DrupalReleases::CACHE_TAG],
+    'tags' => [DrupalCoreVersionInterface::CACHE_TAG],
   ];
 }
 
