@@ -7,8 +7,8 @@ namespace Druki\Tests\ExistingSite\Plugin\Filter;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\druki_content\Plugin\Filter\InternalLinks;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
-use Drupal\Tests\druki_content\Traits\DrukiContentCreationTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Trait\DrukiContentCreationTrait;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

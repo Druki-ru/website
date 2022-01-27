@@ -8,8 +8,8 @@ use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\druki\Data\Contributor;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
-use Drupal\Tests\druki_content\Traits\DrukiContentCreationTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Trait\DrukiContentCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

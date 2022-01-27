@@ -6,8 +6,8 @@ namespace Druki\Tests\ExistingSite\Plugin\Field\FieldFormatter;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\file\Entity\File;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
-use Drupal\Tests\druki_author\Traits\AuthorCreationTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki_author\Trait\AuthorCreationTrait;
 use weitzman\DrupalTestTraits\Entity\MediaCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

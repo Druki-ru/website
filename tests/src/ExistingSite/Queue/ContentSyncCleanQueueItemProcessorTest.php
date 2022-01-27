@@ -9,8 +9,8 @@ use Drupal\druki\Repository\EntitySyncQueueStateInterface;
 use Drupal\druki_content\Data\ContentSyncCleanQueueItem;
 use Drupal\druki_content\Queue\ContentSyncCleanQueueItemProcessor;
 use Drupal\druki_content\Repository\ContentStorage;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
-use Drupal\Tests\druki_content\Traits\DrukiContentCreationTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Trait\DrukiContentCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

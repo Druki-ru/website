@@ -7,7 +7,7 @@ namespace Druki\Tests\ExistingSite\Repository;
 use Drupal\druki\Repository\MediaImageRepositoryInterface;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use Prophecy\PhpUnit\ProphecyTrait;

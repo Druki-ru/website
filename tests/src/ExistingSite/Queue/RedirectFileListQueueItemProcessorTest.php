@@ -10,8 +10,8 @@ use Drupal\druki_redirect\Data\RedirectFileList;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
 use Drupal\druki_redirect\Queue\RedirectFileListQueueItemProcessor;
 use Drupal\druki_redirect\Repository\RedirectRepositoryInterface;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
-use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Trait\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

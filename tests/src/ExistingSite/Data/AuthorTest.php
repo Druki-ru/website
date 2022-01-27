@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Druki\Tests\ExistingSite\Data;
 
 use Drupal\druki_author\Data\Author;
-use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
+use Drupal\Tests\druki_content\Trait\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

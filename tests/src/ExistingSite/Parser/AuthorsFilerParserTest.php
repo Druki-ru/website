@@ -7,7 +7,7 @@ namespace Druki\Tests\ExistingSite\Parser;
 use Drupal\druki_author\Data\AuthorList;
 use Drupal\druki_author\Data\AuthorsFile;
 use Drupal\druki_author\Parser\AuthorsFileParser;
-use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
+use Drupal\Tests\druki_content\Trait\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

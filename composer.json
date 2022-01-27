@@ -76,7 +76,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "phpcs": "vendor/bin/phpcs",
+        "phpcs": "vendor/bin/phpcs -s",
         "phpcbf": "vendor/bin/phpcbf",
         "phpstan": "vendor/bin/phpstan analyse",
         "phpunit": "vendor/bin/phpunit"

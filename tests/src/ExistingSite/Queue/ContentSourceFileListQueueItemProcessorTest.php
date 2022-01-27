@@ -9,8 +9,8 @@ use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Entity\ContentInterface;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
-use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki_content\Trait\SourceContentProviderTrait;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

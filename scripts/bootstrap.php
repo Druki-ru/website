@@ -32,8 +32,12 @@ $class_loader->addPsr4('Drupal\druki\\', "$root/modules/custom/druki/src");
 $class_loader->addPsr4('Drupal\druki_author\\', "$root/modules/custom/druki_author/src");
 $class_loader->addPsr4('Drupal\druki_content\\', "$root/modules/custom/druki_content/src");
 $class_loader->addPsr4('Drupal\druki_redirect\\', "$root/modules/custom/druki_redirect/src");
-// Register custom tests namespaces.
+// Register custom modules test namespaces.
 $class_loader->addPsr4('Drupal\Tests\druki\\', "$root/modules/custom/druki/tests/src");
 $class_loader->addPsr4('Drupal\Tests\druki_author\\', "$root/modules/custom/druki_author/tests/src");
 $class_loader->addPsr4('Drupal\Tests\druki_content\\', "$root/modules/custom/druki_content/tests/src");
 $class_loader->addPsr4('Drupal\Tests\druki_redirect\\', "$root/modules/custom/druki_redirect/tests/src");
+// Register core modules namespaces.
+$class_loader->addPsr4('Drupal\update\\', "$root/core/modules/update/src");
+// Register contrib modules namespaces.
+$class_loader->addPsr4('Drupal\imagemagick\\', "$root/modules/contrib/imagemagick/src");

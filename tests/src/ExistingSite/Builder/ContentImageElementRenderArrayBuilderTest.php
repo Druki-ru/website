@@ -10,7 +10,7 @@ use Drupal\druki_content\Builder\ContentElementRenderArrayBuilderInterface;
 use Drupal\druki_content\Data\ContentElementBase;
 use Drupal\druki_content\Data\ContentImageElement;
 use Drupal\druki_content\Repository\ContentMediaImageRepository;
-use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki\Trait\EntityCleanupTrait;
 use GuzzleHttp\Client;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ResponseInterface;

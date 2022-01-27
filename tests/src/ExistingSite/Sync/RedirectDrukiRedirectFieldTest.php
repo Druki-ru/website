@@ -3,7 +3,7 @@
 namespace Druki\Tests\ExistingSite\Sync;
 
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Tests\druki_content\Traits\SourceContentProviderTrait;
+use Drupal\Tests\druki_content\Trait\SourceContentProviderTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
