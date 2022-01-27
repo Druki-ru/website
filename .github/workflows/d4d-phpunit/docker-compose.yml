@@ -53,14 +53,17 @@ services:
       - "traefik.http.routers.${PROJECT_NAME}_nginx.rule=Host(`${PROJECT_BASE_URL}`)"
 
   chrome:
-    image: selenium/standalone-chrome:$SELENIUM_CHROME_TAG
+    image: drupalci/webdriver-chromedriver:production
     container_name: "${PROJECT_NAME}_chrome"
-    volumes:
-      - /dev/shm:/dev/shm
+    ulimits:
+      core:
+        soft: -1
+        hard: -1
+    ports:
+      - "4444:4444"
+      - "9515:9515"
     entrypoint:
       - chromedriver
-      - "--no-sandbox"
-      - "--disable-dev-shm-usage"
       - "--log-path=/tmp/chromedriver.log"
       - "--verbose"
       - "--whitelisted-ips="
