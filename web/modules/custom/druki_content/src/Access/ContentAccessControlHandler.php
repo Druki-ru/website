@@ -17,7 +17,6 @@ final class ContentAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account): AccessResultInterface {
-
     switch ($operation) {
       case 'view':
         return AccessResult::allowedIfHasPermission($account, 'view druki_content');
@@ -38,7 +37,6 @@ final class ContentAccessControlHandler extends EntityAccessControlHandler {
         // No opinion.
         return AccessResult::neutral();
     }
-
   }
 
   /**
