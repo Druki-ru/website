@@ -6,8 +6,8 @@ namespace Drupal\Tests\druki_author\ExistingSite\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Tests\druki\Trait\EntityCleanupTrait;
-use Drupal\Tests\druki_author\Trait\AuthorCreationTrait;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
+use Drupal\Tests\druki_author\Traits\AuthorCreationTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;

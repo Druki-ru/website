@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\druki_content\ExistingSite\Plugin\Block;
 
-use Drupal\Tests\druki_content\Trait\DrukiContentCreationTrait;
+use Drupal\Tests\druki_content\Traits\DrukiContentCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

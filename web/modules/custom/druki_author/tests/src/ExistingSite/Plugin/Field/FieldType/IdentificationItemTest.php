@@ -7,7 +7,7 @@ namespace Drupal\Tests\druki_author\ExistingSite\Plugin\Field\FieldType;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

@@ -3,7 +3,7 @@
 namespace Druki\Tests\ExistingSite\Breadcrumb;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Tests\druki_content\Trait\DrukiContentCreationTrait;
+use Drupal\Tests\druki_content\Traits\DrukiContentCreationTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

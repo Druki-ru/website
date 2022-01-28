@@ -9,7 +9,7 @@ use Drupal\druki_content\Data\ContentSourceFile;
 use Drupal\druki_content\Data\ContentSourceFileList;
 use Drupal\druki_content\Data\ContentSourceFileListQueueItem;
 use Drupal\druki_content\Entity\ContentInterface;
-use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use org\bovigo\vfs\vfsStream;
 use Prophecy\PhpUnit\ProphecyTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;

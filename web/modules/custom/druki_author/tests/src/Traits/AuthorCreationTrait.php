@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki_author\Trait;
+namespace Drupal\Tests\druki_author\Traits;
 
 use Drupal\druki_author\Entity\Author;
 use Drupal\druki_author\Entity\AuthorInterface;

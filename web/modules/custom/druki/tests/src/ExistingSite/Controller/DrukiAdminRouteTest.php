@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\druki\ExistingSite\Controller;
 
+use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use weitzman\DrupalTestTraits\ExistingSiteBase;

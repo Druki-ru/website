@@ -8,7 +8,7 @@ use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\druki\Queue\EntitySyncQueueManagerInterface;
 use Drupal\druki_redirect\Data\RedirectCleanQueueItem;
 use Drupal\druki_redirect\Queue\RedirectCleanQueueItemProcessor;
-use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**

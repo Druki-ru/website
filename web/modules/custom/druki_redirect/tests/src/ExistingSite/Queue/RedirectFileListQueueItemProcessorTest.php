@@ -10,7 +10,7 @@ use Drupal\druki_redirect\Data\RedirectFileList;
 use Drupal\druki_redirect\Data\RedirectFileListQueueItem;
 use Drupal\druki_redirect\Queue\RedirectFileListQueueItemProcessor;
 use Drupal\druki_redirect\Repository\RedirectRepositoryInterface;
-use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use org\bovigo\vfs\vfsStream;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

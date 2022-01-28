@@ -11,7 +11,7 @@ use Drupal\druki_author\Data\AuthorList;
 use Drupal\druki_author\Data\AuthorListQueueItem;
 use Drupal\druki_author\Queue\AuthorListQueueItemProcessor;
 use Drupal\media\MediaInterface;
-use Drupal\Tests\druki\Trait\EntityCleanupTrait;
+use Drupal\Tests\druki\Traits\EntityCleanupTrait;
 use org\bovigo\vfs\vfsStream;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 

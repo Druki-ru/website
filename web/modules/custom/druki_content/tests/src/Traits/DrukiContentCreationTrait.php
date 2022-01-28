@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki_content\Trait;
+namespace Drupal\Tests\druki_content\Traits;
 
 use Drupal\druki_content\Entity\Content;
 use Drupal\druki_content\Entity\ContentInterface;

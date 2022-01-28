@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\druki\Trait;
+namespace Drupal\Tests\druki\Traits;
 
 /**
  * A helper to clean up created entities.
