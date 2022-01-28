@@ -22,6 +22,7 @@ final class AuthorsFileFinderTest extends UnitTestCase {
   public function testFinder(): void {
     vfsStream::setup();
     vfsStream::create([
+      'not-a-folder' => '',
       'authors' => [
         'authors.json' => '',
       ],
@@ -29,7 +30,7 @@ final class AuthorsFileFinderTest extends UnitTestCase {
 
     $finder = new AuthorsFileFinder();
 
-    $this->assertNull($finder->find(vfsStream::url('root')));
+    $this->assertNull($finder->find(vfsStream::url('root/not-a-folder')));
 
     $this->assertNull($finder->find(vfsStream::url('root')));
 
