@@ -12,38 +12,30 @@ use Drupal\Core\TypedData\Plugin\DataType\Map;
  * @DataType(
  *   id = "druki_content_documentation_metadata",
  *   label = @Translation("Documentation metadata"),
- *   definition_class = "\Drupal\druki_content\TypedData\DocumentationMetadataDefinition"
+ *   definition_class =
+ *   "\Drupal\druki_content\TypedData\DocumentationMetadataDefinition"
  * )
  *
  * @see \Drupal\druki_content\TypedData\DocumentationMetadataDefinition
  */
-final class DocumentationMetadata extends Map {
+final class DocumentationMetadata extends Map implements DocumentationMetadataInterface {
 
   /**
-   * Gets content title.
-   *
-   * @return string
-   *   A content title.
+   * {@inheritdoc}
    */
   public function getTitle(): string {
     return $this->get('title')->getValue();
   }
 
   /**
-   * Gets content slug.
-   *
-   * @return string
-   *   A content slug.
+   * {@inheritdoc}
    */
   public function getSlug(): string {
     return $this->get('slug')->getValue();
   }
 
   /**
-   * Gets content Drupal core.
-   *
-   * @return int|null
-   *   A Drupal core version.
+   * {@inheritdoc}
    */
   public function getCore(): ?int {
     if (!$this->hasCore()) {
@@ -53,23 +45,14 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Checks for core value.
-   *
-   * @return bool
-   *   TRUE if core is set.
+   * {@inheritdoc}
    */
   public function hasCore(): bool {
     return !\is_null($this->get('core')->getValue());
   }
 
   /**
-   * Gets category information.
-   *
-   * @return array|null
-   *   An array with category information. Contains:
-   *   - area: (required) A category group name.
-   *   - order: An integer with order of current content in the provided area.
-   *   - title: A content title override for category navigation block.
+   * {@inheritdoc}
    */
   public function getCategory(): ?array {
     if (!$this->hasCategory()) {
@@ -83,20 +66,14 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Checks is category values are set.
-   *
-   * @return bool
-   *   TRUE if category value is set.
+   * {@inheritdoc}
    */
   public function hasCategory(): bool {
     return !empty($this->get('category')->getValue());
   }
 
   /**
-   * Gets content metatags.
-   *
-   * @return array|null
-   *   An array with metatags.
+   * {@inheritdoc}
    */
   public function getMetatags(): ?array {
     if (!$this->hasMetatags()) {
@@ -118,36 +95,21 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Checks is metatags are set.
-   *
-   * @return bool
-   *   TRUE if metatags are set, FALSE otherwise.
+   * {@inheritdoc}
    */
   public function hasMetatags(): bool {
     return !empty($this->get('metatags')->getValue());
   }
 
   /**
-   * Checks is metatag with a specific name is set.
-   *
-   * @param string $name
-   *   A metatag name.
-   *
-   * @return bool
-   *   TRUE if value for request metatag is set.
+   * {@inheritdoc}
    */
   public function hasMetatag(string $name): bool {
     return isset($this->get('metatags')->getValue()[$name]);
   }
 
   /**
-   * Gets a value for specific metatag.
-   *
-   * @param string $name
-   *   A metatag name.
-   *
-   * @return string|null
-   *   A metatag value.
+   * {@inheritdoc}
    */
   public function getMetatag(string $name): ?string {
     if (!$this->hasMetatag($name)) {
@@ -157,10 +119,7 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Gets search keywords.
-   *
-   * @return array|null
-   *   An array with search keywords.
+   * {@inheritdoc}
    */
   public function getSearchKeywords(): ?array {
     if (!$this->hasSearchKeywords()) {
@@ -170,20 +129,14 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Checks is search keywords are set.
-   *
-   * @return bool
-   *   TRUE if search keywords are provided.
+   * {@inheritdoc}
    */
   public function hasSearchKeywords(): bool {
     return !empty($this->get('search-keywords')->getValue());
   }
 
   /**
-   * Gets authors of a content.
-   *
-   * @return array|null
-   *   An array with author IDs.
+   * {@inheritdoc}
    */
   public function getAuthors(): ?array {
     if (!$this->hasAuthors()) {
@@ -193,20 +146,14 @@ final class DocumentationMetadata extends Map {
   }
 
   /**
-   * Checks is authors are set.
-   *
-   * @return bool
-   *   TRUE if authors are set.
+   * {@inheritdoc}
    */
   public function hasAuthors(): bool {
     return !empty($this->get('authors')->getValue());
   }
 
   /**
-   * Gets checksum for current documentation metadata values.
-   *
-   * @return string
-   *   A checksum for instance.
+   * {@inheritdoc}
    */
   public function checksum(): string {
     $checksum_parts = $this->toArray();
