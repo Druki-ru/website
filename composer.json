@@ -67,6 +67,11 @@
         "phpspec/prophecy-phpunit": "^2",
         "weitzman/drupal-test-traits": "^1.5"
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Druki\\Tests\\": "tests/src"
+        }
+    },
     "conflict": {
         "drupal/drupal": "*"
     },

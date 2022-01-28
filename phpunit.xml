@@ -30,11 +30,11 @@
       <directory>./web/modules/custom/*/tests/src/Kernel</directory>
     </testsuite>
     <testsuite name="existing-site">
-      <directory>./web/modules/custom/*/tests/src/ExistingSite</directory>
+      <directory>./tests/src/ExistingSite</directory>
     </testsuite>
-    <testsuite name="existing-site-javascript">
-      <directory>./web/modules/custom/*/tests/src/ExistingSiteJavascript</directory>
-    </testsuite>
+<!--    <testsuite name="existing-site-javascript">-->
+<!--      <directory>./tests/src/ExistingSiteJavascript</directory>-->
+<!--    </testsuite>-->
   </testsuites>
   <listeners>
     <listener class="\Drupal\Tests\Listeners\DrupalListener"/>

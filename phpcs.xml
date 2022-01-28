@@ -5,6 +5,7 @@
   <arg name="extensions" value="php,module,inc,install,theme"/>
   <file>./web/modules/custom</file>
   <file>./web/themes/custom</file>
+  <file>./tests/src</file>
   <!-- Exclude vendors. -->
   <exclude-pattern>./web/themes/custom/*/node_modules</exclude-pattern>
   <!-- Exclude fixtures. -->
