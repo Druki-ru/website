@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\druki\Traits;
 
-use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 
 /**
  * Provides a trait for proper login form submission.
+ *
+ * This trait is override for \Drupal\Tests\UiHelperTrait::drupalLogin.
  *
  * @see https://www.drupal.org/project/drupal/issues/3222549
  */
@@ -25,16 +26,19 @@ trait DrukiLoginTrait {
     }
 
     $this->drupalGet(Url::fromRoute('user.login'));
-    $this->submitForm([
+    $form_input = [
       'name' => $account->getAccountName(),
       'pass' => $account->passRaw,
-    ], new TranslatableMarkup('Log in'));
+    ];
+    $this->submitForm($form_input, new TranslatableMarkup('Log in'));
 
-    // @see ::drupalUserIsLoggedIn()
-    $account->sessionId = $this->getSession()
-      ->getCookie(\Drupal::service('session_configuration')
-        ->getOptions(\Drupal::request())['name']);
-    $this->assertTrue($this->drupalUserIsLoggedIn($account), (string) new FormattableMarkup('User %name successfully logged in.', ['%name' => $account->getAccountName()]));
+    $request = $this->container->get('request_stack')->getCurrentRequest();
+    $session_configuration = $this->container->get('session_configuration');
+    $session_options = $session_configuration->getOptions($request);
+    $session_id = $this->getSession()->getCookie($session_options['name']);
+    $account->sessionId = $session_id;
+
+    $this->assertTrue($this->drupalUserIsLoggedIn($account));
 
     $this->loggedInUser = $account;
     $this->container->get('current_user')->setAccount($account);
