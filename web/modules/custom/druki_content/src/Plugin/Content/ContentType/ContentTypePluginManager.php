@@ -31,20 +31,4 @@ final class ContentTypePluginManager extends DefaultPluginManager {
     $this->setCacheBackend($cache_backend, 'druki_content_type_plugins');
   }
 
-  /**
-   * {@inheritdoc}
-   *
-   * @todo Remove this method. It is used for druki_content_update_9302() update
-   *   when druki_content entity bundle has been added. Since there was no any
-   *   bundle previously and we using 'plugin' bundles, this will request for
-   *   $plugin_id = '' (empty string), and we fallback to 'druki_content'
-   *   plugin, because it represents default one.
-   */
-  protected function doGetDefinition(array $definitions, $plugin_id, $exception_on_invalid) {
-    if (isset($definitions[$plugin_id])) {
-      return $definitions[$plugin_id];
-    }
-    return $definitions['druki_content'];
-  }
-
 }
