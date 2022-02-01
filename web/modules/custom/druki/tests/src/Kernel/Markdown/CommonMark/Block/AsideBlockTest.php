@@ -110,7 +110,16 @@ final class AsideBlockTest extends DrukiKernelTestBase {
       '<aside role="note" data-type="note"><p><strong>Hello, World!</strong></p></aside>',
     ];
 
-    $data['complext'] = [
+    $data['header'] = [
+      <<<'Markdown'
+      <Aside type="important" header="Foo bar!">
+      **Hello, World!**
+      </Aside>
+      Markdown,
+      '<aside role="note" data-type="important" data-header="Foo bar!"><p><strong>Hello, World!</strong></p></aside>',
+    ];
+
+    $data['complex'] = [
       <<<'Markdown'
       <Aside>
       **Hello, World!**
