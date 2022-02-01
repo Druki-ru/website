@@ -14,6 +14,10 @@
   <rule ref="vendor/drupal/coder/coder_sniffer/Drupal">
     <!-- Exclude in favor of native typehints. -->
     <exclude name="Drupal.Commenting.VariableComment.MissingVar"/>
+    <!-- Project don't follow any release cycle and deprecation is used as
+    mark that code is outdated and should be removed ASAP. -->
+    <exclude name="Drupal.Commenting.Deprecated.IncorrectTextLayout"/>
+    <exclude name="Drupal.Commenting.Deprecated.DeprecatedMissingSeeTag"/>
   </rule>
   <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
   <rule ref="vendor/chi-teck/drupal-coder-extension/DrupalExtended74"/>

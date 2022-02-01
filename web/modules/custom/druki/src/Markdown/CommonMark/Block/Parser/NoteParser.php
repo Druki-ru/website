@@ -9,6 +9,8 @@ use League\CommonMark\Cursor;
 
 /**
  * Provides note element parser.
+ *
+ * @deprecated Remove after content is updated to use <Aside>.
  */
 final class NoteParser implements BlockParserInterface {
 

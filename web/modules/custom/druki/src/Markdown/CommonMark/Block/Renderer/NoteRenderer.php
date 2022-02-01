@@ -9,6 +9,8 @@ use League\CommonMark\HtmlElement;
 
 /**
  * Provides note element renderer.
+ *
+ * @deprecated Remove after content is updated to use <Aside>.
  */
 final class NoteRenderer implements BlockRendererInterface {
 

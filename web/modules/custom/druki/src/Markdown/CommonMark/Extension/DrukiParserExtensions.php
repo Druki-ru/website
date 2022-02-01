@@ -2,7 +2,9 @@
 
 namespace Drupal\druki\Markdown\CommonMark\Extension;
 
+use Drupal\druki\Markdown\CommonMark\Block\Parser\AsideParser;
 use Drupal\druki\Markdown\CommonMark\Block\Parser\NoteParser;
+use Drupal\druki\Markdown\CommonMark\Block\Renderer\AsideRenderer;
 use Drupal\druki\Markdown\CommonMark\Block\Renderer\NoteRenderer;
 use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
@@ -21,6 +23,13 @@ final class DrukiParserExtensions implements ExtensionInterface {
       ->addBlockRenderer(
         'Drupal\druki\Markdown\CommonMark\Block\Element\NoteElement',
         new NoteRenderer(),
+      );
+
+    $environment
+      ->addBlockParser(new AsideParser(), 80)
+      ->addBlockRenderer(
+        'Drupal\druki\Markdown\CommonMark\Block\Element\AsideElement',
+        new AsideRenderer(),
       );
   }
 

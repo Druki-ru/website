@@ -7,6 +7,8 @@ use League\CommonMark\Cursor;
 
 /**
  * Provide note element for markdown.
+ *
+ * @deprecated Remove after content is updated to use <Aside>.
  */
 final class NoteElement extends AbstractBlock {
 
