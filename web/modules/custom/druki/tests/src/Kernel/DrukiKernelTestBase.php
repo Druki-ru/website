@@ -28,11 +28,4 @@ abstract class DrukiKernelTestBase extends KernelTestBase {
     'druki',
   ];
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-  }
-
 }
