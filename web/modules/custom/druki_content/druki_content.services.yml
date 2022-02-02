@@ -71,6 +71,12 @@ services:
 
   druki_content.parser.content_html_note_element:
     class: Drupal\druki_content\Parser\ContentHtmlNoteElementParser
+    deprecated: Remove %service_id% when content will use Aside element.
+    tags:
+      - { name: druki_content_html_element_parser }
+
+  druki_content.parser.content_html_aside_element:
+    class: Drupal\druki_content\Parser\ContentHtmlAsideElementParser
     tags:
       - { name: druki_content_html_element_parser }
 

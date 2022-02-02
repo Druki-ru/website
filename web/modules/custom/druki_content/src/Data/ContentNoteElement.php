@@ -6,6 +6,8 @@ namespace Drupal\druki_content\Data;
 
 /**
  * Provides content element for notes.
+ *
+ * @deprecated Remove after content is updated to use <Aside>.
  */
 final class ContentNoteElement extends ContentElementBase {
 

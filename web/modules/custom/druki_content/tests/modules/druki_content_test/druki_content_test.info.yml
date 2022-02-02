@@ -1,0 +1,8 @@
+name: Druki Content module tests
+type: module
+description: Support module for druki_content related testing.
+package: Testing
+version: VERSION
+
+dependencies:
+  - druki:druki_content

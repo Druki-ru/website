@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Provides note element parser.
  *
- * @see \Drupal\druki\Markdown\CommonMark\Block\Renderer\NoteRenderer
+ * @deprecated Remove after content is updated to use <Aside>.
  */
 final class ContentHtmlNoteElementParser implements ContentHtmlElementParserInterface {
 
