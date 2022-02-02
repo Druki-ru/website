@@ -47,6 +47,19 @@ final class AsideBlockTest extends DrukiKernelTestBase {
       '<Aside></Aside>',
     ];
 
+    $data['indented'] = [
+      <<<'Markdown'
+        <Aside>
+        Hello, World!
+        </Aside>
+      Markdown,
+      <<<'HTML'
+        <Aside>
+        Hello, World!
+        </Aside>
+      HTML,
+    ];
+
     $data['default type'] = [
       <<<'Markdown'
       <Aside>
