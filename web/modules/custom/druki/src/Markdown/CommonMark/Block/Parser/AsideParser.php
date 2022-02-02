@@ -18,6 +18,7 @@ final class AsideParser implements BlockParserInterface {
    * {@inheritdoc}
    */
   public function parse(ContextInterface $context, Cursor $cursor): bool {
+    dump($cursor->isIndented());
     if ($cursor->isIndented()) {
       return FALSE;
     }
