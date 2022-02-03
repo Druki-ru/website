@@ -35,7 +35,7 @@ final class AsideParser implements BlockParserInterface {
 
     // Default and fallback value for aside type.
     $aside_type = 'note';
-    \preg_match('/\s+type="(note|important|warning|deprecated)"/', $match, $type);
+    \preg_match('/\s+type="(note|tip|important|warning|deprecated)"/', $match, $type);
     if (!empty($type)) {
       $aside_type = $type[1];
     }

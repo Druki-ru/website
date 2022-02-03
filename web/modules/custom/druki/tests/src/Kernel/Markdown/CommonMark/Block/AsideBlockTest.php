@@ -119,9 +119,18 @@ final class AsideBlockTest extends DrukiKernelTestBase {
       '<aside role="note" data-type="deprecated"><p>Hello, World!</p></aside>',
     ];
 
+    $data['tip type'] = [
+      <<<'Markdown'
+      <Aside type="tip">
+      Hello, World!
+      </Aside>
+      Markdown,
+      '<aside role="note" data-type="tip"><p>Hello, World!</p></aside>',
+    ];
+
     $data['invalid type'] = [
       <<<'Markdown'
-      <Aside>
+      <Aside type="not-existing">
       Hello, World!
       </Aside>
       Markdown,
