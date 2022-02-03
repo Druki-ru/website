@@ -11,8 +11,9 @@
   padding: var(--spacing-md) var(--spacing-lg);
   border-left: 4px solid rgba(var(--note-color), 0.7);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  background-color: rgba(var(--note-color), 0.1);
+  background-color: rgba(var(--note-color), 0.2);
   margin: var(--p-margin--y) 0;
+  --p-margin--y: var(--spacing-sm);
 }
 
 .note--tip {
@@ -27,7 +28,8 @@
   --note-color: var(--color-amber-sae-ece);
 }
 
-.note--important {
+.note--important,
+.note--deprecated {
   --note-color: var(--color-international-orange-engineering);
 }
 
@@ -39,6 +41,6 @@
   text-transform: uppercase;
 }
 
-.note__content {
-  --p-margin--y: var(--spacing-sm);
+.note__header {
+  font-weight: bold;
 }
