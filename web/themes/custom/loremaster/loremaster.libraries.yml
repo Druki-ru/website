@@ -132,6 +132,7 @@ component.druki-content:
     theme:
       assets/css/04-components/druki-content/druki-content-full.css: { }
       assets/css/04-components/druki-content/druki-content-content.css: { }
+      assets/css/04-components/druki-content/druki-content-documentation-document.css: { }
 
 component.druki-content.element.heading:
   css:
