@@ -9,7 +9,7 @@ dependencies:
 id: category_navigation
 theme: loremaster
 region: content_sidebar
-weight: -8
+weight: -7
 provider: null
 plugin: druki_category_navigation
 settings:

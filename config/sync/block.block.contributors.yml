@@ -9,7 +9,7 @@ dependencies:
 id: contributors
 theme: loremaster
 region: content_sidebar
-weight: -7
+weight: -8
 provider: null
 plugin: druki_content_contributors
 settings:
