@@ -18,4 +18,5 @@ enabled_entity_types:
   - taxonomy_term
   - menu_link_content
   - druki_content
+  - druki_author
 entities_per_queue_item: 50
