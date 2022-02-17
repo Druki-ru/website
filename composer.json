@@ -87,7 +87,7 @@
         }
     },
     "scripts": {
-        "phpcs": "vendor/bin/phpcs -s",
+        "phpcs": "vendor/bin/phpcs -ps",
         "phpcbf": "vendor/bin/phpcbf",
         "phpstan": "vendor/bin/phpstan analyse",
         "phpunit": "vendor/bin/phpunit"
