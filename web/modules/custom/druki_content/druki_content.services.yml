@@ -133,6 +133,7 @@ services:
       - '@druki_content.parser.content_source_file'
       - '@druki_content.generator.content_document_checksum'
       - '@druki.process.git'
+      - '@logger.channel.druki_content'
     tags:
       - { name: druki_entity_sync_queue_item_processor }
 

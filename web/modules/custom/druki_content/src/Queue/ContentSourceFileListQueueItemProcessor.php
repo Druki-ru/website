@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\druki_content\Queue;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\druki\Parser\GitOutputParser;
 use Drupal\druki\Process\GitInterface;
 use Drupal\druki\Queue\EntitySyncQueueItemInterface;
@@ -43,6 +45,11 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
   protected GitInterface $git;
 
   /**
+   * The logger channel.
+   */
+  protected LoggerChannelInterface $logger;
+
+  /**
    * Constructs a new ContentSourceFileListQueueItemProcessor object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -53,15 +60,18 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
    *   The checksum generator.
    * @param \Drupal\druki\Process\GitInterface $git
    *   The git process.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ContentSourceFileParser $content_source_file_parser, ContentDocumentChecksumGenerator $checksum_generator, GitInterface $git) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ContentSourceFileParser $content_source_file_parser, ContentDocumentChecksumGenerator $checksum_generator, GitInterface $git, LoggerChannelInterface $logger) {
     $this->contentStorage = $entity_type_manager->getStorage('druki_content');
     $this->contentSourceFileParser = $content_source_file_parser;
     $this->checksumGenerator = $checksum_generator;
     $this->git = $git;
+    $this->logger = $logger;
   }
 
   /**
@@ -73,7 +83,15 @@ final class ContentSourceFileListQueueItemProcessor implements EntitySyncQueueIt
     $ids = [];
     /** @var \Drupal\druki_content\Data\ContentSourceFile $content_source_file */
     foreach ($content_source_file_list->getIterator() as $content_source_file) {
-      $ids[] = $this->processContentSourceFile($content_source_file);
+      try {
+        $ids[] = $this->processContentSourceFile($content_source_file);
+      }
+      catch (\Exception $e) {
+        $message = new TranslatableMarkup('Failed processing the file: @file', [
+          '@file' => $content_source_file->getRelativePathname(),
+        ]);
+        $this->logger->error($message);
+      }
     }
     return $ids;
   }
