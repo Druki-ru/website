@@ -34,10 +34,12 @@ final class ContentDocumentTest extends ExistingSiteBase {
     $druki_content_document->setContentDocument($content_document);
     $serialized_content_document = \serialize($content_document);
     $this->assertEquals($serialized_content_document, $druki_content_document->getValue());
+    // @phpcs:ignore DrupalPractice.FunctionCalls.InsecureUnserialize.InsecureUnserialize
     $this->assertEquals(\unserialize($serialized_content_document), $druki_content_document->getContentDocument());
     $druki_content_document->setValue(NULL);
     $this->assertNull($druki_content_document->getContentDocument());
     $druki_content_document->setValue($content_document);
+    // @phpcs:ignore DrupalPractice.FunctionCalls.InsecureUnserialize.InsecureUnserialize
     $this->assertEquals(\unserialize($serialized_content_document), $druki_content_document->getContentDocument());
   }
 

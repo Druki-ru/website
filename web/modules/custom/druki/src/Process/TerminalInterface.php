@@ -31,6 +31,6 @@ interface TerminalInterface {
    * @return \Symfony\Component\Process\Process
    *   The process instance.
    */
-  public function createProcess(array $command, ?string $cwd = NULL, ?array $env = NULL, $input = NULL, ?float $timeout = 60): Process;
+  public function createProcess(array $command, ?string $cwd = NULL, ?array $env = NULL, mixed $input = NULL, ?float $timeout = 60): Process;
 
 }

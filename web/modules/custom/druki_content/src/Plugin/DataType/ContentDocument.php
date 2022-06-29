@@ -27,6 +27,7 @@ final class ContentDocument extends StringData {
     if (empty($this->value)) {
       return NULL;
     }
+    // @phpcs:ignore DrupalPractice.FunctionCalls.InsecureUnserialize.InsecureUnserialize
     return \unserialize($this->value);
   }
 

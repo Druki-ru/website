@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\file\FileInterface;
+use Drupal\file\FileStorageInterface;
 use Drupal\file\FileUsage\FileUsageInterface;
 
 /**
@@ -16,10 +17,8 @@ final class FileTracker implements FileTrackerInterface {
 
   /**
    * The file storage.
-   *
-   * @var \Drupal\file\FileStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $fileStorage;
+  protected FileStorageInterface $fileStorage;
 
   /**
    * The logger channel.
